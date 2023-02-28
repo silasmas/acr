@@ -1,7 +1,4 @@
 <?php
-/**
- * Copyright (c) 2023 Xsam Technologies and/or its affiliates. All rights reserved.
- */
 
 namespace App\Models;
 
@@ -9,13 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Laravel\Scout\Searchable;
 
-class AboutContent extends Model
+/**
+ * @author Xanders
+ * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
+ */
+class LegalInfoContent extends Model
 {
     use HasFactory, Searchable;
 
     const SEARCHABLE_FIELDS = ['subtitle'];
 
-    protected $fillable = ['subtitle', 'content', 'updated_at', 'about_title_id'];
+    protected $fillable = ['subtitle', 'content', 'updated_at', 'legal_info_title_id'];
 
     /**
      * Get the indexable data array for the model.
@@ -29,19 +30,19 @@ class AboutContent extends Model
 
     /**
      * ONE-TO-MANY
-     * One about title for several about contents
+     * One legal info title for several legal infos contents
      */
-    public function about_title()
+    public function legal_info_title()
     {
-        return $this->belongsTo(AboutTitle::class);
+        return $this->belongsTo(LegalInfoTitle::class);
     }
 
     /**
      * MANY-TO-ONE
-     * Several albums for a about content
+     * Several images for a legal info content
      */
-    public function albums()
+    public function images()
     {
-        return $this->hasMany(Album::class);
+        return $this->hasMany(Image::class);
     }
 }

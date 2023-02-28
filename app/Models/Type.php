@@ -1,7 +1,4 @@
 <?php
-/**
- * Copyright (c) 2023 Xsam Technologies and/or its affiliates. All rights reserved.
- */
 
 namespace App\Models;
 
@@ -9,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Laravel\Scout\Searchable;
 
+/**
+ * @author Xanders
+ * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
+ */
 class Type extends Model
 {
     use HasFactory, Searchable;
@@ -38,46 +39,19 @@ class Type extends Model
 
     /**
      * MANY-TO-ONE
-     * Several users for a type
+     * Several addresses for a continent
      */
-    public function users()
+    public function addresses()
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(Address::class);
     }
 
     /**
      * MANY-TO-ONE
-     * Several files for a type
+     * Several images for a continent
      */
-    public function files()
+    public function images()
     {
-        return $this->hasMany(File::class);
-    }
-
-    /**
-     * MANY-TO-ONE
-     * Several billing_methods for a type
-     */
-    public function billing_methods()
-    {
-        return $this->hasMany(BillingMethod::class);
-    }
-
-    /**
-     * MANY-TO-ONE
-     * Several icons for a type
-     */
-    public function icons()
-    {
-        return $this->hasMany(Icon::class);
-    }
-
-    /**
-     * MANY-TO-ONE
-     * Several histories for a type
-     */
-    public function histories()
-    {
-        return $this->hasMany(History::class);
+        return $this->hasMany(Image::class);
     }
 }

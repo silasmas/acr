@@ -1,7 +1,4 @@
 <?php
-/**
- * Copyright (c) 2023 Xsam Technologies and/or its affiliates. All rights reserved.
- */
 
 namespace App\Models;
 
@@ -9,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Laravel\Scout\Searchable;
 
+/**
+ * @author Xanders
+ * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
+ */
 class Role extends Model
 {
     use HasFactory, Searchable;
@@ -34,14 +35,5 @@ class Role extends Model
     public function role_users()
     {
         return $this->hasMany(RoleUser::class);
-    }
-
-    /**
-     * MANY-TO-ONE
-     * Several icons for a role
-     */
-    public function icons()
-    {
-        return $this->hasMany(Icon::class);
     }
 }

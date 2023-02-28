@@ -1,18 +1,19 @@
 <?php
-/**
- * Copyright (c) 2023 Xsam Technologies and/or its affiliates. All rights reserved.
- */
 
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+/**
+ * @author Xanders
+ * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
+ */
 class RoleUser extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['role_id', 'user_id', 'selected', 'updated_at'];
+    protected $fillable = ['role_id', 'user_id', 'updated_at'];
 
     /**
      * ONE-TO-MANY
