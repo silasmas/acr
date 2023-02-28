@@ -1,12 +1,13 @@
 <?php
-/**
- * Copyright (c) 2023 Xsam Technologies and/or its affiliates. All rights reserved.
- */
 
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @author Xanders
+ * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
+ */
 class PasswordReset extends JsonResource
 {
     /**
@@ -20,8 +21,7 @@ class PasswordReset extends JsonResource
         return [
             'id' => $this->id,
             'email' => $this->email,
-            'phone_code' => $this->phone_code,
-            'phone_number' => $this->phone_number,
+            'phone' => $this->phone,
             'token' => $this->token,
             'former_password' => $this->former_password,
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),

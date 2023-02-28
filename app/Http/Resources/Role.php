@@ -1,12 +1,13 @@
 <?php
-/**
- * Copyright (c) 2023 Xsam Technologies and/or its affiliates. All rights reserved.
- */
 
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @author Xanders
+ * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
+ */
 class Role extends JsonResource
 {
     /**
@@ -21,7 +22,6 @@ class Role extends JsonResource
             'id' => $this->id,
             'role_name' => $this->role_name,
             'role_description' => $this->role_description,
-            'icons' => Icon::collection($this->icons),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s')
         ];

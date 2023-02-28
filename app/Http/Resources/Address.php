@@ -1,12 +1,13 @@
 <?php
-/**
- * Copyright (c) 2023 Xsam Technologies and/or its affiliates. All rights reserved.
- */
 
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @author Xanders
+ * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
+ */
 class Address extends JsonResource
 {
     /**
@@ -22,13 +23,10 @@ class Address extends JsonResource
             'number' => $this->number,
             'street' => $this->street,
             'neighborhood' => Neighborhood::make($this->neighborhood),
-            'status' => Status::make($this->status),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
             'area_id' => $this->area_id,
-            'user_id' => $this->user_id,
-            'company_id' => $this->company_id,
-            'office_id' => $this->office_id,
+            'user_id' => $this->user_id
         ];
     }
 }

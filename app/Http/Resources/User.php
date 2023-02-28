@@ -1,12 +1,13 @@
 <?php
-/**
- * Copyright (c) 2023 Xsam Technologies and/or its affiliates. All rights reserved.
- */
 
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @author Xanders
+ * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
+ */
 class User extends JsonResource
 {
     /**
@@ -19,38 +20,27 @@ class User extends JsonResource
     {
         return [
             'id' => $this->id,
-            'registration_number' => $this->registration_number,
+            'national_number' => $this->national_number,
             'firstname' => $this->firstname,
             'lastname' => $this->lastname,
             'surname' => $this->surname,
             'gender' => $this->gender,
-            'birthdate' => $this->birthdate,
-            'customer_name' => $this->customer_name,
-            'password_visible' => $this->password_visible,
-            'api_token' => $this->api_token,
+            'birth_city' => $this->birth_city,
+            'birth_date' => $this->birth_date,
+            'nationality' => $this->nationality,
+            'p_o_box' => $this->p_o_box,
+            'email' => $this->email,
+            'phone' => $this->phone,
+            'email_verified_at' => $this->email_verified_at,
+            'password' => $this->password,
             'remember_token' => $this->remember_token,
-            'last_connection' => $this->last_connection,
+            'api_token' => $this->api_token,
+            'user_status' => $this->user_status,
             'addresses' => Address::collection($this->addresses),
-            'emails' => Email::collection($this->emails),
-            'phones' => Phone::collection($this->phones),
-            'bank_codes' => BankCode::collection($this->bank_codes),
-            'social_networks' => SocialNetwork::collection($this->social_networks),
             'role_users' => RoleUser::collection($this->role_users),
-            'status' => Status::make($this->status),
-            'type' => Type::make($this->status),
-            'invoices' => Invoice::collection($this->invoices),
-            'carts' => Cart::collection($this->carts),
-            'albums' => Album::collection($this->albums),
-            'preference' => Preference::make($this->preference),
-            'histories' => History::collection($this->histories),
-            'notifications' => Notification::collection($this->notifications),
-            'sessions' => Session::collection($this->sessions),
+            'images' => Image::collection($this->images),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
-            'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
-            'status_id' => $this->status_id,
-            'type_id' => $this->type_id,
-            'company_id' => $this->company_id,
-            'office_id' => $this->office_id
+            'updated_at' => $this->updated_at->format('Y-m-d H:i:s')
         ];
     }
 }

@@ -1,13 +1,14 @@
 <?php
-/**
- * Copyright (c) 2023 Xsam Technologies and/or its affiliates. All rights reserved.
- */
 
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AboutContent extends JsonResource
+/**
+ * @author Xanders
+ * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
+ */
+class LegalInfoContent extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -21,10 +22,10 @@ class AboutContent extends JsonResource
             'id' => $this->id,
             'subtitle' => $this->subtitle,
             'content' => $this->content,
-            'albums' => Album::collection($this->albums),
+            'images' => Image::collection($this->images),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
-            'about_title_id' => $this->about_title_id
+            'legal_info_title_id' => $this->legal_info_title_id
         ];
     }
 }

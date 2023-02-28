@@ -1,13 +1,14 @@
 <?php
-/**
- * Copyright (c) 2023 Xsam Technologies and/or its affiliates. All rights reserved.
- */
 
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AboutSubject extends JsonResource
+/**
+ * @author Xanders
+ * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
+ */
+class LegalInfoSubject extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,11 +20,9 @@ class AboutSubject extends JsonResource
     {
         return [
             'id' => $this->id,
-            'subject' => $this->subject,
+            'subject_name' => $this->subject_name,
             'subject_description' => $this->subject_description,
-            'status' => Status::make($this->status),
-            'about_titles' => AboutTitle::collection($this->about_titles),
-            'icons' => Icon::collection($this->icons),
+            'legal_info_titles' => LegalInfoTitle::collection($this->legal_info_titles),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s')
         ];

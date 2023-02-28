@@ -1,12 +1,13 @@
 <?php
-/**
- * Copyright (c) 2023 Xsam Technologies and/or its affiliates. All rights reserved.
- */
 
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @author Xanders
+ * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
+ */
 class Type extends JsonResource
 {
     /**
@@ -21,7 +22,6 @@ class Type extends JsonResource
             'id' => $this->id,
             'type_name' => $this->type_name,
             'type_description' => $this->type_description,
-            'icons' => Icon::collection($this->icons),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
             'group_id' => $this->group_id
