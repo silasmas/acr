@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\LegalInfoContent;
-use App\Models\Image;
 use App\Models\Group;
+use App\Models\Image;
+use App\Models\News;
 use App\Models\Type;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Resources\LegalInfoContent as ResourcesLegalInfoContent;
+use App\Http\Resources\News as ResourcesNews;
 
 /**
  * @author Xanders
  * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
  */
-class LegalInfoContentController extends BaseController
+class NewsController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -25,9 +25,9 @@ class LegalInfoContentController extends BaseController
      */
     public function index()
     {
-        $legal_info_contents = LegalInfoContent::all();
+        $news = News::orderByDesc('created_at')->get();
 
-        return $this->handleResponse(ResourcesLegalInfoContent::collection($legal_info_contents), __('notifications.find_all_legal_info_contents_success'));
+        return $this->handleResponse(ResourcesNews::collection($news), __('notifications.find_all_news_success'));
     }
 
     /**
@@ -40,32 +40,23 @@ class LegalInfoContentController extends BaseController
     {
         // Get inputs
         $inputs = [
-            'subtitle' => $request->subtitle,
-            'content' => $request->content,
-            'legal_info_title_id' => $request->legal_info_title_id
+            'news_title' => $request->news_title,
+            'news_content' => $request->news_content,
+            'type_id' => $request->type_id
         ];
-        // Select all contents of a same title to check unique constraint
-        $legal_info_contents = LegalInfoContent::where('legal_info_title_id', $inputs['legal_info_title_id'])->get();
 
-        // Validate required fields
-        if ($inputs['content'] == null OR $inputs['content'] == ' ') {
-            return $this->handleError($inputs['content'], __('validation.required'), 400);
+        $validator = Validator::make($inputs, [
+            'news_title' => ['required'],
+            'type_id' => ['required']
+        ]);
+
+        if ($validator->fails()) {
+            return $this->handleError($validator->errors());       
         }
 
-        if ($inputs['legal_info_title_id'] == null OR $inputs['legal_info_title_id'] == ' ') {
-            return $this->handleError($inputs['legal_info_title_id'], __('validation.required'), 400);
-        }
+        $news = News::create($inputs);
 
-        // Check if content already exists
-        foreach ($legal_info_contents as $another_legal_info_content):
-            if ($another_legal_info_content->content == $inputs['content']) {
-                return $this->handleError($inputs['content'], __('validation.custom.content.exists'), 400);
-            }
-        endforeach;
-
-        $legal_info_content = LegalInfoContent::create($inputs);
-
-        return $this->handleResponse(new ResourcesLegalInfoContent($legal_info_content), __('notifications.create_legal_info_content_success'));
+        return $this->handleResponse(new ResourcesNews($news), __('notifications.create_news_success'));
     }
 
     /**
@@ -76,89 +67,78 @@ class LegalInfoContentController extends BaseController
      */
     public function show($id)
     {
-        $legal_info_content = LegalInfoContent::find($id);
+        $news = News::find($id);
 
-        if (is_null($legal_info_content)) {
-            return $this->handleError(__('notifications.find_legal_info_content_404'));
+        if (is_null($news)) {
+            return $this->handleError(__('notifications.find_news_404'));
         }
 
-        return $this->handleResponse(new ResourcesLegalInfoContent($legal_info_content), __('notifications.find_legal_info_content_success'));
+        return $this->handleResponse(new ResourcesNews($news), __('notifications.find_news_success'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\LegalInfoContent  $legal_info_content
+     * @param  \App\Models\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, LegalInfoContent $legal_info_content)
+    public function update(Request $request, News $news)
     {
         // Get inputs
         $inputs = [
             'id' => $request->id,
-            'subtitle' => $request->subtitle,
-            'content' => $request->content,
-            'legal_info_title_id' => $request->legal_info_title_id,
+            'news_title' => $request->news_title,
+            'news_content' => $request->news_content,
+            'type_id' => $request->type_id,
             'updated_at' => now()
         ];
-        // Select all contents of a same title and current content to check unique constraint
-        $legal_info_contents = LegalInfoContent::where('legal_info_title_id', $inputs['legal_info_title_id'])->get();
-        $current_legal_info_content = LegalInfoContent::find($inputs['id']);
 
-        // Validate required fields
-        if ($inputs['content'] == null OR $inputs['content'] == ' ') {
-            return $this->handleError($inputs['content'], __('validation.required'), 400);
+        $validator = Validator::make($inputs, [
+            'news_title' => ['required'],
+            'type_id' => ['required']
+        ]);
+
+        if ($validator->fails()) {
+            return $this->handleError($validator->errors());       
         }
 
-        if ($inputs['legal_info_title_id'] == null OR $inputs['legal_info_title_id'] == ' ') {
-            return $this->handleError($inputs['legal_info_title_id'], __('validation.required'), 400);
-        }
+        $news->update($inputs);
 
-        foreach ($legal_info_contents as $another_legal_info_content):
-            if ($current_legal_info_content->content != $inputs['content']) {
-                if ($another_legal_info_content->content == $inputs['content']) {
-                    return $this->handleError($inputs['content'], __('validation.custom.content.exists'), 400);
-                }
-            }
-        endforeach;
-
-        $legal_info_content->update($inputs);
-
-        return $this->handleResponse(new ResourcesLegalInfoContent($legal_info_content), __('notifications.update_legal_info_content_success'));
+        return $this->handleResponse(new ResourcesNews($news), __('notifications.update_news_success'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\LegalInfoContent  $legal_info_content
+     * @param  \App\Models\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function destroy(LegalInfoContent $legal_info_content)
+    public function destroy(News $news)
     {
-        $legal_info_content->delete();
+        $news->delete();
 
-        $legal_info_contents = LegalInfoContent::all();
+        $news = News::all();
 
-        return $this->handleResponse(ResourcesLegalInfoContent::collection($legal_info_contents), __('notifications.delete_legal_info_content_success'));
+        return $this->handleResponse(ResourcesNews::collection($news), __('notifications.delete_news_success'));
     }
 
     // ==================================== CUSTOM METHODS ====================================
     /**
-     * Search a content of legal info by a string.
+     * Select all news of same type.
      *
-     * @param  string $data
+     * @param  $type_id
      * @return \Illuminate\Http\Response
      */
-    public function search($data)
+    public function selectByType($type_id)
     {
-        $legal_info_contents = LegalInfoContent::search($data)->get();
+        $news = News::where('type_id', $type_id)->get();
 
-        return $this->handleResponse(ResourcesLegalInfoContent::collection($legal_info_contents), __('notifications.find_all_legal_info_contents_success'));
+        return $this->handleResponse(ResourcesNews::collection($news), __('notifications.find_all_news_success'));
     }
 
     /**
-     * Add legal info content image in storage.
+     * Add news image in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  $id
@@ -167,7 +147,7 @@ class LegalInfoContentController extends BaseController
     public function addImage(Request $request, $id)
     {
         $inputs = [
-            'legal_info_content_id' => $request->entity_id,
+            'news_id' => $request->entity_id,
             'image_64' => $request->base64image
         ];
 
@@ -179,7 +159,7 @@ class LegalInfoContentController extends BaseController
             $image = str_replace(' ', '+', $image);
 
             // Create image URL
-            $image_url = 'images/users/' . $inputs['user_id'] . '/others/' . Str::random(50) . '.png';
+            $image_url = 'images/news/' . $inputs['news_id'] . '/others/' . Str::random(50) . '.png';
 
             // Upload image
             Storage::url(Storage::disk('public')->put($image_url, base64_decode($image)));
@@ -204,7 +184,7 @@ class LegalInfoContentController extends BaseController
                     Image::create([
                         'image_url' => '/' . $image_url,
                         'type_id' => $type->id,
-                        'user_id' => $inputs['user_id']
+                        'news_id' => $inputs['news_id']
                     ]);
 
                 } else {
@@ -217,7 +197,7 @@ class LegalInfoContentController extends BaseController
                     Image::create([
                         'image_url' => '/' . $image_url,
                         'type_id' => $others_type->id,
-                        'user_id' => $inputs['user_id']
+                        'news_id' => $inputs['news_id']
                     ]);
                 }
 
@@ -234,7 +214,7 @@ class LegalInfoContentController extends BaseController
                     Image::create([
                         'image_url' => '/' . $image_url,
                         'type_id' => $type->id,
-                        'user_id' => $inputs['user_id']
+                        'news_id' => $inputs['news_id']
                     ]);
 
                 } else {
@@ -247,7 +227,7 @@ class LegalInfoContentController extends BaseController
                     Image::create([
                         'image_url' => '/' . $image_url,
                         'type_id' => $others_type->id,
-                        'user_id' => $inputs['user_id']
+                        'news_id' => $inputs['news_id']
                     ]);
                 }
             }
@@ -263,7 +243,7 @@ class LegalInfoContentController extends BaseController
             }
 
             // Create image URL
-			$image_url = 'images/users/' . $inputs['user_id'] . '/others/' . Str::random(50) . '.' . $request->file('image')->extension();
+			$image_url = 'images/news/' . $inputs['news_id'] . '/others/' . Str::random(50) . '.' . $request->file('image')->extension();
 
 			// Upload image
 			Storage::url(Storage::disk('public')->put($image_url, $request->file('image')));
@@ -288,7 +268,7 @@ class LegalInfoContentController extends BaseController
                     Image::create([
                         'image_url' => '/' . $image_url,
                         'type_id' => $type->id,
-                        'user_id' => $inputs['user_id']
+                        'news_id' => $inputs['news_id']
                     ]);
 
                 } else {
@@ -301,7 +281,7 @@ class LegalInfoContentController extends BaseController
                     Image::create([
                         'image_url' => '/' . $image_url,
                         'type_id' => $others_type->id,
-                        'user_id' => $inputs['user_id']
+                        'news_id' => $inputs['news_id']
                     ]);
                 }
 
@@ -318,7 +298,7 @@ class LegalInfoContentController extends BaseController
                     Image::create([
                         'image_url' => '/' . $image_url,
                         'type_id' => $type->id,
-                        'user_id' => $inputs['user_id']
+                        'news_id' => $inputs['news_id']
                     ]);
 
                 } else {
@@ -331,18 +311,18 @@ class LegalInfoContentController extends BaseController
                     Image::create([
                         'image_url' => '/' . $image_url,
                         'type_id' => $others_type->id,
-                        'user_id' => $inputs['user_id']
+                        'news_id' => $inputs['news_id']
                     ]);
                 }
             }
         }
 
-		$legal_info_content = LegalInfoContent::find($id);
+		$news = News::find($id);
 
-        $legal_info_content->update([
+        $news->update([
             'updated_at' => now()
         ]);
 
-        return $this->handleResponse(new ResourcesLegalInfoContent($legal_info_content), __('notifications.update_legal_info_content_success'));
-	}
+        return $this->handleResponse(new ResourcesNews($news), __('notifications.update_news_success'));
+    }
 }

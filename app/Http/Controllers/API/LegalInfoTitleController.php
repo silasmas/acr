@@ -1,15 +1,16 @@
 <?php
-/**
- * Copyright (c) 2023 Xsam Technologies and/or its affiliates. All rights reserved.
- */
 
 namespace App\Http\Controllers\API;
 
-use App\Models\AboutTitle;
+use App\Models\LegalInfoTitle;
 use Illuminate\Http\Request;
-use App\Http\Resources\AboutTitle as ResourcesAboutTitle;
+use App\Http\Resources\LegalInfoTitle as ResourcesLegalInfoTitle;
 
-class AboutTitleController extends BaseController
+/**
+ * @author Xanders
+ * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
+ */
+class LegalInfoTitleController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +19,9 @@ class AboutTitleController extends BaseController
      */
     public function index()
     {
-        $about_titles = AboutTitle::all();
+        $legal_info_titles = LegalInfoTitle::all();
 
-        return $this->handleResponse(ResourcesAboutTitle::collection($about_titles), __('notifications.find_all_about_titles_success'));
+        return $this->handleResponse(ResourcesLegalInfoTitle::collection($legal_info_titles), __('notifications.find_all_legal_info_titles_success'));
     }
 
     /**
@@ -34,30 +35,30 @@ class AboutTitleController extends BaseController
         // Get inputs
         $inputs = [
             'title' => $request->title,
-            'about_subject_id' => $request->about_subject_id
+            'legal_info_subject_id' => $request->legal_info_subject_id
         ];
         // Select all titles of a same subject to check unique constraint
-        $about_titles = AboutTitle::where('about_subject_id', $inputs['about_subject_id'])->get();
+        $legal_info_titles = LegalInfoTitle::where('legal_info_subject_id', $inputs['legal_info_subject_id'])->get();
 
         // Validate required fields
         if ($inputs['title'] == null OR $inputs['title'] == ' ') {
             return $this->handleError($inputs['title'], __('validation.required'), 400);
         }
 
-        if ($inputs['about_subject_id'] == null OR $inputs['about_subject_id'] == ' ') {
-            return $this->handleError($inputs['about_subject_id'], __('validation.required'), 400);
+        if ($inputs['legal_info_subject_id'] == null OR $inputs['legal_info_subject_id'] == ' ') {
+            return $this->handleError($inputs['legal_info_subject_id'], __('validation.required'), 400);
         }
 
         // Check if title already exists
-        foreach ($about_titles as $another_about_title):
-            if ($another_about_title->title == $inputs['title']) {
+        foreach ($legal_info_titles as $another_legal_info_title):
+            if ($another_legal_info_title->title == $inputs['title']) {
                 return $this->handleError($inputs['title'], __('validation.custom.title.exists'), 400);
             }
         endforeach;
 
-        $about_title = AboutTitle::create($inputs);
+        $legal_info_title = LegalInfoTitle::create($inputs);
 
-        return $this->handleResponse(new ResourcesAboutTitle($about_title), __('notifications.create_about_title_success'));
+        return $this->handleResponse(new ResourcesLegalInfoTitle($legal_info_title), __('notifications.create_legal_info_title_success'));
     }
 
     /**
@@ -68,70 +69,70 @@ class AboutTitleController extends BaseController
      */
     public function show($id)
     {
-        $about_title = AboutTitle::find($id);
+        $legal_info_title = LegalInfoTitle::find($id);
 
-        if (is_null($about_title)) {
-            return $this->handleError(__('notifications.find_about_title_404'));
+        if (is_null($legal_info_title)) {
+            return $this->handleError(__('notifications.find_legal_info_title_404'));
         }
 
-        return $this->handleResponse(new ResourcesAboutTitle($about_title), __('notifications.find_about_title_success'));
+        return $this->handleResponse(new ResourcesLegalInfoTitle($legal_info_title), __('notifications.find_legal_info_title_success'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\AboutTitle  $about_title
+     * @param  \App\Models\LegalInfoTitle  $legal_info_title
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AboutTitle $about_title)
+    public function update(Request $request, LegalInfoTitle $legal_info_title)
     {
         // Get inputs
         $inputs = [
             'id' => $request->id,
             'title' => $request->title,
-            'about_subject_id' => $request->about_subject_id,
+            'legal_info_subject_id' => $request->legal_info_subject_id,
             'updated_at' => now()
         ];
         // Select all titles of a same subject and current title to check unique constraint
-        $about_titles = AboutTitle::where('about_subject_id', $inputs['about_subject_id'])->get();
-        $current_about_title = AboutTitle::find($inputs['id']);
+        $legal_info_titles = LegalInfoTitle::where('legal_info_subject_id', $inputs['legal_info_subject_id'])->get();
+        $current_legal_info_title = LegalInfoTitle::find($inputs['id']);
 
         // Validate required fields
         if ($inputs['title'] == null OR $inputs['title'] == ' ') {
             return $this->handleError($inputs['title'], __('validation.required'), 400);
         }
 
-        if ($inputs['about_title_id'] == null OR $inputs['about_title_id'] == ' ') {
-            return $this->handleError($inputs['about_title_id'], __('validation.required'), 400);
+        if ($inputs['legal_info_title_id'] == null OR $inputs['legal_info_title_id'] == ' ') {
+            return $this->handleError($inputs['legal_info_title_id'], __('validation.required'), 400);
         }
 
-        foreach ($about_titles as $another_about_title):
-            if ($current_about_title->title != $inputs['title']) {
-                if ($another_about_title->title == $inputs['title']) {
+        foreach ($legal_info_titles as $another_legal_info_title):
+            if ($current_legal_info_title->title != $inputs['title']) {
+                if ($another_legal_info_title->title == $inputs['title']) {
                     return $this->handleError($inputs['title'], __('validation.custom.title.exists'), 400);
                 }
             }
         endforeach;
 
-        $about_title->update($inputs);
+        $legal_info_title->update($inputs);
 
-        return $this->handleResponse(new ResourcesAboutTitle($about_title), __('notifications.update_about_title_success'));
+        return $this->handleResponse(new ResourcesLegalInfoTitle($legal_info_title), __('notifications.update_legal_info_title_success'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\AboutTitle  $about_title
+     * @param  \App\Models\LegalInfoTitle  $legal_info_title
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AboutTitle $about_title)
+    public function destroy(LegalInfoTitle $legal_info_title)
     {
-        $about_title->delete();
+        $legal_info_title->delete();
 
-        $about_titles = AboutTitle::all();
+        $legal_info_titles = LegalInfoTitle::all();
 
-        return $this->handleResponse(ResourcesAboutTitle::collection($about_titles), __('notifications.delete_about_title_success'));
+        return $this->handleResponse(ResourcesLegalInfoTitle::collection($legal_info_titles), __('notifications.delete_legal_info_title_success'));
     }
 
     // ==================================== CUSTOM METHODS ====================================
@@ -143,8 +144,8 @@ class AboutTitleController extends BaseController
      */
     public function search($data)
     {
-        $about_titles = AboutTitle::search($data)->get();
+        $legal_info_titles = LegalInfoTitle::search($data)->get();
 
-        return $this->handleResponse(ResourcesAboutTitle::collection($about_titles), __('notifications.find_all_about_titles_success'));
+        return $this->handleResponse(ResourcesLegalInfoTitle::collection($legal_info_titles), __('notifications.find_all_legal_info_titles_success'));
     }
 }

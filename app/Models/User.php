@@ -83,6 +83,15 @@ class User extends Authenticatable
 
     /**
      * MANY-TO-ONE
+     * Several notifications for a user
+     */
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
+
+    /**
+     * MANY-TO-ONE
      * Several images for a user
      */
     public function images()

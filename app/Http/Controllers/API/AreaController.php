@@ -1,7 +1,4 @@
 <?php
-/**
- * Copyright (c) 2023 Xsam Technologies and/or its affiliates. All rights reserved.
- */
 
 namespace App\Http\Controllers\API;
 
@@ -10,6 +7,10 @@ use App\Models\City;
 use Illuminate\Http\Request;
 use App\Http\Resources\Area as ResourcesArea;
 
+/**
+ * @author Xanders
+ * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
+ */
 class AreaController extends BaseController
 {
     /**

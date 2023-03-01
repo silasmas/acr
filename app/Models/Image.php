@@ -13,7 +13,7 @@ class Image extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['image_name', 'image_url', 'updated_at', 'type_id', 'user_id', 'legal_info_content_id'];
+    protected $fillable = ['image_name', 'image_url', 'updated_at', 'type_id', 'user_id', 'legal_info_content_id', 'news_id'];
 
     /**
      * ONE-TO-MANY
@@ -40,5 +40,14 @@ class Image extends Model
     public function legal_info_content()
     {
         return $this->belongsTo(LegalInfoContent::class);
+    }
+
+    /**
+     * ONE-TO-MANY
+     * One news for several images
+     */
+    public function news()
+    {
+        return $this->belongsTo(News::class);
     }
 }

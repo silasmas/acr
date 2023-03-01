@@ -1,7 +1,4 @@
 <?php
-/**
- * Copyright (c) 2023 Xsam Technologies and/or its affiliates. All rights reserved.
- */
 
 namespace App\Http\Controllers\API;
 
@@ -9,6 +6,10 @@ use App\Models\Country;
 use Illuminate\Http\Request;
 use App\Http\Resources\Country as ResourcesCountry;
 
+/**
+ * @author Xanders
+ * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
+ */
 class CountryController extends BaseController
 {
     /**
@@ -34,9 +35,7 @@ class CountryController extends BaseController
         // Get inputs
         $inputs = [
             'country_name' => $request->country_name,
-            'country_abbreviation' => $request->country_abbreviation,
             'country_phone_code' => $request->country_phone_code,
-            'country_lang_code' => $request->country_lang_code,
             'region_id' => $request->region_id
         ];
         // Select all countries of a same region to check unique constraint
@@ -93,9 +92,7 @@ class CountryController extends BaseController
         $inputs = [
             'id' => $request->id,
             'country_name' => $request->country_name,
-            'country_abbreviation' => $request->country_abbreviation,
             'country_phone_code' => $request->country_phone_code,
-            'country_lang_code' => $request->country_lang_code,
             'region_id' => $request->region_id,
             'updated_at' => now()
         ];

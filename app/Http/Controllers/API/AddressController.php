@@ -1,18 +1,17 @@
 <?php
-/**
- * Copyright (c) 2023 Xsam Technologies and/or its affiliates. All rights reserved.
- */
 
 namespace App\Http\Controllers\API;
 
 use App\Models\Address;
 use App\Models\Area;
-use App\Models\Group;
 use App\Models\Neighborhood;
-use App\Models\Status;
 use Illuminate\Http\Request;
 use App\Http\Resources\Address as ResourcesAddress;
 
+/**
+ * @author Xanders
+ * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
+ */
 class AddressController extends BaseController
 {
     /**
@@ -39,12 +38,10 @@ class AddressController extends BaseController
         $inputs = [
             'number' => $request->number,
             'street' => $request->street,
-            'area_id' => $request->area_id,
+            'type_id' => $request->type_id,
             'neighborhood_id' => $request->neighborhood_id,
-            'status_id' => $request->status_id,
-            'user_id' => $request->user_id,
-            'company_id' => $request->company_id,
-            'office_id' => $request->office_id
+            'area_id' => $request->area_id,
+            'user_id' => $request->user_id
         ];
         // Select all addresses of a same neighborhood and a same area to check unique constraint
         $addresses = Address::where([['neighborhood_id', $inputs['neighborhood_id']], ['area_id', $inputs['area_id']]])->get();
@@ -109,12 +106,10 @@ class AddressController extends BaseController
             'id' => $request->id,
             'number' => $request->number,
             'street' => $request->street,
-            'area_id' => $request->area_id,
+            'type_id' => $request->type_id,
             'neighborhood_id' => $request->neighborhood_id,
-            'status_id' => $request->status_id,
+            'area_id' => $request->area_id,
             'user_id' => $request->user_id,
-            'company_id' => $request->company_id,
-            'office_id' => $request->office_id,
             'updated_at' => now()
         ];
         // Select all addresses of a same neighborhood and a same area. And select current address to check unique constraint
@@ -164,63 +159,5 @@ class AddressController extends BaseController
         $addresses = Address::all();
 
         return $this->handleResponse(ResourcesAddress::collection($addresses), __('notifications.delete_address_success'));
-    }
-
-    // ==================================== CUSTOM METHODS ====================================
-    /**
-     * Change address status of entity to "Principal".
-     *
-     * @param  $id
-     * @param  $entity
-     * @param  $entity_id
-     * @return \Illuminate\Http\Response
-     */
-    public function markAsMain($id, $entity, $entity_id)
-    {
-        $functioning_group = Group::where('group_name', 'Fonctionnement')->first();
-        $main_status = Status::where([['status_name', 'Principal'], ['group_id', $functioning_group->id]])->first();
-		$secondary_status = Status::where([['status_name', 'Secondaire'], ['group_id', $functioning_group->id]])->first();
-        // find address by given ID
-        $address = Address::find($id);
-        // find all addresses to set status as secondary
-        $addresses = Address::where($entity . '_id', $entity_id)->get();
-
-        // Update "status_id" column of other addresses according to "$secondary_status" ID
-        foreach ($addresses as $address):
-            $address->update([
-                'status_id' => $secondary_status->id,
-                'updated_at' => now()
-            ]);
-        endforeach;
-
-        // Update "status_id" column of current ad$address according to "$main_status" ID
-        $address->update([
-            'status_id' => $main_status->id,
-            'updated_at' => now()
-        ]);
-
-        return $this->handleResponse(new ResourcesAddress($address), __('notifications.update_address_success'));
-    }
-
-    /**
-     * Change address status to "Secondaire".
-     *
-     * @param  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function markAsSecondary($id)
-    {
-        $functioning_group = Group::where('group_name', 'Fonctionnement')->first();
-        $main_status = Status::where([['status_name', 'Principal'], ['group_id', $functioning_group->id]])->first();
-        // find address by given ID
-        $address = Address::find($id);
-
-        // update "status_id" column according "$main_status" ID
-        $address->update([
-            'status_id' => $main_status->id,
-            'updated_at' => now()
-        ]);
-
-        return $this->handleResponse(new ResourcesAddress($address), __('notifications.update_address_success'));
     }
 }

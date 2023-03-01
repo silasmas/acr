@@ -1,15 +1,15 @@
 <?php
-/**
- * Copyright (c) 2023 Xsam Technologies and/or its affiliates. All rights reserved.
- */
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Country;
 use App\Models\Province;
 use Illuminate\Http\Request;
 use App\Http\Resources\Province as ResourcesProvince;
 
+/**
+ * @author Xanders
+ * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
+ */
 class ProvinceController extends BaseController
 {
     /**
@@ -148,20 +148,5 @@ class ProvinceController extends BaseController
         $provinces = Province::search($data)->get();
 
         return $this->handleResponse(ResourcesProvince::collection($provinces), __('notifications.find_all_provinces_success'));
-    }
-
-    /**
-     * Search a city by its name with its country.
-     *
-     * @param  string $country_name
-     * @param  string $data
-     * @return \Illuminate\Http\Response
-     */
-    public function searchWithCountry($country_name, $data)
-    {
-        $group = Country::where('country_name', 'like', '%' . $country_name . '%')->first();
-        $province = Province::where([['city_name', 'like', '%' . $data . '%'], ['group_id', $group->id]])->first();
-
-        return $this->handleResponse(new ResourcesProvince($province), __('notifications.find_province_success'));
     }
 }

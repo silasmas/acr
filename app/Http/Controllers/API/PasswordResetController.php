@@ -1,7 +1,4 @@
 <?php
-/**
- * Copyright (c) 2023 Xsam Technologies and/or its affiliates. All rights reserved.
- */
 
 namespace App\Http\Controllers\API;
 
@@ -10,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Resources\PasswordReset as ResourcesPasswordReset;
 use Nette\Utils\Random;
 
+/**
+ * @author Xanders
+ * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
+ */
 class PasswordResetController extends BaseController
 {
     /**
@@ -35,26 +36,25 @@ class PasswordResetController extends BaseController
         // Get inputs
         $inputs = [
             'email' => $request->email,
-            'phone_code' => $request->phone_code,
-            'phone_number' => $request->phone_number,
+            'phone' => $request->phone,
             'token' => Random::generate(7, '0-9'),
             'former_password' => $request->former_password
         ];
 
         // Validate required fields
-        if ($inputs['email'] == null AND $inputs['phone_number'] == null) {
+        if ($inputs['email'] == null AND $inputs['phone'] == null) {
             return $this->handleError(__('validation.email_or_phone.required'), 400);
         }
 
-        if ($inputs['email'] == ' ' AND $inputs['phone_number'] == ' ') {
+        if ($inputs['email'] == ' ' AND $inputs['phone'] == ' ') {
             return $this->handleError(__('validation.email_or_phone.required'), 400);
         }
 
-        if ($inputs['email'] == null AND $inputs['phone_number'] == ' ') {
+        if ($inputs['email'] == null AND $inputs['phone'] == ' ') {
             return $this->handleError(__('validation.email_or_phone.required'), 400);
         }
 
-        if ($inputs['email'] == ' ' AND $inputs['phone_number'] == null) {
+        if ($inputs['email'] == ' ' AND $inputs['phone'] == null) {
             return $this->handleError(__('validation.email_or_phone.required'), 400);
         }
 
@@ -73,8 +73,8 @@ class PasswordResetController extends BaseController
             }
         }
 
-        if ($inputs['phone_number'] != null) {
-            $existing_password_resets = PasswordReset::where([['phone_code', $inputs['phone_code']], ['phone_number', $inputs['phone_number']]])->get();
+        if ($inputs['phone'] != null) {
+            $existing_password_resets = PasswordReset::where('phone', $inputs['phone'])->get();
 
             if ($existing_password_resets != null) {
                 $password_reset = PasswordReset::create($inputs);
@@ -119,26 +119,25 @@ class PasswordResetController extends BaseController
         $inputs = [
             'id' => $request->id,
             'email' => $request->email,
-            'phone_code' => $request->phone_code,
-            'phone_number' => $request->phone_number,
+            'phone' => $request->phone,
             'token' => Random::generate(7, '0-9'),
             'former_password' => $request->former_password,
             'updated_at' => now()
         ];
 
-        if ($inputs['email'] == null AND $inputs['phone_number'] == null) {
+        if ($inputs['email'] == null AND $inputs['phone'] == null) {
             return $this->handleError(__('validation.email_or_phone.required'), 400);
         }
 
-        if ($inputs['email'] == ' ' AND $inputs['phone_number'] == ' ') {
+        if ($inputs['email'] == ' ' AND $inputs['phone'] == ' ') {
             return $this->handleError(__('validation.email_or_phone.required'), 400);
         }
 
-        if ($inputs['email'] == null AND $inputs['phone_number'] == ' ') {
+        if ($inputs['email'] == null AND $inputs['phone'] == ' ') {
             return $this->handleError(__('validation.email_or_phone.required'), 400);
         }
 
-        if ($inputs['email'] == ' ' AND $inputs['phone_number'] == null) {
+        if ($inputs['email'] == ' ' AND $inputs['phone'] == null) {
             return $this->handleError(__('validation.email_or_phone.required'), 400);
         }
 

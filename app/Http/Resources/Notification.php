@@ -8,7 +8,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * @author Xanders
  * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
  */
-class Address extends JsonResource
+class Notification extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -20,13 +20,11 @@ class Address extends JsonResource
     {
         return [
             'id' => $this->id,
-            'number' => $this->number,
-            'street' => $this->street,
-            'type' => Type::make($this->type),
-            'neighborhood' => Neighborhood::make($this->neighborhood),
+            'notification_url' => $this->notification_url,
+            'notification_content' => $this->notification_content,
+            'notif_status' => $this->notif_status,
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
-            'area_id' => $this->area_id,
             'user_id' => $this->user_id
         ];
     }

@@ -1,7 +1,4 @@
 <?php
-/**
- * Copyright (c) 2023 Xsam Technologies and/or its affiliates. All rights reserved.
- */
 
 namespace App\Http\Controllers\API;
 
@@ -11,6 +8,10 @@ use App\Models\Neighborhood;
 use Illuminate\Http\Request;
 use App\Http\Resources\Neighborhood as ResourcesNeighborhood;
 
+/**
+ * @author Xanders
+ * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
+ */
 class NeighborhoodController extends BaseController
 {
     /**
@@ -36,8 +37,7 @@ class NeighborhoodController extends BaseController
         // Get inputs
         $inputs = [
             'neighborhood_name' => $request->neighborhood_name,
-            'area_id' => $request->area_id,
-            'office_id' => $request->office_id
+            'area_id' => $request->area_id
         ];
         // Select all neighborhoods of a same area to check unique constraint
         $neighborhoods = Neighborhood::where('area_id', $inputs['area_id'])->get();
@@ -94,7 +94,6 @@ class NeighborhoodController extends BaseController
             'id' => $request->id,
             'neighborhood_name' => $request->neighborhood_name,
             'area_id' => $request->area_id,
-            'office_id' => $request->office_id,
             'updated_at' => now()
         ];
         // Select all neighborhoods of a same area and current neighborhood to check unique constraint

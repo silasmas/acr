@@ -1,7 +1,4 @@
 <?php
-/**
- * Copyright (c) 2023 Xsam Technologies and/or its affiliates. All rights reserved.
- */
 
 namespace App\Http\Controllers\API;
 
@@ -10,6 +7,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\RoleUser as ResourcesRoleUser;
 
+/**
+ * @author Xanders
+ * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
+ */
 class RoleUserController extends BaseController
 {
     /**
@@ -35,8 +36,7 @@ class RoleUserController extends BaseController
         // Get inputs
         $inputs = [
             'role_id' => $request->role_id,
-            'user_id' => $request->user_id,
-            'selected' => $request->selected
+            'user_id' => $request->user_id
         ];
         // Validate required fields
         $validator = Validator::make($inputs, [
@@ -84,7 +84,6 @@ class RoleUserController extends BaseController
             'id' => $request->id,
             'role_id' => $request->role_id,
             'user_id' => $request->user_id,
-            'selected' => $request->selected,
             'updated_at' => now()
         ];
         // Validate required fields

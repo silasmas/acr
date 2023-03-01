@@ -1,7 +1,4 @@
 <?php
-/**
- * Copyright (c) 2023 Xsam Technologies and/or its affiliates. All rights reserved.
- */
 
 namespace App\Http\Controllers\API;
 
@@ -9,6 +6,10 @@ use App\Models\Type;
 use Illuminate\Http\Request;
 use App\Http\Resources\Type as ResourcesType;
 
+/**
+ * @author Xanders
+ * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
+ */
 class TypeController extends BaseController
 {
     /**
@@ -37,8 +38,8 @@ class TypeController extends BaseController
             'type_description' => $request->type_description,
             'group_id' => $request->group_id
         ];
-        // Select all types to check unique constraint
-        $types = Type::all();
+        // Select all group types to check unique constraint
+        $types = Type::where('group_id', $inputs['group_id'])->get();
 
         // Validate required fields
         if ($inputs['type_name'] == null OR $inputs['type_name'] == ' ') {
@@ -95,8 +96,8 @@ class TypeController extends BaseController
             'group_id' => $request->group_id,
             'updated_at' => now()
         ];
-        // Select all types and specific type to check unique constraint
-        $types = Type::all();
+        // Select all group types and specific type to check unique constraint
+        $types = Type::where('group_id', $inputs['group_id'])->get();
         $current_type = Type::find($inputs['id']);
 
         if ($inputs['type_name'] == null OR $inputs['type_name'] == ' ') {

@@ -1,7 +1,4 @@
 <?php
-/**
- * Copyright (c) 2023 Xsam Technologies and/or its affiliates. All rights reserved.
- */
 
 namespace App\Http\Controllers\API;
 
@@ -9,6 +6,10 @@ use App\Models\Group;
 use Illuminate\Http\Request;
 use App\Http\Resources\Group as ResourcesGroup;
 
+/**
+ * @author Xanders
+ * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
+ */
 class GroupController extends BaseController
 {
     /**
