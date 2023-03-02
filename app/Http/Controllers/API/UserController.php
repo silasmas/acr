@@ -228,11 +228,6 @@ class UserController extends BaseController
             'p_o_box' => $request->p_o_box,
             'email' => $request->email,
             'phone' => $request->phone,
-            'email_verified_at' => $request->email_verified_at,
-            'password' => $request->password,
-            'remember_token' => $request->remember_token,
-            'api_token' => $request->api_token,
-            'user_status' => $request->user_status,
             'updated_at' => now(),
         ];
 
@@ -405,12 +400,12 @@ class UserController extends BaseController
 		}
 
         if ($request->roles_ids != null) {
-            foreach ($request->roles_ids as $role_id) {
+            foreach ($request->roles_ids as $role_id):
                 RoleUser::create([
                     'role_id' => $role_id,
                     'user_id' => $user->id
                 ]);
-            }
+            endforeach;
 		}
 
         return $this->handleResponse(new ResourcesUser($user), __('notifications.update_user_success'));

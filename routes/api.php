@@ -15,9 +15,9 @@ Route::middleware(['auth:api', 'localization'])->group(function () {
     Route::apiResource('legal_info_subject', 'App\Http\Controllers\API\LegalInfoSubjectController');
     Route::apiResource('legal_info_title', 'App\Http\Controllers\API\LegalInfoTitleController');
     Route::apiResource('legal_info_content', 'App\Http\Controllers\API\LegalInfoContentController');
+    Route::apiResource('group', 'App\Http\Controllers\API\GroupController');
     Route::apiResource('type', 'App\Http\Controllers\API\TypeController');
     Route::apiResource('image', 'App\Http\Controllers\API\ImageController');
-    Route::apiResource('group', 'App\Http\Controllers\API\GroupController');
     Route::apiResource('continent', 'App\Http\Controllers\API\ContinentController');
     Route::apiResource('region', 'App\Http\Controllers\API\RegionController');
     Route::apiResource('country', 'App\Http\Controllers\API\CountryController');
@@ -49,9 +49,9 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     Route::resource('legal_info_subject', 'App\Http\Controllers\API\LegalInfoSubjectController');
     Route::resource('legal_info_title', 'App\Http\Controllers\API\LegalInfoTitleController');
     Route::resource('legal_info_content', 'App\Http\Controllers\API\LegalInfoContentController');
+    Route::resource('group', 'App\Http\Controllers\API\GroupController');
     Route::resource('type', 'App\Http\Controllers\API\TypeController');
     Route::resource('image', 'App\Http\Controllers\API\ImageController');
-    Route::resource('group', 'App\Http\Controllers\API\GroupController');
     Route::resource('region', 'App\Http\Controllers\API\RegionController');
     Route::resource('country', 'App\Http\Controllers\API\CountryController');
     Route::resource('province', 'App\Http\Controllers\API\ProvinceController');
@@ -60,6 +60,7 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     Route::resource('neighborhood', 'App\Http\Controllers\API\NeighborhoodController');
     Route::resource('role', 'App\Http\Controllers\API\RoleController');
     Route::resource('user', 'App\Http\Controllers\API\UserController');
+    Route::resource('password_reset', 'App\Http\Controllers\API\PasswordResetController');
     Route::resource('message', 'App\Http\Controllers\API\MessageController');
     Route::resource('notification', 'App\Http\Controllers\API\NotificationController');
     Route::resource('news', 'App\Http\Controllers\API\NewsController');
@@ -72,18 +73,17 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     // LegalInfoContent
     Route::get('legal_info_content/search/{data}', 'App\Http\Controllers\API\LegalInfoContentController@search')->name('legal_info_content.search');
     Route::put('legal_info_content/add_image/{id}', 'App\Http\Controllers\API\LegalInfoContentController@addImage')->name('legal_info_content.add_image');
-    // Type
-    Route::get('type/search/{data}', 'App\Http\Controllers\API\TypeController@search')->name('type.search');
-    // Image
-    Route::get('image/select_by_entity/{entity}/{id}', 'App\Http\Controllers\API\ImageController@selectByEntity')->name('image.select_by_entity');
     // Group
     Route::get('group/search/{data}', 'App\Http\Controllers\API\GroupController@search')->name('group.search');
+    // Type
+    Route::get('type/search/{data}', 'App\Http\Controllers\API\TypeController@search')->name('type.search');
+    Route::get('type/find_by_group/{group_name}', 'App\Http\Controllers\API\TypeController@findByGroup')->name('type.find_by_group');
+    // Image
+    Route::get('image/select_by_entity/{entity}/{id}', 'App\Http\Controllers\API\ImageController@selectByEntity')->name('image.select_by_entity');
     // Region
     Route::get('region/search/{data}', 'App\Http\Controllers\API\RegionController@search')->name('region.search');
     // Country
     Route::get('country/search/{data}', 'App\Http\Controllers\API\CountryController@search')->name('country.search');
-    Route::put('country/associate_languages/{id}', 'App\Http\Controllers\API\CountryController@associateLanguages')->name('country.associate_languages');
-    Route::put('country/withdraw_languages/{id}', 'App\Http\Controllers\API\CountryController@withdrawLanguages')->name('country.withdraw_languages');
     // Province
     Route::get('province/search/{data}', 'App\Http\Controllers\API\ProvinceController@search')->name('province.search');
     Route::get('province/search_with_country/{country_name}/{data}', 'App\Http\Controllers\API\ProvinceController@searchWithCountry')->name('province.search_with_country');
@@ -107,6 +107,9 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     Route::put('user/update_api_token/{id}', 'App\Http\Controllers\API\UserController@updateApiToken')->name('user.update_api_token');
     Route::put('user/update_avatar_picture/{id}', 'App\Http\Controllers\API\UserController@updateAvatarPicture')->name('user.update_avatar_picture');
     Route::put('user/add_image/{id}', 'App\Http\Controllers\API\UserController@addImage')->name('user.add_image');
+    // PasswordReset
+    Route::get('password_reset/search_by_email/{data}', 'App\Http\Controllers\API\PasswordResetController@searchByEmail')->name('password_reset.search_by_email');
+    Route::get('password_reset/search_by_phone/{data}', 'App\Http\Controllers\API\PasswordResetController@searchByPhone')->name('password_reset.search_by_phone');
     // Message
     Route::get('message/search/{data}', 'App\Http\Controllers\API\MessageController@search')->name('message.search');
     Route::get('message/inbox/{entity}', 'App\Http\Controllers\API\MessageController@inbox')->name('message.inbox');
@@ -118,4 +121,5 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     Route::get('notification/switch_status/{id}', 'App\Http\Controllers\API\NotificationController@switchStatus')->name('notification.switch_status');
     // News
     Route::get('news/select_by_type/{type_id}', 'App\Http\Controllers\API\NewsController@selectByType')->name('news.select_by_type');
+    Route::put('news/add_image/{id}', 'App\Http\Controllers\API\UserController@addImage')->name('news.add_image');
 });

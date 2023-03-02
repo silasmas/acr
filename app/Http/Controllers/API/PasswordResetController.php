@@ -160,4 +160,39 @@ class PasswordResetController extends BaseController
 
         return $this->handleResponse(ResourcesPasswordReset::collection($password_resets), __('notifications.delete_password_reset_success'));
     }
+
+    // ==================================== CUSTOM METHODS ====================================
+    /**
+     * Search a password reset by e-mail
+     *
+     * @param  string $data
+     * @return \Illuminate\Http\Response
+     */
+    public function searchByEmail($data)
+    {
+        $password_reset = PasswordReset::where('email', $data)->orderBy('updated_at', 'desc')->first();
+
+        if (is_null($password_reset)) {
+            return $this->handleError(__('notifications.find_password_reset_404'));
+        }
+
+        return $this->handleResponse(new ResourcesPasswordReset($password_reset), __('notifications.find_password_reset_success'));
+    }
+
+    /**
+     * Search a password reset by phone
+     *
+     * @param  string $data
+     * @return \Illuminate\Http\Response
+     */
+    public function searchByPhone($data)
+    {
+        $password_reset = PasswordReset::where('phone', $data)->orderBy('updated_at', 'desc')->first();
+
+        if (is_null($password_reset)) {
+            return $this->handleError(__('notifications.find_password_reset_404'));
+        }
+
+        return $this->handleResponse(new ResourcesPasswordReset($password_reset), __('notifications.find_password_reset_success'));
+    }
 }

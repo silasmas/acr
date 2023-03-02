@@ -195,4 +195,6 @@ return [
     'welcome_member' => '',
     'subscribed_to_party' => 'a souscrit au parti.',
     'member_joined' => 'Votre demande d\'adhésion est approuvée. Veuillez nos réglements et nos conditions d\'utilisations.',
+    'party_published' => 'Le parti a publié',
+    'party_changed' => 'Le parti a modifié',
 ];

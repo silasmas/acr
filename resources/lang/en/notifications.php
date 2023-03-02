@@ -195,4 +195,6 @@ return [
     'welcome_member' => '',
     'subscribed_to_party' => 'subscribed to the party.',
     'member_joined' => 'Your membership application is approved. Please read our rules and conditions of use.',
+    'party_published' => 'The party issued',
+    'party_changed' => 'The party has changed',
 ];

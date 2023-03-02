@@ -5,6 +5,9 @@ namespace App\Http\Controllers\API;
 use App\Models\Group;
 use App\Models\Image;
 use App\Models\News;
+use App\Models\Notification;
+use App\Models\Role;
+use App\Models\RoleUser;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -56,6 +59,36 @@ class NewsController extends BaseController
 
         $news = News::create($inputs);
 
+        // In case user want to add URL like Youtube for example
+        if ($request->image_url) {
+            $image_type_group = Group::where('group_name', 'Type d\'image')->first();
+            $others_type = Type::where('group_name', $image_type_group->id)->first();
+
+            Image::create([
+                'image_url' => $request->image_url,
+                'type_id' => $others_type->id,
+                'news_id' => $news->id
+            ]);
+        }
+
+        /*
+            HISTORY AND/OR NOTIFICATION MANAGEMENT
+        */
+        $news_type = Type::find($inputs['type_id']);
+
+        if ($news_type->type_name == 'Communiqué') {
+            $member_role = Role::where('role_name', 'Membre')->first();
+            $role_users = RoleUser::where('role_id', $member_role->id)->get();
+
+            foreach ($role_users as $member):
+                Notification::create([
+                    'notification_url' => 'communique/' . $news->id,
+                    'notification_content' => __('notifications.party_published') . ' ' . __('miscellaneous.a_masculine') . ' ' . strtolower($news_type->type_name),
+                    'user_id' => $member->user_id,
+                ]);
+            endforeach;
+        }
+
         return $this->handleResponse(new ResourcesNews($news), __('notifications.create_news_success'));
     }
 
@@ -104,6 +137,24 @@ class NewsController extends BaseController
         }
 
         $news->update($inputs);
+
+        /*
+            HISTORY AND/OR NOTIFICATION MANAGEMENT
+        */
+        $news_type = Type::find($inputs['type_id']);
+
+        if ($news_type->type_name == 'Communiqué') {
+            $member_role = Role::where('role_name', 'Membre')->first();
+            $role_users = RoleUser::where('role_id', $member_role->id)->get();
+
+            foreach ($role_users as $member):
+                Notification::create([
+                    'notification_url' => 'communique/' . $news->id,
+                    'notification_content' => __('notifications.party_changed') . ' ' . __('miscellaneous.a_masculine') . ' ' . strtolower($news_type->type_name),
+                    'user_id' => $member->user_id,
+                ]);
+            endforeach;
+        }
 
         return $this->handleResponse(new ResourcesNews($news), __('notifications.update_news_success'));
     }

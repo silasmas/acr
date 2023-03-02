@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use App\Http\Resources\Type as ResourcesType;
+use App\Models\Group;
 
 /**
  * @author Xanders
@@ -138,7 +139,7 @@ class TypeController extends BaseController
 
     // ==================================== CUSTOM METHODS ====================================
     /**
-     * Search a group by its name.
+     * Search a type by its name.
      *
      * @param  string $data
      * @return \Illuminate\Http\Response
@@ -146,6 +147,25 @@ class TypeController extends BaseController
     public function search($data)
     {
         $types = Type::search($data)->get();
+
+        return $this->handleResponse(ResourcesType::collection($types), __('notifications.find_all_types_success'));
+    }
+
+    /**
+     * Find all type by group.
+     *
+     * @param  string $group_name
+     * @return \Illuminate\Http\Response
+     */
+    public function findByGroup($group_name)
+    {
+        $group = Group::search($group_name)->first();
+
+        if (is_null($group)) {
+            return $this->handleError(__('notifications.find_group_404'));
+        }
+
+        $types = Type::where('group_id', $group->id)->get();
 
         return $this->handleResponse(ResourcesType::collection($types), __('notifications.find_all_types_success'));
     }
