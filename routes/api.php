@@ -67,7 +67,6 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
 
     // LegalInfoSubject
     Route::get('legal_info_subject/search/{data}', 'App\Http\Controllers\API\LegalInfoSubjectController@search')->name('legal_info_subject.search');
-    Route::put('legal_info_subject/switch_status/{id}/{data}', 'App\Http\Controllers\API\LegalInfoSubjectController@switchStatus')->name('legal_info_subject.switch_status');
     // LegalInfoTitle
     Route::get('legal_info_title/search/{data}', 'App\Http\Controllers\API\LegalInfoTitleController@search')->name('legal_info_title.search');
     // LegalInfoContent
