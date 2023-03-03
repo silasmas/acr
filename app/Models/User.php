@@ -7,7 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Sanctum\HasApiTokens;
-use Laravel\Scout\Searchable;
+// use Laravel\Scout\Searchable;
 
 /**
  * @author Xanders
@@ -15,19 +15,19 @@ use Laravel\Scout\Searchable;
  */
 class User extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable, Searchable;
+    use HasApiTokens, HasFactory, Notifiable/*, Searchable*/;
 
-    const SEARCHABLE_FIELDS = ['firstname', 'national_number'];
+    // const SEARCHABLE_FIELDS = ['firstname', 'national_number'];
 
     /**
      * Get the indexable data array for the model.
      *
      * @return array
      */
-    public function toSearchableArray()
-    {
-        return $this->only(self::SEARCHABLE_FIELDS);
-    }
+    // public function toSearchableArray()
+    // {
+    //     return $this->only(self::SEARCHABLE_FIELDS);
+    // }
 
     /**
      * The attributes that are mass assignable.

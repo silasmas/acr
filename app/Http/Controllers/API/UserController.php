@@ -281,7 +281,7 @@ class UserController extends BaseController
      */
     public function search($data)
     {
-        $users = User::search($data)->get();
+        $users = User::where('firstname', $data)->orWhere('national_number', $data)->get();
 
         return $this->handleResponse(ResourcesUser::collection($users), __('notifications.find_all_users_success'));
     }
