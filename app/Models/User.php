@@ -17,7 +17,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, Searchable;
 
-    const SEARCHABLE_FIELDS = ['firstname'];
+    const SEARCHABLE_FIELDS = ['firstname', 'national_number'];
 
     /**
      * Get the indexable data array for the model.
