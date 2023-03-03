@@ -147,7 +147,7 @@ class RegionController extends BaseController
      */
     public function search($data)
     {
-        $regions = Region::search($data)->get();
+        $regions = Region::where('region_name', $data)->get();
 
         return $this->handleResponse(ResourcesRegion::collection($regions), __('notifications.find_all_regions_success'));
     }

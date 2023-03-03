@@ -145,7 +145,7 @@ class AreaController extends BaseController
      */
     public function search($data)
     {
-        $areas = Area::search($data)->get();
+        $areas = Area::where('area_name', $data)->get();
 
         return $this->handleResponse(ResourcesArea::collection($areas), __('notifications.find_all_areas_success'));
     }

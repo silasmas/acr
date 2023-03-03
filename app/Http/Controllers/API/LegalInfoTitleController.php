@@ -144,7 +144,7 @@ class LegalInfoTitleController extends BaseController
      */
     public function search($data)
     {
-        $legal_info_titles = LegalInfoTitle::search($data)->get();
+        $legal_info_titles = LegalInfoTitle::where('title', $data)->get();
 
         return $this->handleResponse(ResourcesLegalInfoTitle::collection($legal_info_titles), __('notifications.find_all_legal_info_titles_success'));
     }

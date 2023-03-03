@@ -112,7 +112,7 @@ class MessageController extends BaseController
      */
     public function search($data)
     {
-        $messages = Message::search($data)->get();
+        $messages = Message::where('message_content', $data)->get();
 
         return $this->handleResponse(ResourcesMessage::collection($messages), __('notifications.find_all_messages_success'));
     }

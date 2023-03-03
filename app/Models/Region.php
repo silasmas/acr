@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Laravel\Scout\Searchable;
+// use Laravel\Scout\Searchable;
 
 /**
  * @author Xanders
@@ -12,9 +12,9 @@ use Laravel\Scout\Searchable;
  */
 class Region extends Model
 {
-    use HasFactory, Searchable;
+    use HasFactory/*, Searchable*/;
 
-    const SEARCHABLE_FIELDS = ['region_name'];
+    // const SEARCHABLE_FIELDS = ['region_name'];
 
     protected $fillable = ['region_name', 'region_description', 'updated_at', 'continent_id'];
 
@@ -23,10 +23,10 @@ class Region extends Model
      *
      * @return array
      */
-    public function toSearchableArray()
-    {
-        return $this->only(self::SEARCHABLE_FIELDS);
-    }
+    // public function toSearchableArray()
+    // {
+    //     return $this->only(self::SEARCHABLE_FIELDS);
+    // }
 
     /**
      * ONE-TO-MANY

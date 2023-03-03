@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Laravel\Scout\Searchable;
+// use Laravel\Scout\Searchable;
 
 /**
  * @author Xanders
@@ -12,9 +12,9 @@ use Laravel\Scout\Searchable;
  */
 class LegalInfoSubject extends Model
 {
-    use HasFactory, Searchable;
+    use HasFactory/*, Searchable*/;
 
-    const SEARCHABLE_FIELDS = ['subject_name'];
+    // const SEARCHABLE_FIELDS = ['subject_name'];
 
     protected $fillable = ['subject_name', 'subject_description', 'updated_at'];
 
@@ -23,10 +23,10 @@ class LegalInfoSubject extends Model
      *
      * @return array
      */
-    public function toSearchableArray()
-    {
-        return $this->only(self::SEARCHABLE_FIELDS);
-    }
+    // public function toSearchableArray()
+    // {
+    //     return $this->only(self::SEARCHABLE_FIELDS);
+    // }
 
     /**
      * MANY-TO-ONE

@@ -135,7 +135,7 @@ class RoleController extends BaseController
      */
     public function search($data)
     {
-        $roles = Role::search($data)->get();
+        $roles = Role::where('role_name', $data)->get();
 
         return $this->handleResponse(ResourcesRole::collection($roles), __('notifications.find_all_roles_success'));
     }

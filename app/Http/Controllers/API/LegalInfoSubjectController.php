@@ -125,7 +125,7 @@ class LegalInfoSubjectController extends BaseController
      */
     public function search($data)
     {
-        $legal_info_subjects = LegalInfoSubject::search($data)->get();
+        $legal_info_subjects = LegalInfoSubject::where('subject_name', $data)->get();
 
         return $this->handleResponse(ResourcesLegalInfoSubject::collection($legal_info_subjects), __('notifications.find_all_legal_info_subjects_success'));
     }

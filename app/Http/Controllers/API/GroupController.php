@@ -135,7 +135,7 @@ class GroupController extends BaseController
      */
     public function search($data)
     {
-        $groups = Group::search($data)->get();
+        $groups = Group::where('group_name', $data)->get();
 
         return $this->handleResponse(ResourcesGroup::collection($groups), __('notifications.find_all_groups_success'));
     }

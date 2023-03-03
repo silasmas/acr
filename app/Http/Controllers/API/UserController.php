@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\User as ResourcesUser;
+use App\Http\Resources\PasswordReset as ResourcesPasswordReset;
+use Nette\Utils\Random;
 
 /**
  * @author Xanders
@@ -98,9 +100,10 @@ class UserController extends BaseController
         $user = User::create($inputs);
 
         // Update password in the case user want to reset it
-        PasswordReset::create([
+        $password_reset = PasswordReset::create([
             'email' => $inputs['email'],
             'phone' => $inputs['phone'],
+            'token' => Random::generate(7, '0-9'),
             'former_password' => $inputs['new_password']
         ]);
 
@@ -185,7 +188,7 @@ class UserController extends BaseController
             ]);
         }
 
-        return $this->handleResponse(new ResourcesUser($user), __('notifications.create_user_success'));
+        return $this->handleResponse(array(new ResourcesPasswordReset($password_reset), new ResourcesUser($user)), __('notifications.create_user_success'));
     }
 
     /**

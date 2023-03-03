@@ -145,7 +145,7 @@ class CityController extends BaseController
      */
     public function search($data)
     {
-        $cities = City::search($data)->get();
+        $cities = City::where('city_name', $data)->get();
 
         return $this->handleResponse(ResourcesCity::collection($cities), __('notifications.find_all_cities_success'));
     }

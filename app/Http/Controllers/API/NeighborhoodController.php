@@ -147,7 +147,7 @@ class NeighborhoodController extends BaseController
      */
     public function search($data)
     {
-        $neighborhoods = Neighborhood::search($data)->get();
+        $neighborhoods = Neighborhood::where('neighborhood_name', $data)->get();
 
         return $this->handleResponse(ResourcesNeighborhood::collection($neighborhoods), __('notifications.find_all_neighborhoods_success'));
     }

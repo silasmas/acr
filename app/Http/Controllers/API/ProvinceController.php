@@ -145,7 +145,7 @@ class ProvinceController extends BaseController
      */
     public function search($data)
     {
-        $provinces = Province::search($data)->get();
+        $provinces = Province::where('province_name', $data)->get();
 
         return $this->handleResponse(ResourcesProvince::collection($provinces), __('notifications.find_all_provinces_success'));
     }

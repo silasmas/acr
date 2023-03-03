@@ -145,7 +145,7 @@ class CountryController extends BaseController
      */
     public function search($data)
     {
-        $countries = Country::search($data)->get();
+        $countries = Country::where('country_name', $data)->get();
 
         return $this->handleResponse(ResourcesCountry::collection($countries), __('notifications.find_all_countries_success'));
     }

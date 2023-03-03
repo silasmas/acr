@@ -146,7 +146,7 @@ class TypeController extends BaseController
      */
     public function search($data)
     {
-        $types = Type::search($data)->get();
+        $types = Type::where('type_name', $data)->get();
 
         return $this->handleResponse(ResourcesType::collection($types), __('notifications.find_all_types_success'));
     }
@@ -159,7 +159,7 @@ class TypeController extends BaseController
      */
     public function findByGroup($group_name)
     {
-        $group = Group::search($group_name)->first();
+        $group = Group::where('group_name', $group_name)->first();
 
         if (is_null($group)) {
             return $this->handleError(__('notifications.find_group_404'));

@@ -152,7 +152,7 @@ class LegalInfoContentController extends BaseController
      */
     public function search($data)
     {
-        $legal_info_contents = LegalInfoContent::search($data)->get();
+        $legal_info_contents = LegalInfoContent::where('content', $data)->get();
 
         return $this->handleResponse(ResourcesLegalInfoContent::collection($legal_info_contents), __('notifications.find_all_legal_info_contents_success'));
     }
