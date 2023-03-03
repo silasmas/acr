@@ -131,7 +131,7 @@ class UserController extends BaseController
                 endforeach;
 
                 Notification::create([
-                    'notification_url' => 'about/terms',
+                    'notification_url' => 'about/terms_of_use',
                     'notification_content' => __('notifications.welcome_member'),
                     'user_id' => $user->id,
                 ]);
@@ -140,7 +140,7 @@ class UserController extends BaseController
             // If the new user is neither a member nor an admin, send a ordinary welcome notification
             if ($current_role->id != $member_role->id AND $current_role->id != $admin_role->id) {
                 Notification::create([
-                    'notification_url' => 'about/terms',
+                    'notification_url' => 'about/terms_of_use',
                     'notification_content' => __('notifications.welcome_user'),
                     'user_id' => $user->id,
                 ]);
@@ -368,15 +368,19 @@ class UserController extends BaseController
         /*
             HISTORY AND/OR NOTIFICATION MANAGEMENT
         */
-        // If the status name is "Adhéré", send the notification to the new member
-        if (preg_match('#^adhér#i', $status_name) == 0) {
-            // Also send welcome notification to the new user 
-            Notification::create([
-                'notification_url' => 'about/terms',
-                'notification_content' => __('notifications.member_joined'),
-                'user_id' => $user->id,
-            ]);
-        }
+        $member_role = Role::where('role_name', 'Membre')->first();
+        $user_roles = RoleUser::where('user_id', $user->id)->get();
+
+        foreach ($user_roles as $user_role):
+            // If the new user is a member, send notification
+            if ($user_role->id == $member_role->id AND $status_name == 'Activé') {
+                Notification::create([
+                    'notification_url' => 'about/terms_of_use',
+                    'notification_content' => __('notifications.member_joined'),
+                    'user_id' => $user->id,
+                ]);
+            }
+        endforeach;
 
         return $this->handleResponse(new ResourcesUser($user), __('notifications.update_user_success'));
     }
