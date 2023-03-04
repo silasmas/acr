@@ -69,10 +69,6 @@ class UserController extends BaseController
         ];
 
         // Validate required fields
-        if ($inputs['firstname'] == null OR $inputs['firstname'] == ' ') {
-            return $this->handleError($inputs['firstname'], __('validation.required'), 400);
-        }
-
         if ($inputs['email'] == null AND $inputs['phone'] == null) {
             return $this->handleError(__('validation.custom.email_or_phone.required'));
         }
