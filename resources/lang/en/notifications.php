@@ -148,7 +148,7 @@ return [
     // User
     'find_all_users_success' => 'Users found',
     'find_user_success' => 'User found',
-    'find_api_token_success' => 'User API token found',
+    'find_api_token_success' => 'API token found',
     'find_user_404' => 'User not found',
     'create_user_success' => 'User created',
     'update_user_success' => 'User updated',

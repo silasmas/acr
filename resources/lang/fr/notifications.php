@@ -148,7 +148,7 @@ return [
     // User
     'find_all_users_success' => 'Utilisateurs trouvés',
     'find_user_success' => 'Utilisateur trouvé',
-    'find_api_token_success' => 'Jeton d\'API utilisateur found',
+    'find_api_token_success' => 'Jeton d\'API trouvé',
     'find_user_404' => 'Utilisateur non trouvé',
     'create_user_success' => 'Utilisateur créé',
     'update_user_success' => 'Utilisateur modifié',
