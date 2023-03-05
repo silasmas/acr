@@ -63,6 +63,7 @@ class UserController extends BaseController
             'phone' => $request->phone,
             'email_verified_at' => $request->email_verified_at,
             'password' => Hash::make($request->password),
+            'confirm_password' => $request->confirm_password,
             'remember_token' => $request->remember_token,
             'api_token' => $request->api_token,
             'user_status' => $request->user_status
@@ -85,12 +86,14 @@ class UserController extends BaseController
             return $this->handleError(__('validation.custom.email_or_phone.required'));
         }
 
-        if ($inputs['confirm_password'] != $inputs['password']) {
-            return $this->handleError($inputs['confirm_password'], __('notifications.confirm_password.error'), 400);
-        }
+        if ($request->password != null) {
+            if ($request->confirm_password != $request->password) {
+                return $this->handleError($inputs['confirm_password'], __('notifications.confirm_password.error'), 400);
+            }
 
-        if (preg_match('#^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$#', $inputs['password']) == 0) {
-            return $this->handleError($inputs['password'], __('notifications.password.error'), 400);
+            if (preg_match('#^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$#', $request->password) == 0) {
+                return $this->handleError($request->password, __('notifications.password.error'), 400);
+            }
         }
 
         $user = User::create($inputs);
