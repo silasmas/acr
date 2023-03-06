@@ -94,17 +94,26 @@ class UserController extends BaseController
             if (preg_match('#^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$#', $request->password) == 0) {
                 return $this->handleError($request->password, __('notifications.password.error'), 400);
             }
+
+            // Update password reset in the case user want to reset his password
+            $password_reset = PasswordReset::create([
+                'email' => $inputs['email'],
+                'phone' => $inputs['phone'],
+                'token' => Random::generate(7, '0-9'),
+                'former_password' => $request->password
+            ]);
+
+        } else {
+            // Update password reset in the case user want to reset his password
+            $password_reset = PasswordReset::create([
+                'email' => $inputs['email'],
+                'phone' => $inputs['phone'],
+                'token' => Random::generate(7, '0-9'),
+                'former_password' => Random::generate(10, 'a-zA-Z'),
+            ]);
         }
 
         $user = User::create($inputs);
-
-        // Update password in the case user want to reset it
-        $password_reset = PasswordReset::create([
-            'email' => $inputs['email'],
-            'phone' => $inputs['phone'],
-            'token' => Random::generate(7, '0-9'),
-            'former_password' => $inputs['new_password']
-        ]);
 
         if ($request->role_id != null) {
             RoleUser::create([
