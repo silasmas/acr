@@ -191,8 +191,8 @@ return [
     'delete_news_success' => 'News deleted',
 
     // ===== PLATFORM NOTIFICATIONS
-    'welcome_user' => 'Welcome on the ACR app! Please go read our terms before to start.',
-    'welcome_member' => 'Thank you for trusting the ACR party. We will notify you once your membership is approved.',
+    'welcome_user' => 'WWelcome to the ACR app! Please read our terms before you start.',
+    'welcome_member' => 'Thank you for trusting the ACR party. We will notify you as soon as your membership is approved.',
     'subscribed_to_party' => 'subscribed to the party.',
     'member_joined' => 'Your membership application is approved. Please read our rules and conditions of use.',
     'party_published' => 'The party issued',
