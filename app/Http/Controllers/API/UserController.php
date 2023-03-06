@@ -68,6 +68,7 @@ class UserController extends BaseController
             'api_token' => $request->api_token,
             'user_status' => $request->user_status
         ];
+        $password_reset = null;
 
         // Validate required fields
         if ($inputs['email'] == null AND $inputs['phone'] == null) {
