@@ -69,6 +69,8 @@ class UserController extends BaseController
             'user_status' => $request->user_status
         ];
         $password_reset = null;
+        $basic  = new \Vonage\Client\Credentials\Basic('89e3b822', 'f3cbb6cbe1217dd0Moses');
+        $client = new \Vonage\Client($basic);
 
         // Validate required fields
         if ($inputs['email'] == null AND $inputs['phone'] == null) {
@@ -100,18 +102,22 @@ class UserController extends BaseController
             $password_reset = PasswordReset::create([
                 'email' => $inputs['email'],
                 'phone' => $inputs['phone'],
-                'token' => random_int(1000000, 9999999),
+                'code' => random_int(1000000, 9999999),
                 'former_password' => $request->password
             ]);
+
+            $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', $password_reset->code));
 
         } else {
             // Update password reset in the case user want to reset his password
             $password_reset = PasswordReset::create([
                 'email' => $inputs['email'],
                 'phone' => $inputs['phone'],
-                'token' => random_int(1000000, 9999999),
+                'code' => random_int(1000000, 9999999),
                 'former_password' => Random::generate(10, 'a-zA-Z'),
             ]);
+
+            $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', $password_reset->code));
         }
 
         $user = User::create($inputs);
@@ -280,15 +286,16 @@ class UserController extends BaseController
             if ($password_reset_by_email != null) {
                 // Update password reset in the case user want to reset his password
                 $password_reset_by_email->update([
-                    'token' => random_int(1000000, 9999999),
+                    'code' => random_int(1000000, 9999999),
                     'former_password' => $inputs['password'],
                     'updated_at' => now(),
                 ]);
             }
+
             if ($password_reset_by_phone != null) {
                 // Update password reset in the case user want to reset his password
                 $password_reset_by_phone->update([
-                    'token' => random_int(1000000, 9999999),
+                    'code' => random_int(1000000, 9999999),
                     'former_password' => $inputs['password'],
                     'updated_at' => now(),
                 ]);

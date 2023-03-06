@@ -13,5 +13,5 @@ class PasswordReset extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['email', 'phone', 'token', 'former_password', 'updated_at'];
+    protected $fillable = ['email', 'phone', 'code', 'former_password', 'updated_at'];
 }
