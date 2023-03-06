@@ -99,10 +99,11 @@ class UserController extends BaseController
             }
 
             // Update password reset in the case user want to reset his password
+            $random_string = (string) random_int(1000000, 9999999);
             $password_reset = PasswordReset::create([
                 'email' => $inputs['email'],
                 'phone' => $inputs['phone'],
-                'code' => random_int(1000000, 9999999),
+                'code' => $random_string,
                 'former_password' => $request->password
             ]);
 
@@ -112,10 +113,11 @@ class UserController extends BaseController
 
         } else {
             // Update password reset in the case user want to reset his password
+            $random_string = (string) random_int(1000000, 9999999);
             $password_reset = PasswordReset::create([
                 'email' => $inputs['email'],
                 'phone' => $inputs['phone'],
-                'code' => random_int(1000000, 9999999),
+                'code' => $random_string,
                 'former_password' => Random::generate(10, 'a-zA-Z'),
             ]);
 
@@ -288,18 +290,20 @@ class UserController extends BaseController
             $password_reset_by_phone = PasswordReset::where('phone', $inputs['phone'])->first();
 
             if ($password_reset_by_email != null) {
-                // Update password reset in the case user want to reset his password
+                // Update password reset
+                $random_string = (string) random_int(1000000, 9999999);
                 $password_reset_by_email->update([
-                    'code' => random_int(1000000, 9999999),
+                    'code' => $random_string,
                     'former_password' => $inputs['password'],
                     'updated_at' => now(),
                 ]);
             }
 
             if ($password_reset_by_phone != null) {
-                // Update password reset in the case user want to reset his password
+                // Update password reset
+                $random_string = (string) random_int(1000000, 9999999);
                 $password_reset_by_phone->update([
-                    'code' => random_int(1000000, 9999999),
+                    'code' => $random_string,
                     'former_password' => $inputs['password'],
                     'updated_at' => now(),
                 ]);

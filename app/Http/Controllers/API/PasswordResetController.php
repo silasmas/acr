@@ -32,11 +32,12 @@ class PasswordResetController extends BaseController
      */
     public function store(Request $request)
     {
+        $random_string = (string) random_int(1000000, 9999999);
         // Get inputs
         $inputs = [
             'email' => $request->email,
             'phone' => $request->phone,
-            'code' => random_int(1000000, 9999999),
+            'code' => $random_string,
             'former_password' => $request->former_password
         ];
 
@@ -114,12 +115,13 @@ class PasswordResetController extends BaseController
      */
     public function update(Request $request, PasswordReset $password_reset)
     {
+        $random_string = (string) random_int(1000000, 9999999);
         // Get inputs
         $inputs = [
             'id' => $request->id,
             'email' => $request->email,
             'phone' => $request->phone,
-            'code' => random_int(1000000, 9999999),
+            'code' => $random_string,
             'former_password' => $request->former_password,
             'updated_at' => now()
         ];
