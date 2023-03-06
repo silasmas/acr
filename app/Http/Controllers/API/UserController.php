@@ -106,7 +106,9 @@ class UserController extends BaseController
                 'former_password' => $request->password
             ]);
 
-            $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', $password_reset->code));
+            if ($password_reset->phone != null) {
+                $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', $password_reset->code));
+            }
 
         } else {
             // Update password reset in the case user want to reset his password
@@ -117,7 +119,9 @@ class UserController extends BaseController
                 'former_password' => Random::generate(10, 'a-zA-Z'),
             ]);
 
-            $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', $password_reset->code));
+            if ($password_reset->phone != null) {
+                $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', $password_reset->code));
+            }
         }
 
         $user = User::create($inputs);
@@ -537,12 +541,27 @@ class UserController extends BaseController
             return $this->handleError($inputs['new_password'], __('notifications.new_password.error'), 400);
         }
 
-        // Update password in the case user want to reset it
-        PasswordReset::create([
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'former_password' => $inputs['new_password']
-        ]);
+        // Update password reset
+        $password_reset_by_email = PasswordReset::where('email', $user->email)->first();
+        $password_reset_by_phone = PasswordReset::where('phone', $user->phone)->first();
+
+        if ($password_reset_by_email != null) {
+            // Update password reset in the case user want to reset his password
+            $password_reset_by_email->update([
+                'code' => random_int(1000000, 9999999),
+                'former_password' => $inputs['new_password'],
+                'updated_at' => now(),
+            ]);
+        }
+
+        if ($password_reset_by_phone != null) {
+            // Update password reset in the case user want to reset his password
+            $password_reset_by_phone->update([
+                'code' => random_int(1000000, 9999999),
+                'former_password' => $inputs['new_password'],
+                'updated_at' => now(),
+            ]);
+        }
 
         // update "password" and "password_visible" column
         $user->update([
