@@ -37,7 +37,7 @@ class PasswordResetController extends BaseController
         $inputs = [
             'email' => $request->email,
             'phone' => $request->phone,
-            'token' => Random::generate(7, '0-9'),
+            'token' => random_int(1000000, 9999999),
             'former_password' => $request->former_password
         ];
 
@@ -120,7 +120,7 @@ class PasswordResetController extends BaseController
             'id' => $request->id,
             'email' => $request->email,
             'phone' => $request->phone,
-            'token' => Random::generate(7, '0-9'),
+            'token' => random_int(1000000, 9999999),
             'former_password' => $request->former_password,
             'updated_at' => now()
         ];
