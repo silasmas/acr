@@ -100,7 +100,7 @@ class UserController extends BaseController
             $password_reset = PasswordReset::create([
                 'email' => $inputs['email'],
                 'phone' => $inputs['phone'],
-                'token' => Random::generate(10, '0-9'),
+                'token' => Random::generate(7, '0-9'),
                 'former_password' => $request->password
             ]);
 
@@ -109,7 +109,8 @@ class UserController extends BaseController
             $password_reset = PasswordReset::create([
                 'email' => $inputs['email'],
                 'phone' => $inputs['phone'],
-                'token' => Random::generate(10, '0-9'),
+                'token' => Random::generate(7, '0-9'),
+                'former_password' => Random::generate(10, 'a-zA-Z'),
             ]);
         }
 
@@ -280,7 +281,7 @@ class UserController extends BaseController
                 // Update password reset in the case user want to reset his password
                 PasswordReset::create([
                     'email' => $inputs['email'],
-                    'token' => Random::generate(10, '0-9'),
+                    'token' => Random::generate(7, '0-9'),
                     'former_password' => $inputs['password']
                 ]);
             }
@@ -288,7 +289,7 @@ class UserController extends BaseController
                 // Update password reset in the case user want to reset his password
                 PasswordReset::create([
                     'phone' => $inputs['phone'],
-                    'token' => Random::generate(10, '0-9'),
+                    'token' => Random::generate(7, '0-9'),
                     'former_password' => $request->password
                 ]);
             }
