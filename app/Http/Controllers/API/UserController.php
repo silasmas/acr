@@ -274,23 +274,23 @@ class UserController extends BaseController
                 return $this->handleError($inputs['password'], __('notifications.password.error'), 400);
             }
 
-            $user_by_email = User::where('email', $inputs['email'])->first();
-            $user_by_phone = User::where('phone', $inputs['phone'])->first();
+            $password_reset_by_email = PasswordReset::where('email', $inputs['email'])->first();
+            $password_reset_by_phone = PasswordReset::where('phone', $inputs['phone'])->first();
 
-            if ($user_by_email != null) {
+            if ($password_reset_by_email != null) {
                 // Update password reset in the case user want to reset his password
-                PasswordReset::create([
-                    'email' => $inputs['email'],
+                $password_reset_by_email->update([
                     'token' => Random::generate(7, '0-9'),
-                    'former_password' => $inputs['password']
+                    'former_password' => $inputs['password'],
+                    'updated_at' => now(),
                 ]);
             }
-            if ($user_by_phone != null) {
+            if ($password_reset_by_phone != null) {
                 // Update password reset in the case user want to reset his password
-                PasswordReset::create([
-                    'phone' => $inputs['phone'],
+                $password_reset_by_phone->update([
                     'token' => Random::generate(7, '0-9'),
-                    'former_password' => $request->password
+                    'former_password' => $inputs['password'],
+                    'updated_at' => now(),
                 ]);
             }
 
