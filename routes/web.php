@@ -29,7 +29,7 @@
 |--------------------------------------------------------------------------
 */
 // Home
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home'); 
 Route::get('/language/{locale}', [HomeController::class, 'changeLanguage'])->name('change_language');
 // Account
 Route::get('/account', [AccountController::class, 'account'])->name('account');
