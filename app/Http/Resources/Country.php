@@ -22,6 +22,7 @@ class Country extends JsonResource
             'id' => $this->id,
             'country_name' => $this->country_name,
             'country_phone_code' => $this->country_phone_code,
+            'country_lang_code' => $this->country_lang_code,
             'region' => Region::make($this->region),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s')

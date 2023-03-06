@@ -121,19 +121,19 @@ class UserController extends BaseController
 
             // If the new user is a member, send notification to all managers and a welcome notification that the new user
             if ($current_role->id == $member_role->id) {
-                $manager_role = Role::where('role_name', 'Gérant')->first();
+                $manager_role = Role::where('role_name', 'Manager')->first();
                 $role_users = RoleUser::where('role_id', $manager_role->id)->get();
 
                 foreach ($role_users as $executive):
                     Notification::create([
-                        'notification_url' => 'manager/members/' . $user->id,
+                        'notification_url' => 'members/' . $user->id,
                         'notification_content' => $user->fistname . ' ' . $user->lastname . ' ' . __('notifications.subscribed_to_party'),
                         'user_id' => $executive->user_id,
                     ]);
                 endforeach;
 
                 Notification::create([
-                    'notification_url' => 'about/terms_of_use',
+                    'notification_url' => 'about_us/terms_of_use',
                     'notification_content' => __('notifications.welcome_member'),
                     'user_id' => $user->id,
                 ]);
@@ -142,7 +142,7 @@ class UserController extends BaseController
             // If the new user is neither a member nor an admin, send a ordinary welcome notification
             if ($current_role->id != $member_role->id AND $current_role->id != $admin_role->id) {
                 Notification::create([
-                    'notification_url' => 'about/terms_of_use',
+                    'notification_url' => 'about_us/terms_of_use',
                     'notification_content' => __('notifications.welcome_user'),
                     'user_id' => $user->id,
                 ]);
@@ -377,7 +377,7 @@ class UserController extends BaseController
             // If the new user is a member, send notification
             if ($user_role->id == $member_role->id AND $status_name == 'Activé') {
                 Notification::create([
-                    'notification_url' => 'about/terms_of_use',
+                    'notification_url' => 'about_us/terms_of_use',
                     'notification_content' => __('notifications.member_joined'),
                     'user_id' => $user->id,
                 ]);
@@ -570,7 +570,7 @@ class UserController extends BaseController
         if ($image_type_group == null) {
             $group = Group::create([
                 'group_name' => 'Type d\'image',
-                'group_description' => 'Groupe les images selon les types'
+                'group_description' => 'Grouper les types qui serviront à gérer les images.'
             ]);
             $avatar_type = Type::where('group_name', $group->id)->first();
 
@@ -674,7 +674,7 @@ class UserController extends BaseController
             if ($image_type_group == null) {
                 $group = Group::create([
                     'group_name' => 'Type d\'image',
-                    'group_description' => 'Groupe les images selon les types'
+                    'group_description' => 'Grouper les types qui serviront à gérer les images.'
                 ]);
                 $others_type = Type::where('group_name', $group->id)->first();
 
@@ -758,7 +758,7 @@ class UserController extends BaseController
             if ($image_type_group == null) {
                 $group = Group::create([
                     'group_name' => 'Type d\'image',
-                    'group_description' => 'Groupe les images selon les types'
+                    'group_description' => 'Grouper les types qui serviront à gérer les images.'
                 ]);
                 $others_type = Type::where('group_name', $group->id)->first();
 

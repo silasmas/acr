@@ -221,7 +221,7 @@ class NewsController extends BaseController
             if ($image_type_group == null) {
                 $group = Group::create([
                     'group_name' => 'Type d\'image',
-                    'group_description' => 'Groupe les images selon les types'
+                    'group_description' => 'Grouper les types qui serviront à gérer les images.'
                 ]);
                 $others_type = Type::where('group_name', $group->id)->first();
 
@@ -305,7 +305,7 @@ class NewsController extends BaseController
             if ($image_type_group == null) {
                 $group = Group::create([
                     'group_name' => 'Type d\'image',
-                    'group_description' => 'Groupe les images selon les types'
+                    'group_description' => 'Grouper les types qui serviront à gérer les images.'
                 ]);
                 $others_type = Type::where('group_name', $group->id)->first();
 

@@ -16,7 +16,7 @@ class Country extends Model
 
     // const SEARCHABLE_FIELDS = ['country_name'];
 
-    protected $fillable = ['country_name', 'country_phone_code', 'updated_at', 'region_id'];
+    protected $fillable = ['country_name', 'country_phone_code', 'country_lang_code', 'updated_at', 'region_id'];
 
     /**
      * Get the indexable data array for the model.

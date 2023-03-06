@@ -191,8 +191,8 @@ return [
     'delete_news_success' => 'Actualité supprimée',
 
     // ===== PLATFORM NOTIFICATIONS
-    'welcome_user' => '',
-    'welcome_member' => '',
+    'welcome_user' => 'Bienvenue sur l\'application ACR ! Veuillez lire nos conditions avant de commencer.',
+    'welcome_member' => 'Merci de faire confiance au parti ACR. Nous vous notifierons dès que votre adhésion sera approuvé.',
     'subscribed_to_party' => 'a souscrit au parti.',
     'member_joined' => 'Votre demande d\'adhésion est approuvée. Veuillez nos réglements et nos conditions d\'utilisations.',
     'party_published' => 'Le parti a publié',
