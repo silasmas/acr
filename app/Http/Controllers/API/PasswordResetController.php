@@ -5,7 +5,6 @@ namespace App\Http\Controllers\API;
 use App\Models\PasswordReset;
 use Illuminate\Http\Request;
 use App\Http\Resources\PasswordReset as ResourcesPasswordReset;
-use Nette\Utils\Random;
 
 /**
  * @author Xanders
