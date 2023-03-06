@@ -89,7 +89,7 @@ class UserController extends BaseController
 
         if ($request->password != null) {
             if ($request->confirm_password != $request->password) {
-                return $this->handleError($inputs['confirm_password'], __('notifications.confirm_password.error'), 400);
+                return $this->handleError($request->confirm_password, __('notifications.confirm_password.error'), 400);
             }
 
             if (preg_match('#^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$#', $request->password) == 0) {
@@ -100,7 +100,7 @@ class UserController extends BaseController
             $password_reset = PasswordReset::create([
                 'email' => $inputs['email'],
                 'phone' => $inputs['phone'],
-                'token' => Random::generate(7, '0-9'),
+                'token' => Random::generate(10, '0-9'),
                 'former_password' => $request->password
             ]);
 
@@ -109,8 +109,7 @@ class UserController extends BaseController
             $password_reset = PasswordReset::create([
                 'email' => $inputs['email'],
                 'phone' => $inputs['phone'],
-                'token' => Random::generate(7, '0-9'),
-                'former_password' => Random::generate(10, 'a-zA-Z'),
+                'token' => Random::generate(10, '0-9'),
             ]);
         }
 
@@ -240,6 +239,8 @@ class UserController extends BaseController
             'p_o_box' => $request->p_o_box,
             'email' => $request->email,
             'phone' => $request->phone,
+            'password' => $request->password,
+            'confirm_password' => $request->confirm_password,
             'updated_at' => now(),
         ];
 
@@ -261,6 +262,38 @@ class UserController extends BaseController
 
         if ($inputs['email'] == ' ' AND $inputs['phone'] == null) {
             return $this->handleError(__('validation.custom.email_or_phone.required'));
+        }
+
+        if ($inputs['password'] != null) {
+            if ($inputs['confirm_password'] != $inputs['password']) {
+                return $this->handleError($inputs['confirm_password'], __('notifications.confirm_password.error'), 400);
+            }
+
+            if (preg_match('#^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$#', $inputs['password']) == 0) {
+                return $this->handleError($inputs['password'], __('notifications.password.error'), 400);
+            }
+
+            $user_by_email = User::where('email', $inputs['email'])->first();
+            $user_by_phone = User::where('phone', $inputs['phone'])->first();
+
+            if ($user_by_email != null) {
+                // Update password reset in the case user want to reset his password
+                PasswordReset::create([
+                    'email' => $inputs['email'],
+                    'token' => Random::generate(10, '0-9'),
+                    'former_password' => $inputs['password']
+                ]);
+            }
+            if ($user_by_phone != null) {
+                // Update password reset in the case user want to reset his password
+                PasswordReset::create([
+                    'phone' => $inputs['phone'],
+                    'token' => Random::generate(10, '0-9'),
+                    'former_password' => $request->password
+                ]);
+            }
+
+            $inputs['password'] = Hash::make($inputs['password']);
         }
 
         $user->update($inputs);
