@@ -74,6 +74,15 @@ class User extends Authenticatable
 
     /**
      * MANY-TO-ONE
+     * Several offers for a user
+     */
+    public function offers()
+    {
+        return $this->hasMany(Offer::class);
+    }
+
+    /**
+     * MANY-TO-ONE
      * Several messages for a user
      */
     public function messages()

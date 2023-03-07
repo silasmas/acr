@@ -8,10 +8,10 @@
         "php": "^8.1",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.0",
-        "laravel/vonage-php-sdk-core-main": "^2.0",
         "laravel/sanctum": "^3.2",
         "laravel/scout": "^9.8",
         "laravel/tinker": "^2.8",
+        "verotel/flexpay-php-client": "^4.4",
         "vonage/client": "^4.0"
     },
     "require-dev": {

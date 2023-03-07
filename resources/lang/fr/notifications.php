@@ -189,6 +189,15 @@ return [
     'create_news_success' => 'Actualité créée',
     'update_news_success' => 'Actualité modifiée',
     'delete_news_success' => 'Actualité supprimée',
+    // Offer
+    'find_all_offers_success' => 'Offres trouvées',
+    'find_offer_success' => 'Offre trouvée',
+    'find_offer_404' => 'Offre non trouvée',
+    'payment_made' => 'Paiement effectué',
+    'payment_failed' => 'Paiement échoué',
+    'create_offer_success' => 'Offre créée',
+    'update_offer_success' => 'Offre modifiée',
+    'delete_offer_success' => 'Offre supprimée',
 
     // ===== PLATFORM NOTIFICATIONS
     'welcome_user' => 'Bienvenue sur l\'application ACR ! Veuillez lire nos conditions avant de commencer.',

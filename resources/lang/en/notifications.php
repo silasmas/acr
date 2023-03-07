@@ -189,6 +189,15 @@ return [
     'create_news_success' => 'News created',
     'update_news_success' => 'News updated',
     'delete_news_success' => 'News deleted',
+    // Offer
+    'find_all_offers_success' => 'Offers found',
+    'find_offer_success' => 'Offer found',
+    'find_offer_404' => 'Offer not found',
+    'payment_made' => 'Payment made',
+    'payment_failed' => 'Payment failed',
+    'create_offer_success' => 'Offer created',
+    'update_offer_success' => 'Offer updated',
+    'delete_offer_success' => 'Offer deleted',
 
     // ===== PLATFORM NOTIFICATIONS
     'welcome_user' => 'WWelcome to the ACR app! Please read our terms before you start.',

@@ -69,8 +69,8 @@ class UserController extends BaseController
             'user_status' => $request->user_status
         ];
         $password_reset = null;
-        $basic  = new \Vonage\Client\Credentials\Basic('89e3b822', 'f3cbb6cbe1217dd0Moses');
-        $client = new \Vonage\Client($basic);
+        // $basic  = new \Vonage\Client\Credentials\Basic('89e3b822', 'f3cbb6cbe1217dd0Moses');
+        // $client = new \Vonage\Client($basic);
 
         // Validate required fields
         if ($inputs['email'] == null AND $inputs['phone'] == null) {
@@ -107,9 +107,9 @@ class UserController extends BaseController
                 'former_password' => $request->password
             ]);
 
-            if ($password_reset->phone != null) {
-                $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', $password_reset->code));
-            }
+            // if ($password_reset->phone != null) {
+            //     $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', $password_reset->code));
+            // }
 
         } else {
             // Update password reset in the case user want to reset his password
@@ -121,9 +121,9 @@ class UserController extends BaseController
                 'former_password' => Random::generate(10, 'a-zA-Z'),
             ]);
 
-            if ($password_reset->phone != null) {
-                $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', $password_reset->code));
-            }
+            // if ($password_reset->phone != null) {
+            //     $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', $password_reset->code));
+            // }
         }
 
         $user = User::create($inputs);
