@@ -59,9 +59,9 @@ class OfferController extends BaseController
                         'merchant' => $request->merchant,
                         'type' => $request->transaction_type_id,
                         'phone' => $current_user->phone,
-                        'reference' => 'MM0000159',
+                        'reference' => $request->reference,
                         'amount' => $inputs['amount'],
-                        'currency' => 'CDF',
+                        'currency' => $request->currency,
                         'callbackUrl' => 'https://acr.momentum.cd/api/payment/store'
                     );
                     $data = json_encode($data);
@@ -120,9 +120,9 @@ class OfferController extends BaseController
                     'merchant' => $request->merchant,
                     'type' => $request->transaction_type_id,
                     'phone' => $request->phone,
-                    'reference' => 'MM0000159',
+                    'reference' => $request->reference,
                     'amount' => $inputs['amount'],
-                    'currency' => 'CDF',
+                    'currency' => $request->currency,
                     'callbackUrl' => 'https://acr.momentum.cd/api/payment/store'
                 );
                 $data = json_encode($data);
