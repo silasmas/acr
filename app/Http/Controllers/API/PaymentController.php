@@ -110,4 +110,18 @@ class PaymentController extends BaseController
 
         return $this->handleResponse(ResourcesPayment::collection($payments), __('notifications.delete_payment_success'));
     }
+
+    // ==================================== CUSTOM METHODS ====================================
+    /**
+     * find all payments having a same phone number.
+     *
+     * @param  string $phone_number
+     * @return \Illuminate\Http\Response
+     */
+    public function findByPhone($phone_number)
+    {
+        $payments = Payment::where('phone', $phone_number)->get();
+
+        return $this->handleResponse(ResourcesPayment::collection($payments), __('notifications.find_all_payments_success'));
+    }
 }

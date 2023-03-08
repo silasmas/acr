@@ -1,14 +1,16 @@
 <?php
-/**
- * Copyright (c) 2023 Xsam Technologies and/or its affiliates. All rights reserved.
- */
 
 namespace App\Http\Controllers\API;
 
+use App\Models\Group;
 use App\Models\Status;
 use Illuminate\Http\Request;
 use App\Http\Resources\Status as ResourcesStatus;
 
+/**
+ * @author Xanders
+ * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
+ */
 class StatusController extends BaseController
 {
     /**
@@ -144,7 +146,26 @@ class StatusController extends BaseController
      */
     public function search($data)
     {
-        $statuses = Status::search($data)->get();
+        $statuses = Status::where('status_name', $data)->get();
+
+        return $this->handleResponse(ResourcesStatus::collection($statuses), __('notifications.find_all_statuses_success'));
+    }
+
+    /**
+     * Find all type by group.
+     *
+     * @param  string $group_name
+     * @return \Illuminate\Http\Response
+     */
+    public function findByGroup($group_name)
+    {
+        $group = Group::where('group_name', $group_name)->first();
+
+        if (is_null($group)) {
+            return $this->handleError(__('notifications.find_group_404'));
+        }
+
+        $statuses = Status::where('group_id', $group->id)->get();
 
         return $this->handleResponse(ResourcesStatus::collection($statuses), __('notifications.find_all_statuses_success'));
     }

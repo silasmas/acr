@@ -48,8 +48,6 @@ Route::group(['middleware' => ['api', 'localization']], function () {
     // User
     Route::get('user/get_api_token/{email}', 'App\Http\Controllers\API\UserController@getApiToken')->name('user.get_api_token');
     Route::post('user/login', 'App\Http\Controllers\API\UserController@login')->name('user.login');
-    // Payment
-    Route::get('payment/store', 'App\Http\Controllers\API\PaymentController@index')->name('payment.index');
     Route::post('payment/store', 'App\Http\Controllers\API\PaymentController@store')->name('payment.store');
 });
 Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () {
@@ -57,6 +55,7 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     Route::resource('legal_info_title', 'App\Http\Controllers\API\LegalInfoTitleController');
     Route::resource('legal_info_content', 'App\Http\Controllers\API\LegalInfoContentController');
     Route::resource('group', 'App\Http\Controllers\API\GroupController');
+    Route::resource('status', 'App\Http\Controllers\API\StatusController');
     Route::resource('type', 'App\Http\Controllers\API\TypeController');
     Route::resource('image', 'App\Http\Controllers\API\ImageController');
     Route::resource('region', 'App\Http\Controllers\API\RegionController');
@@ -71,6 +70,7 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     Route::resource('message', 'App\Http\Controllers\API\MessageController');
     Route::resource('notification', 'App\Http\Controllers\API\NotificationController');
     Route::resource('news', 'App\Http\Controllers\API\NewsController');
+    Route::resource('payment', 'App\Http\Controllers\API\PaymentController');
 
     // LegalInfoSubject
     Route::get('legal_info_subject/search/{data}', 'App\Http\Controllers\API\LegalInfoSubjectController@search')->name('legal_info_subject.search');
@@ -81,6 +81,9 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     Route::put('legal_info_content/add_image/{id}', 'App\Http\Controllers\API\LegalInfoContentController@addImage')->name('legal_info_content.add_image');
     // Group
     Route::get('group/search/{data}', 'App\Http\Controllers\API\GroupController@search')->name('group.search');
+    // Status
+    Route::get('status/search/{data}', 'App\Http\Controllers\API\StatusController@search')->name('status.search');
+    Route::get('status/find_by_group/{group_name}', 'App\Http\Controllers\API\StatusController@findByGroup')->name('status.find_by_group');
     // Type
     Route::get('type/search/{data}', 'App\Http\Controllers\API\TypeController@search')->name('type.search');
     Route::get('type/find_by_group/{group_name}', 'App\Http\Controllers\API\TypeController@findByGroup')->name('type.find_by_group');
@@ -128,4 +131,7 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     // News
     Route::get('news/select_by_type/{type_id}', 'App\Http\Controllers\API\NewsController@selectByType')->name('news.select_by_type');
     Route::put('news/add_image/{id}', 'App\Http\Controllers\API\UserController@addImage')->name('news.add_image');
+    // Payment
+    Route::get('payment', 'App\Http\Controllers\API\PaymentController@index')->name('payment.index');
+    Route::get('payment/find_by_phone', 'App\Http\Controllers\API\PaymentController@findByPhone')->name('payment.find_by_phone');
 });
