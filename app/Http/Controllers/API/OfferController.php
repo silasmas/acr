@@ -57,7 +57,7 @@ class OfferController extends BaseController
                 if ($current_user != null) {
                     $data = array(
                         'merchant' => $request->merchant,
-                        'type' => $request->type_id,
+                        'type' => $request->transaction_type_id,
                         'phone' => $current_user->phone,
                         'reference' => 'MM0000159',
                         'amount' => $inputs['amount'],
@@ -118,7 +118,7 @@ class OfferController extends BaseController
             } else {
                 $data = array(
                     'merchant' => $request->merchant,
-                    'type' => $request->type_id,
+                    'type' => $request->transaction_type_id,
                     'phone' => $request->phone,
                     'reference' => 'MM0000159',
                     'amount' => $inputs['amount'],
