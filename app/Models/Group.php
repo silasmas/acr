@@ -36,4 +36,13 @@ class Group extends Model
     {
         return $this->hasMany(Type::class);
     }
+
+    /**
+     * MANY-TO-ONE
+     * Several statuses for a group
+     */
+    public function statuses()
+    {
+        return $this->hasMany(Status::class);
+    }
 }

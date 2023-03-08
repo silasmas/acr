@@ -55,6 +55,15 @@ class User extends Authenticatable
     ];
 
     /**
+     * ONE-TO-MANY
+     * One status for several users
+     */
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
+    }
+
+    /**
      * MANY-TO-ONE
      * Several role_users for a user
      */

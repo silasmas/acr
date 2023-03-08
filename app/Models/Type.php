@@ -39,7 +39,7 @@ class Type extends Model
 
     /**
      * MANY-TO-ONE
-     * Several addresses for a continent
+     * Several addresses for a type
      */
     public function addresses()
     {
@@ -48,10 +48,19 @@ class Type extends Model
 
     /**
      * MANY-TO-ONE
-     * Several images for a continent
+     * Several images for a type
      */
     public function images()
     {
         return $this->hasMany(Image::class);
+    }
+
+    /**
+     * MANY-TO-ONE
+     * Several payments for a type
+     */
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
     }
 }
