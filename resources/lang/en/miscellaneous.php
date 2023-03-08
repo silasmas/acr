@@ -12,8 +12,7 @@ return [
     |--------------------------------------------------------------------------
     |
     */
-    'app_description' => 'Tulipap is a platform that facilitates the payment of electricity invoices and the purchase of virtual prepaid cards.',
-    'keywords' => 'Tulipap,electricity,invoice,prepaid,card,payment',
+    'keywords' => 'Common Action for the Republic,acr,love of politics,politics of love',
     'all_right_reserved' => 'All right reserved',
     'dark_theme' => 'Activate dark theme',
     'your_language' => 'Your language',

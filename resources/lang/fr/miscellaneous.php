@@ -12,8 +12,7 @@ return [
     |--------------------------------------------------------------------------
     |
     */
-    'app_description' => 'Tulipap est une plateforme qui facilite le paiement des factures de courant électrique et l\'achat des cartes prépayées virtuelles.',
-    'keywords' => 'Tulipap,électricité,facture,prépayée,carte,paiement',
+    'keywords' => 'Action Commune pour la République,acr,l\'amour de la politique,politique de l\'amour',
     'all_right_reserved' => 'Tous droits réservés',
     'dark_theme' => 'Activer thème sombre',
     'your_language' => 'Votre langue',

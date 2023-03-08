@@ -61,13 +61,6 @@ return [
     'create_legal_info_content_success' => 'Contenu créé',
     'update_legal_info_content_success' => 'Contenu modifié',
     'delete_legal_info_content_success' => 'Contenu supprimé',
-    // Type
-    'find_all_types_success' => 'Types trouvés',
-    'find_type_success' => 'Type trouvé',
-    'find_type_404' => 'Type non trouvé',
-    'create_type_success' => 'Type créé',
-    'update_type_success' => 'Type modifié',
-    'delete_type_success' => 'Type supprimé',
     // Image
     'find_all_files_success' => 'Images trouvées',
     'find_file_success' => 'Image trouvée',
@@ -82,6 +75,20 @@ return [
     'create_group_success' => 'Groupe créé',
     'update_group_success' => 'Groupe modifié',
     'delete_group_success' => 'Groupe supprimé',
+    // Status
+    'find_all_statuses_success' => 'Etats trouvés',
+    'find_status_success' => 'Etat trouvé',
+    'find_status_404' => 'Etat non trouvé',
+    'create_status_success' => 'Etat créé',
+    'update_status_success' => 'Etat modifié',
+    'delete_status_success' => 'Etat supprimé',
+    // Type
+    'find_all_types_success' => 'Types trouvés',
+    'find_type_success' => 'Type trouvé',
+    'find_type_404' => 'Type non trouvé',
+    'create_type_success' => 'Type créé',
+    'update_type_success' => 'Type modifié',
+    'delete_type_success' => 'Type supprimé',
     // Continent
     'find_all_continents_success' => 'Continents trouvés',
     'find_continent_success' => 'Continent trouvé',
