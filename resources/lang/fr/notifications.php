@@ -193,11 +193,18 @@ return [
     'find_all_offers_success' => 'Offres trouvées',
     'find_offer_success' => 'Offre trouvée',
     'find_offer_404' => 'Offre non trouvée',
-    'payment_made' => 'Paiement effectué',
-    'payment_failed' => 'Paiement échoué',
     'create_offer_success' => 'Offre créée',
     'update_offer_success' => 'Offre modifiée',
     'delete_offer_success' => 'Offre supprimée',
+    // Payment
+    'find_all_payments_success' => 'Paiements trouvés',
+    'find_payment_success' => 'Paiement trouvé',
+    'find_payment_404' => 'Paiement non trouvé',
+    'error_while_processing' => 'Une erreur lors du traitement de votre requête',
+    'process_failed' => 'Impossible de traiter la demande, veuillez réessayer',
+    'create_payment_success' => 'Paiement créé',
+    'update_payment_success' => 'Paiement modifié',
+    'delete_payment_success' => 'Paiement supprimé',
 
     // ===== PLATFORM NOTIFICATIONS
     'welcome_user' => 'Bienvenue sur l\'application ACR ! Veuillez lire nos conditions avant de commencer.',

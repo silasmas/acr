@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\Offer;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Resources\Offer as ResourcesOffer;
-use App\Models\User;
 
 /**
  * @author Xanders
@@ -46,24 +46,28 @@ class OfferController extends BaseController
             return $this->handleError($inputs['type_id'], __('validation.required'), 400);
         }
 
+        $offer = Offer::create($inputs);
+
+        // If the amount is not given, there is no need to initiate the transaction
         if ($inputs['amount'] != null) {
+            // If "user_id" is empty, then it's an anonymous offer
             if ($inputs['user_id'] != null) {
                 $current_user = User::find($inputs['user_id']);
 
                 if ($current_user != null) {
                     $data = array(
-                        'merchant' => 'ZANDO',
-                        'type' => '1',
+                        'merchant' => $request->merchant,
+                        'type' => $request->type_id,
                         'phone' => $current_user->phone,
                         'reference' => 'MM0000159',
                         'amount' => $inputs['amount'],
-                        'currency' => 'CDF', 
-                        'callbackUrl' => ''
+                        'currency' => 'CDF',
+                        'callbackUrl' => 'https://acr.momentum.cd/api/payment/store'
                     );
                     $data = json_encode($data);
                     $gateway = "http://41.243.7.46:3006/flexpay/api/rest/v1/paymentService";
                     $ch = curl_init();
-
+        
                     curl_setopt($ch, CURLOPT_URL, $gateway);
                     curl_setopt($ch, CURLOPT_POST, true);
                     curl_setopt(
@@ -71,31 +75,39 @@ class OfferController extends BaseController
                         CURLOPT_HTTPHEADER,
                         Array(
                             'Content-Type: application/json', 
-                            'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJcL2xvZ2luIiwicm9sZXMiOlsiTUVSQ0hBTlQiXSwiZXhwIjoxNzI2MTYyMjM0LCJzdWIiOiIyYmIyNjI4YzhkZTQ0ZWZjZjA1ODdmMGRmZjYzMmFjYyJ9.41n-SA4822KKo5aK14rPZv6EnKi9xJVDIMvksHG61nc'
+                            'Authorization: ' . $request->auth_token
                         )
                     );
                     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
                     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
                     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
                     curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 300);
-
+        
                     $response = curl_exec($ch);
-
+        
                     if (curl_errno($ch)) {
-                        return $this->handleError(__('notifications.find_user_404'));
-                    
+                        $error_message = ['error_message' =>__('notifications.error_while_processing')];
+        
+                        return $this->handleResponse(array($error_message, new ResourcesOffer($offer)), __('notifications.create_offer_success'));
+        
                     } else {
                         curl_close($ch);
-
+        
                         $jsonRes = json_decode($response);
                         $code = $jsonRes->code;
-
+        
                         if ($code != "0") {
-                            $error_message = 'Impossible de traiter la demande, veuillez réessayer';
-
+                            $error_message = ['error_message' =>__('notifications.process_failed')];
+        
+                            return $this->handleResponse(array($error_message, new ResourcesOffer($offer)), __('notifications.create_offer_success'));
+        
                         } else {
-                            $message = $jsonRes->message;
-                            $orderNumber = $jsonRes->orderNumber;
+                            $result_response = [
+                                'message' => $jsonRes->message,
+                                'order_number' => $jsonRes->orderNumber
+                            ];
+        
+                            return $this->handleResponse(array($result_response, new ResourcesOffer($offer)), __('notifications.create_offer_success'));
                         }
                     }
 
@@ -104,13 +116,68 @@ class OfferController extends BaseController
                 }
 
             } else {
-                # code...
+                $data = array(
+                    'merchant' => $request->merchant,
+                    'type' => $request->type_id,
+                    'phone' => $request->phone,
+                    'reference' => 'MM0000159',
+                    'amount' => $inputs['amount'],
+                    'currency' => 'CDF',
+                    'callbackUrl' => 'https://acr.momentum.cd/api/payment/store'
+                );
+                $data = json_encode($data);
+                $gateway = "http://41.243.7.46:3006/flexpay/api/rest/v1/paymentService";
+                $ch = curl_init();
+    
+                curl_setopt($ch, CURLOPT_URL, $gateway);
+                curl_setopt($ch, CURLOPT_POST, true);
+                curl_setopt(
+                    $ch,
+                    CURLOPT_HTTPHEADER,
+                    Array(
+                        'Content-Type: application/json', 
+                        'Authorization: ' . $request->auth_token
+                    )
+                );
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+                curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+                curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 300);
+    
+                $response = curl_exec($ch);
+
+                if (curl_errno($ch)) {
+                    $error_message = ['error_message' =>__('notifications.error_while_processing')];
+    
+                    return $this->handleResponse(array($error_message, new ResourcesOffer($offer)), __('notifications.create_offer_success'));
+    
+                } else {
+                    curl_close($ch);
+    
+                    $jsonRes = json_decode($response);
+                    $code = $jsonRes->code;
+    
+                    if ($code != "0") {
+                        $error_message = ['error_message' =>__('notifications.process_failed')];
+    
+                        return $this->handleResponse(array($error_message, new ResourcesOffer($offer)), __('notifications.create_offer_success'));
+    
+                    } else {
+                        $result_response = [
+                            'message' => $jsonRes->message,
+                            'order_number' => $jsonRes->orderNumber
+                        ];
+    
+                        return $this->handleResponse(array($result_response, new ResourcesOffer($offer)), __('notifications.create_offer_success'));
+                    }
+                }
+
+                return $this->handleResponse(new ResourcesOffer($offer), __('notifications.create_offer_success'));
             }
+
+        } else {
+            return $this->handleResponse(new ResourcesOffer($offer), __('notifications.create_offer_success'));
         }
-
-        $offer = Offer::create($inputs);
-
-        return $this->handleResponse(new ResourcesOffer($offer), __('notifications.create_offer_success'));
     }
 
     /**
@@ -151,10 +218,6 @@ class OfferController extends BaseController
 
         if ($inputs['type_id'] == null OR $inputs['type_id'] == ' ') {
             return $this->handleError($inputs['type_id'], __('validation.required'), 400);
-        }
-
-        if ($inputs['user_id'] == null OR $inputs['user_id'] == ' ') {
-            return $this->handleError($inputs['user_id'], __('validation.required'), 400);
         }
 
         $offer->update($inputs);

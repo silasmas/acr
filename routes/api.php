@@ -16,6 +16,7 @@ Route::middleware(['auth:api', 'localization'])->group(function () {
     Route::apiResource('legal_info_title', 'App\Http\Controllers\API\LegalInfoTitleController');
     Route::apiResource('legal_info_content', 'App\Http\Controllers\API\LegalInfoContentController');
     Route::apiResource('group', 'App\Http\Controllers\API\GroupController');
+    Route::apiResource('status', 'App\Http\Controllers\API\StatusController');
     Route::apiResource('type', 'App\Http\Controllers\API\TypeController');
     Route::apiResource('image', 'App\Http\Controllers\API\ImageController');
     Route::apiResource('continent', 'App\Http\Controllers\API\ContinentController');
@@ -33,6 +34,7 @@ Route::middleware(['auth:api', 'localization'])->group(function () {
     Route::apiResource('message', 'App\Http\Controllers\API\MessageController');
     Route::apiResource('notification', 'App\Http\Controllers\API\NotificationController');
     Route::apiResource('news', 'App\Http\Controllers\API\NewsController');
+    Route::apiResource('offer', 'App\Http\Controllers\API\OfferController');
 });
 /*
 |--------------------------------------------------------------------------
@@ -41,9 +43,14 @@ Route::middleware(['auth:api', 'localization'])->group(function () {
 */
 Route::group(['middleware' => ['api', 'localization']], function () {
     Route::resource('user', 'App\Http\Controllers\API\UserController');
+    Route::resource('payment', 'App\Http\Controllers\API\PaymentController');
 
+    // User
     Route::get('user/get_api_token/{email}', 'App\Http\Controllers\API\UserController@getApiToken')->name('user.get_api_token');
     Route::post('user/login', 'App\Http\Controllers\API\UserController@login')->name('user.login');
+    // Payment
+    Route::get('payment/store', 'App\Http\Controllers\API\PaymentController@index')->name('payment.index');
+    Route::post('payment/store', 'App\Http\Controllers\API\PaymentController@store')->name('payment.store');
 });
 Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () {
     Route::resource('legal_info_subject', 'App\Http\Controllers\API\LegalInfoSubjectController');

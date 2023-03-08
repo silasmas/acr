@@ -193,11 +193,18 @@ return [
     'find_all_offers_success' => 'Offers found',
     'find_offer_success' => 'Offer found',
     'find_offer_404' => 'Offer not found',
-    'payment_made' => 'Payment made',
-    'payment_failed' => 'Payment failed',
     'create_offer_success' => 'Offer created',
     'update_offer_success' => 'Offer updated',
     'delete_offer_success' => 'Offer deleted',
+    // Payment
+    'find_all_payments_success' => 'Payments found',
+    'find_payment_success' => 'Payment found',
+    'find_payment_404' => 'Payment not found',
+    'error_while_processing' => 'An error while processing your request',
+    'process_failed' => 'Unable to process the request, please try again',
+    'create_payment_success' => 'Payment created',
+    'update_payment_success' => 'Payment updated',
+    'delete_payment_success' => 'Payment deleted',
 
     // ===== PLATFORM NOTIFICATIONS
     'welcome_user' => 'WWelcome to the ACR app! Please read our terms before you start.',
