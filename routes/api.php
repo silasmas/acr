@@ -133,5 +133,5 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     Route::put('news/add_image/{id}', 'App\Http\Controllers\API\UserController@addImage')->name('news.add_image');
     // Payment
     Route::get('payment', 'App\Http\Controllers\API\PaymentController@index')->name('payment.index');
-    Route::get('payment/find_by_phone', 'App\Http\Controllers\API\PaymentController@findByPhone')->name('payment.find_by_phone');
+    Route::get('payment/find_by_phone/{phone_number}', 'App\Http\Controllers\API\PaymentController@findByPhone')->name('payment.find_by_phone');
 });
