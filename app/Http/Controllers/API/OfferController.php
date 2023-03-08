@@ -37,7 +37,7 @@ class OfferController extends BaseController
         $inputs = [
             'offer_name' => $request->offer_name,
             'amount' => $request->amount,
-            'type_id' => $request->type_id,
+            'type_id' => $request->offer_type_id,
             'user_id' => $request->user_id
         ];
 
