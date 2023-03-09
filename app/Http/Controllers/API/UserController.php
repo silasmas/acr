@@ -258,6 +258,83 @@ class UserController extends BaseController
             'updated_at' => now(),
         ];
 
+        if ($inputs['national_number'] != null) {
+            $user->update([
+                'national_number' => $request->national_number,
+                'updated_at' => now(),
+            ]);
+        }
+
+        if ($inputs['firstname'] != null) {
+            $user->update([
+                'firstname' => $request->firstname,
+                'updated_at' => now(),
+            ]);
+        }
+
+        if ($inputs['lastname'] != null) {
+            $user->update([
+                'lastname' => $request->lastname,
+                'updated_at' => now(),
+            ]);
+        }
+
+        if ($inputs['surname'] != null) {
+            $user->update([
+                'surname' => $request->surname,
+                'updated_at' => now(),
+            ]);
+        }
+
+        if ($inputs['gender'] != null) {
+            $user->update([
+                'gender' => $request->gender,
+                'updated_at' => now(),
+            ]);
+        }
+
+        if ($inputs['birth_city'] != null) {
+            $user->update([
+                'birth_city' => $request->birth_city,
+                'updated_at' => now(),
+            ]);
+        }
+
+        if ($inputs['birth_date'] != null) {
+            $user->update([
+                'birth_date' => $request->birth_date,
+                'updated_at' => now(),
+            ]);
+        }
+
+        if ($inputs['nationality'] != null) {
+            $user->update([
+                'nationality' => $request->nationality,
+                'updated_at' => now(),
+            ]);
+        }
+
+        if ($inputs['p_o_box'] != null) {
+            $user->update([
+                'p_o_box' => $request->p_o_box,
+                'updated_at' => now(),
+            ]);
+        }
+
+        if ($inputs['email'] != null) {
+            $user->update([
+                'email' => $request->email,
+                'updated_at' => now(),
+            ]);
+        }
+
+        if ($inputs['phone'] != null) {
+            $user->update([
+                'phone' => $request->phone,
+                'updated_at' => now(),
+            ]);
+        }
+
         if ($inputs['password'] != null) {
             if ($inputs['confirm_password'] != $inputs['password']) {
                 return $this->handleError($inputs['confirm_password'], __('notifications.confirm_password.error'), 400);
@@ -291,9 +368,12 @@ class UserController extends BaseController
             }
 
             $inputs['password'] = Hash::make($inputs['password']);
-        }
 
-        $user->update($inputs);
+            $user->update([
+                'password' => $inputs['password'],
+                'updated_at' => now(),
+            ]);
+        }
 
         return $this->handleResponse(new ResourcesUser($user), __('notifications.update_user_success'));
     }
