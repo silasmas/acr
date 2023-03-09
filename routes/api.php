@@ -109,7 +109,7 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     Route::get('role/search/{data}', 'App\Http\Controllers\API\RoleController@search')->name('role.search');
     // User
     Route::get('user/search/{data}', 'App\Http\Controllers\API\UserController@search')->name('user.search');
-    Route::put('user/switch_status/{id}/{status_name}', 'App\Http\Controllers\API\UserController@switchStatus')->name('user.switch_status');
+    Route::put('user/switch_status/{id}/{status_id}', 'App\Http\Controllers\API\UserController@switchStatus')->name('user.switch_status');
     Route::put('user/associate_roles/{id}', 'App\Http\Controllers\API\UserController@associateRoles')->name('user.associate_roles');
     Route::put('user/withdraw_roles/{id}', 'App\Http\Controllers\API\UserController@withdrawRoles')->name('user.withdraw_roles');
     Route::put('user/update_password/{id}', 'App\Http\Controllers\API\UserController@updatePassword')->name('user.update_password');

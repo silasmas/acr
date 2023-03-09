@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\User as ResourcesUser;
 use App\Http\Resources\PasswordReset as ResourcesPasswordReset;
+use App\Models\Status;
 use Nette\Utils\Random;
 
 /**
@@ -66,7 +67,7 @@ class UserController extends BaseController
             'confirm_password' => $request->confirm_password,
             'remember_token' => $request->remember_token,
             'api_token' => $request->api_token,
-            'user_status' => $request->user_status
+            'status_id' => $request->status_id
         ];
         $password_reset = null;
         // $basic  = new \Vonage\Client\Credentials\Basic('89e3b822', 'f3cbb6cbe1217dd0Moses');
@@ -413,28 +414,32 @@ class UserController extends BaseController
      * Switch between user statuses.
      *
      * @param  $id
-     * @param  $status_name
+     * @param  $status_id
      * @return \Illuminate\Http\Response
      */
-    public function switchStatus($id, $status_name)
+    public function switchStatus($id, $status_id)
     {
         $user = User::find($id);
 
-        // update "status_id" column
-        $user->update([
-            'user_status' => $status_name,
-            'updated_at' => now()
-        ]);
+        if (is_null($user)) {
+            return $this->handleError(__('notifications.find_user_404'));
+        }
 
         /*
             HISTORY AND/OR NOTIFICATION MANAGEMENT
         */
+        $new_status =  Status::find($status_id);
+
+        if (is_null($new_status)) {
+            return $this->handleError(__('notifications.find_status_404'));
+        }
+
         $member_role = Role::where('role_name', 'Membre')->first();
         $user_roles = RoleUser::where('user_id', $user->id)->get();
 
         foreach ($user_roles as $user_role):
             // If the new user is a member, send notification
-            if ($user_role->id == $member_role->id AND $status_name == 'Activé') {
+            if ($user_role->id == $member_role->id AND $new_status->status_name == 'Activé') {
                 Notification::create([
                     'notification_url' => 'about_us/terms_of_use',
                     'notification_content' => __('notifications.member_joined'),
@@ -442,6 +447,12 @@ class UserController extends BaseController
                 ]);
             }
         endforeach;
+
+        // update "status_id" column
+        $user->update([
+            'status_id' => $status_id,
+            'updated_at' => now()
+        ]);
 
         return $this->handleResponse(new ResourcesUser($user), __('notifications.update_user_success'));
     }
