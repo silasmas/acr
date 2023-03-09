@@ -12,6 +12,7 @@ return [
     |--------------------------------------------------------------------------
     |
     */
+    'app_name' => 'Common Action for the Republic | CAR',
     'keywords' => 'Common Action for the Republic,acr,love of politics,politics of love',
     'all_right_reserved' => 'All right reserved',
     'dark_theme' => 'Activate dark theme',

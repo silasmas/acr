@@ -12,6 +12,7 @@ return [
     |--------------------------------------------------------------------------
     |
     */
+    'app_name' => 'Action Commune pour la République | ACR',
     'keywords' => 'Action Commune pour la République,acr,l\'amour de la politique,politique de l\'amour',
     'all_right_reserved' => 'Tous droits réservés',
     'dark_theme' => 'Activer thème sombre',
