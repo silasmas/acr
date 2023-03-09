@@ -29,7 +29,7 @@ class PasswordReset extends JsonResource
         ];
 
         return [
-            'password_reset' => $datas
+            'password_resets' => $datas
         ];
     }
 }
