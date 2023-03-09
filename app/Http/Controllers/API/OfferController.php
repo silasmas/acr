@@ -64,7 +64,7 @@ class OfferController extends BaseController
                         'reference' => $reference_code,
                         'amount' => $inputs['amount'],
                         'currency' => $request->currency,
-                        'callbackUrl' => 'https://site.momentum.cd/api/payment/store'
+                        'callbackUrl' => 'https://acr.silasmas.com/api/payment/store'
                     );
                     $data = json_encode($data);
                     $gateway = "http://41.243.7.46:3006/flexpay/api/rest/v1/paymentService";
