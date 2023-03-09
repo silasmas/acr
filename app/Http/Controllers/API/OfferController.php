@@ -62,7 +62,7 @@ class OfferController extends BaseController
                         'reference' => $request->reference,
                         'amount' => $inputs['amount'],
                         'currency' => $request->currency,
-                        'callbackUrl' => 'https://acr.momentum.cd/api/payment/store'
+                        'callbackUrl' => 'https://site.momentum.cd/api/payment/store'
                     );
                     $data = json_encode($data);
                     $gateway = "http://41.243.7.46:3006/flexpay/api/rest/v1/paymentService";
@@ -123,7 +123,7 @@ class OfferController extends BaseController
                     'reference' => $request->reference,
                     'amount' => $inputs['amount'],
                     'currency' => $request->currency,
-                    'callbackUrl' => 'https://acr.momentum.cd/api/payment/store'
+                    'callbackUrl' => 'https://site.momentum.cd/api/payment/store'
                 );
                 $data = json_encode($data);
                 $gateway = "http://41.243.7.46:3006/flexpay/api/rest/v1/paymentService";
