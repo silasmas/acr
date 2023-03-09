@@ -92,8 +92,8 @@ class UserController extends BaseController
         }
 
         if ($inputs['password'] != null) {
-            if ($inputs['confirm_password'] != $inputs['password']) {
-                return $this->handleError($inputs['confirm_password'], __('notifications.confirm_password.error'), 400);
+            if ($inputs['confirm_password'] != $inputs['password'] OR $inputs['confirm_password'] == null) {
+                return $this->handleError($inputs['confirm_password'], __('notifications.confirm_password_error'), 400);
             }
 
             if (preg_match('#^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$#', $inputs['password']) == 0) {
@@ -345,8 +345,8 @@ class UserController extends BaseController
         }
 
         if ($inputs['password'] != null) {
-            if ($inputs['confirm_password'] != $inputs['password']) {
-                return $this->handleError($inputs['confirm_password'], __('notifications.confirm_password.error'), 400);
+            if ($inputs['confirm_password'] != $inputs['password'] OR $inputs['confirm_password'] == null) {
+                return $this->handleError($inputs['confirm_password'], __('notifications.confirm_password_error'), 400);
             }
 
             if (preg_match('#^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$#', $inputs['password']) == 0) {
@@ -610,7 +610,7 @@ class UserController extends BaseController
         }
 
         if ($inputs['confirm_new_password'] == null) {
-            return $this->handleError($inputs['confirm_new_password'], __('notifications.confirm_new_password.empty'), 400);
+            return $this->handleError($inputs['confirm_new_password'], __('notifications.confirm_new_password'), 400);
         }
 
         if (Hash::check($inputs['former_password'], $user->password) == false) {
@@ -618,7 +618,7 @@ class UserController extends BaseController
         }
 
         if ($inputs['confirm_new_password'] != $inputs['new_password']) {
-            return $this->handleError($inputs['confirm_new_password'], __('notifications.confirm_new_password.error'), 400);
+            return $this->handleError($inputs['confirm_new_password'], __('notifications.confirm_new_password'), 400);
         }
 
         if (preg_match('#^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$#', $inputs['new_password']) == 0) {

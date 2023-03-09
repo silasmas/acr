@@ -160,6 +160,8 @@ return [
     'create_user_success' => 'Utilisateur créé',
     'update_user_success' => 'Utilisateur modifié',
     'update_password_success' => 'Mot de passe modifié',
+    'confirm_password_error' => 'Please confirm your password',
+    'confirm_new_password' => 'Please confirm the new password',
     'delete_user_success' => 'Utilisateur supprimé',
     // RoleUser
     'find_all_role_users_success' => 'Rôles avec utilisateurs trouvés',
