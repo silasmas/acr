@@ -59,7 +59,7 @@ class OfferController extends BaseController
                     $data = array(
                         'merchant' => $request->merchant,
                         'type' => $request->transaction_type_id,
-                        'phone' => $current_user->phone,
+                        'phone' => $request->other_phone != null ? $request->other_phone : $current_user->phone,
                         'reference' => $reference_code,
                         'amount' => $inputs['amount'],
                         'currency' => $request->currency,
@@ -121,7 +121,7 @@ class OfferController extends BaseController
                 $data = array(
                     'merchant' => $request->merchant,
                     'type' => $request->transaction_type_id,
-                    'phone' => $request->phone,
+                    'phone' => $request->other_phone,
                     'reference' => $reference_code,
                     'amount' => $inputs['amount'],
                     'currency' => $request->currency,

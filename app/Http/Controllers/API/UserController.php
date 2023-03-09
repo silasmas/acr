@@ -64,7 +64,7 @@ class UserController extends BaseController
             'email' => $request->email,
             'phone' => $request->phone,
             'email_verified_at' => $request->email_verified_at,
-            'password' => Hash::make($request->password),
+            'password' => $request->password,
             'confirm_password' => $request->confirm_password,
             'remember_token' => $request->remember_token,
             'api_token' => $request->api_token,
@@ -91,13 +91,13 @@ class UserController extends BaseController
             return $this->handleError(__('validation.custom.email_or_phone.required'));
         }
 
-        if ($request->password != null) {
-            if ($request->confirm_password != $request->password) {
-                return $this->handleError($request->confirm_password, __('notifications.confirm_password.error'), 400);
+        if ($inputs['password'] != null) {
+            if ($inputs['confirm_password'] != $inputs['password']) {
+                return $this->handleError($inputs['confirm_password'], __('notifications.confirm_password.error'), 400);
             }
 
-            if (preg_match('#^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$#', $request->password) == 0) {
-                return $this->handleError($request->password, __('notifications.password.error'), 400);
+            if (preg_match('#^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$#', $inputs['password']) == 0) {
+                return $this->handleError($inputs['password'], __('notifications.password.error'), 400);
             }
 
             // Update password reset in the case user want to reset his password
@@ -106,14 +106,16 @@ class UserController extends BaseController
                 'email' => $inputs['email'],
                 'phone' => $inputs['phone'],
                 'token' => $random_string,
-                'former_password' => $request->password
+                'former_password' => $inputs['password']
             ]);
 
             // if ($password_reset->phone != null) {
             //     $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', $password_reset->code));
             // }
 
-        } else {
+        }
+
+        if ($inputs['password'] == null) {
             // Update password reset in the case user want to reset his password
             $random_string = (string) random_int(1000000, 9999999);
             $password_reset = PasswordReset::create([
@@ -122,6 +124,8 @@ class UserController extends BaseController
                 'token' => $random_string,
                 'former_password' => Random::generate(10, 'a-zA-Z'),
             ]);
+
+            $inputs['password'] = $password_reset->former_password;
 
             // if ($password_reset->phone != null) {
             //     $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', $password_reset->code));
