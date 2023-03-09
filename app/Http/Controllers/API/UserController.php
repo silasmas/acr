@@ -125,7 +125,7 @@ class UserController extends BaseController
                 'former_password' => Random::generate(10, 'a-zA-Z'),
             ]);
 
-            $inputs['password'] = $password_reset->former_password;
+            $inputs['password'] = Hash::make($password_reset->former_password);
 
             // if ($password_reset->phone != null) {
             //     $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', $password_reset->code));
