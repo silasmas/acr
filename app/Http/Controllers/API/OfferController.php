@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Models\Offer;
 use App\Models\User;
 use Illuminate\Http\Request;
+use stdClass;
 use App\Http\Resources\Offer as ResourcesOffer;
 
 /**
@@ -68,7 +69,7 @@ class OfferController extends BaseController
                     $data = json_encode($data);
                     $gateway = "http://41.243.7.46:3006/flexpay/api/rest/v1/paymentService";
                     $ch = curl_init();
-        
+
                     curl_setopt($ch, CURLOPT_URL, $gateway);
                     curl_setopt($ch, CURLOPT_POST, true);
                     curl_setopt(
@@ -83,32 +84,41 @@ class OfferController extends BaseController
                     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
                     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
                     curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 300);
-        
+
                     $response = curl_exec($ch);
-        
+
                     if (curl_errno($ch)) {
-                        $error_message = ['error_message' =>__('notifications.error_while_processing')];
-        
-                        return $this->handleResponse(array($error_message, new ResourcesOffer($offer)), __('notifications.create_offer_success'));
-        
+                        $object = new stdClass();
+
+                        $object->error_message = __('notifications.error_while_processing');
+                        $object->offer = new ResourcesOffer($offer);
+
+                        return $this->handleResponse($object, __('notifications.create_offer_success'));
+
                     } else {
                         curl_close($ch);
         
                         $jsonRes = json_decode($response);
                         $code = $jsonRes->code;
-        
+
                         if ($code != "0") {
-                            $error_message = ['error_message' =>__('notifications.process_failed')];
-        
-                            return $this->handleResponse(array($error_message, new ResourcesOffer($offer)), __('notifications.create_offer_success'));
-        
+                            $object = new stdClass();
+
+                            $object->error_message = __('notifications.process_failed');
+                            $object->offer = new ResourcesOffer($offer);
+
+                            return $this->handleResponse($object, __('notifications.create_offer_success'));
+
                         } else {
-                            $result_response = [
+                            $object = new stdClass();
+
+                            $object->result_response = [
                                 'message' => $jsonRes->message,
                                 'order_number' => $jsonRes->orderNumber
                             ];
-        
-                            return $this->handleResponse(array($result_response, new ResourcesOffer($offer)), __('notifications.create_offer_success'));
+                            $object->offer = new ResourcesOffer($offer);
+
+                            return $this->handleResponse($object, __('notifications.create_offer_success'));
                         }
                     }
 
@@ -130,7 +140,7 @@ class OfferController extends BaseController
                 $data = json_encode($data);
                 $gateway = "http://41.243.7.46:3006/flexpay/api/rest/v1/paymentService";
                 $ch = curl_init();
-    
+
                 curl_setopt($ch, CURLOPT_URL, $gateway);
                 curl_setopt($ch, CURLOPT_POST, true);
                 curl_setopt(
@@ -145,32 +155,41 @@ class OfferController extends BaseController
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
                 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
                 curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 300);
-    
+
                 $response = curl_exec($ch);
 
                 if (curl_errno($ch)) {
-                    $error_message = ['error_message' =>__('notifications.error_while_processing')];
-    
-                    return $this->handleResponse(array($error_message, new ResourcesOffer($offer)), __('notifications.create_offer_success'));
-    
+                    $object = new stdClass();
+
+                    $object->error_message = __('notifications.error_while_processing');
+                    $object->offer = new ResourcesOffer($offer);
+
+                    return $this->handleResponse($object, __('notifications.create_offer_success'));
+
                 } else {
                     curl_close($ch);
-    
+
                     $jsonRes = json_decode($response);
                     $code = $jsonRes->code;
-    
+
                     if ($code != "0") {
-                        $error_message = ['error_message' =>__('notifications.process_failed')];
+                        $object = new stdClass();
+
+                        $object->error_message = __('notifications.process_failed');
+                        $object->offer = new ResourcesOffer($offer);
     
-                        return $this->handleResponse(array($error_message, new ResourcesOffer($offer)), __('notifications.create_offer_success'));
-    
+                        return $this->handleResponse($object, __('notifications.create_offer_success'));
+
                     } else {
-                        $result_response = [
+                        $object = new stdClass();
+
+                        $object->result_response = [
                             'message' => $jsonRes->message,
                             'order_number' => $jsonRes->orderNumber
                         ];
-    
-                        return $this->handleResponse(array($result_response, new ResourcesOffer($offer)), __('notifications.create_offer_success'));
+                        $object->offer = new ResourcesOffer($offer);
+
+                        return $this->handleResponse($object, __('notifications.create_offer_success'));
                     }
                 }
 
