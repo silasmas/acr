@@ -45,20 +45,36 @@
         <!-- Custom CSS File -->
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.custom.css') }}">
 
-        <title>@lang('miscellaneous.app_name')</title>
+        <title>
+            @lang('miscellaneous.slogan')
+        </title>
     </head>
 
     <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
-            <div>
-                <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-                </a>
-            </div>
-
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
-                {{ $slot }}
-            </div>
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
         </div>
+        <!-- Spinner End -->
+
+        @yield('guest-content')
+
+        <!-- JavaScript Libraries -->
+        <script src="{{ asset('assets/addons/custom/jquery/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('assets/addons/custom/jquery/jquery-ui/jquery-ui.min.js') }}"></script>
+        <script src="{{ asset('assets/addons/custom/cropper/js/cropper.min.js') }}"></script>
+        <script src="{{ asset('assets/addons/custom/autosize/js/autosize.min.js') }}"></script>
+        <script src="{{ asset('assets/addons/dairy/wow/wow.min.js') }}"></script>
+        <script src="{{ asset('assets/addons/dairy/easing/easing.min.js') }}"></script>
+        <script src="{{ asset('assets/addons/dairy/waypoints/waypoints.min.js') }}"></script>
+        <script src="{{ asset('assets/addons/dairy/owlcarousel/owl.carousel.min.js') }}"></script>
+        <script src="{{ asset('assets/addons/dairy/counterup/counterup.min.js') }}"></script>
+        <script src="{{ asset('assets/addons/dairy/parallax/parallax.min.js') }}"></script>
+        <script src="{{ asset('assets/addons/dairy/lightbox/js/lightbox.min.js') }}"></script>
+
+        <!-- Dairy Javascript -->
+        <script src="{{ asset('assets/js/scripts.dairy.css') }}"></script>
+        <!-- Custom Javascript -->
+        <script src="{{ asset('assets/js/scripts.dairy.css') }}"></script>
     </body>
 </html>

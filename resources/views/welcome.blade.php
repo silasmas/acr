@@ -1,6 +1,6 @@
-@extends('layouts.customer')
+@extends('layouts.guest')
 
-@section('customer-content')
+@section('guest-content')
 
                     <div class="row">
                         <div class="col-12">
