@@ -30,6 +30,7 @@
         <link rel="stylesheet" href="{{ asset('assets/icons/bootstrap-icons/bootstrap-icons.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/icons/boxicons/css/boxicons.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/icons/remixicon/remixicon.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/icons/fontawesome/css/all.min.css') }}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css">
 
         <!-- Addons CSS Files -->
@@ -57,6 +58,28 @@
         </div>
         <!-- Spinner End -->
 
+        <!-- Topbar Start -->
+        <div class="container-fluid bg-dark px-0">
+            <div class="row g-0 d-none d-lg-flex">
+                <div class="col-lg-6 ps-5 text-start">
+                    <div class="h-100 d-inline-flex align-items-center text-light">
+                        <span>Follow Us:</span>
+                        <a class="btn btn-link text-light" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-link text-light" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-link text-light" href=""><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-link text-light" href=""><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-end">
+                    <div class="h-100 bg-secondary d-inline-flex align-items-center text-dark py-2 px-4">
+                        <span class="me-2 fw-semi-bold"><i class="fa fa-phone-alt me-2"></i>Call Us:</span>
+                        <span>+012 345 6789</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Topbar End -->
+
         @yield('guest-content')
 
         <!-- JavaScript Libraries -->
@@ -73,8 +96,8 @@
         <script src="{{ asset('assets/addons/dairy/lightbox/js/lightbox.min.js') }}"></script>
 
         <!-- Dairy Javascript -->
-        <script src="{{ asset('assets/js/scripts.dairy.css') }}"></script>
+        <script src="{{ asset('assets/js/scripts.dairy.js') }}"></script>
         <!-- Custom Javascript -->
-        <script src="{{ asset('assets/js/scripts.dairy.css') }}"></script>
+        <script src="{{ asset('assets/js/scripts.dairy.js') }}"></script>
     </body>
 </html>

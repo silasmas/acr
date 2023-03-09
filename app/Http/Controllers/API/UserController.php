@@ -22,6 +22,7 @@ use App\Http\Resources\User as ResourcesUser;
 use App\Http\Resources\PasswordReset as ResourcesPasswordReset;
 use App\Models\Status;
 use Nette\Utils\Random;
+use stdClass;
 
 /**
  * @author Xanders
@@ -210,7 +211,11 @@ class UserController extends BaseController
             ]);
         }
 
-        return $this->handleResponse(array(new ResourcesPasswordReset($password_reset), new ResourcesUser($user)), __('notifications.create_user_success'));
+        $object = new stdClass();
+        $object->password_reset = new ResourcesPasswordReset($password_reset);
+        $object->user = new ResourcesUser($user);
+
+        return $this->handleResponse($object, __('notifications.create_user_success'));
     }
 
     /**
