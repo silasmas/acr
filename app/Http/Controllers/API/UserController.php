@@ -258,22 +258,6 @@ class UserController extends BaseController
             'updated_at' => now(),
         ];
 
-        if ($inputs['email'] == null AND $inputs['phone'] == null) {
-            return $this->handleError(__('validation.custom.email_or_phone.required'));
-        }
-
-        if ($inputs['email'] == ' ' AND $inputs['phone'] == ' ') {
-            return $this->handleError(__('validation.custom.email_or_phone.required'));
-        }
-
-        if ($inputs['email'] == null AND $inputs['phone'] == ' ') {
-            return $this->handleError(__('validation.custom.email_or_phone.required'));
-        }
-
-        if ($inputs['email'] == ' ' AND $inputs['phone'] == null) {
-            return $this->handleError(__('validation.custom.email_or_phone.required'));
-        }
-
         if ($inputs['password'] != null) {
             if ($inputs['confirm_password'] != $inputs['password']) {
                 return $this->handleError($inputs['confirm_password'], __('notifications.confirm_password.error'), 400);
