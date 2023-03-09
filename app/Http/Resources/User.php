@@ -46,7 +46,7 @@ class User extends JsonResource
         ];
 
         return [
-            'users' => $datas
+            'user' => $datas
         ];
     }
 }
