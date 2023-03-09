@@ -109,40 +109,40 @@ p {
 
 /********** Custom colors **********/
 /* background */
-.bg-dark-blue {
-    background-color: #37517e !important;
+.acr-bg-blue {
+    background-color: #005dba !important;
 }
 
-.bg-blue {
-    background-color: #006afb !important;
+.acr-bg-yellow {
+    background-color: #febd00 !important;
 }
 
-.bg-yellow {
-    background-color: #ffb400 !important;
+.acr-bg-red {
+    background-color: #ad0304 !important;
 }
 
 /* button */
-.btn-blue {
-    background-color: #006afb !important;
+.acr-btn-blue {
+    background-color: #005dba !important;
     color: #fff !important;
-    border-color: #006afb !important;
+    border-color: #0058b1 !important;
 }
 
-.btn-blue:hover {
-    background-color: #006afb !important;
+.acr-btn-blue:hover {
+    background-color: #0058b1 !important;
     color: #fff !important;
-    border-color: #006afb !important;
+    border-color: #0058b1 !important;
 }
 
-.btn-outline-blue {
-    color: #006afb !important;
-    border-color: #006afb !important;
+.acr-btn-outline-blue {
+    color: #005dba !important;
+    border-color: #005dba !important;
 }
 
-.btn-outline-blue:hover {
-    background-color: #006afb !important;
+.acr-btn-outline-blue:hover {
+    background-color: #005dba !important;
     color: #fff !important;
-    border-color: #006afb !important;
+    border-color: #005dba !important;
 }
 
 .btn-yellow {
