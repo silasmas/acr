@@ -18,7 +18,7 @@ class PasswordReset extends JsonResource
      */
     public function toArray($request)
     {
-        return [
+        $datas = [
             'id' => $this->id,
             'email' => $this->email,
             'phone' => $this->phone,
@@ -26,6 +26,10 @@ class PasswordReset extends JsonResource
             'former_password' => $this->former_password,
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
+        ];
+
+        return [
+            'password_reset' => $datas
         ];
     }
 }
