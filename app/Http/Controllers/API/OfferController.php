@@ -55,11 +55,12 @@ class OfferController extends BaseController
                 $current_user = User::find($inputs['user_id']);
 
                 if ($current_user != null) {
+                    $reference_code = 'REF-' . ((string) random_int(10000000, 99999999));
                     $data = array(
                         'merchant' => $request->merchant,
                         'type' => $request->transaction_type_id,
                         'phone' => $current_user->phone,
-                        'reference' => $request->reference,
+                        'reference' => $reference_code,
                         'amount' => $inputs['amount'],
                         'currency' => $request->currency,
                         'callbackUrl' => 'https://site.momentum.cd/api/payment/store'
@@ -116,11 +117,12 @@ class OfferController extends BaseController
                 }
 
             } else {
+                $reference_code = 'REF-' . ((string) random_int(10000000, 99999999));
                 $data = array(
                     'merchant' => $request->merchant,
                     'type' => $request->transaction_type_id,
                     'phone' => $request->phone,
-                    'reference' => $request->reference,
+                    'reference' => $reference_code,
                     'amount' => $inputs['amount'],
                     'currency' => $request->currency,
                     'callbackUrl' => 'https://site.momentum.cd/api/payment/store'
