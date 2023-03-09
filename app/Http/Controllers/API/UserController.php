@@ -110,7 +110,7 @@ class UserController extends BaseController
             ]);
 
             if ($password_reset->phone != null) {
-                $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', $password_reset->code));
+                $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->code));
             }
 
         }
@@ -128,7 +128,7 @@ class UserController extends BaseController
             $inputs['password'] = Hash::make($password_reset->former_password);
 
             if ($password_reset->phone != null) {
-                $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', $password_reset->code));
+                $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->code));
             }
         }
 
