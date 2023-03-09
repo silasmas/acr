@@ -2,6 +2,6 @@
 
 @section('guest-content')
 
-                            <h1 class="display-1">HELP CENTER bien2</h1>
+                            <h1 class="display-1">HELP CENTER bien3</h1>
 
 @endsection
