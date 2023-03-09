@@ -11,6 +11,7 @@ use App\Models\Notification;
 use App\Models\PasswordReset;
 use App\Models\Role;
 use App\Models\RoleUser;
+use App\Models\Status;
 use App\Models\Type;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -18,11 +19,10 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Resources\User as ResourcesUser;
-use App\Http\Resources\PasswordReset as ResourcesPasswordReset;
-use App\Models\Status;
 use Nette\Utils\Random;
 use stdClass;
+use App\Http\Resources\User as ResourcesUser;
+use App\Http\Resources\PasswordReset as ResourcesPasswordReset;
 
 /**
  * @author Xanders
