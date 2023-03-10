@@ -131,6 +131,6 @@
         <!-- Dairy Javascript -->
         <script src="{{ asset('assets/js/scripts.dairy.js') }}"></script>
         <!-- Custom Javascript -->
-        <script src="{{ asset('assets/js/scripts.dairy.js') }}"></script>
+        <script src="{{ asset('assets/js/scripts.custom.js') }}"></script>
     </body>
 </html>

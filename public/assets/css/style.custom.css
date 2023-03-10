@@ -135,6 +135,7 @@ p {
 }
 
 .acr-btn-outline-blue {
+    background-color: transparent !important;
     color: #005dba !important;
     border-color: #005dba !important;
 }
@@ -145,60 +146,94 @@ p {
     border-color: #005dba !important;
 }
 
-.btn-yellow {
-    background-color: #ffb400 !important;
+.acr-btn-yellow {
+    background-color: #febd00 !important;
     color: #333 !important;
-    border-color: #ffb400 !important;
+    border-color: #f1b500 !important;
 }
 
-.btn-yellow:hover {
-    background-color: #f5ac02 !important;
+.acr-btn-yellow:hover {
+    background-color: #f1b500 !important;
     color: #333 !important;
-    border-color: #ffb400 !important;
+    border-color: #f1b500 !important;
 }
 
-.btn-outline-yellow {
-    color: #ffb400 !important;
-    border-color: #ffb400 !important;
+.acr-btn-outline-yellow {
+    background-color: transparent !important;
+    color: #f1b500 !important;
+    border-color: #f1b500 !important;
 }
 
-.btn-outline-yellow:hover {
-    background-color: #ffb400 !important;
+.acr-btn-outline-yellow:hover {
+    background-color: #f1b500 !important;
+    color: #333 !important;
+    border-color: #f1b500 !important;
+}
+
+.acr-btn-red {
+    background-color: #ad0304 !important;
     color: #fff !important;
-    border-color: #ffb400 !important;
+    border-color: #ad0304 !important;
+}
+
+.acr-btn-red:hover {
+    background-color: #ad0304 !important;
+    color: #fff !important;
+    border-color: #ad0304 !important;
+}
+
+.acr-btn-outline-red {
+    background-color: transparent !important;
+    color: #ad0304 !important;
+    border-color: #ad0304 !important;
+}
+
+.acr-btn-outline-red:hover {
+    background-color: #ad0304 !important;
+    color: #fff !important;
+    border-color: #ad0304 !important;
 }
 
 /* border */
-.border-blue {
-    border-color: #006afb !important;
+.acr-border-blue {
+    border-color: #005dba !important;
 }
 
-.border-yellow {
-    border-color: #ffb400 !important;
+.acr-border-yellow {
+    border-color: #febd00 !important;
+}
+
+.acr-border-red {
+    border-color: #e20401 !important;
 }
 
 /* text */
-.text-blue {
-    color: #006afb !important;
+.acr-text-blue {
+    color: #005dba !important;
 }
 
-.text-yellow {
-    color: #ffb400 !important;
+.acr-text-yellow {
+    color: #febd00 !important;
 }
 
-.text-yellow:hover {
-    color: #eea702 !important;
+.acr-text-red-1 {
+    color: #e20403 !important;
 }
 
-.line-height-1 {
+.acr-text-red-2 {
+    color: #ad0304 !important;
+}
+
+/* paragraph */
+.acr-line-height-1 {
     line-height: 1;
 }
 
-.line-height-1_4 {
+.acr-line-height-1_4 {
     line-height: 1.4;
 }
 
-.line-height-1_5 {
+.acr-line-height-1_5 {
     line-height: 1.5;
 }
 
