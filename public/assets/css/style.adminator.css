@@ -9,9 +9,12 @@
    * Copyright 2011-2022 The Bootstrap Authors
    * Copyright 2011-2022 Twitter, Inc.
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * 
+   * Customizer : Xanders Samoth | https://www.linkedin.com/in/xanders-samoth-b2770737/
+   * 
    */
 /********** Google font importing **********/
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400&family=Roboto:wght@300&display=swap');
 
 /********** Template CSS **********/
 :root {
