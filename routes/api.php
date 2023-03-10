@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 | Default API resource
 |--------------------------------------------------------------------------
-*/
+ */
 Route::middleware(['auth:api', 'localization'])->group(function () {
     Route::apiResource('legal_info_subject', 'App\Http\Controllers\API\LegalInfoSubjectController');
     Route::apiResource('legal_info_title', 'App\Http\Controllers\API\LegalInfoTitleController');
@@ -40,7 +40,7 @@ Route::middleware(['auth:api', 'localization'])->group(function () {
 |--------------------------------------------------------------------------
 | Custom API resource
 |--------------------------------------------------------------------------
-*/
+ */
 Route::group(['middleware' => ['api', 'localization']], function () {
     Route::resource('user', 'App\Http\Controllers\API\UserController');
     Route::resource('payment', 'App\Http\Controllers\API\PaymentController');
