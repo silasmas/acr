@@ -12,7 +12,7 @@ pre,
 code,
 kbd,
 samp {
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Montserrat', sans-serif;
 	font-size: 1em;
 }
 
@@ -38,11 +38,11 @@ h3 a, .h3 a,
 h4 a, .h4 a,
 h5 a, .h5 a,
 h6 a, .h6 a {
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'Roboto', sans-serif;
 }
 
 p {
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Montserrat', sans-serif;
 	line-height: 1.9;
 }
 
