@@ -198,8 +198,8 @@ class NewsController extends BaseController
     public function addImage(Request $request, $id)
     {
         $inputs = [
-            'news_id' => $request->entity_id,
-            'image_64' => $request->base64image
+            'news_id' => $request->news_id,
+            'image_64' => $request->image_64
         ];
 
         if ($inputs['image_64'] != null) {

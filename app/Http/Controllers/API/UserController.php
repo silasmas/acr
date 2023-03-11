@@ -703,8 +703,8 @@ class UserController extends BaseController
     public function updateAvatarPicture(Request $request, $id)
     {
         $inputs = [
-            'user_id' => $request->entity_id,
-            'image_64' => $request->base64image
+            'user_id' => $request->user_id,
+            'image_64' => $request->image_64
         ];
         // $extension = explode('/', explode(':', substr($inputs['image_64'], 0, strpos($inputs['image_64'], ';')))[1])[1];
         $replace = substr($inputs['image_64'], 0, strpos($inputs['image_64'], ',') + 1);
@@ -805,8 +805,8 @@ class UserController extends BaseController
     public function addImage(Request $request, $id)
     {
         $inputs = [
-            'user_id' => $request->entity_id,
-            'image_64' => $request->base64image
+            'user_id' => $request->user_id,
+            'image_64' => $request->image_64
         ];
 
         if ($inputs['image_64'] != null) {
