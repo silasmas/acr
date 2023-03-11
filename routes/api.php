@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
  */
 Route::middleware(['auth:api', 'localization'])->group(function () {
+
     Route::apiResource('legal_info_subject', 'App\Http\Controllers\API\LegalInfoSubjectController');
     Route::apiResource('legal_info_title', 'App\Http\Controllers\API\LegalInfoTitleController');
     Route::apiResource('legal_info_content', 'App\Http\Controllers\API\LegalInfoContentController');
