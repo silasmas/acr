@@ -62,7 +62,7 @@ class NewsController extends BaseController
         // In case user want to add URL like Youtube for example
         if ($request->image_url) {
             $image_type_group = Group::where('group_name', 'Type d\'image')->first();
-            $others_type = Type::where('group_name', $image_type_group->id)->first();
+            $others_type = Type::where('group_id', $image_type_group->id)->first();
 
             Image::create([
                 'image_url' => $request->image_url,
@@ -223,7 +223,7 @@ class NewsController extends BaseController
                     'group_name' => 'Type d\'image',
                     'group_description' => 'Grouper les types qui serviront à gérer les images.'
                 ]);
-                $others_type = Type::where('group_name', $group->id)->first();
+                $others_type = Type::where('group_id', $group->id)->first();
 
                 if ($others_type == null) {
                     $type = Type::create([
@@ -253,7 +253,7 @@ class NewsController extends BaseController
                 }
 
             } else {
-                $others_type = Type::where('group_name', $image_type_group->id)->first();
+                $others_type = Type::where('group_id', $image_type_group->id)->first();
 
                 if ($others_type == null) {
                     $type = Type::create([
@@ -307,7 +307,7 @@ class NewsController extends BaseController
                     'group_name' => 'Type d\'image',
                     'group_description' => 'Grouper les types qui serviront à gérer les images.'
                 ]);
-                $others_type = Type::where('group_name', $group->id)->first();
+                $others_type = Type::where('group_id', $group->id)->first();
 
                 if ($others_type == null) {
                     $type = Type::create([
@@ -337,7 +337,7 @@ class NewsController extends BaseController
                 }
 
             } else {
-                $others_type = Type::where('group_name', $image_type_group->id)->first();
+                $others_type = Type::where('group_id', $image_type_group->id)->first();
 
                 if ($others_type == null) {
                     $type = Type::create([
