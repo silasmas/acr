@@ -726,7 +726,7 @@ class UserController extends BaseController
                 'group_name' => 'Type d\'image',
                 'group_description' => 'Grouper les types qui serviront à gérer les images.'
             ]);
-            $avatar_type = Type::where('group_name', $group->id)->first();
+            $avatar_type = Type::where('group_id', $group->id)->first();
 
             if ($avatar_type == null) {
                 $type = Type::create([
@@ -756,7 +756,7 @@ class UserController extends BaseController
             }
 
         } else {
-            $avatar_type = Type::where('group_name', $image_type_group->id)->first();
+            $avatar_type = Type::where('group_id', $image_type_group->id)->first();
 
             if ($avatar_type == null) {
                 $type = Type::create([
@@ -830,7 +830,7 @@ class UserController extends BaseController
                     'group_name' => 'Type d\'image',
                     'group_description' => 'Grouper les types qui serviront à gérer les images.'
                 ]);
-                $others_type = Type::where('group_name', $group->id)->first();
+                $others_type = Type::where('group_id', $group->id)->first();
 
                 if ($others_type == null) {
                     $type = Type::create([
@@ -860,7 +860,7 @@ class UserController extends BaseController
                 }
 
             } else {
-                $others_type = Type::where('group_name', $image_type_group->id)->first();
+                $others_type = Type::where('group_id', $image_type_group->id)->first();
 
                 if ($others_type == null) {
                     $type = Type::create([
@@ -914,7 +914,7 @@ class UserController extends BaseController
                     'group_name' => 'Type d\'image',
                     'group_description' => 'Grouper les types qui serviront à gérer les images.'
                 ]);
-                $others_type = Type::where('group_name', $group->id)->first();
+                $others_type = Type::where('group_id', $group->id)->first();
 
                 if ($others_type == null) {
                     $type = Type::create([
@@ -944,7 +944,7 @@ class UserController extends BaseController
                 }
 
             } else {
-                $others_type = Type::where('group_name', $image_type_group->id)->first();
+                $others_type = Type::where('group_id', $image_type_group->id)->first();
 
                 if ($others_type == null) {
                     $type = Type::create([
