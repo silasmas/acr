@@ -58,12 +58,13 @@ class OfferController extends BaseController
                 if ($current_user != null) {
                     $reference_code = 'REF-' . ((string) random_int(10000000, 99999999));
                     $data = array(
-                        'merchant' => $request->merchant,
+                        'merchant' => env('FLEXPAY_MERCHANT'),
                         'type' => $request->transaction_type_id,
                         'phone' => $request->other_phone != null ? $request->other_phone : $current_user->phone,
                         'reference' => $reference_code,
                         'amount' => $inputs['amount'],
                         'currency' => $request->currency,
+                        'user_id' => $current_user->id,
                         'callbackUrl' => 'https://acr.silasmas.com/api/payment/store'
                     );
                     $data = json_encode($data);
@@ -77,7 +78,7 @@ class OfferController extends BaseController
                         CURLOPT_HTTPHEADER,
                         Array(
                             'Content-Type: application/json', 
-                            'Authorization: ' . $request->auth_token
+                            'Authorization: ' . env('FLEXPAY_APP_KEY')
                         )
                     );
                     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -129,7 +130,7 @@ class OfferController extends BaseController
             } else {
                 $reference_code = 'REF-' . ((string) random_int(10000000, 99999999));
                 $data = array(
-                    'merchant' => $request->merchant,
+                    'merchant' => env('FLEXPAY_MERCHANT', null),
                     'type' => $request->transaction_type_id,
                     'phone' => $request->other_phone,
                     'reference' => $reference_code,
@@ -148,7 +149,7 @@ class OfferController extends BaseController
                     CURLOPT_HTTPHEADER,
                     Array(
                         'Content-Type: application/json', 
-                        'Authorization: ' . $request->auth_token
+                        'Authorization: ' . env('FLEXPAY_APP_KEY', null)
                     )
                 );
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);

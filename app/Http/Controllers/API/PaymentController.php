@@ -39,9 +39,10 @@ class PaymentController extends BaseController
             'phone' => $request->phone,
             'currency' => $request->currency,
             'channel' => $request->channel,
+            'created_at' => $request->createdAt,
             'type_id' => $request->type,
             'status_id' => $request->code,
-            'created_at' => $request->createdAt
+            'user_id' => $request->user_id,
         ];
 
         $payment = Payment::create($inputs);
@@ -80,14 +81,15 @@ class PaymentController extends BaseController
             'id' => $request->id,
             'reference' => $request->reference,
             'provider_reference' => $request->provider_reference,
-            'order_number' => $request->orderNumber,
+            'order_number' => $request->order_number,
             'amount' => $request->amount,
-            'amount_customer' => $request->amountCustomer,
+            'amount_customer' => $request->amount_customer,
             'phone' => $request->phone,
             'currency' => $request->currency,
             'channel' => $request->channel,
-            'type_id' => $request->type,
-            'status_id' => $request->code,
+            'type_id' => $request->type_id,
+            'status_id' => $request->status_id,
+            'user_id' => $request->user_id,
             'updated_at' => now()
         ];
 

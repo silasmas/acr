@@ -39,6 +39,7 @@ class User extends JsonResource
             'addresses' => Address::collection($this->addresses),
             'role_users' => RoleUser::collection($this->role_users),
             'offers' => Offer::collection($this->offers),
+            'payments' => Payment::collection($this->payments),
             'notifications' => Notification::collection($this->notifications),
             'images' => Image::collection($this->images),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),

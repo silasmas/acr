@@ -92,6 +92,15 @@ class User extends Authenticatable
 
     /**
      * MANY-TO-ONE
+     * Several payments for a user
+     */
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
+
+    /**
+     * MANY-TO-ONE
      * Several messages for a user
      */
     public function messages()
