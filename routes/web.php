@@ -27,6 +27,11 @@ use Illuminate\Support\Facades\Route;
 | ROUTES FOR EVERY ROLES
 |--------------------------------------------------------------------------
 */
+// Generate symbolic link
+Route::get('/symlink', function () {
+    return view('symlink');
+});
+
 // Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/language/{locale}', [HomeController::class, 'changeLanguage'])->name('change_language');
