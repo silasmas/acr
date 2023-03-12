@@ -713,7 +713,7 @@ class UserController extends BaseController
         $image = str_replace(' ', '+', $image);
 
         // Create image URL
-		$image_url = 'images/users/' . $inputs['user_id'] . '/avatars/' . Str::random(50) . '.png';
+		$image_url = 'public/storage/images/users/' . $inputs['user_id'] . '/avatars/' . Str::random(50) . '.png';
 
 		// Upload image
 		Storage::url(Storage::disk('public')->put($image_url, base64_decode($image)));
@@ -817,7 +817,7 @@ class UserController extends BaseController
             $image = str_replace(' ', '+', $image);
 
             // Create image URL
-            $image_url = 'images/users/' . $inputs['user_id'] . '/others/' . Str::random(50) . '.png';
+            $image_url = 'public/storage/images/users/' . $inputs['user_id'] . '/others/' . Str::random(50) . '.png';
 
             // Upload image
             Storage::url(Storage::disk('public')->put($image_url, base64_decode($image)));
@@ -901,7 +901,7 @@ class UserController extends BaseController
             }
 
             // Create image URL
-			$image_url = 'images/users/' . $inputs['user_id'] . '/others/' . Str::random(50) . '.' . $request->file('image')->extension();
+			$image_url = 'public/storage/images/users/' . $inputs['user_id'] . '/others/' . Str::random(50) . '.' . $request->file('image')->extension();
 
 			// Upload image
 			Storage::url(Storage::disk('public')->put($image_url, $request->file('image')));
