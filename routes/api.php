@@ -131,7 +131,7 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     Route::get('notification/switch_status/{id}', 'App\Http\Controllers\API\NotificationController@switchStatus')->name('notification.switch_status');
     // News
     Route::get('news/select_by_type/{type_id}', 'App\Http\Controllers\API\NewsController@selectByType')->name('news.select_by_type');
-    Route::put('news/add_image/{id}', 'App\Http\Controllers\API\UserController@addImage')->name('news.add_image');
+    Route::put('news/add_image/{id}', 'App\Http\Controllers\API\NewsController@addImage')->name('news.add_image');
     // Payment
     Route::get('payment', 'App\Http\Controllers\API\PaymentController@index')->name('payment.index');
     Route::get('payment/find_by_phone/{phone_number}', 'App\Http\Controllers\API\PaymentController@findByPhone')->name('payment.find_by_phone');
