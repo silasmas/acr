@@ -717,78 +717,19 @@ class UserController extends BaseController
         $file = new Filesystem;
         $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $inputs['user_id'] . '/avatars');
         // Create image URL
-		$image_url = 'public/storage/images/users/' . $inputs['user_id'] . '/avatars/' . Str::random(50) . '.png';
+		$image_url = 'images/users/' . $inputs['user_id'] . '/avatars/' . Str::random(50) . '.png';
 
 		// Upload image
 		Storage::url(Storage::disk('public')->put($image_url, base64_decode($image)));
 
         $image_type_group = Group::where('group_name', 'Type d\'image')->first();
+        $avatar_type = Type::where([['type_name', 'Avatar'], ['group_id', $image_type_group->id]])->first();
 
-        // If the group to classify image types doesn't exists, create it before register image URL into the database
-        if ($image_type_group == null) {
-            $group = Group::create([
-                'group_name' => 'Type d\'image',
-                'group_description' => 'Grouper les types qui serviront à gérer les images.'
-            ]);
-            $avatar_type = Type::where('group_id', $group->id)->first();
-
-            if ($avatar_type == null) {
-                $type = Type::create([
-                    'type_name' => 'Avatar',
-                    'type_description' => 'Photo de profil d\'un utilisateur',
-                    'group_id' => $group->id
-                ]);
-
-                Image::create([
-                    'image_url' => '/' . $image_url,
-                    'type_id' => $type->id,
-                    'user_id' => $inputs['user_id']
-                ]);
-
-            } else {
-                $avatar_type = Type::create([
-                    'type_name' => 'Avatar',
-                    'type_description' => 'Photo de profil d\'un utilisateur',
-                    'group_id' => $group->id
-                ]);
-
-                Image::create([
-                    'image_url' => '/' . $image_url,
-                    'type_id' => $avatar_type->id,
-                    'user_id' => $inputs['user_id']
-                ]);
-            }
-
-        } else {
-            $avatar_type = Type::where('group_id', $image_type_group->id)->first();
-
-            if ($avatar_type == null) {
-                $type = Type::create([
-                    'type_name' => 'Avatar',
-                    'type_description' => 'Photo de profil d\'un utilisateur',
-                    'group_id' => $image_type_group->id
-                ]);
-
-                Image::create([
-                    'image_url' => '/' . $image_url,
-                    'type_id' => $type->id,
-                    'user_id' => $inputs['user_id']
-                ]);
-
-            } else {
-                $avatar_type = Type::create([
-                    'type_name' => 'Avatar',
-                    'type_description' => 'Photo de profil d\'un utilisateur',
-                    'group_id' => $image_type_group->id
-                ]);
-
-                Image::create([
-                    'image_url' => '/' . $image_url,
-                    'type_id' => $avatar_type->id,
-                    'user_id' => $inputs['user_id']
-                ]);
-            }
-        }
+        Image::create([
+            'image_url' => '/' . $image_url,
+            'type_id' => $avatar_type->id,
+            'user_id' => $inputs['user_id']
+        ]);
 
 		$user = User::find($id);
 
@@ -810,174 +751,40 @@ class UserController extends BaseController
     {
         $inputs = [
             'user_id' => $request->user_id,
-            'image_64' => $request->image_64
+            'image_name' => $request->image_name,
+            'image_64_recto' => $request->image_64_recto,
+            'image_64_verso' => $request->image_64_verso,
+            'description' => $request->description
         ];
 
-        if ($inputs['image_64'] != null) {
-            // $extension = explode('/', explode(':', substr($inputs['image_64'], 0, strpos($inputs['image_64'], ';')))[1])[1];
-            $replace = substr($inputs['image_64'], 0, strpos($inputs['image_64'], ',') + 1);
-            // Find substring from replace here eg: data:image/png;base64,
-            $image = str_replace($replace, '', $inputs['image_64']);
-            $image = str_replace(' ', '+', $image);
+        // $extension = explode('/', explode(':', substr($inputs['image_64_recto'], 0, strpos($inputs['image_64_recto'], ';')))[1])[1];
+        $replace_recto = substr($inputs['image_64_recto'], 0, strpos($inputs['image_64_recto'], ',') + 1);
+        $replace_verso = substr($inputs['image_64_verso'], 0, strpos($inputs['image_64_verso'], ',') + 1);
+        // Find substring from replace here eg: data:image/png;base64,
+        $image_recto = str_replace($replace_recto, '', $inputs['image_64_recto']);
+        $image_recto = str_replace(' ', '+', $image_recto);
+        $image_verso = str_replace($replace_verso, '', $inputs['image_64_verso']);
+        $image_verso = str_replace(' ', '+', $image_verso);
 
-            // Create image URL
-            $image_url = 'public/storage/images/users/' . $inputs['user_id'] . '/others/' . Str::random(50) . '.png';
+        // Create image URL
+        $image_url_recto = 'images/users/' . $inputs['user_id'] . '/others/' . Str::random(50) . '.png';
+        $image_url_verso = 'images/users/' . $inputs['user_id'] . '/others/' . Str::random(50) . '.png';
 
-            // Upload image
-            Storage::url(Storage::disk('public')->put($image_url, base64_decode($image)));
+        // Upload image
+        Storage::url(Storage::disk('public')->put($image_url_recto, base64_decode($image_recto)));
+        Storage::url(Storage::disk('public')->put($image_url_verso, base64_decode($image_verso)));
 
-            $image_type_group = Group::where('group_name', 'Type d\'image')->first();
+        $image_type_group = Group::where('group_name', 'Type d\'image')->first();
+        $others_type = Type::where([['type_name', 'Autres'], ['group_id', $image_type_group->id]])->first();
 
-            // If the group to classify image types doesn't exists, create it before register image URL into the database
-            if ($image_type_group == null) {
-                $group = Group::create([
-                    'group_name' => 'Type d\'image',
-                    'group_description' => 'Grouper les types qui serviront à gérer les images.'
-                ]);
-                $others_type = Type::where('group_id', $group->id)->first();
-
-                if ($others_type == null) {
-                    $type = Type::create([
-                        'type_name' => 'Autres',
-                        'type_description' => 'Autres types d\'image (Scan de carte d\'électeur, d\'identité, etc.)',
-                        'group_id' => $group->id
-                    ]);
-
-                    Image::create([
-                        'image_url' => '/' . $image_url,
-                        'type_id' => $type->id,
-                        'user_id' => $inputs['user_id']
-                    ]);
-
-                } else {
-                    $others_type = Type::create([
-                        'type_name' => 'Autres',
-                        'type_description' => 'Autres types d\'image (Scan de carte d\'électeur, d\'identité, etc.)',
-                        'group_id' => $group->id
-                    ]);
-
-                    Image::create([
-                        'image_url' => '/' . $image_url,
-                        'type_id' => $others_type->id,
-                        'user_id' => $inputs['user_id']
-                    ]);
-                }
-
-            } else {
-                $others_type = Type::where('group_id', $image_type_group->id)->first();
-
-                if ($others_type == null) {
-                    $type = Type::create([
-                        'type_name' => 'Autres',
-                        'type_description' => 'Autres types d\'image (Scan de carte d\'électeur, d\'identité, etc.)',
-                        'group_id' => $image_type_group->id
-                    ]);
-
-                    Image::create([
-                        'image_url' => '/' . $image_url,
-                        'type_id' => $type->id,
-                        'user_id' => $inputs['user_id']
-                    ]);
-
-                } else {
-                    $others_type = Type::create([
-                        'type_name' => 'Autres',
-                        'type_description' => 'Autres types d\'image (Scan de carte d\'électeur, d\'identité, etc.)',
-                        'group_id' => $image_type_group->id
-                    ]);
-
-                    Image::create([
-                        'image_url' => '/' . $image_url,
-                        'type_id' => $others_type->id,
-                        'user_id' => $inputs['user_id']
-                    ]);
-                }
-            }
-
-        } else {
-            // Validate required file and its mime type
-            $validator = Validator::make($inputs, [
-                'video' => 'required|mimes:jpg,jpeg,png,gif'
-            ]);
-
-            if ($validator->fails()) {
-                return $this->handleError($validator->errors());       
-            }
-
-            // Create image URL
-			$image_url = 'public/storage/images/users/' . $inputs['user_id'] . '/others/' . Str::random(50) . '.' . $request->file('image')->extension();
-
-			// Upload image
-			Storage::url(Storage::disk('public')->put($image_url, $request->file('image')));
-
-            $image_type_group = Group::where('group_name', 'Type d\'image')->first();
-
-            // If the group to classify image types doesn't exists, create it before register image URL into the database
-            if ($image_type_group == null) {
-                $group = Group::create([
-                    'group_name' => 'Type d\'image',
-                    'group_description' => 'Grouper les types qui serviront à gérer les images.'
-                ]);
-                $others_type = Type::where('group_id', $group->id)->first();
-
-                if ($others_type == null) {
-                    $type = Type::create([
-                        'type_name' => 'Autres',
-                        'type_description' => 'Autres types d\'image (Scan de carte d\'électeur, d\'identité, etc.)',
-                        'group_id' => $group->id
-                    ]);
-
-                    Image::create([
-                        'image_url' => '/' . $image_url,
-                        'type_id' => $type->id,
-                        'user_id' => $inputs['user_id']
-                    ]);
-
-                } else {
-                    $others_type = Type::create([
-                        'type_name' => 'Autres',
-                        'type_description' => 'Autres types d\'image (Scan de carte d\'électeur, d\'identité, etc.)',
-                        'group_id' => $group->id
-                    ]);
-
-                    Image::create([
-                        'image_url' => '/' . $image_url,
-                        'type_id' => $others_type->id,
-                        'user_id' => $inputs['user_id']
-                    ]);
-                }
-
-            } else {
-                $others_type = Type::where('group_id', $image_type_group->id)->first();
-
-                if ($others_type == null) {
-                    $type = Type::create([
-                        'type_name' => 'Autres',
-                        'type_description' => 'Autres types d\'image (Scan de carte d\'électeur, d\'identité, etc.)',
-                        'group_id' => $image_type_group->id
-                    ]);
-
-                    Image::create([
-                        'image_url' => '/' . $image_url,
-                        'type_id' => $type->id,
-                        'user_id' => $inputs['user_id']
-                    ]);
-
-                } else {
-                    $others_type = Type::create([
-                        'type_name' => 'Autres',
-                        'type_description' => 'Autres types d\'image (Scan de carte d\'électeur, d\'identité, etc.)',
-                        'group_id' => $image_type_group->id
-                    ]);
-
-                    Image::create([
-                        'image_url' => '/' . $image_url,
-                        'type_id' => $others_type->id,
-                        'user_id' => $inputs['user_id']
-                    ]);
-                }
-            }
-        }
+        Image::create([
+            'image_name' => $inputs['image_name'],
+            'image_url' => '/' . $image_url_recto,
+            'url_verso' => '/' . $image_url_verso,
+            'description' => $inputs['description'],
+            'type_id' => $others_type->id,
+            'user_id' => $inputs['user_id']
+        ]);
 
 		$user = User::find($id);
 
