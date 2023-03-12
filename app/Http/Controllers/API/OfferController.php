@@ -56,7 +56,7 @@ class OfferController extends BaseController
                 $current_user = User::find($inputs['user_id']);
 
                 if ($current_user != null) {
-                    $reference_code = 'REF-' . ((string) random_int(10000000, 99999999));
+                    $reference_code = 'REF-' . ((string) random_int(10000000, 99999999)) . '-' . $inputs['user_id'];
                     $data = array(
                         'merchant' => env('FLEXPAY_MERCHANT'),
                         'type' => $request->transaction_type_id,
@@ -128,7 +128,7 @@ class OfferController extends BaseController
                 }
 
             } else {
-                $reference_code = 'REF-' . ((string) random_int(10000000, 99999999));
+                $reference_code = 'REF-' . ((string) random_int(10000000, 99999999)) . '-ANONYMOUS';
                 $data = array(
                     'merchant' => env('FLEXPAY_MERCHANT', null),
                     'type' => $request->transaction_type_id,

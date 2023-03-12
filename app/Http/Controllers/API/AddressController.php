@@ -34,45 +34,98 @@ class AddressController extends BaseController
      */
     public function store(Request $request)
     {
-        // Get inputs
-        $inputs = [
-            'number' => $request->number,
-            'street' => $request->street,
-            'type_id' => $request->type_id,
-            'neighborhood_id' => $request->neighborhood_id,
-            'area_id' => $request->area_id,
-            'user_id' => $request->user_id
-        ];
-        // Select all addresses of a same neighborhood and a same area to check unique constraint
-        $addresses = Address::where([['neighborhood_id', $inputs['neighborhood_id']], ['area_id', $inputs['area_id']]])->get();
-
         // Validate required fields
-        if ($request->neighborhood_id == null OR $request->neighborhood_id == ' ') {
-            return $this->handleError($request->neighborhood_id, __('validation.required'), 400);
-        }
+        if ($request->neighborhood_id == null) {
+            if ($request->neighborhood_name != null) {
+                if ($request->area_id != null) {
+                    $neighborhood = Neighborhood::create([
+                        'neighborhood_name' => $request->neighborhood_name,
+                        'area_id' => $request->area_id
+                    ]);
 
-        if ($request->area_id == null OR $request->area_id == ' ') {
-            return $this->handleError($request->area_id, __('validation.required'), 400);
-        }
+                    $address = Address::create([
+                        'number' => $request->number,
+                        'street' => $request->street,
+                        'type_id' => $request->type_id,
+                        'neighborhood_id' => $neighborhood->id,
+                        'area_id' => $request->area_id,
+                        'user_id' => $request->user_id
+                    ]);
 
-        // Find area and neighborhood by their IDs to get their names
-        $area = Area::find($inputs['area_id']);
-        $neighborhood = Neighborhood::find($inputs['neighborhood_id']);
+                    return $this->handleResponse(new ResourcesAddress($address), __('notifications.create_address_success'));
+            
+                } else {
+                    $neighborhood = Neighborhood::create([
+                        'neighborhood_name' => $request->neighborhood_name
+                    ]);
 
-        // Check if address already exists
-        foreach ($addresses as $another_address):
-            if ($another_address->number == $inputs['number'] AND $another_address->street == $inputs['street'] AND $another_address->area_id == $inputs['area_id'] AND $another_address->neighborhood_id == $inputs['neighborhood_id']) {
-                return $this->handleError(
-                     __('notifications.address.number') . __('notifications.colon_after_word') . ' ' . $request->number . ', ' 
-                    . __('notifications.address.street') . __('notifications.colon_after_word') . ' ' . $request->street . ', ' 
-                    . __('notifications.address.neighborhood') . __('notifications.colon_after_word') . ' ' . $neighborhood->neighborhood_name . ', ' 
-                    . __('notifications.address.area') . __('notifications.colon_after_word') . ' ' . $area->area_name, __('validation.custom.address.exists'), 400);
+                    $address = Address::create([
+                        'number' => $request->number,
+                        'street' => $request->street,
+                        'type_id' => $request->type_id,
+                        'neighborhood_id' => $neighborhood->id,
+                        'user_id' => $request->user_id
+                    ]);
+
+                    return $this->handleResponse(new ResourcesAddress($address), __('notifications.create_address_success'));
+                }
             }
-        endforeach;
+        }
 
-        $address = Address::create($inputs);
+        if ($request->area_id == null) {
+            if ($request->neighborhood_id != null) {
+                $area = Area::create([
+                    'area_name' => $request->area_name
+                ]);
 
-        return $this->handleResponse(new ResourcesAddress($address), __('notifications.create_address_success'));
+                $address = Address::create([
+                    'number' => $request->number,
+                    'street' => $request->street,
+                    'type_id' => $request->type_id,
+                    'neighborhood_id' => $request->neighborhood_id,
+                    'area_id' => $area->id,
+                    'user_id' => $request->user_id
+                ]);
+
+                return $this->handleResponse(new ResourcesAddress($address), __('notifications.create_address_success'));
+
+            } else {
+                if ($request->neighborhood_name != null) {
+                    if ($request->area_id != null) {
+                        $neighborhood = Neighborhood::create([
+                            'neighborhood_name' => $request->neighborhood_name,
+                            'area_id' => $request->area_id
+                        ]);
+    
+                        $address = Address::create([
+                            'number' => $request->number,
+                            'street' => $request->street,
+                            'type_id' => $request->type_id,
+                            'neighborhood_id' => $neighborhood->id,
+                            'area_id' => $request->area_id,
+                            'user_id' => $request->user_id
+                        ]);
+    
+                        return $this->handleResponse(new ResourcesAddress($address), __('notifications.create_address_success'));
+                
+                    } else {
+                        $neighborhood = Neighborhood::create([
+                            'neighborhood_name' => $request->neighborhood_name
+                        ]);
+    
+                        $address = Address::create([
+                            'number' => $request->number,
+                            'street' => $request->street,
+                            'type_id' => $request->type_id,
+                            'neighborhood_id' => $neighborhood->id,
+                            'user_id' => $request->user_id
+                        ]);
+    
+                        return $this->handleResponse(new ResourcesAddress($address), __('notifications.create_address_success'));
+                    }
+                }
+            }
+        }
     }
 
     /**

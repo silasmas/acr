@@ -42,7 +42,7 @@ class PaymentController extends BaseController
             'created_at' => $request->createdAt,
             'type_id' => $request->type,
             'status_id' => $request->code,
-            'user_id' => $request->user_id,
+            'user_id' => explode('-', $request->reference)[2],
         ];
 
         $payment = Payment::create($inputs);
