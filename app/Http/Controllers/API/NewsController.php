@@ -199,7 +199,8 @@ class NewsController extends BaseController
     {
         $inputs = [
             'news_id' => $request->news_id, 
-            'image_64' => $request->image_64
+            'image_64' => $request->image_64, 
+            'image' => $request->image
         ];
 
         if ($inputs['image_64'] != null) {

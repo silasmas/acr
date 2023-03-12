@@ -2,25 +2,26 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Address;
+use stdClass;
 use App\Models\Area;
-use App\Models\Group;
-use App\Models\Image;
-use App\Models\Neighborhood;
-use App\Models\Notification;
-use App\Models\PasswordReset;
 use App\Models\Role;
-use App\Models\RoleUser;
-use App\Models\Status;
 use App\Models\Type;
 use App\Models\User;
-use Illuminate\Http\Request;
+use App\Models\Group;
+use App\Models\Image;
+use App\Models\Status;
+use App\Models\Address;
+use Nette\Utils\Random;
+use App\Models\RoleUser;
 use Illuminate\Support\Str;
+use App\Models\Neighborhood;
+use App\Models\Notification;
+use Illuminate\Http\Request;
+use App\Models\PasswordReset;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-use Nette\Utils\Random;
-use stdClass;
 use App\Http\Resources\User as ResourcesUser;
 use App\Http\Resources\PasswordReset as ResourcesPasswordReset;
 
@@ -712,6 +713,9 @@ class UserController extends BaseController
         $image = str_replace($replace, '', $inputs['image_64']);
         $image = str_replace(' ', '+', $image);
 
+        // Clean avatars directory
+        $file = new Filesystem;
+        $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $inputs['user_id'] . '/avatars');
         // Create image URL
 		$image_url = 'public/storage/images/users/' . $inputs['user_id'] . '/avatars/' . Str::random(50) . '.png';
 

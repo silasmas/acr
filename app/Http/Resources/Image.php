@@ -22,6 +22,8 @@ class Image extends JsonResource
             'id' => $this->id,
             'image_name' => $this->image_name,
             'image_url' => $this->image_url,
+            'url_verso' => $_SERVER['DOCUMENT_ROOT'] . '/' . $this->url_verso,
+            'description' => $_SERVER['DOCUMENT_ROOT'] . '/' . $this->description,
             'type' => Type::make($this->type),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
