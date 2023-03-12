@@ -724,6 +724,11 @@ class UserController extends BaseController
 
         $image_type_group = Group::where('group_name', 'Type d\'image')->first();
         $avatar_type = Type::where([['type_name', 'Avatar'], ['group_id', $image_type_group->id]])->first();
+        $user_avatars = Image::where([['user_id', $inputs['user_id']], ['type_id', $avatar_type->id]])->first();
+
+        foreach ($user_avatars as $avatar):
+            $avatar->delete();
+        endforeach;
 
         Image::create([
             'image_url' => '/' . $image_url,
