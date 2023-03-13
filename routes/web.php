@@ -60,7 +60,7 @@ Route::post('/message/{id}', [MessageController::class, 'updateMessage'])->where
 
 /*
 |--------------------------------------------------------------------------
-| ROUTES FOR EVERY ROLES EXCEPT "Super administrateur" AND "Développeur"
+| ROUTES FOR EVERY ROLES EXCEPT "Administrateur" AND "Développeur"
 |--------------------------------------------------------------------------
 */
 // About us
