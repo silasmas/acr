@@ -16,7 +16,7 @@ class News extends Model
 
     // const SEARCHABLE_FIELDS = ['news_title', 'news_content'];
 
-    protected $fillable = ['news_title', 'news_content', 'updated_at', 'type_id'];
+    protected $fillable = ['news_title', 'news_content', 'video_url', 'updated_at', 'type_id'];
 
     /**
      * Get the indexable data array for the model.

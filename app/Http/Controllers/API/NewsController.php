@@ -45,6 +45,7 @@ class NewsController extends BaseController
         $inputs = [
             'news_title' => $request->news_title,
             'news_content' => $request->news_content,
+            'video_url' => $request->video_url,
             'type_id' => $request->type_id
         ];
 
@@ -123,6 +124,7 @@ class NewsController extends BaseController
             'id' => $request->id,
             'news_title' => $request->news_title,
             'news_content' => $request->news_content,
+            'video_url' => $request->video_url,
             'type_id' => $request->type_id,
             'updated_at' => now()
         ];

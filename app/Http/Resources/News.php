@@ -22,6 +22,7 @@ class News extends JsonResource
             'id' => $this->id,
             'news_title' => $this->news_title,
             'news_content' => $this->news_content,
+            'video_url' => $this->video_url,
             'type' => Type::make($this->type),
             'images' => Image::collection($this->images),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
