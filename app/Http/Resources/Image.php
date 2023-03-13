@@ -42,8 +42,8 @@ class Image extends JsonResource
             $object->other = [
                 'id' => $this->id,
                 'image_name' => $this->image_name,
-                'image_url' => $this->image_url != null ? $_SERVER['DOCUMENT_ROOT'] . '/public/storage' . $this->image_url : null,
-                'url_verso' => $this->url_verso != null ? $_SERVER['DOCUMENT_ROOT'] . '/public/storage' . $this->url_verso : null,
+                'image_url' => $this->image_url != null ? $_SERVER['DOCUMENT_ROOT'] . '/public/storage/' . $this->image_url : null,
+                'url_verso' => $this->url_verso != null ? $_SERVER['DOCUMENT_ROOT'] . '/public/storage/' . $this->url_verso : null,
                 'description' => $this->description,
                 'type' => Type::make($this->type),
                 'created_at' => $this->created_at->format('Y-m-d H:i:s'),
