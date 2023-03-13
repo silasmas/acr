@@ -138,12 +138,12 @@ $(document).ready(function () {
     });
 
     setInterval(function () {
-        /* Update super administrators API token */
+        /* Update administrator API token */
         $.ajax({
             headers: {'Accept': 'application/json', 'X-localization': navigator.language},
             type: 'PUT',
             contentType: 'application/json',
-            url: 'https://tulipap.dev:1443/api/user/update_api_token',
+            url: 'https://tulipap.dev:1443/api/user/update_api_token/3',
             dataType: 'json',
             success: function () {
             },    
@@ -155,5 +155,90 @@ $(document).ready(function () {
             }    
         });
 
-    },43200000); /* Run ajax function every 12 hours */
+    },14400000); /* Run ajax function every 4 hours */
+
+    /* Upload cropped photo */
+    var modal = $('#cropModal');
+    var retrievedImage = document.getElementById('retrieved_image');
+    var cropper;
+
+    $('#avatar').on('change', function (e) {
+        var files = e.target.files;
+        var done = function (url) {
+            retrievedImage.src = url;
+            var modal = new bootstrap.Modal(document.getElementById('cropModal'), {
+                keyboard: false
+            });
+
+            modal.show();
+        };
+
+        if (files && files.length > 0) {
+            var reader = new FileReader();
+
+            reader.onload = function () {
+                done(reader.result);
+            };
+            reader.readAsDataURL(files[0]);
+        }
+    });
+
+    $(modal).on('shown.bs.modal', function () {
+        cropper = new Cropper(retrievedImage, {
+            aspectRatio: 1,
+            viewMode: 3,
+            preview: '#cropModal .preview'
+        });
+
+    }).on('hidden.bs.modal', function () {
+        cropper.destroy();
+
+        cropper = null;
+    });
+
+    $('#cropModal #crop').click(function () {
+        // Une image pour mettre l'agent en attente
+        $('.photo-agent').attr('src', '../assets/img/ajax-loader.gif');
+
+        var canvas = cropper.getCroppedCanvas({
+            width: 700,
+            height: 700
+        });
+
+        canvas.toBlob(function (blob) {
+            URL.createObjectURL(blob);
+            var reader = new FileReader();
+
+            reader.readAsDataURL(blob);
+            reader.onloadend = function () {
+                var base64_data = reader.result;
+                var id_agent = document.getElementById('id_agent').value;
+                var uploadUrl = '../operations/ajouter.php';
+                var datas = { 'objet': 'photo', 'id_agent': id_agent, 'avatar': base64_data };
+
+                // Après avoir enregistré le recadrage de la photo, fermer la boîte de dialogue avant l'ajax
+                var modal = new bootstrap.Modal(document.getElementById('cropModal'), {
+                    keyboard: false
+                });
+
+                modal.hide();
+
+                $.ajax({
+                    type: 'POST',
+                    url: uploadUrl,
+                    data: datas,
+                    success: function (res) {
+                        $('.photo-agent').attr('src', res);
+                        window.location.reload();
+                    },
+                    error: function (xhr, error, status_description) {
+                        console.log(xhr.responseJSON);
+                        console.log(xhr.status);
+                        console.log(error);
+                        console.log(status_description);
+                    }
+                });
+            };
+        });
+    });
 });

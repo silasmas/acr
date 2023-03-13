@@ -60,7 +60,7 @@ class OfferController extends BaseController
                     $data = array(
                         'merchant' => env('FLEXPAY_MERCHANT'),
                         'type' => $request->transaction_type_id,
-                        'phone' => $request->other_phone != null ? $request->other_phone : $current_user->phone,
+                        'phone' => $request->other_phone != null ? $request->other_phone : ltrim($current_user->phone, '+'),
                         'reference' => $reference_code,
                         'amount' => $inputs['amount'],
                         'currency' => $request->currency,

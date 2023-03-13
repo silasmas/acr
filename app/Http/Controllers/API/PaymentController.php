@@ -49,7 +49,7 @@ class PaymentController extends BaseController
         // Get user ID from reference to update reference
         $get_user_id = explode('-', $payment->reference)[2];
 
-        if (is_numeric((int) $get_user_id)) {
+        if (is_numeric($get_user_id)) {
             $payment->update([
                 'user_id' => $get_user_id,
                 'updated_at' => now()
