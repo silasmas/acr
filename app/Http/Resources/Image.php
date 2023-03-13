@@ -39,7 +39,7 @@ class Image extends JsonResource
             return $object;
 
         } else {
-            $object->other = [
+            return [
                 'id' => $this->id,
                 'image_name' => $this->image_name,
                 'image_url' => $this->image_url != null ? (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/public/storage/' . $this->image_url : null,
@@ -52,8 +52,6 @@ class Image extends JsonResource
                 'legal_info_content_id' => $this->legal_info_content_id,
                 'news_id' => $this->news_id
             ];
-
-            return $object;
         }
     }
 }
