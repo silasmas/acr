@@ -52,38 +52,13 @@ $(document).ready(function () {
         });
     })
 
-    /* Get the API token of the first super administrator */
-    $.ajax({
-        headers: {'Accept': 'application/json', 'X-localization': navigator.language},
-        type: 'GET',
-        contentType: 'application/json',
-        url: '/api/user/get_api_token',
-        success: function (result) {
-            if (result !== null) {
-                console.log(result);
-
-                var api_token = localStorage['acr-devref'];
-
-                if (!api_token) {
-                    localStorage['acr-devref'] = result.data;
-                }
-            }
-        },
-        error: function (xhr, error, status_description) {
-            console.log(xhr.responseJSON);
-            console.log(xhr.status);
-            console.log(error);
-            console.log(status_description);
-        }    
-    });
-
     setInterval(function () {
         /* Update administrator API token */
         $.ajax({
-            headers: {'Accept': 'application/json', 'X-localization': navigator.language},
+            headers: {'Authorization': 'Bearer ' + Cookies.get('acr-devref'), 'Accept': 'application/json', 'X-localization': navigator.language},
             type: 'PUT',
             contentType: 'application/json',
-            url: 'https://tulipap.dev:1443/api/user/update_api_token/3',
+            url: '/api/user/update_api_token/3',
             dataType: 'json',
             success: function () {
             },    
@@ -95,5 +70,5 @@ $(document).ready(function () {
             }    
         });
 
-    },14400000); /* Run ajax function every 4 hours */
+    },60000); /* Run an ajax function every minute */
 });

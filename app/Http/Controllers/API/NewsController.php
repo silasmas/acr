@@ -203,7 +203,6 @@ class NewsController extends BaseController
             'news_id' => $request->news_id, 
             'image_64' => $request->image_64
         ];
-
         // $extension = explode('/', explode(':', substr($inputs['image_64'], 0, strpos($inputs['image_64'], ';')))[1])[1];
         $replace = substr($inputs['image_64'], 0, strpos($inputs['image_64'], ',') + 1);
         // Find substring from replace here eg: data:image/png;base64,
