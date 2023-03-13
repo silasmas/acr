@@ -47,7 +47,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.custom.css') }}">
 
         <title>
-            @lang('miscellaneous.slogan')
+    @lang('miscellaneous.slogan')
         </title>
     </head>
 
@@ -113,7 +113,7 @@
         </nav>
         <!-- Navbar End -->
 
-        @yield('guest-content')
+@yield('guest-content')
 
         <!-- JavaScript Libraries -->
         <script src="{{ asset('assets/addons/custom/jquery/js/jquery.min.js') }}"></script>
@@ -129,6 +129,7 @@
         <script src="{{ asset('assets/addons/dairy/counterup/counterup.min.js') }}"></script>
         <script src="{{ asset('assets/addons/dairy/parallax/parallax.min.js') }}"></script>
         <script src="{{ asset('assets/addons/dairy/lightbox/js/lightbox.min.js') }}"></script>
+        <script src="{{ asset('assets/addons/custom/biliap/js/biliap.core.js') }}"></script>
 
         <!-- Dairy Javascript -->
         <script src="{{ asset('assets/js/scripts.dairy.js') }}"></script>

@@ -213,26 +213,25 @@ return [
         'account_settings' => 'Paramètres du compte',
         'messages' => 'Messages',
         'notifications' => 'Notifications',
-        'superadmin' => [
-            'about' => [
-                'title' => 'A propos',
-                'description' => 'Informations about the company and its services for the public.',
-            ],
-        ],
         'admin' => [
-            'about' => 'A propos',
-            'help' => 'Centre d\'aide',
+            'legal_info' =>  'Info légale',
+            'continent' =>  'Continent',
+            'miscellaneous' =>  'Divers',
         ],
-        'agent' => [
-            'about' => 'A propos',
-            'help' => 'Centre d\'aide',
+        'developer' => [
+            'apis' => 'APIs',
         ],
-        'customer' => [
+        'manager' => [
+            'members' => 'Membres',
+            'other_managers' => 'Autres managers',
+        ],
+        'public' => [
             'about' => 'A propos',
-            'help' => 'Centre d\'aide',
             'login' => 'Se connecter',
-            'cart' => 'Mes commandes',
-            'invoice' => 'Mes factures',
+            'communique' => 'Communiqué',
+            'works' => 'Nos œuvres',
+            'donate' => 'Faire un don',
+            'login' => 'Se connecter',
         ],
     ],
 

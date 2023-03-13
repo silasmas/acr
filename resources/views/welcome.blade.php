@@ -13,7 +13,7 @@
                                 <div class="row justify-content-start">
                                     <div class="col-lg-8 text-start">
                                         <p class="fs-4 text-white">Welcome to our dairy farm</p>
-                                        <h1 class="display-1 text-white mb-5 fw-bold animated slideInRight">The Farm of Dairy products</h1>
+                                        <h1 class="display-1 text-white mb-5 animated slideInRight">The Farm of Dairy products</h1>
                                         <a href="" class="btn btn-secondary rounded-pill py-3 px-5 animated slideInRight">Explore More</a>
                                     </div>
                                 </div>
@@ -28,7 +28,7 @@
                                 <div class="row justify-content-end">
                                     <div class="col-lg-8 text-end">
                                         <p class="fs-4 text-white">Welcome to our dairy farm</p>
-                                        <h1 class="display-1 text-white mb-5 fw-bold animated slideInRight">Best Organic Dairy Products</h1>
+                                        <h1 class="display-1 text-white mb-5 animated slideInRight">Best Organic Dairy Products</h1>
                                         <a href="" class="btn btn-secondary rounded-pill py-3 px-5 animated slideInLeft">Explore More</a>
                                     </div>
                                 </div>
