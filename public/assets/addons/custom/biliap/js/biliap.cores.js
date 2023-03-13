@@ -8,7 +8,7 @@
  * 
  */
 // Necessary headers for APIs
-var headers = {'Authorization': 'Bearer ' + $('#custom-style').attr('blp-api-token'), 'Accept': 'application/json', 'X-localization': navigator.language};
+var headers = {'Authorization': 'Bearer ' + '@Request.RequestContext.HttpContext.Session["acr-devref"]', 'Accept': 'application/json', 'X-localization': navigator.language};
 // CSS files to toggle app theme
 const MDB_LIGHT = '/assets/addons/mdb/css/mdb.min.css';
 const MDB_DARK = '/assets/addons/mdb/css/mdb.dark.min.css';
