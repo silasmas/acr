@@ -54,4 +54,13 @@ class Status extends Model
     {
         return $this->hasMany(Payment::class);
     }
+
+    /**
+     * MANY-TO-ONE
+     * Several notifications for a status
+     */
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
 }

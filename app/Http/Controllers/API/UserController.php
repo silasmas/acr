@@ -144,11 +144,13 @@ class UserController extends BaseController
             /*
                 HISTORY AND/OR NOTIFICATION MANAGEMENT
             */
+            $status_unread = Status::where('status_name', 'Non lue');
             $admin_role = Role::where('role_name', 'Adminstrateur')->first();
             $member_role = Role::where('role_name', 'Membre')->first();
             $current_role = Role::find($request->role_id);
 
-            // If the new user is a member, send notification to all managers and a welcome notification that the new user
+            // If the new user is a member, send notification to 
+            // all managers and a welcome notification to the new user
             if ($current_role->id == $member_role->id) {
                 $manager_role = Role::where('role_name', 'Manager')->first();
                 $role_users = RoleUser::where('role_id', $manager_role->id)->get();
@@ -157,13 +159,15 @@ class UserController extends BaseController
                     Notification::create([
                         'notification_url' => 'members/' . $user->id,
                         'notification_content' => $user->fistname . ' ' . $user->lastname . ' ' . __('notifications.subscribed_to_party'),
-                        'user_id' => $executive->user_id,
+                        'status_id' => $status_unread->id,
+                        'user_id' => $executive->user_id
                     ]);
                 endforeach;
 
                 Notification::create([
                     'notification_url' => 'about_us/terms_of_use',
                     'notification_content' => __('notifications.welcome_member'),
+                    'status_id' => $status_unread->id,
                     'user_id' => $user->id,
                 ]);
             }
@@ -173,6 +177,7 @@ class UserController extends BaseController
                 Notification::create([
                     'notification_url' => 'about_us/terms_of_use',
                     'notification_content' => __('notifications.welcome_user'),
+                    'status_id' => $status_unread->id,
                     'user_id' => $user->id,
                 ]);
             }
@@ -498,31 +503,31 @@ class UserController extends BaseController
         /*
             HISTORY AND/OR NOTIFICATION MANAGEMENT
         */
-        $new_status =  Status::find($status_id);
-
-        if (is_null($new_status)) {
-            return $this->handleError(__('notifications.find_status_404'));
-        }
-
+        $status_ongoing = Status::where('status_name', 'En attente');
+        $status_unread = Status::where('status_name', 'Non lue');
         $member_role = Role::where('role_name', 'Membre')->first();
         $user_roles = RoleUser::where('user_id', $user->id)->get();
-
-        foreach ($user_roles as $user_role):
-            // If the new user is a member, send notification
-            if ($user_role->id == $member_role->id AND $new_status->status_name == 'Activé') {
-                Notification::create([
-                    'notification_url' => 'about_us/terms_of_use',
-                    'notification_content' => __('notifications.member_joined'),
-                    'user_id' => $user->id,
-                ]);
-            }
-        endforeach;
+        $is_ongoing = $user->status_id == $status_ongoing->id;
 
         // update "status_id" column
         $user->update([
             'status_id' => $status_id,
             'updated_at' => now()
         ]);
+
+        // If it's a member whose accessing is accepted, send notification
+        if ($is_ongoing == true) {
+            foreach ($user_roles as $user_role):
+                if ($user_role->id == $member_role->id) {
+                    Notification::create([
+                        'notification_url' => 'about_us/terms_of_use',
+                        'notification_content' => __('notifications.member_joined'),
+                        'status_id' => $status_unread->id,
+                        'user_id' => $user->id,
+                    ]);
+                }
+            endforeach;
+        }
 
         return $this->handleResponse(new ResourcesUser($user), __('notifications.update_user_success'));
     }

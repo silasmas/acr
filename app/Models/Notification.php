@@ -13,7 +13,16 @@ class Notification extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['notification_url', 'notification_content', 'notif_status', 'user_id'];
+    protected $fillable = ['notification_url', 'notification_content', 'status_id', 'user_id'];
+
+    /**
+     * ONE-TO-MANY
+     * One status for several notifications
+     */
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
+    }
 
     /**
      * ONE-TO-MANY

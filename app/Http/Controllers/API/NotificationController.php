@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\Notification;
+use App\Models\Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\Notification as ResourcesNotification;
@@ -37,14 +38,13 @@ class NotificationController extends BaseController
         $inputs = [
             'notification_url' => $request->notification_url,
             'notification_content' => $request->notification_content,
-            'notif_status' => $request->notif_status,
+            'status_id' => $request->status_id,
             'user_id' => $request->user_id
         ];
 
         $validator = Validator::make($inputs, [
             'notification_url' => ['required'],
             'notification_content' => ['required'],
-            'notif_status' => ['required'],
             'user_id' => ['required']
         ]);
 
@@ -88,7 +88,7 @@ class NotificationController extends BaseController
             'id' => $request->id,
             'notification_url' => $request->notification_url,
             'notification_content' => $request->notification_content,
-            'notif_status' => $request->notif_status,
+            'status_id' => $request->status_id,
             'user_id' => $request->user_id,
             'updated_at' => now()
         ];
@@ -96,7 +96,6 @@ class NotificationController extends BaseController
         $validator = Validator::make($inputs, [
             'notification_url' => ['required'],
             'notification_content' => ['required'],
-            'notif_status' => ['required'],
             'user_id' => ['required']
         ]);
 
@@ -139,42 +138,50 @@ class NotificationController extends BaseController
     }
 
     /**
-     * Select all user unread notifications.
+     * Change notification status.
+     *
+     * @param  $status_id
+     * @param  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function switchStatus($status_id, $id)
+    {
+        $status = Status::find($status_id);
+
+        if (is_null($status)) {
+            return $this->handleError(__('notifications.find_status_404'));
+        }
+
+        $notification = Notification::find($id);
+
+        // update "status_id" column
+        $notification->update([
+            'status_id' => $status->id,
+            'updated_at' => now()
+        ]);
+
+        return $this->handleResponse(new ResourcesNotification($notification), __('notifications.find_notification_success'));
+    }
+
+    /**
+     * Change notification status.
      *
      * @param  $user_id
      * @return \Illuminate\Http\Response
      */
-    public function selectUnreadByUser($user_id)
+    public function markAllRead($user_id)
     {
-        $notifications = Notification::where([['user_id', $user_id], ['notif_status', 'Non lue']])->get();
+        $status_read = Status::where('status_name', 'Lue');
+        $notifications = Notification::where('user_id', $user_id)->get();
+
+        // update "status_id" column for all user notifications
+        foreach ($notifications as $notification):
+            $notification->update([
+                'status_id' => $status_read->id,
+                'updated_at' => now()
+            ]);
+        endforeach;
 
         return $this->handleResponse(ResourcesNotification::collection($notifications), __('notifications.find_all_notifications_success'));
-    }
-
-    /**
-     * Switch between message statuses.
-     *
-     * @param  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function switchStatus($id)
-    {
-        $notification = Notification::find($id);
-
-        // update "notif_status" column
-        if ($notification->notif_status == 'Non lue') {
-            $notification->update([
-                'notif_status' => 'Lue',
-                'updated_at' => now()
-            ]);
-
-        } else {
-            $notification->update([
-                'notif_status' => 'Non lue',
-                'updated_at' => now()
-            ]);
-        }
-
-        return $this->handleResponse(new ResourcesNotification($notification), __('notifications.find_notification_success'));
     }
 }

@@ -127,8 +127,8 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     Route::get('message/answers/{message_id}', 'App\Http\Controllers\API\MessageController@answers')->name('message.answers');
     // Notification
     Route::get('notification/select_by_user/{user_id}', 'App\Http\Controllers\API\NotificationController@selectByUser')->name('notification.select_by_user');
-    Route::get('notification/select_unread_by_user/{user_id}', 'App\Http\Controllers\API\NotificationController@selectUnreadByUser')->name('notification.select_unread_by_user');
-    Route::get('notification/switch_status/{id}', 'App\Http\Controllers\API\NotificationController@switchStatus')->name('notification.switch_status');
+    Route::get('notification/switch_status/{status_id}/{id}', 'App\Http\Controllers\API\NotificationController@switchStatus')->name('notification.switch_status');
+    Route::get('notification/mark_all_read/{user_id}', 'App\Http\Controllers\API\NotificationController@markAllRead')->name('notification.mark_all_read');
     // News
     Route::get('news/select_by_type/{type_id}', 'App\Http\Controllers\API\NewsController@selectByType')->name('news.select_by_type');
     Route::put('news/add_image/{id}', 'App\Http\Controllers\API\NewsController@addImage')->name('news.add_image');
