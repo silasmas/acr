@@ -42,10 +42,19 @@ class PaymentController extends BaseController
             'created_at' => $request->createdAt,
             'type_id' => $request->type,
             'status_id' => $request->code,
-            'user_id' => explode('-', $request->reference)[2],
+            'user_id' => $request->user_id,
         ];
 
         $payment = Payment::create($inputs);
+        // Get user ID from reference to update reference
+        $get_user_id = explode('-', $payment->reference)[2];
+
+        if (is_numeric((int) $get_user_id)) {
+            $payment->update([
+                'user_id' => $get_user_id,
+                'updated_at' => now()
+            ]);
+        }
 
         return $this->handleResponse(new ResourcesPayment($payment), __('notifications.create_payment_success'));
     }
