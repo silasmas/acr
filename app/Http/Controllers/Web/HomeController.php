@@ -50,9 +50,9 @@ class HomeController extends Controller
                 'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
             ];
             // Select current user API URL
-            $url_user = 'https://biliap-admin.dev:1443/api/user/' . Auth::user()->id;
+            $url_user = '/api/user/' . Auth::user()->id;
             // Select all received messages API URL
-            $url_message = 'https://biliap-admin.dev:1443/api/message/inbox/' . Auth::user()->id;
+            $url_message = '/api/message/inbox/' . Auth::user()->id;
 
             try {
                 // Select current user API response

@@ -45,7 +45,7 @@ class MessageController extends Controller
             $role_for_company_group = 'Rôle pour la société';
             $admin_role = 'Administrateur';
             // Select role by name with group API URL
-            $url_admin_role = 'https://biliap-admin.dev:1443/api/role/search_with_group/' . $role_for_company_group . '/' . $admin_role;
+            $url_admin_role = '/api/role/search_with_group/' . $role_for_company_group . '/' . $admin_role;
 
             try {
                 // API response
@@ -57,7 +57,7 @@ class MessageController extends Controller
 
                 if ($role_user->role->id == $admin_role->data->id) {
                     // Select all received messages API URL
-                    $url_inbox = 'https://biliap-admin.dev:1443/api/message/inbox/ROL/' . $role_user->role->id;
+                    $url_inbox = '/api/message/inbox/ROL/' . $role_user->role->id;
 
                     try {
                         // API response
@@ -102,7 +102,7 @@ class MessageController extends Controller
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
         // Select all received messages API URL
-        $url = 'https://biliap-admin.dev:1443/api/message/outbox/USR/' . Auth::user()->id;
+        $url = '/api/message/outbox/USR/' . Auth::user()->id;
 
         try {
             // API response
@@ -116,7 +116,7 @@ class MessageController extends Controller
                 foreach ($messages->data as $message):
                     if (substr($message->sent_to, 0, 3) == 'USR') {
                         $addressee_id = substr($message->sent_to, 4);
-                        $url_user = 'https://biliap-admin.dev:1443/api/user/' . $addressee_id;
+                        $url_user = '/api/user/' . $addressee_id;
     
                         try {
                             // API response
@@ -141,7 +141,7 @@ class MessageController extends Controller
     
                     if (substr($message->sent_to, 0, 3) == 'SLR') {
                         $addressee_id = substr($message->sent_to, 4);
-                        $url_seller = 'https://biliap-admin.dev:1443/api/seller/' . $addressee_id;
+                        $url_seller = '/api/seller/' . $addressee_id;
     
                         try {
                             // API response
@@ -166,7 +166,7 @@ class MessageController extends Controller
     
                     if (substr($message->sent_to, 0, 3) == 'GRP') {
                         $addressee_id = substr($message->sent_to, 4);
-                        $url_msg_group = 'https://biliap-admin.dev:1443/api/message_group/' . $addressee_id;
+                        $url_msg_group = '/api/message_group/' . $addressee_id;
     
                         try {
                             // API response
@@ -218,7 +218,7 @@ class MessageController extends Controller
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
         // Select all dratfs API URL
-        $url = 'https://biliap-admin.dev:1443/api/message/drafts/user/' . Auth::user()->id;
+        $url = '/api/message/drafts/user/' . Auth::user()->id;
 
         try {
             // API response
@@ -232,7 +232,7 @@ class MessageController extends Controller
                 foreach ($messages->data as $message):
                     if (substr($message->sent_to, 0, 3) == 'USR') {
                         $addressee_id = substr($message->sent_to, 4);
-                        $url_user = 'https://biliap-admin.dev:1443/api/user/' . $addressee_id;
+                        $url_user = '/api/user/' . $addressee_id;
     
                         try {
                             // API response
@@ -257,7 +257,7 @@ class MessageController extends Controller
     
                     if (substr($message->sent_to, 0, 3) == 'SLR') {
                         $addressee_id = substr($message->sent_to, 4);
-                        $url_seller = 'https://biliap-admin.dev:1443/api/seller/' . $addressee_id;
+                        $url_seller = '/api/seller/' . $addressee_id;
     
                         try {
                             // API response
@@ -282,7 +282,7 @@ class MessageController extends Controller
     
                     if (substr($message->sent_to, 0, 3) == 'GRP') {
                         $addressee_id = substr($message->sent_to, 4);
-                        $url_msg_group = 'https://biliap-admin.dev:1443/api/message_group/' . $addressee_id;
+                        $url_msg_group = '/api/message_group/' . $addressee_id;
     
                         try {
                             // API response
@@ -338,7 +338,7 @@ class MessageController extends Controller
             $role_for_company_group = 'Rôle pour la société';
             $admin_role = 'Administrateur';
             // Select role by group API URL
-            $url_admin_role = 'https://biliap-admin.dev:1443/api/role/search_with_group/' . $role_for_company_group . '/' . $admin_role;
+            $url_admin_role = '/api/role/search_with_group/' . $role_for_company_group . '/' . $admin_role;
 
             try {
                 // API response
@@ -350,7 +350,7 @@ class MessageController extends Controller
 
                 if ($role_user->role->id == $admin_role->data->id) {
                     // Select all spams API URL
-                    $url_inbox = 'https://biliap-admin.dev:1443/api/message/spams/ROL/' . $role_user->role->id;
+                    $url_inbox = '/api/message/spams/ROL/' . $role_user->role->id;
 
                     try {
                         // API response
@@ -396,7 +396,7 @@ class MessageController extends Controller
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
         // Select message API URL
-        $url = 'https://biliap-admin.dev:1443/api/message/' . $id;
+        $url = '/api/message/' . $id;
 
         try {
             // API response

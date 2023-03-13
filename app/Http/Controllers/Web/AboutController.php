@@ -41,13 +41,13 @@ class AboutController extends Controller
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
         // Search group by name API URL
-        $url_search_group = 'https://biliap-admin.dev:1443/api/group/search/fonc';
+        $url_search_group = '/api/group/search/fonc';
         // Search status by name API URL
-        $url_search_status = 'https://biliap-admin.dev:1443/api/status/search/desact';
+        $url_search_status = '/api/status/search/desact';
         // Create status API URL
-        $url_status = 'https://biliap-admin.dev:1443/api/status';
+        $url_status = '/api/status';
         // Select all about subjects API URL
-        $url_about_subject = 'https://biliap-admin.dev:1443/api/about_subject';
+        $url_about_subject = '/api/about_subject';
 
         try {
             // Search status by name API response
@@ -186,7 +186,7 @@ class AboutController extends Controller
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
         // Select about subject by ID API URL
-        $url = 'https://biliap-admin.dev:1443/api/about_subject/' . $id;
+        $url = '/api/about_subject/' . $id;
 
         try {
             // Select about subject by ID API response
@@ -225,7 +225,7 @@ class AboutController extends Controller
         ];
         if ($data == 'role') {
             // Delete role API URL
-            $url = 'https://biliap-admin.dev:1443/api/role/' . $id;
+            $url = '/api/role/' . $id;
 
             try {
                 // Delete role API response
@@ -248,7 +248,7 @@ class AboutController extends Controller
 
         if ($data == 'group') {
             // Delete group API URL
-            $url = 'https://biliap-admin.dev:1443/api/group/' . $id;
+            $url = '/api/group/' . $id;
 
             try {
                 // Delete group API response
@@ -271,7 +271,7 @@ class AboutController extends Controller
 
         if ($data == 'service') {
             // Delete service API URL
-            $url = 'https://biliap-admin.dev:1443/api/service/' . $id;
+            $url = '/api/service/' . $id;
 
             try {
                 // Delete service API response
@@ -319,9 +319,9 @@ class AboutController extends Controller
             'icon_name' => $request->register_icon
         ];
         // Select all about subjects or Create new about subject API URL
-        $url_about_subject = 'https://biliap-admin.dev:1443/api/about_subject';
+        $url_about_subject = '/api/about_subject';
         // Create new icon API URL
-        $url_icon = 'https://biliap-admin.dev:1443/api/icon';
+        $url_icon = '/api/icon';
 
         try {
             // Create about subject API response
@@ -387,11 +387,11 @@ class AboutController extends Controller
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
         // Select all roles or Create new role API URL
-        $url_roles = 'https://biliap-admin.dev:1443/api/role';
+        $url_roles = '/api/role';
         // Select all groups or Create new group API URL
-        $url_groups = 'https://biliap-admin.dev:1443/api/group';
+        $url_groups = '/api/group';
         // Select all services or Create new service API URL
-        $url_services = 'https://biliap-admin.dev:1443/api/service';
+        $url_services = '/api/service';
 
         if ($data == 'role') {
             // Get inputs
@@ -544,7 +544,7 @@ class AboutController extends Controller
                 'phone_operator' => $request->register_phone_operator
             ];
             // Select all services or Create new service API URL
-            $url = 'https://biliap-admin.dev:1443/api/service';
+            $url = '/api/service';
 
             try {
                 // Create service API response
@@ -637,7 +637,7 @@ class AboutController extends Controller
                 'role_description' => $request->register_role_description
             ];
             // Select role or Update role API URL
-            $url = 'https://biliap-admin.dev:1443/api/role/' . $id;
+            $url = '/api/role/' . $id;
 
             try {
                 // Update role API response
@@ -678,7 +678,7 @@ class AboutController extends Controller
                 'group_description' => $request->register_group_description
             ];
             // Select group or Update group API URL
-            $url = 'https://biliap-admin.dev:1443/api/group/' . $id;
+            $url = '/api/group/' . $id;
 
             try {
                 // Update group API response
@@ -719,7 +719,7 @@ class AboutController extends Controller
                 'phone_operator' => $request->register_phone_operator
             ];
             // Select service or Update service API URL
-            $url = 'https://biliap-admin.dev:1443/api/service/' . $id;
+            $url = '/api/service/' . $id;
 
             try {
                 // Update service API response

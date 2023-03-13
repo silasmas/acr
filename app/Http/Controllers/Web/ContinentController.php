@@ -55,7 +55,7 @@ class ContinentController extends Controller
 
         if ($data == 'role') {
             // Select role API URL
-            $url = 'https://biliap-admin.dev:1443/api/role/' . $id;
+            $url = '/api/role/' . $id;
 
             try {
                 // Select role API response
@@ -79,7 +79,7 @@ class ContinentController extends Controller
 
         if ($data == 'group') {
             // Select group API URL
-            $url = 'https://biliap-admin.dev:1443/api/group/' . $id;
+            $url = '/api/group/' . $id;
 
             try {
                 // Select group API response
@@ -103,7 +103,7 @@ class ContinentController extends Controller
 
         if ($data == 'service') {
             // Select service API URL
-            $url = 'https://biliap-admin.dev:1443/api/service/' . $id;
+            $url = '/api/service/' . $id;
 
             try {
                 // Select service API response
@@ -144,7 +144,7 @@ class ContinentController extends Controller
 
         if ($data == 'role') {
             // Delete role API URL
-            $url = 'https://biliap-admin.dev:1443/api/role/' . $id;
+            $url = '/api/role/' . $id;
 
             try {
                 // Delete role API response
@@ -167,7 +167,7 @@ class ContinentController extends Controller
 
         if ($data == 'group') {
             // Delete group API URL
-            $url = 'https://biliap-admin.dev:1443/api/group/' . $id;
+            $url = '/api/group/' . $id;
 
             try {
                 // Delete group API response
@@ -190,7 +190,7 @@ class ContinentController extends Controller
 
         if ($data == 'service') {
             // Delete service API URL
-            $url = 'https://biliap-admin.dev:1443/api/service/' . $id;
+            $url = '/api/service/' . $id;
 
             try {
                 // Delete service API response
@@ -230,11 +230,11 @@ class ContinentController extends Controller
         ];
 
         // Select all roles or Create new role API URL
-        $url_roles = 'https://biliap-admin.dev:1443/api/role';
+        $url_roles = '/api/role';
         // Select all groups or Create new group API URL
-        $url_groups = 'https://biliap-admin.dev:1443/api/group';
+        $url_groups = '/api/group';
         // Select all services or Create new service API URL
-        $url_services = 'https://biliap-admin.dev:1443/api/service';
+        $url_services = '/api/service';
 
         if ($data == 'role') {
             // Get inputs
@@ -387,7 +387,7 @@ class ContinentController extends Controller
                 'phone_operator' => $request->register_phone_operator
             ];
             // Select all services or Create new service API URL
-            $url = 'https://biliap-admin.dev:1443/api/service';
+            $url = '/api/service';
 
             try {
                 // Create service API response
@@ -480,7 +480,7 @@ class ContinentController extends Controller
                 'role_description' => $request->register_role_description
             ];
             // Select role or Update role API URL
-            $url = 'https://biliap-admin.dev:1443/api/role/' . $id;
+            $url = '/api/role/' . $id;
 
             try {
                 // Update role API response
@@ -521,7 +521,7 @@ class ContinentController extends Controller
                 'group_description' => $request->register_group_description
             ];
             // Select group or Update group API URL
-            $url = 'https://biliap-admin.dev:1443/api/group/' . $id;
+            $url = '/api/group/' . $id;
 
             try {
                 // Update group API response
@@ -562,7 +562,7 @@ class ContinentController extends Controller
                 'phone_operator' => $request->register_phone_operator
             ];
             // Select service or Update service API URL
-            $url = 'https://biliap-admin.dev:1443/api/service/' . $id;
+            $url = '/api/service/' . $id;
 
             try {
                 // Update service API response

@@ -43,15 +43,15 @@ class AccountController extends Controller
         // Data used to check APIs
         $history_type_group = 'Type d\'historique';
         // Create group API URL
-        $url_group = 'https://biliap-admin.dev:1443/api/group';
+        $url_group = '/api/group';
         // Search a group API URL
-        $url_search_group = 'https://biliap-admin.dev:1443/api/group/search/type';
+        $url_search_group = '/api/group/search/type';
         // Create type API URL
-        $url_type = 'https://biliap-admin.dev:1443/api/type';
+        $url_type = '/api/type';
         // Search a type API URL
-        $url_search_type = 'https://biliap-admin.dev:1443/api/type/search/hist';
+        $url_search_type = '/api/type/search/hist';
         // Select user API URL
-        $url_user = 'https://biliap-admin.dev:1443/api/user/' . Auth::user()->id;
+        $url_user = '/api/user/' . Auth::user()->id;
 
         try {
             // Search a group API response
@@ -154,9 +154,9 @@ class AccountController extends Controller
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
         // Select user API URL
-        $url_user = 'https://biliap-admin.dev:1443/api/user/' . Auth::user()->id;
+        $url_user = '/api/user/' . Auth::user()->id;
         // Select album API URL
-        $url_album = 'https://biliap-admin.dev:1443/api/album/' . $id;
+        $url_album = '/api/album/' . $id;
 
         try {
             // Select user API response
@@ -205,11 +205,11 @@ class AccountController extends Controller
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
         // Select user API URL
-        $url_user = 'https://biliap-admin.dev:1443/api/user/' . Auth::user()->id;
+        $url_user = '/api/user/' . Auth::user()->id;
         // Select all albums belonging to user
-        $url_albums = 'https://biliap-admin.dev:1443/api/album/select_by_entity/user/' . Auth::user()->id;
+        $url_albums = '/api/album/select_by_entity/user/' . Auth::user()->id;
         // Create album API URL
-        $url_album = 'https://biliap-admin.dev:1443/api/album';
+        $url_album = '/api/album';
 
         try {
             // Select user API response
@@ -308,7 +308,7 @@ class AccountController extends Controller
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
         // Update user API URL
-        $url = 'https://biliap-admin.dev:1443/api/user/' . $inputs['id'];
+        $url = '/api/user/' . $inputs['id'];
         // FIND THE SERVICE TO ASSOCIATE WITH THE PHONE NUMBER
         $phone_service_group = 'Service téléphonique';
         $service_mpesa = 'M-Pesa';
@@ -316,10 +316,10 @@ class AccountController extends Controller
         $service_airtelmoney = 'Airtel money';
         $service_afrimoney = 'Afrimoney';
         // Select service by name with group API URL
-        $url_service_mpesa = 'https://biliap-admin.dev:1443/api/service/search_with_group/' . $phone_service_group . '/' . $service_mpesa;
-        $url_service_orangemoney = 'https://biliap-admin.dev:1443/api/service/search_with_group/' . $phone_service_group . '/' . $service_orangemoney;
-        $url_service_airtelmoney = 'https://biliap-admin.dev:1443/api/service/search_with_group/' . $phone_service_group . '/' . $service_airtelmoney;
-        $url_service_afrimoney = 'https://biliap-admin.dev:1443/api/service/search_with_group/' . $phone_service_group . '/' . $service_afrimoney;
+        $url_service_mpesa = '/api/service/search_with_group/' . $phone_service_group . '/' . $service_mpesa;
+        $url_service_orangemoney = '/api/service/search_with_group/' . $phone_service_group . '/' . $service_orangemoney;
+        $url_service_airtelmoney = '/api/service/search_with_group/' . $phone_service_group . '/' . $service_airtelmoney;
+        $url_service_afrimoney = '/api/service/search_with_group/' . $phone_service_group . '/' . $service_afrimoney;
 
         // DEFINE THE SERVICE BY REFERRING TO THE PHONE NUMBER
         // - - - - - - - - - M-PESA
@@ -369,7 +369,7 @@ class AccountController extends Controller
 
                 } else {
                     // Find group by its name API URL
-                    $url_groups = 'https://biliap-admin.dev:1443/api/group/search/' . $phone_service_group;
+                    $url_groups = '/api/group/search/' . $phone_service_group;
 
                     try {
                         // Find group by its name API response
@@ -381,7 +381,7 @@ class AccountController extends Controller
 
                         foreach ($groups->data as $group):
                             // Create service API URL
-                            $url_service_mpesa = 'https://biliap-admin.dev:1443/api/service';
+                            $url_service_mpesa = '/api/service';
 
                             try {
                                 // Find group by its name API response
@@ -518,7 +518,7 @@ class AccountController extends Controller
 
                 } else {
                     // Find group by its name API URL
-                    $url_groups = 'https://biliap-admin.dev:1443/api/group/search/' . $phone_service_group;
+                    $url_groups = '/api/group/search/' . $phone_service_group;
 
                     try {
                         // Find group by its name API response
@@ -530,7 +530,7 @@ class AccountController extends Controller
 
                         foreach ($groups->data as $group):
                             // Create service API URL
-                            $url_service_orangemoney = 'https://biliap-admin.dev:1443/api/service';
+                            $url_service_orangemoney = '/api/service';
 
                             try {
                                 // Find group by its name API response
@@ -667,7 +667,7 @@ class AccountController extends Controller
 
                 } else {
                     // Find group by its name API URL
-                    $url_groups = 'https://biliap-admin.dev:1443/api/group/search/' . $phone_service_group;
+                    $url_groups = '/api/group/search/' . $phone_service_group;
 
                     try {
                         // Find group by its name API response
@@ -679,7 +679,7 @@ class AccountController extends Controller
 
                         foreach ($groups->data as $group):
                             // Create service API URL
-                            $url_service_airtelmoney = 'https://biliap-admin.dev:1443/api/service';
+                            $url_service_airtelmoney = '/api/service';
 
                             try {
                                 // Find group by its name API response
@@ -816,7 +816,7 @@ class AccountController extends Controller
 
                 } else {
                     // Find group by its name API URL
-                    $url_groups = 'https://biliap-admin.dev:1443/api/group/search/' . $phone_service_group;
+                    $url_groups = '/api/group/search/' . $phone_service_group;
 
                     try {
                         // Find group by its name API response
@@ -828,7 +828,7 @@ class AccountController extends Controller
 
                         foreach ($groups->data as $group):
                             // Create service API URL
-                            $url_service_afrimoney = 'https://biliap-admin.dev:1443/api/service';
+                            $url_service_afrimoney = '/api/service';
 
                             try {
                                 // Find group by its name API response
@@ -973,7 +973,7 @@ class AccountController extends Controller
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
         // Update password API URL
-        $url_update = 'https://biliap-admin.dev:1443/api/user/update_password/' . $inputs['id'];
+        $url_update = '/api/user/update_password/' . $inputs['id'];
 
         try {
             // API response
