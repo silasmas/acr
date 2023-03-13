@@ -15,7 +15,8 @@ return [
     'slogan' => 'ACR | La politique de l\'amour',
     'keywords' => 'Action Commune pour la République,acr,l\'amour de la politique,politique de l\'amour',
     'all_right_reserved' => 'Tous droits réservés',
-    'dark_theme' => 'Activer thème sombre',
+    'follow_us' => 'Suivez-nous :',
+    'call_us' => 'Appelez-nous :',
     'your_language' => 'Votre langue',
     'back_home' => 'Retourner à la page d\'accueil',
     'back_list' => 'Retourner à la liste',
@@ -235,51 +236,51 @@ return [
         ],
     ],
 
-    // ===== SUPER ADMIN PAGES
-    'super_admin' => [
+    // ===== EVERY ROLES PAGES
+    'message' => [
+        'inbox' => 'Boîte de réception',
+        'outbox' => 'Messages envoyés',
+        'draft' => 'Brouillon',
+        'spams' => 'Spams',
+        'new' => 'Nouveau message',
+        'search_result' => 'Résultat de la recherche',
+    ],
+
+    // ===== ADMIN PAGES
+    'admin' => [
         // ===== ABOUTS PAGE
-        'about_subject' => [
-            'title' => 'Sujets d\à propos',
-            'details' => 'Détails sur le sujet d\à propos',
-            'link' => 'Gérer les sujets d\à propos',
-            'add' => 'Ajouter un sujet d\à propos',
-            'edit' => 'Editer le sujet d\à propos',
-            'search' => 'Rechercher un sujet d\à propos',
-            'list' => 'Liste de sujets d\à propos',
+        'legal_info_subject' => [
+            'title' => 'Sujets d\'info légale',
+            'details' => 'Détails sur le sujet d\'info légale',
+            'link' => 'Gérer les sujets d\'info légale',
+            'add' => 'Ajouter un sujet d\'info légale',
+            'edit' => 'Editer le sujet d\'info légale',
+            'search' => 'Rechercher un sujet d\'info légale',
+            'list' => 'Liste de sujets d\'info légale',
             'datas' => [
                 'subject' => 'Suject',
-                'description' => 'Description',
-                'status' => 'Etat',
-                'activated_status' => 'Activaté',
-                'deactivated_status' => 'Désactivaté',
-                'font_icon' => 'Nom de l\'icône',
-                'font_icon_color' => 'Couleur de l\'icône',
-                'icon' => 'Icône',
-                'icons' => 'Icônes',
-                'add_font_icon' => 'Ajouter des icônes',
-                'new_font_icon' => 'Nouvelle icône',
-                'update_font_icon' => 'Mettre à jour l\'icône'
+                'description' => 'Description'
             ],
             'other_datas' => 'Autres données',
             // Title
-            'about_title' => [
-                'title' => 'Titre d\à propos',
-                'details' => 'Détails sur le titre d\à propos',
-                'link' => 'Gérer les titres d\à propos',
-                'add' => 'Ajouter un titre d\à propos',
-                'edit' => 'Editer le titre d\à propos',
-                'search' => 'Rechercher un titre d\à propos',
-                'list' => 'Liste de titres d\à propos',
+            'legal_info_title' => [
+                'title' => 'Titre d\'info légale',
+                'details' => 'Détails sur le titre d\'info légale',
+                'link' => 'Gérer les titres d\'info légale',
+                'add' => 'Ajouter un titre d\'info légale',
+                'edit' => 'Editer le titre d\'info légale',
+                'search' => 'Rechercher un titre d\'info légale',
+                'list' => 'Liste de titres d\'info légale',
             ],
             // Content
-            'about_content' => [
-                'title' => 'Contenu d\à propos',
-                'details' => 'Détails sur le contenu d\à propos',
-                'link' => 'Gérer les contenus d\à propos',
-                'add' => 'Ajouter un contenu d\à propos',
-                'edit' => 'Editer le contenu d\à propos',
-                'search' => 'Rechercher un contenu d\à propos',
-                'list' => 'Liste de contenus d\à propos',
+            'legal_info_content' => [
+                'title' => 'Contenu d\'info légale',
+                'details' => 'Détails sur le contenu d\'info légale',
+                'link' => 'Gérer les contenus d\'info légale',
+                'add' => 'Ajouter un contenu d\'info légale',
+                'edit' => 'Editer le contenu d\'info légale',
+                'search' => 'Rechercher un contenu d\'info légale',
+                'list' => 'Liste de contenus d\'info légale',
             ]
         ],
 
@@ -389,16 +390,6 @@ return [
                 'search' => 'Rechercher un type',
                 'list' => 'Liste de types',
             ],
-            // Service
-            'service' => [
-                'title' => 'Service',
-                'details' => 'Détails sur le service',
-                'link' => 'Gérer les services',
-                'add' => 'Ajouter un service',
-                'edit' => 'Editer le service',
-                'search' => 'Rechercher un service',
-                'list' => 'Liste de services',
-            ],
             // Role
             'role' => [
                 'title' => 'Rôle',
@@ -409,75 +400,29 @@ return [
                 'search' => 'Rechercher un rôle',
                 'list' => 'Liste de rôles',
             ],
-            // Other super administrators
-            'other_super_admin' => [
-                'title' => 'Autres super administrateurs',
+            // Other administrators
+            'other_admin' => [
+                'title' => 'Autres administrateurs',
             ],
         ]
     ],
 
-    // ===== ADMIN PAGES
-    'admin' => [
-        // ===== COMPANY PAGE
-        'company' => [
-            'title' => 'Profil de votre entreprise',
-            'datas' => [
-                'company_name' => 'Nom de l\'entreprise',
-                'company_acronym' => 'Acronyme de l\'entreprise',
-                'company_website' => 'Site web',
-                'add_phones' => 'Autres n° de téléphone',
-                'add_emails' => 'Autres e-mails',
-                'address' => 'Adresse du siège social',
-                'social_network' => [
-                    'network_name' => 'Nom du réseau social',
-                    'network_url' => 'URL de votre profil'
-                ],
-            ],
-            // Pricing
-            'pricing' => [
-                'number_of_kilowatt_hours' => 'Nombre de kilowattheures',
-                'price' => 'Prix',
-                'currency' => 'Monnaie',
-                'type' => 'Type de client',
-            ],
-            // Office
-            'office' => [
-                'title' => 'Ajouter un bureau',
-                'description' => 'Ajouter un bureau avec des agents pour gérer les clients du même quartier que ce bureau.',
-                'office_code' => 'Code du bureau',
-                'office_name' => 'Nom du bureau',
-                'agent' => [
-                    'agent_number' => 'Matricule de l\'agent',
-                ],
-                'office_address' => 'Adresse du bureau',
-            ],
-            // Invoice
-            'invoice' => [
-                'title' => 'Ajouter une facture',
-                'invoice_number' => 'Numéro de facture',
-                'invoiced_period' => 'Période facturée',
-                'tolerated_delay' => 'Retard toléré',
-                'used_quantity' => 'kWh utilisés',
-                'publishing_date' => 'Date de publication',
-            ],
-            // Prepaid card
-            'prepaid_card' => [
-                'title' => 'Carte prépayée',
-                'number_of_kilowatt_hours' => 'Nombre de kilowattheures',
-                'price' => 'Prix',
-            ],
+    // ===== DEVELOPER PAGES
+    'developer' => [
+        'home' => [
+            'title' => 'Espace du développeur',
         ],
     ],
 
-    // ===== AGENT PAGES
-    'agent' => [
+    // ===== MANAGER PAGES
+    'manager' => [
         'home' => [
-            'title' => 'Bienvenue chez Tulipap',
+            'title' => 'Espace du manager',
         ],
     ],
-     
-    // ===== CUSTOMER PAGES
-    'customer' => [
+
+    // ===== PUBLIC PAGES
+    'public' => [
         'footer' => [
             'useful_links' => 'Liens utiles',
             'social_network' => [

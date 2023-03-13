@@ -15,7 +15,8 @@ return [
     'slogan' => 'ACR | Politics of love',
     'keywords' => 'Common Action for the Republic,acr,love of politics,politics of love',
     'all_right_reserved' => 'All right reserved',
-    'dark_theme' => 'Activate dark theme',
+    'follow_us' => 'Follow us:',
+    'call_us' => 'Call us:',
     'your_language' => 'Your language',
     'back_home' => 'Return to the home page',
     'back_list' => 'Return to the list',
@@ -235,51 +236,51 @@ return [
         ],
     ],
 
-    // ===== SUPER ADMIN PAGES
-    'super_admin' => [
-        // ===== ABOUTS PAGE
-        'about_subject' => [
-            'title' => 'About subject',
-            'details' => 'About subject details',
-            'link' => 'Manage about subjects',
-            'add' => 'Add a about subject',
-            'edit' => 'Edit the about subject',
-            'search' => 'Search a about subject',
-            'list' => 'About subjects list',
+    // ===== EVERY ROLES PAGES
+    'message' => [
+        'inbox' => 'Inbox',
+        'outbox' => 'Sent messages',
+        'draft' => 'Draft',
+        'spams' => 'Spams',
+        'new' => 'New message',
+        'search_result' => 'Search result',
+    ],
+
+    // ===== ADMIN PAGES
+    'admin' => [
+        // ===== LEGAL INFOS PAGE
+        'legal_info_subject' => [
+            'title' => 'Legal info subject',
+            'details' => 'Legal info subject details',
+            'link' => 'Manage legal info subjects',
+            'add' => 'Add a legal info subject',
+            'edit' => 'Edit the legal info subject',
+            'search' => 'Search a legal info subject',
+            'list' => 'Legal info subjects list',
             'datas' => [
                 'subject' => 'Subject',
-                'description' => 'Description',
-                'status' => 'Status',
-                'activated_status' => 'Activated',
-                'deactivated_status' => 'Deactivated',
-                'font_icon' => 'Icon name',
-                'font_icon_color' => 'Icon color',
-                'icon' => 'Icon',
-                'icons' => 'Icons',
-                'add_font_icon' => 'Add icons',
-                'new_font_icon' => 'New icon',
-                'update_font_icon' => 'Update icon'
+                'description' => 'Description'
             ],
             'other_datas' => 'Other datas',
             // Title
-            'about_title' => [
-                'title' => 'About title',
-                'details' => 'About title details',
-                'link' => 'Manage about titles',
-                'add' => 'Add a about title',
-                'edit' => 'Edit the about title',
-                'search' => 'Search a about title',
-                'list' => 'About titles list',
+            'legal_info_title' => [
+                'title' => 'Legal info title',
+                'details' => 'Legal info title details',
+                'link' => 'Manage legal info titles',
+                'add' => 'Add a legal info title',
+                'edit' => 'Edit the legal info title',
+                'search' => 'Search a legal info title',
+                'list' => 'Legal info titles list',
             ],
             // Content
-            'about_content' => [
-                'title' => 'About content',
-                'details' => 'About content details',
-                'link' => 'Manage about contents',
-                'add' => 'Add a about content',
-                'edit' => 'Edit the about content',
-                'search' => 'Search a about content',
-                'list' => 'About contents list',
+            'legal_info_content' => [
+                'title' => 'Legal info content',
+                'details' => 'Legal info content details',
+                'link' => 'Manage legal info contents',
+                'add' => 'Add a legal info content',
+                'edit' => 'Edit the legal info content',
+                'search' => 'Search a legal info content',
+                'list' => 'Legal info contents list',
             ]
         ],
 
@@ -389,16 +390,6 @@ return [
                 'search' => 'Search a type',
                 'list' => 'Types list',
             ],
-            // Service
-            'service' => [
-                'title' => 'Service',
-                'details' => 'Service details',
-                'link' => 'Manage services',
-                'add' => 'Add a service',
-                'edit' => 'Edit service',
-                'search' => 'Search a service',
-                'list' => 'Services list',
-            ],
             // Role
             'role' => [
                 'title' => 'Role',
@@ -409,75 +400,29 @@ return [
                 'search' => 'Search a role',
                 'list' => 'Roles list',
             ],
-            // Other super administrators
-            'other_super_admin' => [
-                'title' => 'Other super administrators',
+            // Other administrators
+            'other_admin' => [
+                'title' => 'Other administrators',
             ],
         ]
     ],
 
-    // ===== ADMIN PAGES
-    'admin' => [
-        // ===== COMPANY PAGE
-        'company' => [
-            'title' => 'Your company profile',
-            'datas' => [
-                'company_name' => 'Company name',
-                'company_acronym' => 'Company acronym',
-                'company_website' => 'Company website',
-                'add_phones' => 'Other phone numbers',
-                'add_emails' => 'Other emails',
-                'address' => 'Head office address',
-                'social_network' => [
-                    'network_name' => 'Social network name',
-                    'network_url' => 'Your profile URL'
-                ],
-            ],
-            // Pricing
-            'pricing' => [
-                'number_of_kilowatt_hours' => 'Number of kilowatt hours',
-                'price' => 'Price',
-                'currency' => 'Currency',
-                'type' => 'Customer type',
-            ],
-            // Office
-            'office' => [
-                'title' => 'Add an office',
-                'description' => 'Add an office with agents to manage customers from the same neighborhood as this office.',
-                'office_code' => 'Office code',
-                'office_name' => 'Office name',
-                'agent' => [
-                    'agent_number' => 'Agent number',
-                ],
-                'office_address' => 'Office address',
-            ],
-            // Invoice
-            'invoice' => [
-                'title' => 'Add an invoice',
-                'invoice_number' => 'Invoice number',
-                'invoiced_period' => 'Invoiced period',
-                'tolerated_delay' => 'Tolerated delay',
-                'used_quantity' => 'Kwh used',
-                'publishing_date' => 'Publishing date',
-            ],
-            // Prepaid card
-            'prepaid_card' => [
-                'title' => 'Prepaid card',
-                'number_of_kilowatt_hours' => 'Number of kilowatt hours',
-                'price' => 'Price',
-            ],
+    // ===== DEVELOPER PAGES
+    'developer' => [
+        'home' => [
+            'title' => 'Developer area',
         ],
     ],
 
-    // ===== AGENT PAGES
-    'agent' => [
+    // ===== MANAGER PAGES
+    'manager' => [
         'home' => [
-            'title' => 'Welcome to Tulipap',
+            'title' => 'Manager area',
         ],
     ],
-     
-    // ===== CUSTOMER PAGES
-    'customer' => [
+
+    // ===== PUBLIC PAGES
+    'public' => [
         'footer' => [
             'useful_links' => 'Useful links',
             'social_network' => [

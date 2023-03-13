@@ -38,14 +38,8 @@ Route::get('/language/{locale}', [HomeController::class, 'changeLanguage'])->nam
 // Account
 Route::get('/account', [AccountController::class, 'account'])->name('account');
 Route::get('/account/update_password', [AccountController::class, 'editPassword'])->name('account.update.password');
-Route::get('/account/albums', [AccountController::class, 'account'])->name('account.albums');
-Route::get('/account/albums/new', [AccountController::class, 'newAlbum'])->name('account.album.new');
-Route::get('/account/albums/{id}', [AccountController::class, 'albumDatas'])->whereNumber('id')->name('account.album.datas');
-Route::get('/account/albums/images/{id}', [AccountController::class, 'imageDatas'])->whereNumber('id')->name('account.album.image.datas');
 Route::post('/account', [AccountController::class, 'updateAccount'])->name('account');
 Route::post('/account/update_password', [AccountController::class, 'updatePassword'])->name('account.update.password');
-// Notification
-Route::get('/notification', [HomeController::class, 'notification'])->name('notification.home');
 // Message
 Route::get('/message', [MessageController::class, 'receivedMessages'])->name('message.inbox');
 Route::get('/message/sent', [MessageController::class, 'sentMessages'])->name('message.outbox');
@@ -57,6 +51,8 @@ Route::get('/message/search/{data}', [MessageController::class, 'search'])->name
 Route::get('/message/delete/{id}', [MessageController::class, 'deleteMessage'])->name('message.delete');
 Route::post('/message/create', [MessageController::class, 'storeMessage'])->name('message.create');
 Route::post('/message/{id}', [MessageController::class, 'updateMessage'])->whereNumber('id')->name('message.datas');
+// Notification
+Route::get('/notification', [HomeController::class, 'notification'])->name('notification.home');
 
 /*
 |--------------------------------------------------------------------------

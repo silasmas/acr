@@ -47,7 +47,38 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.custom.css') }}">
 
         <title>
-    @lang('miscellaneous.slogan')
+@if (Route::current()->getName() == 'home')
+            @lang('miscellaneous.slogan')
+@endif
+
+@if (Route::current()->getName() == 'account' || Route::current()->getName() == 'account.update.password')
+            @lang('menu.account_settings')
+@endif
+
+@if (Route::current()->getName() == 'message.inbox')
+            @lang('miscellaneous.message.inbox')
+@endif
+
+@if (Route::current()->getName() == 'message.outbox')
+            @lang('miscellaneous.message.outbox')
+@endif
+
+@if (Route::current()->getName() == 'message.draft')
+            @lang('miscellaneous.message.draft')
+@endif
+
+@if (Route::current()->getName() == 'message.spams')
+            @lang('miscellaneous.message.spams')
+@endif
+
+@if (Route::current()->getName() == 'message.new')
+            @lang('miscellaneous.message.new')
+@endif
+
+@if (Route::current()->getName() == 'message.search')
+            @lang('miscellaneous.message.search_result')
+@endif
+
         </title>
     </head>
 
@@ -63,15 +94,16 @@
             <div class="row g-0 d-none d-lg-flex">
                 <div class="col-lg-6 ps-5 text-start">
                     <div class="h-100 d-inline-flex align-items-center text-light">
-                        <span>Follow Us:</span>
-                        <a class="btn btn-link ms-1 px-3 text-light" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-link ms-1 px-3 text-light" href=""><i class="fab fa-twitter"></i></a>
+                        <span>@lang('miscellaneous.follow_us')</span>
+                        <a href="https://web.facebook.com/profile.php?id=100088148853298" class="btn btn-floating btn-outline-light ms-2 border-1 fs-6 text-light shadow-0" style="border-width: 1px;"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/AcrRdc01" class="btn btn-floating btn-outline-light ms-2 border-1 fs-6 text-light shadow-0" style="border-width: 1px;"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.youtube.com/@NDEKOELIEZERTOKOKOMA" class="btn btn-floating btn-outline-light ms-2 border-1 fs-6 text-light shadow-0" style="border-width: 1px;"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-6 text-end">
                     <div class="h-100 bg-warning d-inline-flex align-items-center text-black py-2 px-4">
-                        <span class="me-2 fw-semi-bold"><i class="fa fa-phone-alt me-2"></i>Call Us:</span>
-                        <span>+012 345 6789</span>
+                        <span class="me-2 fw-semi-bold"><i class="fa fa-phone-alt me-2"></i>@lang('miscellaneous.call_us')</span>
+                        <span>+243 810 503 074</span>
                     </div>
                 </div>
             </div>
@@ -85,7 +117,7 @@
             </a>
 
             <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="navbar-toggler-icon"></span>
+                <span class="fa fa-bars"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarCollapse">
