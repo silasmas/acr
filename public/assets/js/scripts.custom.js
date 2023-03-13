@@ -26,10 +26,13 @@ $(document).ready(function () {
     /* Animate number counter */
     $('.counter').animateCounter(4000);
 
-    /* Upload cropped photo */
-    $('.user-image img').uploadImage('#cropModalUser', '#avatar', '/api/user/update_avatar_picture/' + parseInt($('#userId').val()), 'user_id');
-    $('.other-user-image img').uploadImage('#cropModalOtherUserImage', '#other_user_image', '/api/user/add_image/' + parseInt($('#otheruserId').val()), 'other_user_id');
-    $('.news-image img').uploadImage('#cropModalOtherUserImage', '#news_image', '/api/news/add_image/' + parseInt($('#newsId').val()), 'news_id');
+    /* Upload news/user cropped photo */
+    $('.news-image img').uploadNewsImage('#cropModal1', '#news_image', '/api/news/add_image/' + parseInt($('#newsId').val()), 'news_id');
+    $('.user-image img').uploadUserImage('#cropModal1', '#avatar', '/api/user/update_avatar_picture/' + parseInt($('#userId').val()), 'user_id');
+    
+    /* Load other user image */
+    $('.other-user-image-recto img').loadOtherUserImage('#cropModal2', '.register_image_recto', '#loaded_image_recto', '.image_64_recto');
+    $('.other-user-image-verso img').loadOtherUserImage('#cropModal2', '.register_image_verso', '#loaded_image_verso', '.image_64_verso');
 
     /* Auto-resize textarea */
     autosize($('textarea'));

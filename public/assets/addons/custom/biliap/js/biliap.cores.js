@@ -322,7 +322,7 @@ function loadJS() {
      * @param _apiUrl
      * @param _entity_id
      */
-    $.fn.loadOtherUserImage = function (_modal, _loadedImage, _inputFile, _dataToSend) {
+    $.fn.loadOtherUserImage = function (_modal, _inputFile, _loadedImage, _dataToSend) {
         this.each(function () {
             var loadedImage = document.querySelector(_loadedImage);
             var retrievedImage = document.getElementById('retrieved_image2');
