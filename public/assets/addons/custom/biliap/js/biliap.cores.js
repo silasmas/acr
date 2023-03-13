@@ -129,17 +129,15 @@ function loadJS() {
     };    
 
     /**
-     * UPLOAD CROPPED IMAGE
+     * UPLOAD NEWS CROPPED IMAGE
      * 
      * @param _modal
      * @param _inputFile
-     * @param _api_token
      * @param _apiUrl
      * @param _entity_id
      */
-    $.fn.uploadUserImage = function (_modal, _inputFile, _apiUrl, _entity_id) {
+    $.fn.uploadNewsImage = function (_modal, _inputFile, _apiUrl, _entity_id) {
         this.each(function () {
-            var modal = $(_modal);
             var retrievedImage = document.getElementById('retrieved_image1');
             var cropper;
 
@@ -193,19 +191,18 @@ function loadJS() {
                     reader.readAsDataURL(blob);
                     reader.onloadend = function () {
                         var base64_data = reader.result;
-                        var api_token = document.getElementById(_api_token).value;
                         var entity_id = document.getElementById(_entity_id).value;
                         var apiUrl = _apiUrl;
-                        var datas = JSON.stringify({ 'user_id' : entity_id, 'image_64' : base64_data });
+                        var datas = JSON.stringify({ 'news_id' : entity_id, 'image_64' : base64_data });
 
                         modal.hide();
 
                         $.ajax({
-                            type: 'POST',
-                            url: uploadUrl,
+                            type: 'PUT',
+                            url: apiUrl,
                             data: datas,
                             success: function (res) {
-                                $('.logo-image').attr('src', res);
+                                $(this).attr('src', res);
                                 window.location.reload();
                             },
                             error: function (xhr, error, status_description) {
@@ -224,7 +221,100 @@ function loadJS() {
     };
 
     /**
-     * UPLOAD OTHER USER IMAGE
+     * UPLOAD USER CROPPED IMAGE
+     * 
+     * @param _modal
+     * @param _inputFile
+     * @param _api_token
+     * @param _apiUrl
+     * @param _entity_id
+     */
+    $.fn.uploadUserImage = function (_modal, _inputFile, _apiUrl, _entity_id) {
+        this.each(function () {
+            var retrievedImage = document.getElementById('retrieved_image1');
+            var cropper;
+
+            $(_inputFile).on('change', function (e) {
+                var files = e.target.files;
+                var done = function (url) {
+                    retrievedImage.src = url;
+                    var modal = new bootstrap.Modal(document.querySelector(_modal), {
+                        keyboard: false
+                    });
+
+                    modal.show();
+                };
+
+                if (files && files.length > 0) {
+                    var reader = new FileReader();
+
+                    reader.onload = function () {
+                        done(reader.result);
+                    };
+                    reader.readAsDataURL(files[0]);
+                }
+            });
+
+            $(modal).on('shown.bs.modal', function () {
+                cropper = new Cropper(retrievedImage, {
+                    aspectRatio: 1,
+                    viewMode: 3,
+                    preview: _modal + ' .preview'
+                });
+
+            }).on('hidden.bs.modal', function () {
+                cropper.destroy();
+
+                cropper = null;
+            });
+
+            $(_modal + ' #crop').click(function () {
+                // Ajax loading image to tell user to wait
+                $(this).attr('src', '/assets/img/ajax-loading.gif');
+
+                var canvas = cropper.getCroppedCanvas({
+                    width: 700,
+                    height: 700
+                });
+
+                canvas.toBlob(function (blob) {
+                    URL.createObjectURL(blob);
+                    var reader = new FileReader();
+
+                    reader.readAsDataURL(blob);
+                    reader.onloadend = function () {
+                        var base64_data = reader.result;
+                        var entity_id = document.getElementById(_entity_id).value;
+                        var apiUrl = _apiUrl;
+                        var datas = JSON.stringify({ 'user_id' : entity_id, 'image_64' : base64_data });
+
+                        modal.hide();
+
+                        $.ajax({
+                            type: 'PUT',
+                            url: apiUrl,
+                            data: datas,
+                            success: function (res) {
+                                $(this).attr('src', res);
+                                window.location.reload();
+                            },
+                            error: function (xhr, error, status_description) {
+                                console.log(xhr.responseJSON);
+                                console.log(xhr.status);
+                                console.log(error);
+                                console.log(status_description);
+                            }
+                        });
+                    };
+                });
+            });        
+        });
+
+        return this;
+    };
+
+    /**
+     * LOAD OTHER USER IMAGE
      * 
      * @param _modal
      * @param _inputFile
