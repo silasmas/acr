@@ -218,7 +218,7 @@ class NewsController extends BaseController
         $others_type = Type::where([['type_name', 'Autres'], ['group_id', $image_type_group->id]])->first();
 
         Image::create([
-            'image_url' => '/' . $image_url,
+            'image_url' => $image_url,
             'type_id' => $others_type->id,
             'news_id' => $inputs['news_id']
         ]);

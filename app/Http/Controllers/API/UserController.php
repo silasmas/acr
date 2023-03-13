@@ -736,7 +736,7 @@ class UserController extends BaseController
         endforeach;
 
         Image::create([
-            'image_url' => '/' . $image_url,
+            'image_url' => $image_url,
             'type_id' => $avatar_type->id,
             'user_id' => $inputs['user_id']
         ]);
@@ -789,8 +789,8 @@ class UserController extends BaseController
 
         Image::create([
             'image_name' => $inputs['image_name'],
-            'image_url' => '/' . $image_url_recto,
-            'url_verso' => '/' . $image_url_verso,
+            'image_url' => $image_url_recto,
+            'url_verso' => $image_url_verso,
             'description' => $inputs['description'],
             'type_id' => $others_type->id,
             'user_id' => $inputs['user_id']
