@@ -211,6 +211,7 @@ return [
     // ===== NAVIGATION MENU
     'menu' => [
         'home' => 'Home',
+        'login' => 'Log in',
         'account_settings' => 'Account settings',
         'messages' => 'Messages',
         'notifications' => 'Notifications',
@@ -223,16 +224,14 @@ return [
             'apis' => 'APIs',
         ],
         'manager' => [
-            'members' => 'Membres',
+            'members' => 'Members',
             'other_managers' => 'Other managers',
         ],
         'public' => [
             'about' => 'About',
             'news' => 'News',
-            'communique' => 'Communique',
             'works' => 'Our works',
-            'donate' => 'Donate',
-            'login' => 'Log in',
+            'donate' => 'Donate'
         ],
     ],
 

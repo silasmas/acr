@@ -122,24 +122,36 @@
 
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
-                    <a href="index.html" class="nav-item nav-link active">Home</a>
-                    <a href="about.html" class="nav-item nav-link">About</a>
-                    <a href="service.html" class="nav-item nav-link">Services</a>
-                    <a href="product.html" class="nav-item nav-link">Products</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                    <a href="" class="nav-item nav-link active">@lang('miscellaneous.menu.home')</a>
+                    <a href="" class="nav-item nav-link">@lang('miscellaneous.menu.public.about')</a>
+                    <a href="" class="nav-item nav-link">@lang('miscellaneous.menu.public.news')</a>
+                    <a href="" class="nav-item nav-link">@lang('miscellaneous.menu.public.works')</a>
+                    <div class="nav-item dropdown d-lg-inline-block d-none">
+                        <a href="#" class="nav-link" data-bs-toggle="dropdown"><i class="bi bi-translate fs-4 align-top"></i></a>
                         <div class="dropdown-menu bg-light m-0">
-                            <a href="gallery.html" class="dropdown-item">Gallery</a>
-                            <a href="feature.html" class="dropdown-item">Features</a>
-                            <a href="team.html" class="dropdown-item">Our Team</a>
-                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                            <a href="404.html" class="dropdown-item">404 Page</a>
+@foreach ($available_locales as $locale_name => $available_locale)
+    @if ($available_locale != $current_locale)
+                            <a class="dropdown-item" href="{{ route('change_language', ['locale' => $available_locale]) }}">
+                                {{ $locale_name }}
+        @switch($available_locale)
+            @case('ln')
+                                <span class="fi fi-cd"></span>
+                @break
+            @case('en')
+                                <span class="fi fi-us"></span>
+                @break
+            @default
+                                <span class="fi fi-{{ $available_locale }}"></span>
+        @endswitch
+                            </a>
+    @endif
+@endforeach
                         </div>
                     </div>
-                    <a href="contact.html" class="nav-item nav-link">Contact</a>
                 </div>
-                <div class="border-start ps-4 d-none d-lg-block">
-                    <button type="button" class="btn btn-sm p-0"><i class="fa fa-search"></i></button>
+                <div class="border-start ps-lg-4 ps-0">
+                    <a href="" class="btn d-sm-inline-block d-block acr-btn-outline-blue me-sm-2 me-0 mb-sm-0 mb-2 rounded-pill shadow-0">@lang('miscellaneous.menu.login')</a>
+                    <a href="" class="btn d-sm-inline-block d-block acr-btn-blue mb-sm-0 mb-4 rounded-pill shadow-0">@lang('miscellaneous.menu.public.donate')</a>
                 </div>
             </div>
         </nav>

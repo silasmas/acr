@@ -211,6 +211,7 @@ return [
     // ===== NAVIGATION MENU
     'menu' => [
         'home' => 'Accueil',
+        'login' => 'Se connecter',
         'account_settings' => 'Paramètres du compte',
         'messages' => 'Messages',
         'notifications' => 'Notifications',
@@ -228,11 +229,9 @@ return [
         ],
         'public' => [
             'about' => 'A propos',
-            'login' => 'Se connecter',
-            'communique' => 'Communiqué',
+            'news' => 'Actualité',
             'works' => 'Nos œuvres',
-            'donate' => 'Faire un don',
-            'login' => 'Se connecter',
+            'donate' => 'Faire un don'
         ],
     ],
 
