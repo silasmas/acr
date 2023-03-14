@@ -38,7 +38,7 @@ return [
     'open' => 'Ouvrir',
     'close' => 'Fermer',
     'empty_list' => 'La liste est vide',
-    'see_more' => 'Voir plus »',
+    'see_more' => 'Voir plus',
     'show' => 'Afficher',
     'entry' => 'entrée',
     'entries' => 'entrées',
@@ -426,59 +426,24 @@ return [
             'useful_links' => 'Liens utiles',
             'social_network' => [
                 'title' => 'Sur les réseaux sociaux',
-                'content' => 'Restez en contact avec l\'équipe <strong class="text-uppercase"><span class="text-blue">Tuli</span><span class="text-yellow">pap</span></strong> et recevez les mises à jour récentes via les réseaux sociaux'
+                'content' => 'Restez en contact avec '
             ],
         ],
         'home' => [
-            'title' => 'Bienvenue chez Tulipap',
             'slide1' => [
-                'title' => 'Payer l\'électricité n\'a jamais été aussi facile',
-                'content' => 'Gérez vos factures d\'électricité ou achetez des cartes prépayées virtuelles pour recharger votre compteur.',
-                'comment' => 'Embarquez dans l\'aventure !',
-                'link1' => 'Mes factures',
-                'link2' => 'Achat de carte'
+                'title' => 'Écrivons l\'histoire et faisons la politique autrement',
+                'content' => 'Tous engagés dans la politique de l\'amour'
             ],
-            'invoice_how_to' => [
-                'title' => 'Comment payer les factures ?',
-                'content1' => 'facilite et accélère le paiement de vos factures. Et donc, il vous suffit de suivre les trois (3) étapes suivantes :',
-                'step1' => 'Inscrivez-vous sur la plateforme ;',
-                'step2' => 'Choisissez votre fournisseur d\'électricité ;',
-                'step3' => 'Payez vos factures lorsque votre fournisseur vous les envoie.',
-                'content2' => 'Et vous avez la possibilité de payer via l\'un des services suivants :',
-                'link' => 'Commencer ici'
+            'slide2' => [
+                'title' => 'Soutien aux FARDC contre l\'agression à l\'Est du pays',
+                'content' => 'Pour une armée forte et disciplinée'
             ],
-            'buying_card' => [
-                'title' => 'Acheter carte prépayée',
-                'content' => 'Si vous êtes client de courant prépayée, vous pouvez acheter vos cartes prépayées virtuelles pour recevoir le code de recharge de votre compteur.',
-                'comment' => 'Choisissez votre fournisseur pour commencer',
-                'see_cards' => 'Voir les cartes',
-                'see_all_providers' => 'Voir tous les fournisseurs'
-            ],
-            'partnership' => [
-                'title' => 'Partenariat et sponsoring',
-                'content' => 'En devenant partenaire de <strong>Xsam Technologies</strong> ou sponsor de <strong>Tulipap</strong>, vous aidez la plateforme à améliorer ses services. Et, de votre côté, vous gagnez selon vos exigences.',
-                'link1' => 'Devenir partenaire',
-                'link2' => 'Sponsoriser Tulipap'
-            ],
-            'provider' => [
-                'title' => 'Êtes-vous un fournisseur d\'électricité ?',
-                'content' => 'Tulipap met à votre disposition un espace où vous pourrez :',
-                'task1' => 'Enregistrez et gérez votre entreprise ;',
-                'task2' => 'Enregistrer et gérer les bureaux avec leurs agents ;',
-                'task3' => 'Enregistrer et gérer vos clients ;',
-                'task4' => 'Recevoir les demandes d\'abonnement des clients ;',
-                'task5' => 'Envoyez des factures à payer à vos clients ;',
-                'task6' => 'Publier des cartes prépayées que les clients peuvent acheter ;',
-                'link' => 'Commencer ici'
-            ],
-            'newsletter' => [
-                'title' => 'S\'inscrire à la newsletter',
-                'content' => 'Abonnez-vous à notre newsletter pour rester informé de nos nouvelles offres.',
-                'placeholder' => 'E-mail',
-                'subscribe' => 'S\'abonner',
+            'slide3' => [
+                'title' => 'Assurer de la nourriture pour notre peuple',
+                'content' => 'À travers une bonne politique agricole'
             ],
         ],
-        'about_us' => [
+        'about' => [
             'title' => 'A propos de nous',
         ],
         'help' => [

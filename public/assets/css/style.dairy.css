@@ -178,16 +178,17 @@
 @media (min-width: 1024px) {
     #header-carousel .carousel-item {
         position: relative;
-        max-height: 600px;
+        max-height: 650px;
     }
 }
 
 @media (max-width: 768px) {
-    #header-carousel .carousel-item {
+    #header-carousel .carousel-item,
+    #header-carousel .carousel-item .bg-image {
         position: relative;
         min-height: 450px;
     }
-    
+
     #header-carousel .carousel-item img {
         position: absolute;
         width: 100%;

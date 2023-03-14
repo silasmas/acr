@@ -8,16 +8,16 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <div class="bg-image">
-                            <img class="w-100" src="{{ asset('assets/img/slides/slide-1.png') }}" alt="Image">
+                            <img class="w-100" src="{{ asset('assets/img/slides/slide-1.png') }}" alt="">
                             <div class="mask" style="background: linear-gradient(45deg, hsla(202, 95%, 34%, 0.5), hsla(0, 0%, 0%, 0.5) 100%);"></div>
                         </div>
                         <div class="carousel-caption">
                             <div class="container">
                                 <div class="row justify-content-lg-start justify-content-center">
                                     <div class="col-lg-8 text-lg-start text-center">
-                                        <p class="fs-4 text-white">Welcome to our dairy farm</p>
-                                        <h1 class="display-1 text-white mb-5 animated slideInRight">The Farm of Dairy products</h1>
-                                        <a href="" class="btn btn-light rounded-pill py-3 px-5 shadow-0 animated slideInRight">Explore More</a>
+                                        <p class="fs-4 text-white">@lang('miscellaneous.public.home.slide1.title')</p>
+                                        <h1 class="display-1 text-white mb-5 animated slideInRight">@lang('miscellaneous.public.home.slide1.content')</h1>
+                                        <a href="" class="btn btn-light rounded-pill py-3 px-5 shadow-0 animated slideInRight">@lang('miscellaneous.see_more')</a>
                                     </div>
                                 </div>
                             </div>
@@ -26,16 +26,16 @@
 
                     <div class="carousel-item">
                         <div class="bg-image">
-                            <img class="w-100" src="{{ asset('assets/img/slides/slide-2.png') }}" alt="Image">
+                            <img class="w-100" src="{{ asset('assets/img/slides/slide-2.png') }}" alt="">
                             <div class="mask" style="background: linear-gradient(45deg, hsla(0, 0%, 0%, 0.5), hsla(202, 95%, 34%, 0.5) 100%);"></div>
                         </div>
                         <div class="carousel-caption">
                             <div class="container">
                                 <div class="row justify-content-lg-end justify-content-center">
                                     <div class="col-lg-8 text-lg-end text-center">
-                                        <p class="fs-4 text-white">Welcome to our dairy farm</p>
-                                        <h1 class="display-1 text-white mb-5 animated slideInRight">Best Organic Dairy Products</h1>
-                                        <a href="" class="btn btn-light rounded-pill py-3 px-5 shadow-0 animated slideInLeft">Explore More</a>
+                                        <p class="fs-4 text-white">@lang('miscellaneous.public.home.slide2.title')</p>
+                                        <h1 class="display-1 text-white mb-5 animated slideInRight">@lang('miscellaneous.public.home.slide2.content')</h1>
+                                        <a href="" class="btn btn-light rounded-pill py-3 px-5 shadow-0 animated slideInLeft">@lang('miscellaneous.see_more')</a>
                                     </div>
                                 </div>
                             </div>
@@ -44,16 +44,16 @@
 
                     <div class="carousel-item">
                         <div class="bg-image">
-                            <img class="w-100" src="{{ asset('assets/img/slides/slide-3.png') }}" alt="Image">
+                            <img class="w-100" src="{{ asset('assets/img/slides/slide-3.png') }}" alt="">
                             <div class="mask" style="background: linear-gradient(45deg, hsla(202, 95%, 34%, 0.5), hsla(0, 0%, 0%, 0.5) 100%);"></div>
                         </div>
                         <div class="carousel-caption">
                             <div class="container">
                                 <div class="row justify-content-lg-start justify-content-center">
                                     <div class="col-lg-8 text-lg-start text-center">
-                                        <p class="fs-4 text-white">Welcome to our dairy farm</p>
-                                        <h1 class="display-1 text-white mb-5 animated slideInRight">The Farm of Dairy products</h1>
-                                        <a href="" class="btn btn-light rounded-pill py-3 px-5 shadow-0 animated slideInRight">Explore More</a>
+                                        <p class="fs-4 text-white">@lang('miscellaneous.public.home.slide3.title')</p>
+                                        <h1 class="display-1 text-white mb-5 animated slideInRight">@lang('miscellaneous.public.home.slide3.content')</h1>
+                                        <a href="" class="btn btn-light rounded-pill py-3 px-5 shadow-0 animated slideInRight">@lang('miscellaneous.see_more')</a>
                                     </div>
                                 </div>
                             </div>

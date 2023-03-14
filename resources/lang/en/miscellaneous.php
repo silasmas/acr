@@ -38,7 +38,7 @@ return [
     'open' => 'Open',
     'close' => 'Close',
     'empty_list' => 'The list is empty',
-    'see_more' => 'See more... »',
+    'see_more' => 'See more',
     'show' => 'Show',
     'entry' => 'entry',
     'entries' => 'entries',
@@ -426,59 +426,24 @@ return [
             'useful_links' => 'Useful links',
             'social_network' => [
                 'title' => 'On social networks',
-                'content' => 'Stay in touch with the <strong class="text-uppercase"><span class="text-blue">Tuli</span><span class="text-yellow">pap</span></strong> team and receive recent updates via social networks'
+                'content' => 'Stay in touch with '
             ],
         ],
         'home' => [
-            'title' => 'Welcome to Tulipap',
             'slide1' => [
-                'title' => 'Paying for electricity has never been easier',
-                'content' => 'Manage your electricity invoices or buy virtual prepaid cards to recharge your meter.',
-                'comment' => 'Embark on the adventure!',
-                'link1' => 'My invoices',
-                'link2' => 'Card purchase'
+                'title' => 'Let\'s write history and do politics differently',
+                'content' => 'All engaged in the politics of love'
             ],
-            'invoice_how_to' => [
-                'title' => 'How to pay for invoices?',
-                'content1' => 'makes paying your invoices quick and easy. And so, you just need the following three (3) steps:',
-                'step1' => 'Register on the platform;',
-                'step2' => 'Choose your electricity provider;',
-                'step3' => 'Pay your invoices when your provider sends it to you.',
-                'content2' => 'And you have the option to pay via one of the following services:',
-                'link' => 'Start here'
+            'slide2' => [
+                'title' => 'Support for the FARDC against aggression in the east of the country',
+                'content' => 'For a strong and disciplined army'
             ],
-            'buying_card' => [
-                'title' => 'Buy prepaid card',
-                'content' => 'If you are a prepaid electricity customer, you can purchase your virtual prepaid cards to receive your meter\'s recharge code.',
-                'comment' => 'Choose your provider to start',
-                'see_cards' => 'See cards',
-                'see_all_providers' => 'See all providers'
-            ],
-            'partnership' => [
-                'title' => 'Partnership and Sponsorship',
-                'content' => 'By becoming a partner of <strong>Xsam Technologies</strong> or a sponsor of <strong>Tulipap</strong>, you help the platform to improve its services. And, on your side, you win according to your demands.',
-                'link1' => 'Become a partner',
-                'link2' => 'Sponsor Tulipap'
-            ],
-            'provider' => [
-                'title' => 'Are you a power supplier?',
-                'content' => 'gives you a space where you can:',
-                'task1' => 'Register and manage your company;',
-                'task2' => 'Register and manage offices with their agents;',
-                'task3' => 'Register and manage your customers;',
-                'task4' => 'Receive subscription requests from customers;',
-                'task5' => 'Send invoices to pay to your customers;',
-                'task6' => 'Publish prepaid cards that customers can buy;',
-                'link' => 'Start here'
-            ],
-            'newsletter' => [
-                'title' => 'Subscribe to newsletter',
-                'content' => 'Subscribe to our newsletter to stay informed about our new offers.',
-                'placeholder' => 'Email',
-                'subscribe' => 'Subscribe',
+            'slide3' => [
+                'title' => 'Securing food for our people',
+                'content' => 'Through a good agricultural policy'
             ],
         ],
-        'about_us' => [
+        'about' => [
             'title' => 'About us',
         ],
         'help' => [

@@ -126,7 +126,7 @@
                     <a href="" class="nav-item nav-link">@lang('miscellaneous.menu.public.about')</a>
                     <a href="" class="nav-item nav-link">@lang('miscellaneous.menu.public.news')</a>
                     <a href="" class="nav-item nav-link">@lang('miscellaneous.menu.public.works')</a>
-                    <div class="nav-item dropdown d-lg-inline-block d-none">
+                    <div class="nav-item dropdown d-lg-inline-block d-none mb-0">
                         <a href="#" class="nav-link" data-bs-toggle="dropdown"><i class="bi bi-translate fs-4 align-top"></i></a>
                         <div class="dropdown-menu bg-light m-0 overflow-hidden">
 @foreach ($available_locales as $locale_name => $available_locale)
