@@ -149,7 +149,6 @@
     }
 }
 
-
 /*** Header ***/
 .carousel-caption {
     top: 0;
@@ -176,10 +175,17 @@
     border: 10px solid var(--primary);
 }
 
+@media (min-width: 1024px) {
+    #header-carousel .carousel-item {
+        position: relative;
+        max-height: 600px;
+    }
+}
+
 @media (max-width: 768px) {
     #header-carousel .carousel-item {
         position: relative;
-        min-height: 400px;
+        min-height: 450px;
     }
     
     #header-carousel .carousel-item img {

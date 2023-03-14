@@ -128,21 +128,21 @@
                     <a href="" class="nav-item nav-link">@lang('miscellaneous.menu.public.works')</a>
                     <div class="nav-item dropdown d-lg-inline-block d-none">
                         <a href="#" class="nav-link" data-bs-toggle="dropdown"><i class="bi bi-translate fs-4 align-top"></i></a>
-                        <div class="dropdown-menu bg-light m-0">
+                        <div class="dropdown-menu bg-light m-0 overflow-hidden">
 @foreach ($available_locales as $locale_name => $available_locale)
     @if ($available_locale != $current_locale)
                             <a class="dropdown-item" href="{{ route('change_language', ['locale' => $available_locale]) }}">
-                                {{ $locale_name }}
         @switch($available_locale)
             @case('ln')
-                                <span class="fi fi-cd"></span>
+                                <span class="fi fi-cd me-3"></span>
                 @break
             @case('en')
-                                <span class="fi fi-us"></span>
+                                <span class="fi fi-us me-3"></span>
                 @break
             @default
-                                <span class="fi fi-{{ $available_locale }}"></span>
+                                <span class="fi fi-{{ $available_locale }} me-3"></span>
         @endswitch
+                                {{ $locale_name }}
                             </a>
     @endif
 @endforeach

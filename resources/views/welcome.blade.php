@@ -7,14 +7,17 @@
             <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="w-100" src="{{ asset('assets/img/slides/slide-1.png') }}" alt="Image">
+                        <div class="bg-image">
+                            <img class="w-100" src="{{ asset('assets/img/slides/slide-1.png') }}" alt="Image">
+                            <div class="mask" style="background: linear-gradient(45deg, hsla(202, 95%, 34%, 0.5), hsla(0, 0%, 0%, 0.5) 100%);"></div>
+                        </div>
                         <div class="carousel-caption">
                             <div class="container">
-                                <div class="row justify-content-start">
-                                    <div class="col-lg-8 text-start">
+                                <div class="row justify-content-lg-start justify-content-center">
+                                    <div class="col-lg-8 text-lg-start text-center">
                                         <p class="fs-4 text-white">Welcome to our dairy farm</p>
                                         <h1 class="display-1 text-white mb-5 animated slideInRight">The Farm of Dairy products</h1>
-                                        <a href="" class="btn btn-secondary rounded-pill py-3 px-5 animated slideInRight">Explore More</a>
+                                        <a href="" class="btn btn-light rounded-pill py-3 px-5 shadow-0 animated slideInRight">Explore More</a>
                                     </div>
                                 </div>
                             </div>
@@ -22,14 +25,35 @@
                     </div>
 
                     <div class="carousel-item">
-                        <img class="w-100" src="{{ asset('assets/img/slides/slide-2.png') }}" alt="Image">
+                        <div class="bg-image">
+                            <img class="w-100" src="{{ asset('assets/img/slides/slide-2.png') }}" alt="Image">
+                            <div class="mask" style="background: linear-gradient(45deg, hsla(0, 0%, 0%, 0.5), hsla(202, 95%, 34%, 0.5) 100%);"></div>
+                        </div>
                         <div class="carousel-caption">
                             <div class="container">
-                                <div class="row justify-content-end">
-                                    <div class="col-lg-8 text-end">
+                                <div class="row justify-content-lg-end justify-content-center">
+                                    <div class="col-lg-8 text-lg-end text-center">
                                         <p class="fs-4 text-white">Welcome to our dairy farm</p>
                                         <h1 class="display-1 text-white mb-5 animated slideInRight">Best Organic Dairy Products</h1>
-                                        <a href="" class="btn btn-secondary rounded-pill py-3 px-5 animated slideInLeft">Explore More</a>
+                                        <a href="" class="btn btn-light rounded-pill py-3 px-5 shadow-0 animated slideInLeft">Explore More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="bg-image">
+                            <img class="w-100" src="{{ asset('assets/img/slides/slide-3.png') }}" alt="Image">
+                            <div class="mask" style="background: linear-gradient(45deg, hsla(202, 95%, 34%, 0.5), hsla(0, 0%, 0%, 0.5) 100%);"></div>
+                        </div>
+                        <div class="carousel-caption">
+                            <div class="container">
+                                <div class="row justify-content-lg-start justify-content-center">
+                                    <div class="col-lg-8 text-lg-start text-center">
+                                        <p class="fs-4 text-white">Welcome to our dairy farm</p>
+                                        <h1 class="display-1 text-white mb-5 animated slideInRight">The Farm of Dairy products</h1>
+                                        <a href="" class="btn btn-light rounded-pill py-3 px-5 shadow-0 animated slideInRight">Explore More</a>
                                     </div>
                                 </div>
                             </div>
