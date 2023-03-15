@@ -68,6 +68,7 @@ class UserController extends BaseController
             'api_token' => $request->api_token,
             'status_id' => $request->status_id
         ];
+        $users = User::all();
         $password_reset = null;
         // $basic  = new \Vonage\Client\Credentials\Basic('89e3b822', 'f3cbb6cbe1217dd0Moses');
         // $client = new \Vonage\Client($basic);
@@ -88,6 +89,13 @@ class UserController extends BaseController
         if ($inputs['email'] == ' ' AND $inputs['phone'] == null) {
             return $this->handleError(__('validation.custom.email_or_phone.required'));
         }
+
+        // Check if user phone already exists
+        foreach ($users as $another_user):
+            if ($another_user->phone == $inputs['phone']) {
+                return $this->handleError($inputs['phone'], __('validation.custom.phone.exists'), 400);
+            }
+        endforeach;
 
         if ($inputs['password'] != null) {
             if ($inputs['confirm_password'] != $inputs['password'] OR $inputs['confirm_password'] == null) {
