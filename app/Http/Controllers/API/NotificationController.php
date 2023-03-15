@@ -140,11 +140,11 @@ class NotificationController extends BaseController
     /**
      * Change notification status.
      *
-     * @param  $status_id
      * @param  $id
+     * @param  $status_id
      * @return \Illuminate\Http\Response
      */
-    public function switchStatus($status_id, $id)
+    public function switchStatus($id, $status_id)
     {
         $status = Status::find($status_id);
 

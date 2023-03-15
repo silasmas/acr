@@ -13,7 +13,7 @@ class Payment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['reference', 'provider_reference', 'order_number', 'amount', 'amount_customer', 'phone', 'currency', 'channel', 'updated_at', 'type_id', 'status_id'];
+    protected $fillable = ['reference', 'provider_reference', 'order_number', 'amount', 'amount_customer', 'phone', 'currency', 'channel', 'updated_at', 'type_id', 'status_id', 'user_id'];
 
     /**
      * ONE-TO-MANY
@@ -31,5 +31,14 @@ class Payment extends Model
     public function status()
     {
         return $this->belongsTo(Status::class);
+    }
+
+    /**
+     * ONE-TO-MANY
+     * One user for several payments
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

@@ -13,7 +13,7 @@ class Image extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['image_name', 'image_url', 'updated_at', 'type_id', 'user_id', 'legal_info_content_id', 'news_id'];
+    protected $fillable = ['image_name', 'url_recto', 'url_verso', 'description', 'updated_at', 'type_id', 'user_id', 'legal_info_content_id', 'news_id'];
 
     /**
      * ONE-TO-MANY

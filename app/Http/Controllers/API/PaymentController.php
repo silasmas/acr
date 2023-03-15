@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\Payment;
+use App\Models\Status;
 use Illuminate\Http\Request;
 use App\Http\Resources\Payment as ResourcesPayment;
 
@@ -42,21 +43,10 @@ class PaymentController extends BaseController
             'created_at' => $request->createdAt,
             'type_id' => $request->type,
             'status_id' => $request->code,
-            'user_id' => $request->user_id,
+            'user_id' => (int) explode('-', $request->reference)[2],
         ];
 
         $payment = Payment::create($inputs);
-        // Get user ID from reference to update reference
-        $get_user_id = explode('-', $payment->reference)[2];
-
-        if (is_numeric($get_user_id)) {
-            $get_user_id = (int) $get_user_id;
-
-            $payment->update([
-                'user_id' => $get_user_id,
-                'updated_at' => now()
-            ]);
-        }
 
         return $this->handleResponse(new ResourcesPayment($payment), __('notifications.create_payment_success'));
     }
@@ -136,5 +126,31 @@ class PaymentController extends BaseController
         $payments = Payment::where('phone', $phone_number)->get();
 
         return $this->handleResponse(ResourcesPayment::collection($payments), __('notifications.find_all_payments_success'));
+    }
+
+    /**
+     * Change payment status.
+     *
+     * @param  $id
+     * @param  $status_id
+     * @return \Illuminate\Http\Response
+     */
+    public function switchStatus($id, $status_id)
+    {
+        $status = Status::find($status_id);
+
+        if (is_null($status)) {
+            return $this->handleError(__('notifications.find_status_404'));
+        }
+
+        $payment = Payment::find($id);
+
+        // update "status_id" column
+        $payment->update([
+            'status_id' => $status->id,
+            'updated_at' => now()
+        ]);
+
+        return $this->handleResponse(new ResourcesPayment($payment), __('notifications.find_payment_success'));
     }
 }

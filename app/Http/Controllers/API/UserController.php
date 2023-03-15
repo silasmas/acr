@@ -2,26 +2,23 @@
 
 namespace App\Http\Controllers\API;
 
-use stdClass;
-use App\Models\Area;
-use App\Models\Role;
-use App\Models\Type;
-use App\Models\User;
+use App\Models\Address;
 use App\Models\Group;
 use App\Models\Image;
-use App\Models\Status;
-use App\Models\Address;
-use Nette\Utils\Random;
-use App\Models\RoleUser;
-use Illuminate\Support\Str;
-use App\Models\Neighborhood;
 use App\Models\Notification;
-use Illuminate\Http\Request;
 use App\Models\PasswordReset;
+use App\Models\Role;
+use App\Models\RoleUser;
+use App\Models\Status;
+use App\Models\Type;
+use App\Models\User;
+use Nette\Utils\Random;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
+use stdClass;
 use App\Http\Resources\User as ResourcesUser;
 use App\Http\Resources\PasswordReset as ResourcesPasswordReset;
 
@@ -113,7 +110,6 @@ class UserController extends BaseController
             if ($password_reset->phone != null) {
                 $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
             }
-
         }
 
         if ($inputs['password'] == null) {
@@ -183,40 +179,15 @@ class UserController extends BaseController
             }
         }
 
-        // If user want to add company address
-        if ($request->number != null OR $request->street != null OR $request->neighborhood_id != null OR $request->area_id != null) {
-            // Select all addresses of a same neighborhood to check unique constraint
-            $addresses = Address::where('neighborhood_id', $request->neighborhood_id)->get();
-
-            if ($request->neighborhood_id == null OR $request->neighborhood_id == ' ') {
-                return $this->handleError($request->neighborhood_id, __('validation.required'), 400);
-            }
-
-            if ($request->area_id == null OR $request->area_id == ' ') {
-                return $this->handleError($request->area_id, __('validation.required'), 400);
-            }
-
-            // Find area and neighborhood by their IDs to get their names
-            $area = Area::find($request->area_id);
-            $neighborhood = Neighborhood::find($request->neighborhood_id);
-
-            // Check if address already exists
-            foreach ($addresses as $another_address):
-                if ($another_address->number == $request->number AND $another_address->street == $request->street AND $another_address->neighborhood_id == $request->neighborhood_id AND $another_address->area_id == $request->area_id) {
-                    return $this->handleError(
-                        __('notifications.address.number') . __('notifications.colon_after_word') . ' ' . $request->number . ', ' 
-                        . __('notifications.address.street') . __('notifications.colon_after_word') . ' ' . $request->street . ', ' 
-                        . __('notifications.address.neighborhood') . __('notifications.colon_after_word') . ' ' . $neighborhood->neighborhood_name . ', ' 
-                        . __('notifications.address.area') . __('notifications.colon_after_word') . ' ' . $area->area_name, __('validation.custom.address.exists'), 400);
-                }
-            endforeach;
-
+        // If user want to add address
+        if ($request->address_content != null OR $request->neighborhood != null OR $request->area != null OR $request->city != null) {
             Address::create([
-                'number' => $request->number,
-                'street' => $request->street,
+                'address_content' => $request->address_content,
+                'neighborhood' => $request->neighborhood,
+                'area' => $request->area,
+                'city' => $request->city,
                 'type_id' => $request->type_id,
-                'area_id' => $request->area_id,
-                'neighborhood_id' => $request->neighborhood_id,
+                'country_id' => $request->country_id,
                 'user_id' => $user->id
             ]);
         }
@@ -736,7 +707,7 @@ class UserController extends BaseController
         endforeach;
 
         Image::create([
-            'image_url' => $image_url,
+            'url_recto' => $image_url,
             'type_id' => $avatar_type->id,
             'user_id' => $inputs['user_id']
         ]);
@@ -789,7 +760,7 @@ class UserController extends BaseController
 
         Image::create([
             'image_name' => $inputs['image_name'],
-            'image_url' => $image_url_recto,
+            'url_recto' => $image_url_recto,
             'url_verso' => $image_url_verso,
             'description' => $inputs['description'],
             'type_id' => $others_type->id,

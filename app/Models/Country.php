@@ -16,7 +16,7 @@ class Country extends Model
 
     // const SEARCHABLE_FIELDS = ['country_name'];
 
-    protected $fillable = ['country_name', 'country_phone_code', 'country_lang_code', 'updated_at', 'region_id'];
+    protected $fillable = ['country_name', 'country_phone_code', 'country_lang_code', 'updated_at'];
 
     /**
      * Get the indexable data array for the model.
@@ -27,22 +27,4 @@ class Country extends Model
     // {
     //     return $this->only(self::SEARCHABLE_FIELDS);
     // }
-
-    /**
-     * ONE-TO-MANY
-     * One region for several countries
-     */
-    public function region()
-    {
-        return $this->belongsTo(Region::class);
-    }
-
-    /**
-     * MANY-TO-ONE
-     * Several provinces for a country
-     */
-    public function provinces()
-    {
-        return $this->hasMany(Province::class);
-    }
 }

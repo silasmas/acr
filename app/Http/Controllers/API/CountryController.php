@@ -36,19 +36,14 @@ class CountryController extends BaseController
         $inputs = [
             'country_name' => $request->country_name,
             'country_phone_code' => $request->country_phone_code,
-            'country_lang_code' => $request->country_lang_code,
-            'region_id' => $request->region_id
+            'country_lang_code' => $request->country_lang_code
         ];
         // Select all countries of a same region to check unique constraint
-        $countries = Country::where('region_id', $inputs['region_id'])->get();
+        $countries = Country::all();
 
         // Validate required fields
         if ($inputs['country_name'] == null OR $inputs['country_name'] == ' ') {
             return $this->handleError($inputs['country_name'], __('validation.required'), 400);
-        }
-
-        if ($inputs['region_id'] == null OR $inputs['region_id'] == ' ') {
-            return $this->handleError($inputs['region_id'], __('validation.required'), 400);
         }
 
         // Check if country name already exists
@@ -95,19 +90,14 @@ class CountryController extends BaseController
             'country_name' => $request->country_name,
             'country_phone_code' => $request->country_phone_code,
             'country_lang_code' => $request->country_lang_code,
-            'region_id' => $request->region_id,
             'updated_at' => now()
         ];
         // Select all countries of a same region and current country to check unique constraint
-        $countries = Country::where('region_id', $inputs['region_id'])->get();
+        $countries = Country::all();
         $current_country = Country::find($inputs['id']);
 
         if ($inputs['country_name'] == null OR $inputs['country_name'] == ' ') {
             return $this->handleError($inputs['country_name'], __('validation.required'), 400);
-        }
-
-        if ($inputs['region_id'] == null OR $inputs['region_id'] == ' ') {
-            return $this->handleError($inputs['region_id'], __('validation.required'), 400);
         }
 
         foreach ($countries as $another_country):

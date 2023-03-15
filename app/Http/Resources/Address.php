@@ -20,13 +20,14 @@ class Address extends JsonResource
     {
         return [
             'id' => $this->id,
-            'number' => $this->number,
-            'street' => $this->street,
+            'address_content' => $this->address_content,
+            'neighborhood' => $this->neighborhood,
+            'area' => $this->area,
+            'city' => $this->city,
             'type' => Type::make($this->type),
-            'neighborhood' => Neighborhood::make($this->neighborhood),
+            'country' => Country::make($this->country),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
-            'area_id' => $this->area_id,
             'user_id' => $this->user_id
         ];
     }

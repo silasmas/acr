@@ -178,29 +178,8 @@ return [
         'description' => [
             'exists' => 'This description already exists'
         ],
-        'continent_name' => [
-            'exists' => 'This continent already exists'
-        ],
-        'region_name' => [
-            'exists' => 'This region already exists at the chosen continent'
-        ],
         'country_name' => [
-            'exists' => 'This country already exists at the chosen region'
-        ],
-        'province_name' => [
-            'exists' => 'This province already exists at the chosen country'
-        ],
-        'city_name' => [
-            'exists' => 'This city already exists at the chosen province'
-        ],
-        'area_name' => [
-            'exists' => 'This area already exists at the chosen city'
-        ],
-        'neighborhood_name' => [
-            'exists' => 'This neighborhood already exists at the chosen area'
-        ],
-        'address' => [
-            'exists' => 'This address already exists at the chosen neighborhood'
+            'exists' => 'This country already exists'
         ],
         'owner' => [
             'required' => 'What entity does it belong to?'

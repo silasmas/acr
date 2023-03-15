@@ -178,29 +178,8 @@ return [
         'description' => [
             'exists' => 'This description already exists'
         ],
-        'continent_name' => [
-            'exists' => 'Ce continent existe déjà'
-        ],
-        'region_name' => [
-            'exists' => 'Cette région existe déjà dans le continent choisi'
-        ],
         'country_name' => [
-            'exists' => 'Ce pays existe déjà dans la région choisie'
-        ],
-        'province_name' => [
-            'exists' => 'Cette province existe déjà dans le pays choisi'
-        ],
-        'city_name' => [
-            'exists' => 'Cette ville existe déjà dans la province choisie'
-        ],
-        'area_name' => [
-            'exists' => 'Cette commune existe déjà dans la ville choisie'
-        ],
-        'neighborhood_name' => [
-            'exists' => 'Ce quartier existe déjà dans la commune choisie'
-        ],
-        'address' => [
-            'exists' => 'Cette adresse existe déjà dans le quartier choisi'
+            'exists' => 'Ce pays existe déjà'
         ],
         'owner' => [
             'required' => 'A quelle entité ça appartient ?'

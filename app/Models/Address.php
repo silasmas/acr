@@ -13,7 +13,7 @@ class Address extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['number', 'street', 'updated_at', 'type_id', 'neighborhood_id', 'area_id', 'user_id'];
+    protected $fillable = ['address_content', 'neighborhood', 'area', 'city', 'updated_at', 'type_id', 'country_id', 'user_id'];
 
     /**
      * ONE-TO-MANY
@@ -26,20 +26,11 @@ class Address extends Model
 
     /**
      * ONE-TO-MANY
-     * One neighborhood for several addresses
+     * One country for several addresses
      */
-    public function neighborhood()
+    public function country()
     {
-        return $this->belongsTo(Neighborhood::class);
-    }
-
-    /**
-     * ONE-TO-MANY
-     * One area for several addresses
-     */
-    public function area()
-    {
-        return $this->belongsTo(Area::class);
+        return $this->belongsTo(Country::class);
     }
 
     /**
