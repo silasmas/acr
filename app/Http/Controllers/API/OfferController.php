@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Offer;
-use App\Models\User;
-use Illuminate\Http\Request;
 use stdClass;
+use App\Models\User;
+use App\Models\Offer;
+use App\Models\Status;
+use App\Models\Notification;
+use Illuminate\Http\Request;
 use App\Http\Resources\Offer as ResourcesOffer;
 
 /**
@@ -34,6 +36,7 @@ class OfferController extends BaseController
      */
     public function store(Request $request)
     {
+        $status_unread = Status::where('status_name', 'Non lue')->first();
         // Get inputs
         $inputs = [
             'offer_name' => $request->offer_name,
@@ -94,6 +97,16 @@ class OfferController extends BaseController
                         $object->error_message = __('notifications.error_while_processing');
                         $object->offer = new ResourcesOffer($offer);
 
+                        /*
+                            HISTORY AND/OR NOTIFICATION MANAGEMENT
+                        */
+                        Notification::create([
+                            'notification_url' => 'account/offers',
+                            'notification_content' => __('notifications.error_while_processing'),
+                            'status_id' => $status_unread->id,
+                            'user_id' => $current_user->id,
+                        ]);        
+
                         return $this->handleResponse($object, __('notifications.create_offer_success'));
 
                     } else {
@@ -108,6 +121,16 @@ class OfferController extends BaseController
                             $object->error_message = __('notifications.process_failed');
                             $object->offer = new ResourcesOffer($offer);
 
+                            /*
+                                HISTORY AND/OR NOTIFICATION MANAGEMENT
+                            */
+                            Notification::create([
+                                'notification_url' => 'account/offers',
+                                'notification_content' => __('notifications.process_failed'),
+                                'status_id' => $status_unread->id,
+                                'user_id' => $current_user->id,
+                            ]);        
+
                             return $this->handleResponse($object, __('notifications.create_offer_success'));
 
                         } else {
@@ -118,6 +141,16 @@ class OfferController extends BaseController
                                 'order_number' => $jsonRes->orderNumber
                             ];
                             $object->offer = new ResourcesOffer($offer);
+
+                            /*
+                                HISTORY AND/OR NOTIFICATION MANAGEMENT
+                            */
+                            Notification::create([
+                                'notification_url' => 'account/offers',
+                                'notification_content' => __('notifications.processing_succeed'),
+                                'status_id' => $status_unread->id,
+                                'user_id' => $current_user->id,
+                            ]);        
 
                             return $this->handleResponse($object, __('notifications.create_offer_success'));
                         }

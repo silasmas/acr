@@ -154,5 +154,7 @@ Route::get('/communique', [HomeController::class, 'communique'])->name('communiq
 Route::get('/communique/{id}', [HomeController::class, 'communiqueDatas'])->whereNumber('id')->name('communique.datas');
 Route::get('/works', [HomeController::class, 'works'])->name('works');
 Route::get('/donate', [HomeController::class, 'donate'])->name('donate');
+// Account
+Route::get('/account/offers', [AccountController::class, 'offers'])->name('account.offers');
 
 require __DIR__.'/auth.php';

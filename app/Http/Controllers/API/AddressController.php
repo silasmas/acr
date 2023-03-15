@@ -42,6 +42,7 @@ class AddressController extends BaseController
             'country_id' => $request->country_id,
             'user_id' => $request->user_id
         ];
+
         // Check if user address already exist
         $user_address = Address::where([['type_id', $inputs['type_id']], ['user_id', $inputs['user_id']]])->first();
 
@@ -59,13 +60,12 @@ class AddressController extends BaseController
 
                 return $this->handleResponse(new ResourcesAddress($user_address), __('notifications.update_address_success'));
 
-            // Otherwise, create a new
-            } else {
-                $address = Address::create($inputs);
-
-                return $this->handleResponse(new ResourcesAddress($address), __('notifications.create_address_success'));
             }
         }
+
+        $address = Address::create($inputs);
+
+        return $this->handleResponse(new ResourcesAddress($address), __('notifications.create_address_success'));
     }
 
     /**
