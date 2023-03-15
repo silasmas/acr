@@ -61,11 +61,15 @@ class AddressController extends BaseController
                 return $this->handleResponse(new ResourcesAddress($user_address), __('notifications.update_address_success'));
 
             }
+
         }
 
-        $address = Address::create($inputs);
-
-        return $this->handleResponse(new ResourcesAddress($address), __('notifications.create_address_success'));
+        dd($user_address == null);
+        if ($user_address == null) {
+            $address = Address::create($inputs);
+    
+            return $this->handleResponse(new ResourcesAddress($address), __('notifications.create_address_success'));
+        }
     }
 
     /**

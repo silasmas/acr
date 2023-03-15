@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use stdClass;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
@@ -18,6 +19,13 @@ class User extends JsonResource
      */
     public function toArray($request)
     {
+        $image = new Image($this);
+        $user_images = Image::collection($this->images);
+
+        foreach ($user_images as $user_image):
+            $img = $user_image;
+        endforeach;
+
         return [
             'id' => $this->id,
             'national_number' => $this->national_number,
@@ -35,13 +43,14 @@ class User extends JsonResource
             'password' => $this->password,
             'remember_token' => $this->remember_token,
             'api_token' => $this->api_token,
-            'user_status' => $this->user_status,
+            'avatar_url' => $img->type->type_name == 'Avatar' ? (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/public/storage/' . $img->url_recto : null,
+            'identity_data' => $img->type->type_name == 'Pièce d\'identité' ? $img : null,
+            'status' => Status::make($this->status),
             'addresses' => Address::collection($this->addresses),
             'role_users' => RoleUser::collection($this->role_users),
             'offers' => Offer::collection($this->offers),
             'payments' => Payment::collection($this->payments),
             'notifications' => Notification::collection($this->notifications),
-            'images' => Image::collection($this->images),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s')
         ];

@@ -90,12 +90,23 @@ class UserController extends BaseController
             return $this->handleError(__('validation.custom.email_or_phone.required'));
         }
 
-        // Check if user phone already exists
-        foreach ($users as $another_user):
-            if ($another_user->phone == $inputs['phone']) {
-                return $this->handleError($inputs['phone'], __('validation.custom.phone.exists'), 400);
-            }
-        endforeach;
+        if ($inputs['email'] != null) {
+            // Check if user email already exists
+            foreach ($users as $another_user):
+                if ($another_user->email == $inputs['email']) {
+                    return $this->handleError($inputs['email'], __('validation.custom.email.exists'), 400);
+                }
+            endforeach;
+        }
+
+        if ($inputs['phone'] != null) {
+            // Check if user phone already exists
+            foreach ($users as $another_user):
+                if ($another_user->phone == $inputs['phone']) {
+                    return $this->handleError($inputs['phone'], __('validation.custom.phone.exists'), 400);
+                }
+            endforeach;
+        }
 
         if ($inputs['password'] != null) {
             if ($inputs['confirm_password'] != $inputs['password'] OR $inputs['confirm_password'] == null) {
