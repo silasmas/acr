@@ -158,6 +158,7 @@ return [
     'find_api_token_success' => 'API token found',
     'find_user_404' => 'User not found',
     'create_user_success' => 'User created',
+    'create_user_SMS_failed' => 'There is a problem with the SMS service',
     'update_user_success' => 'User updated',
     'update_password_success' => 'Password updated',
     'confirm_password_error' => 'Veuillez confirmer votre mot de passe',
