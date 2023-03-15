@@ -65,7 +65,7 @@ class OfferController extends BaseController
                         'amount' => $inputs['amount'],
                         'currency' => $request->currency,
                         'user_id' => $current_user->id,
-                        'callbackUrl' => 'https://acr.silasmas.com/api/payment/store'
+                        'callbackUrl' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/payment/store'
                     );
                     $data = json_encode($data);
                     $gateway = "http://41.243.7.46:3006/flexpay/api/rest/v1/paymentService";

@@ -50,6 +50,8 @@ class PaymentController extends BaseController
         $get_user_id = explode('-', $payment->reference)[2];
 
         if (is_numeric($get_user_id)) {
+            $get_user_id = (int) $get_user_id;
+
             $payment->update([
                 'user_id' => $get_user_id,
                 'updated_at' => now()
