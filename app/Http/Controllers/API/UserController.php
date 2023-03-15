@@ -140,7 +140,7 @@ class UserController extends BaseController
             /*
                 HISTORY AND/OR NOTIFICATION MANAGEMENT
             */
-            $status_unread = Status::where('status_name', 'Non lue');
+            $status_unread = Status::where('status_name', 'Non lue')->first();
             $admin_role = Role::where('role_name', 'Adminstrateur')->first();
             $member_role = Role::where('role_name', 'Membre')->first();
             $current_role = Role::find($request->role_id);
