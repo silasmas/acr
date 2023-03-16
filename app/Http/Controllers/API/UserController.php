@@ -780,6 +780,9 @@ class UserController extends BaseController
         $image_verso = str_replace($replace_verso, '', $inputs['image_64_verso']);
         $image_verso = str_replace(' ', '+', $image_verso);
 
+        // Clean avatars directory
+        $file = new Filesystem;
+        $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $inputs['user_id'] . '/others');
         // Create image URL
         $image_url_recto = 'images/users/' . $inputs['user_id'] . '/others/' . Str::random(50) . '.png';
         $image_url_verso = 'images/users/' . $inputs['user_id'] . '/others/' . Str::random(50) . '.png';
@@ -790,6 +793,11 @@ class UserController extends BaseController
 
         $image_type_group = Group::where('group_name', 'Type d\'image')->first();
         $others_type = Type::where([['type_name', 'Autres'], ['group_id', $image_type_group->id]])->first();
+        $user_others = Image::where([['user_id', $inputs['user_id']], ['type_id', $others_type->id]])->get();
+
+        foreach ($user_others as $other):
+            $other->delete();
+        endforeach;
 
         Image::create([
             'image_name' => $inputs['image_name'],
