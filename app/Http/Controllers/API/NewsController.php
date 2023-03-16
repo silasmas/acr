@@ -11,6 +11,7 @@ use App\Models\RoleUser;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\News as ResourcesNews;
@@ -209,6 +210,9 @@ class NewsController extends BaseController
         $image = str_replace($replace, '', $inputs['image_64']);
         $image = str_replace(' ', '+', $image);
 
+        // Clean avatars directory
+        $file = new Filesystem;
+        $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/news/' . $inputs['news_id']);
         // Create image URL
         $image_url = 'images/news/' . $inputs['news_id'] . '/' . Str::random(50) . '.png';
 
@@ -217,6 +221,11 @@ class NewsController extends BaseController
 
         $image_type_group = Group::where('group_name', 'Type d\'image')->first();
         $others_type = Type::where([['type_name', 'Autres'], ['group_id', $image_type_group->id]])->first();
+        $news_image = Image::where([['user_id', $inputs['user_id']], ['type_id', $others_type->id]])->first();
+
+        if ($news_image != null) {
+            $news_image->delete();
+        }
 
         Image::create([
             'url_recto' => $image_url,

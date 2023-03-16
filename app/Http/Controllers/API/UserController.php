@@ -733,11 +733,11 @@ class UserController extends BaseController
 
         $image_type_group = Group::where('group_name', 'Type d\'image')->first();
         $avatar_type = Type::where([['type_name', 'Avatar'], ['group_id', $image_type_group->id]])->first();
-        $user_avatars = Image::where([['user_id', $inputs['user_id']], ['type_id', $avatar_type->id]])->get();
+        $user_avatar = Image::where([['user_id', $inputs['user_id']], ['type_id', $avatar_type->id]])->first();
 
-        foreach ($user_avatars as $avatar):
-            $avatar->delete();
-        endforeach;
+        if ($user_avatar != null) {
+            $user_avatar->delete();
+        }
 
         Image::create([
             'url_recto' => $image_url,
@@ -784,27 +784,27 @@ class UserController extends BaseController
         $file = new Filesystem;
         $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $inputs['user_id'] . '/others');
         // Create image URL
-        $image_url_recto = 'images/users/' . $inputs['user_id'] . '/others/' . Str::random(50) . '.png';
-        $image_url_verso = 'images/users/' . $inputs['user_id'] . '/others/' . Str::random(50) . '.png';
+        $image_url_recto = 'images/users/' . $inputs['user_id'] . '/identity_data/' . Str::random(50) . '.png';
+        $image_url_verso = 'images/users/' . $inputs['user_id'] . '/identity_data/' . Str::random(50) . '.png';
 
         // Upload image
         Storage::url(Storage::disk('public')->put($image_url_recto, base64_decode($image_recto)));
         Storage::url(Storage::disk('public')->put($image_url_verso, base64_decode($image_verso)));
 
         $image_type_group = Group::where('group_name', 'Type d\'image')->first();
-        $others_type = Type::where([['type_name', 'Autres'], ['group_id', $image_type_group->id]])->first();
-        $user_others = Image::where([['user_id', $inputs['user_id']], ['type_id', $others_type->id]])->get();
+        $identity_data_type = Type::where([['type_name', 'Pièce d\'identité'], ['group_id', $image_type_group->id]])->first();
+        $user_identity_data = Image::where([['user_id', $inputs['user_id']], ['type_id', $identity_data_type->id]])->first();
 
-        foreach ($user_others as $other):
-            $other->delete();
-        endforeach;
+        if ($user_identity_data != null) {
+            $user_identity_data->delete();
+        }
 
         Image::create([
             'image_name' => $inputs['image_name'],
             'url_recto' => $image_url_recto,
             'url_verso' => $image_url_verso,
             'description' => $inputs['description'],
-            'type_id' => $others_type->id,
+            'type_id' => $identity_data_type->id,
             'user_id' => $inputs['user_id']
         ]);
 
