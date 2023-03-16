@@ -109,8 +109,6 @@ class OfferController extends BaseController
                         $jsonRes = json_decode($response);
                         $code = $jsonRes->code;
 
-                        dd($code);
-
                         if ($code != "0") {
                             /*
                                 HISTORY AND/OR NOTIFICATION MANAGEMENT
