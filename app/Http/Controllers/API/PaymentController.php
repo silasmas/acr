@@ -30,6 +30,7 @@ class PaymentController extends BaseController
      */
     public function store(Request $request)
     {
+        $user_id = is_numeric(explode('-', $request->reference)[2]) ? (int) explode('-', $request->reference)[2] : null;
         // Get inputs
         $inputs = [
             'reference' => $request->reference,
@@ -43,7 +44,7 @@ class PaymentController extends BaseController
             'created_at' => $request->createdAt,
             'type_id' => $request->type,
             'status_id' => $request->code,
-            'user_id' => (int) explode('-', $request->reference)[2],
+            'user_id' => $user_id,
         ];
 
         $payment = Payment::create($inputs);
