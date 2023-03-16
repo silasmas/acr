@@ -221,10 +221,12 @@ class NewsController extends BaseController
 
         $image_type_group = Group::where('group_name', 'Type d\'image')->first();
         $others_type = Type::where([['type_name', 'Autres'], ['group_id', $image_type_group->id]])->first();
-        $news_image = Image::where([['user_id', $inputs['user_id']], ['type_id', $others_type->id]])->first();
+        $news_images = Image::where([['user_id', $inputs['user_id']], ['type_id', $others_type->id]])->get();
 
-        if ($news_image != null) {
-            $news_image->delete();
+        if ($news_images != null) {
+            foreach ($news_images as $news_image):
+                $news_image->delete();
+            endforeach;
         }
 
         Image::create([

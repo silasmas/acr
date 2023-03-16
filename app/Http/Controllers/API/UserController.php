@@ -733,10 +733,12 @@ class UserController extends BaseController
 
         $image_type_group = Group::where('group_name', 'Type d\'image')->first();
         $avatar_type = Type::where([['type_name', 'Avatar'], ['group_id', $image_type_group->id]])->first();
-        $user_avatar = Image::where([['user_id', $inputs['user_id']], ['type_id', $avatar_type->id]])->first();
+        $user_avatars = Image::where([['user_id', $inputs['user_id']], ['type_id', $avatar_type->id]])->get();
 
-        if ($user_avatar != null) {
-            $user_avatar->delete();
+        if ($user_avatars != null) {
+            foreach ($user_avatars as $user_avatar):
+                $user_avatar->delete();
+            endforeach;
         }
 
         Image::create([
@@ -782,7 +784,7 @@ class UserController extends BaseController
 
         // Clean avatars directory
         $file = new Filesystem;
-        $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $inputs['user_id'] . '/others');
+        $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $inputs['user_id'] . '/identity_data');
         // Create image URL
         $image_url_recto = 'images/users/' . $inputs['user_id'] . '/identity_data/' . Str::random(50) . '.png';
         $image_url_verso = 'images/users/' . $inputs['user_id'] . '/identity_data/' . Str::random(50) . '.png';
