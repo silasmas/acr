@@ -20,10 +20,6 @@ class User extends JsonResource
     {
         $user_images = Image::collection($this->images);
 
-        foreach ($user_images as $user_image):
-            $img = $user_image;
-        endforeach;
-
         return [
             'id' => $this->id,
             'national_number' => $this->national_number,
@@ -41,8 +37,8 @@ class User extends JsonResource
             'password' => $this->password,
             'remember_token' => $this->remember_token,
             'api_token' => $this->api_token,
-            'avatar_url' => !empty($img) ? ($img->type->type_name == 'Avatar' ? (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/public/storage/' . $img->url_recto : null) : null,
-            'identity_data' => !empty($img) ? ($img->type->type_name == 'Pièce d\'identité' ? $img : null) : null,
+            'avatar_url' => $user_images[0]->type->type_name == 'Avatar' ? (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/public/storage/' . $user_images[0]->url_recto : null,
+            'identity_data' => $user_images[0]->type->type_name == 'Pièce d\'identité' ? $user_images[0] : null,
             'status' => Status::make($this->status),
             'addresses' => Address::collection($this->addresses),
             'role_users' => RoleUser::collection($this->role_users),

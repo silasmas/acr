@@ -793,10 +793,12 @@ class UserController extends BaseController
 
         $image_type_group = Group::where('group_name', 'Type d\'image')->first();
         $identity_data_type = Type::where([['type_name', 'Pièce d\'identité'], ['group_id', $image_type_group->id]])->first();
-        $user_identity_data = Image::where([['user_id', $inputs['user_id']], ['type_id', $identity_data_type->id]])->first();
+        $user_identity_datas = Image::where([['user_id', $inputs['user_id']], ['type_id', $identity_data_type->id]])->get();
 
-        if ($user_identity_data != null) {
-            $user_identity_data->delete();
+        if ($user_identity_datas != null) {
+            foreach ($user_identity_datas as $user_identity_data):
+                $user_identity_data->delete();
+            endforeach;
         }
 
         Image::create([

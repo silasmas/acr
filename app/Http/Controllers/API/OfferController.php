@@ -50,6 +50,8 @@ class OfferController extends BaseController
             return $this->handleError($inputs['type_id'], __('validation.required'), 400);
         }
 
+        dd(env('FLEXPAY_APP_KEY'));
+
         $offer = Offer::create($inputs);
 
         // If the amount is not given, there is no need to initiate the transaction
