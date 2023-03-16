@@ -48,7 +48,7 @@ class AddressController extends BaseController
 
         if ($user_address != null) {
             // If address already exists, update it
-            if ($user_address->neighborhood == $inputs['neighborhood'] AND $user_address->area == $inputs['area'] AND $user_address->city == $inputs['city']) {
+            if ($user_address->neighborhood != $inputs['neighborhood'] OR $user_address->area != $inputs['area'] OR $user_address->city != $inputs['city']) {
                 $user_address->update([
                     'address_content' => $inputs['address_content'],
                     'neighborhood' => $inputs['neighborhood'],
@@ -59,15 +59,12 @@ class AddressController extends BaseController
                 ]);
 
                 return $this->handleResponse(new ResourcesAddress($user_address), __('notifications.update_address_success'));
-
             }
-
         }
 
-        dd($user_address == null);
         if ($user_address == null) {
             $address = Address::create($inputs);
-    
+
             return $this->handleResponse(new ResourcesAddress($address), __('notifications.create_address_success'));
         }
     }

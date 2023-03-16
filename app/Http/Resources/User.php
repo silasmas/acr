@@ -19,7 +19,6 @@ class User extends JsonResource
      */
     public function toArray($request)
     {
-        $image = new Image($this);
         $user_images = Image::collection($this->images);
 
         foreach ($user_images as $user_image):
@@ -43,8 +42,8 @@ class User extends JsonResource
             'password' => $this->password,
             'remember_token' => $this->remember_token,
             'api_token' => $this->api_token,
-            'avatar_url' => $img->type->type_name == 'Avatar' ? (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/public/storage/' . $img->url_recto : null,
-            'identity_data' => $img->type->type_name == 'Pièce d\'identité' ? $img : null,
+            'avatar_url' => !empty($img) ? ($img->type->type_name == 'Avatar' ? (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/public/storage/' . $img->url_recto : null) : null,
+            'identity_data' => !empty($img) ? ($img->type->type_name == 'Pièce d\'identité' ? $img : null) : null,
             'status' => Status::make($this->status),
             'addresses' => Address::collection($this->addresses),
             'role_users' => RoleUser::collection($this->role_users),
