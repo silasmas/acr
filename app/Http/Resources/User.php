@@ -37,8 +37,26 @@ class User extends JsonResource
             'password' => $this->password,
             'remember_token' => $this->remember_token,
             'api_token' => $this->api_token,
-            'avatar_url' => $user_images[0]->type->type_name == 'Avatar' ? (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/public/storage/' . $user_images[0]->url_recto : null,
-            'identity_data' => $user_images[0]->type->type_name == 'Pièce d\'identité' ? $user_images[0] : null,
+            'avatar_url' => isset($user_images[0]) 
+                            ? ($user_images[0]->type->type_name == 'Avatar' 
+                                ? (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/public/storage/' . $user_images[0]->url_recto 
+                                : null
+                                ) 
+                            : 
+                                ($user_images[1]->type->type_name == 'Avatar' 
+                                ? (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/public/storage/' . $user_images[1]->url_recto 
+                                : null
+                                ),
+            'identity_data' => isset($user_images[0]) 
+                            ? ($user_images[0]->type->type_name == 'Pièce d\'identité' 
+                                ? $user_images[0]
+                                : null
+                                ) 
+                            : 
+                                ($user_images[1]->type->type_name == 'Pièce d\'identité' 
+                                ? $user_images[1] 
+                                : null
+                                ),
             'status' => Status::make($this->status),
             'addresses' => Address::collection($this->addresses),
             'role_users' => RoleUser::collection($this->role_users),
