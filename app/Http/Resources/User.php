@@ -18,7 +18,7 @@ class User extends JsonResource
      */
     public function toArray($request)
     {
-        $user_images = Image::collection($this->images);
+        // $user_images = Image::collection($this->images);
 
         return [
             'id' => $this->id,
@@ -37,26 +37,26 @@ class User extends JsonResource
             'password' => $this->password,
             'remember_token' => $this->remember_token,
             'api_token' => $this->api_token,
-            'avatar_url' => isset($user_images[0]) 
-                            ? ($user_images[0]->type->type_name == 'Avatar' 
-                                ? (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/public/storage/' . $user_images[0]->url_recto 
+            'avatar_url' => isset(Image::collection($this->images)[0]) 
+                            ? (Image::collection($this->images)[0]->type->type_name == 'Avatar' 
+                                ? (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/public/storage/' . Image::collection($this->images)[0]->url_recto 
                                 : null
                                 ) 
-                            : 
-                                ($user_images[1]->type->type_name == 'Avatar' 
-                                ? (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/public/storage/' . $user_images[1]->url_recto 
+                            : (isset(Image::collection($this->images)[1]) ? 
+                                (Image::collection($this->images)[1]->type->type_name == 'Avatar' 
+                                ? (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/public/storage/' . Image::collection($this->images)[1]->url_recto 
                                 : null
-                                ),
-            'identity_data' => isset($user_images[0]) 
-                            ? ($user_images[0]->type->type_name == 'Pièce d\'identité' 
-                                ? $user_images[0]
+                                ) : null),
+            'identity_data' => isset(Image::collection($this->images)[0]) 
+                            ? (Image::collection($this->images)[0]->type->type_name == 'Pièce d\'identité' 
+                                ? Image::collection($this->images)[0]
                                 : null
                                 ) 
-                            : 
-                                ($user_images[1]->type->type_name == 'Pièce d\'identité' 
-                                ? $user_images[1] 
+                            : (isset(Image::collection($this->images)[1]) ? 
+                                (Image::collection($this->images)[1]->type->type_name == 'Pièce d\'identité' 
+                                ? Image::collection($this->images)[1] 
                                 : null
-                                ),
+                                ) : null),
             'status' => Status::make($this->status),
             'addresses' => Address::collection($this->addresses),
             'role_users' => RoleUser::collection($this->role_users),
