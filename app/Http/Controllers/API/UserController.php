@@ -506,8 +506,8 @@ class UserController extends BaseController
         /*
             HISTORY AND/OR NOTIFICATION MANAGEMENT
         */
-        $status_ongoing = Status::where('status_name', 'En attente');
-        $status_unread = Status::where('status_name', 'Non lue');
+        $status_ongoing = Status::where('status_name', 'En attente')->first();
+        $status_unread = Status::where('status_name', 'Non lue')->first();
         $member_role = Role::where('role_name', 'Membre')->first();
         $user_roles = RoleUser::where('user_id', $user->id)->get();
         $is_ongoing = $user->status_id == $status_ongoing->id;
