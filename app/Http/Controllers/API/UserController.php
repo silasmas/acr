@@ -164,7 +164,7 @@ class UserController extends BaseController
 
         if ($request->role_id != null) {
             RoleUser::create([
-                'role_id' => $request->role_id,
+                'role_id' => $request->role_id, 
                 'user_id' => $user->id
             ]);
 
