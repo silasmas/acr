@@ -41,11 +41,6 @@ class OfferController extends BaseController
         $status_unread = Status::where('status_name', 'Non lue')->first();
         // Client used for accessing API | Use authorization key
         $client = new Client();
-        // Get header informations
-        $headers = [
-            'Authorization' => env('FLEXPAY_APP_KEY'),
-            'Accept' => 'application/json'
-        ];
         // $gateway = 'http://41.243.7.46:3006/flexpay/api/rest/v1/paymentService';
         $gateway = 'http://41.243.7.46:3006/api/rest/v1/paymentService';
         // Get inputs
@@ -73,7 +68,10 @@ class OfferController extends BaseController
                     try {
                         // Create response by sending request to FlexPay
                         $response = $client->request('POST', $gateway, [
-                            'headers' => $headers,
+                            'headers' => array(
+                                'Authorization' => env('FLEXPAY_APP_KEY'),
+                                'Accept' => 'application/json'
+                            ),
                             'form_params' => json_encode(array(
                                 'merchant' => env('FLEXPAY_MERCHANT'),
                                 'type' => $request->transaction_type_id,
@@ -154,7 +152,10 @@ class OfferController extends BaseController
                 try {
                     // Create response by sending request to FlexPay
                     $response = $client->request('POST', $gateway, [
-                        'headers' => $headers,
+                        'headers' => array(
+                            'Authorization' => env('FLEXPAY_APP_KEY'),
+                            'Accept' => 'application/json'
+                        ),
                         'form_params' => json_encode(array(
                             'merchant' => env('FLEXPAY_MERCHANT'),
                             'type' => $request->transaction_type_id,
