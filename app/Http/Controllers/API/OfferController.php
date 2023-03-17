@@ -74,7 +74,7 @@ class OfferController extends BaseController
                         // Create response by sending request to FlexPay
                         $response = $client->request('POST', $gateway, [
                             'headers' => $headers,
-                            'form_params' => [
+                            'form_params' => json_encode([
                                 'merchant' => env('FLEXPAY_MERCHANT'),
                                 'type' => $request->transaction_type_id,
                                 'phone' => $request->other_phone != null ? $request->other_phone : ltrim($current_user->phone, '+'),
@@ -82,7 +82,7 @@ class OfferController extends BaseController
                                 'amount' => $inputs['amount'],
                                 'currency' => $request->currency,
                                 'callbackUrl' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/payment/store'
-                            ],
+                            ]),
                             'verify'  => false
                         ]);
                         // Decode JSON from the created response

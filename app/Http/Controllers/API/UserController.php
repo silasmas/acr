@@ -757,39 +757,120 @@ class UserController extends BaseController
             'description' => $request->description
         ];
 
-        // $extension = explode('/', explode(':', substr($inputs['image_64_recto'], 0, strpos($inputs['image_64_recto'], ';')))[1])[1];
-        $replace_recto = substr($inputs['image_64_recto'], 0, strpos($inputs['image_64_recto'], ',') + 1);
-        $replace_verso = substr($inputs['image_64_verso'], 0, strpos($inputs['image_64_verso'], ',') + 1);
-        // Find substring from replace here eg: data:image/png;base64,
-        $image_recto = str_replace($replace_recto, '', $inputs['image_64_recto']);
-        $image_recto = str_replace(' ', '+', $image_recto);
-        $image_verso = str_replace($replace_verso, '', $inputs['image_64_verso']);
-        $image_verso = str_replace(' ', '+', $image_verso);
-
-        // Clean "identity_data" directory
-        $file = new Filesystem;
-        $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $inputs['user_id'] . '/identity_data');
-        // Create image URL
-        $image_url_recto = 'images/users/' . $inputs['user_id'] . '/identity_data/' . Str::random(50) . '.png';
-        $image_url_verso = 'images/users/' . $inputs['user_id'] . '/identity_data/' . Str::random(50) . '.png';
-
-        // Upload image 
-        Storage::url(Storage::disk('public')->put($image_url_recto, base64_decode($image_recto)));
-        Storage::url(Storage::disk('public')->put($image_url_verso, base64_decode($image_verso)));
-
         $user_identity_data = Image::where('user_id', $inputs['user_id'])->first();
 
         if ($user_identity_data != null) {
-            $user_identity_data->delete();
-        }
+            if ($inputs['image_64_recto'] != null AND $inputs['image_64_verso'] != null) {
+                // $extension = explode('/', explode(':', substr($inputs['image_64_recto'], 0, strpos($inputs['image_64_recto'], ';')))[1])[1];
+                $replace_recto = substr($inputs['image_64_recto'], 0, strpos($inputs['image_64_recto'], ',') + 1);
+                $replace_verso = substr($inputs['image_64_verso'], 0, strpos($inputs['image_64_verso'], ',') + 1);
+                // Find substring from replace here eg: data:image/png;base64,
+                $image_recto = str_replace($replace_recto, '', $inputs['image_64_recto']);
+                $image_recto = str_replace(' ', '+', $image_recto);
+                $image_verso = str_replace($replace_verso, '', $inputs['image_64_verso']);
+                $image_verso = str_replace(' ', '+', $image_verso);
 
-        Image::create([
-            'image_name' => $inputs['image_name'],
-            'url_recto' => $image_url_recto,
-            'url_verso' => $image_url_verso,
-            'description' => $inputs['description'],
-            'user_id' => $inputs['user_id']
-        ]);
+                // Clean "identity_data" directory
+                $file = new Filesystem;
+                $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $inputs['user_id'] . '/identity_data');
+                // Create image URL
+                $image_url_recto = 'images/users/' . $inputs['user_id'] . '/identity_data/' . Str::random(50) . '.png';
+                $image_url_verso = 'images/users/' . $inputs['user_id'] . '/identity_data/' . Str::random(50) . '.png';
+
+                // Upload image
+                Storage::url(Storage::disk('public')->put($image_url_recto, base64_decode($image_recto)));
+                Storage::url(Storage::disk('public')->put($image_url_verso, base64_decode($image_verso)));
+
+                $user_identity_data->delete();
+
+                Image::create([
+                    'image_name' => $inputs['image_name'],
+                    'url_recto' => $image_url_recto,
+                    'url_verso' => $image_url_verso,
+                    'description' => $inputs['description'],
+                    'user_id' => $inputs['user_id']
+                ]);
+            }
+
+            if ($inputs['image_64_recto'] != null AND $inputs['image_64_verso'] == null) {
+                // $extension = explode('/', explode(':', substr($inputs['image_64_recto'], 0, strpos($inputs['image_64_recto'], ';')))[1])[1];
+                $replace_recto = substr($inputs['image_64_recto'], 0, strpos($inputs['image_64_recto'], ',') + 1);
+                // Find substring from replace here eg: data:image/png;base64,
+                $image_recto = str_replace($replace_recto, '', $inputs['image_64_recto']);
+                $image_recto = str_replace(' ', '+', $image_recto);
+
+                // Delete concerning file in "identity_data"
+                if (Storage::exists($_SERVER['DOCUMENT_ROOT'] . '/public/storage/' . $user_identity_data->url_recto)){
+                    Storage::delete($_SERVER['DOCUMENT_ROOT'] . '/public/storage/' . $user_identity_data->url_recto);
+                }
+
+                // Create image URL
+                $image_url_recto = 'images/users/' . $inputs['user_id'] . '/identity_data/' . Str::random(50) . '.png';
+
+                // Upload image
+                Storage::url(Storage::disk('public')->put($image_url_recto, base64_decode($image_recto)));
+
+                $user_identity_data->update([
+                    'url_recto' => $image_url_recto,
+                    'updated_at' => now()
+                ]);
+            }
+
+            if ($inputs['image_64_recto'] == null AND $inputs['image_64_verso'] != null) {
+                // $extension = explode('/', explode(':', substr($inputs['image_64_verso'], 0, strpos($inputs['image_64_verso'], ';')))[1])[1];
+                $replace_verso = substr($inputs['image_64_verso'], 0, strpos($inputs['image_64_verso'], ',') + 1);
+                // Find substring from replace here eg: data:image/png;base64,
+                $image_verso = str_replace($replace_verso, '', $inputs['image_64_verso']);
+                $image_verso = str_replace(' ', '+', $image_verso);
+
+                // Delete concerning file in "identity_data"
+                if (Storage::exists($_SERVER['DOCUMENT_ROOT'] . '/public/storage/' . $user_identity_data->url_verso)){
+                    Storage::delete($_SERVER['DOCUMENT_ROOT'] . '/public/storage/' . $user_identity_data->url_verso);
+                }
+
+                // Create image URL
+                $image_url_verso = 'images/users/' . $inputs['user_id'] . '/identity_data/' . Str::random(50) . '.png';
+
+                // Upload image
+                Storage::url(Storage::disk('public')->put($image_url_verso, base64_decode($image_verso)));
+
+                $user_identity_data->update([
+                    'url_verso' => $image_url_verso,
+                    'updated_at' => now()
+                ]);
+            }
+
+        } else {
+            // $extension = explode('/', explode(':', substr($inputs['image_64_recto'], 0, strpos($inputs['image_64_recto'], ';')))[1])[1];
+            $replace_recto = substr($inputs['image_64_recto'], 0, strpos($inputs['image_64_recto'], ',') + 1);
+            $replace_verso = substr($inputs['image_64_verso'], 0, strpos($inputs['image_64_verso'], ',') + 1);
+            // Find substring from replace here eg: data:image/png;base64,
+            $image_recto = str_replace($replace_recto, '', $inputs['image_64_recto']);
+            $image_recto = str_replace(' ', '+', $image_recto);
+            $image_verso = str_replace($replace_verso, '', $inputs['image_64_verso']);
+            $image_verso = str_replace(' ', '+', $image_verso);
+
+            // Clean "identity_data" directory
+            $file = new Filesystem;
+            $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $inputs['user_id'] . '/identity_data');
+            // Create image URL
+            $image_url_recto = 'images/users/' . $inputs['user_id'] . '/identity_data/' . Str::random(50) . '.png';
+            $image_url_verso = 'images/users/' . $inputs['user_id'] . '/identity_data/' . Str::random(50) . '.png';
+
+            // Upload image
+            Storage::url(Storage::disk('public')->put($image_url_recto, base64_decode($image_recto)));
+            Storage::url(Storage::disk('public')->put($image_url_verso, base64_decode($image_verso)));
+
+            $user_identity_data->delete();
+
+            Image::create([
+                'image_name' => $inputs['image_name'],
+                'url_recto' => $image_url_recto,
+                'url_verso' => $image_url_verso,
+                'description' => $inputs['description'],
+                'user_id' => $inputs['user_id']
+            ]);
+        }
 
 		$user = User::find($id);
 
