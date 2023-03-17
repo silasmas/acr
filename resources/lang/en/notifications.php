@@ -35,6 +35,8 @@ return [
     // 500
     '500_title' => 'Internal error',
     '500_description' => 'Our server meets a problem. Please retry after some minutes!',
+    // Others
+    'expects_json' => 'The current request probably expects a JSON response.',
 
     // ===== ALERTS
     'no_record' => 'There is no recording!',
