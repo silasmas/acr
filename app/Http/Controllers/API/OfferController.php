@@ -69,8 +69,8 @@ class OfferController extends BaseController
                         'callbackUrl' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/payment/store'
                     );
                     $data = json_encode($data);
-                    // $gateway = 'http://41.243.7.46:3006/flexpay/api/rest/v1/paymentService';
-                    $gateway = 'http://41.243.7.46:3006/api/rest/v1/paymentService';
+                    $gateway = 'http://41.243.7.46:3006/flexpay/api/rest/v1/paymentService';
+                    // $gateway = 'http://41.243.7.46:3006/api/rest/v1/paymentService';
                     $ch = curl_init();
 
                     curl_setopt($ch, CURLOPT_URL, $gateway);
@@ -165,8 +165,8 @@ class OfferController extends BaseController
                     'callbackUrl' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/payment/store'
                 );
                 $data = json_encode($data);
-                // $gateway = 'http://41.243.7.46:3006/flexpay/api/rest/v1/paymentService';
-                $gateway = 'http://41.243.7.46:3006/api/rest/v1/paymentService';
+                $gateway = 'http://41.243.7.46:3006/flexpay/api/rest/v1/paymentService';
+                // $gateway = 'http://41.243.7.46:3006/api/rest/v1/paymentService';
                 $ch = curl_init();
 
                 curl_setopt($ch, CURLOPT_URL, $gateway);
