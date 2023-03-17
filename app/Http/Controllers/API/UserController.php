@@ -410,17 +410,20 @@ class UserController extends BaseController
 
     // ==================================== CUSTOM METHODS ====================================
     /**
-     * Search a user by his firstname / national number.
+     * Search a user by his email / phone / national number.
      *
-     * @param  int $visitor_user_id
      * @param  string $data
      * @return \Illuminate\Http\Response
      */
     public function search($data)
     {
-        $users = User::where('firstname', $data)->orWhere('national_number', $data)->get();
+        $user = User::where('email', $data)->orWhere('phone', $data)->orWhere('national_number', $data)->first();
 
-        return $this->handleResponse(ResourcesUser::collection($users), __('notifications.find_all_users_success'));
+        if (is_null($user)) {
+            return $this->handleError(__('notifications.find_user_404'));
+        }
+
+        return $this->handleResponse(new ResourcesUser($user), __('notifications.find_user_success'));
     }
 
     /**
