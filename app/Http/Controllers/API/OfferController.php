@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\API;
 
-use stdClass;
 use App\Models\User;
 use App\Models\Offer;
 use App\Models\Status;
 use App\Models\Notification;
+use stdClass;
 use Illuminate\Http\Request;
 use App\Http\Resources\Offer as ResourcesOffer;
 
