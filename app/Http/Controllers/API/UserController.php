@@ -773,7 +773,7 @@ class UserController extends BaseController
         $image_url_recto = 'images/users/' . $inputs['user_id'] . '/identity_data/' . Str::random(50) . '.png';
         $image_url_verso = 'images/users/' . $inputs['user_id'] . '/identity_data/' . Str::random(50) . '.png';
 
-        // Upload image
+        // Upload image 
         Storage::url(Storage::disk('public')->put($image_url_recto, base64_decode($image_recto)));
         Storage::url(Storage::disk('public')->put($image_url_verso, base64_decode($image_verso)));
 
