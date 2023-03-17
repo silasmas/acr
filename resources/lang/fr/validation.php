@@ -146,16 +146,18 @@ return [
         'email' => [
             'incorrect' => 'Ecrivez une adresse e-mail valide s\'il vous plait',
             'exists' => 'L\'adresse e-mail fournie existe déjà',
-            'user_or_company_or_office' => [
-                'required' => 'L\'utilisateur ou la société ou plutôt le bureau doit être défini'
-            ]
         ],
         'phone' => [
             'incorrect' => 'Ecrivez un n° de téléphone valide s\'il vous plait',
             'exists' => 'Le n° de téléphone fourni existe déjà',
-            'user_or_company_or_office' => [
-                'required' => 'L\'utilisateur ou la société ou plutôt le bureau doit être défini'
-            ]
+        ],
+        'former_password' => [
+            'empty' => 'Veuillez mettre votre ancien mot de passe !',
+            'incorrect' => 'L\'ancien mot de passe est incorrect',
+        ],
+        'new_password' => [
+            'empty' => 'Veuillez entrer votre nouveau mot de passe !',
+            'incorrect' => 'Le nouveau mot de passe doit respecter nos conditions',
         ],
         'email_or_phone' => [
             'required' => 'L\'adresse e-mail ou le n° de téléphone doit être défini'

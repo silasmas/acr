@@ -124,7 +124,9 @@ class LegalInfoSubjectController extends BaseController
      */
     public function aboutApp()
     {
-        $legal_info_subject = LegalInfoSubject::where('subject_name', 'L\'application ACR')->get();
+        $legal_info_subject = LegalInfoSubject::where('subject_name', 'L\'application ACR')->first();
+
+        dd($legal_info_subject);
 
         if (is_null($legal_info_subject)) {
             return $this->handleError(__('notifications.find_legal_info_subject_404'));
@@ -140,7 +142,7 @@ class LegalInfoSubjectController extends BaseController
      */
     public function aboutParty()
     {
-        $legal_info_subject = LegalInfoSubject::where('subject_name', 'A propos du parti ACR')->get();
+        $legal_info_subject = LegalInfoSubject::where('subject_name', 'A propos du parti ACR')->first();
 
         if (is_null($legal_info_subject)) {
             return $this->handleError(__('notifications.find_legal_info_subject_404'));
@@ -156,7 +158,7 @@ class LegalInfoSubjectController extends BaseController
      */
     public function terms()
     {
-        $legal_info_subject = LegalInfoSubject::where('subject_name', 'Conditions d\'utilisation')->get();
+        $legal_info_subject = LegalInfoSubject::where('subject_name', 'Conditions d\'utilisation')->first();
 
         if (is_null($legal_info_subject)) {
             return $this->handleError(__('notifications.find_legal_info_subject_404'));
@@ -172,7 +174,7 @@ class LegalInfoSubjectController extends BaseController
      */
     public function privacyPolicy()
     {
-        $legal_info_subject = LegalInfoSubject::where('subject_name', 'Politique de confidentialité')->get();
+        $legal_info_subject = LegalInfoSubject::where('subject_name', 'Politique de confidentialité')->first();
 
         if (is_null($legal_info_subject)) {
             return $this->handleError(__('notifications.find_legal_info_subject_404'));
@@ -188,7 +190,7 @@ class LegalInfoSubjectController extends BaseController
      */
     public function helpCenter()
     {
-        $legal_info_subject = LegalInfoSubject::where('subject_name', 'Centre d\'assistance et d\'aide')->get();
+        $legal_info_subject = LegalInfoSubject::where('subject_name', 'Centre d\'assistance et d\'aide')->first();
 
         if (is_null($legal_info_subject)) {
             return $this->handleError(__('notifications.find_legal_info_subject_404'));
@@ -204,7 +206,7 @@ class LegalInfoSubjectController extends BaseController
      */
     public function faq()
     {
-        $legal_info_subject = LegalInfoSubject::where('subject_name', 'FAQ')->get();
+        $legal_info_subject = LegalInfoSubject::where('subject_name', 'FAQ')->first();
 
         if (is_null($legal_info_subject)) {
             return $this->handleError(__('notifications.find_legal_info_subject_404'));

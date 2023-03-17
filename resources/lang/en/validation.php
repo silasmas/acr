@@ -146,16 +146,18 @@ return [
         'email' => [
             'incorrect' => 'Write a valid e-mail address please',
             'exists' => 'The provided e-mail address already exists',
-            'user_or_company_or_office' => [
-                'required' => 'The user or the company or rather the office must be defined'
-            ]
         ],
         'phone' => [
             'incorrect' => 'Write a valid phone number please',
             'exists' => 'The provided phone number already exists',
-            'user_or_company_or_office' => [
-                'required' => 'The user or the company or rather the office must be defined'
-            ]
+        ],
+        'former_password' => [
+            'empty' => 'Please enter your old password!',
+            'incorrect' => 'The former password is incorrect',
+        ],
+        'new_password' => [
+            'empty' => 'Please enter your new password!',
+            'incorrect' => 'The new password must respect our conditions',
         ],
         'email_or_phone' => [
             'required' => 'The email address or the phone number must be defined'
