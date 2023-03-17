@@ -61,18 +61,6 @@ class NewsController extends BaseController
 
         $news = News::create($inputs);
 
-        // In case user want to add URL like Youtube for example
-        if ($request->image_url) {
-            $image_type_group = Group::where('group_name', 'Type d\'image')->first();
-            $others_type = Type::where('group_id', $image_type_group->id)->first();
-
-            Image::create([
-                'image_url' => $request->image_url,
-                'type_id' => $others_type->id,
-                'news_id' => $news->id
-            ]);
-        }
-
         /*
             HISTORY AND/OR NOTIFICATION MANAGEMENT
         */
