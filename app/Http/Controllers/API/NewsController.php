@@ -139,7 +139,33 @@ class NewsController extends BaseController
             return $this->handleError($validator->errors());       
         }
 
-        $news->update($inputs);
+        if ($inputs['news_title'] != null) {
+            $news->update([
+                'news_title' => $request->news_title,
+                'updated_at' => now(),
+            ]);
+        }
+
+        if ($inputs['news_content'] != null) {
+            $news->update([
+                'news_content' => $request->news_content,
+                'updated_at' => now(),
+            ]);
+        }
+
+        if ($inputs['video_url'] != null) {
+            $news->update([
+                'video_url' => $request->video_url,
+                'updated_at' => now(),
+            ]);
+        }
+
+        if ($inputs['type_id'] != null) {
+            $news->update([
+                'type_id' => $request->type_id,
+                'updated_at' => now(),
+            ]);
+        }
 
         /*
             HISTORY AND/OR NOTIFICATION MANAGEMENT
@@ -210,7 +236,7 @@ class NewsController extends BaseController
         $image = str_replace($replace, '', $inputs['image_64']);
         $image = str_replace(' ', '+', $image);
 
-        // Clean avatars directory
+        // Clean "[news_id]" directory
         $file = new Filesystem;
         $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/news/' . $inputs['news_id']);
         // Create image URL
@@ -219,25 +245,10 @@ class NewsController extends BaseController
         // Upload image
         Storage::url(Storage::disk('public')->put($image_url, base64_decode($image)));
 
-        $image_type_group = Group::where('group_name', 'Type d\'image')->first();
-        $others_type = Type::where([['type_name', 'Autres'], ['group_id', $image_type_group->id]])->first();
-        $news_images = Image::where([['user_id', $inputs['user_id']], ['type_id', $others_type->id]])->get();
-
-        if ($news_images != null) {
-            foreach ($news_images as $news_image):
-                $news_image->delete();
-            endforeach;
-        }
-
-        Image::create([
-            'url_recto' => $image_url,
-            'type_id' => $others_type->id,
-            'news_id' => $inputs['news_id']
-        ]);
-
 		$news = News::find($id);
 
         $news->update([
+            'photo_url' => $image_url,
             'updated_at' => now()
         ]);
 

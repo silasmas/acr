@@ -118,15 +118,98 @@ class LegalInfoSubjectController extends BaseController
 
     // ==================================== CUSTOM METHODS ====================================
     /**
-     * Search a subject about the party operation by its name.
+     * Search "L'application ACR" subject.
      *
-     * @param  string $data
      * @return \Illuminate\Http\Response
      */
-    public function search($data)
+    public function aboutApp()
     {
-        $legal_info_subjects = LegalInfoSubject::where('subject_name', $data)->get();
+        $legal_info_subject = LegalInfoSubject::where('subject_name', 'L\'application ACR')->get();
 
-        return $this->handleResponse(ResourcesLegalInfoSubject::collection($legal_info_subjects), __('notifications.find_all_legal_info_subjects_success'));
+        if (is_null($legal_info_subject)) {
+            return $this->handleError(__('notifications.find_legal_info_subject_404'));
+        }
+
+        return $this->handleResponse(new ResourcesLegalInfoSubject($legal_info_subject), __('notifications.find_legal_info_subject_success'));
+    }
+
+    /**
+     * Search "A propos du parti ACR" subject.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function aboutParty()
+    {
+        $legal_info_subject = LegalInfoSubject::where('subject_name', 'A propos du parti ACR')->get();
+
+        if (is_null($legal_info_subject)) {
+            return $this->handleError(__('notifications.find_legal_info_subject_404'));
+        }
+
+        return $this->handleResponse(new ResourcesLegalInfoSubject($legal_info_subject), __('notifications.find_legal_info_subject_success'));
+    }
+
+    /**
+     * Search "Conditions d'utilisation" subject.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function terms()
+    {
+        $legal_info_subject = LegalInfoSubject::where('subject_name', 'Conditions d\'utilisation')->get();
+
+        if (is_null($legal_info_subject)) {
+            return $this->handleError(__('notifications.find_legal_info_subject_404'));
+        }
+
+        return $this->handleResponse(new ResourcesLegalInfoSubject($legal_info_subject), __('notifications.find_legal_info_subject_success'));
+    }
+
+    /**
+     * Search "Politique de confidentialité" subject.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function privacyPolicy()
+    {
+        $legal_info_subject = LegalInfoSubject::where('subject_name', 'Politique de confidentialité')->get();
+
+        if (is_null($legal_info_subject)) {
+            return $this->handleError(__('notifications.find_legal_info_subject_404'));
+        }
+
+        return $this->handleResponse(new ResourcesLegalInfoSubject($legal_info_subject), __('notifications.find_legal_info_subject_success'));
+    }
+
+    /**
+     * Search "Centre d'assistance et d'aide" subject.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function helpCenter()
+    {
+        $legal_info_subject = LegalInfoSubject::where('subject_name', 'Centre d\'assistance et d\'aide')->get();
+
+        if (is_null($legal_info_subject)) {
+            return $this->handleError(__('notifications.find_legal_info_subject_404'));
+        }
+
+        return $this->handleResponse(new ResourcesLegalInfoSubject($legal_info_subject), __('notifications.find_legal_info_subject_success'));
+    }
+
+    /**
+     * Search "FAQ" subject.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function faq()
+    {
+        $legal_info_subject = LegalInfoSubject::where('subject_name', 'FAQ')->get();
+
+        if (is_null($legal_info_subject)) {
+            return $this->handleError(__('notifications.find_legal_info_subject_404'));
+        }
+
+        return $this->handleResponse(new ResourcesLegalInfoSubject($legal_info_subject), __('notifications.find_legal_info_subject_success'));
     }
 }

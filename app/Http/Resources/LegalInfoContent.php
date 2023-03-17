@@ -22,7 +22,8 @@ class LegalInfoContent extends JsonResource
             'id' => $this->id,
             'subtitle' => $this->subtitle,
             'content' => $this->content,
-            'images' => Image::collection($this->images),
+            'photo_url' => $this->photo_url,
+            'video_url' => $this->video_url,
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
             'legal_info_title_id' => $this->legal_info_title_id

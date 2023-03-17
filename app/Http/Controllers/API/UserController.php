@@ -3,14 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\Address;
-use App\Models\Group;
 use App\Models\Image;
 use App\Models\Notification;
 use App\Models\PasswordReset;
 use App\Models\Role;
 use App\Models\RoleUser;
 use App\Models\Status;
-use App\Models\Type;
 use App\Models\User;
 use Nette\Utils\Random;
 use Illuminate\Support\Str;
@@ -70,7 +68,7 @@ class UserController extends BaseController
         ];
         $users = User::all();
         $password_reset = null;
-        // $basic  = new \Vonage\Client\Credentials\Basic('89e3b822', 'f3cbb6cbe1217dd0Moses');
+        // $basic  = new \Vonage\Client\Credentials\Basic(env('VONAGE_API_KEY'), env('VONAGE_API_SECRET'));
         // $client = new \Vonage\Client($basic);
 
         // Validate required fields
@@ -260,7 +258,6 @@ class UserController extends BaseController
     {
         // Get inputs
         $inputs = [
-            'id' => $request->id,
             'national_number' => $request->national_number,
             'firstname' => $request->firstname,
             'lastname' => $request->lastname,
@@ -273,8 +270,7 @@ class UserController extends BaseController
             'email' => $request->email,
             'phone' => $request->phone,
             'password' => $request->password,
-            'confirm_password' => $request->confirm_password,
-            'updated_at' => now(),
+            'confirm_password' => $request->confirm_password
         ];
 
         if ($inputs['national_number'] != null) {
@@ -722,34 +718,19 @@ class UserController extends BaseController
         $image = str_replace($replace, '', $inputs['image_64']);
         $image = str_replace(' ', '+', $image);
 
-        // Clean avatars directory
+        // Clean "avatars" directory
         $file = new Filesystem;
-        $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $inputs['user_id'] . '/avatars');
+        $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $inputs['user_id'] . '/avatar');
         // Create image URL
-		$image_url = 'images/users/' . $inputs['user_id'] . '/avatars/' . Str::random(50) . '.png';
+		$image_url = 'images/users/' . $inputs['user_id'] . '/avatar/' . Str::random(50) . '.png';
 
 		// Upload image
 		Storage::url(Storage::disk('public')->put($image_url, base64_decode($image)));
 
-        $image_type_group = Group::where('group_name', 'Type d\'image')->first();
-        $avatar_type = Type::where([['type_name', 'Avatar'], ['group_id', $image_type_group->id]])->first();
-        $user_avatars = Image::where([['user_id', $inputs['user_id']], ['type_id', $avatar_type->id]])->get();
-
-        if ($user_avatars != null) {
-            foreach ($user_avatars as $user_avatar):
-                $user_avatar->delete();
-            endforeach;
-        }
-
-        Image::create([
-            'url_recto' => $image_url,
-            'type_id' => $avatar_type->id,
-            'user_id' => $inputs['user_id']
-        ]);
-
 		$user = User::find($id);
 
         $user->update([
+            'avatar_url' => $image_url,
             'updated_at' => now()
         ]);
 
@@ -782,7 +763,7 @@ class UserController extends BaseController
         $image_verso = str_replace($replace_verso, '', $inputs['image_64_verso']);
         $image_verso = str_replace(' ', '+', $image_verso);
 
-        // Clean avatars directory
+        // Clean "identity_data" directory
         $file = new Filesystem;
         $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $inputs['user_id'] . '/identity_data');
         // Create image URL
@@ -793,14 +774,10 @@ class UserController extends BaseController
         Storage::url(Storage::disk('public')->put($image_url_recto, base64_decode($image_recto)));
         Storage::url(Storage::disk('public')->put($image_url_verso, base64_decode($image_verso)));
 
-        $image_type_group = Group::where('group_name', 'Type d\'image')->first();
-        $identity_data_type = Type::where([['type_name', 'Pièce d\'identité'], ['group_id', $image_type_group->id]])->first();
-        $user_identity_datas = Image::where([['user_id', $inputs['user_id']], ['type_id', $identity_data_type->id]])->get();
+        $user_identity_data = Image::where('user_id', $inputs['user_id'])->first();
 
-        if ($user_identity_datas != null) {
-            foreach ($user_identity_datas as $user_identity_data):
-                $user_identity_data->delete();
-            endforeach;
+        if ($user_identity_data != null) {
+            $user_identity_data->delete();
         }
 
         Image::create([
@@ -808,7 +785,6 @@ class UserController extends BaseController
             'url_recto' => $image_url_recto,
             'url_verso' => $image_url_verso,
             'description' => $inputs['description'],
-            'type_id' => $identity_data_type->id,
             'user_id' => $inputs['user_id']
         ]);
 

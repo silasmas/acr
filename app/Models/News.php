@@ -16,7 +16,7 @@ class News extends Model
 
     // const SEARCHABLE_FIELDS = ['news_title', 'news_content'];
 
-    protected $fillable = ['news_title', 'news_content', 'video_url', 'updated_at', 'type_id'];
+    protected $fillable = ['news_title', 'news_content', 'photo_url', 'video_url', 'updated_at', 'type_id'];
 
     /**
      * Get the indexable data array for the model.
@@ -35,14 +35,5 @@ class News extends Model
     public function type()
     {
         return $this->belongsTo(Type::class);
-    }
-
-    /**
-     * MANY-TO-ONE
-     * Several images for a news
-     */
-    public function images()
-    {
-        return $this->hasMany(Image::class);
     }
 }

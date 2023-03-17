@@ -3,13 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\LegalInfoContent;
-use App\Models\Image;
-use App\Models\Group;
-use App\Models\Type;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\LegalInfoContent as ResourcesLegalInfoContent;
 
 /**
@@ -42,6 +39,7 @@ class LegalInfoContentController extends BaseController
         $inputs = [
             'subtitle' => $request->subtitle,
             'content' => $request->content,
+            'video_url' => $request->video_url,
             'legal_info_title_id' => $request->legal_info_title_id
         ];
         // Select all contents of a same title to check unique constraint
@@ -99,12 +97,9 @@ class LegalInfoContentController extends BaseController
             'id' => $request->id,
             'subtitle' => $request->subtitle,
             'content' => $request->content,
-            'legal_info_title_id' => $request->legal_info_title_id,
-            'updated_at' => now()
+            'video_url' => $request->video_url,
+            'legal_info_title_id' => $request->legal_info_title_id
         ];
-        // Select all contents of a same title and current content to check unique constraint
-        $legal_info_contents = LegalInfoContent::where('legal_info_title_id', $inputs['legal_info_title_id'])->get();
-        $current_legal_info_content = LegalInfoContent::find($inputs['id']);
 
         // Validate required fields
         if ($inputs['content'] == null OR $inputs['content'] == ' ') {
@@ -115,15 +110,45 @@ class LegalInfoContentController extends BaseController
             return $this->handleError($inputs['legal_info_title_id'], __('validation.required'), 400);
         }
 
-        foreach ($legal_info_contents as $another_legal_info_content):
-            if ($current_legal_info_content->content != $inputs['content']) {
-                if ($another_legal_info_content->content == $inputs['content']) {
-                    return $this->handleError($inputs['content'], __('validation.custom.content.exists'), 400);
-                }
-            }
-        endforeach;
+        if ($inputs['subtitle'] != null) {
+            $legal_info_content->update([
+                'subtitle' => $request->subtitle,
+                'updated_at' => now(),
+            ]);
+        }
 
-        $legal_info_content->update($inputs);
+        if ($inputs['content'] != null) {
+            // Select all contents of a same title and current content to check unique constraint
+            $legal_info_contents = LegalInfoContent::where('legal_info_title_id', $inputs['legal_info_title_id'])->get();
+            $current_legal_info_content = LegalInfoContent::find($inputs['id']);
+
+            foreach ($legal_info_contents as $another_legal_info_content):
+                if ($current_legal_info_content->content != $inputs['content']) {
+                    if ($another_legal_info_content->content == $inputs['content']) {
+                        return $this->handleError($inputs['content'], __('validation.custom.content.exists'), 400);
+                    }
+                }
+            endforeach;
+
+            $legal_info_content->update([
+                'content' => $request->content,
+                'updated_at' => now(),
+            ]);
+        }
+
+        if ($inputs['video_url'] != null) {
+            $legal_info_content->update([
+                'video_url' => $request->video_url,
+                'updated_at' => now(),
+            ]);
+        }
+
+        if ($inputs['legal_info_title_id'] != null) {
+            $legal_info_content->update([
+                'legal_info_title_id' => $request->legal_info_title_id,
+                'updated_at' => now(),
+            ]);
+        }
 
         return $this->handleResponse(new ResourcesLegalInfoContent($legal_info_content), __('notifications.update_legal_info_content_success'));
     }
@@ -171,175 +196,25 @@ class LegalInfoContentController extends BaseController
             'image_64' => $request->base64image
         ];
 
-        if ($inputs['image_64'] != null) {
-            // $extension = explode('/', explode(':', substr($inputs['image_64'], 0, strpos($inputs['image_64'], ';')))[1])[1];
-            $replace = substr($inputs['image_64'], 0, strpos($inputs['image_64'], ',') + 1);
-            // Find substring from replace here eg: data:image/png;base64,
-            $image = str_replace($replace, '', $inputs['image_64']);
-            $image = str_replace(' ', '+', $image);
+        // $extension = explode('/', explode(':', substr($inputs['image_64'], 0, strpos($inputs['image_64'], ';')))[1])[1];
+        $replace = substr($inputs['image_64'], 0, strpos($inputs['image_64'], ',') + 1);
+        // Find substring from replace here eg: data:image/png;base64,
+        $image = str_replace($replace, '', $inputs['image_64']);
+        $image = str_replace(' ', '+', $image);
 
-            // Create image URL
-            $image_url = 'images/users/' . $inputs['user_id'] . '/others/' . Str::random(50) . '.png';
+        // Clean "abouts" directory
+        $file = new Filesystem;
+        $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/abouts/' . $inputs['legal_info_content_id']);
+        // Create image URL
+        $image_url = 'images/abouts/' . $inputs['legal_info_content_id'] . '/' . Str::random(50) . '.png';
 
-            // Upload image
-            Storage::url(Storage::disk('public')->put($image_url, base64_decode($image)));
-
-            $image_type_group = Group::where('group_name', 'Type d\'image')->first();
-
-            // If the group to classify image types doesn't exists, create it before register image URL into the database
-            if ($image_type_group == null) {
-                $group = Group::create([
-                    'group_name' => 'Type d\'image',
-                    'group_description' => 'Grouper les types qui serviront à gérer les images.'
-                ]);
-                $others_type = Type::where('group_name', $group->id)->first();
-
-                if ($others_type == null) {
-                    $type = Type::create([
-                        'type_name' => 'Autres',
-                        'type_description' => 'Autres types d\'image (Scan de carte d\'électeur, d\'identité, etc.)',
-                        'group_id' => $group->id
-                    ]);
-
-                    Image::create([
-                        'image_url' => '/' . $image_url,
-                        'type_id' => $type->id,
-                        'user_id' => $inputs['user_id']
-                    ]);
-
-                } else {
-                    $others_type = Type::create([
-                        'type_name' => 'Autres',
-                        'type_description' => 'Autres types d\'image (Scan de carte d\'électeur, d\'identité, etc.)',
-                        'group_id' => $group->id
-                    ]);
-
-                    Image::create([
-                        'image_url' => '/' . $image_url,
-                        'type_id' => $others_type->id,
-                        'user_id' => $inputs['user_id']
-                    ]);
-                }
-
-            } else {
-                $others_type = Type::where('group_name', $image_type_group->id)->first();
-
-                if ($others_type == null) {
-                    $type = Type::create([
-                        'type_name' => 'Autres',
-                        'type_description' => 'Autres types d\'image (Scan de carte d\'électeur, d\'identité, etc.)',
-                        'group_id' => $image_type_group->id
-                    ]);
-
-                    Image::create([
-                        'image_url' => '/' . $image_url,
-                        'type_id' => $type->id,
-                        'user_id' => $inputs['user_id']
-                    ]);
-
-                } else {
-                    $others_type = Type::create([
-                        'type_name' => 'Autres',
-                        'type_description' => 'Autres types d\'image (Scan de carte d\'électeur, d\'identité, etc.)',
-                        'group_id' => $image_type_group->id
-                    ]);
-
-                    Image::create([
-                        'image_url' => '/' . $image_url,
-                        'type_id' => $others_type->id,
-                        'user_id' => $inputs['user_id']
-                    ]);
-                }
-            }
-
-        } else {
-            // Validate required file and its mime type
-            $validator = Validator::make($inputs, [
-                'image' => 'required|mimes:jpg,jpeg,png,gif,mp4,ogx,oga,ogv,ogg,webm'
-            ]);
-
-            if ($validator->fails()) {
-                return $this->handleError($validator->errors());       
-            }
-
-            // Create image URL
-			$image_url = 'images/users/' . $inputs['user_id'] . '/others/' . Str::random(50) . '.' . $request->file('image')->extension();
-
-			// Upload image
-			Storage::url(Storage::disk('public')->put($image_url, $request->file('image')));
-
-            $image_type_group = Group::where('group_name', 'Type d\'image')->first();
-
-            // If the group to classify image types doesn't exists, create it before register image URL into the database
-            if ($image_type_group == null) {
-                $group = Group::create([
-                    'group_name' => 'Type d\'image',
-                    'group_description' => 'Grouper les types qui serviront à gérer les images.'
-                ]);
-                $others_type = Type::where('group_name', $group->id)->first();
-
-                if ($others_type == null) {
-                    $type = Type::create([
-                        'type_name' => 'Autres',
-                        'type_description' => 'Autres types d\'image (Scan de carte d\'électeur, d\'identité, etc.)',
-                        'group_id' => $group->id
-                    ]);
-
-                    Image::create([
-                        'image_url' => '/' . $image_url,
-                        'type_id' => $type->id,
-                        'user_id' => $inputs['user_id']
-                    ]);
-
-                } else {
-                    $others_type = Type::create([
-                        'type_name' => 'Autres',
-                        'type_description' => 'Autres types d\'image (Scan de carte d\'électeur, d\'identité, etc.)',
-                        'group_id' => $group->id
-                    ]);
-
-                    Image::create([
-                        'image_url' => '/' . $image_url,
-                        'type_id' => $others_type->id,
-                        'user_id' => $inputs['user_id']
-                    ]);
-                }
-
-            } else {
-                $others_type = Type::where('group_name', $image_type_group->id)->first();
-
-                if ($others_type == null) {
-                    $type = Type::create([
-                        'type_name' => 'Autres',
-                        'type_description' => 'Autres types d\'image (Scan de carte d\'électeur, d\'identité, etc.)',
-                        'group_id' => $image_type_group->id
-                    ]);
-
-                    Image::create([
-                        'image_url' => '/' . $image_url,
-                        'type_id' => $type->id,
-                        'user_id' => $inputs['user_id']
-                    ]);
-
-                } else {
-                    $others_type = Type::create([
-                        'type_name' => 'Autres',
-                        'type_description' => 'Autres types d\'image (Scan de carte d\'électeur, d\'identité, etc.)',
-                        'group_id' => $image_type_group->id
-                    ]);
-
-                    Image::create([
-                        'image_url' => '/' . $image_url,
-                        'type_id' => $others_type->id,
-                        'user_id' => $inputs['user_id']
-                    ]);
-                }
-            }
-        }
+        // Upload image
+        Storage::url(Storage::disk('public')->put($image_url, base64_decode($image)));
 
 		$legal_info_content = LegalInfoContent::find($id);
 
         $legal_info_content->update([
+            'photo_url' => $image_url,
             'updated_at' => now()
         ]);
 

@@ -16,7 +16,7 @@ class LegalInfoContent extends Model
 
     // const SEARCHABLE_FIELDS = ['content'];
 
-    protected $fillable = ['subtitle', 'content', 'updated_at', 'legal_info_title_id'];
+    protected $fillable = ['subtitle', 'content', 'photo_url', 'video_url', 'updated_at', 'legal_info_title_id'];
 
     /**
      * Get the indexable data array for the model.
@@ -35,14 +35,5 @@ class LegalInfoContent extends Model
     public function legal_info_title()
     {
         return $this->belongsTo(LegalInfoTitle::class);
-    }
-
-    /**
-     * MANY-TO-ONE
-     * Several images for a legal info content
-     */
-    public function images()
-    {
-        return $this->hasMany(Image::class);
     }
 }

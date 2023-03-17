@@ -52,7 +52,6 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     Route::resource('group', 'App\Http\Controllers\API\GroupController');
     Route::resource('status', 'App\Http\Controllers\API\StatusController');
     Route::resource('type', 'App\Http\Controllers\API\TypeController');
-    Route::resource('image', 'App\Http\Controllers\API\ImageController');
     Route::resource('country', 'App\Http\Controllers\API\CountryController');
     Route::resource('role', 'App\Http\Controllers\API\RoleController');
     Route::resource('user', 'App\Http\Controllers\API\UserController');
@@ -63,7 +62,12 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     Route::resource('payment', 'App\Http\Controllers\API\PaymentController');
 
     // LegalInfoSubject
-    Route::get('legal_info_subject/search/{data}', 'App\Http\Controllers\API\LegalInfoSubjectController@search')->name('legal_info_subject.search');
+    Route::get('legal_info_subject/about_app', 'App\Http\Controllers\API\LegalInfoSubjectController@aboutApp')->name('legal_info_subject.about_app');
+    Route::get('legal_info_subject/about_party', 'App\Http\Controllers\API\LegalInfoSubjectController@aboutParty')->name('legal_info_subject.about_party');
+    Route::get('legal_info_subject/terms', 'App\Http\Controllers\API\LegalInfoSubjectController@terms')->name('legal_info_subject.terms');
+    Route::get('legal_info_subject/privacy_policy', 'App\Http\Controllers\API\LegalInfoSubjectController@privacyPolicy')->name('legal_info_subject.privacy_policy');
+    Route::get('legal_info_subject/help_center', 'App\Http\Controllers\API\LegalInfoSubjectController@helpCenter')->name('legal_info_subject.help_center');
+    Route::get('legal_info_subject/faq', 'App\Http\Controllers\API\LegalInfoSubjectController@faq')->name('legal_info_subject.faq');
     // LegalInfoTitle
     Route::get('legal_info_title/search/{data}', 'App\Http\Controllers\API\LegalInfoTitleController@search')->name('legal_info_title.search');
     // LegalInfoContent
@@ -77,8 +81,6 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     // Type
     Route::get('type/search/{data}', 'App\Http\Controllers\API\TypeController@search')->name('type.search');
     Route::get('type/find_by_group/{group_name}', 'App\Http\Controllers\API\TypeController@findByGroup')->name('type.find_by_group');
-    // Image
-    Route::get('image/select_by_entity/{entity}/{id}', 'App\Http\Controllers\API\ImageController@selectByEntity')->name('image.select_by_entity');
     // Country
     Route::get('country/search/{data}', 'App\Http\Controllers\API\CountryController@search')->name('country.search');
     // Role

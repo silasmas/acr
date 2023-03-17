@@ -18,8 +18,6 @@ class User extends JsonResource
      */
     public function toArray($request)
     {
-        // $user_images = Image::collection($this->images);
-
         return [
             'id' => $this->id,
             'national_number' => $this->national_number,
@@ -37,26 +35,8 @@ class User extends JsonResource
             'password' => $this->password,
             'remember_token' => $this->remember_token,
             'api_token' => $this->api_token,
-            'avatar_url' => isset(Image::collection($this->images)[0]) 
-                            ? (Image::collection($this->images)[0]->type->type_name == 'Avatar' 
-                                ? (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/public/storage/' . Image::collection($this->images)[0]->url_recto 
-                                : null
-                                ) 
-                            : (isset(Image::collection($this->images)[1]) ? 
-                                (Image::collection($this->images)[1]->type->type_name == 'Avatar' 
-                                ? (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/public/storage/' . Image::collection($this->images)[1]->url_recto 
-                                : null
-                                ) : null),
-            'identity_data' => isset(Image::collection($this->images)[0]) 
-                            ? (Image::collection($this->images)[0]->type->type_name == 'Pièce d\'identité' 
-                                ? Image::collection($this->images)[0]
-                                : null
-                                ) 
-                            : (isset(Image::collection($this->images)[1]) ? 
-                                (Image::collection($this->images)[1]->type->type_name == 'Pièce d\'identité' 
-                                ? Image::collection($this->images)[1] 
-                                : null
-                                ) : null),
+            'avatar_url' => $this->avatar_url != null ? (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/public/storage/' . $this->avatar_url : null,
+            'identity_data' => Image::make($this->image),
             'status' => Status::make($this->status),
             'addresses' => Address::collection($this->addresses),
             'role_users' => RoleUser::collection($this->role_users),

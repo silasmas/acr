@@ -34,7 +34,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = ['national_number', 'firstname', 'lastname', 'surname', 'gender', 'birth_city', 'birth_date', 'nationality', 'p_o_box', 'email', 'phone', 'email_verified_at', 'password', 'remember_token', 'api_token', 'user_status', 'updated_at'];
+    protected $fillable = ['national_number', 'firstname', 'lastname', 'surname', 'gender', 'birth_city', 'birth_date', 'nationality', 'p_o_box', 'email', 'phone', 'email_verified_at', 'password', 'remember_token', 'api_token', 'avatar_url', 'updated_at', 'status_id'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -61,6 +61,15 @@ class User extends Authenticatable
     public function status()
     {
         return $this->belongsTo(Status::class);
+    }
+
+    /**
+     * ONE-TO-ONE
+     * One image for a user
+     */
+    public function image()
+    {
+        return $this->hasOne(Image::class);
     }
 
     /**
@@ -115,14 +124,5 @@ class User extends Authenticatable
     public function notifications()
     {
         return $this->hasMany(Notification::class);
-    }
-
-    /**
-     * MANY-TO-ONE
-     * Several images for a user
-     */
-    public function images()
-    {
-        return $this->hasMany(Image::class);
     }
 }
