@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use GuzzleHttp\Client;
 use App\Models\User;
 use App\Models\Offer;
 use App\Models\Status;
@@ -9,6 +10,7 @@ use App\Models\Notification;
 use stdClass;
 use Illuminate\Http\Request;
 use App\Http\Resources\Offer as ResourcesOffer;
+use GuzzleHttp\Exception\ClientException;
 
 /**
  * @author Xanders
@@ -37,6 +39,15 @@ class OfferController extends BaseController
     public function store(Request $request)
     {
         $status_unread = Status::where('status_name', 'Non lue')->first();
+        // Client used for accessing API | Use authorization key
+        $client = new Client();
+        // Get header informations
+        $headers = [
+            'Authorization' => env('FLEXPAY_APP_KEY'),
+            'Accept' => 'application/json'
+        ];
+        // $gateway = 'http://41.243.7.46:3006/flexpay/api/rest/v1/paymentService';
+        $gateway = 'http://41.243.7.46:3006/api/rest/v1/paymentService';
         // Get inputs
         $inputs = [
             'offer_name' => $request->offer_name,
@@ -58,55 +69,24 @@ class OfferController extends BaseController
 
                 if ($current_user != null) {
                     $reference_code = 'REF-' . ((string) random_int(10000000, 99999999)) . '-' . $inputs['user_id'];
-                    $data = array(
-                        'merchant' => env('FLEXPAY_MERCHANT'),
-                        'type' => $request->transaction_type_id,
-                        'phone' => $request->other_phone != null ? $request->other_phone : ltrim($current_user->phone, '+'),
-                        'reference' => $reference_code,
-                        'amount' => $inputs['amount'],
-                        'currency' => $request->currency,
-                        'user_id' => $current_user->id,
-                        'callbackUrl' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/payment/store'
-                    );
-                    $data = json_encode($data);
-                    // $gateway = 'http://41.243.7.46:3006/flexpay/api/rest/v1/paymentService';
-                    $gateway = 'http://41.243.7.46:3006/api/rest/v1/paymentService';
-                    $ch = curl_init();
 
-                    curl_setopt($ch, CURLOPT_URL, $gateway);
-                    curl_setopt($ch, CURLOPT_POST, true);
-                    curl_setopt(
-                        $ch,
-                        CURLOPT_HTTPHEADER,
-                        Array(
-                            'Content-Type: application/json', 
-                            'Authorization: ' . env('FLEXPAY_APP_KEY')
-                        )
-                    );
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-                    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-                    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 300);
-
-                    $response = curl_exec($ch);
-
-                    if (curl_errno($ch)) {
-                        /*
-                            HISTORY AND/OR NOTIFICATION MANAGEMENT
-                        */
-                        Notification::create([
-                            'notification_url' => 'account/offers',
-                            'notification_content' => __('notifications.error_while_processing'),
-                            'status_id' => $status_unread->id,
-                            'user_id' => $current_user->id,
-                        ]);        
-
-                        return $this->handleError(__('notifications.error_while_processing'));
-
-                    } else {
-                        curl_close($ch);
-
-                        $jsonRes = json_decode($response);
+                    try {
+                        // Create response by sending request to FlexPay
+                        $response = $client->request('POST', $gateway, [
+                            'headers' => $headers,
+                            'form_params' => [
+                                'merchant' => env('FLEXPAY_MERCHANT'),
+                                'type' => $request->transaction_type_id,
+                                'phone' => $request->other_phone != null ? $request->other_phone : ltrim($current_user->phone, '+'),
+                                'reference' => $reference_code,
+                                'amount' => $inputs['amount'],
+                                'currency' => $request->currency,
+                                'callbackUrl' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/payment/store'
+                            ],
+                            'verify'  => false
+                        ]);
+                        // Decode JSON from the created response
+                        $jsonRes = json_decode($response->getBody(), false);
                         $code = $jsonRes->code;
 
                         if ($code != "0") {
@@ -147,6 +127,21 @@ class OfferController extends BaseController
 
                             return $this->handleResponse($object, __('notifications.create_offer_success'));
                         }
+
+                    } catch (ClientException $e) {
+                        $response_error = json_decode($e->getResponse()->getBody()->getContents(), false);
+
+                        /*
+                            HISTORY AND/OR NOTIFICATION MANAGEMENT
+                        */
+                        Notification::create([
+                            'notification_url' => 'account/offers',
+                            'notification_content' => __('notifications.error_while_processing'),
+                            'status_id' => $status_unread->id,
+                            'user_id' => $current_user->id,
+                        ]);        
+
+                        return $this->handleError($response_error, __('notifications.error_while_processing'));
                     }
 
                 } else {
@@ -155,44 +150,24 @@ class OfferController extends BaseController
 
             } else {
                 $reference_code = 'REF-' . ((string) random_int(10000000, 99999999)) . '-ANONYMOUS';
-                $data = array(
-                    'merchant' => env('FLEXPAY_MERCHANT', null),
-                    'type' => $request->transaction_type_id,
-                    'phone' => $request->other_phone,
-                    'reference' => $reference_code,
-                    'amount' => $inputs['amount'],
-                    'currency' => $request->currency,
-                    'callbackUrl' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/payment/store'
-                );
-                $data = json_encode($data);
-                // $gateway = 'http://41.243.7.46:3006/flexpay/api/rest/v1/paymentService';
-                $gateway = 'http://41.243.7.46:3006/api/rest/v1/paymentService';
-                $ch = curl_init();
 
-                curl_setopt($ch, CURLOPT_URL, $gateway);
-                curl_setopt($ch, CURLOPT_POST, true);
-                curl_setopt(
-                    $ch,
-                    CURLOPT_HTTPHEADER,
-                    Array(
-                        'Content-Type: application/json', 
-                        'Authorization: ' . env('FLEXPAY_APP_KEY', null)
-                    )
-                );
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-                curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-                curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 300);
-
-                $response = curl_exec($ch);
-
-                if (curl_errno($ch)) {
-                    return $this->handleError(__('notifications.error_while_processing'));
-
-                } else {
-                    curl_close($ch);
-
-                    $jsonRes = json_decode($response);
+                try {
+                    // Create response by sending request to FlexPay
+                    $response = $client->request('POST', $gateway, [
+                        'headers' => $headers,
+                        'form_params' => [
+                            'merchant' => env('FLEXPAY_MERCHANT', null),
+                            'type' => $request->transaction_type_id,
+                            'phone' => $request->other_phone,
+                            'reference' => $reference_code,
+                            'amount' => $inputs['amount'],
+                            'currency' => $request->currency,
+                            'callbackUrl' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/payment/store'
+                        ],
+                        'verify'  => false
+                    ]);
+                    // Decode JSON from the created response
+                    $jsonRes = json_decode($response->getBody(), false);
                     $code = $jsonRes->code;
 
                     if ($code != "0") {
@@ -213,6 +188,11 @@ class OfferController extends BaseController
 
                         return $this->handleResponse($object, __('notifications.create_offer_success'));
                     }
+
+                } catch (ClientException $e) {
+                    $response_error = json_decode($e->getResponse()->getBody()->getContents(), false);
+
+                    return $this->handleError($response_error, __('notifications.error_while_processing'));
                 }
             }
 
