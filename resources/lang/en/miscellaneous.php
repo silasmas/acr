@@ -247,7 +247,7 @@ return [
 
     // ===== ADMIN PAGES
     'admin' => [
-        // ===== LEGAL INFOS PAGE
+        // Legal infos
         'legal_info_subject' => [
             'title' => 'Legal info subject',
             'details' => 'Legal info subject details',
@@ -269,7 +269,7 @@ return [
                 'add' => 'Add a legal info title',
                 'edit' => 'Edit the legal info title',
                 'search' => 'Search a legal info title',
-                'list' => 'Legal info titles list',
+                'list' => 'Legal info titles list'
             ],
             // Content
             'legal_info_content' => [
@@ -279,82 +279,27 @@ return [
                 'add' => 'Add a legal info content',
                 'edit' => 'Edit the legal info content',
                 'search' => 'Search a legal info content',
-                'list' => 'Legal info contents list',
+                'list' => 'Legal info contents list'
             ]
         ],
 
-        // ===== CONTINENTS PAGE
-        'continent' => [
-            'title' => 'Continent',
-            'details' => 'Continent details',
-            'link' => 'Manage continents',
-            'add' => 'Add a continent',
-            'edit' => 'Edit continent',
-            'search' => 'Search continent',
-            'list' => 'Continents list',
-            // Region
-            'region' => [
-                'title' => 'Region',
-                'details' => 'Region details',
-                'link' => 'Manage regions',
-                'add' => 'Add an region',
-                'edit' => 'Edit region',
-                'search' => 'Search a region',
-                'list' => 'Regions list',
-            ],
-            // Country
-            'country' => [
-                'title' => 'Country',
-                'details' => 'Country details',
-                'link' => 'Manage countries',
-                'add' => 'Add a country',
-                'edit' => 'Edit country',
-                'search' => 'Search a country',
-                'list' => 'Countries list',
-            ],
-            // Province
-            'province' => [
-                'title' => 'Province',
-                'details' => 'Province details',
-                'link' => 'Manage provinces',
-                'add' => 'Add a province',
-                'edit' => 'Edit province',
-                'search' => 'Search a province',
-                'list' => 'Provinces list',
-            ],
-            // City
-            'city' => [
-                'title' => 'City',
-                'details' => 'City details',
-                'link' => 'Manage cities',
-                'add' => 'Add a city',
-                'edit' => 'Edit city',
-                'search' => 'Search a city',
-                'list' => 'Cities list',
-            ],
-            // Area
-            'area' => [
-                'title' => 'Area',
-                'details' => 'Area details',
-                'link' => 'Manage areas',
-                'add' => 'Add a area',
-                'edit' => 'Edit area',
-                'search' => 'Search a area',
-                'list' => 'Areas list',
-            ],
-            // Neighborhood
-            'neighborhood' => [
-                'title' => 'Neighborhood',
-                'details' => 'Neighborhood details',
-                'link' => 'Manage neighborhoods',
-                'add' => 'Add a neighborhood',
-                'edit' => 'Edit neighborhood',
-                'search' => 'Search a neighborhood',
-                'list' => 'Neighborhoods list',
+        // Country
+        'country' => [
+            'title' => 'Country',
+            'details' => 'Country details',
+            'link' => 'Manage countries',
+            'add' => 'Add a country',
+            'edit' => 'Edit country',
+            'search' => 'Search a country',
+            'list' => 'Countries list',
+            'data' => [
+                'country_name' => 'Country name',
+                'country_phone_code' => 'Phone code',
+                'country_lang_code' => 'Language code'
             ],
         ],
 
-        // ===== MISCELLANEOUS PAGE
+        // Miscellaneous
         'miscellaneous' => [
             'title' => 'Miscellaneous',
             'link' => 'Manage other datas',
@@ -399,6 +344,10 @@ return [
                 'search' => 'Search a role',
                 'list' => 'Roles list',
             ],
+            // Developers
+            'developers' => [
+                'title' => 'Manage developers',
+            ],
             // Other administrators
             'other_admin' => [
                 'title' => 'Other administrators',
@@ -429,6 +378,8 @@ return [
                 'content' => 'Stay in touch with '
             ],
         ],
+
+        // Home
         'home' => [
             'slide1' => [
                 'title' => 'Let\'s write history and do politics differently',
@@ -443,9 +394,13 @@ return [
                 'content' => 'Through a good agricultural policy'
             ],
         ],
+
+        // About
         'about' => [
             'title' => 'About us',
         ],
+
+        // Help
         'help' => [
             'title' => 'Help center',
         ],

@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use GuzzleHttp\Exception\ClientException;
 
-class ContinentController extends Controller
+class CountryController extends Controller
 {
     public static $client;
 

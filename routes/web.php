@@ -6,7 +6,7 @@
 
 use App\Http\Controllers\Web\APIController;
 use App\Http\Controllers\Web\AccountController;
-use App\Http\Controllers\Web\ContinentController;
+use App\Http\Controllers\Web\CountryController;
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\LegalInfoController;
 use App\Http\Controllers\Web\MessageController;
@@ -38,8 +38,8 @@ Route::get('/language/{locale}', [HomeController::class, 'changeLanguage'])->nam
 // Account
 Route::get('/account', [AccountController::class, 'account'])->name('account');
 Route::get('/account/update_password', [AccountController::class, 'editPassword'])->name('account.update.password');
-Route::post('/account', [AccountController::class, 'updateAccount'])->name('account');
-Route::post('/account/update_password', [AccountController::class, 'updatePassword'])->name('account.update.password');
+Route::post('/account', [AccountController::class, 'updateAccount']);
+Route::post('/account/update_password', [AccountController::class, 'updatePassword']);
 // Message
 Route::get('/message', [MessageController::class, 'receivedMessages'])->name('message.inbox');
 Route::get('/message/sent', [MessageController::class, 'sentMessages'])->name('message.outbox');
@@ -49,8 +49,8 @@ Route::get('/message/{id}', [MessageController::class, 'showMessage'])->whereNum
 Route::get('/message/new', [MessageController::class, 'newMessage'])->name('message.new');
 Route::get('/message/search/{data}', [MessageController::class, 'search'])->name('message.search');
 Route::get('/message/delete/{id}', [MessageController::class, 'deleteMessage'])->name('message.delete');
-Route::post('/message/create', [MessageController::class, 'storeMessage'])->name('message.create');
-Route::post('/message/{id}', [MessageController::class, 'updateMessage'])->whereNumber('id')->name('message.datas');
+Route::post('/message', [MessageController::class, 'storeMessage']);
+Route::post('/message/{id}', [MessageController::class, 'updateMessage'])->whereNumber('id');
 // Notification
 Route::get('/notification', [HomeController::class, 'notification'])->name('notification.home');
 
@@ -84,23 +84,17 @@ Route::get('/legal_info/search/{data}', [LegalInfoController::class, 'search'])-
 Route::get('/legal_info/{entity}/search/{data}', [LegalInfoController::class, 'searchEntity'])->name('legal_info.entity.search');
 Route::get('/legal_info/delete/{id}', [LegalInfoController::class, 'delete'])->name('legal_info.delete');
 Route::get('/legal_info/{entity}/delete/{id}', [LegalInfoController::class, 'deleteEntity'])->name('legal_info.entity.delete');
-Route::post('/legal_info', [LegalInfoController::class, 'store'])->name('legal_info.home');
-Route::post('/legal_info/{id}', [LegalInfoController::class, 'update'])->whereNumber('id')->name('legal_info.datas');
-Route::post('/legal_info/{entity}', [LegalInfoController::class, 'storeEntity'])->name('legal_info.entity.home');
-Route::post('/legal_info/{entity}/{id}', [LegalInfoController::class, 'updateEntity'])->whereNumber('id')->name('legal_info.entity.datas');
-// Continent
-Route::get('/continent', [ContinentController::class, 'index'])->name('continent.home');
-Route::get('/continent/{id}', [ContinentController::class, 'show'])->whereNumber('id')->name('continent.datas');
-Route::get('/continent/{entity}', [ContinentController::class, 'indexEntity'])->name('continent.entity.home');
-Route::get('/continent/{entity}/{id}', [ContinentController::class, 'showEntity'])->whereNumber('id')->name('continent.entity.datas');
-Route::get('/continent/search/{data}', [ContinentController::class, 'search'])->name('continent.search');
-Route::get('/continent/{entity}/search/{data}', [ContinentController::class, 'searchEntity'])->name('continent.entity.search');
-Route::get('/continent/delete/{id}', [ContinentController::class, 'delete'])->name('continent.delete');
-Route::get('/continent/{entity}/delete/{id}', [ContinentController::class, 'deleteEntity'])->name('continent.entity.delete');
-Route::post('/continent', [ContinentController::class, 'store'])->name('continent.home');
-Route::post('/continent/{id}', [ContinentController::class, 'update'])->whereNumber('id')->name('continent.datas');
-Route::post('/continent/{entity}', [ContinentController::class, 'storeEntity'])->name('continent.entity.home');
-Route::post('/continent/{entity}/{id}', [ContinentController::class, 'updateEntity'])->whereNumber('id')->name('continent.entity.datas');
+Route::post('/legal_info', [LegalInfoController::class, 'store']);
+Route::post('/legal_info/{id}', [LegalInfoController::class, 'update'])->whereNumber('id');
+Route::post('/legal_info/{entity}', [LegalInfoController::class, 'storeEntity']);
+Route::post('/legal_info/{entity}/{id}', [LegalInfoController::class, 'updateEntity'])->whereNumber('id');
+// Country
+Route::get('/country', [CountryController::class, 'index'])->name('country.home');
+Route::get('/country/{id}', [CountryController::class, 'show'])->whereNumber('id')->name('country.datas');
+Route::get('/country/search/{data}', [CountryController::class, 'search'])->name('country.search');
+Route::get('/country/delete/{id}', [CountryController::class, 'delete'])->name('country.delete');
+Route::post('/country', [CountryController::class, 'store']);
+Route::post('/country/{id}', [CountryController::class, 'update'])->whereNumber('id');
 // Miscellaneous
 Route::get('/miscellaneous', [MiscellaneousController::class, 'index'])->name('miscellaneous.home');
 Route::get('/miscellaneous/{id}', [MiscellaneousController::class, 'show'])->whereNumber('id')->name('miscellaneous.datas');
@@ -110,10 +104,10 @@ Route::get('/miscellaneous/search/{data}', [MiscellaneousController::class, 'sea
 Route::get('/miscellaneous/{entity}/search/{data}', [MiscellaneousController::class, 'searchEntity'])->name('miscellaneous.entity.search');
 Route::get('/miscellaneous/delete/{id}', [MiscellaneousController::class, 'delete'])->name('miscellaneous.delete');
 Route::get('/miscellaneous/{entity}/delete/{id}', [MiscellaneousController::class, 'deleteEntity'])->name('miscellaneous.entity.delete');
-Route::post('/miscellaneous', [MiscellaneousController::class, 'store'])->name('miscellaneous.home');
-Route::post('/miscellaneous/{id}', [MiscellaneousController::class, 'update'])->whereNumber('id')->name('miscellaneous.datas');
-Route::post('/miscellaneous/{entity}', [MiscellaneousController::class, 'storeEntity'])->name('miscellaneous.entity.home');
-Route::post('/miscellaneous/{entity}/{id}', [MiscellaneousController::class, 'updateEntity'])->whereNumber('id')->name('miscellaneous.entity.datas');
+Route::post('/miscellaneous', [MiscellaneousController::class, 'store']);
+Route::post('/miscellaneous/{id}', [MiscellaneousController::class, 'update'])->whereNumber('id');
+Route::post('/miscellaneous/{entity}', [MiscellaneousController::class, 'storeEntity']);
+Route::post('/miscellaneous/{entity}/{id}', [MiscellaneousController::class, 'updateEntity'])->whereNumber('id');
 
 /*
 |--------------------------------------------------------------------------
