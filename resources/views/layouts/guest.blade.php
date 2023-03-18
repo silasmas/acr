@@ -122,10 +122,10 @@
 
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
-                    <a href="" class="nav-item nav-link active">@lang('miscellaneous.menu.home')</a>
-                    <a href="" class="nav-item nav-link">@lang('miscellaneous.menu.public.about')</a>
-                    <a href="" class="nav-item nav-link">@lang('miscellaneous.menu.public.news')</a>
-                    <a href="" class="nav-item nav-link">@lang('miscellaneous.menu.public.works')</a>
+                    <a href="{{ route('home') }}" class="nav-item nav-link {{ Route::current()->getName() == 'home' ? 'active' : '' }}">@lang('miscellaneous.menu.home')</a>
+                    <a href="{{ route('about.home') }}" class="nav-item nav-link {{ Route::current()->getName() == 'about.home' || Route::current()->getName() == 'about.party' || Route::current()->getName() == 'about.app' || Route::current()->getName() == 'about.terms_of_use' || Route::current()->getName() == 'about.privacy_policy' || Route::current()->getName() == 'about.help' || Route::current()->getName() == 'about.faq' ? 'active' : '' }}">@lang('miscellaneous.menu.public.about')</a>
+                    <a href="{{ route('news.home') }}" class="nav-item nav-link {{ Route::current()->getName() == 'news.home' || Route::current()->getName() == 'news.datas' ? 'active' : '' }}">@lang('miscellaneous.menu.public.news')</a>
+                    <a href="{{ route('works') }}" class="nav-item nav-link {{ Route::current()->getName() == 'works' ? 'active' : '' }}">@lang('miscellaneous.menu.public.works')</a>
                     <div class="nav-item dropdown d-lg-inline-block d-none mb-0">
                         <a href="#" class="nav-link" data-bs-toggle="dropdown"><i class="bi bi-translate fs-4 align-top"></i></a>
                         <div class="dropdown-menu bg-light m-0 overflow-hidden">
@@ -150,8 +150,8 @@
                     </div>
                 </div>
                 <div class="border-start ps-lg-4 ps-0">
-                    <a href="" class="btn d-sm-inline-block d-block acr-btn-outline-blue me-sm-2 me-0 mb-sm-0 mb-2 rounded-pill shadow-0">@lang('miscellaneous.menu.login')</a>
-                    <a href="" class="btn d-sm-inline-block d-block acr-btn-blue mb-sm-0 mb-4 rounded-pill shadow-0">@lang('miscellaneous.menu.public.donate')</a>
+                    <a href="{{ route('login') }}" class="btn d-sm-inline-block d-block acr-btn-outline-blue me-sm-2 me-0 mb-sm-0 mb-2 rounded-pill shadow-0">@lang('miscellaneous.menu.login')</a>
+                    <a href="{{ route('donate') }}" class="btn d-sm-inline-block d-block acr-btn-blue mb-sm-0 mb-4 rounded-pill shadow-0">@lang('miscellaneous.menu.public.donate')</a>
                 </div>
             </div>
         </nav>
