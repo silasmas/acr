@@ -150,5 +150,8 @@ Route::get('/works', [HomeController::class, 'works'])->name('works');
 Route::get('/donate', [HomeController::class, 'donate'])->name('donate');
 // Account
 Route::get('/account/offers', [AccountController::class, 'offers'])->name('account.offers');
+Route::get('/account/offers/{amount}/{currency}/{user_id}', function () {
+    return view('under_construction');
+});
 
 require __DIR__.'/auth.php';
