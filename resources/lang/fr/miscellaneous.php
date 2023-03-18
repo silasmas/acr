@@ -247,7 +247,7 @@ return [
 
     // ===== ADMIN PAGES
     'admin' => [
-        // ===== ABOUTS PAGE
+        // Legal infos
         'legal_info_subject' => [
             'title' => 'Sujets d\'info légale',
             'details' => 'Détails sur le sujet d\'info légale',
@@ -255,7 +255,7 @@ return [
             'add' => 'Ajouter un sujet d\'info légale',
             'edit' => 'Editer le sujet d\'info légale',
             'search' => 'Rechercher un sujet d\'info légale',
-            'list' => 'Liste de sujets d\'info légale',
+            'list' => 'Sujets d\'info légale',
             'datas' => [
                 'subject' => 'Suject',
                 'description' => 'Description'
@@ -269,7 +269,7 @@ return [
                 'add' => 'Ajouter un titre d\'info légale',
                 'edit' => 'Editer le titre d\'info légale',
                 'search' => 'Rechercher un titre d\'info légale',
-                'list' => 'Liste de titres d\'info légale',
+                'list' => 'Titres d\'info légale',
             ],
             // Content
             'legal_info_content' => [
@@ -279,82 +279,27 @@ return [
                 'add' => 'Ajouter un contenu d\'info légale',
                 'edit' => 'Editer le contenu d\'info légale',
                 'search' => 'Rechercher un contenu d\'info légale',
-                'list' => 'Liste de contenus d\'info légale',
+                'list' => 'Contenus d\'info légale',
             ]
         ],
 
-        // ===== CONTINENTS PAGE
-        'continent' => [
-            'title' => 'Continent',
-            'details' => 'Détails sur le continent',
-            'link' => 'Gérer les continents',
-            'add' => 'Ajouter un continent',
-            'edit' => 'Editer le continent',
-            'search' => 'Rechercher un continent',
-            'list' => 'Liste de continents',
-            // Region
-            'region' => [
-                'title' => 'Région',
-                'details' => 'Détails sur la région',
-                'link' => 'Gérer les régions',
-                'add' => 'Ajouter une région',
-                'edit' => 'Editer la région',
-                'search' => 'Rechercher une région',
-                'list' => 'Liste de régions',
-            ],
-            // Country
-            'country' => [
-                'title' => 'Pays',
-                'details' => 'Détails sur le pays',
-                'link' => 'Gérer les pays',
-                'add' => 'Ajouter un pays',
-                'edit' => 'Editer le pays',
-                'search' => 'Rechercher un pays',
-                'list' => 'Liste de pays',
-            ],
-            // Province
-            'province' => [
-                'title' => 'Province',
-                'details' => 'Détails sur la province',
-                'link' => 'Gérer les provinces',
-                'add' => 'Ajouter une province',
-                'edit' => 'Editer la province',
-                'search' => 'Rechercher une province',
-                'list' => 'Liste de provinces',
-            ],
-            // City
-            'city' => [
-                'title' => 'Ville',
-                'details' => 'Détails sur la ville',
-                'link' => 'Gérer les villes',
-                'add' => 'Ajouter une ville',
-                'edit' => 'Editer la ville',
-                'search' => 'Rechercher une ville',
-                'list' => 'Liste de villes',
-            ],
-            // Area
-            'area' => [
-                'title' => 'Commune',
-                'details' => 'Détails sur la commune',
-                'link' => 'Gérer les communes',
-                'add' => 'Ajouter une commune',
-                'edit' => 'Editer la commune',
-                'search' => 'Rechercher une commune',
-                'list' => 'Liste de communes',
-            ],
-            // Neighborhood
-            'neighborhood' => [
-                'title' => 'Quartier',
-                'details' => 'Détails sur le quartier',
-                'link' => 'Gérer les quartiers',
-                'add' => 'Ajouter un quartier',
-                'edit' => 'Editer le quartier',
-                'search' => 'Rechercher un quartier',
-                'list' => 'Liste de quartiers',
+        // Country
+        'country' => [
+            'title' => 'Pays',
+            'details' => 'Détails du pays',
+            'link' => 'Gérer les pays',
+            'add' => 'Ajouter un pays',
+            'edit' => 'Editer le pays',
+            'search' => 'Rechercher un pays',
+            'list' => 'Liste des pays',
+            'data' => [
+                'country_name' => 'Nom du pays',
+                'country_phone_code' => 'Code téléphonique',
+                'country_lang_code' => 'Code de langue'
             ],
         ],
 
-        // ===== MISCELLANEOUS PAGE
+        // Miscellaneous
         'miscellaneous' => [
             'title' => 'Divers',
             'link' => 'Gérer d\'autres données',
@@ -399,6 +344,10 @@ return [
                 'search' => 'Rechercher un rôle',
                 'list' => 'Liste de rôles',
             ],
+            // Developers
+            'developers' => [
+                'title' => 'Gérer les développeurs',
+            ],
             // Other administrators
             'other_admin' => [
                 'title' => 'Autres administrateurs',
@@ -429,6 +378,8 @@ return [
                 'content' => 'Restez en contact avec '
             ],
         ],
+
+        // Home
         'home' => [
             'slide1' => [
                 'title' => 'Écrivons l\'histoire et faisons la politique autrement',
@@ -443,9 +394,13 @@ return [
                 'content' => 'À travers une bonne politique agricole'
             ],
         ],
+
+        // About
         'about' => [
             'title' => 'A propos de nous',
         ],
+
+        // Help
         'help' => [
             'title' => 'Centre d\'aide',
         ],

@@ -79,6 +79,26 @@
             @lang('miscellaneous.message.search_result')
 @endif
 
+@if (Route::current()->getName() == 'notification')
+            @lang('miscellaneous.menu.notifications')
+@endif
+
+@if (Route::current()->getName() == 'about.home')
+            @lang('miscellaneous.menu.public.about')
+@endif
+
+@if (Route::current()->getName() == 'news.home')
+            @lang('miscellaneous.menu.public.news')
+@endif
+
+@if (Route::current()->getName() == 'works')
+            @lang('miscellaneous.menu.public.works')
+@endif
+
+@if (Route::current()->getName() == 'donate')
+            @lang('miscellaneous.menu.public.donate')
+@endif
+
         </title>
     </head>
 

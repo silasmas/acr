@@ -255,7 +255,7 @@ return [
             'add' => 'Add a legal info subject',
             'edit' => 'Edit the legal info subject',
             'search' => 'Search a legal info subject',
-            'list' => 'Legal info subjects list',
+            'list' => 'Legal info subjects',
             'datas' => [
                 'subject' => 'Subject',
                 'description' => 'Description'
@@ -269,7 +269,7 @@ return [
                 'add' => 'Add a legal info title',
                 'edit' => 'Edit the legal info title',
                 'search' => 'Search a legal info title',
-                'list' => 'Legal info titles list'
+                'list' => 'Legal info titles'
             ],
             // Content
             'legal_info_content' => [
@@ -279,7 +279,7 @@ return [
                 'add' => 'Add a legal info content',
                 'edit' => 'Edit the legal info content',
                 'search' => 'Search a legal info content',
-                'list' => 'Legal info contents list'
+                'list' => 'Legal info contents'
             ]
         ],
 
