@@ -69,20 +69,21 @@ class OfferController extends BaseController
                         // Create response by sending request to FlexPay
                         $response = $client->request('POST', $gateway, [
                             'headers' => array(
-                                'Authorization' => env('FLEXPAY_APP_KEY'),
+                                'Authorization' => 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJcL2xvZ2luIiwicm9sZXMiOlsiTUVSQ0hBTlQiXSwiZXhwIjoxNzI2MTYyMjM0LCJzdWIiOiIyYmIyNjI4YzhkZTQ0ZWZjZjA1ODdmMGRmZjYzMmFjYyJ9.41n-SA4822KKo5aK14rPZv6EnKi9xJVDIMvksHG61nc',
                                 'Accept' => 'application/json'
                             ),
-                            'form_params' => json_encode(array(
-                                'merchant' => env('FLEXPAY_MERCHANT'),
+                            'json' => array(
+                                'merchant' => 'PROXDOC',
                                 'type' => $request->transaction_type_id,
                                 'phone' => $request->other_phone != null ? $request->other_phone : ltrim($current_user->phone, '+'),
                                 'reference' => $reference_code,
                                 'amount' => $inputs['amount'],
                                 'currency' => $request->currency,
                                 'callbackUrl' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/payment/store'
-                            )),
+                            ),
                             'verify'  => false
                         ]);
+
                         // Decode JSON from the created response
                         $jsonRes = json_decode($response->getBody(), false);
                         $code = $jsonRes->code;
@@ -153,18 +154,18 @@ class OfferController extends BaseController
                     // Create response by sending request to FlexPay
                     $response = $client->request('POST', $gateway, [
                         'headers' => array(
-                            'Authorization' => env('FLEXPAY_APP_KEY'),
+                            'Authorization' => 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJcL2xvZ2luIiwicm9sZXMiOlsiTUVSQ0hBTlQiXSwiZXhwIjoxNzI2MTYyMjM0LCJzdWIiOiIyYmIyNjI4YzhkZTQ0ZWZjZjA1ODdmMGRmZjYzMmFjYyJ9.41n-SA4822KKo5aK14rPZv6EnKi9xJVDIMvksHG61nc',
                             'Accept' => 'application/json'
                         ),
-                        'form_params' => json_encode(array(
-                            'merchant' => env('FLEXPAY_MERCHANT'),
+                        'json' => array(
+                            'merchant' => 'PROXDOC',
                             'type' => $request->transaction_type_id,
                             'phone' => $request->other_phone,
                             'reference' => $reference_code,
                             'amount' => $inputs['amount'],
                             'currency' => $request->currency,
                             'callbackUrl' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/payment/store'
-                        )),
+                        ),
                         'verify'  => false
                     ]);
                     // Decode JSON from the created response
