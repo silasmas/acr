@@ -59,33 +59,27 @@ class PasswordResetController extends BaseController
         }
 
         if ($inputs['email'] != null) {
-            $existing_password_resets = PasswordReset::where('email', $inputs['email'])->get();
+            $existing_password_reset = PasswordReset::where('email', $inputs['email'])->first();
 
-            if ($existing_password_resets != null) {
-                $password_reset = PasswordReset::create($inputs);
-
-                return $this->handleResponse([new ResourcesPasswordReset($password_reset), ResourcesPasswordReset::collection($existing_password_resets)], __('notifications.create_password_reset_success'));
-
-            } else {
-                $password_reset = PasswordReset::create($inputs);
-
-                return $this->handleResponse(new ResourcesPasswordReset($password_reset), __('notifications.create_password_reset_success'));
+            if ($existing_password_reset != null) {
+                $existing_password_reset->delete();
             }
+
+            $password_reset = PasswordReset::create($inputs);
+
+            return $this->handleResponse(new ResourcesPasswordReset($password_reset), __('notifications.create_password_reset_success'));
         }
 
         if ($inputs['phone'] != null) {
-            $existing_password_resets = PasswordReset::where('phone', $inputs['phone'])->get();
+            $existing_password_reset = PasswordReset::where('phone', $inputs['phone'])->first();
 
-            if ($existing_password_resets != null) {
-                $password_reset = PasswordReset::create($inputs);
-
-                return $this->handleResponse([new ResourcesPasswordReset($password_reset), ResourcesPasswordReset::collection($existing_password_resets)], __('notifications.create_password_reset_success'));
-
-            } else {
-                $password_reset = PasswordReset::create($inputs);
-
-                return $this->handleResponse(new ResourcesPasswordReset($password_reset), __('notifications.create_password_reset_success'));
+            if ($existing_password_reset != null) {
+                $existing_password_reset->delete();
             }
+
+            $password_reset = PasswordReset::create($inputs);
+
+            return $this->handleResponse(new ResourcesPasswordReset($password_reset), __('notifications.create_password_reset_success'));
         }
     }
 
