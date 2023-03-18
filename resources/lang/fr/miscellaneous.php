@@ -398,6 +398,15 @@ return [
         // About
         'about' => [
             'title' => 'A propos de nous',
+            'slogan' => 'Le Pouvoir de l\'Amour et non l\'Amour du Pouvoir',
+            'subtitle' => 'Tout savoir sur Action Commune pour la République',
+            'description' => 'Un parti politique qui apporte une nouvelle touche dans le monde politique. Un cadre de formation des valeurs citoyennes, qui place au centre du processus du développement, prônant ainsi des valeurs éthiques de la société.',
+            'comment' => [
+                'title1' => 'Un seul credo',
+                'content1' => 'Compte tenu de notre vision, notre seul credo est « Faire la politique autrement ».',
+                'title2' => 'Aider le peuple',
+                'content2' => 'À dresser effectivement son front, par la prise, le travail, la discipline et l\'honnêteté',
+            ],
         ],
 
         // Help

@@ -398,6 +398,15 @@ return [
         // About
         'about' => [
             'title' => 'About us',
+            'slogan' => 'The Power of Love and not the Love of Power',
+            'subtitle' => 'All about Action Commune pour la République',
+            'description' => 'A political party that brings a new touch to the political world. A framework for training civic values, which places them at the center of the development process, thus advocating the ethical values of society.',
+            'comment' => [
+                'title1' => 'One credo',
+                'content1' => 'Given our vision, our only credo is “Doing politics differently”.',
+                'title2' => 'Help the people',
+                'content2' => 'To effectively raise one\'s forehead, by grip, work, discipline and honesty.',
+            ],
         ],
 
         // Help

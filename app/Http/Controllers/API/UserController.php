@@ -861,8 +861,6 @@ class UserController extends BaseController
             Storage::url(Storage::disk('public')->put($image_url_recto, base64_decode($image_recto)));
             Storage::url(Storage::disk('public')->put($image_url_verso, base64_decode($image_verso)));
 
-            $user_identity_data->delete();
-
             Image::create([
                 'image_name' => $inputs['image_name'],
                 'url_recto' => $image_url_recto,

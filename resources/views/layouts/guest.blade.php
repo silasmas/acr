@@ -179,6 +179,9 @@
 
 @yield('guest-content')
 
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg acr-btn-blue btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+
         <!-- JavaScript Libraries -->
         <script src="{{ asset('assets/addons/custom/jquery/js/jquery.min.js') }}"></script>
         <script src="{{ asset('assets/addons/custom/jquery/jquery-ui/jquery-ui.min.js') }}"></script>
