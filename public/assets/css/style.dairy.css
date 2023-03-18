@@ -107,7 +107,7 @@
 
 .navbar .navbar-nav .nav-link:hover,
 .navbar .navbar-nav .nav-link.active {
-    color: var(--primary);
+    color: #005dba;
 }
 
 .navbar .dropdown-toggle::after {
@@ -171,8 +171,8 @@
     width: 3rem;
     height: 3rem;
     border-radius: 3rem;
-    background-color: var(--primary);
-    border: 10px solid var(--primary);
+    background-color: #005dba;
+    border: 10px solid #005dba;
 }
 
 @media (min-width: 1024px) {
@@ -228,7 +228,7 @@
     height: 2px;
     top: 5px;
     left: -40px;
-    background: var(--primary);
+    background: #005dba;
     z-index: -1;
 }
 
@@ -239,7 +239,7 @@
     height: 2px;
     bottom: 6px;
     left: -60px;
-    background: var(--primary);
+    background: #005dba;
     z-index: -1;
 }
 
