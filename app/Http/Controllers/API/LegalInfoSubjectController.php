@@ -126,8 +126,6 @@ class LegalInfoSubjectController extends BaseController
     {
         $legal_info_subject = LegalInfoSubject::where('subject_name', 'L\'application ACR')->first();
 
-        dd($legal_info_subject);
-
         if (is_null($legal_info_subject)) {
             return $this->handleError(__('notifications.find_legal_info_subject_404'));
         }
