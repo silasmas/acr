@@ -3,8 +3,10 @@
  * @author Xanders
  * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
  */
-
+use App\Models\LegalInfoSubject;
+use App\Http\Controllers\API\BaseController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Resources\LegalInfoSubject as ResourcesLegalInfoSubject;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +48,6 @@ Route::group(['middleware' => ['api', 'localization']], function () {
     Route::post('payment/store', 'App\Http\Controllers\API\PaymentController@store')->name('payment.api.store');
 });
 Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () {
-    Route::resource('legal_info_subject', 'App\Http\Controllers\API\LegalInfoSubjectController');
     Route::resource('legal_info_title', 'App\Http\Controllers\API\LegalInfoTitleController');
     Route::resource('legal_info_content', 'App\Http\Controllers\API\LegalInfoContentController');
     Route::resource('group', 'App\Http\Controllers\API\GroupController');
@@ -61,13 +62,6 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     Route::resource('news', 'App\Http\Controllers\API\NewsController');
     Route::resource('payment', 'App\Http\Controllers\API\PaymentController');
 
-    // LegalInfoSubject
-    Route::get('legal_info_subject/about_app', 'App\Http\Controllers\API\LegalInfoSubjectController@aboutApp')->name('legal_info_subject.api.about_app');
-    Route::get('legal_info_subject/about_party', 'App\Http\Controllers\API\LegalInfoSubjectController@aboutParty')->name('legal_info_subject.api.about_party');
-    Route::get('legal_info_subject/terms', 'App\Http\Controllers\API\LegalInfoSubjectController@terms')->name('legal_info_subject.api.terms');
-    Route::get('legal_info_subject/privacy_policy', 'App\Http\Controllers\API\LegalInfoSubjectController@privacyPolicy')->name('legal_info_subject.api.privacy_policy');
-    Route::get('legal_info_subject/help_center', 'App\Http\Controllers\API\LegalInfoSubjectController@helpCenter')->name('legal_info_subject.api.help_center');
-    Route::get('legal_info_subject/faq', 'App\Http\Controllers\API\LegalInfoSubjectController@faq')->name('legal_info_subject.api.faq');
     // LegalInfoTitle
     Route::get('legal_info_title/search/{data}', 'App\Http\Controllers\API\LegalInfoTitleController@search')->name('legal_info_title.api.search');
     // LegalInfoContent
@@ -113,4 +107,72 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     Route::get('payment', 'App\Http\Controllers\API\PaymentController@index')->name('payment.api.index');
     Route::get('payment/find_by_phone/{phone_number}', 'App\Http\Controllers\API\PaymentController@findByPhone')->name('payment.api.find_by_phone');
     Route::put('payment/switch_status/{status_id}/{id}', 'App\Http\Controllers\API\PaymentController@switchStatus')->name('payment.api.switch_status');
+
+    // Functions created directly here
+    Route::get('about_subject/about_app', function () {
+        $baseController = new BaseController();
+        $legal_info_subject = LegalInfoSubject::where('subject_name', 'L\'application ACR')->first();
+
+        if (is_null($legal_info_subject)) {
+            return $baseController->handleError(__('notifications.find_legal_info_subject_404'));
+        }
+
+        return $baseController->handleResponse(new ResourcesLegalInfoSubject($legal_info_subject), __('notifications.find_legal_info_subject_success'));
+
+    });
+    Route::get('about_subject/about_party', function () {
+        $baseController = new BaseController();
+        $legal_info_subject = LegalInfoSubject::where('subject_name', 'A propos du parti ACR')->first();
+
+        if (is_null($legal_info_subject)) {
+            return $baseController->handleError(__('notifications.find_legal_info_subject_404'));
+        }
+
+        return $baseController->handleResponse(new ResourcesLegalInfoSubject($legal_info_subject), __('notifications.find_legal_info_subject_success'));
+
+    });
+    Route::get('about_subject/terms', function () {
+        $baseController = new BaseController();
+        $legal_info_subject = LegalInfoSubject::where('subject_name', 'Conditions d\'utilisation')->first();
+
+        if (is_null($legal_info_subject)) {
+            return $baseController->handleError(__('notifications.find_legal_info_subject_404'));
+        }
+
+        return $baseController->handleResponse(new ResourcesLegalInfoSubject($legal_info_subject), __('notifications.find_legal_info_subject_success'));
+
+    });
+    Route::get('about_subject/privacy_policy', function () {
+        $baseController = new BaseController();
+        $legal_info_subject = LegalInfoSubject::where('subject_name', 'Politique de confidentialité')->first();
+
+        if (is_null($legal_info_subject)) {
+            return $baseController->handleError(__('notifications.find_legal_info_subject_404'));
+        }
+
+        return $baseController->handleResponse(new ResourcesLegalInfoSubject($legal_info_subject), __('notifications.find_legal_info_subject_success'));
+
+    });
+    Route::get('about_subject/help_center', function () {
+        $baseController = new BaseController();
+        $legal_info_subject = LegalInfoSubject::where('subject_name', 'Centre d\'assistance et d\'aide')->first();
+
+        if (is_null($legal_info_subject)) {
+            return $baseController->handleError(__('notifications.find_legal_info_subject_404'));
+        }
+
+        return $baseController->handleResponse(new ResourcesLegalInfoSubject($legal_info_subject), __('notifications.find_legal_info_subject_success'));
+
+    });
+    Route::get('about_subject/faq', function () {
+        $baseController = new BaseController();
+        $legal_info_subject = LegalInfoSubject::where('subject_name', 'FAQ')->first();
+
+        if (is_null($legal_info_subject)) {
+            return $baseController->handleError(__('notifications.find_legal_info_subject_404'));
+        }
+
+        return $baseController->handleResponse(new ResourcesLegalInfoSubject($legal_info_subject), __('notifications.find_legal_info_subject_success'));
+
+    });
 });
