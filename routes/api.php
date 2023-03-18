@@ -5,8 +5,8 @@
  */
 use App\Models\LegalInfoSubject;
 use App\Http\Controllers\API\BaseController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Resources\LegalInfoSubject as ResourcesLegalInfoSubject;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
