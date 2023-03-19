@@ -497,7 +497,7 @@
     text-align: left;
     color: #B0B9AE;
     font-weight: normal;
-    text-transform: capitalize;
+    text-transform: inherit !important;
     transition: .3s;
 }
 

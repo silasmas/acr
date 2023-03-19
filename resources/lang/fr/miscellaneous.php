@@ -373,9 +373,17 @@ return [
     'public' => [
         'footer' => [
             'useful_links' => 'Liens utiles',
-            'social_network' => [
-                'title' => 'Sur les réseaux sociaux',
-                'content' => 'Restez en contact avec '
+            'head_office' => [
+                'title' => 'Notre siège social',
+                'address' => '102, ave Kabinda, C/Kinshasa 012, Kinshasa-RDC',
+                'phone' => '+243 810 503 074',
+                'email' => 'acr@gmail.com'
+            ],
+            'newsletter' => [
+                'title' => 'Newsletter',
+                'text' => 'Abonnez-vous pour recevoir nos infos les plus pertinentes.',
+                'email' => 'Votre e-mail',
+                'submit' => 'Envoyer'
             ],
         ],
 

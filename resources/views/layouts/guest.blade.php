@@ -179,6 +179,60 @@
 
 @yield('guest-content')
 
+        <!-- Footer Start -->
+        <div class="container-fluid acr-bg-blue-gray footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+            <div class="container py-4">
+                <div class="row g-5">
+                    <div class="col-lg-5 col-md-6">
+                        <h5 class="text-white mb-4">@lang('miscellaneous.public.footer.head_office.title')</h5>
+                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>@lang('miscellaneous.public.footer.head_office.address')</p>
+                        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>@lang('miscellaneous.public.footer.head_office.phone')</p>
+                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>@lang('miscellaneous.public.footer.head_office.email')</p>
+                        <div class="d-flex pt-3">
+                            <a href="https://web.facebook.com/profile.php?id=100088148853298" class="btn btn-floating btn-outline-light border border-light me-3"><i class="fab fa-facebook-f fs-6"></i></a>
+                            <a href="https://twitter.com/AcrRdc01" class="btn btn-floating btn-outline-light border border-light me-3"><i class="fab fa-twitter fs-6"></i></a>
+                            <a href="https://www.youtube.com/@NDEKOELIEZERTOKOKOMA" class="btn btn-floating btn-outline-light border border-light me-3"><i class="fab fa-youtube fs-6"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="text-white mb-4">@lang('miscellaneous.public.footer.useful_links')</h5>
+                        <a href="{{ route('about.home') }}" class="btn btn-link bg-transparent fs-6">@lang('miscellaneous.menu.public.about')</a>
+                        <a href="{{ route('news.home') }}" class="btn btn-link bg-transparent fs-6">@lang('miscellaneous.menu.public.news')</a>
+                        <a href="{{ route('works') }}" class="btn btn-link bg-transparent fs-6">@lang('miscellaneous.menu.public.works')</a>
+                        <a href="{{ route('donate') }}" class="btn btn-link bg-transparent fs-6">@lang('miscellaneous.menu.public.donate')</a>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <h5 class="text-white mb-4">@lang('miscellaneous.public.footer.newsletter.title')</h5>
+                        <p>@lang('miscellaneous.public.footer.newsletter.text')</p>
+                        <div class="position-relative w-100">
+                            <form action="" method="post">
+                                <input type="text" class="form-control bg-transparent w-100 py-3 ps-4 pe-5 text-white" placeholder="@lang('miscellaneous.public.footer.newsletter.email')">
+                                <button type="submit" class="btn btn-secondary text-primary position-absolute top-0 end-0 mt-2 me-2" style="padding: 0.8rem 0.8rem;">@lang('miscellaneous.public.footer.newsletter.submit')</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+
+        <!-- Copyright Start -->
+        <div class="container-fluid bg-dark text-body copyright py-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mb-3 mb-md-0 text-center text-md-start text-secondary">
+                        &copy; <a href="{{ route('home') }}" class="text-info">ACR</a> @lang('miscellaneous.all_right_reserved')
+                    </div>
+                    <div class="col-md-6 text-center text-md-end text-secondary">
+                        Designed By <a href="https://www.silasdev.com" class="text-info">SILASDEV</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright End -->
+
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg acr-btn-blue btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
 

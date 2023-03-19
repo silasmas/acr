@@ -133,6 +133,10 @@ p {
     background-color: rgba(229, 6, 1, 0.5) !important;
 }
 
+.acr-bg-blue-gray {
+    background-color: #2f465e !important;
+}
+
 /* button */
 .acr-btn-blue {
     background-color: #005dba !important;

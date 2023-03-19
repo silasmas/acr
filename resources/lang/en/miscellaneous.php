@@ -373,9 +373,17 @@ return [
     'public' => [
         'footer' => [
             'useful_links' => 'Useful links',
-            'social_network' => [
-                'title' => 'On social networks',
-                'content' => 'Stay in touch with '
+            'head_office' => [
+                'title' => 'Our head office',
+                'address' => '102, Kabinda street, Kinshasa 012 area, Kinshasa-DRC',
+                'phone' => '+243 810 503 074',
+                'email' => 'acr@gmail.com'
+            ],
+            'newsletter' => [
+                'title' => 'Newsletter',
+                'text' => 'Subscribe to receive our most relevant information.',
+                'email' => 'Your email',
+                'submit' => 'Send'
             ],
         ],
 
