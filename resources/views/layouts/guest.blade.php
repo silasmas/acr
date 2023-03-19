@@ -47,55 +47,55 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.custom.css') }}">
 
         <title>
-@if (Route::current()->getName() == 'home')
+@if (Route::is('home'))
             @lang('miscellaneous.slogan')
 @endif
 
-@if (Route::current()->getName() == 'account' || Route::current()->getName() == 'account.update.password')
+@if (Route::is('account') || Route::is('account.update.password'))
             @lang('menu.account_settings')
 @endif
 
-@if (Route::current()->getName() == 'message.inbox')
+@if (Route::is('message.inbox'))
             @lang('miscellaneous.message.inbox')
 @endif
 
-@if (Route::current()->getName() == 'message.outbox')
+@if (Route::is('message.outbox'))
             @lang('miscellaneous.message.outbox')
 @endif
 
-@if (Route::current()->getName() == 'message.draft')
+@if (Route::is('message.draft'))
             @lang('miscellaneous.message.draft')
 @endif
 
-@if (Route::current()->getName() == 'message.spams')
+@if (Route::is('message.spams'))
             @lang('miscellaneous.message.spams')
 @endif
 
-@if (Route::current()->getName() == 'message.new')
+@if (Route::is('message.new'))
             @lang('miscellaneous.message.new')
 @endif
 
-@if (Route::current()->getName() == 'message.search')
+@if (Route::is('message.search'))
             @lang('miscellaneous.message.search_result')
 @endif
 
-@if (Route::current()->getName() == 'notification')
+@if (Route::is('notification'))
             @lang('miscellaneous.menu.notifications')
 @endif
 
-@if (Route::current()->getName() == 'about.home')
+@if (Route::is('about.home'))
             @lang('miscellaneous.menu.public.about')
 @endif
 
-@if (Route::current()->getName() == 'news.home')
+@if (Route::is('news.home'))
             @lang('miscellaneous.menu.public.news')
 @endif
 
-@if (Route::current()->getName() == 'works')
+@if (Route::is('works'))
             @lang('miscellaneous.menu.public.works')
 @endif
 
-@if (Route::current()->getName() == 'donate')
+@if (Route::is('donate'))
             @lang('miscellaneous.menu.public.donate')
 @endif
 
@@ -142,10 +142,10 @@
 
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
-                    <a href="{{ route('home') }}" class="nav-item nav-link {{ Route::current()->getName() == 'home' ? 'active' : '' }}">@lang('miscellaneous.menu.home')</a>
-                    <a href="{{ route('about.home') }}" class="nav-item nav-link {{ Route::current()->getName() == 'about.home' || Route::current()->getName() == 'about.party' || Route::current()->getName() == 'about.app' || Route::current()->getName() == 'about.terms_of_use' || Route::current()->getName() == 'about.privacy_policy' || Route::current()->getName() == 'about.help' || Route::current()->getName() == 'about.faq' ? 'active' : '' }}">@lang('miscellaneous.menu.public.about')</a>
-                    <a href="{{ route('news.home') }}" class="nav-item nav-link {{ Route::current()->getName() == 'news.home' || Route::current()->getName() == 'news.datas' ? 'active' : '' }}">@lang('miscellaneous.menu.public.news')</a>
-                    <a href="{{ route('works') }}" class="nav-item nav-link {{ Route::current()->getName() == 'works' ? 'active' : '' }}">@lang('miscellaneous.menu.public.works')</a>
+                    <a href="{{ route('home') }}" class="nav-item nav-link {{ Route::is('home') ? 'active' : '' }}">@lang('miscellaneous.menu.home')</a>
+                    <a href="{{ route('about.home') }}" class="nav-item nav-link {{ Route::is('about.home') || Route::is('about.party') || Route::is('about.app') || Route::is('about.terms_of_use') || Route::is('about.privacy_policy') || Route::is('about.help') || Route::is('about.faq') ? 'active' : '' }}">@lang('miscellaneous.menu.public.about')</a>
+                    <a href="{{ route('news.home') }}" class="nav-item nav-link {{ Route::is('news.home') || Route::is('news.datas') ? 'active' : '' }}">@lang('miscellaneous.menu.public.news')</a>
+                    <a href="{{ route('works') }}" class="nav-item nav-link {{ Route::is('works') ? 'active' : '' }}">@lang('miscellaneous.menu.public.works')</a>
                     <div class="nav-item dropdown d-lg-inline-block d-none mb-0">
                         <a href="#" class="nav-link" data-bs-toggle="dropdown"><i class="bi bi-translate fs-4 align-top"></i></a>
                         <div class="dropdown-menu bg-light m-0 overflow-hidden">
