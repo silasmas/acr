@@ -416,12 +416,15 @@ return [
                 'content2' => 'To effectively raise one\'s forehead, by grip, work, discipline and honesty.'
             ],
             'why_us' => [
-                'title' => 'Why us!',
-                'subtitle' => 'Choosing ACR is choosing change',
+                'title' => 'Why us?',
+                'subtitle' => 'Let\'s choose change',
                 'content' => 'ACR advocates the change of mentality, the true ethical values, with the aim of bringing individual development in particular, and of the whole country in general. Our motto is:',
                 'item1' => 'Unity',
+                'item1_description' => 'Because together we are stronger and more capable.',
                 'item2' => 'Work',
+                'item2_description' => 'Let us work hard and honestly to develop our nation.',
                 'item3' => 'Patriotism',
+                'item3_description' => 'Love of the fatherland, at the center of our decisions and initiatives.',
             ],
         ],
 

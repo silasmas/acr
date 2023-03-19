@@ -416,12 +416,15 @@ return [
                 'content2' => 'À dresser effectivement son front, par la prise, le travail, la discipline et l\'honnêteté',
             ],
             'why_us' => [
-                'title' => 'Pourquoi nous!',
-                'subtitle' => 'Choisir ACR, c\'est choisir le changement',
+                'title' => 'Pourquoi nous ?',
+                'subtitle' => 'Faisons le choix du changement',
                 'content' => 'ACR prône le changement de mentalité, les vraies valeurs éthiques, dans le but d\'apporter le développement individuel en particulier, et de tout le pays en général. Notre devise est :',
                 'item1' => 'Unité',
+                'item1_description' => 'Parce qu\'ensemble, nous sommes plus forts et plus capables.',
                 'item2' => 'Travail',
+                'item2_description' => 'Travaillons durement et honnêtement pour développer notre nation.',
                 'item3' => 'Patriotisme',
+                'item3_description' => 'L\'amour de la patrie, au centre de nos décisions et initiatives.',
             ],
         ],
 
