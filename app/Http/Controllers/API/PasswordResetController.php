@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Models\PasswordReset;
 use Illuminate\Http\Request;
 use App\Http\Resources\PasswordReset as ResourcesPasswordReset;
+use Nette\Utils\Random;
 
 /**
  * @author Xanders
@@ -32,7 +33,7 @@ class PasswordResetController extends BaseController
      */
     public function store(Request $request)
     {
-        $random_string = (string) random_int(1000000, 9999999);
+        $random_string = (string) Random::generate(7, '0-9');
         // Get inputs
         $inputs = [
             'email' => $request->email,
@@ -109,7 +110,7 @@ class PasswordResetController extends BaseController
      */
     public function update(Request $request, PasswordReset $password_reset)
     {
-        $random_string = (string) random_int(1000000, 9999999);
+        $random_string = (string) Random::generate(7, '0-9');
         // Get inputs
         $inputs = [
             'id' => $request->id,
