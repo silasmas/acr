@@ -171,7 +171,7 @@ class NotificationController extends BaseController
      */
     public function markAllRead($user_id)
     {
-        $status_read = Status::where('status_name', 'Lue');
+        $status_read = Status::where('status_name', 'Lue')->first();
         $notifications = Notification::where('user_id', $user_id)->get();
 
         // update "status_id" column for all user notifications
