@@ -173,6 +173,7 @@ return [
     'processing_succeed' => 'Votre transaction a réussie. Vous pouvez la voir à la liste de vos paiements.',
     'error_while_processing' => 'Une erreur lors du traitement de votre requête',
     'process_failed' => 'Impossible de traiter la demande, veuillez réessayer',
+    'process_canceled' => 'Vous avez annulé votre transaction',
     'create_payment_success' => 'Paiement créé',
     'update_payment_success' => 'Paiement modifié',
     'delete_payment_success' => 'Paiement supprimé',

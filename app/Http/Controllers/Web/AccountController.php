@@ -37,88 +37,14 @@ class AccountController extends Controller
     {
         // Get header informations
         $headers = [
-            'Authorization' => 'Bearer '. Auth::user()->api_token,
+            'Authorization' => 'Bearer '. $_COOKIE['acr-devref'],
             'Accept' => 'application/json',
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
-        // Data used to check APIs
-        $history_type_group = 'Type d\'historique';
-        // Create group API URL
-        $url_group = '/api/group';
-        // Search a group API URL
-        $url_search_group = '/api/group/search/type';
-        // Create type API URL
-        $url_type = '/api/type';
-        // Search a type API URL
-        $url_search_type = '/api/type/search/hist';
         // Select user API URL
         $url_user = '/api/user/' . Auth::user()->id;
 
         try {
-            // Search a group API response
-            $response_search_group = $this::$client->request('GET', $url_search_group, [
-                'headers' => $headers,
-                'verify'  => false
-            ]);
-            $search_group = json_decode($response_search_group->getBody(), false);
-
-            if ($search_group->data != null) {
-                // Search a type API response
-                $response_search_type = $this::$client->request('GET', $url_search_type, [
-                    'headers' => $headers,
-                    'verify'  => false
-                ]);
-                $search_type = json_decode($response_search_type->getBody(), false);
-
-                if ($search_type->data == null) {
-                    foreach($search_group->data as $group):
-                        if ($group->group_name == $history_type_group) {
-                            // Create type API response
-                            $this::$client->request('POST', $url_type, [
-                                'headers' => $headers,
-                                'form_params' => [
-                                    'type_name' => 'Historique personnel',
-                                    'type_description' => 'Répertoire de toutes vos activités dans le réseau.',
-                                    'group_id' => $search_group->data->id,
-                                ],
-                                'verify'  => false
-                            ]);
-                        }
-                    endforeach;
-                }
-
-            } else {
-                // Create group API response
-                $response_group = $this::$client->request('POST', $url_group, [
-                    'headers' => $headers,
-                    'form_params' => [
-                        'group_name' => 'Type d\'historique',
-                        'group_description' => 'Grouper les types qui serviront à gérer les historiques des clients et des vendeurs.'
-                    ],
-                    'verify'  => false
-                ]);
-                $new_group = json_decode($response_group->getBody(), false);
-                // Search a type API response
-                $response_search_type = $this::$client->request('GET', $url_search_type, [
-                    'headers' => $headers,
-                    'verify'  => false
-                ]);
-                $search_type = json_decode($response_search_type->getBody(), false);
-
-                if ($search_type->data == null) {
-                    // Create type API response
-                    $this::$client->request('POST', $url_type, [
-                        'headers' => $headers,
-                        'form_params' => [
-                            'type_name' => 'Historique personnel',
-                            'type_description' => 'Répertoire de toutes vos activités dans le réseau.',
-                            'group_id' => $new_group->data->id,
-                        ],
-                        'verify'  => false
-                    ]);
-                }
-            }
-
             // Select user API response
             $response_user = $this::$client->request('GET', $url_user, [
                 'headers' => $headers,
@@ -131,7 +57,6 @@ class AccountController extends Controller
             ]);
 
         } catch (ClientException $e) {
-            dd($e);
             // If Select user API returns some error, get it,
             // return to the account page and display its message
             return view('account', [
@@ -141,23 +66,20 @@ class AccountController extends Controller
     }
 
     /**
-     * GET: Album content
+     * GET: Current user account
      *
-     * @param $id
      * @return \Illuminate\View\View
      */
-    public function albumDatas($id)
+    public function offers()
     {
         // Get header informations
         $headers = [
-            'Authorization' => 'Bearer '. Auth::user()->api_token,
+            'Authorization' => 'Bearer '. $_COOKIE['acr-devref'],
             'Accept' => 'application/json',
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
         // Select user API URL
         $url_user = '/api/user/' . Auth::user()->id;
-        // Select album API URL
-        $url_album = '/api/album/' . $id;
 
         try {
             // Select user API response
@@ -166,16 +88,10 @@ class AccountController extends Controller
                 'verify'  => false
             ]);
             $user = json_decode($response_user->getBody(), false);
-            // Select album API response
-            $response_album = $this::$client->request('GET', $url_album, [
-                'headers' => $headers,
-                'verify'  => false
-            ]);
-            $album = json_decode($response_album->getBody(), false);
 
             return view('account', [
-                'user' => $user,
-                'album' => $album
+                'selected_user' => $user,
+                'offers' => $user->data->offers
             ]);
 
         } catch (ClientException $e) {
@@ -188,29 +104,24 @@ class AccountController extends Controller
     }
 
     /**
-     * GET: New album form
+     * GET: Current user account
      *
+     * @param $user_id
+     * @param $code
      * @return \Illuminate\View\View
      */
-    public function newAlbum()
+    public function offerSent($user_id, $code)
     {
-        // Get form datas
-        $inputs = [
-            'album_name' => date('Y') . '_' . date('m') . '_' . date('d'),
-            'user_id' => Auth::user()->id
-        ];
         // Get header informations
         $headers = [
-            'Authorization' => 'Bearer '. Auth::user()->api_token,
+            'Authorization' => 'Bearer '. $_COOKIE['acr-devref'],
             'Accept' => 'application/json',
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
+        // Register notification API URL
+        $url_notification = '/api/notification';
         // Select user API URL
         $url_user = '/api/user/' . Auth::user()->id;
-        // Select all albums belonging to user
-        $url_albums = '/api/album/select_by_entity/user/' . Auth::user()->id;
-        // Create album API URL
-        $url_album = '/api/album';
 
         try {
             // Select user API response
@@ -219,36 +130,87 @@ class AccountController extends Controller
                 'verify'  => false
             ]);
             $user = json_decode($response_user->getBody(), false);
-            // Select all albums API response
-            $response_albums = $this::$client->request('GET', $url_albums, [
-                'headers' => $headers,
-                'form_params' => $inputs,
-                'verify'  => false
-            ]);
-            $albums = json_decode($response_albums->getBody(), false);
 
-            foreach ($albums->data as $another_album):
-                if ($another_album->album_name == $inputs['album_name']) {
-                    return view('account', [
-                        'user' => $user,
-                        'album' => $another_album
-                    ]);
-
-                } else {
-                    // Create album API response
-                    $response_album = $this::$client->request('POST', $url_album, [
+            if ($code == '0') {
+                try {
+                    // Register notification API response
+                    $this::$client->request('POST', $url_notification, [
                         'headers' => $headers,
-                        'form_params' => $inputs,
+                        'form_params' => [
+                            'notification_url' => 'account/offers',
+                            'notification_content' => __('notifications.processing_succeed'),
+                            'notification_content' => $user_id
+                        ],
                         'verify'  => false
                     ]);
-                    $album = json_decode($response_album->getBody(), false);
 
                     return view('account', [
-                        'user' => $user,
-                        'album' => $album->data
+                        'selected_user' => $user,
+                        'offers' => $user->data->offers
+                    ]);
+
+                } catch (ClientException $e) {
+                    // If Select user API returns some error, get it,
+                    // return to the account page and display its message
+                    return view('account', [
+                        'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
                     ]);
                 }
-            endforeach;
+            }
+
+            if ($code == '1') {
+                try {
+                    // Register notification API response
+                    $this::$client->request('POST', $url_notification, [
+                        'headers' => $headers,
+                        'form_params' => [
+                            'notification_url' => 'account/offers',
+                            'notification_content' => __('notifications.process_canceled'),
+                            'notification_content' => $user_id
+                        ],
+                        'verify'  => false
+                    ]);
+
+                    return view('account', [
+                        'selected_user' => $user,
+                        'offers' => $user->data->offers
+                    ]);
+
+                } catch (ClientException $e) {
+                    // If Select user API returns some error, get it,
+                    // return to the account page and display its message
+                    return view('account', [
+                        'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                    ]);
+                }
+            }
+
+            if ($code == '2') {
+                try {
+                    // Register notification API response
+                    $this::$client->request('POST', $url_notification, [
+                        'headers' => $headers,
+                        'form_params' => [
+                            'notification_url' => 'account/offers',
+                            'notification_content' => __('notifications.process_failed'),
+                            'notification_content' => $user_id
+                        ],
+                        'verify'  => false
+                    ]);
+
+                    return view('account', [
+                        'selected_user' => $user,
+                        'offers' => $user->data->offers
+                    ]);
+
+                } catch (ClientException $e) {
+                    // If Select user API returns some error, get it,
+                    // return to the account page and display its message
+                    return view('account', [
+                        'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                    ]);
+                }
+            }
 
         } catch (ClientException $e) {
             // If Select user API returns some error, get it,
@@ -260,13 +222,29 @@ class AccountController extends Controller
     }
 
     /**
-     * GET: Image details 
+     * GET: Run payment by bank card
      *
-     * @param $id
+     * @param $amount
+     * @param $currency
+     * @param $user_id
      * @return \Illuminate\View\View
      */
-    public function imageDatas($id)
+    public function payWithCard($amount, $currency, $user_id)
     {
+        $reference_code = 'REF-' . ((string) random_int(10000000, 99999999)) . '-' . $user_id;
+
+        return Redirect::route('account.send_offer', [
+            'authorization' => 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJcL2xvZ2luIiwicm9sZXMiOlsiTUVSQ0hBTlQiXSwiZXhwIjoxNzI2MTYyMjM0LCJzdWIiOiIyYmIyNjI4YzhkZTQ0ZWZjZjA1ODdmMGRmZjYzMmFjYyJ9.41n-SA4822KKo5aK14rPZv6EnKi9xJVDIMvksHG61nc',
+            'merchant' => 'PROXDOC',
+            'reference' => $reference_code,
+            'amount' => $amount,
+            'currency' => $currency,
+            'description' => __('miscellaneous.bank_transaction_description'),
+            'callback_url' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/payment/store',
+            'approve_url' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/account/offers/' . $user_id . '/0',
+            'cancel_url' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/account/offers/' . $user_id . '/1',
+            'decline_url' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/account/offers/' . $user_id . '/2',
+        ]);
     }
 
     /**

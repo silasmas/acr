@@ -668,12 +668,12 @@ class UserController extends BaseController
     /**
      * Get user api token in storage.
      *
-     * @param  $email
+     * @param  $phone
      * @return \Illuminate\Http\Response
      */
-    public function getApiToken($email)
+    public function getApiToken($phone)
     {
-        $user = User::where('email', $email)->first();
+        $user = User::where('phone', $phone)->first();
 
         if (is_null($user)) {
             return $this->handleError(__('notifications.find_user_404'));
@@ -685,13 +685,17 @@ class UserController extends BaseController
     /**
      * Update user api token in storage.
      *
-     * @param  $id
+     * @param  $phone
      * @return \Illuminate\Http\Response
      */
-    public function updateApiToken($id)
+    public function updateApiToken($phone)
     {
         // find user by given ID
-        $user = User::find($id);
+        $user = User::where('phone', $phone)->first();
+
+        if (is_null($user)) {
+            return $this->handleError(__('notifications.find_user_404'));
+        }
 
         // update "api_token" column
         $user->update([

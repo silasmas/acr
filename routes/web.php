@@ -150,6 +150,8 @@ Route::get('/works', [HomeController::class, 'works'])->name('works');
 Route::get('/donate', [HomeController::class, 'donate'])->name('donate');
 // Account
 Route::get('/account/offers', [AccountController::class, 'offers'])->name('account.offers');
-Route::get('/account/offers/{amount}/{currency}/{user_id}', [AccountController::class, 'cardPayment'])->name('account.cardPayment');
+Route::get('/account/offers/{user_id}/{code}', [AccountController::class, 'offerSent'])->whereNumber(['user_id', 'code'])->name('account.offer_sent');
+Route::get('/account/send_offer', [AccountController::class, 'sendOffer'])->name('account.send_offer');
+Route::get('/account/send_offer/{amount}/{currency}/{user_id}', [AccountController::class, 'payWithCard'])->whereNumber(['amount', 'user_id'])->name('account.pay_with_card');
 
 require __DIR__.'/auth.php';

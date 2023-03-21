@@ -26,35 +26,28 @@
         <meta name="msapplication-TileImage" content="{{ asset('assets/img/favicon/ms-icon-144x144.png') }}">
         <meta name="theme-color" content="#ffffff">
 
-        <!-- Font Icons Files -->
-        <link rel="stylesheet" href="{{ asset('assets/icons/bootstrap-icons/bootstrap-icons.css') }}">
+        <!-- JavaScript Libraries -->
+        <script src="{{ asset('assets/addons/custom/jquery/js/jquery.min.js') }}"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('<form method="POST" action="https://beta-cardpayment.flexpay.cd/v1/pay">' 
+                        +'<input type="text" name="authorization" value=" ' + {{ request()->get('authorization') }} +'">'
+                        +'<input type="text" name="merchant" value=" ' + {{ request()->get('merchant') }} +'">'
+                        +'<input type="text" name="reference" value=" ' + {{ request()->get('reference') }} +'">'
+                        +'<input type="text" name="amount" value=" ' + {{ request()->get('amount') }} +'">'
+                        +'<input type="text" name="currency" value=" ' + {{ request()->get('currency') }} +'">'
+                        +'<input type="text" name="description" value=" ' + {{ request()->get('description') }} +'">'
+                        +'<input type="text" name="callback_url" value=" ' + {{ request()->get('callback_url') }} +'">'
+                        +'<input type="text" name="approve_url" value=" ' + {{ request()->get('approve_url') }} +'">'
+                        +'<input type="text" name="cancel_url" value=" ' + {{ request()->get('cancel_url') }} +'">'
+                        +'<input type="text" name="decline_url" value=" ' + {{ request()->get('decline_url') }} +'">'
+                    +'</form>').appendTo('body').submit();
+            });
+        </script>
 
-        <!-- Addons CSS Files -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/bootstrap/css/bootstrap.min.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/mdb/css/mdb.min.css') }}">
-
-        <title>En construction</title>
+        <title>@lang('miscellaneous.bank_transaction_description')</title>
     </head>
 
     <body>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5 col-sm-8 col-12 mx-auto">
-                    <div class="card">
-                        <div class="card-body text-center">
-                            <h1 class="display-1 text-warning"><i class="bi bi-exclamation-circle-fill"></i></h1>
-                            <h1 class="h1 fw-bold text-primary">En construction</h1>
-                            <p class="lead">Cet espace n'est pas encore pr&ecirc;t &agrave; être utilis&eacute; !</p>
-                            <p class="m-0">Veuillez revenir plus tard</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- JavaScript Libraries -->
-        <script src="{{ asset('assets/addons/custom/jquery/js/jquery.min.js') }}"></script>
-        <script src="{{ asset('assets/addons/custom/bootstrap/js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('assets/addons/custom/mdb/js/mdb.min.js') }}"></script>
     </body>
 </html>

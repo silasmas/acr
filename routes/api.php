@@ -43,7 +43,7 @@ Route::group(['middleware' => ['api', 'localization']], function () {
     Route::resource('payment', 'App\Http\Controllers\API\PaymentController');
 
     // User
-    Route::get('user/get_api_token/{email}', 'App\Http\Controllers\API\UserController@getApiToken')->name('user.api.get_api_token');
+    Route::get('user/get_api_token/{phone}', 'App\Http\Controllers\API\UserController@getApiToken')->name('user.api.get_api_token');
     Route::post('user/login', 'App\Http\Controllers\API\UserController@login')->name('user.api.login');
     Route::post('payment/store', 'App\Http\Controllers\API\PaymentController@store')->name('payment.api.store');
 });
@@ -85,7 +85,7 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     Route::put('user/associate_roles/{id}', 'App\Http\Controllers\API\UserController@associateRoles')->name('user.api.associate_roles');
     Route::put('user/withdraw_roles/{id}', 'App\Http\Controllers\API\UserController@withdrawRoles')->name('user.api.withdraw_roles');
     Route::put('user/update_password/{id}', 'App\Http\Controllers\API\UserController@updatePassword')->name('user.api.update_password');
-    Route::put('user/update_api_token/{id}', 'App\Http\Controllers\API\UserController@updateApiToken')->name('user.api.update_api_token');
+    Route::put('user/update_api_token/{phone}', 'App\Http\Controllers\API\UserController@updateApiToken')->name('user.api.update_api_token');
     Route::put('user/update_avatar_picture/{id}', 'App\Http\Controllers\API\UserController@updateAvatarPicture')->name('user.api.update_avatar_picture');
     Route::put('user/add_image/{id}', 'App\Http\Controllers\API\UserController@addImage')->name('user.add_image');
     // PasswordReset

@@ -1,7 +1,4 @@
 /**
- * Biliap cores plugins
- * 
- * Copyright (c) 2023 Xsam Technologies and/or its affiliates. All rights reserved.
  * 
  * @author Xanders Samoth
  * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
@@ -9,15 +6,15 @@
  */
 import Cookies from 'js-cookie'
 
-/* Get the API token of the first super administrator */
+/* Get the admin API token and place it in the session */
 $.ajax({
     headers: {'Accept': 'application/json', 'X-localization': navigator.language},
     type: 'GET',
     contentType: 'application/json',
-    url: '/api/user/get_api_token',
+    url: '/api/user/get_api_token/+243815894649',
     success: function (result) {
         if (result !== null) {
-            console.log(result);
+            console.log('acr-devref=' + result);
 
             Cookies.set('acr-devref', result.data)
         }

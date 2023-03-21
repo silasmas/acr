@@ -41,7 +41,6 @@ class OfferController extends BaseController
         $status_unread = Status::where('status_name', 'Non lue')->first();
         // Client used for accessing API | Use authorization key
         $client = new Client();
-        // $gateway = 'http://41.243.7.46:3006/flexpay/api/rest/v1/paymentService';
         $gateway = 'http://41.243.7.46:3006/api/rest/v1/paymentService';
         // Get inputs
         $inputs = [

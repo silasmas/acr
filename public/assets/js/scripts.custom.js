@@ -39,7 +39,7 @@ $(document).ready(function () {
 
     /* jQuery Date picker */
     $('#register_birthdate').datepicker({
-        dateFormat: 'yy-mm-dd',
+        dateFormat: navigator.language.startsWith('fr') ? 'dd/mm/yyyy' : 'yyyy-mm-dd',
         onSelect: function () {
             $(this).focus();
         }
@@ -61,7 +61,7 @@ $(document).ready(function () {
             headers: {'Authorization': 'Bearer ' + Cookies.get('acr-devref'), 'Accept': 'application/json', 'X-localization': navigator.language},
             type: 'PUT',
             contentType: 'application/json',
-            url: '/api/user/update_api_token/3',
+            url: '/api/user/update_api_token/+243815894649',
             dataType: 'json',
             success: function () {
             },    

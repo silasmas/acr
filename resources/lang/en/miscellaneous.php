@@ -17,6 +17,7 @@ return [
     'all_right_reserved' => 'All right reserved',
     'follow_us' => 'Follow us:',
     'call_us' => 'Call us:',
+    'bank_transaction_description' => 'Bank transaction from the ACR application',
     'your_language' => 'Your language',
     'back_home' => 'Return to the home page',
     'back_list' => 'Return to the list',
