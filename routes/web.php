@@ -150,5 +150,6 @@ Route::get('/works', [HomeController::class, 'works'])->name('works');
 Route::get('/donate', [HomeController::class, 'donate'])->name('donate');
 // Account
 Route::get('/account/offers', [AccountController::class, 'offers'])->name('account.offers');
+Route::get('/account/offers/{amount}/{currency}/{user_id}', [AccountController::class, 'cardPayment'])->name('account.cardPayment');
 
 require __DIR__.'/auth.php';
