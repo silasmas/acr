@@ -37,7 +37,6 @@ class AccountController extends Controller
     {
         // Get header informations
         $headers = [
-            'Authorization' => 'Bearer '. $_COOKIE['acr-devref'],
             'Accept' => 'application/json',
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
@@ -74,7 +73,6 @@ class AccountController extends Controller
     {
         // Get header informations
         $headers = [
-            'Authorization' => 'Bearer '. $_COOKIE['acr-devref'],
             'Accept' => 'application/json',
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
@@ -115,18 +113,17 @@ class AccountController extends Controller
     {
         // Get header informations
         $headers = [
-            'Authorization' => 'Bearer '. $_COOKIE['acr-devref'],
             'Accept' => 'application/json',
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
         // Register offer API URL
-        $url_offer = '/api/offer';
+        $url_offer = '/api/offer/store';
         // Status name to find
         $unread_status = 'Non lue';
         // Search status by name API URL
         $url_status = '/api/status/search/' . $unread_status;
         // Register notification API URL
-        $url_notification = '/api/notification';
+        $url_notification = '/api/notification/store';
         // Select user API URL
         $url_user = '/api/user/' . Auth::user()->id;
 

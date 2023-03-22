@@ -19,19 +19,15 @@ Route::middleware(['auth:api', 'localization'])->group(function () {
     Route::apiResource('legal_info_title', 'App\Http\Controllers\API\LegalInfoTitleController');
     Route::apiResource('legal_info_content', 'App\Http\Controllers\API\LegalInfoContentController');
     Route::apiResource('group', 'App\Http\Controllers\API\GroupController');
-    Route::apiResource('status', 'App\Http\Controllers\API\StatusController');
     Route::apiResource('type', 'App\Http\Controllers\API\TypeController');
     Route::apiResource('image', 'App\Http\Controllers\API\ImageController');
     Route::apiResource('country', 'App\Http\Controllers\API\CountryController');
     Route::apiResource('address', 'App\Http\Controllers\API\AddressController');
     Route::apiResource('role', 'App\Http\Controllers\API\RoleController');
-    Route::apiResource('user', 'App\Http\Controllers\API\UserController');
     Route::apiResource('role_user', 'App\Http\Controllers\API\RoleUserController');
     Route::apiResource('password_reset', 'App\Http\Controllers\API\PasswordResetController');
     Route::apiResource('message', 'App\Http\Controllers\API\MessageController');
-    Route::apiResource('notification', 'App\Http\Controllers\API\NotificationController');
     Route::apiResource('news', 'App\Http\Controllers\API\NewsController');
-    Route::apiResource('offer', 'App\Http\Controllers\API\OfferController');
 });
 /*
 |--------------------------------------------------------------------------
@@ -39,12 +35,24 @@ Route::middleware(['auth:api', 'localization'])->group(function () {
 |--------------------------------------------------------------------------
  */
 Route::group(['middleware' => ['api', 'localization']], function () {
+    Route::resource('status', 'App\Http\Controllers\API\StatusController');
     Route::resource('user', 'App\Http\Controllers\API\UserController');
+    Route::resource('notification', 'App\Http\Controllers\API\NotificationController');
+    Route::resource('offer', 'App\Http\Controllers\API\OfferController');
     Route::resource('payment', 'App\Http\Controllers\API\PaymentController');
 
+    // Status
+    Route::get('status/search/{data}', 'App\Http\Controllers\API\StatusController@search')->name('status.api.search');
+    Route::get('status/find_by_group/{group_name}', 'App\Http\Controllers\API\StatusController@findByGroup')->name('status.api.find_by_group');
     // User
+    Route::get('user/{id}', 'App\Http\Controllers\API\UserController@show')->name('user.api.show');
     Route::get('user/get_api_token/{phone}', 'App\Http\Controllers\API\UserController@getApiToken')->name('user.api.get_api_token');
     Route::post('user/login', 'App\Http\Controllers\API\UserController@login')->name('user.api.login');
+    // Notification
+    Route::post('notification/store', 'App\Http\Controllers\API\NotificationController@store')->name('payment.api.store');
+    // Offer
+    Route::post('offer/store', 'App\Http\Controllers\API\OfferController@store')->name('payment.api.store');
+    // Payment
     Route::post('payment/store', 'App\Http\Controllers\API\PaymentController@store')->name('payment.api.store');
 });
 Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () {
@@ -55,11 +63,13 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     Route::resource('type', 'App\Http\Controllers\API\TypeController');
     Route::resource('country', 'App\Http\Controllers\API\CountryController');
     Route::resource('role', 'App\Http\Controllers\API\RoleController');
+    Route::resource('status', 'App\Http\Controllers\API\StatusController');
     Route::resource('user', 'App\Http\Controllers\API\UserController');
     Route::resource('password_reset', 'App\Http\Controllers\API\PasswordResetController');
     Route::resource('message', 'App\Http\Controllers\API\MessageController');
     Route::resource('notification', 'App\Http\Controllers\API\NotificationController');
     Route::resource('news', 'App\Http\Controllers\API\NewsController');
+    Route::resource('offer', 'App\Http\Controllers\API\OfferController');
     Route::resource('payment', 'App\Http\Controllers\API\PaymentController');
 
     // LegalInfoTitle
@@ -70,8 +80,10 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     // Group
     Route::get('group/search/{data}', 'App\Http\Controllers\API\GroupController@search')->name('group.api.search');
     // Status
-    Route::get('status/search/{data}', 'App\Http\Controllers\API\StatusController@search')->name('status.api.search');
-    Route::get('status/find_by_group/{group_name}', 'App\Http\Controllers\API\StatusController@findByGroup')->name('status.api.find_by_group');
+    Route::get('status', 'App\Http\Controllers\API\StatusController@index')->name('status.api.index');
+    Route::get('status/{id}', 'App\Http\Controllers\API\StatusController@show')->name('status.api.show');
+    Route::put('status/{id}', 'App\Http\Controllers\API\StatusController@update')->name('status.api.update');
+    Route::delete('status/{id}', 'App\Http\Controllers\API\StatusController@destroy')->name('status.api.destroy');
     // Type
     Route::get('type/search/{data}', 'App\Http\Controllers\API\TypeController@search')->name('type.api.search');
     Route::get('type/find_by_group/{group_name}', 'App\Http\Controllers\API\TypeController@findByGroup')->name('type.api.find_by_group');
@@ -80,6 +92,10 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     // Role
     Route::get('role/search/{data}', 'App\Http\Controllers\API\RoleController@search')->name('role.api.search');
     // User
+    Route::get('user', 'App\Http\Controllers\API\UserController@index')->name('user.api.index');
+    Route::get('user/{id}', 'App\Http\Controllers\API\UserController@show')->name('user.api.show');
+    Route::put('user/{id}', 'App\Http\Controllers\API\UserController@update')->name('user.api.update');
+    Route::delete('user/{id}', 'App\Http\Controllers\API\UserController@destroy')->name('user.api.destroy');
     Route::get('user/search/{data}', 'App\Http\Controllers\API\UserController@search')->name('user.api.search');
     Route::put('user/switch_status/{id}/{status_id}', 'App\Http\Controllers\API\UserController@switchStatus')->name('user.api.switch_status');
     Route::put('user/associate_roles/{id}', 'App\Http\Controllers\API\UserController@associateRoles')->name('user.api.associate_roles');
@@ -97,12 +113,21 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     Route::get('message/outbox/{user_id}', 'App\Http\Controllers\API\MessageController@outbox')->name('message.api.outbox');
     Route::get('message/answers/{message_id}', 'App\Http\Controllers\API\MessageController@answers')->name('message.api.answers');
     // Notification
+    Route::get('notification', 'App\Http\Controllers\API\NotificationController@index')->name('notification.api.index');
+    Route::get('notification/{id}', 'App\Http\Controllers\API\NotificationController@show')->name('notification.api.show');
+    Route::put('notification/{id}', 'App\Http\Controllers\API\NotificationController@update')->name('notification.api.update');
+    Route::delete('notification/{id}', 'App\Http\Controllers\API\NotificationController@destroy')->name('notification.api.destroy');
     Route::get('notification/select_by_user/{user_id}', 'App\Http\Controllers\API\NotificationController@selectByUser')->name('notification.api.select_by_user');
     Route::put('notification/switch_status/{id}/{status_id}', 'App\Http\Controllers\API\NotificationController@switchStatus')->name('notification.api.switch_status');
     Route::put('notification/mark_all_read/{user_id}', 'App\Http\Controllers\API\NotificationController@markAllRead')->name('notification.api.mark_all_read');
     // News
     Route::get('news/select_by_type/{type_id}', 'App\Http\Controllers\API\NewsController@selectByType')->name('news.api.select_by_type');
     Route::put('news/add_image/{id}', 'App\Http\Controllers\API\NewsController@addImage')->name('news.api.add_image');
+    // Offer
+    Route::get('offer', 'App\Http\Controllers\API\OfferController@index')->name('offer.api.index');
+    Route::get('offer/{id}', 'App\Http\Controllers\API\OfferController@show')->name('offer.api.show');
+    Route::put('offer/{id}', 'App\Http\Controllers\API\OfferController@update')->name('offer.api.update');
+    Route::delete('offer/{id}', 'App\Http\Controllers\API\OfferController@destroy')->name('offer.api.destroy');
     // Payment
     Route::get('payment', 'App\Http\Controllers\API\PaymentController@index')->name('payment.api.index');
     Route::get('payment/find_by_phone/{phone_number}', 'App\Http\Controllers\API\PaymentController@findByPhone')->name('payment.api.find_by_phone');
