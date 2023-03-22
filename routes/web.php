@@ -4,7 +4,10 @@
  * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
  */
 
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
+use GuzzleHttp\Exception\ClientException;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +26,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/symlink', function () {
     return view('symlink');
 });
-
+// FlexPay Portal
+Route::get('https://beta-cardpayment.flexpay.cd/v1/pay', function () {
+    return redirect('https://beta-cardpayment.flexpay.cd/v1/pay');
+})->name('flexpay_portal');
 // Home
 Route::get('/', 'App\Http\Controllers\Web\HomeController@index')->name('home');
 Route::get('/language/{locale}', 'App\Http\Controllers\Web\HomeController@changeLanguage')->name('change_language');
@@ -141,8 +147,8 @@ Route::get('/communique/{id}', 'App\Http\Controllers\Web\HomeController@communiq
 Route::get('/works', 'App\Http\Controllers\Web\HomeController@works')->name('works');
 Route::get('/donate', 'App\Http\Controllers\Web\HomeController@donate')->name('donate');
 // Account
-Route::get('/send_offer/{offer_type_id}/{amount}/{currency}/{user_id}', 'App\Http\Controllers\Web\AccountController@payWithCard')->whereNumber(['amount', 'user_id'])->name('account.pay_with_card');
-Route::get('/offers/{offer_type_id}/{amount}/{user_id}/{code}', 'App\Http\Controllers\Web\AccountController@offerSent')->whereNumber(['offer_type_id', 'amount', 'user_id', 'code'])->name('account.offer_sent');
-Route::get('/offers', 'App\Http\Controllers\Web\AccountController@offers')->name('account.offers');
+Route::get('/account/offers/{amount}/{currency}/{user_id}', 'App\Http\Controllers\Web\AccountController@payWithCard')->whereNumber(['amount', 'user_id'])->name('account.pay_with_card');
+Route::get('/account/offers', 'App\Http\Controllers\Web\AccountController@offers')->name('account.offers');
+Route::get('/account/offer_sent/{amount}/{user_id}/{code}', 'App\Http\Controllers\Web\AccountController@offerSent')->whereNumber(['offer_type_id', 'amount', 'user_id', 'code'])->name('account.offer_sent');
 
 require __DIR__.'/auth.php';
