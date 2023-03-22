@@ -257,21 +257,43 @@ class AccountController extends Controller
     public function payWithCard($offer_type_id, $amount, $currency, $user_id)
     {
         $reference_code = 'REF-' . ((string) random_int(10000000, 99999999)) . '-' . $user_id;
+        $gateway = 'https://cardpayment.flexpay.cd/v2/pay';
 
-        dd($reference_code);
+        try {
+            // Create response by sending request to FlexPay
+            $response = $this::$client->request('POST', $gateway, [
+                'headers' => array(
+                    'Authorization' => 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJcL2xvZ2luIiwicm9sZXMiOlsiTUVSQ0hBTlQiXSwiZXhwIjoxNzI2MTYyMjM0LCJzdWIiOiIyYmIyNjI4YzhkZTQ0ZWZjZjA1ODdmMGRmZjYzMmFjYyJ9.41n-SA4822KKo5aK14rPZv6EnKi9xJVDIMvksHG61nc',
+                    'Accept' => 'application/json'
+                ),
+                'json' => array(
+                    'merchant' => 'PROXDOC',
+                    'reference' => $reference_code,
+                    'amount' => $amount,
+                    'currency' => $currency,
+                    'description' => __('miscellaneous.bank_transaction_description'),
+                    'callback_url' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/payment/store',
+                    'approve_url' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/account/offers/' . $offer_type_id . '/' . $amount . '/' . $user_id . '/0',
+                    'cancel_url' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/account/offers/' . $offer_type_id . '/' . $amount . '/' . $user_id . '/1',
+                    'decline_url' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/account/offers/' . $offer_type_id . '/' . $amount . '/' . $user_id . '/2',
+                ),
+                'verify'  => false
+            ]);
+            $payment = json_decode($response->getBody(), false);
 
-        return Redirect::route('account.send_offer', [
-            'authorization' => 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJcL2xvZ2luIiwicm9sZXMiOlsiTUVSQ0hBTlQiXSwiZXhwIjoxNzI2MTYyMjM0LCJzdWIiOiIyYmIyNjI4YzhkZTQ0ZWZjZjA1ODdmMGRmZjYzMmFjYyJ9.41n-SA4822KKo5aK14rPZv6EnKi9xJVDIMvksHG61nc',
-            'merchant' => 'PROXDOC',
-            'reference' => $reference_code,
-            'amount' => $amount,
-            'currency' => $currency,
-            'description' => __('miscellaneous.bank_transaction_description'),
-            'callback_url' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/payment/store',
-            'approve_url' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/account/offers/' . $offer_type_id . '/' . $amount . '/' . $user_id . '/0',
-            'cancel_url' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/account/offers/' . $offer_type_id . '/' . $amount . '/' . $user_id . '/1',
-            'decline_url' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/account/offers/' . $offer_type_id . '/' . $amount . '/' . $user_id . '/2',
-        ]);
+            return Redirect::action($gateway, [
+                'code' => $payment->code,
+                'message' => $payment->message,
+                'code' => $payment->code,
+                'orderNumber' => $payment->orderNumber,
+                'url' => $payment->url,
+            ]);
+
+        } catch (ClientException $e) {
+            $response_error = json_decode($e->getResponse()->getBody()->getContents(), false);
+
+            return $this->handleError($response_error, __('notifications.error_while_processing'));
+        }
     }
 
     /**
