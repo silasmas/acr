@@ -258,7 +258,8 @@ class UserController extends BaseController
     {
         // Get inputs
         $inputs = [
-            'national_number' => $request->national_number,
+            'id' => $request->id,
+            'national_number' => $request->serial_number,
             'firstname' => $request->firstname,
             'lastname' => $request->lastname,
             'surname' => $request->surname,
@@ -274,10 +275,17 @@ class UserController extends BaseController
         ];
 
         if ($inputs['national_number'] != null) {
-            $user->update([
-                'national_number' => $request->national_number,
-                'updated_at' => now(),
-            ]);
+            $current_user = User::find($inputs['id']);
+
+            if ($current_user->surname != null AND $current_user->birth_date != null) {
+                $user->update([
+                    'national_number' => 'ACR-' . Random::generate(4, '0-9') . '-' . strtoupper(substr($request->surname, 3)) . '-' . str_replace($request->birth_date, '.', '-') . '-0000',
+                    'updated_at' => now(),
+                ]);
+
+            } else {
+                return $this->handleError(__('validation.custom.surname_and_birthdate'));
+            }
         }
 
         if ($inputs['firstname'] != null) {

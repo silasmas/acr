@@ -12,6 +12,7 @@ use App\Http\Controllers\Web\LegalInfoController;
 use App\Http\Controllers\Web\MessageController;
 use App\Http\Controllers\Web\MiscellaneousController;
 use App\Http\Controllers\Web\PartyController;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,18 +38,18 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/language/{locale}', [HomeController::class, 'changeLanguage'])->name('change_language');
 // Account
 Route::get('/account', [AccountController::class, 'account'])->name('account');
-Route::get('/account/update_password', [AccountController::class, 'editPassword'])->name('account.update.password');
+Route::get('/update_password', [AccountController::class, 'editPassword'])->name('account.update.password');
 Route::post('/account', [AccountController::class, 'updateAccount']);
-Route::post('/account/update_password', [AccountController::class, 'updatePassword']);
+Route::post('/update_password', [AccountController::class, 'updatePassword']);
 // Message
 Route::get('/message', [MessageController::class, 'receivedMessages'])->name('message.inbox');
-Route::get('/message/sent', [MessageController::class, 'sentMessages'])->name('message.outbox');
-Route::get('/message/drafts', [MessageController::class, 'draftsMessages'])->name('message.draft');
-Route::get('/message/spams', [MessageController::class, 'spamsMessages'])->name('message.spams');
 Route::get('/message/{id}', [MessageController::class, 'showMessage'])->whereNumber('id')->name('message.datas');
-Route::get('/message/new', [MessageController::class, 'newMessage'])->name('message.new');
-Route::get('/message/search/{data}', [MessageController::class, 'search'])->name('message.search');
-Route::get('/message/delete/{id}', [MessageController::class, 'deleteMessage'])->name('message.delete');
+Route::get('/message_sent', [MessageController::class, 'sentMessages'])->name('message.outbox');
+Route::get('/message_drafts', [MessageController::class, 'draftsMessages'])->name('message.draft');
+Route::get('/message_spams', [MessageController::class, 'spamsMessages'])->name('message.spams');
+Route::get('/message_new', [MessageController::class, 'newMessage'])->name('message.new');
+Route::get('/message_search/{data}', [MessageController::class, 'search'])->name('message.search');
+Route::get('/message_delete/{id}', [MessageController::class, 'deleteMessage'])->name('message.delete');
 Route::post('/message', [MessageController::class, 'storeMessage']);
 Route::post('/message/{id}', [MessageController::class, 'updateMessage'])->whereNumber('id');
 // Notification
@@ -149,12 +150,29 @@ Route::get('/communique/{id}', [HomeController::class, 'communiqueDatas'])->wher
 Route::get('/works', [HomeController::class, 'works'])->name('works');
 Route::get('/donate', [HomeController::class, 'donate'])->name('donate');
 // Account
-Route::get('/account/offers', [AccountController::class, 'offers'])->name('account.offers');
-// 1. The user initiates the payment
-Route::get('/account/send_offer/{amount}/{currency}/{user_id}', [AccountController::class, 'payWithCard'])->whereNumber(['amount', 'user_id'])->name('account.pay_with_card');
+Route::get('/send_offer/{offer_type_id}/{amount}/{currency}/{user_id}', /* [AccountController::class, 'payWithCard'] */ function ($offer_type_id, $amount, $currency, $user_id) {
+    $reference_code = 'REF-' . ((string) random_int(10000000, 99999999)) . '-' . $user_id;
+
+    return Redirect::route('account.send_offer', [
+        'authorization' => 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJcL2xvZ2luIiwicm9sZXMiOlsiTUVSQ0hBTlQiXSwiZXhwIjoxNzI2MTYyMjM0LCJzdWIiOiIyYmIyNjI4YzhkZTQ0ZWZjZjA1ODdmMGRmZjYzMmFjYyJ9.41n-SA4822KKo5aK14rPZv6EnKi9xJVDIMvksHG61nc',
+        'merchant' => 'PROXDOC',
+        'reference' => $reference_code,
+        'amount' => $amount,
+        'currency' => $currency,
+        'description' => __('miscellaneous.bank_transaction_description'),
+        'callback_url' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/payment/store',
+        'approve_url' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/account/offers/' . $offer_type_id . '/' . $amount . '/' . $user_id . '/0',
+        'cancel_url' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/account/offers/' . $offer_type_id . '/' . $amount . '/' . $user_id . '/1',
+        'decline_url' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/account/offers/' . $offer_type_id . '/' . $amount . '/' . $user_id . '/2',
+    ]);
+
+})->whereNumber(['amount', 'user_id'])->name('account.pay_with_card');
 // 2. He is redirected to the page which will send a POST to FlexPay
-Route::get('/account/send_offer', [AccountController::class, 'sendOffer'])->name('account.send_offer');
+Route::get('/send_offer', /* [AccountController::class, 'sendOffer'] */ function () {
+    return view('send_offer');
+})->name('account.send_offer');
 // 3. FlexPay redirects it to this URL to approve, cancel or send an error
-Route::get('/account/offers/{user_id}/{code}', [AccountController::class, 'offerSent'])->whereNumber(['user_id', 'code'])->name('account.offer_sent');
+Route::get('/offers/{offer_type_id}/{amount}/{user_id}/{code}', [AccountController::class, 'offerSent'])->whereNumber(['offer_type_id', 'amount', 'user_id', 'code'])->name('account.offer_sent');
+Route::get('/offers', [AccountController::class, 'offers'])->name('account.offers');
 
 require __DIR__.'/auth.php';

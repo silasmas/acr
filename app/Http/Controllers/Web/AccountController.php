@@ -110,7 +110,7 @@ class AccountController extends Controller
      * @param $code
      * @return \Illuminate\View\View
      */
-    public function offerSent($user_id, $code)
+    public function offerSent($offer_type_id, $amount, $user_id, $code)
     {
         // Get header informations
         $headers = [
@@ -118,6 +118,8 @@ class AccountController extends Controller
             'Accept' => 'application/json',
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
+        // Register offer API URL
+        $url_offer = '/api/offer';
         // Status name to find
         $unread_status = 'Non lue';
         // Search status by name API URL
@@ -143,6 +145,16 @@ class AccountController extends Controller
 
             if ($code == '0') {
                 try {
+                    // Register offer API response
+                    $this::$client->request('POST', $url_offer, [
+                        'headers' => $headers,
+                        'form_params' => [
+                            'amount' => $amount,
+                            'type_id' => $offer_type_id,
+                            'user_id' => $user_id
+                        ],
+                        'verify'  => false
+                    ]);
                     // Register notification API response
                     $this::$client->request('POST', $url_notification, [
                         'headers' => $headers,
@@ -242,9 +254,11 @@ class AccountController extends Controller
      * @param $user_id
      * @return \Illuminate\View\View
      */
-    public function payWithCard($amount, $currency, $user_id)
+    public function payWithCard($offer_type_id, $amount, $currency, $user_id)
     {
         $reference_code = 'REF-' . ((string) random_int(10000000, 99999999)) . '-' . $user_id;
+
+        dd($reference_code);
 
         return Redirect::route('account.send_offer', [
             'authorization' => 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJcL2xvZ2luIiwicm9sZXMiOlsiTUVSQ0hBTlQiXSwiZXhwIjoxNzI2MTYyMjM0LCJzdWIiOiIyYmIyNjI4YzhkZTQ0ZWZjZjA1ODdmMGRmZjYzMmFjYyJ9.41n-SA4822KKo5aK14rPZv6EnKi9xJVDIMvksHG61nc',
@@ -254,10 +268,20 @@ class AccountController extends Controller
             'currency' => $currency,
             'description' => __('miscellaneous.bank_transaction_description'),
             'callback_url' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/payment/store',
-            'approve_url' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/account/offers/' . $user_id . '/0',
-            'cancel_url' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/account/offers/' . $user_id . '/1',
-            'decline_url' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/account/offers/' . $user_id . '/2',
+            'approve_url' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/account/offers/' . $offer_type_id . '/' . $amount . '/' . $user_id . '/0',
+            'cancel_url' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/account/offers/' . $offer_type_id . '/' . $amount . '/' . $user_id . '/1',
+            'decline_url' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/account/offers/' . $offer_type_id . '/' . $amount . '/' . $user_id . '/2',
         ]);
+    }
+
+    /**
+     * GET: View "send_offer" form
+     *
+     * @return \Illuminate\View\View
+     */
+    public function sendOffer()
+    {
+        return view('send_offer');
     }
 
     /**

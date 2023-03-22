@@ -30,7 +30,7 @@
         <script src="{{ asset('assets/addons/custom/jquery/js/jquery.min.js') }}"></script>
         <script type="text/javascript">
             $(document).ready(function () {
-                $('<form method="POST" action="https://beta-cardpayment.flexpay.cd/v1/pay">' 
+                $('<form method="POST" action="https://cardpayment.flexpay.cd/v1/pay">' 
                         +'<input type="text" name="authorization" value=" ' + {{ request()->get('authorization') }} +'">'
                         +'<input type="text" name="merchant" value=" ' + {{ request()->get('merchant') }} +'">'
                         +'<input type="text" name="reference" value=" ' + {{ request()->get('reference') }} +'">'
