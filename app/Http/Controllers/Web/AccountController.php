@@ -125,7 +125,7 @@ class AccountController extends Controller
         // Register notification API URL
         $url_notification = '/api/notification/store';
         // Select user API URL
-        $url_user = '/api/user/' . Auth::user()->id;
+        // $url_user = '/api/user/' . Auth::user()->id;
 
         try {
             // Search status by name API response
@@ -135,11 +135,11 @@ class AccountController extends Controller
             ]);
             $status = json_decode($response_status->getBody(), false);
             // Select user API response
-            $response_user = $this::$client->request('GET', $url_user, [
-                'headers' => $headers,
-                'verify'  => false
-            ]);
-            $user = json_decode($response_user->getBody(), false);
+            // $response_user = $this::$client->request('GET', $url_user, [
+            //     'headers' => $headers,
+            //     'verify'  => false
+            // ]);
+            // $user = json_decode($response_user->getBody(), false);
 
             if ($code == '0') {
                 try {
@@ -165,10 +165,10 @@ class AccountController extends Controller
                         'verify'  => false
                     ]);
 
-                    return view('account', [
+                    return view('account'/*, [
                         'selected_user' => $user,
                         'offers' => $user->data->offers
-                    ]);
+                    ]*/);
 
                 } catch (ClientException $e) {
                     // If Select user API returns some error, get it,
@@ -193,10 +193,10 @@ class AccountController extends Controller
                         'verify'  => false
                     ]);
 
-                    return view('account', [
+                    return view('account'/*, [
                         'selected_user' => $user,
                         'offers' => $user->data->offers
-                    ]);
+                    ]*/);
 
                 } catch (ClientException $e) {
                     // If Select user API returns some error, get it,
@@ -221,10 +221,10 @@ class AccountController extends Controller
                         'verify'  => false
                     ]);
 
-                    return view('account', [
+                    return view('account', /*[
                         'selected_user' => $user,
                         'offers' => $user->data->offers
-                    ]);
+                    ]*/);
 
                 } catch (ClientException $e) {
                     // If Select user API returns some error, get it,
