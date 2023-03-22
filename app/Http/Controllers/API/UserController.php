@@ -274,18 +274,13 @@ class UserController extends BaseController
             'confirm_password' => $request->confirm_password
         ];
 
-        if ($inputs['national_number'] != null) {
-            $current_user = User::find($inputs['id']);
+        $current_user = User::find($inputs['id']);
 
-            if ($current_user->surname != null AND $current_user->birth_date != null) {
-                $user->update([
-                    'national_number' => 'ACR-' . Random::generate(4, '0-9') . '-' . strtoupper(substr($request->surname, 3)) . '-' . str_replace($request->birth_date, '.', '-') . '-0000',
-                    'updated_at' => now(),
-                ]);
-
-            } else {
-                return $this->handleError(__('validation.custom.surname_and_birthdate'));
-            }
+        if ($current_user->surname != null AND $current_user->birth_date != null) {
+            $user->update([
+                'national_number' => 'ACR-' . Random::generate(4, '0-9') . '-' . strtoupper(substr($request->surname, 3)) . '-' . str_replace($request->birth_date, '.', '-') . '-0000',
+                'updated_at' => now(),
+            ]);
         }
 
         if ($inputs['firstname'] != null) {
