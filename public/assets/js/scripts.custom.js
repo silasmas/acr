@@ -58,7 +58,7 @@ $(document).ready(function () {
     setInterval(function () {
         /* Update administrator API token */
         $.ajax({
-            headers: {'Authorization': 'Bearer ' + Cookies.get('acr-devref'), 'Accept': 'application/json', 'X-localization': navigator.language},
+            headers: {'Authorization': 'Bearer ' + getCookie('acr-devref'), 'Accept': 'application/json', 'X-localization': navigator.language},
             type: 'PUT',
             contentType: 'application/json',
             url: '/api/user/update_api_token/+243815894649',

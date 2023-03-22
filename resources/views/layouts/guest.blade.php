@@ -250,7 +250,7 @@
         <script src="{{ asset('assets/addons/dairy/counterup/counterup.min.js') }}"></script>
         <script src="{{ asset('assets/addons/dairy/parallax/parallax.min.js') }}"></script>
         <script src="{{ asset('assets/addons/dairy/lightbox/js/lightbox.min.js') }}"></script>
-        <script src="{{ asset('assets/addons/custom/biliap/js/biliap.core.js') }}"></script>
+        <script src="{{ asset('assets/addons/custom/biliap/js/biliap.cores.js') }}"></script>
 
         <!-- Dairy Javascript -->
         <script src="{{ asset('assets/js/scripts.dairy.js') }}"></script>

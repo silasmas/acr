@@ -118,12 +118,22 @@ class AccountController extends Controller
             'Accept' => 'application/json',
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
+        // Status name to find
+        $unread_status = 'Non lue';
+        // Search status by name API URL
+        $url_status = '/api/status/search/' . $unread_status;
         // Register notification API URL
         $url_notification = '/api/notification';
         // Select user API URL
         $url_user = '/api/user/' . Auth::user()->id;
 
         try {
+            // Search status by name API response
+            $response_status = $this::$client->request('GET', $url_status, [
+                'headers' => $headers,
+                'verify'  => false
+            ]);
+            $status = json_decode($response_status->getBody(), false);
             // Select user API response
             $response_user = $this::$client->request('GET', $url_user, [
                 'headers' => $headers,
@@ -139,7 +149,8 @@ class AccountController extends Controller
                         'form_params' => [
                             'notification_url' => 'account/offers',
                             'notification_content' => __('notifications.processing_succeed'),
-                            'notification_content' => $user_id
+                            'status_id' => $status->data->id,
+                            'user_id' => $user_id
                         ],
                         'verify'  => false
                     ]);
@@ -166,7 +177,8 @@ class AccountController extends Controller
                         'form_params' => [
                             'notification_url' => 'account/offers',
                             'notification_content' => __('notifications.process_canceled'),
-                            'notification_content' => $user_id
+                            'status_id' => $status->data->id,
+                            'user_id' => $user_id
                         ],
                         'verify'  => false
                     ]);
@@ -193,7 +205,8 @@ class AccountController extends Controller
                         'form_params' => [
                             'notification_url' => 'account/offers',
                             'notification_content' => __('notifications.process_failed'),
-                            'notification_content' => $user_id
+                            'status_id' => $status->data->id,
+                            'user_id' => $user_id
                         ],
                         'verify'  => false
                     ]);

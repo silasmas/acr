@@ -150,8 +150,11 @@ Route::get('/works', [HomeController::class, 'works'])->name('works');
 Route::get('/donate', [HomeController::class, 'donate'])->name('donate');
 // Account
 Route::get('/account/offers', [AccountController::class, 'offers'])->name('account.offers');
-Route::get('/account/offers/{user_id}/{code}', [AccountController::class, 'offerSent'])->whereNumber(['user_id', 'code'])->name('account.offer_sent');
-Route::get('/account/send_offer', [AccountController::class, 'sendOffer'])->name('account.send_offer');
+// 1. The user initiates the payment
 Route::get('/account/send_offer/{amount}/{currency}/{user_id}', [AccountController::class, 'payWithCard'])->whereNumber(['amount', 'user_id'])->name('account.pay_with_card');
+// 2. He is redirected to the page which will send a POST to FlexPay
+Route::get('/account/send_offer', [AccountController::class, 'sendOffer'])->name('account.send_offer');
+// 3. FlexPay redirects it to this URL to approve, cancel or send an error
+Route::get('/account/offers/{user_id}/{code}', [AccountController::class, 'offerSent'])->whereNumber(['user_id', 'code'])->name('account.offer_sent');
 
 require __DIR__.'/auth.php';

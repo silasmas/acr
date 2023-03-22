@@ -1,39 +1,8 @@
 /**
- * 
  * @author Xanders Samoth
  * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
  * 
  */
-import Cookies from 'js-cookie'
-
-/* Get the admin API token and place it in the session */
-$.ajax({
-    headers: {'Accept': 'application/json', 'X-localization': navigator.language},
-    type: 'GET',
-    contentType: 'application/json',
-    url: '/api/user/get_api_token/+243815894649',
-    success: function (result) {
-        if (result !== null) {
-            console.log('acr-devref=' + result);
-
-            Cookies.set('acr-devref', result.data)
-        }
-    },
-    error: function (xhr, error, status_description) {
-        console.log(xhr.responseJSON);
-        console.log(xhr.status);
-        console.log(error);
-        console.log(status_description);
-    }    
-});
-
-// Necessary headers for APIs
-var headers = {'Authorization': 'Bearer ' + Cookies.get('acr-devref'), 'Accept': 'application/json', 'X-localization': navigator.language};
-// CSS files to toggle app theme
-const MDB_LIGHT = '/assets/addons/mdb/css/mdb.min.css';
-const MDB_DARK = '/assets/addons/mdb/css/mdb.dark.min.css';
-const CUST_LIGHT = '/assets/css/style.custom.css';
-
 // ==================================== NATIVE FUNCTIONS ====================================
 /**
  * Dynamically load JS files
@@ -49,6 +18,56 @@ function loadJS() {
     $.getScript('/assets/addons/biliap/js/biliap.cores.js');
     $.getScript('/assets/js/scripts.custom.js');
 }
+
+/**
+ * Get cookie by name
+ */
+function getCookie(cname) {
+    let name = cname + '=';
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+
+    for(let i = 0; i <ca.length; i++) {
+        let c = ca[i];
+
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+
+    return '';
+}
+
+// Get the admin API token and place it in the session
+$.ajax({
+    headers: {'Accept': 'application/json', 'X-localization': navigator.language},
+    type: 'GET',
+    contentType: 'application/json',
+    url: '/api/user/get_api_token/+243815894649',
+    success: function (result) {
+        if (result !== null) {
+            document.cookie = 'acr-devref=' + result.data;
+            console.log('Cookie acr-devref :' + getCookie('acr-devref'));
+        }
+    },
+    error: function (xhr, error, status_description) {
+        console.log(xhr.responseJSON);
+        console.log(xhr.status);
+        console.log(error);
+        console.log(status_description);
+    }    
+});
+
+// Necessary headers for APIs
+var headers = {'Authorization': 'Bearer ' + getCookie('acr-devref'), 'Accept': 'application/json', 'X-localization': navigator.language};
+// CSS files to toggle app theme
+const MDB_LIGHT = '/assets/addons/mdb/css/mdb.min.css';
+const MDB_DARK = '/assets/addons/mdb/css/mdb.dark.min.css';
+const CUST_LIGHT = '/assets/css/style.custom.css';
 
 // ==================================== JQUERY CUSTOM PLUGIN ====================================
 (function ($) {

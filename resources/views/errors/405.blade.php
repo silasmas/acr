@@ -8,8 +8,8 @@
                 <div class="row mb-sm-5 mb-4 border-bottom border-secondary">
                     <div class="col-lg-3 col-sm-4 col-8 mx-auto pt-lg-4 pt-3">
                         <div class="bg-image mb-sm-5 mb-4 d-flex justify-content-center">
-                            <img src="{{ asset('assets/img/logo-text.png') }}" alt="Biliap" class="img-fluid">
-                            <div class="mask"><a href="{{ route('home') }}" class="stretched-link"></a></div>
+                            <img src="{{ asset('assets/img/logo-text.png') }}" alt="ACR" class="img-fluid">
+                            <div class="mask"><a href="{{ route('home') }}"></a></div>
                         </div>
                     </div>
                 </div>
