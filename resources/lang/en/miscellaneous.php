@@ -416,6 +416,10 @@ return [
                 'title2' => 'Help the people',
                 'content2' => 'To effectively raise one\'s forehead, by grip, work, discipline and honesty.'
             ],
+            'download_mobile_app' => [
+                'title' => 'Download the ACR mobile app',
+                'content' => 'The ACR mobile app allows you to join the <span class="acr-text-yellow">Action Commune pour la République</span> party, stay informed about party news and contribute online.',
+            ],
             'why_us' => [
                 'title' => 'Why us?',
                 'subtitle' => 'Let\'s choose change',

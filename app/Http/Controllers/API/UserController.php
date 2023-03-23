@@ -173,12 +173,14 @@ class UserController extends BaseController
             */
             $status_unread = Status::where('status_name', 'Non lue')->first();
             $admin_role = Role::where('role_name', 'Administrateur')->first();
-            $member_role = Role::where('role_name', 'Membre')->first();
+            $supporting_member_role = Role::where('role_name', 'Membre Sympathisant')->first();
+            $effecive_member_role = Role::where('role_name', 'Membre Effectif')->first();
+            $honorary_member_role = Role::where('role_name', 'Membre d\'Honneur')->first();
             $current_role = Role::find($request->role_id);
 
             // If the new user is a member, send notification to 
             // all managers and a welcome notification to the new user
-            if ($current_role->id == $member_role->id) {
+            if ($current_role->id == $supporting_member_role->id OR $current_role->id == $effecive_member_role->id OR $current_role->id == $honorary_member_role->id) {
                 $manager_role = Role::where('role_name', 'Manager')->first();
                 $role_users = RoleUser::where('role_id', $manager_role->id)->get();
 
@@ -200,7 +202,7 @@ class UserController extends BaseController
             }
 
             // If the new user is neither a member nor an admin, send a ordinary welcome notification
-            if ($current_role->id != $member_role->id AND $current_role->id != $admin_role->id) {
+            if ($current_role->id != $supporting_member_role->id AND $current_role->id != $effecive_member_role->id AND $current_role->id != $honorary_member_role->id AND $current_role->id != $admin_role->id) {
                 Notification::create([
                     'notification_url' => 'about_us/terms_of_use',
                     'notification_content' => __('notifications.welcome_user'),
@@ -514,7 +516,9 @@ class UserController extends BaseController
         */
         $status_ongoing = Status::where('status_name', 'En attente')->first();
         $status_unread = Status::where('status_name', 'Non lue')->first();
-        $member_role = Role::where('role_name', 'Membre')->first();
+        $supporting_member_role = Role::where('role_name', 'Membre Sympathisant')->first();
+        $effecive_member_role = Role::where('role_name', 'Membre Effectif')->first();
+        $honorary_member_role = Role::where('role_name', 'Membre d\'Honneur')->first();
         $user_roles = RoleUser::where('user_id', $user->id)->get();
         $is_ongoing = $user->status_id == $status_ongoing->id;
 
@@ -527,7 +531,7 @@ class UserController extends BaseController
         // If it's a member whose accessing is accepted, send notification
         if ($is_ongoing == true) {
             foreach ($user_roles as $user_role):
-                if ($user_role->id == $member_role->id) {
+                if ($user_role->id == $supporting_member_role->id OR $user_role->id == $effecive_member_role->id OR $user_role->id == $honorary_member_role->id) {
                     Notification::create([
                         'notification_url' => 'about_us/terms_of_use',
                         'notification_content' => __('notifications.member_joined'),

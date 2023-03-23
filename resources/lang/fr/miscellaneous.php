@@ -416,6 +416,10 @@ return [
                 'title2' => 'Aider le peuple',
                 'content2' => 'À dresser effectivement son front, par la prise, le travail, la discipline et l\'honnêteté',
             ],
+            'download_mobile_app' => [
+                'title' => 'Télécharger l\'appli mobile ACR',
+                'content' => 'L\'appli mobile ACR vous permet d\'adhérer au parti <span class="acr-text-yellow">Action Commune pour la République</span>, de rester informé(e) sur les infos du parti et de contribuer en ligne.'
+            ],
             'why_us' => [
                 'title' => 'Pourquoi nous ?',
                 'subtitle' => 'Faisons le choix du changement',
