@@ -24,7 +24,7 @@ class AboutController extends Controller
         // Client used for accessing API | Use authorization key
         $this::$client = new Client();
 
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     // ==================================== HTTP GET METHODS ====================================

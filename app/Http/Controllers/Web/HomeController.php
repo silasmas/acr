@@ -15,8 +15,13 @@ use GuzzleHttp\Exception\ClientException;
  */
 class HomeController extends Controller
 {
+    public static $client;
+
     public function __construct()
     {
+        // Client used for accessing API | Use authorization key
+        $this::$client = new Client();
+
         $this->middleware('auth')->except(['changeLanguage', 'index', 'aboutUs', 'help']);
     }
 
@@ -77,14 +82,40 @@ class HomeController extends Controller
 
             } catch (ClientException $e) {
                 // If Select all received API returns some error, get it,
-                // return to the message page and display its message
+                // return to the page and display its message
                 return view('home', [
                     'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
                 ]);
             }
 
         } else {
-            return view('welcome');
+            // Get header informations
+            $headers = [
+                'Accept' => 'application/json',
+                'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
+            ];
+            // Select country API URL
+            $url_country = '/api/country';
+
+            try {
+                // Select country API response
+                $response_country = $this::$client->request('GET', $url_country, [
+                    'headers' => $headers,
+                    'verify'  => false
+                ]);
+                $country = json_decode($response_country->getBody(), false);
+
+                return view('welcome', [
+                    'countries' => $country->data
+                ]);
+
+            } catch (ClientException $e) {
+                // If Select country API returns some error, get it,
+                // return to the page and display its message
+                return view('welcome', [
+                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                ]);
+            }
         }
     }
 

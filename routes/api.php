@@ -21,7 +21,6 @@ Route::middleware(['auth:api', 'localization'])->group(function () {
     Route::apiResource('group', 'App\Http\Controllers\API\GroupController');
     Route::apiResource('type', 'App\Http\Controllers\API\TypeController');
     Route::apiResource('image', 'App\Http\Controllers\API\ImageController');
-    Route::apiResource('country', 'App\Http\Controllers\API\CountryController');
     Route::apiResource('address', 'App\Http\Controllers\API\AddressController');
     Route::apiResource('role', 'App\Http\Controllers\API\RoleController');
     Route::apiResource('role_user', 'App\Http\Controllers\API\RoleUserController');
@@ -36,6 +35,7 @@ Route::middleware(['auth:api', 'localization'])->group(function () {
  */
 Route::group(['middleware' => ['api', 'localization']], function () {
     Route::resource('status', 'App\Http\Controllers\API\StatusController');
+    Route::resource('country', 'App\Http\Controllers\API\CountryController');
     Route::resource('user', 'App\Http\Controllers\API\UserController');
     Route::resource('notification', 'App\Http\Controllers\API\NotificationController');
     Route::resource('offer', 'App\Http\Controllers\API\OfferController');
@@ -44,14 +44,16 @@ Route::group(['middleware' => ['api', 'localization']], function () {
     // Status
     Route::get('status/search/{data}', 'App\Http\Controllers\API\StatusController@search')->name('status.api.search');
     Route::get('status/find_by_group/{group_name}', 'App\Http\Controllers\API\StatusController@findByGroup')->name('status.api.find_by_group');
+    // Country
+    Route::get('country', 'App\Http\Controllers\API\CountryController@index')->name('country.api.index');
     // User
     Route::get('user/{id}', 'App\Http\Controllers\API\UserController@show')->name('user.api.show');
     Route::get('user/get_api_token/{phone}', 'App\Http\Controllers\API\UserController@getApiToken')->name('user.api.get_api_token');
     Route::post('user/login', 'App\Http\Controllers\API\UserController@login')->name('user.api.login');
     // Notification
-    Route::post('notification/store', 'App\Http\Controllers\API\NotificationController@store')->name('payment.api.store');
+    Route::post('notification/store', 'App\Http\Controllers\API\NotificationController@store')->name('notification.api.store');
     // Offer
-    Route::post('offer/store', 'App\Http\Controllers\API\OfferController@store')->name('payment.api.store');
+    Route::post('offer/store', 'App\Http\Controllers\API\OfferController@store')->name('offer.api.store');
     // Payment
     Route::post('payment/store', 'App\Http\Controllers\API\PaymentController@store')->name('payment.api.store');
 });
@@ -61,7 +63,7 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     Route::resource('group', 'App\Http\Controllers\API\GroupController');
     Route::resource('status', 'App\Http\Controllers\API\StatusController');
     Route::resource('type', 'App\Http\Controllers\API\TypeController');
-    Route::resource('country', 'App\Http\Controllers\API\CountryController');
+    // Route::resource('country', 'App\Http\Controllers\API\CountryController');
     Route::resource('role', 'App\Http\Controllers\API\RoleController');
     Route::resource('status', 'App\Http\Controllers\API\StatusController');
     Route::resource('user', 'App\Http\Controllers\API\UserController');
@@ -88,7 +90,11 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     Route::get('type/search/{data}', 'App\Http\Controllers\API\TypeController@search')->name('type.api.search');
     Route::get('type/find_by_group/{group_name}', 'App\Http\Controllers\API\TypeController@findByGroup')->name('type.api.find_by_group');
     // Country
-    Route::get('country/search/{data}', 'App\Http\Controllers\API\CountryController@search')->name('country.api.search');
+    // Route::post('country', 'App\Http\Controllers\API\CountryController@store')->name('country.api.store');
+    // Route::get('country/{id}', 'App\Http\Controllers\API\CountryController@show')->name('country.api.show');
+    // Route::put('country/{id}', 'App\Http\Controllers\API\CountryController@update')->name('country.api.update');
+    // Route::delete('country/{id}', 'App\Http\Controllers\API\CountryController@destroy')->name('country.api.destroy');
+    // Route::get('country/search/{data}', 'App\Http\Controllers\API\CountryController@search')->name('country.api.search');
     // Role
     Route::get('role/search/{data}', 'App\Http\Controllers\API\RoleController@search')->name('role.api.search');
     // User

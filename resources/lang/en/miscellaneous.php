@@ -402,6 +402,17 @@ return [
                 'title' => 'Securing food for our people',
                 'content' => 'Through a good agricultural policy'
             ],
+            'download_mobile_app' => [
+                'title' => 'Download the ACR mobile app',
+                'content' => 'The ACR mobile app allows you to join the <span class="acr-text-yellow">Action Commune pour la République</span> party, stay informed about party news and contribute online.',
+            ],
+            'register_member' => [
+                'title' => 'Join us',
+                'content1' => 'You can join us, because ACR is not just a matter of a few individuals. Together, let us unite in a real commitment to transform our country.',
+                'content2' => 'If you are already registered in the site or in the mobile app, click on the button below to log in. Otherwise, complete the following form to begin your registration.',
+                'login' => 'I already have an account',
+                'register' => 'Start registration'
+            ],
         ],
 
         // About
@@ -415,10 +426,6 @@ return [
                 'content1' => 'Given our vision, our only credo is “Doing politics differently”.',
                 'title2' => 'Help the people',
                 'content2' => 'To effectively raise one\'s forehead, by grip, work, discipline and honesty.'
-            ],
-            'download_mobile_app' => [
-                'title' => 'Download the ACR mobile app',
-                'content' => 'The ACR mobile app allows you to join the <span class="acr-text-yellow">Action Commune pour la République</span> party, stay informed about party news and contribute online.',
             ],
             'why_us' => [
                 'title' => 'Why us?',

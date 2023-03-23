@@ -402,6 +402,17 @@ return [
                 'title' => 'Assurer de la nourriture pour notre peuple',
                 'content' => 'À travers une bonne politique agricole'
             ],
+            'download_mobile_app' => [
+                'title' => 'Télécharger l\'appli mobile ACR',
+                'content' => 'L\'appli mobile ACR vous permet d\'adhérer au parti <span class="acr-text-yellow">Action Commune pour la République</span>, de rester informé(e) sur les infos du parti et de contribuer en ligne.'
+            ],
+            'register_member' => [
+                'title' => 'Nous réjoindre',
+                'content1' => 'Vous pouvez nous réjoindre, car ACR n\'est pas qu\'une affaire de quelques individus. Ensemble, unissons-nous en un réel engagement pour transformer notre pays.',
+                'content2' => 'Si vous êtes déjà inscrit(e) dans le site ou dans l\'appli mobile, cliquez sur le bouton ci-dessous pour vous connecter. Sinon, remplissez le formulaire suivant pour commencer votre inscription.',
+                'login' => 'J\'ai déjà un compte',
+                'register' => 'Commencer l\'inscription'
+            ],
         ],
 
         // About
@@ -415,10 +426,6 @@ return [
                 'content1' => 'Compte tenu de notre vision, notre seul credo est « Faire la politique autrement ».',
                 'title2' => 'Aider le peuple',
                 'content2' => 'À dresser effectivement son front, par la prise, le travail, la discipline et l\'honnêteté',
-            ],
-            'download_mobile_app' => [
-                'title' => 'Télécharger l\'appli mobile ACR',
-                'content' => 'L\'appli mobile ACR vous permet d\'adhérer au parti <span class="acr-text-yellow">Action Commune pour la République</span>, de rester informé(e) sur les infos du parti et de contribuer en ligne.'
             ],
             'why_us' => [
                 'title' => 'Pourquoi nous ?',
