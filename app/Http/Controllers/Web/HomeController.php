@@ -22,7 +22,7 @@ class HomeController extends Controller
         // Client used for accessing API | Use authorization key
         $this::$client = new Client();
 
-        $this->middleware('auth')->except(['changeLanguage', 'index', 'aboutUs', 'help']);
+        $this->middleware('auth')->except(['changeLanguage', 'index', 'notification', 'news', 'newsDatas', 'communique', 'works', 'donate', 'aboutUs', 'aboutParty', 'aboutApp', 'termsOfUse', 'privacyPolicy', 'help', 'faq']);
     }
 
     // ==================================== HTTP GET METHODS ====================================
@@ -48,28 +48,26 @@ class HomeController extends Controller
     public function index()
     {
         if (!empty(Auth::user())) {
-            // Client used for accessing API | Use authorization key
-            $client = new Client();
             $headers = [
                 'Authorization' => 'Bearer '. Auth::user()->api_token,
                 'Accept' => 'application/json',
                 'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
             ];
             // Select current user API URL
-            $url_user = '/api/user/' . Auth::user()->id;
+            $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/' . Auth::user()->id;
             // Select all received messages API URL
-            $url_message = '/api/message/inbox/' . Auth::user()->id;
+            $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
 
             try {
                 // Select current user API response
-                $response_user = $client->request('GET', $url_user, [
+                $response_user = $this::$client->request('GET', $url_user, [
                     'headers' => $headers,
                     'verify'  => false
                 ]);
                 $user = json_decode($response_user->getBody(), false);
 
                 // Select all received messages API response
-                $response_message = $client->request('GET', $url_message, [
+                $response_message = $this::$client->request('GET', $url_message, [
                     'headers' => $headers,
                     'verify'  => false
                 ]);
@@ -91,11 +89,12 @@ class HomeController extends Controller
         } else {
             // Get header informations
             $headers = [
+                'Authorization' => 'Bearer uWNJB6EwpVQwSuL5oJ7S7JkSkLzdpt8M1Xrs1MZITE1bCEbjMhscv8ZX2sTiDBarCHcu1EeJSsSLZIlYjr6YCl7pLycfn2AAQmYm',
                 'Accept' => 'application/json',
                 'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
             ];
             // Select country API URL
-            $url_country = '/api/country';
+            $url_country = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/country';
 
             try {
                 // Select country API response

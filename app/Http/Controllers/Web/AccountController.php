@@ -41,7 +41,7 @@ class AccountController extends Controller
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
         // Select user API URL
-        $url_user = '/api/user/' . Auth::user()->id;
+        $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/' . Auth::user()->id;
 
         try {
             // Select user API response
@@ -77,7 +77,7 @@ class AccountController extends Controller
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
         // Select user API URL
-        $url_user = '/api/user/' . Auth::user()->id;
+        $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/' . Auth::user()->id;
 
         try {
             // Select user API response
@@ -117,15 +117,15 @@ class AccountController extends Controller
             // 'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
         // Register offer API URL
-        $url_offer = '/api/offer/store';
+        $url_offer = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/offer/store';
         // Status name to find
         $unread_status = 'Non lue';
         // Search status by name API URL
-        $url_status = '/api/status/search/' . $unread_status;
+        $url_status = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/status/search/' . $unread_status;
         // Register notification API URL
-        $url_notification = '/api/notification/store';
+        $url_notification = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/notification/store';
         // Select user API URL
-        // $url_user = '/api/user/' . Auth::user()->id;
+        // $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/' . Auth::user()->id;
 
         try {
             // Search status by name API response

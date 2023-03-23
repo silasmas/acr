@@ -63,7 +63,7 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     Route::resource('group', 'App\Http\Controllers\API\GroupController');
     Route::resource('status', 'App\Http\Controllers\API\StatusController');
     Route::resource('type', 'App\Http\Controllers\API\TypeController');
-    // Route::resource('country', 'App\Http\Controllers\API\CountryController');
+    Route::resource('country', 'App\Http\Controllers\API\CountryController');
     Route::resource('role', 'App\Http\Controllers\API\RoleController');
     Route::resource('status', 'App\Http\Controllers\API\StatusController');
     Route::resource('user', 'App\Http\Controllers\API\UserController');
@@ -90,11 +90,11 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     Route::get('type/search/{data}', 'App\Http\Controllers\API\TypeController@search')->name('type.api.search');
     Route::get('type/find_by_group/{group_name}', 'App\Http\Controllers\API\TypeController@findByGroup')->name('type.api.find_by_group');
     // Country
-    // Route::post('country', 'App\Http\Controllers\API\CountryController@store')->name('country.api.store');
-    // Route::get('country/{id}', 'App\Http\Controllers\API\CountryController@show')->name('country.api.show');
-    // Route::put('country/{id}', 'App\Http\Controllers\API\CountryController@update')->name('country.api.update');
-    // Route::delete('country/{id}', 'App\Http\Controllers\API\CountryController@destroy')->name('country.api.destroy');
-    // Route::get('country/search/{data}', 'App\Http\Controllers\API\CountryController@search')->name('country.api.search');
+    Route::post('country', 'App\Http\Controllers\API\CountryController@store')->name('country.api.store');
+    Route::get('country/{id}', 'App\Http\Controllers\API\CountryController@show')->name('country.api.show');
+    Route::put('country/{id}', 'App\Http\Controllers\API\CountryController@update')->name('country.api.update');
+    Route::delete('country/{id}', 'App\Http\Controllers\API\CountryController@destroy')->name('country.api.destroy');
+    Route::get('country/search/{data}', 'App\Http\Controllers\API\CountryController@search')->name('country.api.search');
     // Role
     Route::get('role/search/{data}', 'App\Http\Controllers\API\RoleController@search')->name('role.api.search');
     // User

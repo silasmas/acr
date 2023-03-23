@@ -226,26 +226,35 @@
                                 </div>
 
                                 <div class="col-12">
-                                    <div class="row g-0">
-                                        <div class="col-lg-3 col-sm-4 col-5">
-                                            <div class="form-floating">
-                                                <select name="phone_code" id="" class="form-select">
-                                                    
+                                    <div class="row g-3">
+                                        <div class="col-lg-5">
+                                            <div class="form-floating pt-0">
+                                                <select name="select_country" id="select_country" class="form-select pt-2 shadow-0">
+    @forelse ($countries as $country)
+                                                    <option value="+{{ $country->country_phone_code }}">{{ $country->country_name }}</option>
+    @empty
+                                                    <option>@lang('miscellaneous.empty_list')</option>
+    @endforelse
                                                 </select>
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-9 col-sm-8 col-7">
-                                            <div class="form-floating">
-                                                <input type="tel" name="phone_number" id="phone_number" class="form-control" placeholder="@lang('miscellaneous.phone')" required>
-                                                <label for="phone_number">@lang('miscellaneous.phone')</label>
+                                        <div class="col-lg-7">
+                                            <div class="input-group">
+                                                <span class="input-group-text d-inline-block h-100" style="padding-top: 1rem; padding-bottom: 0.9rem;">+243</span>
+
+                                                <div class="form-floating">
+                                                    <input type="hidden" name="phone_code">
+                                                    <input type="tel" name="phone_number" id="phone_number" class="form-control" placeholder="@lang('miscellaneous.phone')" required>
+                                                    <label for="phone_number">@lang('miscellaneous.phone')</label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="col-12">
-                                    <button class="btn btn-secondary btn-sm-inline-block btn-block rounded-pill py-3 px-5 shadow-0" type="submit">@lang('miscellaneous.public.home.register_member.register')</button>
+                                    <button class="btn btn-secondary btn-sm-inline-block btn-block rounded-pill mb-4 py-3 px-5 shadow-0" type="submit">@lang('miscellaneous.public.home.register_member.register')</button>
                                 </div>
                             </div>
                         </form>
@@ -254,4 +263,68 @@
             </div>
         </div>
         <!-- Register as a member End -->
+
+        <!-- Gallery Start -->
+        <div class="container-xxl py-5 px-0">
+            <div class="row g-0">
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="row g-0">
+                        <div class="col-12">
+                            <a class="d-block" href="{{ asset('assets/img/gallery/gallery-5.png') }}" data-lightbox="gallery">
+                                <img class="img-fluid" src="{{ asset('assets/img/gallery/gallery-5.png') }}" alt="">
+                            </a>
+                        </div>
+
+                        <div class="col-12">
+                            <a class="d-block" href="{{ asset('assets/img/gallery/gallery-1.png') }}" data-lightbox="gallery">
+                                <img class="img-fluid" src="{{ asset('assets/img/gallery/gallery-1.png') }}" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="row g-0">
+                        <div class="col-12">
+                            <a class="d-block" href="{{ asset('assets/img/gallery/gallery-2.png') }}" data-lightbox="gallery">
+                                <img class="img-fluid" src="{{ asset('assets/img/gallery/gallery-2.png') }}" alt="">
+                            </a>
+                        </div>
+                        <div class="col-12">
+                            <a class="d-block" href="{{ asset('assets/img/gallery/gallery-6.png') }}" data-lightbox="gallery">
+                                <img class="img-fluid" src="{{ asset('assets/img/gallery/gallery-6.png') }}" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="row g-0">
+                        <div class="col-12">
+                            <a class="d-block" href="{{ asset('assets/img/gallery/gallery-7.png') }}" data-lightbox="gallery">
+                                <img class="img-fluid" src="{{ asset('assets/img/gallery/gallery-7.png') }}" alt="">
+                            </a>
+                        </div>
+                        <div class="col-12">
+                            <a class="d-block" href="{{ asset('assets/img/gallery/gallery-3.png') }}" data-lightbox="gallery">
+                                <img class="img-fluid" src="{{ asset('assets/img/gallery/gallery-3.png') }}" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="row g-0">
+                        <div class="col-12">
+                            <a class="d-block" href="{{ asset('assets/img/gallery/gallery-4.png') }}" data-lightbox="gallery">
+                                <img class="img-fluid" src="{{ asset('assets/img/gallery/gallery-4.png') }}" alt="">
+                            </a>
+                        </div>
+                        <div class="col-12">
+                            <a class="d-block" href="{{ asset('assets/img/gallery/gallery-8.png') }}" data-lightbox="gallery">
+                                <img class="img-fluid" src="{{ asset('assets/img/gallery/gallery-8.png') }}" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Gallery End -->
 @endsection

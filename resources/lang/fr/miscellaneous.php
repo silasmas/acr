@@ -195,6 +195,7 @@ return [
         'month' => 'Mois',
         'year' => 'Année',
     ],
+    'choose_country' => 'Choisir pays',
     'phone' => 'N° de téléphone',
     'email' => 'Adresse E-mail',
     'username' => 'Nom d\'utilisateur',
@@ -409,7 +410,7 @@ return [
             'register_member' => [
                 'title' => 'Nous réjoindre',
                 'content1' => 'Vous pouvez nous réjoindre, car ACR n\'est pas qu\'une affaire de quelques individus. Ensemble, unissons-nous en un réel engagement pour transformer notre pays.',
-                'content2' => 'Si vous êtes déjà inscrit(e) dans le site ou dans l\'appli mobile, cliquez sur le bouton ci-dessous pour vous connecter. Sinon, remplissez le formulaire suivant pour commencer votre inscription.',
+                'content2' => 'Si vous êtes déjà inscrit(e) dans le site ou dans l\'appli mobile, cliquez sur le bouton ci-dessous pour vous connecter. Sinon, donnez vos noms et votre n&deg; de téléphone pour commencer.',
                 'login' => 'J\'ai déjà un compte',
                 'register' => 'Commencer l\'inscription'
             ],
