@@ -60,7 +60,7 @@ Route::get('/notification', 'App\Http\Controllers\Web\HomeController@notificatio
 // About us
 Route::get('/about', 'App\Http\Controllers\Web\HomeController@aboutUs')->name('about.home');
 Route::get('/about/party', 'App\Http\Controllers\Web\HomeController@aboutParty')->name('about.party');
-Route::get('/about/app', 'App\Http\Controllers\Web\HomeController@aboutApplication')->name('about.app');
+Route::get('/about/app', 'App\Http\Controllers\Web\HomeController@aboutApp')->name('about.app');
 Route::get('/about/terms_of_use', 'App\Http\Controllers\Web\HomeController@termsOfUse')->name('about.terms_of_use');
 Route::get('/about/privacy_policy', 'App\Http\Controllers\Web\HomeController@privacyPolicy')->name('about.privacy_policy');
 Route::get('/about/help', 'App\Http\Controllers\Web\HomeController@help')->name('about.help');
