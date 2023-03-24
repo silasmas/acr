@@ -55,23 +55,7 @@ $(document).ready(function () {
         });
     })
 
-    setInterval(function () {
-        /* Update administrator API token */
-        $.ajax({
-            headers: {'Authorization': 'Bearer ' + getCookie('acr-devref'), 'Accept': 'application/json', 'X-localization': navigator.language},
-            type: 'PUT',
-            contentType: 'application/json',
-            url: '/api/user/update_api_token/+243815894649',
-            dataType: 'json',
-            success: function () {
-            },    
-            error: function (xhr, error, status_description) {
-                console.log(xhr.responseJSON);
-                console.log(xhr.status);
-                console.log(error);
-                console.log(status_description);
-            }    
-        });
+    // setInterval(function () {
 
-    },60000); /* Run an ajax function every minute */
+    // },60000); /* Run an ajax function every second */
 });

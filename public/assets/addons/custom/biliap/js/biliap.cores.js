@@ -42,28 +42,8 @@ function getCookie(cname) {
     return '';
 }
 
-// Get the admin API token and place it in the session
-$.ajax({
-    headers: {'Accept': 'application/json', 'X-localization': navigator.language},
-    type: 'GET',
-    contentType: 'application/json',
-    url: '/api/user/get_api_token/+243815894649',
-    success: function (result) {
-        if (result !== null) {
-            document.cookie = 'acr-devref=' + result.data;
-            console.log('Cookie acr-devref :' + getCookie('acr-devref'));
-        }
-    },
-    error: function (xhr, error, status_description) {
-        console.log(xhr.responseJSON);
-        console.log(xhr.status);
-        console.log(error);
-        console.log(status_description);
-    }    
-});
-
 // Necessary headers for APIs
-var headers = {'Authorization': 'Bearer ' + getCookie('acr-devref'), 'Accept': 'application/json', 'X-localization': navigator.language};
+var headers = {'Authorization': 'Bearer uWNJB6EwpVQwSuL5oJ7S7JkSkLzdpt8M1Xrs1MZITE1bCEbjMhscv8ZX2sTiDBarCHcu1EeJSsSLZIlYjr6YCl7pLycfn2AAQmYm', 'Accept': 'application/json', 'X-localization': navigator.language};
 // CSS files to toggle app theme
 const MDB_LIGHT = '/assets/addons/mdb/css/mdb.min.css';
 const MDB_DARK = '/assets/addons/mdb/css/mdb.dark.min.css';
