@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
     Route::post('register', [RegisteredUserController::class, 'store']);
+    Route::get('register/check_token', [RegisteredUserController::class, 'checkToken'])->name('register.check_token');
+    Route::post('register/check_token', [RegisteredUserController::class, 'sendToken']);
     Route::get('update', [RegisteredUserController::class, 'edit'])->name('update');
     Route::post('update', [RegisteredUserController::class, 'update']);
     Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
