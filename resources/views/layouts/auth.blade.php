@@ -29,8 +29,16 @@
         <link rel="stylesheet" href="{{ asset('assets/icons/bootstrap-icons/bootstrap-icons.css') }}">
 
         <!-- Addons CSS Files -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/jquery/jquery-ui/jquery-ui.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/cropper/css/cropper.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/dairy/animate/animate.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/dairy/owlcarousel/assets/owl.carousel.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/dairy/lightbox/css/lightbox.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/bootstrap/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/mdb/css/mdb.min.css') }}">
 
+        <!-- Dairy CSS File -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.dairy.css') }}">
         <!-- Custom CSS File -->
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.custom.css') }}">
 
@@ -49,9 +57,35 @@
         </title>
     </head>
 
-    <body>
+    <body class="bg-light">
+@if (!empty($alert_msg))
+        <!-- Alert Start -->
+        <div class="position-relative">
+            <div class="row position-absolute w-100" style="opacity: 0.9; z-index: 999;">
+                <div class="col-lg-3 col-sm-4 mx-auto">
+                    <div class="alert alert-danger alert-dismissible fade show rounded-0" role="alert">
+                        {{ $alert_msg }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Alert End -->
+@endif
+        <div class="container-xxl pt-3 pb-5">
+            <!-- Logo Start -->
+            <div class="row">
+                <div class="col-lg-3 col-sm-4 col-9 mx-auto pt-lg-4 pt-3">
+                    <div class="bg-image mb-4 d-flex justify-content-center">
+                        <img src="{{ asset('assets/img/logo-text.png') }}" alt="ACR" class="img-fluid">
+                        <div class="mask"><a href="{{ route('home') }}" class="stretched-link"></a></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Logo End -->
 
-@yield('errors-content')
+@yield('auth-content')
+        </div>
 
         <!-- JavaScript Libraries -->
         <script src="{{ asset('assets/addons/custom/jquery/js/jquery.min.js') }}"></script>

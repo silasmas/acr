@@ -1,47 +1,69 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+@extends('layouts.auth')
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+@section('auth-content')
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ml-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+            <!-- Login block Start -->
+            <div class="row justify-content-center">
+                <div class="col-lg-5">
+                    <div class="card border border-default shadow-0">
+                        <div class="card-body py-5">
+                            <form method="POST" action="{{ route('login') }}">
+    @csrf
+                                <h3 class="h3 mb-sm-5 mb-4 text-center fw-bold">{{ __('miscellaneous.login_title2') }}</h3>
+    
+                                <!-- User name -->
+                                <div class="form-floating">
+                                    <input type="text" name="username" id="username" class="form-control" aria-describedby="username_error_message" value="{{ !empty($inputs['username']) ? $inputs['username'] : '' }}" {{ !empty($inputs['username']) ? '' : 'autofocus' }} />
+                                    <label class="form-label" for="username">{{ __('miscellaneous.login_username') }}</label>
+                                </div>
+    @if (!empty($response_error) AND $response_error->message == $inputs['username'])
+                                <p id="username_error_message" class="text-center mb-4 text-danger blp-font-small">{{ $response_error->data }}</p>
+    
+                                <!-- Password -->
+                                <div class="form-floating mb-3">
+    @else
+    
+                                <!-- Password -->
+                                <div class="form-floating mt-4">
+    @endif
+    
+                                    <input type="password" name="password" id="password" class="form-control" aria-describedby="password_error_message" {{ !empty($inputs['username']) ? 'autofocus' : '' }} />
+                                    <label class="form-label" for="password">{{ __('miscellaneous.password.label') }}</label>
+                                </div>
+    @if (!empty($response_error) AND $response_error->message == $inputs['password'])
+                                <p id="password_error_message" class="text-center mb-4 text-danger blp-font-small">{{ $response_error->data }}</p>
+    
+                                <!-- Remember me -->
+                                <div class="row mb-3">
+    @else
+    
+                                <!-- Remember me -->
+                                <div class="row my-4">
+    @endif
+                                    <div class="col d-flex justify-content-center">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="remember" id="remember_me" />
+                                            <label class="form-check-label" for="remember_me">{{ __('miscellaneous.remember_me') }}</label>
+                                        </div>
+                                    </div>
+                                </div>
+    
+                                <!-- Run login -->
+                                <button type="submit" class="btn acr-btn-blue btn-block py-3 mb-4 shadow-0">{{ __('miscellaneous.connection') }}</button>
+    
+                                <!-- Register or recover account -->
+                                <div class="row text-center">
+                                    <div class="col-sm-6 mb-sm-0 mb-2">
+                                        <a href="{{ route('password.request') }}">{{ __('miscellaneous.forgotten_password') }}</a>
+                                    </div>
+                                    <div class="col-sm-6">
+                                            <a href="{{ route('register') }}">{{ __('miscellaneous.go_register') }}</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Login block End -->
+@endsection

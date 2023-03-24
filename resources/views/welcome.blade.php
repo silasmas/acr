@@ -209,7 +209,8 @@
 
                     <div class="col-sm-6 order-sm-1 wow fadeInUp" data-wow-delay="0.5s">
                         <h2 class="h2 mb-4 pt-4 d-sm-none border-top border-secondary fw-bold text-uppercase">@lang('miscellaneous.register_title1')</h2>
-                        <form>
+
+                        <form method="POST" action="{{ route('register') }}">
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <div class="form-floating">
