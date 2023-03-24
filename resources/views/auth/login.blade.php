@@ -4,7 +4,7 @@
 
             <!-- Login block Start -->
             <div class="row justify-content-center">
-                <div class="col-lg-5 col-sm-8">
+                <div class="col-lg-4 col-md-7 col-sm-7">
                     <div class="card border border-default shadow-0">
                         <div class="card-body py-5">
                             <form method="POST" action="{{ route('login') }}">
@@ -48,7 +48,7 @@
                                 </div>
 
                                 <!-- Run login -->
-                                <button type="submit" class="btn acr-btn-blue btn-block py-3 mb-4 shadow-0">@lang('miscellaneous.connection')</button>
+                                <button type="submit" class="btn acr-btn-blue btn-block rounded-pill py-3 mb-4 shadow-0">@lang('miscellaneous.connection')</button>
 
                                 <!-- Register or recover account -->
                                 <div class="row text-center">
