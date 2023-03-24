@@ -43,7 +43,7 @@ function getCookie(cname) {
 }
 
 // Necessary headers for APIs
-var headers = {'Authorization': 'Bearer uWNJB6EwpVQwSuL5oJ7S7JkSkLzdpt8M1Xrs1MZITE1bCEbjMhscv8ZX2sTiDBarCHcu1EeJSsSLZIlYjr6YCl7pLycfn2AAQmYm', 'Accept': 'application/json', 'X-localization': navigator.language};
+var headers = {'Authorization': 'Bearer ' + $('[name="acr-devref"]').attr('content'), 'Accept': 'application/json', 'X-localization': navigator.language};
 // CSS files to toggle app theme
 const MDB_LIGHT = '/assets/addons/mdb/css/mdb.min.css';
 const MDB_DARK = '/assets/addons/mdb/css/mdb.dark.min.css';

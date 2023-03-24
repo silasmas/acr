@@ -3,9 +3,10 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta content="@lang('miscellaneous.keywords')" name="keywords">
-        <meta content="" name="description">
+        <meta name="keywords" content="@lang('miscellaneous.keywords')">
+        <meta name="description" content="">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="acr-devref" content="{{ getToken() }}">
 
         <!-- Favicon -->
         <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('assets/img/favicon/apple-icon-57x57.png') }}">
