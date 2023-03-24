@@ -49,7 +49,7 @@ class MiscellaneousController extends Controller
     {
         // Get header informations
         $headers = [
-            'Authorization' => 'Bearer '. Auth::user()->api_token,
+            'Authorization' => 'Bearer '. getToken(),
             'Accept' => 'application/json',
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
@@ -138,7 +138,7 @@ class MiscellaneousController extends Controller
     {
         // Get header informations
         $headers = [
-            'Authorization' => 'Bearer '. Auth::user()->api_token,
+            'Authorization' => 'Bearer '. getToken(),
             'Accept' => 'application/json',
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
@@ -225,7 +225,7 @@ class MiscellaneousController extends Controller
     {
         // Get header informations
         $headers = [
-            'Authorization' => 'Bearer '. Auth::user()->api_token,
+            'Authorization' => 'Bearer '. getToken(),
             'Accept' => 'application/json',
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
@@ -468,7 +468,7 @@ class MiscellaneousController extends Controller
     {
         // Get header informations
         $headers = [
-            'Authorization' => 'Bearer '. Auth::user()->api_token,
+            'Authorization' => 'Bearer '. getToken(),
             'Accept' => 'application/json',
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
