@@ -4,10 +4,7 @@
  * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
  */
 
-use GuzzleHttp\Client;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
-use GuzzleHttp\Exception\ClientException;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,13 +20,7 @@ use GuzzleHttp\Exception\ClientException;
 |--------------------------------------------------------------------------
 */
 // Generate symbolic link
-Route::get('/symlink', function () {
-    return view('symlink');
-});
-// FlexPay Portal
-Route::get('https://beta-cardpayment.flexpay.cd/v1/pay', function () {
-    return redirect('https://beta-cardpayment.flexpay.cd/v1/pay');
-})->name('flexpay_portal');
+Route::get('/symlink', function () {return view('symlink');})->name('generate_symlink');
 // Home
 Route::get('/', 'App\Http\Controllers\Web\HomeController@index')->name('home');
 Route::get('/language/{locale}', 'App\Http\Controllers\Web\HomeController@changeLanguage')->name('change_language');
