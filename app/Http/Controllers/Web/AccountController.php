@@ -17,11 +17,18 @@ use GuzzleHttp\Exception\ClientException;
  */
 class AccountController extends Controller
 {
+    public static $headers;
     public static $client;
 
     public function __construct()
     {
-        // Client used for accessing API | Use authorization key
+        // Headers for API
+        $this::$headers = [
+            'Authorization' => 'Bearer '. getToken(),
+            'Accept' => 'application/json',
+            'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
+        ];
+        // Client used for accessing API
         $this::$client = new Client();
 
         $this->middleware('auth')->except(['offerSent', 'payWithCard']);
@@ -35,18 +42,13 @@ class AccountController extends Controller
      */
     public function account()
     {
-        // Get header informations
-        $headers = [
-            'Accept' => 'application/json',
-            'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
-        ];
         // Select user API URL
         $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/' . Auth::user()->id;
 
         try {
             // Select user API response
             $response_user = $this::$client->request('GET', $url_user, [
-                'headers' => $headers,
+                'headers' => $this::$headers,
                 'verify'  => false
             ]);
             $user = json_decode($response_user->getBody(), false);
@@ -71,18 +73,13 @@ class AccountController extends Controller
      */
     public function offers()
     {
-        // Get header informations
-        $headers = [
-            'Accept' => 'application/json',
-            'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
-        ];
         // Select user API URL
         $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/' . Auth::user()->id;
 
         try {
             // Select user API response
             $response_user = $this::$client->request('GET', $url_user, [
-                'headers' => $headers,
+                'headers' => $this::$headers,
                 'verify'  => false
             ]);
             $user = json_decode($response_user->getBody(), false);
@@ -111,11 +108,6 @@ class AccountController extends Controller
      */
     public function offerSent($amount, $user_id, $code)
     {
-        // Get header informations
-        $headers = [
-            'Accept' => 'application/json',
-            // 'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
-        ];
         // Register offer API URL
         $url_offer = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/offer/store';
         // Status name to find
@@ -130,13 +122,13 @@ class AccountController extends Controller
         try {
             // Search status by name API response
             $response_status = $this::$client->request('GET', $url_status, [
-                'headers' => $headers,
+                'headers' => $this::$headers,
                 'verify'  => false
             ]);
             $status = json_decode($response_status->getBody(), false);
             // Select user API response
             // $response_user = $this::$client->request('GET', $url_user, [
-            //     'headers' => $headers,
+            //     'headers' => $this::$headers,
             //     'verify'  => false
             // ]);
             // $user = json_decode($response_user->getBody(), false);
@@ -145,7 +137,7 @@ class AccountController extends Controller
                 try {
                     // Register offer API response
                     $this::$client->request('POST', $url_offer, [
-                        'headers' => $headers,
+                        'headers' => $this::$headers,
                         'form_params' => [
                             'amount' => $amount,
                             'type_id' => 8,
@@ -155,7 +147,7 @@ class AccountController extends Controller
                     ]);
                     // Register notification API response
                     $this::$client->request('POST', $url_notification, [
-                        'headers' => $headers,
+                        'headers' => $this::$headers,
                         'form_params' => [
                             'notification_url' => 'account/offers',
                             'notification_content' => __('notifications.processing_succeed'),
@@ -183,7 +175,7 @@ class AccountController extends Controller
                 try {
                     // Register notification API response
                     $this::$client->request('POST', $url_notification, [
-                        'headers' => $headers,
+                        'headers' => $this::$headers,
                         'form_params' => [
                             'notification_url' => 'account/offers',
                             'notification_content' => __('notifications.process_canceled'),
@@ -211,7 +203,7 @@ class AccountController extends Controller
                 try {
                     // Register offer API response
                     $this::$client->request('POST', $url_offer, [
-                        'headers' => $headers,
+                        'headers' => $this::$headers,
                         'form_params' => [
                             'amount' => $amount,
                             'type_id' => 8,
@@ -221,7 +213,7 @@ class AccountController extends Controller
                     ]);
                     // Register notification API response
                     $this::$client->request('POST', $url_notification, [
-                        'headers' => $headers,
+                        'headers' => $this::$headers,
                         'form_params' => [
                             'notification_url' => 'account/offers',
                             'notification_content' => __('notifications.process_failed'),
