@@ -45,7 +45,15 @@ $(document).ready(function () {
         }
     });
 
-    /* HOVER STRETCHED LINK */
+    /* On select change, update de country phone code */
+    $('#select_country').on('change', function () {
+        var countryPhoneCode = $(this).val(); 
+
+        $('#phone_code_text .text-value').text(countryPhoneCode);
+        $('phone_code').val(countryPhoneCode);
+    });
+
+    /* Hover stretched link */
     $('.card-body + .stretched-link').each(function () {
         $(this).hover(function () {
             $(this).addClass('changed');
@@ -53,7 +61,7 @@ $(document).ready(function () {
         }, function () {
             $(this).removeClass('changed');
         });
-    })
+    });
 
     // setInterval(function () {
 
