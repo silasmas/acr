@@ -249,7 +249,7 @@
                                                 </span>
 
                                                 <div class="form-floating">
-                                                    <input type="hidden" id="phone_code" name="phone_code" value="+243">
+                                                    <input type="hidden" id="phone_code" name="phone_code" value="">
                                                     <input type="tel" name="phone_number" id="phone_number" class="form-control" placeholder="@lang('miscellaneous.phone')" required>
                                                     <label for="phone_number">@lang('miscellaneous.phone')</label>
                                                 </div>
