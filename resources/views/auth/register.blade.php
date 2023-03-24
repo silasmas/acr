@@ -29,7 +29,7 @@
     
                                     <div class="col-12">
                                         <div class="row g-3">
-                                            <div class="col-lg-5">
+                                            <div class="col-sm-5">
                                                 <div class="form-floating pt-0">
                                                     <select name="select_country" id="select_country" class="form-select pt-2 shadow-0">
         @forelse ($countries as $country)
@@ -41,11 +41,11 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-lg-7">
+                                            <div class="col-sm-7">
                                                 <div class="input-group">
-                                                    <span id="phone_code_text" class="input-group-text d-inline-block h-100 bg-light acr-line-height-1_4">
-                                                        <small class="text-secondary m-0 p-0" style="font-size: 0.85rem; color: #111;">Code tél.</small><br>
-                                                        <span class="m-0">+243</span> 
+                                                    <span id="phone_code_text" class="input-group-text d-inline-block h-100 bg-light" style="padding-top: 0.3rem; padding-bottom: 0.5rem; line-height: 1.35;">
+                                                        <small class="text-secondary m-0 p-0" style="font-size: 0.85rem; color: #010101;">@lang('miscellaneous.phone_code')</small><br>
+                                                        <span class="text-value">+243</span> 
                                                     </span>
 
                                                     <div class="form-floating">

@@ -242,10 +242,13 @@
 
                                         <div class="col-lg-7">
                                             <div class="input-group">
-                                                <span class="input-group-text d-inline-block h-100" style="padding-top: 1rem; padding-bottom: 0.9rem;">+243</span>
+                                                <span id="phone_code_text" class="input-group-text d-inline-block h-100 bg-light" style="padding-top: 0.3rem; padding-bottom: 0.5rem; line-height: 1.35;">
+                                                    <small class="text-secondary m-0 p-0" style="font-size: 0.85rem; color: #010101;">@lang('miscellaneous.phone_code')</small><br>
+                                                    <span class="text-value">+243</span> 
+                                                </span>
 
                                                 <div class="form-floating">
-                                                    <input type="hidden" name="phone_code">
+                                                    <input type="hidden" id="phone_code" name="phone_code" value="+243">
                                                     <input type="tel" name="phone_number" id="phone_number" class="form-control" placeholder="@lang('miscellaneous.phone')" required>
                                                     <label for="phone_number">@lang('miscellaneous.phone')</label>
                                                 </div>
