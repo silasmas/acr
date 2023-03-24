@@ -54,6 +54,14 @@
 @if (Route::is('password.request') || Route::is('password.reset'))
             @lang('auth.reset-password')
 @endif
+
+@if (!empty($alert_msg))
+            {{ $alert_msg }}
+@endif
+
+@if (!empty($response_error))
+            {{ $response_error->data }}
+@endif
         </title>
     </head>
 
