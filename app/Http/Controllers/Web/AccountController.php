@@ -58,8 +58,7 @@ class AccountController extends Controller
             ]);
 
         } catch (ClientException $e) {
-            // If Select user API returns some error, get it,
-            // return to the page and display its message
+            // If the API returns some error, return to the page and display its message
             return view('account', [
                 'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
             ]);
@@ -90,8 +89,7 @@ class AccountController extends Controller
             ]);
 
         } catch (ClientException $e) {
-            // If Select user API returns some error, get it,
-            // return to the page and display its message
+            // If the API returns some error, return to the page and display its message
             return view('account', [
                 'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
             ]);
@@ -117,7 +115,7 @@ class AccountController extends Controller
         // Register notification API URL
         $url_notification = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/notification/store';
         // Select user API URL
-        // $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/' . Auth::user()->id;
+        $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/' . Auth::user()->id;
 
         try {
             // Search status by name API response
@@ -127,11 +125,11 @@ class AccountController extends Controller
             ]);
             $status = json_decode($response_status->getBody(), false);
             // Select user API response
-            // $response_user = $this::$client->request('GET', $url_user, [
-            //     'headers' => $this::$headers,
-            //     'verify'  => false
-            // ]);
-            // $user = json_decode($response_user->getBody(), false);
+            $response_user = $this::$client->request('GET', $url_user, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $user = json_decode($response_user->getBody(), false);
 
             if ($code == '0') {
                 try {
@@ -157,14 +155,13 @@ class AccountController extends Controller
                         'verify'  => false
                     ]);
 
-                    return view('account'/*, [
+                    return view('account', [
                         'selected_user' => $user,
                         'offers' => $user->data->offers
-                    ]*/);
+                    ]);
 
                 } catch (ClientException $e) {
-                    // If Select user API returns some error, get it,
-                    // return to the account page and display its message
+                    // If the API returns some error, return to the page and display its message
                     return view('account', [
                         'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
                     ]);
@@ -185,14 +182,13 @@ class AccountController extends Controller
                         'verify'  => false
                     ]);
 
-                    return view('account'/*, [
+                    return view('account', [
                         'selected_user' => $user,
                         'offers' => $user->data->offers
-                    ]*/);
+                    ]);
 
                 } catch (ClientException $e) {
-                    // If Select user API returns some error, get it,
-                    // return to the account page and display its message
+                    // If the API returns some error, return to the page and display its message
                     return view('account', [
                         'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
                     ]);
@@ -223,14 +219,13 @@ class AccountController extends Controller
                         'verify'  => false
                     ]);
 
-                    return view('account', /*[
+                    return view('account', [
                         'selected_user' => $user,
                         'offers' => $user->data->offers
-                    ]*/);
+                    ]);
 
                 } catch (ClientException $e) {
-                    // If Select user API returns some error, get it,
-                    // return to the account page and display its message
+                    // If the API returns some error, return to the page and display its message
                     return view('account', [
                         'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
                     ]);
@@ -238,8 +233,7 @@ class AccountController extends Controller
             }
 
         } catch (ClientException $e) {
-            // If Select user API returns some error, get it,
-            // return to the page and display its message
+            // If the API returns some error, return to the page and display its message
             return view('account', [
                 'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
             ]);

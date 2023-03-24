@@ -81,8 +81,7 @@ class HomeController extends Controller
                 ]);
 
             } catch (ClientException $e) {
-                // If Select all received API returns some error, get it,
-                // return to the page and display its message
+                // If the API returns some error, return to the page and display its message
                 return view('home', [
                     'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
                 ]);
@@ -105,8 +104,7 @@ class HomeController extends Controller
                 ]);
 
             } catch (ClientException $e) {
-                // If Select country API returns some error, get it,
-                // return to the page and display its message
+                // If the API returns some error, return to the page and display its message
                 return view('welcome', [
                     'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
                 ]);
