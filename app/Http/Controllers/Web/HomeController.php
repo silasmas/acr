@@ -75,14 +75,14 @@ class HomeController extends Controller
                 ]);
                 $messages = json_decode($response_message->getBody(), false);
 
-                return view('home', [
+                return view('welcome', [
                     'user' => $user,
                     'messages' => $messages,
                 ]);
 
             } catch (ClientException $e) {
                 // If the API returns some error, return to the page and display its message
-                return view('home', [
+                return view('welcome', [
                     'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
                 ]);
             }
@@ -110,6 +110,16 @@ class HomeController extends Controller
                 ]);
             }
         }
+    }
+
+    /**
+     * Display the About page.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function manager()
+    {
+        return view('dashboard');
     }
 
     /**
