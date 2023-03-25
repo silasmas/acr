@@ -738,6 +738,7 @@ class UserController extends BaseController
         // Clean "avatars" directory
         $file = new Filesystem;
         $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $inputs['user_id'] . '/avatar');
+        // $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/storage/images/users/' . $inputs['user_id'] . '/avatar');
         // Create image URL
 		$image_url = 'images/users/' . $inputs['user_id'] . '/avatar/' . Str::random(50) . '.png';
 
@@ -787,6 +788,7 @@ class UserController extends BaseController
                 // Clean "identity_data" directory
                 $file = new Filesystem;
                 $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $inputs['user_id'] . '/identity_data');
+                // $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/storage/images/users/' . $inputs['user_id'] . '/identity_data');
                 // Create image URL
                 $image_url_recto = 'images/users/' . $inputs['user_id'] . '/identity_data/' . Str::random(50) . '.png';
                 $image_url_verso = 'images/users/' . $inputs['user_id'] . '/identity_data/' . Str::random(50) . '.png';
@@ -867,6 +869,7 @@ class UserController extends BaseController
             // Clean "identity_data" directory
             $file = new Filesystem;
             $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $inputs['user_id'] . '/identity_data');
+            // $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/storage/images/users/' . $inputs['user_id'] . '/identity_data');
             // Create image URL
             $image_url_recto = 'images/users/' . $inputs['user_id'] . '/identity_data/' . Str::random(50) . '.png';
             $image_url_verso = 'images/users/' . $inputs['user_id'] . '/identity_data/' . Str::random(50) . '.png';
