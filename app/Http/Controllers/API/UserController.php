@@ -68,7 +68,7 @@ class UserController extends BaseController
         ];
         $users = User::all();
         $password_reset = null;
-        $basic  = new \Vonage\Client\Credentials\Basic(env('VONAGE_API_KEY'), env('VONAGE_API_SECRET'));
+        $basic  = new \Vonage\Client\Credentials\Basic('89e3b822', 'cab98aefeaab1434ACR');
         $client = new \Vonage\Client($basic);
 
         // Validate required fields
