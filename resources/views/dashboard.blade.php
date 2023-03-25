@@ -1,1 +1,1 @@
-{{ dd(Auth::user()) }}
+{{ dd(session()->get('current_user')) }}
