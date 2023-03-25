@@ -641,7 +641,7 @@ class UserController extends BaseController
         }
 
         if (preg_match('#^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$#', $inputs['new_password']) == 0) {
-            return $this->handleError($inputs['new_password'], __('validation.new_password.error'), 400);
+            return $this->handleError($inputs['new_password'], __('validation.custom.new_password.incorrect'), 400);
         }
 
         // Update password reset
