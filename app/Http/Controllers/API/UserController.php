@@ -621,11 +621,11 @@ class UserController extends BaseController
         $user = User::find($id);
 
         if ($inputs['former_password'] == null) {
-            return $this->handleError($inputs['former_password'], __('validation.former_password.empty'), 400);
+            return $this->handleError($inputs['former_password'], __('validation.custom.former_password.empty'), 400);
         }
 
         if ($inputs['new_password'] == null) {
-            return $this->handleError($inputs['new_password'], __('validation.new_password.empty'), 400);
+            return $this->handleError($inputs['new_password'], __('validation.custom.new_password.empty'), 400);
         }
 
         if ($inputs['confirm_new_password'] == null) {
