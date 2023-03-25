@@ -42,27 +42,28 @@ class AccountController extends Controller
      */
     public function account()
     {
-        // Select user API URL
-        $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/' . Auth::user()->id;
+        // // Select user API URL
+        // $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/' . Auth::user()->id;
 
-        try {
-            // Select user API response
-            $response_user = $this::$client->request('GET', $url_user, [
-                'headers' => $this::$headers,
-                'verify'  => false
-            ]);
-            $user = json_decode($response_user->getBody(), false);
+        // try {
+        //     // Select user API response
+        //     $response_user = $this::$client->request('GET', $url_user, [
+        //         'headers' => $this::$headers,
+        //         'verify'  => false
+        //     ]);
+        //     $user = json_decode($response_user->getBody(), false);
 
-            return view('account', [
-                'selected_user' => $user
-            ]);
+        //     return view('account', [
+        //         'selected_user' => $user
+        //     ]);
 
-        } catch (ClientException $e) {
-            // If the API returns some error, return to the page and display its message
-            return view('account', [
-                'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
-            ]);
-        }
+        // } catch (ClientException $e) {
+        //     // If the API returns some error, return to the page and display its message
+        //     return view('account', [
+        //         'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+        //     ]);
+        // }
+        return view('account');
     }
 
     /**
@@ -115,7 +116,7 @@ class AccountController extends Controller
         // Register notification API URL
         $url_notification = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/notification/store';
         // Select user API URL
-        $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/' . Auth::user()->id;
+        $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/' . $user_id;
 
         try {
             // Search status by name API response
