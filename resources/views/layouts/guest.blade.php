@@ -143,36 +143,61 @@
 
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
-                    <a href="{{ route('home') }}" class="nav-item nav-link {{ Route::is('home') ? 'active' : '' }}">@lang('miscellaneous.menu.home')</a>
-                    <a href="{{ route('about.home') }}" class="nav-item nav-link {{ Route::is('about.home') || Route::is('about.party') || Route::is('about.app') || Route::is('about.terms_of_use') || Route::is('about.privacy_policy') || Route::is('about.help') || Route::is('about.faq') ? 'active' : '' }}">@lang('miscellaneous.menu.public.about')</a>
-                    <a href="{{ route('news.home') }}" class="nav-item nav-link {{ Route::is('news.home') || Route::is('news.datas') ? 'active' : '' }}">@lang('miscellaneous.menu.public.news')</a>
-                    <a href="{{ route('works') }}" class="nav-item nav-link {{ Route::is('works') ? 'active' : '' }}">@lang('miscellaneous.menu.public.works')</a>
-                    <div class="nav-item dropdown d-lg-inline-block d-none mb-0">
+                    <a href="{{ route('home') }}" class="nav-item nav-link mt-1 {{ Route::is('home') ? 'active' : '' }}">@lang('miscellaneous.menu.home')</a>
+                    <a href="{{ route('about.home') }}" class="nav-item nav-link mt-1 {{ Route::is('about.home') || Route::is('about.party') || Route::is('about.app') || Route::is('about.terms_of_use') || Route::is('about.privacy_policy') || Route::is('about.help') || Route::is('about.faq') ? 'active' : '' }}">@lang('miscellaneous.menu.public.about')</a>
+                    <a href="{{ route('news.home') }}" class="nav-item nav-link mt-1 {{ Route::is('news.home') || Route::is('news.datas') ? 'active' : '' }}">@lang('miscellaneous.menu.public.news')</a>
+                    <a href="{{ route('works') }}" class="nav-item nav-link mt-1 {{ Route::is('works') ? 'active' : '' }}">@lang('miscellaneous.menu.public.works')</a>
+@if (empty(Auth::user()))
+                    <span class="nav-item dropdown d-lg-inline-block d-none mb-0">
                         <a href="#" class="nav-link" data-bs-toggle="dropdown"><i class="bi bi-translate fs-4 align-top"></i></a>
-                        <div class="dropdown-menu bg-light m-0 overflow-hidden">
-@foreach ($available_locales as $locale_name => $available_locale)
-    @if ($available_locale != $current_locale)
+                        <div class="dropdown-menu bg-light m-0 overflow-hidden align-top">
+    @foreach ($available_locales as $locale_name => $available_locale)
+        @if ($available_locale != $current_locale)
                             <a class="dropdown-item" href="{{ route('change_language', ['locale' => $available_locale]) }}">
-        @switch($available_locale)
-            @case('ln')
+            @switch($available_locale)
+                @case('ln')
                                 <span class="fi fi-cd me-3"></span>
-                @break
-            @case('en')
+                    @break
+                @case('en')
                                 <span class="fi fi-us me-3"></span>
-                @break
-            @default
+                    @break
+                @default
                                 <span class="fi fi-{{ $available_locale }} me-3"></span>
-        @endswitch
+            @endswitch
                                 {{ $locale_name }}
                             </a>
-    @endif
-@endforeach
+        @endif
+    @endforeach
                         </div>
-                    </div>
+                    </span>    
+@endif
                 </div>
                 <div class="border-start ps-lg-4 ps-0">
+@if (!empty(Auth::user()))
+                    <div class="dropdown d-inline-block my-3 ms-lg-0 ms-4">
+                        <a role="button" href="" id="avatarLink" data-mdb-toggle="dropdown" aria-expanded="false">
+                            <img src="{{ Auth::user()->avatar_url != null ? Auth::user()->avatar_url : asset('assets/img/user.png') }}" alt="{{ Auth::user()->firstname }}" width="40" class="rounded-circle me-2">
+                            <h5 class="h5 mb-0 p-0 d-lg-none d-inline-block align-middle text-dark">{{ Auth::user()->firstname }}</h5>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-end mt-3" aria-labelledby="avatarLink">
+                            <li class="border-bottom border-secondary">
+                                <a href="{{ route('account') }}" class="dropdown-item py-3">
+                                    <i class="bi bi-gear me-3"></i>@lang('miscellaneous.menu.account_settings')
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('logout') }}" class="dropdown-item py-3">
+                                    <i class="bi bi-power me-3"></i>@lang('miscellaneous.logout')
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="{{ route('donate') }}" class="btn d-sm-inline-block d-block acr-btn-blue mb-sm-0 mb-4 align-middle rounded-pill shadow-0">@lang('miscellaneous.menu.public.donate')</a>
+@else
                     <a href="{{ route('login') }}" class="btn d-sm-inline-block d-block acr-btn-outline-blue me-sm-2 me-0 mb-sm-0 mb-2 rounded-pill shadow-0">@lang('miscellaneous.menu.login')</a>
                     <a href="{{ route('donate') }}" class="btn d-sm-inline-block d-block acr-btn-blue mb-sm-0 mb-4 rounded-pill shadow-0">@lang('miscellaneous.menu.public.donate')</a>
+@endif
                 </div>
             </div>
         </nav>

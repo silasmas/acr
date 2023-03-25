@@ -38,7 +38,7 @@ class AuthenticatedSessionController extends Controller
     public function create(): View
     {
         if (!empty(Auth::user())) {
-            # code...
+            return view('welcome');
         } else {
             return view('auth.login');
         }
@@ -67,12 +67,9 @@ class AuthenticatedSessionController extends Controller
             ]);
             $user = json_decode($response_user->getBody(), false);
 
-            $user_arr = json_decode(json_encode($user->data), true);
-            $auth_user = new User($user_arr);
+            Auth::attempt(['email' => $user->data->email, 'password' => $inputs['password']], $request->remember);
 
-            Auth::login($auth_user);
-
-            // Put API response as an authenticatable object "user"
+            // Put API response "user" in the session for using of its data
             session()->put('current_user', $user->data);
             $request->session()->regenerate();
 

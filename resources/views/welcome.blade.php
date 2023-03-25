@@ -193,6 +193,7 @@
         </div>
         <!-- Why Us End -->
 
+    @if (empty(Auth::user()))
         <!-- Register as a member Start -->
         <div class="container-xxl py-5 bg-light">
             <div class="container">
@@ -232,11 +233,11 @@
                                             <div class="form-floating pt-0">
                                                 <select name="select_country" id="select_country" class="form-select pt-2 shadow-0">
                                                     <option class="small" selected disabled>@lang('miscellaneous.choose_country')</option>
-    @forelse ($countries as $country)
+        @forelse ($countries as $country)
                                                     <option value="+{{ $country->country_phone_code }}">{{ $country->country_name }}</option>
-    @empty
+        @empty
                                                     <option>@lang('miscellaneous.empty_list')</option>
-    @endforelse
+        @endforelse
                                                 </select>
                                             </div>
                                         </div>
@@ -268,6 +269,7 @@
             </div>
         </div>
         <!-- Register as a member End -->
+    @endif
 
         <!-- Gallery Start -->
         <div class="container-xxl py-5 px-0">
