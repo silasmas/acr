@@ -121,8 +121,8 @@ return [
     'create_user_SMS_failed' => 'Il y a un problème avec le service des SMS',
     'update_user_success' => 'Utilisateur modifié',
     'update_password_success' => 'Mot de passe modifié',
-    'confirm_password_error' => 'Please confirm your password',
-    'confirm_new_password' => 'Please confirm the new password',
+    'confirm_password_error' => 'Veuillez confirmer votre mot de passe',
+    'confirm_new_password' => 'Veuillez confirmer le nouveau mot de passe',
     'delete_user_success' => 'Utilisateur supprimé',
     // RoleUser
     'find_all_role_users_success' => 'Rôles avec utilisateurs trouvés',
