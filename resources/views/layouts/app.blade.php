@@ -1,3 +1,6 @@
+<?php
+$current_user = session()->get('current_user');
+?>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -35,23 +38,23 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css">
 
         <!-- Addons CSS Files -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/jquery/jquery-ui/jquery-ui.min.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/cropper/css/cropper.min.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/dairy/animate/animate.min.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/dairy/owlcarousel/assets/owl.carousel.min.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/dairy/lightbox/css/lightbox.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/bootstrap/css/bootstrap.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/mdb/css/mdb.min.css') }}">
-        <!-- Dairy CSS File -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.dairy.css') }}">
+        <!-- Adminator CSS File -->
+        <style>
+            #loader {transition: all 0.3s ease-in-out; opacity: 1; visibility: visible; position: fixed; height: 100vh; width: 100%; background: #fff; z-index: 90000;}
+            #loader.fadeOut {opacity: 0; visibility: hidden;}
+            .spinner {width: 40px; height: 40px; position: absolute; top: calc(50% - 20px); left: calc(50% - 20px); background-color: #333; border-radius: 100%; -webkit-animation: sk-scaleout 1.0s infinite ease-in-out; animation: sk-scaleout 1.0s infinite ease-in-out;}
+
+            @-webkit-keyframes sk-scaleout {0% {-webkit-transform: scale(0)} 100% { -webkit-transform: scale(1.0); opacity: 0;}}
+            @keyframes sk-scaleout {0% {-webkit-transform: scale(0); transform: scale(0);} 100% {-webkit-transform: scale(1.0); transform: scale(1.0); opacity: 0;}}
+        </style>
+        <link rel="stylesheet" type="text/css" href="{{ assets('assets/css/style.adminator.css') }}">
+
         <!-- Custom CSS File -->
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.custom.css') }}">
 
         <title>
-@if (Route::is('home'))
-            @lang('miscellaneous.slogan')
-@endif
-
 @if (Route::is('account') || Route::is('account.update.password'))
             @lang('menu.account_settings')
 @endif
@@ -78,6 +81,16 @@
 
 @if (Route::is('message.search'))
             @lang('miscellaneous.message.search_result')
+@endif
+
+@if ($current_user->data->role_users[0]->role->role_name == 'Administrateur')
+@endif
+
+@if ($current_user->data->role_users[0]->role->role_name == 'Administrateur')
+@endif
+
+@if (Route::is('home'))
+            @lang('miscellaneous.manager.home.title')
 @endif
 
 @if (Route::is('notification'))
@@ -178,7 +191,7 @@
         </nav>
         <!-- Navbar End -->
 
-@yield('guest-content')
+@yield('app-content')
 
         <!-- Footer Start -->
         <div class="container-fluid acr-bg-blue-gray footer py-5 wow fadeIn" data-wow-delay="0.1s">

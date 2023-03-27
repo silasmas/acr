@@ -36,13 +36,14 @@ class User extends JsonResource
             'remember_token' => $this->remember_token,
             'api_token' => $this->api_token,
             'avatar_url' => $this->avatar_url != null ? (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/public/storage/' . $this->avatar_url : null,
+            // 'avatar_url' => $this->avatar_url != null ? '/' . $this->avatar_url : null,
             'identity_data' => Image::make($this->image),
             'status' => Status::make($this->status),
             'addresses' => Address::collection($this->addresses),
             'role_users' => RoleUser::collection($this->role_users),
             'offers' => Offer::collection($this->offers),
             'payments' => Payment::collection($this->payments),
-            'notifications' => Notification::collection($this->notifications),
+            'notifications' => Notification::collection($this->notifications)->sortByDesc('created_at')->toArray(),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s')
         ];

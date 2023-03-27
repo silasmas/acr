@@ -171,6 +171,8 @@ class UserController extends BaseController
             /*
                 HISTORY AND/OR NOTIFICATION MANAGEMENT
             */
+            $status_activated = Status::where('status_name', 'Activé')->first();
+            $status_ongoing = Status::where('status_name', 'En attente')->first();
             $status_unread = Status::where('status_name', 'Non lue')->first();
             $admin_role = Role::where('role_name', 'Administrateur')->first();
             $supporting_member_role = Role::where('role_name', 'Membre Sympathisant')->first();
@@ -181,6 +183,10 @@ class UserController extends BaseController
             // If the new user is a member, send notification to 
             // all managers and a welcome notification to the new user
             if ($current_role->id == $supporting_member_role->id OR $current_role->id == $effecive_member_role->id OR $current_role->id == $honorary_member_role->id) {
+                $user->update([
+                    'status_id' => $status_ongoing->id,
+                ]);
+
                 $manager_role = Role::where('role_name', 'Manager')->first();
                 $role_users = RoleUser::where('role_id', $manager_role->id)->get();
 
@@ -203,6 +209,10 @@ class UserController extends BaseController
 
             // If the new user is neither a member nor an admin, send a ordinary welcome notification
             if ($current_role->id != $supporting_member_role->id AND $current_role->id != $effecive_member_role->id AND $current_role->id != $honorary_member_role->id AND $current_role->id != $admin_role->id) {
+                $user->update([
+                    'status_id' => $status_activated->id,
+                ]);
+
                 Notification::create([
                     'notification_url' => 'about_us/terms_of_use',
                     'notification_content' => __('notifications.welcome_user'),

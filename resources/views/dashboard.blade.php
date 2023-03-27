@@ -1,1 +1,5 @@
-{{ dd(session()->get('current_user')) }}
+@extends('layouts.app')
+
+@section('app-content')
+
+@endsection

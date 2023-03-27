@@ -221,7 +221,7 @@ return [
         'notifications' => 'Notifications',
         'admin' => [
             'legal_info' =>  'Info légale',
-            'continent' =>  'Continent',
+            'country' =>  'Pays',
             'miscellaneous' =>  'Divers',
         ],
         'developer' => [
@@ -230,6 +230,7 @@ return [
         'manager' => [
             'members' => 'Membres',
             'other_managers' => 'Autres managers',
+            'infos' => 'Informations'
         ],
         'public' => [
             'about' => 'A propos',
@@ -370,6 +371,18 @@ return [
     'manager' => [
         'home' => [
             'title' => 'Espace du manager',
+        ],
+        'info' => [
+            'title' => 'Informations',
+            'news' => [
+                'title' => 'Actualité',
+            ],
+            'communique' => [
+                'title' => 'Communiqués',
+            ],
+            'event' => [
+                'title' => 'Evénements',
+            ],
         ],
     ],
 

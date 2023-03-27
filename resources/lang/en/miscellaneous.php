@@ -221,15 +221,16 @@ return [
         'notifications' => 'Notifications',
         'admin' => [
             'legal_info' =>  'Legal info',
-            'continent' =>  'Continent',
-            'miscellaneous' =>  'Miscellaneous',
+            'country' =>  'Country',
+            'miscellaneous' =>  'Miscellaneous'
         ],
         'developer' => [
-            'apis' => 'APIs',
+            'apis' => 'APIs'
         ],
         'manager' => [
             'members' => 'Members',
             'other_managers' => 'Other managers',
+            'infos' => 'Informations'
         ],
         'public' => [
             'about' => 'About',
@@ -370,6 +371,18 @@ return [
     'manager' => [
         'home' => [
             'title' => 'Manager area',
+        ],
+        'info' => [
+            'title' => 'Informations',
+            'news' => [
+                'title' => 'News',
+            ],
+            'communique' => [
+                'title' => 'Communiques',
+            ],
+            'event' => [
+                'title' => 'Events',
+            ],
         ],
     ],
 
