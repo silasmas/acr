@@ -816,9 +816,12 @@ class UserController extends BaseController
                 $image_recto = str_replace(' ', '+', $image_recto);
 
                 // Delete concerning file in "identity_data"
-                if (Storage::exists($_SERVER['DOCUMENT_ROOT'] . '/public/storage/' . $user_identity_data->url_recto)){
-                    Storage::delete($_SERVER['DOCUMENT_ROOT'] . '/public/storage/' . $user_identity_data->url_recto);
+                if (Storage::exists($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $inputs['user_id'] . '/identity_data/' . $user_identity_data->url_recto)){
+                    Storage::delete($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $inputs['user_id'] . '/identity_data/' . $user_identity_data->url_recto);
                 }
+                // if (Storage::exists($_SERVER['DOCUMENT_ROOT'] . '/storage/images/users/' . $inputs['user_id'] . '/identity_data/' . $user_identity_data->url_recto)){
+                //     Storage::delete($_SERVER['DOCUMENT_ROOT'] . '/storage/images/users/' . $inputs['user_id'] . '/identity_data/' . $user_identity_data->url_recto);
+                // }
 
                 // Create image URL
                 $image_url_recto = 'images/users/' . $inputs['user_id'] . '/identity_data/' . Str::random(50) . '.png';
@@ -840,9 +843,12 @@ class UserController extends BaseController
                 $image_verso = str_replace(' ', '+', $image_verso);
 
                 // Delete concerning file in "identity_data"
-                if (Storage::exists($_SERVER['DOCUMENT_ROOT'] . '/public/storage/' . $user_identity_data->url_verso)){
-                    Storage::delete($_SERVER['DOCUMENT_ROOT'] . '/public/storage/' . $user_identity_data->url_verso);
+                if (Storage::exists($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $inputs['user_id'] . '/identity_data/' . $user_identity_data->url_verso)){
+                    Storage::delete($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $inputs['user_id'] . '/identity_data/' . $user_identity_data->url_verso);
                 }
+                // if (Storage::exists($_SERVER['DOCUMENT_ROOT'] . '/storage/images/users/' . $inputs['user_id'] . '/identity_data/' . $user_identity_data->url_verso)){
+                //     Storage::delete($_SERVER['DOCUMENT_ROOT'] . '/storage/images/users/' . $inputs['user_id'] . '/identity_data/' . $user_identity_data->url_verso);
+                // }
 
                 // Create image URL
                 $image_url_verso = 'images/users/' . $inputs['user_id'] . '/identity_data/' . Str::random(50) . '.png';
