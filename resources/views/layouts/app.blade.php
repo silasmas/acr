@@ -86,31 +86,44 @@ $current_user = session()->get('current_user');
 @if ($current_user->data->role_users[0]->role->role_name == 'Administrateur')
 @endif
 
-@if ($current_user->data->role_users[0]->role->role_name == 'Administrateur')
+@if ($current_user->data->role_users[0]->role->role_name == 'Développeur')
 @endif
 
-@if (Route::is('home'))
+@if ($current_user->data->role_users[0]->role->role_name == 'Manager')
+    @if (Route::is('manager'))
             @lang('miscellaneous.manager.home.title')
-@endif
+    @endif
 
-@if (Route::is('notification'))
-            @lang('miscellaneous.menu.notifications')
-@endif
+    @if (Route::is('party.member.home') || Route::is('party.member.datas') || Route::is('party.member.new') || Route::is('party.member.on_going'))
+            @lang('miscellaneous.menu.manager.members')
+    @endif
 
-@if (Route::is('about.home'))
-            @lang('miscellaneous.menu.public.about')
-@endif
+    @if (Route::is('party.managers') || Route::is('party.manager.new') || Route::is('party.manager.datas'))
+            @lang('miscellaneous.menu.manager.members')
+    @endif
 
-@if (Route::is('news.home'))
-            @lang('miscellaneous.menu.public.news')
-@endif
+    @if (Route::is('party.infos'))
+            @lang('miscellaneous.manager.info.title')
+    @endif
 
-@if (Route::is('works'))
-            @lang('miscellaneous.menu.public.works')
-@endif
+    @if (Route::is('party.infos.entity'))
+            @if (!empty($entity))
+                @if ($entity == 'news')
+                    @lang('miscellaneous.manager.info.news.title')
+                @endif
 
-@if (Route::is('donate'))
-            @lang('miscellaneous.menu.public.donate')
+                @if ($entity == 'communique')
+                    @lang('miscellaneous.manager.info.communique.title')
+                @endif
+
+                @if ($entity == 'event')
+                    @lang('miscellaneous.manager.info.event.title')
+                @endif
+
+            @else
+                @lang('miscellaneous.manager.info.title')
+            @endif
+    @endif
 @endif
 
         </title>
