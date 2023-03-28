@@ -83,12 +83,86 @@ $current_user = session()->get('current_user');
             @lang('miscellaneous.message.search_result')
 @endif
 
+<!-- Admin titles -->
 @if ($current_user->data->role_users[0]->role->role_name == 'Administrateur')
+    @if (Route::is('admin'))
+            @lang('miscellaneous.admin.home.title')
+    @endif
+
+    @if (Route::is('legal_info.home') || Route::is('legal_info.datas'))
+            @lang('miscellaneous.admin.legal_info_subject.title')
+    @endif
+
+    @if (Route::is('legal_info.entity.home') || Route::is('legal_info.entity.datas'))
+            @if (!empty($entity))
+                @if ($entity == 'title')
+                    @lang('miscellaneous.admin.legal_info_subject.legal_info_title.title')
+                @endif
+
+                @if ($entity == 'content')
+                    @lang('miscellaneous.admin.legal_info_subject.legal_info_content.title')
+                @endif
+
+            @else
+                @lang('miscellaneous.admin.legal_info_subject.title')
+            @endif
+    @endif
+
+    @if (Route::is('country.home') || Route::is('country.datas'))
+            @lang('miscellaneous.admin.legal_info_subject.title')
+    @endif
+
+    @if (Route::is('miscellaneous.home') || Route::is('miscellaneous.datas'))
+            @lang('miscellaneous.admin.miscellaneous.title')
+    @endif
+
+    @if (Route::is('miscellaneous.entity.home') || Route::is('miscellaneous.entity.datas'))
+            @if (!empty($entity))
+                @if ($entity == 'group')
+                    @lang('miscellaneous.admin.miscellaneous.group.title')
+                @endif
+
+                @if ($entity == 'type')
+                    @lang('miscellaneous.admin.miscellaneous.type.title')
+                @endif
+
+                @if ($entity == 'role')
+                    @lang('miscellaneous.admin.miscellaneous.role.title')
+                @endif
+
+                @if ($entity == 'admins')
+                    @lang('miscellaneous.admin.miscellaneous.other_admin.title')
+                @endif
+
+                @if ($entity == 'developers')
+                    @lang('miscellaneous.admin.miscellaneous.other_admin.title')
+                @endif
+
+                @if ($entity == 'managers')
+                    @lang('miscellaneous.admin.miscellaneous.other_admin.title')
+                @endif
+            @else
+                @lang('miscellaneous.admin.miscellaneous.title')
+            @endif
+    @endif
+
+    @if (Route::is('legal_info.search') || Route::is('legal_info.entity.search') || Route::is('country.search') || Route::is('miscellaneous.search') || Route::is('miscellaneous.entity.search'))
+            @lang('miscellaneous.message.search_result')
+    @endif
 @endif
 
+<!-- Developer titles -->
 @if ($current_user->data->role_users[0]->role->role_name == 'Développeur')
+    @if (Route::is('developer'))
+            @lang('miscellaneous.developer.home.title')
+    @endif
+
+    @if (Route::is('apis.home') || Route::is('apis.entity'))
+            @lang('miscellaneous.menu.developer.apis')
+    @endif
 @endif
 
+<!-- Manager titles -->
 @if ($current_user->data->role_users[0]->role->role_name == 'Manager')
     @if (Route::is('manager'))
             @lang('miscellaneous.manager.home.title')
@@ -125,7 +199,6 @@ $current_user = session()->get('current_user');
             @endif
     @endif
 @endif
-
         </title>
     </head>
 
