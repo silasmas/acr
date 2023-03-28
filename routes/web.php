@@ -121,6 +121,7 @@ Route::get('/members', 'App\Http\Controllers\Web\PartyController@members')->name
 Route::get('/members/{id}', 'App\Http\Controllers\Web\PartyController@memberDatas')->whereNumber('id')->name('party.member.datas');
 Route::get('/members/new', 'App\Http\Controllers\Web\PartyController@memberAdd')->name('party.member.new');
 Route::get('/members/on_going', 'App\Http\Controllers\Web\PartyController@memberOnGoing')->name('party.member.on_going');
+Route::get('/members/search/{data}', 'App\Http\Controllers\Web\PartyController@searchMember')->name('members.search');
 Route::get('/managers', 'App\Http\Controllers\Web\PartyController@managers')->name('party.managers');
 Route::get('/managers/new', 'App\Http\Controllers\Web\PartyController@managerAdd')->name('party.manager.new');
 Route::get('/managers/{id}', 'App\Http\Controllers\Web\PartyController@managerDatas')->whereNumber('id')->name('party.manager.datas');

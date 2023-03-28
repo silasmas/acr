@@ -55,6 +55,7 @@ $current_user = session()->get('current_user');
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.custom.css') }}">
 
         <title>
+<!-- Titles of all roles -->
 @if (Route::is('account') || Route::is('account.update.password'))
             @lang('menu.account_settings')
 @endif
