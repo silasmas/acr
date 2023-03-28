@@ -35,6 +35,7 @@ class AddressController extends BaseController
          // Get inputs
          $inputs = [
             'address_content' => $request->address_content,
+            'address_content_2' => $request->address_content_2,
             'neighborhood' => $request->neighborhood,
             'area' => $request->area,
             'city' => $request->city,
@@ -50,6 +51,7 @@ class AddressController extends BaseController
             // If address already exists, update it
             $user_address->update([
                 'address_content' => $inputs['address_content'],
+                'address_content_2' => $inputs['address_content_2'],
                 'neighborhood' => $inputs['neighborhood'],
                 'area' => $inputs['area'],
                 'city' => $inputs['city'],
@@ -97,6 +99,7 @@ class AddressController extends BaseController
         $inputs = [
             'id' => $request->id,
             'address_content' => $request->address_content,
+            'address_content_2' => $request->address_content_2,
             'neighborhood' => $request->neighborhood,
             'area' => $request->area,
             'city' => $request->city,
@@ -109,6 +112,13 @@ class AddressController extends BaseController
         if ($inputs['address_content'] != null) {
             $address->update([
                 'address_content' => $request->address_content,
+                'updated_at' => now(),
+            ]);
+        }
+
+        if ($inputs['address_content_2'] != null) {
+            $address->update([
+                'address_content_2' => $request->address_content_2,
                 'updated_at' => now(),
             ]);
         }
