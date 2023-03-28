@@ -252,6 +252,9 @@ return [
 
     // ===== ADMIN PAGES
     'admin' => [
+        'home' => [
+            'title' => 'Espace de l\'admin',
+        ],
         // Legal infos
         'legal_info_subject' => [
             'title' => 'Sujets d\'info légale',
