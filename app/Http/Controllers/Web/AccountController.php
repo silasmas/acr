@@ -252,7 +252,8 @@ class AccountController extends Controller
     public function payWithCard($amount, $currency, $user_id)
     {
         $reference_code = 'REF-' . ((string) random_int(10000000, 99999999)) . '-' . $user_id;
-        $gateway = 'https://beta-cardpayment.flexpay.cd/v1.1/pay';
+        // $gateway = 'https://beta-cardpayment.flexpay.cd/v1.1/pay';
+        $gateway = 'https://cardpayment.flexpay.cd/v1.1/pay';
 
         try {
             // Create response by sending request to FlexPay
@@ -261,7 +262,8 @@ class AccountController extends Controller
                     'Accept' => 'application/json'
                 ),
                 'json' => array(
-                    'authorization' => 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJcL2xvZ2luIiwicm9sZXMiOlsiTUVSQ0hBTlQiXSwiZXhwIjoxNzI2MTYyMjM0LCJzdWIiOiIyYmIyNjI4YzhkZTQ0ZWZjZjA1ODdmMGRmZjYzMmFjYyJ9.41n-SA4822KKo5aK14rPZv6EnKi9xJVDIMvksHG61nc',
+                    // 'authorization' => 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJcL2xvZ2luIiwicm9sZXMiOlsiTUVSQ0hBTlQiXSwiZXhwIjoxNzI2MTYyMjM0LCJzdWIiOiIyYmIyNjI4YzhkZTQ0ZWZjZjA1ODdmMGRmZjYzMmFjYyJ9.41n-SA4822KKo5aK14rPZv6EnKi9xJVDIMvksHG61nc',
+                    'authorization' => 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJcL2xvZ2luIiwicm9sZXMiOlsiTUVSQ0hBTlQiXSwiZXhwIjoxNzI2MTYxOTIzLCJzdWIiOiIyYzM2NzZkNDhkNGY4OTBhMGNiZjg4YmVjOTc1OTkyNyJ9.N7BBGQ2hNEeL_Q3gkvbyIQxcq71KtC_b0a4WsTKaMT8',
                     'merchant' => 'PROXDOC',
                     'reference' => $reference_code,
                     'amount' => $amount,

@@ -201,12 +201,12 @@ $current_user = session()->get('current_user');
                         <ul class="dropdown-menu dropdown-menu-end mt-3" aria-labelledby="avatarLink">
                             <li class="d-lg-flex d-none justify-content-center pt-3 bg-danger">
                                 <div class="bg-image">
-                                    <img src="{{ Auth::user()->avatar_url != null ? Auth::user()->avatar_url : asset('assets/img/user.png') }}" alt="{{ Auth::user()->firstname }}" width="60" class="rounded-circle me-2">
+                                    <img src="{{ Auth::user()->avatar_url != null ? Auth::user()->avatar_url : asset('assets/img/user.png') }}" alt="{{ Auth::user()->firstname . ' ' . Auth::user()->lasname }}" width="60" class="rounded-circle me-2">
                                     <div class="mask"></div>
                                 </div>
                             </li>
                             <li class="d-lg-block d-none px-3 pt-3 pb-2 bg-danger text-center text-light">
-                                <h5 class="h5 mb-1 fw-bold text-truncate" style="width: 11rem;">{{ Auth::user()->firstname . ' ' . Auth::user()->surname }}</h5>
+                                <h5 class="h5 mb-1 fw-bold text-truncate" style="width: 11rem;">{{ Auth::user()->firstname . ' ' . Auth::user()->lasname }}</h5>
                             </li>
                             <li class="border-bottom border-secondary">
                                 <a href="{{ route('account') }}" class="dropdown-item py-3">
