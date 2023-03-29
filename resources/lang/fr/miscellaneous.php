@@ -265,7 +265,7 @@ return [
             'search' => 'Rechercher un sujet d\'info légale',
             'list' => 'Sujets d\'info légale',
             'datas' => [
-                'subject' => 'Suject',
+                'subject' => 'Sujet',
                 'description' => 'Description'
             ],
             'other_datas' => 'Autres données',

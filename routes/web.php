@@ -63,7 +63,7 @@ Route::get('/about/faq', 'App\Http\Controllers\Web\HomeController@faq')->name('a
 |--------------------------------------------------------------------------
 */
 // Home
-Route::get('/admin', 'App\Http\Controllers\Web\HomeController@admin')->name('admin');
+Route::get('/admin', 'App\Http\Controllers\Web\HomeController@dashboard')->name('admin');
 // Legal info
 Route::get('/legal_info', 'App\Http\Controllers\Web\LegalInfoController@index')->name('legal_info.home');
 Route::get('/legal_info/{id}', 'App\Http\Controllers\Web\LegalInfoController@show')->whereNumber('id')->name('legal_info.datas');
@@ -104,7 +104,7 @@ Route::post('/miscellaneous/{entity}/{id}', 'App\Http\Controllers\Web\Miscellane
 |--------------------------------------------------------------------------
 */
 // Home
-Route::get('/developer', 'App\Http\Controllers\Web\HomeController@developer')->name('developer');
+Route::get('/developer', 'App\Http\Controllers\Web\HomeController@dashboard')->name('developer');
 // API
 Route::get('/apis', 'App\Http\Controllers\Web\APIController@index')->name('apis.home');
 Route::get('/apis/{entity}', 'App\Http\Controllers\Web\APIController@apisEntity')->name('apis.entity');
@@ -115,7 +115,7 @@ Route::get('/apis/{entity}', 'App\Http\Controllers\Web\APIController@apisEntity'
 |--------------------------------------------------------------------------
 */
 // Home
-Route::get('/manager', 'App\Http\Controllers\Web\HomeController@manager')->name('manager');
+Route::get('/manager', 'App\Http\Controllers\Web\HomeController@dashboard')->name('manager');
 // Party
 Route::get('/members', 'App\Http\Controllers\Web\PartyController@members')->name('party.member.home');
 Route::get('/members/{id}', 'App\Http\Controllers\Web\PartyController@memberDatas')->whereNumber('id')->name('party.member.datas');

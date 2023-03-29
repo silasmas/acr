@@ -1,3 +1,6 @@
+<?php
+$current_user = session()->get('current_user');
+?>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -147,7 +150,7 @@
                     <a href="{{ route('about.home') }}" class="nav-item nav-link mt-1 {{ Route::is('about.home') || Route::is('about.party') || Route::is('about.app') || Route::is('about.terms_of_use') || Route::is('about.privacy_policy') || Route::is('about.help') || Route::is('about.faq') ? 'active' : '' }}">@lang('miscellaneous.menu.public.about')</a>
                     <a href="{{ route('news.home') }}" class="nav-item nav-link mt-1 {{ Route::is('news.home') || Route::is('news.datas') ? 'active' : '' }}">@lang('miscellaneous.menu.public.news')</a>
                     <a href="{{ route('works') }}" class="nav-item nav-link mt-1 {{ Route::is('works') ? 'active' : '' }}">@lang('miscellaneous.menu.public.works')</a>
-@if (empty(Auth::user()))
+@empty(Auth::user())
                     <span class="nav-item dropdown d-lg-inline-block d-none mb-0">
                         <a href="#" class="nav-link" data-bs-toggle="dropdown"><i class="bi bi-translate fs-4 align-top"></i></a>
                         <div class="dropdown-menu bg-light m-0 overflow-hidden align-top">
@@ -170,17 +173,41 @@
     @endforeach
                         </div>
                     </span>    
-@endif
+@endempty
                 </div>
                 <div class="border-start ps-lg-4 ps-0">
 @if (!empty(Auth::user()))
-                    <div class="dropdown d-inline-block my-3 ms-lg-0 ms-4">
+                    <div class="dropdown d-inline-block my-3 ms-lg-0 ms-4 me-3">
+                        <a role="button" href="{{ route('notification.home') }}" id="notificationLink" data-mdb-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-bell fs-4 align-middle"></i>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-end mt-3" aria-labelledby="notificationLink">
+    @foreach ($current_user->notifications as $notification)
+                            <li class="border-bottom border-secondary" style="width: 15rem;">
+                                <a href="{{ $notification->notification_url }}" class="dropdown-item py-3 text-wrap">
+                                    <p class="m-0 text-black acr-line-height-1_45">{{ $notification->notification_content }}</p>
+                                    <small class="text-secondary">{{ $notification->created_at }}</small>
+                                </a>
+                            </li>
+    @endforeach
+                        </ul>
+                    </div>
+                    <div class="dropdown d-inline-block my-3 ms-lg-0 me-1">
                         <a role="button" href="" id="avatarLink" data-mdb-toggle="dropdown" aria-expanded="false">
                             <img src="{{ Auth::user()->avatar_url != null ? Auth::user()->avatar_url : asset('assets/img/user.png') }}" alt="{{ Auth::user()->firstname }}" width="40" class="rounded-circle me-2">
-                            <h5 class="h5 mb-0 p-0 d-lg-none d-inline-block align-middle text-dark">{{ Auth::user()->firstname }}</h5>
                         </a>
 
                         <ul class="dropdown-menu dropdown-menu-end mt-3" aria-labelledby="avatarLink">
+                            <li class="d-lg-flex d-none justify-content-center pt-3 bg-danger">
+                                <div class="bg-image">
+                                    <img src="{{ Auth::user()->avatar_url != null ? Auth::user()->avatar_url : asset('assets/img/user.png') }}" alt="{{ Auth::user()->firstname }}" width="60" class="rounded-circle me-2">
+                                    <div class="mask"></div>
+                                </div>
+                            </li>
+                            <li class="d-lg-block d-none px-3 pt-3 pb-2 bg-danger text-center text-light">
+                                <h5 class="h5 mb-1 fw-bold text-truncate" style="width: 11rem;">{{ Auth::user()->firstname . ' ' . Auth::user()->surname }}</h5>
+                            </li>
                             <li class="border-bottom border-secondary">
                                 <a href="{{ route('account') }}" class="dropdown-item py-3">
                                     <i class="bi bi-gear me-3"></i>@lang('miscellaneous.menu.account_settings')

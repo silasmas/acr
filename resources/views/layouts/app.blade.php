@@ -49,13 +49,13 @@ $current_user = session()->get('current_user');
             @-webkit-keyframes sk-scaleout {0% {-webkit-transform: scale(0)} 100% { -webkit-transform: scale(1.0); opacity: 0;}}
             @keyframes sk-scaleout {0% {-webkit-transform: scale(0); transform: scale(0);} 100% {-webkit-transform: scale(1.0); transform: scale(1.0); opacity: 0;}}
         </style>
-        <link rel="stylesheet" type="text/css" href="{{ assets('assets/css/style.adminator.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.adminator.css') }}">
 
         <!-- Custom CSS File -->
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.custom.css') }}">
 
         <title>
-<!-- Titles of all roles -->
+{{-- Titles of all roles --}}
 @if (Route::is('account') || Route::is('account.update.password'))
             @lang('menu.account_settings')
 @endif
@@ -84,8 +84,8 @@ $current_user = session()->get('current_user');
             @lang('miscellaneous.message.search_result')
 @endif
 
-<!-- Admin titles -->
-@if ($current_user->data->role_users[0]->role->role_name == 'Administrateur')
+{{-- Admin titles --}}
+@if ($current_user->role_users[0]->role->role_name == 'Administrateur')
     @if (Route::is('admin'))
             @lang('miscellaneous.admin.home.title')
     @endif
@@ -152,8 +152,8 @@ $current_user = session()->get('current_user');
     @endif
 @endif
 
-<!-- Developer titles -->
-@if ($current_user->data->role_users[0]->role->role_name == 'Développeur')
+{{-- Developer titles --}}
+@if ($current_user->role_users[0]->role->role_name == 'Développeur')
     @if (Route::is('developer'))
             @lang('miscellaneous.developer.home.title')
     @endif
@@ -163,8 +163,8 @@ $current_user = session()->get('current_user');
     @endif
 @endif
 
-<!-- Manager titles -->
-@if ($current_user->data->role_users[0]->role->role_name == 'Manager')
+{{-- Manager titles --}}
+@if ($current_user->role_users[0]->role->role_name == 'Manager')
     @if (Route::is('manager'))
             @lang('miscellaneous.manager.home.title')
     @endif

@@ -117,7 +117,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function manager()
+    public function dashboard()
     {
         return view('dashboard');
     }
