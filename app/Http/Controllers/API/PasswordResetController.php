@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\PasswordReset;
+use Nette\Utils\Random;
 use Illuminate\Http\Request;
+use App\Models\PasswordReset;
 use App\Http\Resources\PasswordReset as ResourcesPasswordReset;
 
 /**
@@ -170,6 +171,15 @@ class PasswordResetController extends BaseController
         if (is_null($password_reset)) {
             return $this->handleError(__('notifications.find_password_reset_404'));
         }
+        if ($password_reset->email != null) {
+            $random_string = (string) random_int(1000000, 9999999);
+
+            $password_reset->update([
+                'token' => $random_string,
+                'former_password' => Random::generate(10, 'a-zA-Z'),
+                'updated_at' => now()
+            ]);
+        }
 
         return $this->handleResponse(new ResourcesPasswordReset($password_reset), __('notifications.find_password_reset_success'));
     }
@@ -195,6 +205,7 @@ class PasswordResetController extends BaseController
 
             $password_reset->update([
                 'token' => $random_string,
+                'former_password' => Random::generate(10, 'a-zA-Z'),
                 'updated_at' => now()
             ]);
 
