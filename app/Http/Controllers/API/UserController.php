@@ -124,14 +124,14 @@ class UserController extends BaseController
                 'former_password' => $inputs['password']
             ]);
 
-            // if ($password_reset->phone != null) {
-            //     try {
-            //         $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
+            if ($password_reset->phone != null) {
+                try {
+                    $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
 
-            //     } catch (\Throwable $th) {
-            //         return $this->handleError($th->getMessage(), __('notifications.create_user_SMS_failed'), 500);
-            //     }
-            // }
+                } catch (\Throwable $th) {
+                    return $this->handleError($th->getMessage(), __('notifications.create_user_SMS_failed'), 500);
+                }
+            }
         }
 
         if ($inputs['password'] == null) {
@@ -146,14 +146,14 @@ class UserController extends BaseController
 
             $inputs['password'] = Hash::make($password_reset->former_password);
 
-            // if ($password_reset->phone != null) {
-            //     try {
-            //         $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
+            if ($password_reset->phone != null) {
+                try {
+                    $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
 
-            //     } catch (\Throwable $th) {
-            //         return $this->handleError($th->getMessage(), __('notifications.create_user_SMS_failed'), 500);
-            //     }
-            // }
+                } catch (\Throwable $th) {
+                    return $this->handleError($th->getMessage(), __('notifications.create_user_SMS_failed'), 500);
+                }
+            }
         }
 
         $user = User::create($inputs);
