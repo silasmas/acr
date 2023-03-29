@@ -46,6 +46,7 @@ class OfferController extends BaseController
         $inputs = [
             'offer_name' => $request->offer_name,
             'amount' => $request->amount,
+            'currency' => $request->currency,
             'type_id' => $request->offer_type_id,
             'user_id' => $request->user_id
         ];
@@ -242,6 +243,7 @@ class OfferController extends BaseController
             'id' => $request->id,
             'offer_name' => $request->offer_name,
             'amount' => $request->amount,
+            'currency' => $request->currency,
             'type_id' => $request->type_id,
             'user_id' => $request->user_id,
             'updated_at' => now()

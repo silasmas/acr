@@ -13,7 +13,7 @@ class Offer extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['offer_name', 'amount', 'updated_at', 'type_id', 'user_id'];
+    protected $fillable = ['offer_name', 'amount', 'currency', 'updated_at', 'type_id', 'user_id'];
 
     /**
      * ONE-TO-MANY
