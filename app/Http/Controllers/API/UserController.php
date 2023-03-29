@@ -112,7 +112,7 @@ class UserController extends BaseController
             }
 
             if (preg_match('#^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$#', $inputs['password']) == 0) {
-                return $this->handleError($inputs['password'], __('notifications.password.error'), 400);
+                return $this->handleError($inputs['password'], __('miscellaneous.password.error'), 400);
             }
 
             // Update password reset in the case user want to reset his password
@@ -129,9 +129,7 @@ class UserController extends BaseController
                     $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
 
                 } catch (\Throwable $th) {
-                    $response_error = json_decode($th->getMessage(), false);
-
-                    return $this->handleError($response_error, __('notifications.create_user_SMS_failed'), 500);
+                    return $this->handleError($th->getMessage(), __('notifications.create_user_SMS_failed'), 500);
                 }
             }
         }
@@ -153,14 +151,21 @@ class UserController extends BaseController
                     $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
 
                 } catch (\Throwable $th) {
-                    $response_error = json_decode($th->getMessage(), false);
-
-                    return $this->handleError($response_error, __('notifications.create_user_SMS_failed'), 500);
+                    return $this->handleError($th->getMessage(), __('notifications.create_user_SMS_failed'), 500);
                 }
             }
         }
 
         $user = User::create($inputs);
+
+        if ($user->surname != null AND $user->birth_date != null) {
+            if ($user->national_number == null) {
+                $user->update([
+                    'national_number' => 'ACR-' . Random::generate(4, '0-9') . '-' . strtoupper(substr($user->surname, 0, 3)) . '-' . explode('-', $user->birth_date)[0] . '.' . explode('-', $user->birth_date)[1] . '.' . explode('-', $user->birth_date)[2] . '-0000',
+                    'updated_at' => now(),
+                ]);
+            }
+        }
 
         if ($request->role_id != null) {
             RoleUser::create([
@@ -296,7 +301,6 @@ class UserController extends BaseController
                         'updated_at' => now(),
                     ]);
                 }
-
             }
 
             if ($current_user->surname != null AND $current_user->birth_date != null) {
