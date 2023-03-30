@@ -176,37 +176,57 @@ $current_user = session()->get('current_user');
 @endempty
                 </div>
                 <div class="border-start ps-lg-4 ps-0">
+                    {{-- Notification --}}
 @if (!empty(Auth::user()))
-                    <div class="dropdown d-inline-block my-3 ms-lg-0 ms-4 me-3">
-                        <a role="button" href="{{ route('notification.home') }}" id="notificationLink" data-mdb-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-bell fs-4 align-middle"></i>
+                    <div id="notification" class="{{ $current_user->notifications[0]->status->status_name == 'Non lue' ? 'dropdown ' : '' }}d-inline-block my-3 ms-lg-0 ms-4 me-3">
+                        <a role="button" href="{{ route('notification.home') }}" id="notificationLink" class="{{ $current_user->notifications[0]->status->status_name == 'Non lue' ? '' : 'text-secondary' }}" data-mdb-toggle="{{ $current_user->notifications[0]->status->status_name == 'Non lue' ? 'dropdown' : '' }}" aria-expanded="false">
+                            <i class="bi {{ $current_user->notifications[0]->status->status_name == 'Non lue' ? 'bi-bell-fill ' : 'bi-bell ' }}fs-4 align-middle"></i>
+    @if ($current_user->notifications[0]->status->status_name == 'Non lue')
+                            <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger rounded-circle">
+                                <span class="visually-hidden">New alerts</span>
+                            </span>                            
+    @endif
                         </a>
 
                         <ul class="dropdown-menu dropdown-menu-end mt-3" aria-labelledby="notificationLink">
+                            <li class="text-center">
+                                <a id="markAllRead" href="#" class="dropdown-item py-3" style="background-color: #e0e0e0;">
+                                    <i class="far fa-circle me-2"></i>@lang('miscellaneous.mark_all_read')
+                                </a>
+                            </li>
     @foreach ($current_user->notifications as $notification)
+        @if (count($current_user->notifications) < 4)
                             <li class="border-bottom border-secondary" style="width: 15rem;">
                                 <a href="{{ $notification->notification_url }}" class="dropdown-item py-3 text-wrap">
                                     <p class="m-0 text-black acr-line-height-1_45">{{ $notification->notification_content }}</p>
                                     <small class="text-secondary">{{ $notification->created_at }}</small>
                                 </a>
                             </li>
+        @endif
     @endforeach
+                            <li class="text-center">
+                                <a href="{{ route('notification.home') }}" class="dropdown-item py-3 acr-bg-blue-transparent text-light">
+                                    @lang('miscellaneous.see_more')
+                                </a>
+                            </li>
                         </ul>
                     </div>
-                    <div class="dropdown d-inline-block my-3 ms-lg-0 me-1">
+
+                    {{-- Avatar --}}
+                    <div id="avatar" class="dropdown d-inline-block my-3 ms-lg-0 me-1">
                         <a role="button" href="" id="avatarLink" data-mdb-toggle="dropdown" aria-expanded="false">
-                            <img src="{{ Auth::user()->avatar_url != null ? Auth::user()->avatar_url : asset('assets/img/user.png') }}" alt="{{ Auth::user()->firstname }}" width="40" class="rounded-circle me-2">
+                            <img src="{{ $current_user->avatar_url != null ? $current_user->avatar_url : asset('assets/img/user.png') }}" alt="{{ $current_user->firstname }}" width="40" class="rounded-circle me-2">
                         </a>
 
                         <ul class="dropdown-menu dropdown-menu-end mt-3" aria-labelledby="avatarLink">
-                            <li class="d-lg-flex d-none justify-content-center pt-3 bg-danger">
+                            <li class="d-lg-flex d-none justify-content-center pt-3" style="background-color: #e0e0e0;">
                                 <div class="bg-image">
-                                    <img src="{{ Auth::user()->avatar_url != null ? Auth::user()->avatar_url : asset('assets/img/user.png') }}" alt="{{ Auth::user()->firstname . ' ' . Auth::user()->lasname }}" width="60" class="rounded-circle me-2">
+                                    <img src="{{ $current_user->avatar_url != null ? $current_user->avatar_url : asset('assets/img/user.png') }}" alt="{{ $current_user->firstname . ' ' . $current_user->lastname }}" width="70" class="img-thumbnail rounded-circle me-2">
                                     <div class="mask"></div>
                                 </div>
                             </li>
-                            <li class="d-lg-block d-none px-3 pt-3 pb-2 bg-danger text-center text-light">
-                                <h5 class="h5 mb-1 fw-bold text-truncate" style="width: 11rem;">{{ Auth::user()->firstname . ' ' . Auth::user()->lasname }}</h5>
+                            <li class="d-lg-block d-none px-3 pt-3 pb-2 text-center" style="background-color: #e0e0e0;">
+                                <h5 class="h5 mb-1 fw-bold text-truncate" style="width: 10rem;">{{ $current_user->firstname . ' ' . $current_user->lastname }}</h5>
                             </li>
                             <li class="border-bottom border-secondary">
                                 <a href="{{ route('account') }}" class="dropdown-item py-3">

@@ -205,7 +205,7 @@ class UserController extends BaseController
                 endforeach;
 
                 Notification::create([
-                    'notification_url' => 'about_us/terms_of_use',
+                    'notification_url' => 'about/terms_of_use',
                     'notification_content' => __('notifications.welcome_member'),
                     'status_id' => $status_unread->id,
                     'user_id' => $user->id,
@@ -219,7 +219,7 @@ class UserController extends BaseController
                 ]);
 
                 Notification::create([
-                    'notification_url' => 'about_us/terms_of_use',
+                    'notification_url' => 'about/terms_of_use',
                     'notification_content' => __('notifications.welcome_user'),
                     'status_id' => $status_unread->id,
                     'user_id' => $user->id,
@@ -231,6 +231,7 @@ class UserController extends BaseController
         if ($request->address_content != null OR $request->neighborhood != null OR $request->area != null OR $request->city != null) {
             Address::create([
                 'address_content' => $request->address_content,
+                'address_content_2' => $request->address_content_2,
                 'neighborhood' => $request->neighborhood,
                 'area' => $request->area,
                 'city' => $request->city,
@@ -436,7 +437,7 @@ class UserController extends BaseController
                         'updated_at' => now(),
                     ]);
                 }
-    
+
                 if ($password_reset_by_phone != null) {
                     // Update password reset
                     $password_reset_by_phone->update([
@@ -590,7 +591,7 @@ class UserController extends BaseController
             foreach ($user_roles as $user_role):
                 if ($user_role->id == $supporting_member_role->id OR $user_role->id == $effecive_member_role->id OR $user_role->id == $honorary_member_role->id) {
                     Notification::create([
-                        'notification_url' => 'about_us/terms_of_use',
+                        'notification_url' => 'about/terms_of_use',
                         'notification_content' => __('notifications.member_joined'),
                         'status_id' => $status_unread->id,
                         'user_id' => $user->id,

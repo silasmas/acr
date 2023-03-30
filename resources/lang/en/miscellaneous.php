@@ -38,6 +38,7 @@ return [
     'reset' => 'Reset',
     'open' => 'Open',
     'close' => 'Close',
+    'mark_all_read' => 'Mark all as read',
     'empty_list' => 'The list is empty',
     'see_more' => 'See more',
     'show' => 'Show',

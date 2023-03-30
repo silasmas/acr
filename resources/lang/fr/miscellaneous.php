@@ -38,6 +38,7 @@ return [
     'reset' => 'Réinitialiser',
     'open' => 'Ouvrir',
     'close' => 'Fermer',
+    'mark_all_read' => 'Tout marquer comme lue',
     'empty_list' => 'La liste est vide',
     'see_more' => 'Voir plus',
     'show' => 'Afficher',
