@@ -76,7 +76,7 @@ class HomeController extends Controller
                 $messages = json_decode($response_message->getBody(), false);
 
                 return view('welcome', [
-                    'user' => $user,
+                    'current_user' => $user->data,
                     'messages' => $messages,
                 ]);
 

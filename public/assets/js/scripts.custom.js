@@ -68,11 +68,13 @@ $(document).ready(function () {
         e.preventDefault();
 
         $.ajax({
-            type: 'GET',
-            url: currentHost + '/markAllRead/' + parseInt($(this).attr('data-user-id')),
+            headers: headers,
+            type: 'PUT',
+            contentType: 'application/json',
+            url: currentHost + '/api/notification/mark_all_read/' + parseInt($(this).attr('data-user-id')),
             success: function () {
                 window.location.reload();
-            },
+            },    
             error: function (xhr, error, status_description) {
                 console.log(xhr.responseJSON);
                 console.log(xhr.status);
@@ -82,21 +84,7 @@ $(document).ready(function () {
         });
     });
 
-    if ($('#publicNotification')) {
-        /* Run an ajax function every second */
-        setInterval(function () {
-            $('#publicNotification').load(currentHost + '/refresh_notifications #publicNotification', function () {
-                loadPublicJS();
-            });
-        }, 60000);
-    }
-
-    if ($('#adminNotification')) {
-        /* Run an ajax function every second */
-        setInterval(function () {
-            $('#adminNotification').load(currentHost + '/refresh_notifications #adminNotification', function () {
-                loadAdminJS();
-            });
-        }, 60000);
-    }
+    /* Run an ajax function every second */
+    // setInterval(function () {
+    // }, 1000);
 });

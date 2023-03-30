@@ -3,15 +3,16 @@
 namespace App\Http\Controllers\Auth;
 
 use GuzzleHttp\Client;
+use Illuminate\View\View;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 use GuzzleHttp\Exception\ClientException;
-use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -67,24 +68,75 @@ class AuthenticatedSessionController extends Controller
 
             Auth::attempt(['email' => $user->data->email, 'password' => $inputs['password']], $request->remember);
 
-            // Put API response "user" in the session for using of its data
-            session()->put('current_user', $user->data);
-            $request->session()->regenerate();
+            // Select all received messages API URL
+            $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . $user->data->id;
 
-            if (isset($user->data->role_users[0])) {
-                if ($user->data->role_users[0]->role->role_name == 'Administrateur') {
-                    return redirect(RouteServiceProvider::HOME);
+            try {
+                // Select all received messages API response
+                $response_message = $this::$client->request('GET', $url_message, [
+                    'headers' => $this::$headers,
+                    'verify'  => false
+                ]);
+                $messages = json_decode($response_message->getBody(), false);
 
-                } else if ($user->data->role_users[0]->role->role_name == 'Développeur') {
-                    return redirect('/developer');
-
-                } else if ($user->data->role_users[0]->role->role_name == 'Manager') {
-                    return redirect('/manager');
-
-                } else {
-                    return redirect('/');
-
+                if (isset($user->data->role_users[0])) {
+                    if ($user->data->role_users[0]->role->role_name == 'Administrateur') {
+                        return redirect()->route('admin', [
+                            'current_user' => $user->data,
+                            'messages' => $messages,
+                        ]);
+    
+                    } else if ($user->data->role_users[0]->role->role_name == 'Développeur') {
+                        // return redirect('/developer');
+                        return redirect()->route('developer', [
+                            'current_user' => $user->data,
+                            'messages' => $messages,
+                        ]);
+    
+                    } else if ($user->data->role_users[0]->role->role_name == 'Manager') {
+                        // return redirect('/manager');
+                        return redirect()->route('manager', [
+                            'current_user' => $user->data,
+                            'messages' => $messages,
+                        ]);
+    
+                    } else {
+                        return redirect('/');
+    
+                    }
                 }
+                // if (isset($user->data->role_users[0])) {
+                //     if ($user->data->role_users[0]->role->role_name == 'Administrateur') {
+                //         return Redirect::route('admin')->with([
+                //             'current_user' => $user->data,
+                //             'messages' => $messages
+                //         ]);
+
+                //     } else if ($user->data->role_users[0]->role->role_name == 'Développeur') {
+                //         return Redirect::route('developer')->with([
+                //             'current_user' => $user->data,
+                //             'messages' => $messages
+                //         ]);
+
+                //     } else if ($user->data->role_users[0]->role->role_name == 'Manager') {
+                //         return Redirect::route('manager')->with([
+                //             'current_user' => $user->data,
+                //             'messages' => $messages
+                //         ]);
+
+                //     } else {
+                //         return Redirect::route('home')->with([
+                //             'current_user' => $user->data,
+                //             'messages' => $messages
+                //         ]);
+                //     }
+                // }
+
+            } catch (ClientException $e) {
+                // If the API returns some error, return to the page and display its message
+                return view('welcome', [
+                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                ]);
             }
 
         } catch (ClientException $e) {

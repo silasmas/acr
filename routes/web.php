@@ -42,14 +42,13 @@ Route::post('/message', 'App\Http\Controllers\Web\MessageController@storeMessage
 Route::post('/message/{id}', 'App\Http\Controllers\Web\MessageController@updateMessage')->whereNumber('id');
 // Notification
 Route::get('/notification', 'App\Http\Controllers\Web\HomeController@notification')->name('notification.home');
-Route::get('/refresh_notifications', 'App\Http\Controllers\Web\HomeController@refreshNotifications')->name('notification.refresh');
 
 /*
 |--------------------------------------------------------------------------
 | ROUTES FOR EVERY ROLES EXCEPT "Administrateur" AND "Développeur"
 |--------------------------------------------------------------------------
 */
-// About us
+// About
 Route::get('/about', 'App\Http\Controllers\Web\HomeController@aboutUs')->name('about.home');
 Route::get('/about/party', 'App\Http\Controllers\Web\HomeController@aboutParty')->name('about.party');
 Route::get('/about/app', 'App\Http\Controllers\Web\HomeController@aboutApp')->name('about.app');
