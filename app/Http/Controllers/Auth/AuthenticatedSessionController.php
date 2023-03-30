@@ -72,10 +72,10 @@ class AuthenticatedSessionController extends Controller
             $request->session()->regenerate();
 
             if (isset($user->data->role_users[0])) {
-                if($user->data->role_users[0]->role->role_name == 'Administrateur') {
+                if ($user->data->role_users[0]->role->role_name == 'Administrateur') {
                     return redirect(RouteServiceProvider::HOME);
 
-                } else if($user->data->role_users[0]->role->role_name == 'Développeur') {
+                } else if ($user->data->role_users[0]->role->role_name == 'Développeur') {
                     return redirect('/developer');
 
                 } else if ($user->data->role_users[0]->role->role_name == 'Manager') {

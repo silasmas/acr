@@ -178,7 +178,7 @@ $current_user = session()->get('current_user');
                 <div class="border-start ps-lg-4 ps-0">
                     {{-- Notification --}}
 @if (!empty(Auth::user()))
-                    <div id="guestNotification" class="{{ $current_user->notifications[0]->status->status_name == 'Non lue' ? 'dropdown ' : '' }}d-inline-block my-3 ms-lg-0 ms-4 me-3">
+                    <div id="publicNotification" class="{{ $current_user->notifications[0]->status->status_name == 'Non lue' ? 'dropdown ' : '' }}d-inline-block my-3 ms-lg-0 ms-4 me-3">
                         <a role="button" href="{{ route('notification.home') }}" id="notificationLink" class="{{ $current_user->notifications[0]->status->status_name == 'Non lue' ? '' : 'text-secondary' }}" data-mdb-toggle="{{ $current_user->notifications[0]->status->status_name == 'Non lue' ? 'dropdown' : '' }}" aria-expanded="false">
                             <i class="bi {{ $current_user->notifications[0]->status->status_name == 'Non lue' ? 'bi-bell-fill ' : 'bi-bell ' }}fs-4 align-middle"></i>
     @if ($current_user->notifications[0]->status->status_name == 'Non lue')

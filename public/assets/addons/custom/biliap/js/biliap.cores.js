@@ -7,7 +7,7 @@
 /**
  * Dynamically load JS files
  */
-function loadGuestJS() {
+function loadPublicJS() {
     $.getScript('/assets/addons/custom/jquery/js/jquery.min.js');
     $.getScript('/assets/addons/custom/jquery/jquery-ui/jquery-ui.min.js');
     $.getScript('/assets/addons/custom/bootstrap/js/bootstrap.min.js');
@@ -25,7 +25,7 @@ function loadGuestJS() {
     $.getScript('/assets/js/scripts.dairy.js');
     $.getScript('/assets/js/scripts.custom.js');
 }
-function loadGuestJS() {
+function loadAdminJS() {
     $.getScript('/assets/addons/custom/jquery/js/jquery.min.js');
     $.getScript('/assets/addons/custom/jquery/jquery-ui/jquery-ui.min.js');
     $.getScript('/assets/addons/custom/bootstrap/js/bootstrap.min.js');

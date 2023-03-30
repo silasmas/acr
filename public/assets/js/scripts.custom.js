@@ -82,27 +82,20 @@ $(document).ready(function () {
         });
     });
 
-    if ($('#guestNotification')) {
+    if ($('#publicNotification')) {
         /* Run an ajax function every second */
         setInterval(function () {
-            $('#guestNotification').load(currentHost + '/refresh_notifications #guestNotification', function () {
-                loadGuestJS();
+            $('#publicNotification').load(currentHost + '/refresh_notifications #publicNotification', function () {
+                loadPublicJS();
             });
         }, 60000);
     }
 
     if ($('#adminNotification')) {
-        window.addEventListener('load', function load() {
-            const loader = document.getElementById('loader');
-            setTimeout(function () {
-                loader.classList.add('fadeOut');
-            }, 300);
-        });
-
         /* Run an ajax function every second */
         setInterval(function () {
             $('#adminNotification').load(currentHost + '/refresh_notifications #adminNotification', function () {
-                loadGuestJS();
+                loadAdminJS();
             });
         }, 60000);
     }
