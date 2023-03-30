@@ -42,6 +42,7 @@ Route::post('/message', 'App\Http\Controllers\Web\MessageController@storeMessage
 Route::post('/message/{id}', 'App\Http\Controllers\Web\MessageController@updateMessage')->whereNumber('id');
 // Notification
 Route::get('/notification', 'App\Http\Controllers\Web\HomeController@notification')->name('notification.home');
+Route::get('/refresh_notifications', 'App\Http\Controllers\Web\HomeController@refreshNotifications')->name('notification.refresh');
 
 /*
 |--------------------------------------------------------------------------

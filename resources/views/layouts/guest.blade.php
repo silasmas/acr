@@ -178,19 +178,19 @@ $current_user = session()->get('current_user');
                 <div class="border-start ps-lg-4 ps-0">
                     {{-- Notification --}}
 @if (!empty(Auth::user()))
-                    <div id="notification" class="{{ $current_user->notifications[0]->status->status_name == 'Non lue' ? 'dropdown ' : '' }}d-inline-block my-3 ms-lg-0 ms-4 me-3">
+                    <div id="guestNotification" class="{{ $current_user->notifications[0]->status->status_name == 'Non lue' ? 'dropdown ' : '' }}d-inline-block my-3 ms-lg-0 ms-4 me-3">
                         <a role="button" href="{{ route('notification.home') }}" id="notificationLink" class="{{ $current_user->notifications[0]->status->status_name == 'Non lue' ? '' : 'text-secondary' }}" data-mdb-toggle="{{ $current_user->notifications[0]->status->status_name == 'Non lue' ? 'dropdown' : '' }}" aria-expanded="false">
                             <i class="bi {{ $current_user->notifications[0]->status->status_name == 'Non lue' ? 'bi-bell-fill ' : 'bi-bell ' }}fs-4 align-middle"></i>
     @if ($current_user->notifications[0]->status->status_name == 'Non lue')
-                            <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger rounded-circle">
-                                <span class="visually-hidden">New alerts</span>
+                            <span class="position-absolute top-0 start-100 translate-middle p-1 border border-4 border-danger rounded-circle">
+                                <span class="visually-hidden">@lang('miscellaneous.menu.notifications')</span>
                             </span>                            
     @endif
                         </a>
 
                         <ul class="dropdown-menu dropdown-menu-end mt-3" aria-labelledby="notificationLink">
                             <li class="text-center">
-                                <a id="markAllRead" href="#" class="dropdown-item py-3" style="background-color: #e0e0e0;">
+                                <a id="markAllRead" href="#" class="dropdown-item py-3" style="background-color: #e0e0e0;" data-user-id="{{ $current_user->id }}">
                                     <i class="far fa-circle me-2"></i>@lang('miscellaneous.mark_all_read')
                                 </a>
                             </li>
@@ -296,7 +296,7 @@ $current_user = session()->get('current_user');
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 mb-3 mb-md-0 text-center text-md-start text-secondary">
-                        &copy; <a href="{{ route('home') }}" class="text-info">ACR</a> @lang('miscellaneous.all_right_reserved')
+                        &copy; <a href="{{ route('about.party') }}" class="text-info">ACR</a> @lang('miscellaneous.all_right_reserved')
                     </div>
                     <div class="col-md-6 text-center text-md-end text-secondary">
                         Designed By <a href="https://www.silasdev.com" class="text-info">SILASDEV</a>
