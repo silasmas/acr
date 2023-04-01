@@ -75,10 +75,38 @@ class HomeController extends Controller
                 ]);
                 $messages = json_decode($response_message->getBody(), false);
 
-                return view('welcome', [
-                    'current_user' => $user->data,
-                    'messages' => $messages,
-                ]);
+                if (isset(request()->user_role)) {
+                    if (request()->user_role == 'admin') {
+                        return view('dashboard', [
+                            'current_user' => $user->data,
+                            'messages' => $messages,
+                        ]);
+
+                    } else if (request()->user_role == 'developer') {
+                        return view('dashboard', [
+                            'current_user' => $user->data,
+                            'messages' => $messages,
+                        ]);
+
+                    } else if (request()->user_role == 'manager') {
+                        return view('dashboard', [
+                            'current_user' => $user->data,
+                            'messages' => $messages,
+                        ]);
+
+                    } else {
+                        return view('welcome', [
+                            'current_user' => $user->data,
+                            'messages' => $messages,
+                        ]);
+                    }
+
+                } else {
+                    return view('welcome', [
+                        'current_user' => $user->data,
+                        'messages' => $messages,
+                    ]);
+                }
 
             } catch (ClientException $e) {
                 // If the API returns some error, return to the page and display its message
@@ -119,7 +147,37 @@ class HomeController extends Controller
      */
     public function dashboard()
     {
-        return view('dashboard');
+        // Select current user API URL
+        $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/' . Auth::user()->id;
+        // Select all received messages API URL
+        $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
+
+        try {
+            // Select current user API response
+            $response_user = $this::$client->request('GET', $url_user, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $user = json_decode($response_user->getBody(), false);
+
+            // Select all received messages API response
+            $response_message = $this::$client->request('GET', $url_message, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $messages = json_decode($response_message->getBody(), false);
+
+            return view('dashboard', [
+                'current_user' => $user->data,
+                'messages' => $messages,
+            ]);
+
+        } catch (ClientException $e) {
+            // If the API returns some error, return to the page and display its message
+            return view('welcome', [
+                'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+            ]);
+        }
     }
 
     /**

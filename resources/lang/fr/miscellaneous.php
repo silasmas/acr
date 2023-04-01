@@ -38,6 +38,7 @@ return [
     'reset' => 'Réinitialiser',
     'open' => 'Ouvrir',
     'close' => 'Fermer',
+    'search' => 'Rechercher ...',
     'mark_all_read' => 'Tout marquer comme lue',
     'empty_list' => 'La liste est vide',
     'see_more' => 'Voir plus',
@@ -216,6 +217,7 @@ return [
     // ===== NAVIGATION MENU
     'menu' => [
         'home' => 'Accueil',
+        'dashboard' => 'Tableau de bord',
         'login' => 'Se connecter',
         'account_settings' => 'Paramètres du compte',
         'messages' => 'Messages',
@@ -353,13 +355,17 @@ return [
                 'search' => 'Rechercher un rôle',
                 'list' => 'Liste de rôles',
             ],
+            // Other administrators
+            'other_admin' => [
+                'title' => 'Autres administrateurs',
+            ],
             // Developers
             'developers' => [
                 'title' => 'Gérer les développeurs',
             ],
-            // Other administrators
-            'other_admin' => [
-                'title' => 'Autres administrateurs',
+            // Managers
+            'managers' => [
+                'title' => 'Gérer les managers',
             ],
         ]
     ],

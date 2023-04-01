@@ -38,6 +38,7 @@ return [
     'reset' => 'Reset',
     'open' => 'Open',
     'close' => 'Close',
+    'search' => 'Search...',
     'mark_all_read' => 'Mark all as read',
     'empty_list' => 'The list is empty',
     'see_more' => 'See more',
@@ -216,6 +217,7 @@ return [
     // ===== NAVIGATION MENU
     'menu' => [
         'home' => 'Home',
+        'dashboard' => 'Dashboard',
         'login' => 'Log in',
         'account_settings' => 'Account settings',
         'messages' => 'Messages',
@@ -353,13 +355,17 @@ return [
                 'search' => 'Search a role',
                 'list' => 'Roles list',
             ],
+            // Other administrators
+            'other_admin' => [
+                'title' => 'Other administrators',
+            ],
             // Developers
             'developers' => [
                 'title' => 'Manage developers',
             ],
-            // Other administrators
-            'other_admin' => [
-                'title' => 'Other administrators',
+            // Managers
+            'managers' => [
+                'title' => 'Manage managers',
             ],
         ]
     ],
