@@ -57,8 +57,13 @@ class HomeController extends Controller
         if (!empty(Auth::user())) {
             // Select current user API URL
             $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/' . Auth::user()->id;
+            // Select all countries API URL
+            $url_country = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/country';
             // Select all received messages API URL
             $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
+            // Select types by group name API URL
+            $group_name = 'Type d\'offre';
+            $url_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $group_name;
 
             try {
                 // Select current user API response
@@ -67,44 +72,65 @@ class HomeController extends Controller
                     'verify'  => false
                 ]);
                 $user = json_decode($response_user->getBody(), false);
-
+                // Select countries API response
+                $response_country = $this::$client->request('GET', $url_country, [
+                    'headers' => $this::$headers,
+                    'verify'  => false
+                ]);
+                $country = json_decode($response_country->getBody(), false);
                 // Select all received messages API response
                 $response_message = $this::$client->request('GET', $url_message, [
                     'headers' => $this::$headers,
                     'verify'  => false
                 ]);
                 $messages = json_decode($response_message->getBody(), false);
+                // Select types by group name API response
+                $response_type = $this::$client->request('GET', $url_type, [
+                    'headers' => $this::$headers,
+                    'verify'  => false
+                ]);
+                $type = json_decode($response_type->getBody(), false);
 
                 if (isset(request()->user_role)) {
                     if (request()->user_role == 'admin') {
                         return view('dashboard', [
                             'current_user' => $user->data,
+                            'countries' => $country->data,
                             'messages' => $messages,
+                            'types' => $type->data
                         ]);
 
                     } else if (request()->user_role == 'developer') {
                         return view('dashboard', [
                             'current_user' => $user->data,
+                            'countries' => $country->data,
                             'messages' => $messages,
+                            'types' => $type->data
                         ]);
 
                     } else if (request()->user_role == 'manager') {
                         return view('dashboard', [
                             'current_user' => $user->data,
+                            'countries' => $country->data,
                             'messages' => $messages,
+                            'types' => $type->data
                         ]);
 
                     } else {
                         return view('welcome', [
                             'current_user' => $user->data,
+                            'countries' => $country->data,
                             'messages' => $messages,
+                            'types' => $type->data
                         ]);
                     }
 
                 } else {
                     return view('welcome', [
                         'current_user' => $user->data,
+                        'countries' => $country->data,
                         'messages' => $messages,
+                        'types' => $type->data
                     ]);
                 }
 
@@ -116,19 +142,29 @@ class HomeController extends Controller
             }
 
         } else {
-            // Select country API URL
+            // Select all countries API URL
             $url_country = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/country';
+            // Select types by group name API URL
+            $group_name = 'Type d\'offre';
+            $url_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $group_name;
 
             try {
-                // Select country API response
+                // Select all countries API response
                 $response_country = $this::$client->request('GET', $url_country, [
                     'headers' => $this::$headers,
                     'verify'  => false
                 ]);
                 $country = json_decode($response_country->getBody(), false);
+                // Select types by group name API response
+                $response_type = $this::$client->request('GET', $url_type, [
+                    'headers' => $this::$headers,
+                    'verify'  => false
+                ]);
+                $type = json_decode($response_type->getBody(), false);
 
                 return view('welcome', [
-                    'countries' => $country->data
+                    'countries' => $country->data,
+                    'types' => $type->data
                 ]);
 
             } catch (ClientException $e) {

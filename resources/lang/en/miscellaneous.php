@@ -25,6 +25,7 @@ return [
     'loading' => 'Loading...',
     'connection' => 'Connection',
     'register' => 'Register',
+    'send' => 'Send',
     'add' => 'Add',
     'registered' => 'Registered',
     'update' => 'Update',
@@ -438,6 +439,13 @@ return [
                 'content2' => 'If you are already registered in the site or in the mobile app, click on the button below to log in. Otherwise, give your names and your phone number to start.',
                 'login' => 'I already have an account',
                 'register' => 'Start registration'
+            ],
+            'donate' => [
+                'title' => '',
+                'description' => '',
+                'content' => '',
+                'anonyme' => '',
+                'partner' => '',
             ],
         ],
 

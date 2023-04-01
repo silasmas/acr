@@ -25,6 +25,7 @@ return [
     'loading' => 'Chargement ...',
     'connection' => 'Connexion',
     'register' => 'Enregistrer',
+    'send' => 'Envoyer',
     'add' => 'Ajouter',
     'registered' => 'Enregistré',
     'update' => 'Mettre à jour',
@@ -438,6 +439,13 @@ return [
                 'content2' => 'Si vous êtes déjà inscrit(e) dans le site ou dans l\'appli mobile, cliquez sur le bouton ci-dessous pour vous connecter. Sinon, donnez vos noms et votre n&deg; de téléphone pour commencer.',
                 'login' => 'J\'ai déjà un compte',
                 'register' => 'Commencer l\'inscription'
+            ],
+            'donate' => [
+                'title' => '',
+                'description' => '',
+                'content' => '',
+                'anonyme' => '',
+                'partner' => '',
             ],
         ],
 

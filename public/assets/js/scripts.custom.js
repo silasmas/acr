@@ -52,6 +52,12 @@ $(document).ready(function () {
         $('#phone_code_text .text-value').text(countryPhoneCode);
         $('phone_code').val(countryPhoneCode);
     });
+    $('#select_country2').on('change', function () {
+        var countryPhoneCode = $(this).val();
+
+        $('#phone_code_text2 .text-value').text(countryPhoneCode);
+        $('phone_code2').val(countryPhoneCode);
+    });
 
     /* Hover stretched link */
     $('.card-body + .stretched-link').each(function () {

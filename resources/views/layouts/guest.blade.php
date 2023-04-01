@@ -237,10 +237,10 @@
                             </li>
                         </ul>
                     </div>
-                    <a href="{{ route('donate') }}" class="btn d-sm-inline-block d-block acr-btn-blue mb-sm-0 mb-4 align-middle rounded-pill shadow-0">@lang('miscellaneous.menu.public.donate')</a>
+                    <a href="#donate" class="btn d-sm-inline-block d-block acr-btn-blue mb-sm-0 mb-4 align-middle rounded-pill shadow-0">@lang('miscellaneous.menu.public.donate')</a>
 @else
                     <a href="{{ route('login') }}" class="btn d-sm-inline-block d-block acr-btn-outline-blue me-sm-2 me-0 mb-sm-0 mb-2 rounded-pill shadow-0">@lang('miscellaneous.menu.login')</a>
-                    <a href="{{ route('donate') }}" class="btn d-sm-inline-block d-block acr-btn-blue mb-sm-0 mb-4 rounded-pill shadow-0">@lang('miscellaneous.menu.public.donate')</a>
+                    <a href="#donate" class="btn d-sm-inline-block d-block acr-btn-blue mb-sm-0 mb-4 rounded-pill shadow-0">@lang('miscellaneous.menu.public.donate')</a>
 @endif
                 </div>
             </div>
@@ -248,6 +248,130 @@
         <!-- Navbar End -->
 
 @yield('guest-content')
+
+        <!-- Contact Start -->
+        <div id="donate" class="container-xxl py-5">
+            <div class="container">
+                <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                    <p class="section-title bg-white text-center text-primary px-3">@lang('miscellaneous.menu.public.donate')</p>
+                    <h1 class="mb-5">Faites un don anonyme ou devenez partenaire</h1>
+                </div>
+                <div class="row g-5">
+                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <p class="fs-5 mb-4">En soutenant le parti ACR, non seulement vous contribuez au changement de votre pays, mais aussi vous contribuez à l'aide qu'apporte le parti aux ophelins et aux démunis.</p>
+                        <p class="fs-5 mb-4">Si c'est l'argent que vous voulez envoyer, vous n'avez qu'à sélectionner le mode de paiement ; ensuite, vous l'envoyez directement en ligne.</p>
+                        <p class="fs-5 mb-4">Si vous voulez donner autre chose que de l'argent, vous n'avez qu'à donner la description de votre don.</p>
+                    </div>
+
+                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+                        <form>
+                            <div id="donationType" class="mb-4">
+@foreach ($types as $type)
+    @if ($type->type_name != 'Contribution')
+        @if ($type->type_name == 'Sponsoring')
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="donation_type" id="type{{ $type->id }}" value="{{ $type->id }}" />
+                                    <label class="form-check-label" for="type{{ $type->id }}">Faire un don anonyme</label>
+                                </div>
+        @else
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="donation_type" id="type{{ $type->id }}" value="{{ $type->id }}" />
+                                    <label class="form-check-label" for="type{{ $type->id }}">Devenir partenaire</label>
+                                </div>
+        @endif
+    @endif
+@endforeach
+                            </div>
+
+                            <div id="donorIdentity" class="row g-3 mb-4">
+                                <div class="col-12">
+                                    <h5 class="h5 m-0 text-uppercase fw-bolder">Votre identité</h5>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="register_firstname" placeholder="@lang('miscellaneous.firstname')" required>
+                                        <label for="register_firstname">@lang('miscellaneous.firstname')</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="register_lastname" placeholder="@lang('miscellaneous.lastname')">
+                                        <label for="register_lastname">@lang('miscellaneous.lastname')</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-5">
+                                    <div class="form-floating pt-0">
+                                        <select name="select_country" id="select_country2" class="form-select pt-2 shadow-0">
+                                            <option class="small" selected disabled>@lang('miscellaneous.choose_country')</option>
+@forelse ($countries as $country)
+                                            <option value="+{{ $country->country_phone_code }}">{{ $country->country_name }}</option>
+@empty
+                                            <option>@lang('miscellaneous.empty_list')</option>
+@endforelse
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-7">
+                                    <div class="input-group">
+                                        <span id="phone_code_text2" class="input-group-text d-inline-block h-100 bg-light" style="padding-top: 0.3rem; padding-bottom: 0.5rem; line-height: 1.35;">
+                                            <small class="text-secondary m-0 p-0" style="font-size: 0.85rem; color: #010101;">@lang('miscellaneous.phone_code')</small><br>
+                                            <span class="text-value">xxxx</span> 
+                                        </span>
+
+                                        <div class="form-floating">
+                                            <input type="hidden" id="phone_code2" name="phone_code" value="">
+                                            <input type="tel" name="phone_number" id="phone_number" class="form-control" placeholder="@lang('miscellaneous.phone')" required>
+                                            <label for="phone_number">@lang('miscellaneous.phone')</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-floating">
+                                        <input type="email" name="register_email" id="register_email" class="form-control" placeholder="Your Email">
+                                        <label for="register_email">@lang('miscellaneous.email')</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="financialDonation" class="row g-3 mb-4">
+                                <div class="col-12">
+                                    <h5 class="h5 m-0 text-uppercase fw-bolder">Donner de l'argent</h5>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <textarea class="form-control" placeholder="Décrivez votre offre" id="message" style="height: 100px"></textarea>
+                                        <label for="message">Décrivez votre offre</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="otherDonation" class="row g-3">
+                                <div class="col-12">
+                                    <h5 class="h5 m-0 text-uppercase fw-bolder">Autre don</h5>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <textarea class="form-control" placeholder="Décrivez votre don" id="message" style="height: 100px"></textarea>
+                                        <label for="message">Description de votre don</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-block btn-secondary rounded-pill py-3 px-5" type="submit">@lang('miscellaneous.send')</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Contact End -->
 
         <!-- Footer Start -->
         <div class="container-fluid acr-bg-blue-gray footer py-5 wow fadeIn" data-wow-delay="0.1s">

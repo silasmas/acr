@@ -124,14 +124,14 @@ class UserController extends BaseController
                 'former_password' => $inputs['password']
             ]);
 
-            if ($password_reset->phone != null) {
-                try {
-                    $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
+            // if ($password_reset->phone != null) {
+            //     try {
+            //         $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
 
-                } catch (\Throwable $th) {
-                    return $this->handleError($th->getMessage(), __('notifications.create_user_SMS_failed'), 500);
-                }
-            }
+            //     } catch (\Throwable $th) {
+            //         return $this->handleError($th->getMessage(), __('notifications.create_user_SMS_failed'), 500);
+            //     }
+            // }
         }
 
         if ($inputs['password'] == null) {
@@ -146,14 +146,14 @@ class UserController extends BaseController
 
             $inputs['password'] = Hash::make($password_reset->former_password);
 
-            if ($password_reset->phone != null) {
-                try {
-                    $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
+            // if ($password_reset->phone != null) {
+            //     try {
+            //         $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
 
-                } catch (\Throwable $th) {
-                    return $this->handleError($th->getMessage(), __('notifications.create_user_SMS_failed'), 500);
-                }
-            }
+            //     } catch (\Throwable $th) {
+            //         return $this->handleError($th->getMessage(), __('notifications.create_user_SMS_failed'), 500);
+            //     }
+            // }
         }
 
         $user = User::create($inputs);
@@ -578,16 +578,9 @@ class UserController extends BaseController
         $effecive_member_role = Role::where('role_name', 'Membre Effectif')->first();
         $honorary_member_role = Role::where('role_name', 'Membre d\'Honneur')->first();
         $user_roles = RoleUser::where('user_id', $user->id)->get();
-        $is_ongoing = $user->status_id == $status_ongoing->id;
-
-        // update "status_id" column
-        $user->update([
-            'status_id' => $status_id,
-            'updated_at' => now()
-        ]);
 
         // If it's a member whose accessing is accepted, send notification
-        if ($is_ongoing == true) {
+        if ($user->status_id == $status_ongoing->id) {
             foreach ($user_roles as $user_role):
                 if ($user_role->id == $supporting_member_role->id OR $user_role->id == $effecive_member_role->id OR $user_role->id == $honorary_member_role->id) {
                     Notification::create([
@@ -599,6 +592,12 @@ class UserController extends BaseController
                 }
             endforeach;
         }
+
+        // update "status_id" column
+        $user->update([
+            'status_id' => $status_id,
+            'updated_at' => now()
+        ]);
 
         return $this->handleResponse(new ResourcesUser($user), __('notifications.update_user_success'));
     }
