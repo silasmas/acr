@@ -19,9 +19,10 @@ return [
     'call_us' => 'Call us:',
     'bank_transaction_description' => 'Bank transaction from the ACR application',
     'your_language' => 'Your language',
-    'back_home' => 'Return to the home page',
+    'back_home' => 'Return to the home',
     'back_list' => 'Return to the list',
     'back_form' => 'Return to the form',
+    'see_all_notifications' => 'View all notifications',
     'loading' => 'Loading...',
     'connection' => 'Connection',
     'register' => 'Register',
@@ -214,6 +215,8 @@ return [
     ],
     'go_login' => 'Already have an account',
     'api_token' => 'Your key for using of APIs',
+    'amount' => 'Amount',
+    'currency' => 'Currency',
 
     // ===== NAVIGATION MENU
     'menu' => [

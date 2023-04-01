@@ -187,7 +187,7 @@
 
                         <ul class="dropdown-menu dropdown-menu-end mt-3" aria-labelledby="notificationLink" style="min-width: 300px;">
                             <li class="text-center">
-                                <a id="markAllRead" href="#" class="dropdown-item py-3" style="background-color: #e0e0e0;" data-user-id="{{ $current_user->id }}">
+                                <a id="markAllRead" href="#" class="dropdown-item py-3 acr-bg-gray" data-user-id="{{ $current_user->id }}">
                                     <i class="far fa-circle me-2"></i>@lang('miscellaneous.mark_all_read')
                                 </a>
                             </li>
@@ -203,7 +203,7 @@
     @endforeach
                             <li class="text-center">
                                 <a href="{{ route('notification.home') }}" class="dropdown-item py-3 acr-bg-blue-transparent text-light">
-                                    @lang('miscellaneous.see_more')
+                                    @lang('miscellaneous.see_all_notifications') <i class="fa fa-angle-right align-middle ms-2 fw-100" style="font-size: 1.2rem;"></i>
                                 </a>
                             </li>
                         </ul>
@@ -216,16 +216,37 @@
                         </a>
 
                         <ul class="dropdown-menu dropdown-menu-end mt-3" aria-labelledby="avatarLink">
-                            <li class="d-lg-flex d-none justify-content-center pt-3" style="background-color: #e0e0e0;">
+                            <li class="d-lg-flex d-none justify-content-center pt-3 acr-bg-gray">
                                 <div class="bg-image">
                                     <img src="{{ $current_user->avatar_url != null ? $current_user->avatar_url : asset('assets/img/user.png') }}" alt="{{ $current_user->firstname . ' ' . $current_user->lastname }}" width="70" class="img-thumbnail rounded-circle me-2">
                                     <div class="mask"></div>
                                 </div>
                             </li>
-                            <li class="d-lg-block d-none px-3 pt-3 pb-2 text-center" style="background-color: #e0e0e0;">
+                            <li class="d-lg-block d-none px-3 pt-3 pb-2 text-center acr-bg-gray">
                                 <h5 class="h5 mb-1 fw-bold text-truncate" style="width: 10rem;">{{ $current_user->firstname . ' ' . $current_user->lastname }}</h5>
                             </li>
-                            <li class="border-bottom border-secondary">
+    @if ($current_user->role_users[0]->role->role_name == 'Administrateur')
+                            <li class="border-bottom border-default">
+                                <a href="{{ route('admin') }}" class="dropdown-item py-3">
+                                    <i class="bi bi-grid-1x2 me-3"></i>@lang('miscellaneous.admin.home.title')
+                                </a>
+                            </li>
+    @endif
+    @if ($current_user->role_users[0]->role->role_name == 'Développeur')
+                            <li class="border-bottom border-default">
+                                <a href="{{ route('developer') }}" class="dropdown-item py-3">
+                                    <i class="bi bi-grid-1x2 me-3"></i>@lang('miscellaneous.developer.home.title')
+                                </a>
+                            </li>
+    @endif
+    @if ($current_user->role_users[0]->role->role_name == 'Manager')
+                            <li class="border-bottom border-default">
+                                <a href="{{ route('manager') }}" class="dropdown-item py-3">
+                                    <i class="bi bi-grid-1x2 me-3"></i>@lang('miscellaneous.manager.home.title')
+                                </a>
+                            </li>
+    @endif
+                            <li class="border-bottom border-default">
                                 <a href="{{ route('account') }}" class="dropdown-item py-3">
                                     <i class="bi bi-gear me-3"></i>@lang('miscellaneous.menu.account_settings')
                                 </a>
@@ -249,33 +270,38 @@
 
 @yield('guest-content')
 
-        <!-- Contact Start -->
+        <!-- Donate Start -->
         <div id="donate" class="container-xxl py-5">
             <div class="container">
                 <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
                     <p class="section-title bg-white text-center text-primary px-3">@lang('miscellaneous.menu.public.donate')</p>
-                    <h1 class="mb-5">Faites un don anonyme ou devenez partenaire</h1>
+                    <h1 class="mb-5">Faire un don anonyme ou devenir partenaire</h1>
                 </div>
                 <div class="row g-5">
-                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <p class="fs-5 mb-4">En soutenant le parti ACR, non seulement vous contribuez au changement de votre pays, mais aussi vous contribuez à l'aide qu'apporte le parti aux ophelins et aux démunis.</p>
-                        <p class="fs-5 mb-4">Si c'est l'argent que vous voulez envoyer, vous n'avez qu'à sélectionner le mode de paiement ; ensuite, vous l'envoyez directement en ligne.</p>
-                        <p class="fs-5 mb-4">Si vous voulez donner autre chose que de l'argent, vous n'avez qu'à donner la description de votre don.</p>
+                    <div class="col-lg-6">
+                        <div class="bg-image mb-4 wow fadeInUp" data-wow-delay="0.3s">
+                            <img src="{{ asset('assets/img/donations.png') }}" alt="@lang('miscellaneous.menu.public.donate')" class="img-fluid">
+                            <div class="mask"></div>
+                        </div>
+
+                        <p class="mb-4 wow fadeInUp" data-wow-delay="0.5s">En soutenant le parti ACR, non seulement vous contribuez au changement de votre pays, mais aussi vous contribuez à l'aide qu'apporte le parti aux ophelins et aux démunis.</p>
+                        <p class="mb-4 wow fadeInUp" data-wow-delay="0.5s">Si c'est l'argent que vous voulez envoyer, vous n'avez qu'à sélectionner le mode de paiement ; ensuite, vous l'envoyez directement en ligne.</p>
+                        <p class="mb-4 wow fadeInUp" data-wow-delay="0.5s">Si vous voulez donner autre chose que de l'argent, vous n'avez qu'à donner la description de votre don.</p>
                     </div>
 
                     <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
                         <form>
                             <div id="donationType" class="mb-4">
-@foreach ($types as $type)
+@foreach ($offer_types as $type)
     @if ($type->type_name != 'Contribution')
         @if ($type->type_name == 'Sponsoring')
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="donation_type" id="type{{ $type->id }}" value="{{ $type->id }}" />
+                                    <input class="form-check-input" type="radio" name="offer_type_id" id="type{{ $type->id }}" value="{{ $type->id }}" />
                                     <label class="form-check-label" for="type{{ $type->id }}">Faire un don anonyme</label>
                                 </div>
         @else
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="donation_type" id="type{{ $type->id }}" value="{{ $type->id }}" />
+                                    <input class="form-check-input" type="radio" name="offer_type_id" id="type{{ $type->id }}" value="{{ $type->id }}" />
                                     <label class="form-check-label" for="type{{ $type->id }}">Devenir partenaire</label>
                                 </div>
         @endif
@@ -340,13 +366,52 @@
 
                             <div id="financialDonation" class="row g-3 mb-4">
                                 <div class="col-12">
-                                    <h5 class="h5 m-0 text-uppercase fw-bolder">Donner de l'argent</h5>
+                                    <h5 class="h5 m-0 text-uppercase fw-bolder">Envoyer l'argent</h5>
+                                    <p class="small m-0 text-muted">Choisir le mode de paiement</p>
                                 </div>
 
-                                <div class="col-12">
+                                <div id="paymentMethod">
+@foreach ($transaction_types as $type)
+    @if ($type->type_name == 'Mobile money')
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input mt-2" type="radio" name="transaction_type_id" id="type{{ $type->id }}" value="{{ $type->id }}" />
+                                        <label class="form-check-label" for="type{{ $type->id }}">
+                                            <img src="{{ asset('assets/img/payment-mobile-money.png') }}" alt="Mobile money" width="40">
+                                            Mobile money
+                                        </label>
+                                    </div>
+    @else
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input mt-2" type="radio" name="transaction_type_id" id="type{{ $type->id }}" value="{{ $type->id }}" />
+                                        <label class="form-check-label" for="type{{ $type->id }}">
+                                            <img src="{{ asset('assets/img/payment-credit-card.png') }}" alt="Carte bancaire" width="40">
+                                            Carte bancaire
+                                        </label>
+                                    </div>
+    @endif
+@endforeach
+                                </div>
+
+                                <div class="col-md-7">
+                                    <div class="input-group">
+                                        <div class="form-floating">
+                                            <input type="text" name="register_amount" id="register_amount" class="form-control" placeholder="@lang('miscellaneous.amount')" required>
+                                            <label for="register_amount">@lang('miscellaneous.amount')</label>
+                                        </div>
+
+                                        <div class="input-group-prepend">
+                                            <select name="select_currency" id="select_currency" class="form-select input-group-text ps-3 pe-4 py-3 shadow-0" style="height: 3.65rem; background-color: #f3f3f3; border-end-start-radius: 0; border-start-start-radius: 0;">
+                                                <option>USD</option>
+                                                <option>CDF</option>
+                                            </select>    
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-5">
                                     <div class="form-floating">
-                                        <textarea class="form-control" placeholder="Décrivez votre offre" id="message" style="height: 100px"></textarea>
-                                        <label for="message">Décrivez votre offre</label>
+                                        <input type="tel" name="phone_number" id="phone_number" class="form-control" placeholder="@lang('miscellaneous.phone')" required>
+                                        <label for="phone_number">@lang('miscellaneous.phone')</label>
                                     </div>
                                 </div>
                             </div>
@@ -371,7 +436,7 @@
                 </div>
             </div>
         </div>
-        <!-- Contact End -->
+        <!-- Donate End -->
 
         <!-- Footer Start -->
         <div class="container-fluid acr-bg-blue-gray footer py-5 wow fadeIn" data-wow-delay="0.1s">

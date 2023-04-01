@@ -298,7 +298,7 @@
                         <li class="nav-item{{ Route::is('admin') OR request()->user_role == 'admin' ? ' actived' : '' }}">
                             <a class="sidebar-link" href="{{ route('admin') }}">
                                 <span class="icon-holder">
-                                    <i class="ti-home align-middle c-blue-500"></i>
+                                    <i class="bi bi-grid-1x2 c-blue-500"></i>
                                 </span>
                                 <span class="title">@lang('miscellaneous.menu.dashboard')</span>
                             </a>
@@ -392,7 +392,7 @@
                         <li class="nav-item{{ Route::is('developer') OR request()->user_role == 'developer' ? ' actived' : '' }}">
                             <a class="sidebar-link" href="{{ route('developer') }}">
                                 <span class="icon-holder">
-                                    <i class="c-blue-500 ti-home"></i>
+                                    <i class="bi bi-grid-1x2 c-blue-500"></i>
                                 </span>
                                 <span class="title">@lang('miscellaneous.menu.dashboard')</span>
                             </a>
@@ -421,7 +421,7 @@
                         <li class="nav-item{{ Route::is('manager') OR request()->user_role == 'manager' ? ' actived' : '' }}">
                             <a class="sidebar-link" href="{{ route('manager') }}">
                                 <span class="icon-holder">
-                                    <i class="c-blue-500 align-middle ti-home"></i>
+                                    <i class="bi bi-grid-1x2 c-blue-500"></i>
                                 </span>
                                 <span class="title">@lang('miscellaneous.menu.dashboard')</span>
                             </a>
@@ -519,7 +519,7 @@
                         </ul>
               
                         <ul class="nav-right mt-1">
-                        {{-- Notification --}}
+                            {{-- Notification --}}
                             <li id="adminNotification" class="notifications{{ $current_user->notifications[0]->status->status_name == 'Non lue' ? ' dropdown' : '' }}">
 @if ($current_user->notifications[0]->status->status_name == 'Non lue')
                                 <span class="counter bg-transparent p-0 border border-4 acr-border-red" style="top: 6px; width: 16px; height: 16px; font-size: O.1rem; color: transparent;"></span>
@@ -530,7 +530,7 @@
                                 </a>
 
                                 <ul class="dropdown-menu border-0 overflow-hidden" data-user-id="{{ $current_user->id }}" aria-labelledby="notificationLink">
-                                    <li class="text-center" style="background-color: #e0e0e0;">
+                                    <li class="acr-bg-gray text-center">
                                         <a id="markAllRead" href="#" class="dropdown-item py-3" data-user-id="{{ $current_user->id }}">
                                             <i class="far fa-circle me-2"></i>@lang('miscellaneous.mark_all_read')
                                         </a>
@@ -556,8 +556,8 @@
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="{{ route('notification.home') }}" class="d-flex justify-content-center acr-bg-blue-transparent fsz-sm td-n text-white">
-                                            @lang('miscellaneous.see_more') <i class="ti-angle-right mT-4 mL-10"></i>
+                                        <a href="{{ route('notification.home') }}" class="d-flex justify-content-center acr-bg-blue-transparent py-3 fsz-sm td-n text-white">
+                                            @lang('miscellaneous.see_all_notifications') <i class="ti-angle-right mT-4 mL-10"></i>
                                         </a>
                                     </li>
                                 </ul>
@@ -582,6 +582,13 @@
                                         </div>
                                     </li>
                                     <li>
+                                        <a href="{{ route('home') }}" class="d-b td-n py-3 bgcH-grey-100 c-grey-700">
+                                            <i class="ti-home mR-10"></i>
+                                            <span>@lang('miscellaneous.back_home')</span>
+                                        </a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>
                                         <a href="{{ route('account') }}" class="d-b td-n py-3 bgcH-grey-100 c-grey-700">
                                             <i class="ti-settings mR-10"></i>
                                             <span>@lang('miscellaneous.menu.account_settings')</span>
@@ -590,7 +597,7 @@
                                     <li role="separator" class="divider"></li>
                                     <li>
                                         <a href="{{ route('logout') }}" class="d-b td-n py-3 bgcH-grey-100 c-grey-700">
-                                            <i class="ti-user mR-10"></i>
+                                            <i class="ti-power-off mR-10"></i>
                                             <span>@lang('miscellaneous.logout')</span>
                                         </a>
                                     </li>

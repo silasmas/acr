@@ -62,8 +62,10 @@ class HomeController extends Controller
             // Select all received messages API URL
             $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
             // Select types by group name API URL
-            $group_name = 'Type d\'offre';
-            $url_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $group_name;
+            $offer_type_group = 'Type d\'offre';
+            $transaction_type_group = 'Type de transaction';
+            $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
+            $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
 
             try {
                 // Select current user API response
@@ -85,11 +87,16 @@ class HomeController extends Controller
                 ]);
                 $messages = json_decode($response_message->getBody(), false);
                 // Select types by group name API response
-                $response_type = $this::$client->request('GET', $url_type, [
+                $response_offer_type = $this::$client->request('GET', $url_offer_type, [
                     'headers' => $this::$headers,
                     'verify'  => false
                 ]);
-                $type = json_decode($response_type->getBody(), false);
+                $offer_type = json_decode($response_offer_type->getBody(), false);
+                $response_transaction_type = $this::$client->request('GET', $url_transaction_type, [
+                    'headers' => $this::$headers,
+                    'verify'  => false
+                ]);
+                $transaction_type = json_decode($response_transaction_type->getBody(), false);
 
                 if (isset(request()->user_role)) {
                     if (request()->user_role == 'admin') {
@@ -97,7 +104,8 @@ class HomeController extends Controller
                             'current_user' => $user->data,
                             'countries' => $country->data,
                             'messages' => $messages,
-                            'types' => $type->data
+                            'offer_types' => $offer_type->data,
+                            'transaction_types' => $transaction_type->data
                         ]);
 
                     } else if (request()->user_role == 'developer') {
@@ -105,7 +113,8 @@ class HomeController extends Controller
                             'current_user' => $user->data,
                             'countries' => $country->data,
                             'messages' => $messages,
-                            'types' => $type->data
+                            'offer_types' => $offer_type->data,
+                            'transaction_types' => $transaction_type->data
                         ]);
 
                     } else if (request()->user_role == 'manager') {
@@ -113,7 +122,8 @@ class HomeController extends Controller
                             'current_user' => $user->data,
                             'countries' => $country->data,
                             'messages' => $messages,
-                            'types' => $type->data
+                            'offer_types' => $offer_type->data,
+                            'transaction_types' => $transaction_type->data
                         ]);
 
                     } else {
@@ -121,7 +131,8 @@ class HomeController extends Controller
                             'current_user' => $user->data,
                             'countries' => $country->data,
                             'messages' => $messages,
-                            'types' => $type->data
+                            'offer_types' => $offer_type->data,
+                            'transaction_types' => $transaction_type->data
                         ]);
                     }
 
@@ -130,8 +141,9 @@ class HomeController extends Controller
                         'current_user' => $user->data,
                         'countries' => $country->data,
                         'messages' => $messages,
-                        'types' => $type->data
-                    ]);
+                        'offer_types' => $offer_type->data,
+                        'transaction_types' => $transaction_type->data
+                ]);
                 }
 
             } catch (ClientException $e) {
@@ -145,8 +157,10 @@ class HomeController extends Controller
             // Select all countries API URL
             $url_country = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/country';
             // Select types by group name API URL
-            $group_name = 'Type d\'offre';
-            $url_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $group_name;
+            $offer_type_group = 'Type d\'offre';
+            $transaction_type_group = 'Type de transaction';
+            $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
+            $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
 
             try {
                 // Select all countries API response
@@ -156,15 +170,21 @@ class HomeController extends Controller
                 ]);
                 $country = json_decode($response_country->getBody(), false);
                 // Select types by group name API response
-                $response_type = $this::$client->request('GET', $url_type, [
+                $response_offer_type = $this::$client->request('GET', $url_offer_type, [
                     'headers' => $this::$headers,
                     'verify'  => false
                 ]);
-                $type = json_decode($response_type->getBody(), false);
+                $offer_type = json_decode($response_offer_type->getBody(), false);
+                $response_transaction_type = $this::$client->request('GET', $url_transaction_type, [
+                    'headers' => $this::$headers,
+                    'verify'  => false
+                ]);
+                $transaction_type = json_decode($response_transaction_type->getBody(), false);
 
                 return view('welcome', [
                     'countries' => $country->data,
-                    'types' => $type->data
+                    'offer_types' => $offer_type->data,
+                    'transaction_types' => $transaction_type->data
                 ]);
 
             } catch (ClientException $e) {
