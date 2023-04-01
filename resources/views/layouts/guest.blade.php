@@ -144,9 +144,9 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
                     <a href="{{ route('home') }}" class="nav-item nav-link mt-1 {{ Route::is('home') ? 'active' : '' }}">@lang('miscellaneous.menu.home')</a>
-                    <a href="{{ route('about.home') }}" class="nav-item nav-link mt-1 {{ Route::is('about.home') || Route::is('about.party') || Route::is('about.app') || Route::is('about.terms_of_use') || Route::is('about.privacy_policy') || Route::is('about.help') || Route::is('about.faq') ? 'active' : '' }}">@lang('miscellaneous.menu.public.about')</a>
-                    <a href="{{ route('news.home') }}" class="nav-item nav-link mt-1 {{ Route::is('news.home') || Route::is('news.datas') ? 'active' : '' }}">@lang('miscellaneous.menu.public.news')</a>
-                    <a href="{{ route('works') }}" class="nav-item nav-link mt-1 {{ Route::is('works') ? 'active' : '' }}">@lang('miscellaneous.menu.public.works')</a>
+                    <a href="#" class="nav-item nav-link mt-1 {{ Route::is('about.home') || Route::is('about.party') || Route::is('about.app') || Route::is('about.terms_of_use') || Route::is('about.privacy_policy') || Route::is('about.help') || Route::is('about.faq') ? 'active' : '' }}">@lang('miscellaneous.menu.public.about')</a>
+                    <a href="#" class="nav-item nav-link mt-1 {{ Route::is('news.home') || Route::is('news.datas') ? 'active' : '' }}">@lang('miscellaneous.menu.public.news')</a>
+                    <a href="#" class="nav-item nav-link mt-1 {{ Route::is('works') ? 'active' : '' }}">@lang('miscellaneous.menu.public.works')</a>
 @empty(Auth::user())
                     <span class="nav-item dropdown d-lg-inline-block d-none mb-0">
                         <a href="#" class="nav-link" data-bs-toggle="dropdown"><i class="bi bi-translate fs-4 align-top"></i></a>
@@ -457,9 +457,9 @@
                     <div class="col-lg-3 col-md-6">
                         <h5 class="text-white mb-4">@lang('miscellaneous.public.footer.useful_links')</h5>
                         <a href="{{ route('about.home') }}" class="btn btn-link bg-transparent fs-6">@lang('miscellaneous.menu.public.about')</a>
-                        <a href="{{ route('news.home') }}" class="btn btn-link bg-transparent fs-6">@lang('miscellaneous.menu.public.news')</a>
-                        <a href="{{ route('works') }}" class="btn btn-link bg-transparent fs-6">@lang('miscellaneous.menu.public.works')</a>
-                        <a href="{{ route('donate') }}" class="btn btn-link bg-transparent fs-6">@lang('miscellaneous.menu.public.donate')</a>
+                        <a href="#" class="btn btn-link bg-transparent fs-6">@lang('miscellaneous.menu.public.news')</a>
+                        <a href="#" class="btn btn-link bg-transparent fs-6">@lang('miscellaneous.menu.public.works')</a>
+                        <a href="#" class="btn btn-link bg-transparent fs-6">@lang('miscellaneous.menu.public.donate')</a>
                     </div>
 
                     <div class="col-lg-4 col-md-6">
