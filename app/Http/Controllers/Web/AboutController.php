@@ -37,7 +37,7 @@ class AboutController extends Controller
     {
         // Get header informations
         $headers = [
-            'Authorization' => 'Bearer '. getToken(),
+            'Authorization' => 'Bearer uWNJB6EwpVQwSuL5oJ7S7JkSkLzdpt8M1Xrs1MZITE1bCEbjMhscv8ZX2sTiDBarCHcu1EeJSsSLZIlYjr6YCl7pLycfn2AAQmYm',
             'Accept' => 'application/json',
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
@@ -152,7 +152,7 @@ class AboutController extends Controller
     {
         // Get header informations
         $headers = [
-            'Authorization' => 'Bearer '. getToken(),
+            'Authorization' => 'Bearer uWNJB6EwpVQwSuL5oJ7S7JkSkLzdpt8M1Xrs1MZITE1bCEbjMhscv8ZX2sTiDBarCHcu1EeJSsSLZIlYjr6YCl7pLycfn2AAQmYm',
             'Accept' => 'application/json',
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
@@ -182,7 +182,7 @@ class AboutController extends Controller
     {
         // Get header informations
         $headers = [
-            'Authorization' => 'Bearer '. getToken(),
+            'Authorization' => 'Bearer uWNJB6EwpVQwSuL5oJ7S7JkSkLzdpt8M1Xrs1MZITE1bCEbjMhscv8ZX2sTiDBarCHcu1EeJSsSLZIlYjr6YCl7pLycfn2AAQmYm',
             'Accept' => 'application/json',
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
@@ -220,7 +220,7 @@ class AboutController extends Controller
     {
         // Get header informations
         $headers = [
-            'Authorization' => 'Bearer '. getToken(),
+            'Authorization' => 'Bearer uWNJB6EwpVQwSuL5oJ7S7JkSkLzdpt8M1Xrs1MZITE1bCEbjMhscv8ZX2sTiDBarCHcu1EeJSsSLZIlYjr6YCl7pLycfn2AAQmYm',
             'Accept' => 'application/json',
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
@@ -306,7 +306,7 @@ class AboutController extends Controller
     {
         // Get header informations
         $headers = [
-            'Authorization' => 'Bearer '. getToken(),
+            'Authorization' => 'Bearer uWNJB6EwpVQwSuL5oJ7S7JkSkLzdpt8M1Xrs1MZITE1bCEbjMhscv8ZX2sTiDBarCHcu1EeJSsSLZIlYjr6YCl7pLycfn2AAQmYm',
             'Accept' => 'application/json',
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
@@ -383,7 +383,7 @@ class AboutController extends Controller
     {
         // Get header informations
         $headers = [
-            'Authorization' => 'Bearer '. getToken(),
+            'Authorization' => 'Bearer uWNJB6EwpVQwSuL5oJ7S7JkSkLzdpt8M1Xrs1MZITE1bCEbjMhscv8ZX2sTiDBarCHcu1EeJSsSLZIlYjr6YCl7pLycfn2AAQmYm',
             'Accept' => 'application/json',
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
@@ -625,7 +625,7 @@ class AboutController extends Controller
     {
         // Get header informations
         $headers = [
-            'Authorization' => 'Bearer '. getToken(),
+            'Authorization' => 'Bearer uWNJB6EwpVQwSuL5oJ7S7JkSkLzdpt8M1Xrs1MZITE1bCEbjMhscv8ZX2sTiDBarCHcu1EeJSsSLZIlYjr6YCl7pLycfn2AAQmYm',
             'Accept' => 'application/json',
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
