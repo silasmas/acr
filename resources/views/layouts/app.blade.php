@@ -234,19 +234,19 @@
             <div class="sidebar">
                 <div class="sidebar-inner">
                     <!-- ### $Sidebar Header ### -->
-                    <div class="sidebar-logo bg-light">
+                    <div class="sidebar-logo bg-light" style="height: 74px;">
                         <div class="peers ai-c fxw-nw">
                             <div class="peer peer-greed">
 @if ($current_user->role_users[0]->role->role_name == 'Administrateur')
                                 <a class="sidebar-link td-n" href="{{ route('admin') }}">
                                     <div class="peers ai-c fxw-nw">
                                         <div class="peer">
-                                            <div class="logo mt-4 ms-3">
-                                                <img src="{{ asset('assets/img/logo.png') }}" alt="" width="37">
+                                            <div class="logo ms-3" style="margin-top: 1.2rem;">
+                                                <img src="{{ asset('assets/img/_logo_.png') }}" alt="" width="37">
                                             </div>
                                         </div>
-                                        <div class="peer peer-greed">
-                                            <h3 class="h3 mB-0 logo-text fw-bold"><span class="acr-text-red-2">A</span><span class="acr-text-yellow">C</span><span class="acr-text-blue">R</span></h3>
+                                        <div class="peer peer-greed p-0">
+                                            <h3 class="h3 logo-text fw-bold"><span class="acr-text-red-2">A</span><span class="acr-text-yellow">C</span><span class="acr-text-blue">R</span></h3>
                                         </div>
                                     </div>
                                 </a>
@@ -256,12 +256,12 @@
                                 <a class="sidebar-link td-n" href="{{ route('manager') }}">
                                     <div class="peers ai-c fxw-nw">
                                         <div class="peer">
-                                            <div class="logo mt-4 ms-3">
-                                                <img src="{{ asset('assets/img/logo.png') }}" alt="" width="37">
+                                            <div class="logo ms-3" style="margin-top: 1.2rem;">
+                                                <img src="{{ asset('assets/img/_logo_.png') }}" alt="" width="37">
                                             </div>
                                         </div>
-                                        <div class="peer peer-greed">
-                                            <h3 class="h3 mB-0 logo-text fw-bold"><span class="acr-text-red-2">A</span><span class="acr-text-yellow">C</span><span class="acr-text-blue">R</span></h3>
+                                        <div class="peer peer-greed p-0">
+                                            <h3 class="h3 logo-text fw-bold"><span class="acr-text-red-2">A</span><span class="acr-text-yellow">C</span><span class="acr-text-blue">R</span></h3>
                                         </div>
                                     </div>
                                 </a>
@@ -271,12 +271,12 @@
                                 <a class="sidebar-link td-n" href="{{ route('manager') }}">
                                     <div class="peers ai-c fxw-nw">
                                         <div class="peer">
-                                            <div class="logo mt-4 ms-3">
-                                                <img src="{{ asset('assets/img/logo.png') }}" alt="" width="37">
+                                            <div class="logo ms-3" style="margin-top: 1.2rem;">
+                                                <img src="{{ asset('assets/img/_logo_.png') }}" alt="" width="37">
                                             </div>
                                         </div>
-                                        <div class="peer peer-greed">
-                                            <h3 class="h3 mB-0 logo-text fw-bold"><span class="acr-text-red-2">A</span><span class="acr-text-yellow">C</span><span class="acr-text-blue">R</span></h3>
+                                        <div class="peer peer-greed p-0">
+                                            <h3 class="h3 logo-text fw-bold"><span class="acr-text-red-2">A</span><span class="acr-text-yellow">C</span><span class="acr-text-blue">R</span></h3>
                                         </div>
                                     </div>
                                 </a>
@@ -499,15 +499,15 @@
             <!-- #Main ============================ -->
             <div class="page-container">
                 <!-- ### $Topbar ### -->
-                <div class="header navbar">
+                <div class="header navbar shadow-0">
                     <div class="header-container">
-                        <ul class="nav-left">
+                        <ul class="nav-left mt-2">
                             <li>
                                 <a id="sidebar-toggle" class="sidebar-toggle" href="javascript:void(0);">
                                     <i class="ti-menu"></i>
                                 </a>
                             </li>
-                            <li class="search-box">
+                            <li class="search-box" style="height: 60px;">
                                 <a class="search-toggle no-pdd-right" href="javascript:void(0);">
                                     <i class="search-icon ti-search pdd-right-10"></i>
                                     <i class="search-icon-close ti-close pdd-right-10"></i>
@@ -518,85 +518,87 @@
                             </li>
                         </ul>
               
-                        <ul class="nav-right">
+                        <ul class="nav-right mt-1">
+                        {{-- Notification --}}
                             <li id="adminNotification" class="notifications{{ $current_user->notifications[0]->status->status_name == 'Non lue' ? ' dropdown' : '' }}">
-                                <span class="counter bgc-red">{{ count($current_user->notifications) }}</span>
-                                <a href="{{ route('notification.home') }}" id="notificationLink" class="dropdown-toggle no-after" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="ti-bell fs-3 align-middle"></i>
+@if ($current_user->notifications[0]->status->status_name == 'Non lue')
+                                <span class="counter bg-transparent p-0 border border-4 acr-border-red" style="top: 6px; width: 16px; height: 16px; font-size: O.1rem; color: transparent;"></span>
+@endif
+
+                                <a href="{{ route('notification.home') }}" id="notificationLink" class="dropdown-toggle no-after" data-bs-toggle="{{ $current_user->notifications[0]->status->status_name == 'Non lue' ? 'dropdown' : '' }}" aria-expanded="false">
+                                    <i class="fs-3 align-middle{{ $current_user->notifications[0]->status->status_name == 'Non lue' ? ' bi bi-bell-fill text-primary' : 'bi bi-bell' }}"></i>
                                 </a>
 
-                                <ul class="dropdown-menu" aria-labelledby="notificationLink">
-                                    <li class="pX-20 pY-15 bdB">
-                                        <i class="ti-bell pR-10"></i>
-                                        <span class="fsz-sm fw-600 c-grey-900">Notifications</span>
+                                <ul class="dropdown-menu border-0 overflow-hidden" data-user-id="{{ $current_user->id }}" aria-labelledby="notificationLink">
+                                    <li class="text-center" style="background-color: #e0e0e0;">
+                                        <a id="markAllRead" href="#" class="dropdown-item py-3" data-user-id="{{ $current_user->id }}">
+                                            <i class="far fa-circle me-2"></i>@lang('miscellaneous.mark_all_read')
+                                        </a>
                                     </li>
                                     <li>
                                         <ul class="ovY-a pos-r scrollable lis-n p-0 m-0 fsz-sm">
+@foreach ($current_user->notifications as $notification)
+    @if (count($current_user->notifications) < 4)
                                             <li>
-                                                <a href="" class="peers fxw-nw td-n p-20 bdB c-grey-800 cH-blue bgcH-grey-100">
-                                                    <div class="peer mR-15">
-                                                        <img class="w-3r bdrs-50p" src="https://randomuser.me/api/portraits/men/2.jpg" alt="">
-                                                    </div>
+                                                <a href="{{ $notification->notification_url }}" class="peers fxw-nw td-n p-20 bdB c-grey-800 cH-blue bgcH-grey-100">
                                                     <div class="peer peer-greed">
                                                         <span>
-                                                            <span class="fw-500">Moo Doe</span>
-                                                            <span class="c-grey-600">liked your <span class="text-dark">cover image</span>
+                                                            <span class="text-dark">{{ $notification->notification_content }}</span>
                                                         </span>
                                                         <p class="m-0">
-                                                            <small class="fsz-xs">7 mins ago</small>
+                                                            <small class="c-grey-600">{{ $notification->created_at }}</small>
                                                         </p>
                                                     </div>
                                                 </a>
                                             </li>
+    @endif
+@endforeach
                                         </ul>
                                     </li>
-                                    <li class="pX-20 pY-15 ta-c bdT">
-                                        <span>
-                                            <a href="" class="c-grey-600 cH-blue fsz-sm td-n">View All Notifications <i class="ti-angle-right fsz-xs mL-10"></i></a>
-                                        </span>
+                                    <li>
+                                        <a href="{{ route('notification.home') }}" class="d-flex justify-content-center acr-bg-blue-transparent fsz-sm td-n text-white">
+                                            @lang('miscellaneous.see_more') <i class="ti-angle-right mT-4 mL-10"></i>
+                                        </a>
                                     </li>
                                 </ul>
                             </li>
-                <li class="dropdown">
-                  <a href="" class="dropdown-toggle no-after peers fxw-nw ai-c lh-1" data-bs-toggle="dropdown">
-                    <div class="peer mR-10">
-                      <img class="w-2r bdrs-50p" src="https://randomuser.me/api/portraits/men/10.jpg" alt="">
+
+                            {{-- Avatar --}}
+                            <li class="dropdown">
+                                <a href="" class="dropdown-toggle no-after peers fxw-nw ai-c lh-1" data-bs-toggle="dropdown">
+                                    <div class="peer mR-10">
+                                        <img class="w-2r bdrs-50p" src="{{ $current_user->avatar_url != null ? $current_user->avatar_url : asset('assets/img/user.png') }}" alt="{{ $current_user->firstname . ' ' . $current_user->lastname }}">
+                                    </div>
+                                    <div class="peer">
+                                        <span class="fsz-sm c-grey-900">{{ $current_user->firstname . ' ' . $current_user->lastname }}</span>
+                                    </div>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-end fsz-sm py-0" style="min-width: 210px">
+                                    <li class="d-flex justify-content-center py-3" style="background-color: #e0e0e0;">
+                                        <div class="bg-image">
+                                            <img src="{{ $current_user->avatar_url != null ? $current_user->avatar_url : asset('assets/img/user.png') }}" alt="{{ $current_user->firstname . ' ' . $current_user->lastname }}" width="70" class="img-thumbnail rounded-circle me-2">
+                                            <div class="mask"></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('account') }}" class="d-b td-n py-3 bgcH-grey-100 c-grey-700">
+                                            <i class="ti-settings mR-10"></i>
+                                            <span>@lang('miscellaneous.menu.account_settings')</span>
+                                        </a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>
+                                        <a href="{{ route('logout') }}" class="d-b td-n py-3 bgcH-grey-100 c-grey-700">
+                                            <i class="ti-user mR-10"></i>
+                                            <span>@lang('miscellaneous.logout')</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="peer">
-                      <span class="fsz-sm c-grey-900">John Doe</span>
-                    </div>
-                  </a>
-                  <ul class="dropdown-menu fsz-sm">
-                    <li>
-                      <a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
-                        <i class="ti-settings mR-10"></i>
-                        <span>Setting</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
-                        <i class="ti-user mR-10"></i>
-                        <span>Profile</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="email.html" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
-                        <i class="ti-email mR-10"></i>
-                        <span>Messages</span>
-                      </a>
-                    </li>
-                    <li role="separator" class="divider"></li>
-                    <li>
-                      <a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
-                        <i class="ti-power-off mR-10"></i>
-                        <span>Logout</span>
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-          </div>
+                </div>
 
 @yield('app-content')
 

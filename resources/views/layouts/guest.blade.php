@@ -181,11 +181,11 @@
     @if ($current_user->notifications[0]->status->status_name == 'Non lue')
                             <span class="position-absolute top-0 start-100 translate-middle p-1 border border-4 border-danger rounded-circle">
                                 <span class="visually-hidden">@lang('miscellaneous.menu.notifications')</span>
-                            </span>                            
+                            </span>
     @endif
                         </a>
 
-                        <ul class="dropdown-menu dropdown-menu-end mt-3" aria-labelledby="notificationLink">
+                        <ul class="dropdown-menu dropdown-menu-end mt-3" aria-labelledby="notificationLink" style="min-width: 300px;">
                             <li class="text-center">
                                 <a id="markAllRead" href="#" class="dropdown-item py-3" style="background-color: #e0e0e0;" data-user-id="{{ $current_user->id }}">
                                     <i class="far fa-circle me-2"></i>@lang('miscellaneous.mark_all_read')
@@ -193,7 +193,7 @@
                             </li>
     @foreach ($current_user->notifications as $notification)
         @if (count($current_user->notifications) < 4)
-                            <li class="border-bottom border-secondary" style="width: 15rem;">
+                            <li class="border-bottom border-secondary w-100">
                                 <a href="{{ $notification->notification_url }}" class="dropdown-item py-3 text-wrap">
                                     <p class="m-0 text-black acr-line-height-1_45">{{ $notification->notification_content }}</p>
                                     <small class="text-secondary">{{ $notification->created_at }}</small>
@@ -212,7 +212,7 @@
                     {{-- Avatar --}}
                     <div id="avatar" class="dropdown d-inline-block my-3 ms-lg-0 me-1">
                         <a role="button" href="" id="avatarLink" data-mdb-toggle="dropdown" aria-expanded="false">
-                            <img src="{{ $current_user->avatar_url != null ? $current_user->avatar_url : asset('assets/img/user.png') }}" alt="{{ $current_user->firstname }}" width="40" class="rounded-circle me-2">
+                            <img src="{{ $current_user->avatar_url != null ? $current_user->avatar_url : asset('assets/img/user.png') }}" alt="{{ $current_user->firstname . ' ' . $current_user->lastname }}" width="40" class="rounded-circle me-2">
                         </a>
 
                         <ul class="dropdown-menu dropdown-menu-end mt-3" aria-labelledby="avatarLink">

@@ -13591,7 +13591,7 @@ a.btn:hover {
 
 .header .header-container .nav-left .notifications .dropdown-menu,
 .header .header-container .nav-right .notifications .dropdown-menu {
-  min-width: 350px;
+  min-width: 300px;
   padding: 0;
 }
 
