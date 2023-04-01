@@ -6,7 +6,7 @@
         <meta name="keywords" content="@lang('miscellaneous.keywords')">
         <meta name="description" content="">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <meta name="acr-devref" content="{{ getToken() }}">
+        <meta name="acr-devref" content="uWNJB6EwpVQwSuL5oJ7S7JkSkLzdpt8M1Xrs1MZITE1bCEbjMhscv8ZX2sTiDBarCHcu1EeJSsSLZIlYjr6YCl7pLycfn2AAQmYm">
 
         <!-- Favicon -->
         <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('assets/img/favicon/apple-icon-57x57.png') }}">
