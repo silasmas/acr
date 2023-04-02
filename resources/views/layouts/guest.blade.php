@@ -290,7 +290,7 @@
                     </div>
 
                     <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <form>
+                        <form method="POST" action="{{ route('donate') }}">
                             <div id="donationType" class="mb-4">
 @foreach ($offer_types as $type)
     @if ($type->type_name != 'Contribution')
@@ -397,12 +397,12 @@
                                 <div class="col-md-12">
                                     <div class="input-group">
                                         <div class="form-floating">
-                                            <input type="text" name="register_amount" id="register_amount" class="form-control" placeholder="@lang('miscellaneous.amount')" required>
+                                            <input type="number" name="register_amount" id="register_amount" class="form-control" placeholder="@lang('miscellaneous.amount')" required>
                                             <label for="register_amount">@lang('miscellaneous.amount')</label>
                                         </div>
 
                                         <div class="input-group-prepend">
-                                            <select name="select_currency" id="select_currency" class="form-select input-group-text ps-3 pe-4 py-3 shadow-0" style="height: 3.65rem; background-color: #f3f3f3; border-end-start-radius: 0; border-start-start-radius: 0;">
+                                            <select name="select_currency" id="select_currency" class="form-select input-group-text ps-3 pe-4 py-3 shadow-0" style="height: 3.63rem; background-color: #f3f3f3; border-end-start-radius: 0; border-start-start-radius: 0;">
                                                 <option class="small" selected disabled>@lang('miscellaneous.currency')</option>
                                                 <option value="USD">@lang('miscellaneous.usd')</option>
                                                 <option value="CDF">@lang('miscellaneous.cdf')</option>

@@ -216,7 +216,7 @@ return [
     'go_login' => 'Already have an account',
     'api_token' => 'Your key for using of APIs',
     'amount' => 'Amount',
-    'currency' => 'Currency',
+    'currency' => 'Choose currency',
     'usd' => 'American dollar',
     'cdf' => 'Congolese franc',
 

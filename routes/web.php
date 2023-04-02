@@ -141,6 +141,7 @@ Route::get('/communique', 'App\Http\Controllers\Web\HomeController@communique')-
 Route::get('/communique/{id}', 'App\Http\Controllers\Web\HomeController@communiqueDatas')->whereNumber('id')->name('communique.datas');
 Route::get('/works', 'App\Http\Controllers\Web\HomeController@works')->name('works');
 Route::get('/donate', 'App\Http\Controllers\Web\HomeController@donate')->name('donate');
+Route::post('/donate', 'App\Http\Controllers\Web\HomeController@registerOffer');
 // Account
 Route::get('/account/offers/{amount}/{currency}/{user_id}', 'App\Http\Controllers\Web\AccountController@payWithCard')->whereNumber(['amount', 'user_id'])->name('account.pay_with_card');
 Route::get('/account/offers', 'App\Http\Controllers\Web\AccountController@offers')->name('account.offers');
