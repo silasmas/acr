@@ -216,7 +216,9 @@ return [
     'go_login' => 'J\'ai déjà un compte',
     'api_token' => 'Votre clé pour utiliser les APIs',
     'amount' => 'Montant',
-    'currency' => 'Devise',
+    'currency' => 'Choisir devise',
+    'usd' => 'Dollar américain',
+    'cdf' => 'Franc congolais',
 
     // ===== NAVIGATION MENU
     'menu' => [

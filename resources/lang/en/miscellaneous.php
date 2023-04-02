@@ -217,6 +217,8 @@ return [
     'api_token' => 'Your key for using of APIs',
     'amount' => 'Amount',
     'currency' => 'Currency',
+    'usd' => 'American dollar',
+    'cdf' => 'Congolese franc',
 
     // ===== NAVIGATION MENU
     'menu' => [

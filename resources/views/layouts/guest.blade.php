@@ -286,7 +286,7 @@
 
                         <p class="mb-4 wow fadeInUp" data-wow-delay="0.5s">@lang('miscellaneous.public.home.donate.content1')</p>
                         <p class="mb-4 wow fadeInUp" data-wow-delay="0.5s">@lang('miscellaneous.public.home.donate.content2')</p>
-                        <p class="mb-4 wow fadeInUp" data-wow-delay="0.5s">@lang('miscellaneous.public.home.donate.content3')</p>
+                        <p class="m-0 wow fadeInUp" data-wow-delay="0.5s">@lang('miscellaneous.public.home.donate.content3')</p>
                     </div>
 
                     <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
@@ -393,7 +393,7 @@
                                 </div>
                             </div>
 
-                            <div id="amountCurrency" class="row">
+                            <div id="amountCurrency" class="row mb-3">
                                 <div class="col-md-12">
                                     <div class="input-group">
                                         <div class="form-floating">
@@ -403,8 +403,9 @@
 
                                         <div class="input-group-prepend">
                                             <select name="select_currency" id="select_currency" class="form-select input-group-text ps-3 pe-4 py-3 shadow-0" style="height: 3.65rem; background-color: #f3f3f3; border-end-start-radius: 0; border-start-start-radius: 0;">
-                                                <option>USD</option>
-                                                <option>CDF</option>
+                                                <option class="small" selected disabled>@lang('miscellaneous.currency')</option>
+                                                <option value="USD">@lang('miscellaneous.usd')</option>
+                                                <option value="CDF">@lang('miscellaneous.cdf')</option>
                                             </select>    
                                         </div>
                                     </div>
@@ -412,7 +413,7 @@
                             </div>
 
                             <div id="phoneNumberForMoney" class="row">
-                                <div class="col-lg-5">
+                                <div class="col-lg-5 mb-3">
                                     <div class="form-floating pt-0">
                                         <select id="select_country3" class="form-select pt-2 shadow-0">
                                             <option class="small" selected disabled>@lang('miscellaneous.choose_country')</option>
@@ -441,7 +442,7 @@
                                 </div>
                             </div>
 
-                            <div id="otherDonation" class="row g-3">
+                            <div id="otherDonation" class="row mt-1 g-3">
                                 <div class="col-12">
                                     <h5 class="h5 m-0 text-uppercase fw-bolder">@lang('miscellaneous.public.home.donate.other_donation.title')</h5>
                                 </div>

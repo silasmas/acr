@@ -80,7 +80,7 @@ $(document).ready(function () {
     // TRANSACTION TYPE
     $('#paymentMethod .form-check-input').each(function () {
         $(this).on('click', function () {
-            if ($('#anonyme').is(':checked')) {
+            if ($('#bank_card').is(':checked')) {
                 $('#phoneNumberForMoney').addClass('d-none');
 
             } else {
