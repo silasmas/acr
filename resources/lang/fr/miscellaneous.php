@@ -444,11 +444,23 @@ return [
                 'register' => 'Commencer l\'inscription'
             ],
             'donate' => [
-                'title' => '',
-                'description' => '',
-                'content' => '',
-                'anonyme' => '',
-                'partner' => '',
+                'title' => 'Faire un don anonyme ou devenir partenaire',
+                'content1' => 'En soutenant le parti ACR, non seulement vous contribuez au changement de votre pays, mais aussi vous contribuez à l\'aide qu\'apporte le parti aux ophelins et aux démunis.',
+                'content2' => 'Si c\'est l\'argent que vous voulez envoyer, vous n\'avez qu\'à sélectionner le mode de paiement ; ensuite, vous l\'envoyez directement en ligne.',
+                'content3' => 'Si vous voulez donner autre chose que de l\'argent, vous n\'avez qu\'à donner la description de votre don.',
+                'anonyme' => 'Faire un don anonyme',
+                'partner' => 'Devenir partenaire',
+                'your_identity' => 'Votre identité',
+                'send_money' => [
+                    'title' => 'Envoyer l\'argent',
+                    'description' => 'Choisir le mode de paiement',
+                    'mobile_money' => 'Mobile money',
+                    'bank_card' => 'Carte bancaire'
+                ],
+                'other_donation' => [
+                    'title' => 'Autre don',
+                    'description' => 'Description de votre don'
+                ],
             ],
         ],
 

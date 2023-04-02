@@ -144,9 +144,9 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
                     <a href="{{ route('home') }}" class="nav-item nav-link mt-1 {{ Route::is('home') ? 'active' : '' }}">@lang('miscellaneous.menu.home')</a>
-                    <a href="#" class="nav-item nav-link mt-1 {{ Route::is('about.home') || Route::is('about.party') || Route::is('about.app') || Route::is('about.terms_of_use') || Route::is('about.privacy_policy') || Route::is('about.help') || Route::is('about.faq') ? 'active' : '' }}">@lang('miscellaneous.menu.public.about')</a>
-                    <a href="#" class="nav-item nav-link mt-1 {{ Route::is('news.home') || Route::is('news.datas') ? 'active' : '' }}">@lang('miscellaneous.menu.public.news')</a>
-                    <a href="#" class="nav-item nav-link mt-1 {{ Route::is('works') ? 'active' : '' }}">@lang('miscellaneous.menu.public.works')</a>
+                    <a href="{{ route('about.home') }}" class="nav-item nav-link mt-1 {{ Route::is('about.home') || Route::is('about.party') || Route::is('about.app') || Route::is('about.terms_of_use') || Route::is('about.privacy_policy') || Route::is('about.help') || Route::is('about.faq') ? 'active' : '' }}">@lang('miscellaneous.menu.public.about')</a>
+                    <a href="{{ route('news.home') }}" class="nav-item nav-link mt-1 {{ Route::is('news.home') || Route::is('news.datas') ? 'active' : '' }}">@lang('miscellaneous.menu.public.news')</a>
+                    <a href="{{ route('works') }}" class="nav-item nav-link mt-1 {{ Route::is('works') ? 'active' : '' }}">@lang('miscellaneous.menu.public.works')</a>
 @empty(Auth::user())
                     <span class="nav-item dropdown d-lg-inline-block d-none mb-0">
                         <a href="#" class="nav-link" data-bs-toggle="dropdown"><i class="bi bi-translate fs-4 align-top"></i></a>
@@ -273,9 +273,9 @@
         <!-- Donate Start -->
         <div id="donate" class="container-xxl py-5">
             <div class="container">
-                <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                     <p class="section-title bg-white text-center text-primary px-3">@lang('miscellaneous.menu.public.donate')</p>
-                    <h1 class="mb-5">Faire un don anonyme ou devenir partenaire</h1>
+                    <h1 class="mb-5">@lang('miscellaneous.public.home.donate.title')</h1>
                 </div>
                 <div class="row g-5">
                     <div class="col-lg-6">
@@ -284,9 +284,9 @@
                             <div class="mask"></div>
                         </div>
 
-                        <p class="mb-4 wow fadeInUp" data-wow-delay="0.5s">En soutenant le parti ACR, non seulement vous contribuez au changement de votre pays, mais aussi vous contribuez à l'aide qu'apporte le parti aux ophelins et aux démunis.</p>
-                        <p class="mb-4 wow fadeInUp" data-wow-delay="0.5s">Si c'est l'argent que vous voulez envoyer, vous n'avez qu'à sélectionner le mode de paiement ; ensuite, vous l'envoyez directement en ligne.</p>
-                        <p class="mb-4 wow fadeInUp" data-wow-delay="0.5s">Si vous voulez donner autre chose que de l'argent, vous n'avez qu'à donner la description de votre don.</p>
+                        <p class="mb-4 wow fadeInUp" data-wow-delay="0.5s">@lang('miscellaneous.public.home.donate.content1')</p>
+                        <p class="mb-4 wow fadeInUp" data-wow-delay="0.5s">@lang('miscellaneous.public.home.donate.content2')</p>
+                        <p class="mb-4 wow fadeInUp" data-wow-delay="0.5s">@lang('miscellaneous.public.home.donate.content3')</p>
                     </div>
 
                     <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
@@ -296,13 +296,13 @@
     @if ($type->type_name != 'Contribution')
         @if ($type->type_name == 'Sponsoring')
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="offer_type_id" id="type{{ $type->id }}" value="{{ $type->id }}" />
-                                    <label class="form-check-label" for="type{{ $type->id }}">Faire un don anonyme</label>
+                                    <input class="form-check-input" type="radio" name="offer_type_id" id="anonyme" value="{{ $type->id }}" />
+                                    <label class="form-check-label" for="anonyme">@lang('miscellaneous.public.home.donate.anonyme')</label>
                                 </div>
         @else
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="offer_type_id" id="type{{ $type->id }}" value="{{ $type->id }}" />
-                                    <label class="form-check-label" for="type{{ $type->id }}">Devenir partenaire</label>
+                                    <input class="form-check-input" type="radio" name="offer_type_id" id="partner" value="{{ $type->id }}" />
+                                    <label class="form-check-label" for="partner">@lang('miscellaneous.public.home.donate.partner')</label>
                                 </div>
         @endif
     @endif
@@ -311,7 +311,7 @@
 
                             <div id="donorIdentity" class="row g-3 mb-4">
                                 <div class="col-12">
-                                    <h5 class="h5 m-0 text-uppercase fw-bolder">Votre identité</h5>
+                                    <h5 class="h5 m-0 text-uppercase fw-bolder">@lang('miscellaneous.public.home.donate.your_identity')</h5>
                                 </div>
 
                                 <div class="col-md-6">
@@ -330,7 +330,7 @@
 
                                 <div class="col-lg-5">
                                     <div class="form-floating pt-0">
-                                        <select name="select_country" id="select_country2" class="form-select pt-2 shadow-0">
+                                        <select id="select_country2" class="form-select pt-2 shadow-0">
                                             <option class="small" selected disabled>@lang('miscellaneous.choose_country')</option>
 @forelse ($countries as $country)
                                             <option value="+{{ $country->country_phone_code }}">{{ $country->country_name }}</option>
@@ -349,9 +349,9 @@
                                         </span>
 
                                         <div class="form-floating">
-                                            <input type="hidden" id="phone_code2" name="phone_code" value="">
-                                            <input type="tel" name="phone_number" id="phone_number" class="form-control" placeholder="@lang('miscellaneous.phone')" required>
-                                            <label for="phone_number">@lang('miscellaneous.phone')</label>
+                                            <input type="hidden" id="phone_code2" name="phone_code_donation" value="">
+                                            <input type="tel" name="phone_number_donation" id="phone_number_donation" class="form-control" placeholder="@lang('miscellaneous.phone')" required>
+                                            <label for="phone_number_donation">@lang('miscellaneous.phone')</label>
                                         </div>
                                     </div>
                                 </div>
@@ -366,33 +366,35 @@
 
                             <div id="financialDonation" class="row g-3 mb-4">
                                 <div class="col-12">
-                                    <h5 class="h5 m-0 text-uppercase fw-bolder">Envoyer l'argent</h5>
-                                    <p class="small m-0 text-muted">Choisir le mode de paiement</p>
+                                    <h5 class="h5 m-0 text-uppercase fw-bolder">@lang('miscellaneous.public.home.donate.send_money.title')</h5>
+                                    <p class="small m-0 text-muted">@lang('miscellaneous.public.home.donate.send_money.description')</p>
                                 </div>
 
                                 <div id="paymentMethod">
 @foreach ($transaction_types as $type)
     @if ($type->type_name == 'Mobile money')
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input mt-2" type="radio" name="transaction_type_id" id="type{{ $type->id }}" value="{{ $type->id }}" />
-                                        <label class="form-check-label" for="type{{ $type->id }}">
+                                        <input class="form-check-input mt-2" type="radio" name="transaction_type_id" id="mobile_money" value="{{ $type->id }}" />
+                                        <label class="form-check-label" for="mobile_money">
                                             <img src="{{ asset('assets/img/payment-mobile-money.png') }}" alt="Mobile money" width="40">
-                                            Mobile money
+                                            @lang('miscellaneous.public.home.donate.send_money.mobile_money')
                                         </label>
                                     </div>
     @else
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input mt-2" type="radio" name="transaction_type_id" id="type{{ $type->id }}" value="{{ $type->id }}" />
-                                        <label class="form-check-label" for="type{{ $type->id }}">
+                                        <input class="form-check-input mt-2" type="radio" name="transaction_type_id" id="bank_card" value="{{ $type->id }}" />
+                                        <label class="form-check-label" for="bank_card">
                                             <img src="{{ asset('assets/img/payment-credit-card.png') }}" alt="Carte bancaire" width="40">
-                                            Carte bancaire
+                                            @lang('miscellaneous.public.home.donate.send_money.bank_card')
                                         </label>
                                     </div>
     @endif
 @endforeach
                                 </div>
+                            </div>
 
-                                <div class="col-md-7">
+                            <div id="amountCurrency" class="row">
+                                <div class="col-md-12">
                                     <div class="input-group">
                                         <div class="form-floating">
                                             <input type="text" name="register_amount" id="register_amount" class="form-control" placeholder="@lang('miscellaneous.amount')" required>
@@ -407,24 +409,47 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="col-md-5">
-                                    <div class="form-floating">
-                                        <input type="tel" name="phone_number" id="phone_number" class="form-control" placeholder="@lang('miscellaneous.phone')" required>
-                                        <label for="phone_number">@lang('miscellaneous.phone')</label>
+                            <div id="phoneNumberForMoney" class="row">
+                                <div class="col-lg-5">
+                                    <div class="form-floating pt-0">
+                                        <select id="select_country3" class="form-select pt-2 shadow-0">
+                                            <option class="small" selected disabled>@lang('miscellaneous.choose_country')</option>
+@forelse ($countries as $country)
+                                            <option value="+{{ $country->country_phone_code }}">{{ $country->country_name }}</option>
+@empty
+                                            <option>@lang('miscellaneous.empty_list')</option>
+@endforelse
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-7">
+                                    <div class="input-group">
+                                        <span id="phone_code_text3" class="input-group-text d-inline-block h-100 bg-light" style="padding-top: 0.3rem; padding-bottom: 0.5rem; line-height: 1.35;">
+                                            <small class="text-secondary m-0 p-0" style="font-size: 0.85rem; color: #010101;">@lang('miscellaneous.phone_code')</small><br>
+                                            <span class="text-value">xxxx</span> 
+                                        </span>
+
+                                        <div class="form-floating">
+                                            <input type="hidden" id="phone_code3" name="other_phone_code" value="">
+                                            <input type="tel" name="other_phone_number" id="other_phone_number" class="form-control" placeholder="@lang('miscellaneous.phone')" required>
+                                            <label for="other_phone_number">@lang('miscellaneous.phone')</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
                             <div id="otherDonation" class="row g-3">
                                 <div class="col-12">
-                                    <h5 class="h5 m-0 text-uppercase fw-bolder">Autre don</h5>
+                                    <h5 class="h5 m-0 text-uppercase fw-bolder">@lang('miscellaneous.public.home.donate.other_donation.title')</h5>
                                 </div>
 
                                 <div class="col-12">
                                     <div class="form-floating">
                                         <textarea class="form-control" placeholder="Décrivez votre don" id="message" style="height: 100px"></textarea>
-                                        <label for="message">Description de votre don</label>
+                                        <label for="message">@lang('miscellaneous.public.home.donate.other_donation.description')</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -457,9 +482,9 @@
                     <div class="col-lg-3 col-md-6">
                         <h5 class="text-white mb-4">@lang('miscellaneous.public.footer.useful_links')</h5>
                         <a href="{{ route('about.home') }}" class="btn btn-link bg-transparent fs-6">@lang('miscellaneous.menu.public.about')</a>
-                        <a href="#" class="btn btn-link bg-transparent fs-6">@lang('miscellaneous.menu.public.news')</a>
-                        <a href="#" class="btn btn-link bg-transparent fs-6">@lang('miscellaneous.menu.public.works')</a>
-                        <a href="#" class="btn btn-link bg-transparent fs-6">@lang('miscellaneous.menu.public.donate')</a>
+                        <a href="{{ route('news.home') }}" class="btn btn-link bg-transparent fs-6">@lang('miscellaneous.menu.public.news')</a>
+                        <a href="{{ route('works') }}" class="btn btn-link bg-transparent fs-6">@lang('miscellaneous.menu.public.works')</a>
+                        <a href="{{ route('donate') }}" class="btn btn-link bg-transparent fs-6">@lang('miscellaneous.menu.public.donate')</a>
                     </div>
 
                     <div class="col-lg-4 col-md-6">

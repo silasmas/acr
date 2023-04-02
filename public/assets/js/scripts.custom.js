@@ -46,17 +46,47 @@ $(document).ready(function () {
     });
 
     /* On select change, update de country phone code */
-    $('#select_country').on('change', function () {
+    $('#select_country1').on('change', function () {
         var countryPhoneCode = $(this).val();
 
-        $('#phone_code_text .text-value').text(countryPhoneCode);
-        $('phone_code').val(countryPhoneCode);
+        $('#phone_code_text1 .text-value').text(countryPhoneCode);
+        $('phone_code1').val(countryPhoneCode);
     });
     $('#select_country2').on('change', function () {
         var countryPhoneCode = $(this).val();
 
         $('#phone_code_text2 .text-value').text(countryPhoneCode);
         $('phone_code2').val(countryPhoneCode);
+    });
+    $('#select_country3').on('change', function () {
+        var countryPhoneCode = $(this).val();
+
+        $('#phone_code_text3 .text-value').text(countryPhoneCode);
+        $('phone_code3').val(countryPhoneCode);
+    });
+
+    /* On check, show/hide some blocs */
+    // OFFER TYPE
+    $('#donationType .form-check-input').each(function () {
+        $(this).on('click', function () {
+            if ($('#anonyme').is(':checked')) {
+                $('#donorIdentity').addClass('d-none');
+
+            } else {
+                $('#donorIdentity').removeClass('d-none');
+            }
+        });
+    });
+    // TRANSACTION TYPE
+    $('#paymentMethod .form-check-input').each(function () {
+        $(this).on('click', function () {
+            if ($('#anonyme').is(':checked')) {
+                $('#phoneNumberForMoney').addClass('d-none');
+
+            } else {
+                $('#phoneNumberForMoney').removeClass('d-none');
+            }
+        });
     });
 
     /* Hover stretched link */

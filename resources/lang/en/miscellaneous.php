@@ -444,11 +444,23 @@ return [
                 'register' => 'Start registration'
             ],
             'donate' => [
-                'title' => '',
-                'description' => '',
-                'content' => '',
-                'anonyme' => '',
-                'partner' => '',
+                'title' => 'Make an anonymous donation or become a partner',
+                'content1' => 'By supporting the ACR party, you not only contribute to the change of your country, but also you contribute to the help that the party brings to the ophelines and the poor.',
+                'content2' => 'If it\'s money you want to send, just select the payment method; then you send it directly online.',
+                'content3' => 'If you want to donate something other than money, just enter a description of your donation.',
+                'anonyme' => 'Make an anonymous donation',
+                'partner' => 'Become a partner',
+                'your_identity' => 'Your identity',
+                'send_money' => [
+                    'title' => 'Send money',
+                    'description' => 'Choose payment method',
+                    'mobile_money' => 'Mobile money',
+                    'bank_card' => 'Bank card'
+                ],
+                'other_donation' => [
+                    'title' => 'Other donation',
+                    'description' => 'Description of your donation'
+                ],
             ],
         ],
 
