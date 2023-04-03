@@ -498,6 +498,12 @@ return [
             ],
         ],
 
+        // News
+        'news' => [
+            'title' => 'News',
+            'details' => 'Info details',
+        ],
+
         // Help
         'help' => [
             'title' => 'Help center',
