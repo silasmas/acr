@@ -162,6 +162,28 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
         return $baseController->handleResponse(new ResourcesLegalInfoSubject($legal_info_subject), __('notifications.find_legal_info_subject_success'));
 
     });
+    Route::get('about_subject/help_center', function () {
+        $baseController = new BaseController();
+        $legal_info_subject = LegalInfoSubject::where('subject_name', 'Centre d\'aide')->first();
+
+        if (is_null($legal_info_subject)) {
+            return $baseController->handleError(__('notifications.find_legal_info_subject_404'));
+        }
+
+        return $baseController->handleResponse(new ResourcesLegalInfoSubject($legal_info_subject), __('notifications.find_legal_info_subject_success'));
+
+    });
+    Route::get('about_subject/faq', function () {
+        $baseController = new BaseController();
+        $legal_info_subject = LegalInfoSubject::where('subject_name', 'FAQ')->first();
+
+        if (is_null($legal_info_subject)) {
+            return $baseController->handleError(__('notifications.find_legal_info_subject_404'));
+        }
+
+        return $baseController->handleResponse(new ResourcesLegalInfoSubject($legal_info_subject), __('notifications.find_legal_info_subject_success'));
+
+    });
     Route::get('about_subject/terms', function () {
         $baseController = new BaseController();
         $legal_info_subject = LegalInfoSubject::where('subject_name', 'Conditions d\'utilisation')->first();
@@ -176,28 +198,6 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     Route::get('about_subject/privacy_policy', function () {
         $baseController = new BaseController();
         $legal_info_subject = LegalInfoSubject::where('subject_name', 'Politique de confidentialité')->first();
-
-        if (is_null($legal_info_subject)) {
-            return $baseController->handleError(__('notifications.find_legal_info_subject_404'));
-        }
-
-        return $baseController->handleResponse(new ResourcesLegalInfoSubject($legal_info_subject), __('notifications.find_legal_info_subject_success'));
-
-    });
-    Route::get('about_subject/help_center', function () {
-        $baseController = new BaseController();
-        $legal_info_subject = LegalInfoSubject::where('subject_name', 'Centre d\'assistance et d\'aide')->first();
-
-        if (is_null($legal_info_subject)) {
-            return $baseController->handleError(__('notifications.find_legal_info_subject_404'));
-        }
-
-        return $baseController->handleResponse(new ResourcesLegalInfoSubject($legal_info_subject), __('notifications.find_legal_info_subject_success'));
-
-    });
-    Route::get('about_subject/faq', function () {
-        $baseController = new BaseController();
-        $legal_info_subject = LegalInfoSubject::where('subject_name', 'FAQ')->first();
 
         if (is_null($legal_info_subject)) {
             return $baseController->handleError(__('notifications.find_legal_info_subject_404'));
