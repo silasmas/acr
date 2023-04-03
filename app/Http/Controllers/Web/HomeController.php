@@ -29,7 +29,7 @@ class HomeController extends Controller
         // Client used for accessing API
         $this::$client = new Client();
 
-        $this->middleware('auth')->except(['changeLanguage', 'index', 'notification', 'news', 'newsDatas', 'communique', 'works', 'donate', 'aboutUs', 'aboutParty', 'aboutApp', 'termsOfUse', 'privacyPolicy', 'help', 'faq']);
+        $this->middleware('auth')->except(['changeLanguage', 'index', 'notification', 'news', 'newsDatas', 'communique', 'works', 'donate', 'about', 'help', 'faq', 'termsOfUse', 'privacyPolicy']);
     }
 
     // ==================================== HTTP GET METHODS ====================================
@@ -197,7 +197,7 @@ class HomeController extends Controller
     }
 
     /**
-     * Display the About page.
+     * Display the dashboard.
      *
      * @return \Illuminate\View\View
      */
@@ -241,7 +241,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function aboutUs()
+    public function about()
     {
         if (!empty(Auth::user())) {
             // Select current user API URL
@@ -255,6 +255,11 @@ class HomeController extends Controller
             $transaction_type_group = 'Type de transaction';
             $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
             $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
+            // Select current user API URL
+            $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/' . Auth::user()->id;
+            // About API URL
+            $url_about_party = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/about_subject/about_party';
+            $url_about_app = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/about_subject/about_app';
 
             try {
                 // Select current user API response
@@ -286,18 +291,31 @@ class HomeController extends Controller
                     'verify'  => false
                 ]);
                 $transaction_type = json_decode($response_transaction_type->getBody(), false);
+                // About API response
+                $response_about_party = $this::$client->request('GET', $url_about_party, [
+                    'headers' => $this::$headers,
+                    'verify'  => false
+                ]);
+                $about_party = json_decode($response_about_party->getBody(), false);
+                $response_about_app = $this::$client->request('GET', $url_about_app, [
+                    'headers' => $this::$headers,
+                    'verify'  => false
+                ]);
+                $about_app = json_decode($response_about_app->getBody(), false);
 
-                return view('about_us', [
+                return view('about', [
                     'current_user' => $user->data,
                     'countries' => $country->data,
                     'messages' => $messages,
                     'offer_types' => $offer_type->data,
-                    'transaction_types' => $transaction_type->data
+                    'transaction_types' => $transaction_type->data,
+                    'about_party' => $about_party->data,
+                    'about_app' => $about_app->data
                 ]);
 
             } catch (ClientException $e) {
                 // If the API returns some error, return to the page and display its message
-                return view('about_us', [
+                return view('about', [
                     'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
                 ]);
             }
@@ -310,6 +328,9 @@ class HomeController extends Controller
             $transaction_type_group = 'Type de transaction';
             $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
             $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
+            // About API URL
+            $url_about_party = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/about_subject/about_party';
+            $url_about_app = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/about_subject/about_app';
 
             try {
                 // Select all countries API response
@@ -329,16 +350,29 @@ class HomeController extends Controller
                     'verify'  => false
                 ]);
                 $transaction_type = json_decode($response_transaction_type->getBody(), false);
+                // About API response
+                $response_about_party = $this::$client->request('GET', $url_about_party, [
+                    'headers' => $this::$headers,
+                    'verify'  => false
+                ]);
+                $about_party = json_decode($response_about_party->getBody(), false);
+                $response_about_app = $this::$client->request('GET', $url_about_app, [
+                    'headers' => $this::$headers,
+                    'verify'  => false
+                ]);
+                $about_app = json_decode($response_about_app->getBody(), false);
 
-                return view('about_us', [
+                return view('about', [
                     'countries' => $country->data,
                     'offer_types' => $offer_type->data,
-                    'transaction_types' => $transaction_type->data
+                    'transaction_types' => $transaction_type->data,
+                    'about_party' => $about_party->data,
+                    'about_app' => $about_app->data
                 ]);
 
             } catch (ClientException $e) {
                 // If the API returns some error, return to the page and display its message
-                return view('about_us', [
+                return view('about', [
                     'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
                 ]);
             }

@@ -49,13 +49,11 @@ Route::get('/notification', 'App\Http\Controllers\Web\HomeController@notificatio
 |--------------------------------------------------------------------------
 */
 // About
-Route::get('/about', 'App\Http\Controllers\Web\HomeController@aboutUs')->name('about.home');
-Route::get('/about/party', 'App\Http\Controllers\Web\HomeController@aboutParty')->name('about.party');
-Route::get('/about/app', 'App\Http\Controllers\Web\HomeController@aboutApp')->name('about.app');
-Route::get('/about/terms_of_use', 'App\Http\Controllers\Web\HomeController@termsOfUse')->name('about.terms_of_use');
-Route::get('/about/privacy_policy', 'App\Http\Controllers\Web\HomeController@privacyPolicy')->name('about.privacy_policy');
+Route::get('/about', 'App\Http\Controllers\Web\HomeController@about')->name('about.home');
 Route::get('/about/help', 'App\Http\Controllers\Web\HomeController@help')->name('about.help');
 Route::get('/about/faq', 'App\Http\Controllers\Web\HomeController@faq')->name('about.faq');
+Route::get('/about/terms_of_use', 'App\Http\Controllers\Web\HomeController@termsOfUse')->name('about.terms_of_use');
+Route::get('/about/privacy_policy', 'App\Http\Controllers\Web\HomeController@privacyPolicy')->name('about.privacy_policy');
 
 /*
 |--------------------------------------------------------------------------

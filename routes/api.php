@@ -140,9 +140,9 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     Route::put('payment/switch_status/{status_id}/{id}', 'App\Http\Controllers\API\PaymentController@switchStatus')->name('payment.api.switch_status');
 
     // Functions created directly here
-    Route::get('about_subject/about_app', function () {
+    Route::get('about_subject/about_party', function () {
         $baseController = new BaseController();
-        $legal_info_subject = LegalInfoSubject::where('subject_name', 'L\'application ACR')->first();
+        $legal_info_subject = LegalInfoSubject::where('subject_name', 'A propos du parti ACR')->first();
 
         if (is_null($legal_info_subject)) {
             return $baseController->handleError(__('notifications.find_legal_info_subject_404'));
@@ -151,9 +151,9 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
         return $baseController->handleResponse(new ResourcesLegalInfoSubject($legal_info_subject), __('notifications.find_legal_info_subject_success'));
 
     });
-    Route::get('about_subject/about_party', function () {
+    Route::get('about_subject/about_app', function () {
         $baseController = new BaseController();
-        $legal_info_subject = LegalInfoSubject::where('subject_name', 'A propos du parti ACR')->first();
+        $legal_info_subject = LegalInfoSubject::where('subject_name', 'L\'application ACR')->first();
 
         if (is_null($legal_info_subject)) {
             return $baseController->handleError(__('notifications.find_legal_info_subject_404'));
