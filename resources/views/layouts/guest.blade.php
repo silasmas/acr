@@ -508,7 +508,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 mb-3 mb-md-0 text-center text-md-start text-secondary">
-                        &copy; <a href="{{ route('about.party') }}" class="text-info">ACR</a> @lang('miscellaneous.all_right_reserved')
+                        &copy; <a href="{{ route('about.home') }}" class="text-info">ACR</a> @lang('miscellaneous.all_right_reserved')
                     </div>
                     <div class="col-md-6 text-center text-md-end text-secondary">
                         Designed By <a href="https://www.silasdev.com" class="text-info">SILASDEV</a>

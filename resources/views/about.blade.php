@@ -3,7 +3,6 @@
 @section('guest-content')
 
         <!-- Page Header Start -->
-    @if (Route::is('about.home'))        
         <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s" style="background: linear-gradient(rgba(25, 29, 35, .6), rgba(45, 62, 88, 0.6)), url({{ asset('assets/img/gallery/gallery-8.png') }}) top center no-repeat; background-size: cover;">
             <div class="container text-center py-5">
                 <h1 class="display-3 text-white mb-4 animated slideInDown">@lang('miscellaneous.public.about.title')</h1>
@@ -15,104 +14,93 @@
                 </nav>
             </div>
         </div>
-    @endif
-
         <!-- Page Header End -->
 
-        <!-- About Start -->
+        <!-- About party Start -->
         <div class="container-xxl py-4">
             <div class="container">
-                <div class="row g-5 align-items-end">
-                    <div class="col-lg-6">
-                        <div class="row g-2">
-                            <div class="col-6 position-relative wow fadeIn" data-wow-delay="0.7s">
-                                <div class="about-experience acr-bg-yellow-transparent p-4 rounded text-center">
-                                    <h1 class="display-3 fw-bold mb-1">
-                                        <span class="acr-text-red-2">A</span><span class="acr-text-yellow">C</span><span class="acr-text-blue">R</span>
-                                    </h1>
-                                    <p class="acr-line-height-1_4 m-0">@lang('miscellaneous.public.about.slogan')</p>
-                                </div>
-                            </div>
-                            <div class="col-6 wow fadeInUp" data-wow-delay="0.1s">
-                                <img class="img-fluid rounded" src="{{ asset('assets/img/about/about-1.png') }}">
-                            </div>
-                            <div class="col-6 wow fadeInUp" data-wow-delay="0.3s">
-                                <img class="img-fluid rounded" src="{{ asset('assets/img/about/about-2.png') }}">
-                            </div>
-                            <div class="col-6 wow fadeInUp" data-wow-delay="0.5s">
-                                <img class="img-fluid rounded" src="{{ asset('assets/img/about/about-3.png') }}">
-                            </div>
+                <div class="mx-auto text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <p class="section-title bg-white text-warning px-3">{{ $about_party->subject_name }}</p>
+                </div>
+
+    @foreach ($about_party->legal_info_titles as $info_title)
+        @if ($info_title->title == 'Les cadres du parti')
+                <div class="row py-4">
+            @foreach ($info_title->legal_info_contents as $info_content)
+                    <div class="col-lg-4 col-md-6 col-12 mx-auto mb-3 pe-2 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="team-item p-4 border border-default rounded shadow-0">
+                            <img class="img-fluid rounded mb-4" src="{{ $info_content->photo_url != null ? $info_content->photo_url : asset('assets/img/user.png') }}" alt="">
+                            <h5 class="text-black fw-bold">{{ $info_content->subtitle }}</h5>
+                            <p class="m-0 acr-line-height-1_4"><small class="m-0 small text-muted">{{ $info_content->content }}</small></p>
                         </div>
                     </div>
+            @endforeach
+                </div>
 
-                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <h5 class="section-title bg-white text-start acr-text-red-2 my-4 pe-3">@lang('miscellaneous.public.about.title')</h5>
-                        <h1 class="mb-4">@lang('miscellaneous.public.about.subtitle')</h1>
-                        <p class="mb-3">@lang('miscellaneous.public.about.description')</p>
+        @else
+                <h1 class="mt-3 fw-bold">{{ $info_title->title }}</h1>
 
-                        <div class="row g-5 mb-5">
-                            <div class="col-sm-6">
-                                <i class="bi bi-sun fs-1 acr-text-red-1"></i>
-                                <h5 class="mb-3 fw-bold">@lang('miscellaneous.public.about.comment.title1')</h5>
-                                <p class="m-0 small">@lang('miscellaneous.public.about.comment.content1')</p>
-                            </div>
-                            <div class="col-sm-6">
-                                <i class="bi bi-people fs-1 acr-text-red-1"></i>
-                                <h5 class="mb-3 fw-bold">@lang('miscellaneous.public.about.comment.title2')</h5>
-                                <p class="m-0 small">@lang('miscellaneous.public.about.comment.content2')</p>
-                            </div>
+            @foreach ($info_title->legal_info_contents as $info_content)
+                @if ($info_content->photo_url != null)
+                <div class="row">
+                    <div class="col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="bg-image">
+                            <img src="{{ $info_content->photo_url }}" alt="{{ $info_title->title }}" class="img-fluid rounded">
+                            <div class="mask"></div>
                         </div>
-
-                        <a class="btn btn-secondary rounded-pill py-3 px-5" href="{{ route('about.home') }}">@lang('miscellaneous.see_more')</a>
+                    </div>
+                    <div class="col-md-6 pe-2 wow fadeInUp" data-wow-delay="0.5s">
+                        <p class="mb-4"><pre class="fw-light">{{ $info_content->content }}</pre></p>
                     </div>
                 </div>
+                @else
+                <div class="row">
+                    <div class="col-12 pe-2 wow fadeInUp" data-wow-delay="0.3s">
+                        <p class="mb-4"><pre class="fw-light">{{ $info_content->content }}</pre></p>
+                    </div>
+                </div>
+                @endif
+            @endforeach                
+        @endif
+    @endforeach
+            </div>
+        </div>
+        <!-- About party End -->
+
+        <!-- About app Start -->
+        <div class="container-xxl py-5 border-top border-bottom border-default">
+            <div class="container">
+                <div class="mx-auto text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <p class="section-title bg-white acr-text-red-2 px-3">{{ $about_app->subject_name }}</p>
+                </div>
+
+    @foreach ($about_app->legal_info_titles as $info_title)
+                <h1 class="mt-3 fw-bold">{{ $info_title->title }}</h1>
+
+            @foreach ($info_title->legal_info_contents as $info_content)
+                @if ($info_content->photo_url != null)
+                <div class="row">
+                    <div class="col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="bg-image">
+                            <img src="{{ $info_content->photo_url }}" alt="{{ $info_title->title }}" class="img-fluid rounded">
+                            <div class="mask"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 pe-2 wow fadeInUp" data-wow-delay="0.5s">
+                        <p class="mb-4"><pre class="fw-light">{{ $info_content->content }}</pre></p>
+                    </div>
+                </div>
+                @else
+                <div class="row">
+                    <div class="col-12 pe-2 wow fadeInUp" data-wow-delay="0.3s">
+                        <p class="mb-4"><pre class="fw-light">{{ $info_content->content }}</pre></p>
+                    </div>
+                </div>
+                @endif
+            @endforeach
+    @endforeach
             </div>
         </div>
         <!-- About End -->
 
-        <!-- Why Us Start -->
-        <div class="container-xxl py-5">
-            <div class="container">
-                <div class="row g-5 align-items-center">
-                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <h5 class="section-title bg-white text-start acr-text-blue mb-4 pe-3">@lang('miscellaneous.public.about.why_us.title')</h5>
-                        <h1 class="mb-4">@lang('miscellaneous.public.about.why_us.subtitle')</h1>
-                        <p class="mb-4">@lang('miscellaneous.public.about.why_us.content')</p>
-                        <p><i class="fa fa-check acr-text-blue me-3"></i><strong>@lang('miscellaneous.public.about.why_us.item1')</strong>@lang('miscellaneous.colon_after_word') @lang('miscellaneous.public.about.why_us.item1_description')</p>
-                        <p><i class="fa fa-check acr-text-blue me-3"></i><strong>@lang('miscellaneous.public.about.why_us.item2')</strong>@lang('miscellaneous.colon_after_word') @lang('miscellaneous.public.about.why_us.item2_description')</p>
-                        <p><i class="fa fa-check acr-text-blue me-3"></i><strong>@lang('miscellaneous.public.about.why_us.item3')</strong>@lang('miscellaneous.colon_after_word') @lang('miscellaneous.public.about.why_us.item3_description')</p>
-                        <a class="btn btn-secondary rounded-pill py-3 px-5 mt-3" href="{{ route('about.home') }}">@lang('miscellaneous.see_more')</a>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <div class="rounded overflow-hidden">
-                            <div class="row g-0">
-                                <div class="col-sm-6 wow fadeIn" data-wow-delay="0.1s">
-                                    <div class="text-center acr-bg-blue-transparent py-5 px-4">
-                                        <img class="mb-4 opacity-75" src="{{ asset('assets/img/about/motto-1.png') }}" alt="@lang('miscellaneous.public.about.why_us.item1')" width="90">
-                                        <p class="m-0 fs-5 fw-semi-bold acr-text-blue text-uppercase">@lang('miscellaneous.public.about.why_us.item1')</p>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6 wow fadeIn" data-wow-delay="0.3s">
-                                    <div class="text-center acr-bg-blue py-5 px-4">
-                                        <img class="mb-4 opacity-75" src="{{ asset('assets/img/about/motto-2.png') }}" alt="@lang('miscellaneous.public.about.why_us.item2')</" width="90">
-                                        <p class="m-0 fs-5 fw-semi-bold text-white text-uppercase">@lang('miscellaneous.public.about.why_us.item2')</p>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6"></div>
-                                <div class="col-sm-6 wow fadeIn" data-wow-delay="0.5s">
-                                    <div class="text-center acr-bg-blue-transparent py-5 px-4">
-                                        <img class="mb-4 opacity-75" src="{{ asset('assets/img/about/motto-3.png') }}" alt="@lang('miscellaneous.public.about.why_us.item3')</" width="90">
-                                        <p class="m-0 fs-5 fw-semi-bold acr-text-blue text-uppercase">@lang('miscellaneous.public.about.why_us.item3')</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Why Us End -->
 @endsection
