@@ -489,6 +489,13 @@ return [
                 'item3' => 'Patriotisme',
                 'item3_description' => 'L\'amour de la patrie, au centre de nos décisions et initiatives.',
             ],
+            'other_links' => [
+                'title' => 'Autres liens',
+                'link1' => 'Conditions d\'utilisation',
+                'link2' => 'Politique de confidentialité',
+                'link3' => 'Centre d\'aide',
+                'link4' => 'FAQ'
+            ],
         ],
 
         // Help

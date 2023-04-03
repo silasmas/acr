@@ -489,6 +489,13 @@ return [
                 'item3' => 'Patriotism',
                 'item3_description' => 'Love of the fatherland, at the center of our decisions and initiatives.',
             ],
+            'other_links' => [
+                'title' => 'Other links',
+                'link1' => 'Terms of use',
+                'link2' => 'Privacy policy',
+                'link3' => 'Help center',
+                'link4' => 'FAQ'
+            ],
         ],
 
         // Help
