@@ -2,6 +2,23 @@
 
 @section('guest-content')
 
+        <!-- Page Header Start -->
+    @if (Route::is('about.home'))        
+        <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s" style="background: linear-gradient(rgba(25, 29, 35, .6), rgba(45, 62, 88, 0.6)), url({{ asset('assets/img/gallery/gallery-8.png') }}) top center no-repeat; background-size: cover;">
+            <div class="container text-center py-5">
+                <h1 class="display-3 text-white mb-4 animated slideInDown">@lang('miscellaneous.public.about.title')</h1>
+                <nav aria-label="breadcrumb animated slideInDown">
+                    <ol class="breadcrumb justify-content-center mb-0">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}" class="acr-text-yellow">@lang('miscellaneous.menu.home')</a></li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">@lang('miscellaneous.menu.public.about')</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    @endif
+
+        <!-- Page Header End -->
+
         <!-- About Start -->
         <div class="container-xxl py-4">
             <div class="container">
