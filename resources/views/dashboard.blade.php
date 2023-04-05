@@ -95,16 +95,40 @@
                                 <!-- #New Members ==================== -->
                                 <div class="bd bgc-white">
                                     <div class="layers">
-                                        <div class="layer w-100 pX-20 pT-20">
+                                        <div class="layer w-100 p-20">
                                             <h6 class="lh-1">@lang('miscellaneous.manager.home.new_members.title')</h6>
                                         </div>
-                                        <div class="layer p-20">
+                                        <div class="layer w-100">
+                                            <div class="table-responsive p-20">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="bdwT-0">@lang('miscellaneous.names')</th>
+                                                            <th class="bdwT-0">@lang('miscellaneous.phone')</th>
+                                                            <th class="bdwT-0">@lang('miscellaneous.admin.miscellaneous.status.title')</th>
+                                                            <th class="bdwT-0">#</th>
+                                                        </tr>
+                                                    </thead>
+
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="fw-600">Natasha Romanov</td>
+                                                            <td>+3753462008</td>
+                                                            <td><span class="badge bgc-orange-50 c-orange-700 p-10 lh-0 tt-c rounded-pill">En attente</span></td>
+                                                            <td>
+                                                                <div class="form-check form-switch">
+                                                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                                                                    <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
-                                        <div class="layer bdT pX-20 pY-10 w-100 text-end">
-                                            <a href="{{ route('party.member.home') }}" class="btn acr-btn-outline-blue rounded-pill shadow-0" style="text-transform: inherit!important">
-                                                @lang('miscellaneous.see_more') <i class="ti-angle-right align-middle mL-5"></i>
-                                            </a>
-                                        </div>
+                                    </div>
+                                    <div class="ta-c bdT w-100 p-20">
+                                        <a href="#">Check all the sales</a>
                                     </div>
                                 </div>
                             </div>

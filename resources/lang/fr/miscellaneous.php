@@ -40,6 +40,10 @@ return [
     'reset' => 'Réinitialiser',
     'open' => 'Ouvrir',
     'close' => 'Fermer',
+    'activate' => 'Activer',
+    'deactivate' => 'Désactiver',
+    'lock' => 'Bloquer',
+    'unlock' => 'Débloquer',
     'search' => 'Rechercher ...',
     'mark_all_read' => 'Tout marquer comme lue',
     'empty_list' => 'La liste est vide',
@@ -188,12 +192,14 @@ return [
     'register_company_description' => 'Inscrivez-vous en tant qu\'administrateur puis enregistrez votre société fournisseur d\'électricité que vous allez gérer.',
     'register_customer_description' => 'Après inscription, si vous voulez recevoir régulièrement vos factures d\'électricité, vous devrez donner votre code et le nom complet par lequel votre fournisseur vous reconnait. Sinon, vous pouvez déjà commencer à acheter vos cartes prépayées virtuelles.',
     'serial_number' => 'N&deg; de série',
+    'names' => 'Noms',
     'firstname' => 'Prénom',
     'lastname' => 'Post-nom',
     'surname' => 'Nom',
     'gender_title' => 'Sexe',
     'gender1' => 'Homme',
     'gender2' => 'Femme',
+    'birth_city' => 'Ville de naissance',
     'birth_date' => [
         'label' => 'Date de naissance',
         'day' => 'Jour',
@@ -391,6 +397,7 @@ return [
             // New members
             'new_members' => [
                 'title' => 'Nouveaux membres',
+                'link' => 'Voir tous les membres',
             ],
         ],
         'info' => [

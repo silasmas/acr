@@ -617,7 +617,7 @@
         </div>
 
         <!-- ### $App Screen Footer ### -->
-        <footer class="bdT ta-c p-30 lh-0 fsz-sm c-grey-600">
+        <footer class="bdT ta-c p-30 lh-0 c-grey-600">
             <span>&copy; <a href="{{ route('about.home') }}" class="text-info">ACR</a> @lang('miscellaneous.all_right_reserved')</span>
         </footer>
     </body>

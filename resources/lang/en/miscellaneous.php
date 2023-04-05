@@ -40,6 +40,10 @@ return [
     'reset' => 'Reset',
     'open' => 'Open',
     'close' => 'Close',
+    'activate' => 'Activate',
+    'deactivate' => 'Deactivate',
+    'lock' => 'Lock',
+    'unlock' => 'Unlock',
     'search' => 'Search...',
     'mark_all_read' => 'Mark all as read',
     'empty_list' => 'The list is empty',
@@ -188,12 +192,14 @@ return [
     'register_company_description' => 'Register as an administrator then register your electricity provider company that you will manage.',
     'register_customer_description' => 'After registration, if you want to receive your electricity invoices regularly, you will need to give your code and the full name by which your provider recognize. Otherwise, you can already start buying your virtual prepaid cards.',
     'serial_number' => 'Serial number',
+    'names' => 'Names',
     'firstname' => 'First name',
     'lastname' => 'Last name',
     'surname' => 'Surname',
     'gender_title' => 'Gender',
     'gender1' => 'Male',
     'gender2' => 'Female',
+    'birth_city' => 'Birth city',
     'birth_date' => [
         'label' => 'Birth date',
         'day' => 'Day',
@@ -391,6 +397,7 @@ return [
             // New members
             'new_members' => [
                 'title' => 'New members',
+                'link' => 'View all members',
             ],
         ],
         'info' => [
