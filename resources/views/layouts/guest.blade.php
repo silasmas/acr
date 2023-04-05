@@ -53,7 +53,7 @@
 @endif
 
 @if (Route::is('account') || Route::is('account.update.password'))
-            @lang('menu.account_settings')
+            @lang('miscellaneous.menu.account_settings')
 @endif
 
 @if (Route::is('message.inbox'))

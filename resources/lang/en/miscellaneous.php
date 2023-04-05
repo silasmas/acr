@@ -387,6 +387,11 @@ return [
     'manager' => [
         'home' => [
             'title' => 'Manager area',
+
+            // New members
+            'new_members' => [
+                'title' => 'New members',
+            ],
         ],
         'info' => [
             'title' => 'Informations',
@@ -404,6 +409,7 @@ return [
 
     // ===== PUBLIC PAGES
     'public' => [
+        // Footer
         'footer' => [
             'useful_links' => 'Useful links',
             'head_office' => [

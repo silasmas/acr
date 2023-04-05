@@ -1,6 +1,6 @@
-@extends('layouts.errors')
+@extends('layouts.guest')
 
-@section('errors-content')
+@section('guest-content')
 
         <!-- Account Start -->
         <div class="container-xxl py-4 wow fadeInUp" data-wow-delay="0.1s">

@@ -68,7 +68,7 @@
         <title>
 {{-- Titles of all roles --}}
 @if (Route::is('account') || Route::is('account.update.password'))
-            @lang('menu.account_settings')
+            @lang('miscellaneous.menu.account_settings')
 @endif
 
 @if (Route::is('message.inbox'))
@@ -607,14 +607,18 @@
                     </div>
                 </div>
 
+                <!-- ### $App Screen Content ### -->
+                <main class="main-content bgc-grey-100">
+                    <div id="mainContent">
 @yield('app-content')
-
+                    </div>
+                </main>
             </div>
         </div>
 
         <!-- ### $App Screen Footer ### -->
         <footer class="bdT ta-c p-30 lh-0 fsz-sm c-grey-600">
-            <span>&copy; <a href="{{ route('about.party') }}" class="text-info">ACR</a> @lang('miscellaneous.all_right_reserved')</span>
+            <span>&copy; <a href="{{ route('about.home') }}" class="text-info">ACR</a> @lang('miscellaneous.all_right_reserved')</span>
         </footer>
     </body>
 </html>

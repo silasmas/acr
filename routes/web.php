@@ -142,7 +142,6 @@ Route::get('/donate', 'App\Http\Controllers\Web\HomeController@donate')->name('d
 Route::post('/donate', 'App\Http\Controllers\Web\HomeController@registerOffer');
 // Account
 Route::get('/account/offers/{amount}/{currency}/{user_id}', 'App\Http\Controllers\Web\AccountController@payWithCard')->whereNumber(['amount', 'user_id'])->name('account.pay_with_card');
-Route::get('/account/offers', 'App\Http\Controllers\Web\AccountController@offers')->name('account.offers');
-Route::get('/account/offer_sent/{amount}/{user_id}/{code}', 'App\Http\Controllers\Web\AccountController@offerSent')->whereNumber(['offer_type_id', 'amount', 'user_id', 'code'])->name('account.offer_sent');
+Route::get('/account/offer_sent/{amount}/{currency}/{code}/?user_id={user_id}', 'App\Http\Controllers\Web\AccountController@offerSent')->whereNumber(['offer_type_id', 'amount', 'user_id', 'code'])->name('account.offer_sent');
 
 require __DIR__.'/auth.php';
