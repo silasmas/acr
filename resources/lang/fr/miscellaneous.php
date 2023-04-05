@@ -510,6 +510,11 @@ return [
             'details' => 'Détails sur l\'info',
         ],
 
+        // Works
+        'works' => [
+            'title' => 'Nos œuvres',
+        ],
+
         // Help
         'help' => [
             'title' => 'Centre d\'aide',
