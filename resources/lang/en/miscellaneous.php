@@ -405,18 +405,21 @@ return [
             // Recent news
             'recent_news' => [
                 'title' => 'Recent news',
+                'add_new' => 'Add a news',
                 'link' => 'View all news',
             ],
 
             // Recent communiques
             'recent_communiques' => [
                 'title' => 'Recent communiques',
+                'add_new' => 'Add a communique',
                 'link' => 'View all communiques',
             ],
 
             // Recent events
             'recent_events' => [
                 'title' => 'Recent events',
+                'add_new' => 'Add an event',
                 'link' => 'View all events',
             ],
         ],

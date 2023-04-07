@@ -13,7 +13,7 @@
                             <div class="masonry-sizer col-md-6"></div>
                             <div class="masonry-item col-lg-6">
                                 <div class="row gap-20">
-                                    <!-- #Toatl Visits ==================== -->
+                                    <!-- #All members ==================== -->
                                     <div class="col-md-6">
                                         <div class="layers bd bgc-white p-20">
                                             <div class="layer w-100 mB-10">
@@ -32,19 +32,19 @@
                                         </div>
                                     </div>
 
-                                    <!-- #Unique Visitors ==================== -->
+                                    <!-- #Members who left ==================== -->
                                     <div class="col-md-6">
                                         <div class="layers bd bgc-white p-20">
                                             <div class="layer w-100 mB-10">
-                                                <h6 class="lh-1">Unique Visitor</h6>
+                                                <h6 class="lh-1">@lang('miscellaneous.manager.home.members_who_left')</h6>
                                             </div>
                                             <div class="layer w-100">
                                                 <div class="peers ai-sb fxw-nw">
                                                     <div class="peer peer-greed">
-                                                        <span id="sparklinedash3"></span>
+                                                        <span id="sparklinedash2"></span>
                                                     </div>
                                                     <div class="peer">
-                                                        <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-purple-50 c-purple-500">~12%</span>
+                                                        <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-purple-50 c-purple-500">{{ formatIntegerNumber(count($deactivated_users)) }}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -106,11 +106,34 @@
                                 <!-- #Recent news ==================== -->
                                 <div class="bd bgc-white">
                                     <div class="layers">
-                                        <div class="layer w-100 pX-20 pT-20">
+                                        <div class="layer d-flex w-100 pX-20 pT-20 justify-content-between">
                                             <h6 class="lh-1 m-0">@lang('miscellaneous.manager.home.recent_news.title')</h6>
+
+                                            <a href="{{ route('party.infos.entity.new', ['entity' => 'news']) }}" class="position-relative" style="top: -8px" title="@lang('miscellaneous.manager.home.recent_news.add_new')" data-bs-toggle="tooltip">
+                                                <span class="bi bi-plus-circle-fill fs-3 me-1 align-middle"></span>@lang('miscellaneous.add')
+                                            </a>
                                         </div>
 
-                                        <div class="layer w-100">
+                                        <div class="layer w-100 pX-20 pT-10 pB-20">
+                                            <div class="list-group">
+                                                <a href="#" class="list-group-item list-group-item-action">
+                                                    <div class="row">
+                                                        <div class="col-lg-2 col-md-1 col-3">
+                                                            <div class="d-flex justify-content-center h-100 align-items-center acr-bg-gray">
+                                                                <span class="bi bi-image"></span>
+                                                            </div>
+                                                            {{-- <div class="bg-image">
+                                                                <img src="{{ asset('assets/img/pubs/pub-1.jpg') }}" alt="" class="img-fluid rounded-3">
+                                                                <div class="mask"></div>
+                                                            </div> --}}
+                                                        </div>
+                                                        <div class="col-lg-10 col-md-11 col-9">
+                                                            <h5 class="h5 m-0 fw-bold text-truncate">Lorem ipsum dolor sit amet</h5>
+                                                            <p class="m-0 text-muted text-truncate">Lorem ipsum est un dkium popataro ritoc</p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="ta-c bdT w-100 p-20">
@@ -123,8 +146,12 @@
                                 <!-- #Recent communiques ==================== -->
                                 <div class="bd bgc-white">
                                     <div class="layers">
-                                        <div class="layer w-100 pX-20 pT-20">
+                                        <div class="layer d-flex w-100 pX-20 pT-20 justify-content-between">
                                             <h6 class="lh-1 m-0">@lang('miscellaneous.manager.home.recent_communiques.title')</h6>
+
+                                            <a href="{{ route('party.infos.entity.new', ['entity' => 'communique']) }}" class="position-relative" style="top: -8px" title="@lang('miscellaneous.manager.home.recent_communiques.add_new')" data-bs-toggle="tooltip">
+                                                <span class="bi bi-plus-circle-fill fs-3 me-1 align-middle"></span>@lang('miscellaneous.add')
+                                            </a>
                                         </div>
 
                                         <div class="layer w-100">
@@ -135,31 +162,17 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="masonry-item col-lg-6">
-                                <!-- #Recent communiques ==================== -->
-                                <div class="bd bgc-white">
-                                    <div class="layers">
-                                        <div class="layer w-100 pX-20 pT-20">
-                                            <h6 class="lh-1 m-0">@lang('miscellaneous.manager.home.recent_communiques.title')</h6>
-                                        </div>
-
-                                        <div class="layer w-100">
-                                        </div>
-                                    </div>
-                                    <div class="ta-c bdT w-100 p-20">
-                                        <a href="{{ route('party.member.home') }}">@lang('miscellaneous.manager.home.recent_communiques.link')</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
                             <div class="masonry-item col-lg-6">
                                 <!-- #Recent events ==================== -->
                                 <div class="bd bgc-white">
                                     <div class="layers">
-                                        <div class="layer w-100 pX-20 pT-20">
+                                        <div class="layer d-flex w-100 pX-20 pT-20 justify-content-between">
                                             <h6 class="lh-1 m-0">@lang('miscellaneous.manager.home.recent_events.title')</h6>
+
+                                            <a href="{{ route('party.infos.entity.new', ['entity' => 'event']) }}" class="position-relative" style="top: -8px" title="@lang('miscellaneous.manager.home.recent_events.add_new')" data-bs-toggle="tooltip">
+                                                <span class="bi bi-plus-circle-fill fs-3 me-1 align-middle"></span>@lang('miscellaneous.add')
+                                            </a>
                                         </div>
 
                                         <div class="layer w-100">

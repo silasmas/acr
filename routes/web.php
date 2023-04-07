@@ -125,6 +125,7 @@ Route::get('/managers/new', 'App\Http\Controllers\Web\PartyController@managerAdd
 Route::get('/managers/{id}', 'App\Http\Controllers\Web\PartyController@managerDatas')->whereNumber('id')->name('party.manager.datas');
 Route::get('/infos', 'App\Http\Controllers\Web\PartyController@infos')->name('party.infos');
 Route::get('/infos/{entity}', 'App\Http\Controllers\Web\PartyController@infoEntity')->name('party.infos.entity');
+Route::get('/infos/{entity}/new', 'App\Http\Controllers\Web\PartyController@infoEntityDatas')->name('party.infos.entity.new');
 Route::get('/infos/{entity}/{id}', 'App\Http\Controllers\Web\PartyController@infoEntityDatas')->whereNumber('id')->name('party.infos.entity.datas');
 
 /*

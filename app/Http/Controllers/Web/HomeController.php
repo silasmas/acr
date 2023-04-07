@@ -68,6 +68,12 @@ class HomeController extends Controller
             $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
             // Select all users API URL
             $url_users = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user';
+            // Select users by stauts "Désactivé" API URL
+            $url_deactivated_users = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/find_by_status/5';
+            // Select news by type ID API URL
+            $url_news = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/news/select_by_type/5';
+            $url_communiques = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/news/select_by_type/6';
+            $url_events = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/news/select_by_type/7';
 
             try {
                 // Select current user API response
@@ -105,6 +111,28 @@ class HomeController extends Controller
                     'verify'  => false
                 ]);
                 $users = json_decode($response_users->getBody(), false);
+                // Select users by stauts "Désactivé" API response
+                $response_deactivated_users = $this::$client->request('GET', $url_deactivated_users, [
+                    'headers' => $this::$headers,
+                    'verify'  => false
+                ]);
+                $deactivated_users = json_decode($response_deactivated_users->getBody(), false);
+                // // Select news by type ID API response
+                $response_news = $this::$client->request('GET', $url_news, [
+                    'headers' => $this::$headers,
+                    'verify'  => false
+                ]);
+                $news = json_decode($response_news->getBody(), false);
+                $response_communiques = $this::$client->request('GET', $url_communiques, [
+                    'headers' => $this::$headers,
+                    'verify'  => false
+                ]);
+                $communiques = json_decode($response_communiques->getBody(), false);
+                $response_events = $this::$client->request('GET', $url_events, [
+                    'headers' => $this::$headers,
+                    'verify'  => false
+                ]);
+                $events = json_decode($response_events->getBody(), false);
 
                 if (isset(request()->user_role)) {
                     if (request()->user_role == 'admin') {
@@ -114,7 +142,11 @@ class HomeController extends Controller
                             'messages' => $messages->data,
                             'offer_types' => $offer_type->data,
                             'transaction_types' => $transaction_type->data,
-                            'users' => $users->data
+                            'users' => $users->data,
+                            'deactivated_users' => $deactivated_users->data,
+                            'news' => $news->data,
+                            'communiques' => $communiques->data,
+                            'events' => $events->data
                         ]);
 
                     } else if (request()->user_role == 'developer') {
@@ -133,7 +165,11 @@ class HomeController extends Controller
                             'messages' => $messages->data,
                             'offer_types' => $offer_type->data,
                             'transaction_types' => $transaction_type->data,
-                            'users' => $users->data
+                            'users' => $users->data,
+                            'deactivated_users' => $deactivated_users->data,
+                            'news' => $news->data,
+                            'communiques' => $communiques->data,
+                            'events' => $events->data
                         ]);
 
                     } else {
@@ -153,7 +189,7 @@ class HomeController extends Controller
                         'messages' => $messages->data,
                         'offer_types' => $offer_type->data,
                         'transaction_types' => $transaction_type->data
-                ]);
+                    ]);
                 }
 
             } catch (ClientException $e) {
@@ -219,6 +255,12 @@ class HomeController extends Controller
         $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
         // Select all users API URL
         $url_users = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user';
+        // Select users by stauts "Désactivé" API URL
+        $url_deactivated_users = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/find_by_status/5';
+        // Select news by type ID API URL
+        $url_news = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/news/select_by_type/5';
+        $url_communiques = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/news/select_by_type/6';
+        $url_events = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/news/select_by_type/7';
 
         try {
             // Select current user API response
@@ -239,11 +281,37 @@ class HomeController extends Controller
                 'verify'  => false
             ]);
             $users = json_decode($response_users->getBody(), false);
+            // Select users by stauts "Désactivé" API response
+            $response_deactivated_users = $this::$client->request('GET', $url_deactivated_users, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $deactivated_users = json_decode($response_deactivated_users->getBody(), false);
+            // // Select news by type ID API response
+            $response_news = $this::$client->request('GET', $url_news, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $news = json_decode($response_news->getBody(), false);
+            $response_communiques = $this::$client->request('GET', $url_communiques, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $communiques = json_decode($response_communiques->getBody(), false);
+            $response_events = $this::$client->request('GET', $url_events, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $events = json_decode($response_events->getBody(), false);
 
             return view('dashboard', [
                 'current_user' => $user->data,
                 'messages' => $messages->data,
-                'users' => $users->data
+                'users' => $users->data,
+                'deactivated_users' => $deactivated_users->data,
+                'news' => $news->data,
+                'communiques' => $communiques->data,
+                'events' => $events->data
             ]);
 
         } catch (ClientException $e) {

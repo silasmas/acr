@@ -405,18 +405,21 @@ return [
             // Recent news
             'recent_news' => [
                 'title' => 'Actualités récentes',
+                'add_new' => 'Ajouter une actualité',
                 'link' => 'Voir toutes les actualités',
             ],
 
             // Recent communiques
             'recent_communiques' => [
                 'title' => 'Communiqués récents',
+                'add_new' => 'Ajouter un communiqué',
                 'link' => 'Voir tous les communiqués',
             ],
 
             // Recent events
             'recent_events' => [
                 'title' => 'Evénements récents',
+                'add_new' => 'Ajouter un événement',
                 'link' => 'Voir tous les événements',
             ],
         ],
