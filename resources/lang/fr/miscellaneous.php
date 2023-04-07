@@ -393,11 +393,31 @@ return [
     'manager' => [
         'home' => [
             'title' => 'Espace du manager',
+            'total_membership' => 'Totalité des membres',
+            'members_who_left' => 'Membres qui ont quitté',
 
             // New members
             'new_members' => [
                 'title' => 'Nouveaux membres',
                 'link' => 'Voir tous les membres',
+            ],
+
+            // Recent news
+            'recent_news' => [
+                'title' => 'Actualités récentes',
+                'link' => 'Voir toutes les actualités',
+            ],
+
+            // Recent communiques
+            'recent_communiques' => [
+                'title' => 'Communiqués récents',
+                'link' => 'Voir tous les communiqués',
+            ],
+
+            // Recent events
+            'recent_events' => [
+                'title' => 'Evénements récents',
+                'link' => 'Voir tous les événements',
             ],
         ],
         'info' => [

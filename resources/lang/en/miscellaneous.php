@@ -393,11 +393,31 @@ return [
     'manager' => [
         'home' => [
             'title' => 'Manager area',
+            'total_membership' => 'Total membership',
+            'members_who_left' => 'Members who left',
 
             // New members
             'new_members' => [
                 'title' => 'New members',
                 'link' => 'View all members',
+            ],
+
+            // Recent news
+            'recent_news' => [
+                'title' => 'Recent news',
+                'link' => 'View all news',
+            ],
+
+            // Recent communiques
+            'recent_communiques' => [
+                'title' => 'Recent communiques',
+                'link' => 'View all communiques',
+            ],
+
+            // Recent events
+            'recent_events' => [
+                'title' => 'Recent events',
+                'link' => 'View all events',
             ],
         ],
         'info' => [

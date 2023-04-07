@@ -493,6 +493,19 @@ class UserController extends BaseController
     }
 
     /**
+     * Search a user by his email / phone / national number.
+     *
+     * @param  int $status_id
+     * @return \Illuminate\Http\Response
+     */
+    public function findByStatus($status_id)
+    {
+        $users = User::where('status_id', $status_id)->orderByDesc('created_at')->get();
+
+        return $this->handleResponse(ResourcesUser::collection($users), __('notifications.find_all_users_success'));
+    }
+
+    /**
      * Handle an incoming authentication request.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -759,8 +772,8 @@ class UserController extends BaseController
 
         // Clean "avatars" directory
         $file = new Filesystem;
-        $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $inputs['user_id'] . '/avatar');
-        // $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/storage/images/users/' . $inputs['user_id'] . '/avatar');
+        // $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $inputs['user_id'] . '/avatar');
+        $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/storage/images/users/' . $inputs['user_id'] . '/avatar');
         // Create image URL
 		$image_url = 'images/users/' . $inputs['user_id'] . '/avatar/' . Str::random(50) . '.png';
 

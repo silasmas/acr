@@ -11,13 +11,13 @@
     @if ($current_user->role_user->role->role_name == 'Manager')
                         <div class="row gap-20 masonry pos-r">
                             <div class="masonry-sizer col-md-6"></div>
-                            <div class="masonry-item w-100">
+                            <div class="masonry-item col-lg-6">
                                 <div class="row gap-20">
                                     <!-- #Toatl Visits ==================== -->
-                                    <div class="col-md-3">
+                                    <div class="col-md-6">
                                         <div class="layers bd bgc-white p-20">
                                             <div class="layer w-100 mB-10">
-                                                <h6 class="lh-1">Total Visits</h6>
+                                                <h6 class="lh-1">@lang('miscellaneous.manager.home.total_membership')</h6>
                                             </div>
                                             <div class="layer w-100">
                                                 <div class="peers ai-sb fxw-nw">
@@ -25,26 +25,7 @@
                                                         <span id="sparklinedash"></span>
                                                     </div>
                                                     <div class="peer">
-                                                        <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-green-50 c-green-500">+10%</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- #Total Page Views ==================== -->
-                                    <div class="col-md-3">
-                                        <div class="layers bd bgc-white p-20">
-                                            <div class="layer w-100 mB-10">
-                                                <h6 class="lh-1">Total Page Views</h6>
-                                            </div>
-                                            <div class="layer w-100">
-                                                <div class="peers ai-sb fxw-nw">
-                                                    <div class="peer peer-greed">
-                                                        <span id="sparklinedash2"></span>
-                                                    </div>
-                                                    <div class="peer">
-                                                        <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-red-50 c-red-500">-7%</span>
+                                                        <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-green-50 c-green-500">{{ formatIntegerNumber(count($users)) }}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -52,7 +33,7 @@
                                     </div>
 
                                     <!-- #Unique Visitors ==================== -->
-                                    <div class="col-md-3">
+                                    <div class="col-md-6">
                                         <div class="layers bd bgc-white p-20">
                                             <div class="layer w-100 mB-10">
                                                 <h6 class="lh-1">Unique Visitor</h6>
@@ -64,25 +45,6 @@
                                                     </div>
                                                     <div class="peer">
                                                         <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-purple-50 c-purple-500">~12%</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- #Bounce Rate ==================== -->
-                                    <div class="col-md-3">
-                                        <div class="layers bd bgc-white p-20">
-                                            <div class="layer w-100 mB-10">
-                                                <h6 class="lh-1">Bounce Rate</h6>
-                                            </div>
-                                            <div class="layer w-100">
-                                                <div class="peers ai-sb fxw-nw">
-                                                    <div class="peer peer-greed">
-                                                        <span id="sparklinedash4"></span>
-                                                    </div>
-                                                    <div class="peer">
-                                                        <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-blue-50 c-blue-500">33%</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -113,7 +75,8 @@
 
                                                     <tbody>
         @foreach ($users as $user)
-            @if ($user->role_user->role->role_name == 'Membre Sympathisant' AND $user->status->status_name != 'Activé')
+            @if ($user->role_user->role->role_name == 'Membre Sympathisant')
+                @if (count($users) < 6)
                                                         <tr>
                                                             <td class="fw-600"><p class="m-0 text-truncate"><a href="{{ route('party.member.datas', ['id' => $user->id]) }}">{{ $user->firstname }}</a></p></td>
                                                             <td>{{ $user->phone }}</td>
@@ -125,6 +88,7 @@
                                                                 </div>
                                                             </td>
                                                         </tr>
+                @endif
             @endif
         @endforeach
                                                     </tbody>
@@ -134,6 +98,75 @@
                                     </div>
                                     <div class="ta-c bdT w-100 p-20">
                                         <a href="{{ route('party.member.home') }}">@lang('miscellaneous.manager.home.new_members.link')</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="masonry-item col-lg-6">
+                                <!-- #Recent news ==================== -->
+                                <div class="bd bgc-white">
+                                    <div class="layers">
+                                        <div class="layer w-100 pX-20 pT-20">
+                                            <h6 class="lh-1 m-0">@lang('miscellaneous.manager.home.recent_news.title')</h6>
+                                        </div>
+
+                                        <div class="layer w-100">
+                                        </div>
+                                    </div>
+                                    <div class="ta-c bdT w-100 p-20">
+                                        <a href="{{ route('party.member.home') }}">@lang('miscellaneous.manager.home.recent_news.link')</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="masonry-item col-lg-6">
+                                <!-- #Recent communiques ==================== -->
+                                <div class="bd bgc-white">
+                                    <div class="layers">
+                                        <div class="layer w-100 pX-20 pT-20">
+                                            <h6 class="lh-1 m-0">@lang('miscellaneous.manager.home.recent_communiques.title')</h6>
+                                        </div>
+
+                                        <div class="layer w-100">
+                                        </div>
+                                    </div>
+                                    <div class="ta-c bdT w-100 p-20">
+                                        <a href="{{ route('party.member.home') }}">@lang('miscellaneous.manager.home.recent_communiques.link')</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="masonry-item col-lg-6">
+                                <!-- #Recent communiques ==================== -->
+                                <div class="bd bgc-white">
+                                    <div class="layers">
+                                        <div class="layer w-100 pX-20 pT-20">
+                                            <h6 class="lh-1 m-0">@lang('miscellaneous.manager.home.recent_communiques.title')</h6>
+                                        </div>
+
+                                        <div class="layer w-100">
+                                        </div>
+                                    </div>
+                                    <div class="ta-c bdT w-100 p-20">
+                                        <a href="{{ route('party.member.home') }}">@lang('miscellaneous.manager.home.recent_communiques.link')</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                            <div class="masonry-item col-lg-6">
+                                <!-- #Recent events ==================== -->
+                                <div class="bd bgc-white">
+                                    <div class="layers">
+                                        <div class="layer w-100 pX-20 pT-20">
+                                            <h6 class="lh-1 m-0">@lang('miscellaneous.manager.home.recent_events.title')</h6>
+                                        </div>
+
+                                        <div class="layer w-100">
+                                        </div>
+                                    </div>
+                                    <div class="ta-c bdT w-100 p-20">
+                                        <a href="{{ route('party.member.home') }}">@lang('miscellaneous.manager.home.recent_events.link')</a>
                                     </div>
                                 </div>
                             </div>
