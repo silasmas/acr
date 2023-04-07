@@ -538,12 +538,6 @@ class UserController extends BaseController
                 return $this->handleError($inputs['password'], __('auth.password'), 400);
             }
 
-            // update "last_connection" column
-            $user->update([
-                'last_connection' => now(),
-                'updated_at' => now()
-            ]);
-
             return $this->handleResponse(new ResourcesUser($user), __('notifications.find_user_success'));
 
         } else {
@@ -556,12 +550,6 @@ class UserController extends BaseController
             if (!Hash::check($inputs['password'], $user->password)) {
                 return $this->handleError($inputs['password'], __('auth.password'), 400);
             }
-
-            // update "last_connection" column
-            $user->update([
-                'last_connection' => now(),
-                'updated_at' => now()
-            ]);
 
             return $this->handleResponse(new ResourcesUser($user), __('notifications.find_user_success'));
         }
@@ -772,8 +760,8 @@ class UserController extends BaseController
 
         // Clean "avatars" directory
         $file = new Filesystem;
-        // $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $inputs['user_id'] . '/avatar');
-        $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/storage/images/users/' . $inputs['user_id'] . '/avatar');
+        $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $inputs['user_id'] . '/avatar');
+        // $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/storage/images/users/' . $inputs['user_id'] . '/avatar');
         // Create image URL
 		$image_url = 'images/users/' . $inputs['user_id'] . '/avatar/' . Str::random(50) . '.png';
 
