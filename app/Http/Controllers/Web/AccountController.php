@@ -86,7 +86,7 @@ class AccountController extends Controller
             ]);
             $transaction_type = json_decode($response_transaction_type->getBody(), false);
 
-            if ($user->data->role_users[0]->role->role_name != 'Administrateur' AND $user->data->role_users[0]->role->role_name != 'Développeur' AND $user->data->role_users[0]->role->role_name != 'Manager') {
+            if ($user->data->role_user->role->role_name != 'Administrateur' AND $user->data->role_user->role->role_name != 'Développeur' AND $user->data->role_user->role->role_name != 'Manager') {
                 return view('account', [
                     'current_user' => $user->data,
                     'countries' => $country->data,
@@ -107,7 +107,7 @@ class AccountController extends Controller
 
         } catch (ClientException $e) {
             // If the API returns some error, return to the page and display its message
-            if ($user->data->role_users[0]->role->role_name != 'Administrateur' AND $user->data->role_users[0]->role->role_name != 'Développeur' AND $user->data->role_users[0]->role->role_name != 'Manager') {
+            if ($user->data->role_user->role->role_name != 'Administrateur' AND $user->data->role_user->role->role_name != 'Développeur' AND $user->data->role_user->role->role_name != 'Manager') {
                 return view('dashboard.account', [
                     'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
                 ]);
@@ -171,7 +171,7 @@ class AccountController extends Controller
             ]);
             $transaction_type = json_decode($response_transaction_type->getBody(), false);
 
-            if ($user->data->role_users[0]->role->role_name != 'Administrateur' AND $user->data->role_users[0]->role->role_name != 'Développeur' AND $user->data->role_users[0]->role->role_name != 'Manager') {
+            if ($user->data->role_user->role->role_name != 'Administrateur' AND $user->data->role_user->role->role_name != 'Développeur' AND $user->data->role_user->role->role_name != 'Manager') {
                 return view('account', [
                     'current_user' => $user->data,
                     'countries' => $country->data,
@@ -191,7 +191,7 @@ class AccountController extends Controller
             }
 
         } catch (ClientException $e) {
-            if ($user->data->role_users[0]->role->role_name != 'Administrateur' AND $user->data->role_users[0]->role->role_name != 'Développeur' AND $user->data->role_users[0]->role->role_name != 'Manager') {
+            if ($user->data->role_user->role->role_name != 'Administrateur' AND $user->data->role_user->role->role_name != 'Développeur' AND $user->data->role_user->role->role_name != 'Manager') {
                 return view('account', [
                     'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
                 ]);
@@ -296,7 +296,7 @@ class AccountController extends Controller
                         'verify'  => false
                     ]);
 
-                    if ($user->data->role_users[0]->role->role_name != 'Administrateur' AND $user->data->role_users[0]->role->role_name != 'Développeur' AND $user->data->role_users[0]->role->role_name != 'Manager') {
+                    if ($user->data->role_user->role->role_name != 'Administrateur' AND $user->data->role_user->role->role_name != 'Développeur' AND $user->data->role_user->role->role_name != 'Manager') {
                         return view('account', [
                             'current_user' => $user->data,
                             'countries' => $country->data,
@@ -317,7 +317,7 @@ class AccountController extends Controller
 
                 } catch (ClientException $e) {
                     // If the API returns some error, return to the page and display its message
-                    if ($user->data->role_users[0]->role->role_name != 'Administrateur' AND $user->data->role_users[0]->role->role_name != 'Développeur' AND $user->data->role_users[0]->role->role_name != 'Manager') {
+                    if ($user->data->role_user->role->role_name != 'Administrateur' AND $user->data->role_user->role->role_name != 'Développeur' AND $user->data->role_user->role->role_name != 'Manager') {
                         return view('account', [
                             'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
                         ]);
@@ -344,7 +344,7 @@ class AccountController extends Controller
                         'verify'  => false
                     ]);
 
-                    if ($user->data->role_users[0]->role->role_name != 'Administrateur' AND $user->data->role_users[0]->role->role_name != 'Développeur' AND $user->data->role_users[0]->role->role_name != 'Manager') {
+                    if ($user->data->role_user->role->role_name != 'Administrateur' AND $user->data->role_user->role->role_name != 'Développeur' AND $user->data->role_user->role->role_name != 'Manager') {
                         return view('account', [
                             'current_user' => $user->data,
                             'countries' => $country->data,
@@ -365,7 +365,7 @@ class AccountController extends Controller
 
                 } catch (ClientException $e) {
                     // If the API returns some error, return to the page and display its message
-                    if ($user->data->role_users[0]->role->role_name != 'Administrateur' AND $user->data->role_users[0]->role->role_name != 'Développeur' AND $user->data->role_users[0]->role->role_name != 'Manager') {
+                    if ($user->data->role_user->role->role_name != 'Administrateur' AND $user->data->role_user->role->role_name != 'Développeur' AND $user->data->role_user->role->role_name != 'Manager') {
                         return view('account', [
                             'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
                         ]);
@@ -403,7 +403,7 @@ class AccountController extends Controller
                         'verify'  => false
                     ]);
 
-                    if ($user->data->role_users[0]->role->role_name != 'Administrateur' AND $user->data->role_users[0]->role->role_name != 'Développeur' AND $user->data->role_users[0]->role->role_name != 'Manager') {
+                    if ($user->data->role_user->role->role_name != 'Administrateur' AND $user->data->role_user->role->role_name != 'Développeur' AND $user->data->role_user->role->role_name != 'Manager') {
                         return view('account', [
                             'current_user' => $user->data,
                             'countries' => $country->data,
@@ -424,7 +424,7 @@ class AccountController extends Controller
 
                 } catch (ClientException $e) {
                     // If the API returns some error, return to the page and display its message
-                    if ($user->data->role_users[0]->role->role_name != 'Administrateur' AND $user->data->role_users[0]->role->role_name != 'Développeur' AND $user->data->role_users[0]->role->role_name != 'Manager') {
+                    if ($user->data->role_user->role->role_name != 'Administrateur' AND $user->data->role_user->role->role_name != 'Développeur' AND $user->data->role_user->role->role_name != 'Manager') {
                         return view('account', [
                             'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
                         ]);
@@ -439,7 +439,7 @@ class AccountController extends Controller
 
         } catch (ClientException $e) {
             // If the API returns some error, return to the page and display its message
-            if ($user->data->role_users[0]->role->role_name != 'Administrateur' AND $user->data->role_users[0]->role->role_name != 'Développeur' AND $user->data->role_users[0]->role->role_name != 'Manager') {
+            if ($user->data->role_user->role->role_name != 'Administrateur' AND $user->data->role_user->role->role_name != 'Développeur' AND $user->data->role_user->role->role_name != 'Manager') {
                 return view('account', [
                     'current_user' => $user->data
                 ]);

@@ -96,7 +96,7 @@
 @endif
 
 {{-- Admin titles --}}
-@if ($current_user->role_users[0]->role->role_name == 'Administrateur')
+@if ($current_user->role_user->role->role_name == 'Administrateur')
     @if (Route::is('admin') || request()->user_role == 'admin')
             @lang('miscellaneous.admin.home.title')
     @endif
@@ -164,7 +164,7 @@
 @endif
 
 {{-- Developer titles --}}
-@if ($current_user->role_users[0]->role->role_name == 'Développeur')
+@if ($current_user->role_user->role->role_name == 'Développeur')
     @if (Route::is('developer') || request()->user_role == 'developer')
             @lang('miscellaneous.developer.home.title')
     @endif
@@ -175,7 +175,7 @@
 @endif
 
 {{-- Manager titles --}}
-@if ($current_user->role_users[0]->role->role_name == 'Manager')
+@if ($current_user->role_user->role->role_name == 'Manager')
     @if (Route::is('manager') || request()->user_role == 'manager')
             @lang('miscellaneous.manager.home.title')
     @endif
@@ -237,7 +237,7 @@
                     <div class="sidebar-logo bg-light" style="height: 74px;">
                         <div class="peers ai-c fxw-nw">
                             <div class="peer peer-greed">
-@if ($current_user->role_users[0]->role->role_name == 'Administrateur')
+@if ($current_user->role_user->role->role_name == 'Administrateur')
                                 <a class="sidebar-link td-n" href="{{ route('admin') }}">
                                     <div class="peers ai-c fxw-nw">
                                         <div class="peer">
@@ -246,13 +246,13 @@
                                             </div>
                                         </div>
                                         <div class="peer peer-greed p-0">
-                                            <h3 class="h3 logo-text fw-bold"><span class="acr-text-red-2">A</span><span class="acr-text-yellow">C</span><span class="acr-text-blue">R</span></h3>
+                                            <h3 class="h3 logo-text fw-bold" style="font-family: Arial"><span class="acr-text-red-1">A</span><span class="acr-text-yellow">C</span><span class="acr-text-blue">R</span></h3>
                                         </div>
                                     </div>
                                 </a>
 @endif
 
-@if ($current_user->role_users[0]->role->role_name == 'Développeur')
+@if ($current_user->role_user->role->role_name == 'Développeur')
                                 <a class="sidebar-link td-n" href="{{ route('manager') }}">
                                     <div class="peers ai-c fxw-nw">
                                         <div class="peer">
@@ -261,13 +261,13 @@
                                             </div>
                                         </div>
                                         <div class="peer peer-greed p-0">
-                                            <h3 class="h3 logo-text fw-bold"><span class="acr-text-red-2">A</span><span class="acr-text-yellow">C</span><span class="acr-text-blue">R</span></h3>
+                                            <h3 class="h3 logo-text fw-bold" style="font-family: Arial"><span class="acr-text-red-1">A</span><span class="acr-text-yellow">C</span><span class="acr-text-blue">R</span></h3>
                                         </div>
                                     </div>
                                 </a>
 @endif
 
-@if ($current_user->role_users[0]->role->role_name == 'Manager')
+@if ($current_user->role_user->role->role_name == 'Manager')
                                 <a class="sidebar-link td-n" href="{{ route('manager') }}">
                                     <div class="peers ai-c fxw-nw">
                                         <div class="peer">
@@ -276,7 +276,7 @@
                                             </div>
                                         </div>
                                         <div class="peer peer-greed p-0">
-                                            <h3 class="h3 logo-text fw-bold"><span class="acr-text-red-2">A</span><span class="acr-text-yellow">C</span><span class="acr-text-blue">R</span></h3>
+                                            <h3 class="h3 logo-text fw-bold" style="font-family: Arial"><span class="acr-text-red-1">A</span><span class="acr-text-yellow">C</span><span class="acr-text-blue">R</span></h3>
                                         </div>
                                     </div>
                                 </a>
@@ -294,7 +294,7 @@
 
                     <!-- ### $Sidebar Menu ### -->
                     <ul class="sidebar-menu scrollable pos-r pt-2">
-@if ($current_user->role_users[0]->role->role_name == 'Administrateur')
+@if ($current_user->role_user->role->role_name == 'Administrateur')
                         <li class="nav-item{{ Route::is('admin') OR request()->user_role == 'admin' ? ' actived' : '' }}">
                             <a class="sidebar-link" href="{{ route('admin') }}">
                                 <span class="icon-holder">
@@ -388,7 +388,7 @@
                         </li>
 @endif
 
-@if ($current_user->role_users[0]->role->role_name == 'Développeur')
+@if ($current_user->role_user->role->role_name == 'Développeur')
                         <li class="nav-item{{ Route::is('developer') OR request()->user_role == 'developer' ? ' actived' : '' }}">
                             <a class="sidebar-link" href="{{ route('developer') }}">
                                 <span class="icon-holder">
@@ -417,7 +417,7 @@
                         </li>
 @endif
 
-@if ($current_user->role_users[0]->role->role_name == 'Manager')
+@if ($current_user->role_user->role->role_name == 'Manager')
                         <li class="nav-item{{ Route::is('manager') OR request()->user_role == 'manager' ? ' actived' : '' }}">
                             <a class="sidebar-link" href="{{ route('manager') }}">
                                 <span class="icon-holder">

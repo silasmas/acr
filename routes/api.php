@@ -104,8 +104,7 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     Route::delete('user/{id}', 'App\Http\Controllers\API\UserController@destroy')->name('user.api.destroy');
     Route::get('user/search/{data}', 'App\Http\Controllers\API\UserController@search')->name('user.api.search');
     Route::put('user/switch_status/{id}/{status_id}', 'App\Http\Controllers\API\UserController@switchStatus')->name('user.api.switch_status');
-    Route::put('user/associate_roles/{id}', 'App\Http\Controllers\API\UserController@associateRoles')->name('user.api.associate_roles');
-    Route::put('user/withdraw_roles/{id}', 'App\Http\Controllers\API\UserController@withdrawRoles')->name('user.api.withdraw_roles');
+    Route::put('user/update_role/{id}', 'App\Http\Controllers\API\UserController@updateRole')->name('user.api.update_role');
     Route::put('user/update_password/{id}', 'App\Http\Controllers\API\UserController@updatePassword')->name('user.api.update_password');
     Route::put('user/update_api_token/{phone}', 'App\Http\Controllers\API\UserController@updateApiToken')->name('user.api.update_api_token');
     Route::put('user/update_avatar_picture/{id}', 'App\Http\Controllers\API\UserController@updateAvatarPicture')->name('user.api.update_avatar_picture');

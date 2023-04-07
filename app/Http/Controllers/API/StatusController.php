@@ -37,6 +37,7 @@ class StatusController extends BaseController
         $inputs = [
             'status_name' => $request->status_name,
             'status_description' => $request->status_description,
+            'color' => $request->color,
             'group_id' => $request->group_id
         ];
         // Select all statuses belonging to a group to check unique constraint
@@ -94,6 +95,7 @@ class StatusController extends BaseController
             'id' => $request->id,
             'status_name' => $request->status_name,
             'status_description' => $request->status_description,
+            'color' => $request->color,
             'group_id' => $request->group_id,
             'updated_at' => now()
         ];

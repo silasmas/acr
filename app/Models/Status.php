@@ -16,7 +16,7 @@ class Status extends Model
 
     // const SEARCHABLE_FIELDS = ['status_name'];
 
-    protected $fillable = ['status_name', 'status_description', 'updated_at', 'group_id'];
+    protected $fillable = ['status_name', 'status_description', 'color', 'updated_at', 'group_id'];
 
     /**
      * Get the indexable data array for the model.

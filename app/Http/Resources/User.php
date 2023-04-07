@@ -18,6 +18,8 @@ class User extends JsonResource
      */
     public function toArray($request)
     {
+        $roles_user = RoleUser::collection($this->role_users);
+
         return [
             'id' => $this->id,
             'serial_number' => $this->national_number,
@@ -40,7 +42,7 @@ class User extends JsonResource
             'identity_data' => Image::make($this->image),
             'status' => Status::make($this->status),
             'addresses' => Address::collection($this->addresses),
-            'role_users' => RoleUser::collection($this->role_users),
+            'role_user' => $roles_user[0],
             'offers' => Offer::collection($this->offers)->sortByDesc('created_at')->toArray(),
             'payments' => Payment::collection($this->payments)->sortByDesc('created_at')->toArray(),
             'notifications' => Notification::collection($this->notifications)->sortByDesc('created_at')->toArray(),

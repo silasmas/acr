@@ -198,7 +198,7 @@ class UserController extends BaseController
                 foreach ($role_users as $executive):
                     Notification::create([
                         'notification_url' => 'members/' . $user->id,
-                        'notification_content' => $user->fistname . ' ' . $user->lastname . ' ' . __('notifications.subscribed_to_party'),
+                        'notification_content' => $user->firstname . ' ' . $user->lastname . ' ' . __('notifications.subscribed_to_party'),
                         'status_id' => $status_unread->id,
                         'user_id' => $executive->user_id
                     ]);
@@ -603,59 +603,24 @@ class UserController extends BaseController
     }
 
     /**
-     * Associate roles to user in storage.
+     * Update user role in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  $id
      * @return \Illuminate\Http\Response
      */
-    public function associateRoles(Request $request, $id)
+    public function updateRole(Request $request, $id)
     {
         $user = User::find($id);
 
-        if ($request->role_id != null) {
-            RoleUser::create([
-                'role_id' => $request->role_id,
-                'user_id' => $user->id
-            ]);
-		}
+        $role_user = RoleUser::where('user_id', $user->id)->first();
 
-        if ($request->roles_ids != null) {
-            foreach ($request->roles_ids as $role_id):
-                RoleUser::create([
-                    'role_id' => $role_id,
-                    'user_id' => $user->id
-                ]);
-            endforeach;
-		}
+        $role_user->delete();
 
-        return $this->handleResponse(new ResourcesUser($user), __('notifications.update_user_success'));
-    }
-
-    /**
-     * Withdraw roles from user in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function withdrawRoles(Request $request, $id)
-    {
-        $user = User::find($id);
-
-        if ($request->role_id != null) {
-            $role_user = RoleUser::where([['role_id', $request->role_id], ['user_id', $user->id]])->first();
-
-            $role_user->delete();
-        }
-
-        if ($request->roles_ids != null) {
-            foreach ($request->roles_ids as $role_id):
-                $role_user = RoleUser::where([['role_id', $role_id], ['user_id', $user->id]])->first();
-
-                $role_user->delete();
-            endforeach;
-        }
+        RoleUser::create([
+            'role_id' => $request->role_id,
+            'user_id' => $user->id
+        ]);
 
         return $this->handleResponse(new ResourcesUser($user), __('notifications.update_user_success'));
     }
@@ -844,8 +809,8 @@ class UserController extends BaseController
 
                 // Clean "identity_data" directory
                 $file = new Filesystem;
-                $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $inputs['user_id'] . '/identity_data');
-                // $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/storage/images/users/' . $inputs['user_id'] . '/identity_data');
+                // $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $inputs['user_id'] . '/identity_data');
+                $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/storage/images/users/' . $inputs['user_id'] . '/identity_data');
                 // Create image URL
                 $image_url_recto = 'images/users/' . $inputs['user_id'] . '/identity_data/' . Str::random(50) . '.png';
                 $image_url_verso = 'images/users/' . $inputs['user_id'] . '/identity_data/' . Str::random(50) . '.png';

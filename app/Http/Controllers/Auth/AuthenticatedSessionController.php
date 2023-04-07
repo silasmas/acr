@@ -69,14 +69,14 @@ class AuthenticatedSessionController extends Controller
             Auth::attempt(['email' => $user->data->email, 'password' => $inputs['password']], $request->remember);
 
             try {
-                if (isset($user->data->role_users[0])) {
-                    if ($user->data->role_users[0]->role->role_name == 'Administrateur') {
+                if (isset($user->data->role_user)) {
+                    if ($user->data->role_user->role->role_name == 'Administrateur') {
                         return Redirect::route('home', ['user_role' => 'admin']);
 
-                    } else if ($user->data->role_users[0]->role->role_name == 'Développeur') {
+                    } else if ($user->data->role_user->role->role_name == 'Développeur') {
                         return Redirect::route('home', ['user_role' => 'developer']);
 
-                    } else if ($user->data->role_users[0]->role->role_name == 'Manager') {
+                    } else if ($user->data->role_user->role->role_name == 'Manager') {
                         return Redirect::route('home', ['user_role' => 'manager']);
 
                     } else {

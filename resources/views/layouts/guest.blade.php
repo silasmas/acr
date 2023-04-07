@@ -225,21 +225,21 @@
                             <li class="d-lg-block d-none px-3 pt-3 pb-2 text-center acr-bg-gray">
                                 <h5 class="h5 mb-1 fw-bold text-truncate" style="width: 10rem;">{{ $current_user->firstname . ' ' . $current_user->lastname }}</h5>
                             </li>
-    @if ($current_user->role_users[0]->role->role_name == 'Administrateur')
+    @if ($current_user->role_user->role->role_name == 'Administrateur')
                             <li class="border-bottom border-default">
                                 <a href="{{ route('admin') }}" class="dropdown-item py-3">
                                     <i class="bi bi-grid-1x2 me-3"></i>@lang('miscellaneous.admin.home.title')
                                 </a>
                             </li>
     @endif
-    @if ($current_user->role_users[0]->role->role_name == 'Développeur')
+    @if ($current_user->role_user->role->role_name == 'Développeur')
                             <li class="border-bottom border-default">
                                 <a href="{{ route('developer') }}" class="dropdown-item py-3">
                                     <i class="bi bi-grid-1x2 me-3"></i>@lang('miscellaneous.developer.home.title')
                                 </a>
                             </li>
     @endif
-    @if ($current_user->role_users[0]->role->role_name == 'Manager')
+    @if ($current_user->role_user->role->role_name == 'Manager')
                             <li class="border-bottom border-default">
                                 <a href="{{ route('manager') }}" class="dropdown-item py-3">
                                     <i class="bi bi-grid-1x2 me-3"></i>@lang('miscellaneous.manager.home.title')

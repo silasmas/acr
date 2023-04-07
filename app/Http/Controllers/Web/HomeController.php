@@ -66,6 +66,8 @@ class HomeController extends Controller
             $transaction_type_group = 'Type de transaction';
             $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
             $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
+            // Select all users API URL
+            $url_users = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user';
 
             try {
                 // Select current user API response
@@ -97,22 +99,29 @@ class HomeController extends Controller
                     'verify'  => false
                 ]);
                 $transaction_type = json_decode($response_transaction_type->getBody(), false);
+                // Select all users API response
+                $response_users = $this::$client->request('GET', $url_users, [
+                    'headers' => $this::$headers,
+                    'verify'  => false
+                ]);
+                $users = json_decode($response_users->getBody(), false);
 
                 if (isset(request()->user_role)) {
                     if (request()->user_role == 'admin') {
                         return view('dashboard', [
                             'current_user' => $user->data,
                             'countries' => $country->data,
-                            'messages' => $messages,
+                            'messages' => $messages->data,
                             'offer_types' => $offer_type->data,
-                            'transaction_types' => $transaction_type->data
+                            'transaction_types' => $transaction_type->data,
+                            'users' => $users->data
                         ]);
 
                     } else if (request()->user_role == 'developer') {
                         return view('dashboard', [
                             'current_user' => $user->data,
                             'countries' => $country->data,
-                            'messages' => $messages,
+                            'messages' => $messages->data,
                             'offer_types' => $offer_type->data,
                             'transaction_types' => $transaction_type->data
                         ]);
@@ -121,16 +130,17 @@ class HomeController extends Controller
                         return view('dashboard', [
                             'current_user' => $user->data,
                             'countries' => $country->data,
-                            'messages' => $messages,
+                            'messages' => $messages->data,
                             'offer_types' => $offer_type->data,
-                            'transaction_types' => $transaction_type->data
+                            'transaction_types' => $transaction_type->data,
+                            'users' => $users->data
                         ]);
 
                     } else {
                         return view('welcome', [
                             'current_user' => $user->data,
                             'countries' => $country->data,
-                            'messages' => $messages,
+                            'messages' => $messages->data,
                             'offer_types' => $offer_type->data,
                             'transaction_types' => $transaction_type->data
                         ]);
@@ -140,7 +150,7 @@ class HomeController extends Controller
                     return view('welcome', [
                         'current_user' => $user->data,
                         'countries' => $country->data,
-                        'messages' => $messages,
+                        'messages' => $messages->data,
                         'offer_types' => $offer_type->data,
                         'transaction_types' => $transaction_type->data
                 ]);
@@ -207,6 +217,8 @@ class HomeController extends Controller
         $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/' . Auth::user()->id;
         // Select all received messages API URL
         $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
+        // Select all users API URL
+        $url_users = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user';
 
         try {
             // Select current user API response
@@ -215,17 +227,23 @@ class HomeController extends Controller
                 'verify'  => false
             ]);
             $user = json_decode($response_user->getBody(), false);
-
             // Select all received messages API response
             $response_message = $this::$client->request('GET', $url_message, [
                 'headers' => $this::$headers,
                 'verify'  => false
             ]);
             $messages = json_decode($response_message->getBody(), false);
+            // Select all users API response
+            $response_users = $this::$client->request('GET', $url_users, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $users = json_decode($response_users->getBody(), false);
 
             return view('dashboard', [
                 'current_user' => $user->data,
-                'messages' => $messages,
+                'messages' => $messages->data,
+                'users' => $users->data
             ]);
 
         } catch (ClientException $e) {
@@ -306,7 +324,7 @@ class HomeController extends Controller
                 return view('about', [
                     'current_user' => $user->data,
                     'countries' => $country->data,
-                    'messages' => $messages,
+                    'messages' => $messages->data,
                     'offer_types' => $offer_type->data,
                     'transaction_types' => $transaction_type->data,
                     'about_party' => $about_party->data,
@@ -443,7 +461,7 @@ class HomeController extends Controller
                 return view('about', [
                     'current_user' => $user->data,
                     'countries' => $country->data,
-                    'messages' => $messages,
+                    'messages' => $messages->data,
                     'offer_types' => $offer_type->data,
                     'transaction_types' => $transaction_type->data,
                     'help' => $help->data
@@ -572,7 +590,7 @@ class HomeController extends Controller
                 return view('about', [
                     'current_user' => $user->data,
                     'countries' => $country->data,
-                    'messages' => $messages,
+                    'messages' => $messages->data,
                     'offer_types' => $offer_type->data,
                     'transaction_types' => $transaction_type->data,
                     'faq' => $faq->data
@@ -701,7 +719,7 @@ class HomeController extends Controller
                 return view('about', [
                     'current_user' => $user->data,
                     'countries' => $country->data,
-                    'messages' => $messages,
+                    'messages' => $messages->data,
                     'offer_types' => $offer_type->data,
                     'transaction_types' => $transaction_type->data,
                     'terms' => $terms->data
@@ -830,7 +848,7 @@ class HomeController extends Controller
                 return view('about', [
                     'current_user' => $user->data,
                     'countries' => $country->data,
-                    'messages' => $messages,
+                    'messages' => $messages->data,
                     'offer_types' => $offer_type->data,
                     'transaction_types' => $transaction_type->data,
                     'privacy_policy' => $privacy_policy->data
@@ -959,7 +977,7 @@ class HomeController extends Controller
                 return view('news', [
                     'current_user' => $user->data,
                     'countries' => $country->data,
-                    'messages' => $messages,
+                    'messages' => $messages->data,
                     'offer_types' => $offer_type->data,
                     'transaction_types' => $transaction_type->data,
                     'news' => $news->data
@@ -1088,7 +1106,7 @@ class HomeController extends Controller
                 return view('works', [
                     'current_user' => $user->data,
                     'countries' => $country->data,
-                    'messages' => $messages,
+                    'messages' => $messages->data,
                     'offer_types' => $offer_type->data,
                     'transaction_types' => $transaction_type->data,
                     'news' => $news->data
