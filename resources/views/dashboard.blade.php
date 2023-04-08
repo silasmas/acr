@@ -53,8 +53,8 @@
                                 </div>
                             </div>
 
+                            <!-- #New Members ==================== -->
                             <div class="masonry-item col-lg-6">
-                                <!-- #New Members ==================== -->
                                 <div class="bd bgc-white">
                                     <div class="layers">
                                         <div class="layer w-100 pX-20 pT-20">
@@ -102,8 +102,46 @@
                                 </div>
                             </div>
 
+                            <!-- #Other managers ==================== -->
                             <div class="masonry-item col-lg-6">
-                                <!-- #Recent news ==================== -->
+                                <div class="bd bgc-white">
+                                    <div class="layers">
+                                        <div class="layer d-flex w-100 pX-20 pT-20 justify-content-between">
+                                            <h6 class="lh-1 m-0">@lang('miscellaneous.manager.home.other_managers.title')</h6>
+
+                                            <a href="{{ route('party.manager.new') }}" class="position-relative" style="top: -8px" title="@lang('miscellaneous.manager.home.other_managers.add_new')" data-bs-toggle="tooltip">
+                                                <span class="bi bi-plus-circle-fill fs-3 me-1 align-middle"></span>@lang('miscellaneous.add')
+                                            </a>
+                                        </div>
+
+                                        <div class="layer w-100 pX-20 pT-10 pB-20">
+                                            <div class="list-group">
+        @foreach ($users as $user)
+            @if ($user->role_user->role->role_name == 'Manager' AND $user->id != $current_user->id)
+                                                <a href="{{ route('party.manager.datas', ['id' => $user->id]) }}" class="list-group-item list-group-item-action">
+                                                    <div class="row">
+                                                        <div class="col-md-2 col-3">
+                                                            <div class="bg-image">
+                                                                <img src="{{ $user->avatar_url != null ? $user->avatar_url : asset('assets/img/user.png') }}" alt="{{ $user->firstname . ' '. $user->lastname }}" class="img-fluid rounded-circle">
+                                                                <div class="mask"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-10 col-9 pt-lg-1 pt-md-3 pt-0">
+                                                            <h5 class="h5 m-0 fw-bold text-truncate">{{ $user->firstname . ' '. $user->lastname }}</h5>
+                                                            <p class="m-0 text-muted">{{ $user->phone }}</p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+            @endif
+        @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- #Recent news ==================== -->
+                            <div class="masonry-item col-lg-6">
                                 <div class="bd bgc-white">
                                     <div class="layers">
                                         <div class="layer d-flex w-100 pX-20 pT-20 justify-content-between">
@@ -116,34 +154,42 @@
 
                                         <div class="layer w-100 pX-20 pT-10 pB-20">
                                             <div class="list-group">
-                                                <a href="#" class="list-group-item list-group-item-action">
+        @forelse ($news as $news_item)
+                                                <a href="{{ route('party.infos.entity.datas', ['entity' => 'news', 'id' => $news_item->id]) }}" class="list-group-item list-group-item-action">
                                                     <div class="row">
                                                         <div class="col-lg-2 col-md-1 col-3">
+            @if (!empty($news_item->photo_url))
+                                                            <div class="bg-image">
+                                                                <img src="{{ $news_item->photo_url }}" alt="{{ $news_item->news_title }}" class="img-fluid rounded-3">
+                                                                <div class="mask"></div>
+                                                            </div>
+            @else
                                                             <div class="d-flex justify-content-center h-100 align-items-center acr-bg-gray">
                                                                 <span class="bi bi-image"></span>
                                                             </div>
-                                                            {{-- <div class="bg-image">
-                                                                <img src="{{ asset('assets/img/pubs/pub-1.jpg') }}" alt="" class="img-fluid rounded-3">
-                                                                <div class="mask"></div>
-                                                            </div> --}}
+            @endif
                                                         </div>
                                                         <div class="col-lg-10 col-md-11 col-9">
-                                                            <h5 class="h5 m-0 fw-bold text-truncate">Lorem ipsum dolor sit amet</h5>
-                                                            <p class="m-0 text-muted text-truncate">Lorem ipsum est un dkium popataro ritoc</p>
+                                                            <h5 class="h5 m-0 fw-bold text-truncate">{{ $news_item->news_title }}</h5>
+                                                            <p class="text-muted text-truncate">{{ $news_item->news_content }}</p>
                                                         </div>
                                                     </div>
                                                 </a>
+            
+        @empty
+                                                <span class="list-group-item">@lang('miscellaneous.empty_list')</span>
+        @endforelse
                                             </div>
                                         </div>
                                     </div>
                                     <div class="ta-c bdT w-100 p-20">
-                                        <a href="{{ route('party.member.home') }}">@lang('miscellaneous.manager.home.recent_news.link')</a>
+                                        <a href="{{ route('party.infos.entity', ['entity' => 'news']) }}">@lang('miscellaneous.manager.home.recent_news.link')</a>
                                     </div>
                                 </div>
                             </div>
 
+                            <!-- #Recent communiques ==================== -->
                             <div class="masonry-item col-lg-6">
-                                <!-- #Recent communiques ==================== -->
                                 <div class="bd bgc-white">
                                     <div class="layers">
                                         <div class="layer d-flex w-100 pX-20 pT-20 justify-content-between">
@@ -154,17 +200,44 @@
                                             </a>
                                         </div>
 
-                                        <div class="layer w-100">
+                                        <div class="layer w-100 pX-20 pT-10 pB-20">
+                                            <div class="list-group">
+        @forelse ($communiques as $communique)
+                                                <a href="{{ route('party.infos.entity.datas', ['entity' => 'communique', 'id' => $communique->id]) }}" class="list-group-item list-group-item-action">
+                                                    <div class="row">
+                                                        <div class="col-lg-2 col-md-1 col-3">
+            @if (!empty($communique->photo_url))
+                                                            <div class="bg-image">
+                                                                <img src="{{ $communique->photo_url }}" alt="{{ $communique->news_title }}" class="img-fluid rounded-3">
+                                                                <div class="mask"></div>
+                                                            </div>
+            @else
+                                                            <div class="d-flex justify-content-center h-100 align-items-center acr-bg-gray">
+                                                                <span class="bi bi-image"></span>
+                                                            </div>
+            @endif
+                                                        </div>
+                                                        <div class="col-lg-10 col-md-11 col-9">
+                                                            <h5 class="h5 m-0 fw-bold text-truncate">{{ $communique->news_title }}</h5>
+                                                            <p class="text-muted text-truncate">{{ $communique->news_content }}</p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+            
+        @empty
+                                                <span class="list-group-item">@lang('miscellaneous.empty_list')</span>
+        @endforelse
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="ta-c bdT w-100 p-20">
-                                        <a href="{{ route('party.member.home') }}">@lang('miscellaneous.manager.home.recent_communiques.link')</a>
+                                        <a href="{{ route('party.infos.entity', ['entity' => 'communique']) }}">@lang('miscellaneous.manager.home.recent_communiques.link')</a>
                                     </div>
                                 </div>
                             </div>
 
+                            <!-- #Recent events ==================== -->
                             <div class="masonry-item col-lg-6">
-                                <!-- #Recent events ==================== -->
                                 <div class="bd bgc-white">
                                     <div class="layers">
                                         <div class="layer d-flex w-100 pX-20 pT-20 justify-content-between">
@@ -175,11 +248,38 @@
                                             </a>
                                         </div>
 
-                                        <div class="layer w-100">
+                                        <div class="layer w-100 pX-20 pT-10 pB-20">
+                                            <div class="list-group">
+        @forelse ($events as $event)
+                                                <a href="{{ route('party.infos.entity.datas', ['entity' => 'event', 'id' => $event->id]) }}" class="list-group-item list-group-item-action">
+                                                    <div class="row">
+                                                        <div class="col-lg-2 col-md-1 col-3">
+            @if (!empty($event->photo_url))
+                                                            <div class="bg-image">
+                                                                <img src="{{ $event->photo_url }}" alt="{{ $event->news_title }}" class="img-fluid rounded-3">
+                                                                <div class="mask"></div>
+                                                            </div>
+            @else
+                                                            <div class="d-flex justify-content-center h-100 align-items-center acr-bg-gray">
+                                                                <span class="bi bi-image"></span>
+                                                            </div>
+            @endif
+                                                        </div>
+                                                        <div class="col-lg-10 col-md-11 col-9">
+                                                            <h5 class="h5 m-0 fw-bold text-truncate">{{ $event->news_title }}</h5>
+                                                            <p class="text-muted text-truncate">{{ $event->news_content }}</p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+            
+        @empty
+                                                <span class="list-group-item">@lang('miscellaneous.empty_list')</span>
+        @endforelse
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="ta-c bdT w-100 p-20">
-                                        <a href="{{ route('party.member.home') }}">@lang('miscellaneous.manager.home.recent_events.link')</a>
+                                        <a href="{{ route('party.infos.entity', ['entity' => 'event']) }}">@lang('miscellaneous.manager.home.recent_events.link')</a>
                                     </div>
                                 </div>
                             </div>

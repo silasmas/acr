@@ -422,6 +422,12 @@ return [
                 'add_new' => 'Ajouter un événement',
                 'link' => 'Voir tous les événements',
             ],
+
+            // Other managers
+            'other_managers' => [
+                'title' => 'Autres managers',
+                'add_new' => 'Ajouter un manager',
+            ],
         ],
         'info' => [
             'title' => 'Informations',
