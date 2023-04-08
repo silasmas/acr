@@ -13,7 +13,6 @@ code,
 kbd,
 samp {
 	font-family: 'Montserrat', sans-serif;
-	font-size: 1em;
 }
 
 pre {
@@ -113,12 +112,51 @@ p {
     background-color: #005dba !important;
 }
 
+.acr-bg-blue-transparent {
+    background-color: rgba(0, 93, 186, 0.5) !important;
+}
+
+a.acr-bg-blue-transparent:hover {
+    transition: .3s;
+    background-color: rgba(0, 93, 186, 0.7) !important;
+}
+
 .acr-bg-yellow {
     background-color: #febd00 !important;
 }
 
+.acr-bg-yellow-transparent {
+    background-color: rgba(255, 188, 1, 0.5) !important;
+}
+
+a.acr-bg-yellow-transparent:hover {
+    transition: .3s;
+    background-color: rgba(255, 188, 1, 0.7) !important;
+}
+
 .acr-bg-red {
     background-color: #ad0304 !important;
+}
+
+.acr-bg-red-transparent {
+    background-color: rgba(229, 6, 1, 0.5) !important;
+}
+
+a.acr-bg-red-transparent:hover {
+    background-color: rgba(229, 6, 1, 0.7) !important;
+}
+
+.acr-bg-blue-gray {
+    background-color: #2f465e !important;
+}
+
+.acr-bg-gray {
+    background-color: #e0e0e0 !important;
+}
+
+a.acr-bg-gray:hover {
+    transition: .3s;
+    background-color: #c0c0c0 !important;
 }
 
 /* button */
@@ -233,6 +271,10 @@ p {
     line-height: 1.4;
 }
 
+.acr-line-height-1_45 {
+    line-height: 1.45;
+}
+
 .acr-line-height-1_5 {
     line-height: 1.5;
 }
@@ -257,5 +299,7 @@ p {
 }
 
 @media screen and (max-width: 480px) {
-
+    #adminNotification .dropdown-menu {
+        right: -100px;
+    }
 }

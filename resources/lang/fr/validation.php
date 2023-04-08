@@ -162,6 +162,9 @@ return [
         'email_or_phone' => [
             'required' => 'L\'adresse e-mail ou le n° de téléphone doit être défini'
         ],
+        'surname_and_birthdate' => [
+            'required' => 'Le nom et la date de naissance doivent être définis'
+        ],
         'group_name' => [
             'exists' => 'Ce nom de groupe already exists'
         ],

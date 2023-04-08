@@ -17,13 +17,16 @@ return [
     'all_right_reserved' => 'Tous droits réservés',
     'follow_us' => 'Suivez-nous :',
     'call_us' => 'Appelez-nous :',
+    'bank_transaction_description' => 'Transaction bancaire depuis l\'application ACR',
     'your_language' => 'Votre langue',
-    'back_home' => 'Retourner à la page d\'accueil',
+    'back_home' => 'Retour à l\'accueil',
     'back_list' => 'Retourner à la liste',
     'back_form' => 'Retourner au formulaire',
+    'see_all_notifications' => 'Voir toutes les notifications',
     'loading' => 'Chargement ...',
     'connection' => 'Connexion',
     'register' => 'Enregistrer',
+    'send' => 'Envoyer',
     'add' => 'Ajouter',
     'registered' => 'Enregistré',
     'update' => 'Mettre à jour',
@@ -37,6 +40,18 @@ return [
     'reset' => 'Réinitialiser',
     'open' => 'Ouvrir',
     'close' => 'Fermer',
+    'download' => 'Télécharger',
+    'upload' => [
+        'use_camera' => 'Utiliser caméra',
+        'upload_file' => 'Télécharger fichier',
+        'choose_existing_file' => 'Choisir fichier existant'
+    ],
+    'activate' => 'Activer',
+    'deactivate' => 'Désactiver',
+    'lock' => 'Bloquer',
+    'unlock' => 'Débloquer',
+    'search' => 'Rechercher ...',
+    'mark_all_read' => 'Tout marquer comme lue',
     'empty_list' => 'La liste est vide',
     'see_more' => 'Voir plus',
     'show' => 'Afficher',
@@ -182,20 +197,34 @@ return [
     'register_superadmin_description' => 'Enregistrez les données permettant à Tulipap et à ses services de fonctionner.',
     'register_company_description' => 'Inscrivez-vous en tant qu\'administrateur puis enregistrez votre société fournisseur d\'électricité que vous allez gérer.',
     'register_customer_description' => 'Après inscription, si vous voulez recevoir régulièrement vos factures d\'électricité, vous devrez donner votre code et le nom complet par lequel votre fournisseur vous reconnait. Sinon, vous pouvez déjà commencer à acheter vos cartes prépayées virtuelles.',
+    'serial_number' => 'N&deg; de série',
+    'names' => 'Noms',
     'firstname' => 'Prénom',
     'lastname' => 'Post-nom',
     'surname' => 'Nom',
     'gender_title' => 'Sexe',
     'gender1' => 'Homme',
     'gender2' => 'Femme',
+    'birth_city' => 'Ville de naissance',
     'birth_date' => [
         'label' => 'Date de naissance',
         'day' => 'Jour',
         'month' => 'Mois',
         'year' => 'Année',
     ],
+    'choose_country' => 'Choisir pays',
+    'phone_code' => 'Code tél.',
     'phone' => 'N° de téléphone',
-    'email' => 'Adresse E-mail',
+    'email' => 'E-mail',
+    'address' => [
+        'title' => 'Adresse',
+        'type' => 'Type d\'adresse',
+        'line1' => 'Ligne 1',
+        'line2' => 'Ligne 2 (Facultative)',
+        'neighborhood' => 'Quartier',
+        'area' => 'Commune/Zone',
+        'city' => 'Ville',
+    ],
     'username' => 'Nom d\'utilisateur',
     'password' => [
         'label' => 'Mot de passe',
@@ -207,17 +236,22 @@ return [
     ],
     'go_login' => 'J\'ai déjà un compte',
     'api_token' => 'Votre clé pour utiliser les APIs',
+    'amount' => 'Montant',
+    'currency' => 'Choisir devise',
+    'usd' => 'Dollar américain',
+    'cdf' => 'Franc congolais',
 
     // ===== NAVIGATION MENU
     'menu' => [
         'home' => 'Accueil',
+        'dashboard' => 'Tableau de bord',
         'login' => 'Se connecter',
         'account_settings' => 'Paramètres du compte',
         'messages' => 'Messages',
         'notifications' => 'Notifications',
         'admin' => [
             'legal_info' =>  'Info légale',
-            'continent' =>  'Continent',
+            'country' =>  'Pays',
             'miscellaneous' =>  'Divers',
         ],
         'developer' => [
@@ -226,6 +260,7 @@ return [
         'manager' => [
             'members' => 'Membres',
             'other_managers' => 'Autres managers',
+            'infos' => 'Informations'
         ],
         'public' => [
             'about' => 'A propos',
@@ -236,6 +271,50 @@ return [
     ],
 
     // ===== EVERY ROLES PAGES
+    // Account settings
+    'account' => [
+        'personal_infos' => [
+            'title' => 'Infos personnelles',
+            'change_avatar' => 'Modifier l\'avatar',
+            'link' => 'Enregistrer mise à jour',
+        ],
+        'membership_card' => [
+            'title' => 'Carte de membre',
+            'error' => 'Complétez d\'abord vos infos personnelles',
+        ],
+        'update_password' => [
+            'title' => 'Modifier mot de passe',
+            'former_password' => 'Ancien mot de passe',
+            'new_password' => 'Nouveau mot de passe',
+            'new_password' => 'Confirmer nouveau mot de passe',
+        ],
+        'identity_document' => [
+            'title' => 'Pièce d\'identité',
+            'choose_type' => [
+                'title' => 'Choisir le type de pièce d\'identité',
+                'identity_card' => 'Carte d\'identité',
+                'voter_card' => 'Carte d\'électeur',
+                'passport' => 'Passeport',
+                'driving_license' => 'Permis de conduire',
+                'other' => 'Autre',
+            ],
+            'recto' => 'Recto',
+            'verso' => 'Verso',
+            'click_to_change' => 'Cliquer sur la photo pour modifier',
+        ],
+        'my_contributions' => [
+            'title' => 'Mes contributions',
+            'link' => 'Contribuer',
+            'send_money' => [
+                'title' => 'Envoyer argent',
+                'description' => 'Choisir mode de paiement',
+                'mobile_money' => 'Mobile money',
+                'bank_card' => 'Carte bancaire'
+            ],
+        ],
+    ],
+
+    // Messenger
     'message' => [
         'inbox' => 'Boîte de réception',
         'outbox' => 'Messages envoyés',
@@ -247,6 +326,9 @@ return [
 
     // ===== ADMIN PAGES
     'admin' => [
+        'home' => [
+            'title' => 'Espace de l\'admin',
+        ],
         // Legal infos
         'legal_info_subject' => [
             'title' => 'Sujets d\'info légale',
@@ -257,7 +339,7 @@ return [
             'search' => 'Rechercher un sujet d\'info légale',
             'list' => 'Sujets d\'info légale',
             'datas' => [
-                'subject' => 'Suject',
+                'subject' => 'Sujet',
                 'description' => 'Description'
             ],
             'other_datas' => 'Autres données',
@@ -344,13 +426,17 @@ return [
                 'search' => 'Rechercher un rôle',
                 'list' => 'Liste de rôles',
             ],
+            // Other administrators
+            'other_admin' => [
+                'title' => 'Autres administrateurs',
+            ],
             // Developers
             'developers' => [
                 'title' => 'Gérer les développeurs',
             ],
-            // Other administrators
-            'other_admin' => [
-                'title' => 'Autres administrateurs',
+            // Managers
+            'managers' => [
+                'title' => 'Gérer les managers',
             ],
         ]
     ],
@@ -366,16 +452,72 @@ return [
     'manager' => [
         'home' => [
             'title' => 'Espace du manager',
+            'total_membership' => 'Totalité des membres',
+            'members_who_left' => 'Membres qui ont quitté',
+
+            // New members
+            'new_members' => [
+                'title' => 'Nouveaux membres',
+                'link' => 'Voir tous les membres',
+            ],
+
+            // Recent news
+            'recent_news' => [
+                'title' => 'Actualités récentes',
+                'add_new' => 'Ajouter une actualité',
+                'link' => 'Voir toutes les actualités',
+            ],
+
+            // Recent communiques
+            'recent_communiques' => [
+                'title' => 'Communiqués récents',
+                'add_new' => 'Ajouter un communiqué',
+                'link' => 'Voir tous les communiqués',
+            ],
+
+            // Recent events
+            'recent_events' => [
+                'title' => 'Evénements récents',
+                'add_new' => 'Ajouter un événement',
+                'link' => 'Voir tous les événements',
+            ],
+
+            // Other managers
+            'other_managers' => [
+                'title' => 'Autres managers',
+                'add_new' => 'Ajouter un manager',
+            ],
+        ],
+        'info' => [
+            'title' => 'Informations',
+            'news' => [
+                'title' => 'Actualité',
+            ],
+            'communique' => [
+                'title' => 'Communiqués',
+            ],
+            'event' => [
+                'title' => 'Evénements',
+            ],
         ],
     ],
 
     // ===== PUBLIC PAGES
     'public' => [
+        // Footer
         'footer' => [
             'useful_links' => 'Liens utiles',
-            'social_network' => [
-                'title' => 'Sur les réseaux sociaux',
-                'content' => 'Restez en contact avec '
+            'head_office' => [
+                'title' => 'Notre siège social',
+                'address' => '102, ave Kabinda, C/Kinshasa 012, Kinshasa-RDC',
+                'phone' => '+243 810 503 074',
+                'email' => 'acr@gmail.com'
+            ],
+            'newsletter' => [
+                'title' => 'Newsletter',
+                'text' => 'Abonnez-vous pour recevoir nos infos les plus pertinentes.',
+                'email' => 'Votre e-mail',
+                'submit' => 'Envoyer'
             ],
         ],
 
@@ -393,11 +535,79 @@ return [
                 'title' => 'Assurer de la nourriture pour notre peuple',
                 'content' => 'À travers une bonne politique agricole'
             ],
+            'download_mobile_app' => [
+                'title' => 'Télécharger l\'appli mobile ACR',
+                'content' => 'L\'appli mobile ACR vous permet d\'adhérer au parti <span class="acr-text-yellow">Action Commune pour la République</span>, de rester informé(e) sur les infos du parti et de contribuer en ligne.'
+            ],
+            'register_member' => [
+                'title' => 'Nous réjoindre',
+                'content1' => 'Vous pouvez nous réjoindre, car ACR n\'est pas qu\'une affaire de quelques individus. Ensemble, unissons-nous en un réel engagement pour transformer notre pays.',
+                'content2' => 'Si vous êtes déjà inscrit(e) dans le site ou dans l\'appli mobile, cliquez sur le bouton ci-dessous pour vous connecter. Sinon, donnez vos noms et votre n&deg; de téléphone pour commencer.',
+                'login' => 'J\'ai déjà un compte',
+                'register' => 'Commencer l\'inscription'
+            ],
+            'donate' => [
+                'title' => 'Faire un don anonyme ou devenir partenaire',
+                'content1' => 'En soutenant le parti ACR, non seulement vous contribuez au changement de votre pays, mais aussi vous contribuez à l\'aide qu\'apporte le parti aux ophelins et aux démunis.',
+                'content2' => 'Si c\'est l\'argent que vous voulez envoyer, vous n\'avez qu\'à sélectionner le mode de paiement ; ensuite, vous l\'envoyez directement en ligne.',
+                'content3' => 'Si vous voulez donner autre chose que de l\'argent, vous n\'avez qu\'à donner la description de votre don.',
+                'anonyme' => 'Faire un don anonyme',
+                'partner' => 'Devenir partenaire',
+                'your_identity' => 'Votre identité',
+                'send_money' => [
+                    'title' => 'Envoyer l\'argent',
+                    'description' => 'Choisir le mode de paiement',
+                    'mobile_money' => 'Mobile money',
+                    'bank_card' => 'Carte bancaire'
+                ],
+                'other_donation' => [
+                    'title' => 'Autre don',
+                    'description' => 'Description de votre don'
+                ],
+            ],
         ],
 
         // About
         'about' => [
             'title' => 'A propos de nous',
+            'slogan' => 'Le Pouvoir de l\'Amour et non l\'Amour du Pouvoir',
+            'subtitle' => 'Tout savoir sur Action Commune pour la République',
+            'description' => 'Un parti politique qui apporte une nouvelle touche dans le monde politique. Un cadre de formation des valeurs citoyennes, qui place au centre du processus du développement, prônant ainsi des valeurs éthiques de la société.',
+            'comment' => [
+                'title1' => 'Un seul credo',
+                'content1' => 'Compte tenu de notre vision, notre seul credo est « Faire la politique autrement ».',
+                'title2' => 'Aider le peuple',
+                'content2' => 'À dresser effectivement son front, par la prise, le travail, la discipline et l\'honnêteté',
+            ],
+            'why_us' => [
+                'title' => 'Pourquoi nous ?',
+                'subtitle' => 'Faisons le choix du changement',
+                'content' => 'ACR prône le changement de mentalité, les vraies valeurs éthiques, dans le but d\'apporter le développement individuel en particulier, et de tout le pays en général. Notre devise est :',
+                'item1' => 'Unité',
+                'item1_description' => 'Parce qu\'ensemble, nous sommes plus forts et plus capables.',
+                'item2' => 'Travail',
+                'item2_description' => 'Travaillons durement et honnêtement pour développer notre nation.',
+                'item3' => 'Patriotisme',
+                'item3_description' => 'L\'amour de la patrie, au centre de nos décisions et initiatives.',
+            ],
+            'other_links' => [
+                'title' => 'Autres liens',
+                'link1' => 'Conditions d\'utilisation',
+                'link2' => 'Politique de confidentialité',
+                'link3' => 'Centre d\'aide',
+                'link4' => 'FAQ'
+            ],
+        ],
+
+        // News
+        'news' => [
+            'title' => 'Actualité',
+            'details' => 'Détails sur l\'info',
+        ],
+
+        // Works
+        'works' => [
+            'title' => 'Nos œuvres',
         ],
 
         // Help

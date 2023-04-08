@@ -197,11 +197,6 @@
     }
 }
 
-.page-header {
-    background: url(../img/banner.jpg) center center no-repeat;
-    background-size: cover;
-}
-
 .page-header .breadcrumb-item+.breadcrumb-item::before {
     color: var(--light);
 }
@@ -497,7 +492,7 @@
     text-align: left;
     color: #B0B9AE;
     font-weight: normal;
-    text-transform: capitalize;
+    text-transform: inherit !important;
     transition: .3s;
 }
 

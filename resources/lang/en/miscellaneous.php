@@ -17,13 +17,16 @@ return [
     'all_right_reserved' => 'All right reserved',
     'follow_us' => 'Follow us:',
     'call_us' => 'Call us:',
+    'bank_transaction_description' => 'Bank transaction from the ACR application',
     'your_language' => 'Your language',
-    'back_home' => 'Return to the home page',
+    'back_home' => 'Return to the home',
     'back_list' => 'Return to the list',
     'back_form' => 'Return to the form',
+    'see_all_notifications' => 'View all notifications',
     'loading' => 'Loading...',
     'connection' => 'Connection',
     'register' => 'Register',
+    'send' => 'Send',
     'add' => 'Add',
     'registered' => 'Registered',
     'update' => 'Update',
@@ -37,6 +40,18 @@ return [
     'reset' => 'Reset',
     'open' => 'Open',
     'close' => 'Close',
+    'download' => 'Download',
+    'upload' => [
+        'use_camera' => 'Use camera',
+        'upload_file' => 'Upload file',
+        'choose_existing_file' => 'Choose existing file'
+    ],
+    'activate' => 'Activate',
+    'deactivate' => 'Deactivate',
+    'lock' => 'Lock',
+    'unlock' => 'Unlock',
+    'search' => 'Search...',
+    'mark_all_read' => 'Mark all as read',
     'empty_list' => 'The list is empty',
     'see_more' => 'See more',
     'show' => 'Show',
@@ -182,20 +197,34 @@ return [
     'register_superadmin_description' => 'Register datas allowing Tulipap and its services to operate.',
     'register_company_description' => 'Register as an administrator then register your electricity provider company that you will manage.',
     'register_customer_description' => 'After registration, if you want to receive your electricity invoices regularly, you will need to give your code and the full name by which your provider recognize. Otherwise, you can already start buying your virtual prepaid cards.',
+    'serial_number' => 'Serial number',
+    'names' => 'Names',
     'firstname' => 'First name',
     'lastname' => 'Last name',
     'surname' => 'Surname',
     'gender_title' => 'Gender',
     'gender1' => 'Male',
     'gender2' => 'Female',
+    'birth_city' => 'Birth city',
     'birth_date' => [
         'label' => 'Birth date',
         'day' => 'Day',
         'month' => 'Month',
         'year' => 'Year',
     ],
+    'choose_country' => 'Choose country',
+    'phone_code' => 'Phone code',
     'phone' => 'Phone number',
-    'email' => 'E-mail address',
+    'email' => 'E-mail',
+    'address' => [
+        'title' => 'Address',
+        'type' => 'Address type',
+        'line1' => 'Line 1',
+        'line2' => 'Line 2 (Optional)',
+        'neighborhood' => 'Neighborhood',
+        'area' => 'Area',
+        'city' => 'City',
+    ],
     'username' => 'User name',
     'password' => [
         'label' => 'Password',
@@ -207,25 +236,31 @@ return [
     ],
     'go_login' => 'Already have an account',
     'api_token' => 'Your key for using of APIs',
+    'amount' => 'Amount',
+    'currency' => 'Choose currency',
+    'usd' => 'American dollar',
+    'cdf' => 'Congolese franc',
 
     // ===== NAVIGATION MENU
     'menu' => [
         'home' => 'Home',
+        'dashboard' => 'Dashboard',
         'login' => 'Log in',
         'account_settings' => 'Account settings',
         'messages' => 'Messages',
         'notifications' => 'Notifications',
         'admin' => [
             'legal_info' =>  'Legal info',
-            'continent' =>  'Continent',
-            'miscellaneous' =>  'Miscellaneous',
+            'country' =>  'Country',
+            'miscellaneous' =>  'Miscellaneous'
         ],
         'developer' => [
-            'apis' => 'APIs',
+            'apis' => 'APIs'
         ],
         'manager' => [
             'members' => 'Members',
             'other_managers' => 'Other managers',
+            'infos' => 'Informations'
         ],
         'public' => [
             'about' => 'About',
@@ -236,6 +271,50 @@ return [
     ],
 
     // ===== EVERY ROLES PAGES
+    // Account settings
+    'account' => [
+        'personal_infos' => [
+            'title' => 'Personal Infos',
+            'change_avatar' => 'Change the avatar',
+            'link' => 'Register update',
+        ],
+        'membership_card' => [
+            'title' => 'Membership card',
+            'error' => 'Complete your personal information first',
+        ],
+        'update_password' => [
+            'title' => 'Change password',
+            'former_password' => 'Former password',
+            'new_password' => 'New password',
+            'new_password' => 'Confirm new password',
+        ],
+        'identity_document' => [
+            'title' => 'Identity document',
+            'choose_type' => [
+                'title' => 'Choose the type of identity document',
+                'identity_card' => 'Identity card',
+                'voter_card' => 'Voter card',
+                'passport' => 'Passport',
+                'driving_license' => 'Driving license',
+                'other' => 'Other',
+            ],
+            'recto' => 'Recto',
+            'verso' => 'Verso',
+            'click_to_change' => 'Click on photo to edit',
+        ],
+        'my_contributions' => [
+            'title' => 'My contributions',
+            'link' => 'Contribute',
+            'send_money' => [
+                'title' => 'Send money',
+                'description' => 'Choose payment method',
+                'mobile_money' => 'Mobile money',
+                'bank_card' => 'Bank card'
+            ],
+        ],
+    ],
+
+    // Messenger
     'message' => [
         'inbox' => 'Inbox',
         'outbox' => 'Sent messages',
@@ -247,6 +326,9 @@ return [
 
     // ===== ADMIN PAGES
     'admin' => [
+        'home' => [
+            'title' => 'Admin area',
+        ],
         // Legal infos
         'legal_info_subject' => [
             'title' => 'Legal info subject',
@@ -344,13 +426,17 @@ return [
                 'search' => 'Search a role',
                 'list' => 'Roles list',
             ],
+            // Other administrators
+            'other_admin' => [
+                'title' => 'Other administrators',
+            ],
             // Developers
             'developers' => [
                 'title' => 'Manage developers',
             ],
-            // Other administrators
-            'other_admin' => [
-                'title' => 'Other administrators',
+            // Managers
+            'managers' => [
+                'title' => 'Manage managers',
             ],
         ]
     ],
@@ -366,16 +452,72 @@ return [
     'manager' => [
         'home' => [
             'title' => 'Manager area',
+            'total_membership' => 'Total membership',
+            'members_who_left' => 'Members who left',
+
+            // New members
+            'new_members' => [
+                'title' => 'New members',
+                'link' => 'View all members',
+            ],
+
+            // Recent news
+            'recent_news' => [
+                'title' => 'Recent news',
+                'add_new' => 'Add a news',
+                'link' => 'View all news',
+            ],
+
+            // Recent communiques
+            'recent_communiques' => [
+                'title' => 'Recent communiques',
+                'add_new' => 'Add a communique',
+                'link' => 'View all communiques',
+            ],
+
+            // Recent events
+            'recent_events' => [
+                'title' => 'Recent events',
+                'add_new' => 'Add an event',
+                'link' => 'View all events',
+            ],
+
+            // Other managers
+            'other_managers' => [
+                'title' => 'Other managers',
+                'add_new' => 'Add a manager',
+            ],
+        ],
+        'info' => [
+            'title' => 'Informations',
+            'news' => [
+                'title' => 'News',
+            ],
+            'communique' => [
+                'title' => 'Communiques',
+            ],
+            'event' => [
+                'title' => 'Events',
+            ],
         ],
     ],
 
     // ===== PUBLIC PAGES
     'public' => [
+        // Footer
         'footer' => [
             'useful_links' => 'Useful links',
-            'social_network' => [
-                'title' => 'On social networks',
-                'content' => 'Stay in touch with '
+            'head_office' => [
+                'title' => 'Our head office',
+                'address' => '102, Kabinda street, Kinshasa 012 area, Kinshasa-DRC',
+                'phone' => '+243 810 503 074',
+                'email' => 'acr@gmail.com'
+            ],
+            'newsletter' => [
+                'title' => 'Newsletter',
+                'text' => 'Subscribe to receive our most relevant information.',
+                'email' => 'Your email',
+                'submit' => 'Send'
             ],
         ],
 
@@ -393,11 +535,79 @@ return [
                 'title' => 'Securing food for our people',
                 'content' => 'Through a good agricultural policy'
             ],
+            'download_mobile_app' => [
+                'title' => 'Download the ACR mobile app',
+                'content' => 'The ACR mobile app allows you to join the <span class="acr-text-yellow">Action Commune pour la République</span> party, stay informed about party news and contribute online.',
+            ],
+            'register_member' => [
+                'title' => 'Join us',
+                'content1' => 'You can join us, because ACR is not just a matter of a few individuals. Together, let us unite in a real commitment to transform our country.',
+                'content2' => 'If you are already registered in the site or in the mobile app, click on the button below to log in. Otherwise, give your names and your phone number to start.',
+                'login' => 'I already have an account',
+                'register' => 'Start registration'
+            ],
+            'donate' => [
+                'title' => 'Make an anonymous donation or become a partner',
+                'content1' => 'By supporting the ACR party, you not only contribute to the change of your country, but also you contribute to the help that the party brings to the ophelines and the poor.',
+                'content2' => 'If it\'s money you want to send, just select the payment method; then you send it directly online.',
+                'content3' => 'If you want to donate something other than money, just enter a description of your donation.',
+                'anonyme' => 'Make an anonymous donation',
+                'partner' => 'Become a partner',
+                'your_identity' => 'Your identity',
+                'send_money' => [
+                    'title' => 'Send money',
+                    'description' => 'Choose payment method',
+                    'mobile_money' => 'Mobile money',
+                    'bank_card' => 'Bank card'
+                ],
+                'other_donation' => [
+                    'title' => 'Other donation',
+                    'description' => 'Description of your donation'
+                ],
+            ],
         ],
 
         // About
         'about' => [
             'title' => 'About us',
+            'slogan' => 'The Power of Love and not the Love of Power',
+            'subtitle' => 'All about Action Commune pour la République',
+            'description' => 'A political party that brings a new touch to the political world. A framework for training civic values, which places them at the center of the development process, thus advocating the ethical values of society.',
+            'comment' => [
+                'title1' => 'One credo',
+                'content1' => 'Given our vision, our only credo is “Doing politics differently”.',
+                'title2' => 'Help the people',
+                'content2' => 'To effectively raise one\'s forehead, by grip, work, discipline and honesty.'
+            ],
+            'why_us' => [
+                'title' => 'Why us?',
+                'subtitle' => 'Let\'s choose change',
+                'content' => 'ACR advocates the change of mentality, the true ethical values, with the aim of bringing individual development in particular, and of the whole country in general. Our motto is:',
+                'item1' => 'Unity',
+                'item1_description' => 'Because together we are stronger and more capable.',
+                'item2' => 'Work',
+                'item2_description' => 'Let us work hard and honestly to develop our nation.',
+                'item3' => 'Patriotism',
+                'item3_description' => 'Love of the fatherland, at the center of our decisions and initiatives.',
+            ],
+            'other_links' => [
+                'title' => 'Other links',
+                'link1' => 'Terms of use',
+                'link2' => 'Privacy policy',
+                'link3' => 'Help center',
+                'link4' => 'FAQ'
+            ],
+        ],
+
+        // News
+        'news' => [
+            'title' => 'News',
+            'details' => 'Info details',
+        ],
+
+        // Works
+        'works' => [
+            'title' => 'Our works',
         ],
 
         // Help

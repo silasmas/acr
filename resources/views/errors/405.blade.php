@@ -1,38 +1,28 @@
-@extends('layouts.guest')
+@extends('layouts.errors')
 
-@section('guest-content')
+@section('errors-content')
 
-            <!-- ============================================================== -->
-            <!-- Page content -->
-            <!-- ============================================================== -->
-            <div class="row">
-                <div class="col-xl-5 col-lg-6 col-sm-8 mx-auto">
-                    <div class="row">
-                        <div class="col-sm-5 col-6 mx-auto pt-lg-4 pt-3">
-                            <div class="bg-image mb-sm-4 mb-3 d-flex justify-content-center">
-                                <img src="{{ asset('assets/img/logo-text.png') }}" alt="Biliap" class="img-fluid">
-                                <div class="mask"><a href="{{ route('home') }}" class="stretched-link"></a></div>
-                            </div>
+        <!-- 405 Start -->
+        <div class="container-xxl py-4 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="container text-center">
+                <div class="row mb-sm-5 mb-4 border-bottom border-secondary">
+                    <div class="col-lg-3 col-sm-4 col-8 mx-auto pt-lg-4 pt-3">
+                        <div class="bg-image mb-sm-5 mb-4 d-flex justify-content-center">
+                            <img src="{{ asset('assets/img/logo-text.png') }}" alt="ACR" class="img-fluid">
+                            <div class="mask"><a href="{{ route('home') }}"></a></div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- ============================================================== -->
-                    <!-- error message block -->
-                    <!-- ============================================================== -->
-                    <div class="card border border-default py-sm-4 py-3 shadow-0">
-                        <div class="card-body text-center">
-                            <h1 class="display-1 blp-pink-text">405</h1>
-                            <h2 class="h2 mb-4 fw-bold">{{ __('notifications.405_title') }}</h2>
-                            <p class="lead mb-4">{{ __('notifications.405_description') }}</p>
-                            <h4><a href="{{ route('home') }}">{{ __('miscellaneous.back_home') }}</a></h4>
-                        </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <h1 class="display-1 fw-bold acr-text-red-2">405</h1>
+                        <h1 class="mb-4">{{ __('notifications.405_title') }}</h1>
+                        <p class="mb-4">{{ __('notifications.405_description') }}</p>
+                        <a href="{{ route('home') }}" class="btn acr-btn-yellow rounded-pill py-3 px-5">{{ __('miscellaneous.back_home') }}</a>
                     </div>
-                    <!-- ============================================================== -->
-                    <!-- End error message block -->
-                    <!-- ============================================================== -->
                 </div>
             </div>
-            <!-- ============================================================== -->
-            <!-- End Page content -->
-            <!-- ============================================================== -->
+        </div>
+        <!-- 405 End -->
 @endsection

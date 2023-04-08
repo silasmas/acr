@@ -121,8 +121,8 @@ return [
     'create_user_SMS_failed' => 'There is a problem with the SMS service',
     'update_user_success' => 'User updated',
     'update_password_success' => 'Password updated',
-    'confirm_password_error' => 'Veuillez confirmer votre mot de passe',
-    'confirm_new_password' => 'Veuillez confirmer le nouveau mot de passe',
+    'confirm_password_error' => 'Please confirm your password',
+    'confirm_new_password' => 'Please confirm the new password',
     'delete_user_success' => 'User deleted',
     // RoleUser
     'find_all_role_users_success' => 'Roles with users found',
@@ -173,6 +173,7 @@ return [
     'processing_succeed' => 'Your transaction succeeded. You can see it at your payments list.',
     'error_while_processing' => 'An error while processing your request',
     'process_failed' => 'Unable to process the request, please try again',
+    'process_canceled' => 'You canceled your transaction',
     'create_payment_success' => 'Payment created',
     'update_payment_success' => 'Payment updated',
     'delete_payment_success' => 'Payment deleted',

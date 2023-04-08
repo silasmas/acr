@@ -170,6 +170,14 @@ class PasswordResetController extends BaseController
         if (is_null($password_reset)) {
             return $this->handleError(__('notifications.find_password_reset_404'));
         }
+        if ($password_reset->email != null) {
+            $random_string = (string) random_int(1000000, 9999999);
+
+            $password_reset->update([
+                'token' => $random_string,
+                'updated_at' => now()
+            ]);
+        }
 
         return $this->handleResponse(new ResourcesPasswordReset($password_reset), __('notifications.find_password_reset_success'));
     }
@@ -182,7 +190,7 @@ class PasswordResetController extends BaseController
      */
     public function searchByPhone($data)
     {
-        $basic  = new \Vonage\Client\Credentials\Basic(env('VONAGE_API_KEY'), env('VONAGE_API_SECRET'));
+        $basic  = new \Vonage\Client\Credentials\Basic('89e3b822', 'cab98aefeaab1434ACR');
         $client = new \Vonage\Client($basic);
         $password_reset = PasswordReset::where('phone', $data)->orderBy('updated_at', 'desc')->first();
 
@@ -191,6 +199,13 @@ class PasswordResetController extends BaseController
         }
 
         if ($password_reset->phone != null) {
+            $random_string = (string) random_int(1000000, 9999999);
+
+            $password_reset->update([
+                'token' => $random_string,
+                'updated_at' => now()
+            ]);
+
             try {
                 $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
 

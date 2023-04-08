@@ -1,7 +1,4 @@
 <?php
-/**
- * Copyright (c) 2023 Xsam Technologies and/or its affiliates. All rights reserved.
- */
 
 namespace App\Http\Controllers\Web;
 
@@ -14,6 +11,10 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use GuzzleHttp\Exception\ClientException;
 
+/**
+ * @author Xanders
+ * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
+ */
 class AboutController extends Controller
 {
     public static $client;
@@ -23,7 +24,7 @@ class AboutController extends Controller
         // Client used for accessing API | Use authorization key
         $this::$client = new Client();
 
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     // ==================================== HTTP GET METHODS ====================================
@@ -36,7 +37,7 @@ class AboutController extends Controller
     {
         // Get header informations
         $headers = [
-            'Authorization' => 'Bearer '. Auth::user()->api_token,
+            'Authorization' => 'Bearer uWNJB6EwpVQwSuL5oJ7S7JkSkLzdpt8M1Xrs1MZITE1bCEbjMhscv8ZX2sTiDBarCHcu1EeJSsSLZIlYjr6YCl7pLycfn2AAQmYm',
             'Accept' => 'application/json',
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
@@ -151,7 +152,7 @@ class AboutController extends Controller
     {
         // Get header informations
         $headers = [
-            'Authorization' => 'Bearer '. Auth::user()->api_token,
+            'Authorization' => 'Bearer uWNJB6EwpVQwSuL5oJ7S7JkSkLzdpt8M1Xrs1MZITE1bCEbjMhscv8ZX2sTiDBarCHcu1EeJSsSLZIlYjr6YCl7pLycfn2AAQmYm',
             'Accept' => 'application/json',
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
@@ -181,7 +182,7 @@ class AboutController extends Controller
     {
         // Get header informations
         $headers = [
-            'Authorization' => 'Bearer '. Auth::user()->api_token,
+            'Authorization' => 'Bearer uWNJB6EwpVQwSuL5oJ7S7JkSkLzdpt8M1Xrs1MZITE1bCEbjMhscv8ZX2sTiDBarCHcu1EeJSsSLZIlYjr6YCl7pLycfn2AAQmYm',
             'Accept' => 'application/json',
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
@@ -219,7 +220,7 @@ class AboutController extends Controller
     {
         // Get header informations
         $headers = [
-            'Authorization' => 'Bearer '. Auth::user()->api_token,
+            'Authorization' => 'Bearer uWNJB6EwpVQwSuL5oJ7S7JkSkLzdpt8M1Xrs1MZITE1bCEbjMhscv8ZX2sTiDBarCHcu1EeJSsSLZIlYjr6YCl7pLycfn2AAQmYm',
             'Accept' => 'application/json',
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
@@ -305,7 +306,7 @@ class AboutController extends Controller
     {
         // Get header informations
         $headers = [
-            'Authorization' => 'Bearer '. Auth::user()->api_token,
+            'Authorization' => 'Bearer uWNJB6EwpVQwSuL5oJ7S7JkSkLzdpt8M1Xrs1MZITE1bCEbjMhscv8ZX2sTiDBarCHcu1EeJSsSLZIlYjr6YCl7pLycfn2AAQmYm',
             'Accept' => 'application/json',
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
@@ -382,7 +383,7 @@ class AboutController extends Controller
     {
         // Get header informations
         $headers = [
-            'Authorization' => 'Bearer '. Auth::user()->api_token,
+            'Authorization' => 'Bearer uWNJB6EwpVQwSuL5oJ7S7JkSkLzdpt8M1Xrs1MZITE1bCEbjMhscv8ZX2sTiDBarCHcu1EeJSsSLZIlYjr6YCl7pLycfn2AAQmYm',
             'Accept' => 'application/json',
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];
@@ -624,7 +625,7 @@ class AboutController extends Controller
     {
         // Get header informations
         $headers = [
-            'Authorization' => 'Bearer '. Auth::user()->api_token,
+            'Authorization' => 'Bearer uWNJB6EwpVQwSuL5oJ7S7JkSkLzdpt8M1Xrs1MZITE1bCEbjMhscv8ZX2sTiDBarCHcu1EeJSsSLZIlYjr6YCl7pLycfn2AAQmYm',
             'Accept' => 'application/json',
             'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
         ];

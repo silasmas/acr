@@ -9,11 +9,11 @@
 
 $(document).ready(function () {
     /* Return false when click on "#" link */
-    $('[href="#"]').on('click',  function(e){
+    $('[href="#"]').on('click', function (e) {
         return false;
     });
 
-    $('.back-to-top').click(function(e){
+    $('.back-to-top').click(function (e) {
         $("html, body").animate({ scrollTop: "0" });
     });
 
@@ -27,9 +27,9 @@ $(document).ready(function () {
     $('.counter').animateCounter(4000);
 
     /* Upload news/user cropped photo */
-    $('.news-image img').uploadNewsImage('#cropModal1', '#news_image', '/api/news/add_image/' + parseInt($('#newsId').val()), 'news_id');
-    $('.user-image img').uploadUserImage('#cropModal1', '#avatar', '/api/user/update_avatar_picture/' + parseInt($('#userId').val()), 'user_id');
-    
+    $('.news-image img').uploadNewsImage('#cropModal1', '#news_image', currentHost + '/api/news/add_image/' + parseInt($('#newsId').val()), 'news_id');
+    $('.user-image img').uploadUserImage('#cropModal1', '#avatar', currentHost + '/api/user/update_avatar_picture/' + parseInt($('#userId').val()), 'user_id');
+
     /* Load other user image */
     $('.other-user-image-recto img').loadOtherUserImage('#cropModal2', '.register_image_recto', '#loaded_image_recto', '.image_64_recto');
     $('.other-user-image-verso img').loadOtherUserImage('#cropModal2', '.register_image_verso', '#loaded_image_verso', '.image_64_verso');
@@ -39,13 +39,57 @@ $(document).ready(function () {
 
     /* jQuery Date picker */
     $('#register_birthdate').datepicker({
-        dateFormat: 'yy-mm-dd',
+        dateFormat: navigator.language.startsWith('fr') ? 'dd/mm/yyyy' : 'yyyy-mm-dd',
         onSelect: function () {
             $(this).focus();
         }
     });
 
-    /* HOVER STRETCHED LINK */
+    /* On select change, update de country phone code */
+    $('#select_country1').on('change', function () {
+        var countryPhoneCode = $(this).val();
+
+        $('#phone_code_text1 .text-value').text(countryPhoneCode);
+        $('phone_code1').val(countryPhoneCode);
+    });
+    $('#select_country2').on('change', function () {
+        var countryPhoneCode = $(this).val();
+
+        $('#phone_code_text2 .text-value').text(countryPhoneCode);
+        $('phone_code2').val(countryPhoneCode);
+    });
+    $('#select_country3').on('change', function () {
+        var countryPhoneCode = $(this).val();
+
+        $('#phone_code_text3 .text-value').text(countryPhoneCode);
+        $('phone_code3').val(countryPhoneCode);
+    });
+
+    /* On check, show/hide some blocs */
+    // OFFER TYPE
+    $('#donationType .form-check-input').each(function () {
+        $(this).on('click', function () {
+            if ($('#anonyme').is(':checked')) {
+                $('#donorIdentity').addClass('d-none');
+
+            } else {
+                $('#donorIdentity').removeClass('d-none');
+            }
+        });
+    });
+    // TRANSACTION TYPE
+    $('#paymentMethod .form-check-input').each(function () {
+        $(this).on('click', function () {
+            if ($('#bank_card').is(':checked')) {
+                $('#phoneNumberForMoney').addClass('d-none');
+
+            } else {
+                $('#phoneNumberForMoney').removeClass('d-none');
+            }
+        });
+    });
+
+    /* Hover stretched link */
     $('.card-body + .stretched-link').each(function () {
         $(this).hover(function () {
             $(this).addClass('changed');
@@ -53,25 +97,30 @@ $(document).ready(function () {
         }, function () {
             $(this).removeClass('changed');
         });
-    })
+    });
 
-    setInterval(function () {
-        /* Update administrator API token */
+    /* Mark all notifications as read */
+    $('#markAllRead').click(function (e) {
+        e.preventDefault();
+
         $.ajax({
-            headers: {'Authorization': 'Bearer ' + Cookies.get('acr-devref'), 'Accept': 'application/json', 'X-localization': navigator.language},
+            headers: headers,
             type: 'PUT',
             contentType: 'application/json',
-            url: '/api/user/update_api_token/3',
-            dataType: 'json',
+            url: currentHost + '/api/notification/mark_all_read/' + parseInt($(this).attr('data-user-id')),
             success: function () {
+                window.location.reload();
             },    
             error: function (xhr, error, status_description) {
                 console.log(xhr.responseJSON);
                 console.log(xhr.status);
                 console.log(error);
                 console.log(status_description);
-            }    
+            }
         });
+    });
 
-    },60000); /* Run an ajax function every minute */
+    /* Run an ajax function every second */
+    // setInterval(function () {
+    // }, 1000);
 });

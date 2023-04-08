@@ -1,57 +1,84 @@
 /**
- * Biliap cores plugins
- * 
- * Copyright (c) 2023 Xsam Technologies and/or its affiliates. All rights reserved.
- * 
  * @author Xanders Samoth
  * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
  * 
  */
-import Cookies from 'js-cookie'
-
-/* Get the API token of the first super administrator */
-$.ajax({
-    headers: {'Accept': 'application/json', 'X-localization': navigator.language},
-    type: 'GET',
-    contentType: 'application/json',
-    url: '/api/user/get_api_token',
-    success: function (result) {
-        if (result !== null) {
-            console.log(result);
-
-            Cookies.set('acr-devref', result.data)
-        }
-    },
-    error: function (xhr, error, status_description) {
-        console.log(xhr.responseJSON);
-        console.log(xhr.status);
-        console.log(error);
-        console.log(status_description);
-    }    
-});
-
-// Necessary headers for APIs
-var headers = {'Authorization': 'Bearer ' + Cookies.get('acr-devref'), 'Accept': 'application/json', 'X-localization': navigator.language};
-// CSS files to toggle app theme
-const MDB_LIGHT = '/assets/addons/mdb/css/mdb.min.css';
-const MDB_DARK = '/assets/addons/mdb/css/mdb.dark.min.css';
-const CUST_LIGHT = '/assets/css/style.custom.css';
-
 // ==================================== NATIVE FUNCTIONS ====================================
 /**
  * Dynamically load JS files
  */
-function loadJS() {
-    $.getScript('/assets/addons/jquery/js/jquery.min.js');
-    $.getScript('/assets/addons/jquery/js/jquery-ui.min.js');
-    $.getScript('/assets/addons/jquery/js/jquery.number.min.js');
-    $.getScript('/assets/addons/mdb/js/mdb.min.js');
-    $.getScript('/assets/addons/bootstrap/js/bootstrap.min.js');
-    $.getScript('/assets/addons/cropper/js/cropper.min.js');
-    $.getScript('/assets/addons/autosize/js/autosize.min.js');
-    $.getScript('/assets/addons/biliap/js/biliap.cores.js');
+function loadPublicJS() {
+    $.getScript('/assets/addons/custom/jquery/js/jquery.min.js');
+    $.getScript('/assets/addons/custom/jquery/jquery-ui/jquery-ui.min.js');
+    $.getScript('/assets/addons/custom/bootstrap/js/bootstrap.min.js');
+    $.getScript('/assets/addons/custom/mdb/js/mdb.min.js');
+    $.getScript('/assets/addons/custom/cropper/js/cropper.min.js');
+    $.getScript('/assets/addons/custom/autosize/js/autosize.min.js');
+    $.getScript('/assets/addons/dairy/wow/wow.min.js');
+    $.getScript('/assets/addons/dairy/easing/easing.min.js');
+    $.getScript('/assets/addons/dairy/waypoints/waypoints.min.js');
+    $.getScript('/assets/addons/dairy/owlcarousel/owl.carousel.min.js');
+    $.getScript('/assets/addons/dairy/counterup/counterup.min.js');
+    $.getScript('/assets/addons/dairy/parallax/parallax.min.js');
+    $.getScript('/assets/addons/dairy/lightbox/js/lightbox.min.js');
+    $.getScript('/assets/addons/custom/biliap/js/biliap.cores.js');
+    $.getScript('/assets/js/scripts.dairy.js');
     $.getScript('/assets/js/scripts.custom.js');
 }
+function loadAdminJS() {
+    $.getScript('/assets/addons/custom/jquery/js/jquery.min.js');
+    $.getScript('/assets/addons/custom/jquery/jquery-ui/jquery-ui.min.js');
+    $.getScript('/assets/addons/custom/bootstrap/js/bootstrap.min.js');
+    $.getScript('/assets/addons/custom/mdb/js/mdb.min.js');
+    $.getScript('/assets/addons/custom/cropper/js/cropper.min.js');
+    $.getScript('/assets/addons/custom/autosize/js/autosize.min.js');
+    $.getScript('/assets/addons/custom/biliap/js/biliap.cores.js');
+    $.getScript('/assets/js/scripts.adminator.js');
+    $.getScript('/assets/js/scripts.custom.js');
+}
+
+/**
+ * Gest host name
+ * 
+ * @param string url 
+ */
+function get_hostname(url) {
+    var m = url.match(/^https?:\/\/[^/]+/);
+    return m ? m[0] : null;
+}
+
+/**
+ * Get cookie by name
+ * 
+ * @param string cname 
+ */
+function getCookie(cname) {
+    let name = cname + '=';
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+
+    for(let i = 0; i <ca.length; i++) {
+        let c = ca[i];
+
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+
+    return '';
+}
+
+// Necessary headers for APIs
+var currentHost = $(location).attr('port') ? $(location).attr('protocol') + '//' + $(location).attr('hostname') + ':' + $(location).attr('port') : $(location).attr('protocol') + '//' + $(location).attr('hostname')
+var headers = {'Authorization': 'Bearer ' + $('[name="acr-devref"]').attr('content'), 'Accept': 'application/json', 'X-localization': navigator.language};
+// CSS files to toggle app theme
+const MDB_LIGHT = currentHost + '/assets/addons/mdb/css/mdb.min.css';
+const MDB_DARK = currentHost + '/assets/addons/mdb/css/mdb.dark.min.css';
+const CUST_LIGHT = currentHost + '/assets/css/style.custom.css';
 
 // ==================================== JQUERY CUSTOM PLUGIN ====================================
 (function ($) {

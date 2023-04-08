@@ -37,6 +37,7 @@ class StatusController extends BaseController
         $inputs = [
             'status_name' => $request->status_name,
             'status_description' => $request->status_description,
+            'color' => $request->color,
             'group_id' => $request->group_id
         ];
         // Select all statuses belonging to a group to check unique constraint
@@ -94,6 +95,7 @@ class StatusController extends BaseController
             'id' => $request->id,
             'status_name' => $request->status_name,
             'status_description' => $request->status_description,
+            'color' => $request->color,
             'group_id' => $request->group_id,
             'updated_at' => now()
         ];
@@ -146,9 +148,13 @@ class StatusController extends BaseController
      */
     public function search($data)
     {
-        $statuses = Status::where('status_name', $data)->get();
+        $status = Status::where('status_name', $data)->first();
 
-        return $this->handleResponse(ResourcesStatus::collection($statuses), __('notifications.find_all_statuses_success'));
+        if (is_null($status)) {
+            return $this->handleError(__('notifications.find_status_404'));
+        }
+
+        return $this->handleResponse(new ResourcesStatus($status), __('notifications.find_status_success'));
     }
 
     /**

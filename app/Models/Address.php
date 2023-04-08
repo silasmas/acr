@@ -13,7 +13,7 @@ class Address extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['address_content', 'neighborhood', 'area', 'city', 'updated_at', 'type_id', 'country_id', 'user_id'];
+    protected $fillable = ['address_content', 'address_content_2', 'neighborhood', 'area', 'city', 'updated_at', 'type_id', 'country_id', 'user_id'];
 
     /**
      * ONE-TO-MANY

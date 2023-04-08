@@ -68,7 +68,7 @@ class UserController extends BaseController
         ];
         $users = User::all();
         $password_reset = null;
-        $basic  = new \Vonage\Client\Credentials\Basic(env('VONAGE_API_KEY'), env('VONAGE_API_SECRET'));
+        $basic  = new \Vonage\Client\Credentials\Basic('89e3b822', 'cab98aefeaab1434ACR');
         $client = new \Vonage\Client($basic);
 
         // Validate required fields
@@ -112,7 +112,7 @@ class UserController extends BaseController
             }
 
             if (preg_match('#^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$#', $inputs['password']) == 0) {
-                return $this->handleError($inputs['password'], __('notifications.password.error'), 400);
+                return $this->handleError($inputs['password'], __('miscellaneous.password.error'), 400);
             }
 
             // Update password reset in the case user want to reset his password
@@ -124,16 +124,14 @@ class UserController extends BaseController
                 'former_password' => $inputs['password']
             ]);
 
-            if ($password_reset->phone != null) {
-                try {
-                    $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
+            // if ($password_reset->phone != null) {
+            //     try {
+            //         $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
 
-                } catch (\Throwable $th) {
-                    $response_error = json_decode($th->getMessage(), false);
-
-                    return $this->handleError($response_error, __('notifications.create_user_SMS_failed'), 500);
-                }
-            }
+            //     } catch (\Throwable $th) {
+            //         return $this->handleError($th->getMessage(), __('notifications.create_user_SMS_failed'), 500);
+            //     }
+            // }
         }
 
         if ($inputs['password'] == null) {
@@ -148,19 +146,26 @@ class UserController extends BaseController
 
             $inputs['password'] = Hash::make($password_reset->former_password);
 
-            if ($password_reset->phone != null) {
-                try {
-                    $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
+            // if ($password_reset->phone != null) {
+            //     try {
+            //         $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
 
-                } catch (\Throwable $th) {
-                    $response_error = json_decode($th->getMessage(), false);
-
-                    return $this->handleError($response_error, __('notifications.create_user_SMS_failed'), 500);
-                }
-            }
+            //     } catch (\Throwable $th) {
+            //         return $this->handleError($th->getMessage(), __('notifications.create_user_SMS_failed'), 500);
+            //     }
+            // }
         }
 
         $user = User::create($inputs);
+
+        if ($user->surname != null AND $user->birth_date != null) {
+            if ($user->national_number == null) {
+                $user->update([
+                    'national_number' => 'ACR-' . Random::generate(4, '0-9') . '-' . strtoupper(substr($user->surname, 0, 3)) . '-' . explode('-', $user->birth_date)[0] . '.' . explode('-', $user->birth_date)[1] . '.' . explode('-', $user->birth_date)[2] . '-0000',
+                    'updated_at' => now(),
+                ]);
+            }
+        }
 
         if ($request->role_id != null) {
             RoleUser::create([
@@ -171,28 +176,36 @@ class UserController extends BaseController
             /*
                 HISTORY AND/OR NOTIFICATION MANAGEMENT
             */
+            $status_activated = Status::where('status_name', 'Activé')->first();
+            $status_ongoing = Status::where('status_name', 'En attente')->first();
             $status_unread = Status::where('status_name', 'Non lue')->first();
             $admin_role = Role::where('role_name', 'Administrateur')->first();
-            $member_role = Role::where('role_name', 'Membre')->first();
+            $supporting_member_role = Role::where('role_name', 'Membre Sympathisant')->first();
+            $effecive_member_role = Role::where('role_name', 'Membre Effectif')->first();
+            $honorary_member_role = Role::where('role_name', 'Membre d\'Honneur')->first();
             $current_role = Role::find($request->role_id);
 
             // If the new user is a member, send notification to 
             // all managers and a welcome notification to the new user
-            if ($current_role->id == $member_role->id) {
+            if ($current_role->id == $supporting_member_role->id OR $current_role->id == $effecive_member_role->id OR $current_role->id == $honorary_member_role->id) {
+                $user->update([
+                    'status_id' => $status_ongoing->id,
+                ]);
+
                 $manager_role = Role::where('role_name', 'Manager')->first();
                 $role_users = RoleUser::where('role_id', $manager_role->id)->get();
 
                 foreach ($role_users as $executive):
                     Notification::create([
                         'notification_url' => 'members/' . $user->id,
-                        'notification_content' => $user->fistname . ' ' . $user->lastname . ' ' . __('notifications.subscribed_to_party'),
+                        'notification_content' => $user->firstname . ' ' . $user->lastname . ' ' . __('notifications.subscribed_to_party'),
                         'status_id' => $status_unread->id,
                         'user_id' => $executive->user_id
                     ]);
                 endforeach;
 
                 Notification::create([
-                    'notification_url' => 'about_us/terms_of_use',
+                    'notification_url' => 'about/terms_of_use',
                     'notification_content' => __('notifications.welcome_member'),
                     'status_id' => $status_unread->id,
                     'user_id' => $user->id,
@@ -200,9 +213,13 @@ class UserController extends BaseController
             }
 
             // If the new user is neither a member nor an admin, send a ordinary welcome notification
-            if ($current_role->id != $member_role->id AND $current_role->id != $admin_role->id) {
+            if ($current_role->id != $supporting_member_role->id AND $current_role->id != $effecive_member_role->id AND $current_role->id != $honorary_member_role->id AND $current_role->id != $admin_role->id) {
+                $user->update([
+                    'status_id' => $status_activated->id,
+                ]);
+
                 Notification::create([
-                    'notification_url' => 'about_us/terms_of_use',
+                    'notification_url' => 'about/terms_of_use',
                     'notification_content' => __('notifications.welcome_user'),
                     'status_id' => $status_unread->id,
                     'user_id' => $user->id,
@@ -214,6 +231,7 @@ class UserController extends BaseController
         if ($request->address_content != null OR $request->neighborhood != null OR $request->area != null OR $request->city != null) {
             Address::create([
                 'address_content' => $request->address_content,
+                'address_content_2' => $request->address_content_2,
                 'neighborhood' => $request->neighborhood,
                 'area' => $request->area,
                 'city' => $request->city,
@@ -258,7 +276,8 @@ class UserController extends BaseController
     {
         // Get inputs
         $inputs = [
-            'national_number' => $request->national_number,
+            'id' => $request->id,
+            'national_number' => $request->serial_number,
             'firstname' => $request->firstname,
             'lastname' => $request->lastname,
             'surname' => $request->surname,
@@ -273,11 +292,26 @@ class UserController extends BaseController
             'confirm_password' => $request->confirm_password
         ];
 
-        if ($inputs['national_number'] != null) {
-            $user->update([
-                'national_number' => $request->national_number,
-                'updated_at' => now(),
-            ]);
+        $current_user = User::find($inputs['id']);
+
+        if (!is_null($current_user)) {
+            if ($current_user->surname == null OR $current_user->birth_date == null) {
+                if ($request->surname != null AND $request->birth_date != null) {
+                    $user->update([
+                        'national_number' => 'ACR-' . Random::generate(4, '0-9') . '-' . strtoupper(substr($request->surname, 0, 3)) . '-' . explode('-', $request->birth_date)[0] . '.' . explode('-', $request->birth_date)[1] . '.' . explode('-', $request->birth_date)[2] . '-0000',
+                        'updated_at' => now(),
+                    ]);
+                }
+            }
+
+            if ($current_user->surname != null AND $current_user->birth_date != null) {
+                if ($current_user->national_number == null) {
+                    $user->update([
+                        'national_number' => 'ACR-' . Random::generate(4, '0-9') . '-' . strtoupper(substr($current_user->surname, 0, 3)) . '-' . explode('-', $current_user->birth_date)[0] . '.' . explode('-', $current_user->birth_date)[1] . '.' . explode('-', $current_user->birth_date)[2] . '-0000',
+                        'updated_at' => now(),
+                    ]);
+                }
+            }
         }
 
         if ($inputs['firstname'] != null) {
@@ -356,30 +390,62 @@ class UserController extends BaseController
             }
 
             if (preg_match('#^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$#', $inputs['password']) == 0) {
-                return $this->handleError($inputs['password'], __('notifications.password.error'), 400);
+                return $this->handleError($inputs['password'], __('miscellaneous.password.error'), 400);
             }
 
             $password_reset_by_email = PasswordReset::where('email', $inputs['email'])->first();
             $password_reset_by_phone = PasswordReset::where('phone', $inputs['phone'])->first();
+            $random_string = (string) random_int(1000000, 9999999);
 
-            if ($password_reset_by_email != null) {
-                // Update password reset
-                $random_string = (string) random_int(1000000, 9999999);
-                $password_reset_by_email->update([
-                    'token' => $random_string,
-                    'former_password' => $inputs['password'],
-                    'updated_at' => now(),
-                ]);
-            }
+            // If password_reset doesn't exist, create it.
+            if ($password_reset_by_email == null AND $password_reset_by_phone == null) {
+                if ($inputs['email'] != null AND $inputs['phone'] != null) {
+                    PasswordReset::create([
+                        'email' => $inputs['email'],
+                        'phone' => $inputs['phone'],
+                        'token' => $random_string,
+                        'former_password' => $inputs['password'],
+                    ]);
 
-            if ($password_reset_by_phone != null) {
-                // Update password reset
-                $random_string = (string) random_int(1000000, 9999999);
-                $password_reset_by_phone->update([
-                    'token' => $random_string,
-                    'former_password' => $inputs['password'],
-                    'updated_at' => now(),
-                ]);
+                } else {
+                    if ($inputs['email'] != null) {
+                        PasswordReset::create([
+                            'email' => $inputs['email'],
+                            'token' => $random_string,
+                            'former_password' => $inputs['password'],
+                            'updated_at' => now(),
+                        ]);
+                    }
+
+                    if ($inputs['phone'] != null) {
+                        PasswordReset::create([
+                            'phone' => $inputs['phone'],
+                            'token' => $random_string,
+                            'former_password' => $inputs['password'],
+                            'updated_at' => now(),
+                        ]);
+                    }
+                }
+
+            // Otherwise, update it.
+            } else {
+                if ($password_reset_by_email != null) {
+                    // Update password reset
+                    $password_reset_by_email->update([
+                        'token' => $random_string,
+                        'former_password' => $inputs['password'],
+                        'updated_at' => now(),
+                    ]);
+                }
+
+                if ($password_reset_by_phone != null) {
+                    // Update password reset
+                    $password_reset_by_phone->update([
+                        'token' => $random_string,
+                        'former_password' => $inputs['password'],
+                        'updated_at' => now(),
+                    ]);
+                }
             }
 
             $inputs['password'] = Hash::make($inputs['password']);
@@ -427,6 +493,19 @@ class UserController extends BaseController
     }
 
     /**
+     * Search a user by his email / phone / national number.
+     *
+     * @param  int $status_id
+     * @return \Illuminate\Http\Response
+     */
+    public function findByStatus($status_id)
+    {
+        $users = User::where('status_id', $status_id)->orderByDesc('created_at')->get();
+
+        return $this->handleResponse(ResourcesUser::collection($users), __('notifications.find_all_users_success'));
+    }
+
+    /**
      * Handle an incoming authentication request.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -459,12 +538,6 @@ class UserController extends BaseController
                 return $this->handleError($inputs['password'], __('auth.password'), 400);
             }
 
-            // update "last_connection" column
-            $user->update([
-                'last_connection' => now(),
-                'updated_at' => now()
-            ]);
-
             return $this->handleResponse(new ResourcesUser($user), __('notifications.find_user_success'));
 
         } else {
@@ -477,12 +550,6 @@ class UserController extends BaseController
             if (!Hash::check($inputs['password'], $user->password)) {
                 return $this->handleError($inputs['password'], __('auth.password'), 400);
             }
-
-            // update "last_connection" column
-            $user->update([
-                'last_connection' => now(),
-                'updated_at' => now()
-            ]);
 
             return $this->handleResponse(new ResourcesUser($user), __('notifications.find_user_success'));
         }
@@ -508,22 +575,17 @@ class UserController extends BaseController
         */
         $status_ongoing = Status::where('status_name', 'En attente')->first();
         $status_unread = Status::where('status_name', 'Non lue')->first();
-        $member_role = Role::where('role_name', 'Membre')->first();
+        $supporting_member_role = Role::where('role_name', 'Membre Sympathisant')->first();
+        $effecive_member_role = Role::where('role_name', 'Membre Effectif')->first();
+        $honorary_member_role = Role::where('role_name', 'Membre d\'Honneur')->first();
         $user_roles = RoleUser::where('user_id', $user->id)->get();
-        $is_ongoing = $user->status_id == $status_ongoing->id;
-
-        // update "status_id" column
-        $user->update([
-            'status_id' => $status_id,
-            'updated_at' => now()
-        ]);
 
         // If it's a member whose accessing is accepted, send notification
-        if ($is_ongoing == true) {
+        if ($user->status_id == $status_ongoing->id) {
             foreach ($user_roles as $user_role):
-                if ($user_role->id == $member_role->id) {
+                if ($user_role->id == $supporting_member_role->id OR $user_role->id == $effecive_member_role->id OR $user_role->id == $honorary_member_role->id) {
                     Notification::create([
-                        'notification_url' => 'about_us/terms_of_use',
+                        'notification_url' => 'about/terms_of_use',
                         'notification_content' => __('notifications.member_joined'),
                         'status_id' => $status_unread->id,
                         'user_id' => $user->id,
@@ -532,63 +594,34 @@ class UserController extends BaseController
             endforeach;
         }
 
-        return $this->handleResponse(new ResourcesUser($user), __('notifications.update_user_success'));
-    }
-
-    /**
-     * Associate roles to user in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function associateRoles(Request $request, $id)
-    {
-        $user = User::find($id);
-
-        if ($request->role_id != null) {
-            RoleUser::create([
-                'role_id' => $request->role_id,
-                'user_id' => $user->id
-            ]);
-		}
-
-        if ($request->roles_ids != null) {
-            foreach ($request->roles_ids as $role_id):
-                RoleUser::create([
-                    'role_id' => $role_id,
-                    'user_id' => $user->id
-                ]);
-            endforeach;
-		}
+        // update "status_id" column
+        $user->update([
+            'status_id' => $status_id,
+            'updated_at' => now()
+        ]);
 
         return $this->handleResponse(new ResourcesUser($user), __('notifications.update_user_success'));
     }
 
     /**
-     * Withdraw roles from user in storage.
+     * Update user role in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  $id
      * @return \Illuminate\Http\Response
      */
-    public function withdrawRoles(Request $request, $id)
+    public function updateRole(Request $request, $id)
     {
         $user = User::find($id);
 
-        if ($request->role_id != null) {
-            $role_user = RoleUser::where([['role_id', $request->role_id], ['user_id', $user->id]])->first();
+        $role_user = RoleUser::where('user_id', $user->id)->first();
 
-            $role_user->delete();
-        }
+        $role_user->delete();
 
-        if ($request->roles_ids != null) {
-            foreach ($request->roles_ids as $role_id):
-                $role_user = RoleUser::where([['role_id', $role_id], ['user_id', $user->id]])->first();
-
-                $role_user->delete();
-            endforeach;
-        }
+        RoleUser::create([
+            'role_id' => $request->role_id,
+            'user_id' => $user->id
+        ]);
 
         return $this->handleResponse(new ResourcesUser($user), __('notifications.update_user_success'));
     }
@@ -611,11 +644,11 @@ class UserController extends BaseController
         $user = User::find($id);
 
         if ($inputs['former_password'] == null) {
-            return $this->handleError($inputs['former_password'], __('validation.former_password.empty'), 400);
+            return $this->handleError($inputs['former_password'], __('validation.custom.former_password.empty'), 400);
         }
 
         if ($inputs['new_password'] == null) {
-            return $this->handleError($inputs['new_password'], __('validation.new_password.empty'), 400);
+            return $this->handleError($inputs['new_password'], __('validation.custom.new_password.empty'), 400);
         }
 
         if ($inputs['confirm_new_password'] == null) {
@@ -631,7 +664,7 @@ class UserController extends BaseController
         }
 
         if (preg_match('#^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$#', $inputs['new_password']) == 0) {
-            return $this->handleError($inputs['new_password'], __('validation.new_password.error'), 400);
+            return $this->handleError($inputs['new_password'], __('validation.custom.new_password.incorrect'), 400);
         }
 
         // Update password reset
@@ -668,12 +701,12 @@ class UserController extends BaseController
     /**
      * Get user api token in storage.
      *
-     * @param  $email
+     * @param  $phone
      * @return \Illuminate\Http\Response
      */
-    public function getApiToken($email)
+    public function getApiToken($phone)
     {
-        $user = User::where('email', $email)->first();
+        $user = User::where('phone', $phone)->first();
 
         if (is_null($user)) {
             return $this->handleError(__('notifications.find_user_404'));
@@ -685,13 +718,17 @@ class UserController extends BaseController
     /**
      * Update user api token in storage.
      *
-     * @param  $id
+     * @param  $phone
      * @return \Illuminate\Http\Response
      */
-    public function updateApiToken($id)
+    public function updateApiToken($phone)
     {
         // find user by given ID
-        $user = User::find($id);
+        $user = User::where('phone', $phone)->first();
+
+        if (is_null($user)) {
+            return $this->handleError(__('notifications.find_user_404'));
+        }
 
         // update "api_token" column
         $user->update([
@@ -724,6 +761,7 @@ class UserController extends BaseController
         // Clean "avatars" directory
         $file = new Filesystem;
         $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $inputs['user_id'] . '/avatar');
+        // $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/storage/images/users/' . $inputs['user_id'] . '/avatar');
         // Create image URL
 		$image_url = 'images/users/' . $inputs['user_id'] . '/avatar/' . Str::random(50) . '.png';
 
@@ -773,6 +811,7 @@ class UserController extends BaseController
                 // Clean "identity_data" directory
                 $file = new Filesystem;
                 $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $inputs['user_id'] . '/identity_data');
+                // $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/storage/images/users/' . $inputs['user_id'] . '/identity_data');
                 // Create image URL
                 $image_url_recto = 'images/users/' . $inputs['user_id'] . '/identity_data/' . Str::random(50) . '.png';
                 $image_url_verso = 'images/users/' . $inputs['user_id'] . '/identity_data/' . Str::random(50) . '.png';
@@ -800,9 +839,12 @@ class UserController extends BaseController
                 $image_recto = str_replace(' ', '+', $image_recto);
 
                 // Delete concerning file in "identity_data"
-                if (Storage::exists($_SERVER['DOCUMENT_ROOT'] . '/public/storage/' . $user_identity_data->url_recto)){
-                    Storage::delete($_SERVER['DOCUMENT_ROOT'] . '/public/storage/' . $user_identity_data->url_recto);
+                if (Storage::exists($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $inputs['user_id'] . '/identity_data/' . $user_identity_data->url_recto)){
+                    Storage::delete($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $inputs['user_id'] . '/identity_data/' . $user_identity_data->url_recto);
                 }
+                // if (Storage::exists($_SERVER['DOCUMENT_ROOT'] . '/storage/images/users/' . $inputs['user_id'] . '/identity_data/' . $user_identity_data->url_recto)){
+                //     Storage::delete($_SERVER['DOCUMENT_ROOT'] . '/storage/images/users/' . $inputs['user_id'] . '/identity_data/' . $user_identity_data->url_recto);
+                // }
 
                 // Create image URL
                 $image_url_recto = 'images/users/' . $inputs['user_id'] . '/identity_data/' . Str::random(50) . '.png';
@@ -824,9 +866,12 @@ class UserController extends BaseController
                 $image_verso = str_replace(' ', '+', $image_verso);
 
                 // Delete concerning file in "identity_data"
-                if (Storage::exists($_SERVER['DOCUMENT_ROOT'] . '/public/storage/' . $user_identity_data->url_verso)){
-                    Storage::delete($_SERVER['DOCUMENT_ROOT'] . '/public/storage/' . $user_identity_data->url_verso);
+                if (Storage::exists($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $inputs['user_id'] . '/identity_data/' . $user_identity_data->url_verso)){
+                    Storage::delete($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $inputs['user_id'] . '/identity_data/' . $user_identity_data->url_verso);
                 }
+                // if (Storage::exists($_SERVER['DOCUMENT_ROOT'] . '/storage/images/users/' . $inputs['user_id'] . '/identity_data/' . $user_identity_data->url_verso)){
+                //     Storage::delete($_SERVER['DOCUMENT_ROOT'] . '/storage/images/users/' . $inputs['user_id'] . '/identity_data/' . $user_identity_data->url_verso);
+                // }
 
                 // Create image URL
                 $image_url_verso = 'images/users/' . $inputs['user_id'] . '/identity_data/' . Str::random(50) . '.png';
@@ -853,6 +898,7 @@ class UserController extends BaseController
             // Clean "identity_data" directory
             $file = new Filesystem;
             $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $inputs['user_id'] . '/identity_data');
+            // $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/storage/images/users/' . $inputs['user_id'] . '/identity_data');
             // Create image URL
             $image_url_recto = 'images/users/' . $inputs['user_id'] . '/identity_data/' . Str::random(50) . '.png';
             $image_url_verso = 'images/users/' . $inputs['user_id'] . '/identity_data/' . Str::random(50) . '.png';
@@ -860,8 +906,6 @@ class UserController extends BaseController
             // Upload image
             Storage::url(Storage::disk('public')->put($image_url_recto, base64_decode($image_recto)));
             Storage::url(Storage::disk('public')->put($image_url_verso, base64_decode($image_verso)));
-
-            $user_identity_data->delete();
 
             Image::create([
                 'image_name' => $inputs['image_name'],

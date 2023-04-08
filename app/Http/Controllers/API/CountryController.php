@@ -19,7 +19,7 @@ class CountryController extends BaseController
      */
     public function index()
     {
-        $countries = Country::orderByDesc('country_name')->get();
+        $countries = Country::orderBy('country_name')->get();
 
         return $this->handleResponse(ResourcesCountry::collection($countries), __('notifications.find_all_countries_success'));
     }
