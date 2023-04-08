@@ -40,6 +40,12 @@ return [
     'reset' => 'Réinitialiser',
     'open' => 'Ouvrir',
     'close' => 'Fermer',
+    'download' => 'Télécharger',
+    'upload' => [
+        'use_camera' => 'Utiliser caméra',
+        'upload_file' => 'Télécharger fichier',
+        'choose_existing_file' => 'Choisir fichier existant'
+    ],
     'activate' => 'Activer',
     'deactivate' => 'Désactiver',
     'lock' => 'Bloquer',
@@ -209,7 +215,16 @@ return [
     'choose_country' => 'Choisir pays',
     'phone_code' => 'Code tél.',
     'phone' => 'N° de téléphone',
-    'email' => 'Adresse E-mail',
+    'email' => 'E-mail',
+    'address' => [
+        'title' => 'Adresse',
+        'type' => 'Type d\'adresse',
+        'line1' => 'Ligne 1',
+        'line2' => 'Ligne 2 (Facultative)',
+        'neighborhood' => 'Quartier',
+        'area' => 'Commune/Zone',
+        'city' => 'Ville',
+    ],
     'username' => 'Nom d\'utilisateur',
     'password' => [
         'label' => 'Mot de passe',
@@ -256,6 +271,50 @@ return [
     ],
 
     // ===== EVERY ROLES PAGES
+    // Account settings
+    'account' => [
+        'personal_infos' => [
+            'title' => 'Infos personnelles',
+            'change_avatar' => 'Modifier l\'avatar',
+            'link' => 'Enregistrer mise à jour',
+        ],
+        'membership_card' => [
+            'title' => 'Carte de membre',
+            'error' => 'Complétez d\'abord vos infos personnelles',
+        ],
+        'update_password' => [
+            'title' => 'Modifier mot de passe',
+            'former_password' => 'Ancien mot de passe',
+            'new_password' => 'Nouveau mot de passe',
+            'new_password' => 'Confirmer nouveau mot de passe',
+        ],
+        'identity_document' => [
+            'title' => 'Pièce d\'identité',
+            'choose_type' => [
+                'title' => 'Choisir le type de pièce d\'identité',
+                'identity_card' => 'Carte d\'identité',
+                'voter_card' => 'Carte d\'électeur',
+                'passport' => 'Passeport',
+                'driving_license' => 'Permis de conduire',
+                'other' => 'Autre',
+            ],
+            'recto' => 'Recto',
+            'verso' => 'Verso',
+            'click_to_change' => 'Cliquer sur la photo pour modifier',
+        ],
+        'my_contributions' => [
+            'title' => 'Mes contributions',
+            'link' => 'Contribuer',
+            'send_money' => [
+                'title' => 'Envoyer argent',
+                'description' => 'Choisir mode de paiement',
+                'mobile_money' => 'Mobile money',
+                'bank_card' => 'Carte bancaire'
+            ],
+        ],
+    ],
+
+    // Messenger
     'message' => [
         'inbox' => 'Boîte de réception',
         'outbox' => 'Messages envoyés',

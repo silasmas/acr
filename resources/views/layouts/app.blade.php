@@ -613,12 +613,12 @@
 @yield('app-content')
                     </div>
                 </main>
+
+                <!-- ### $App Screen Footer ### -->
+                <footer class="bdT ta-c p-30 lh-0 c-grey-600">
+                    <span>&copy; <a href="{{ route('about.home') }}" class="text-info">ACR</a> @lang('miscellaneous.all_right_reserved')</span>
+                </footer>
             </div>
         </div>
-
-        <!-- ### $App Screen Footer ### -->
-        <footer class="bdT ta-c p-30 lh-0 c-grey-600">
-            <span>&copy; <a href="{{ route('about.home') }}" class="text-info">ACR</a> @lang('miscellaneous.all_right_reserved')</span>
-        </footer>
     </body>
 </html>

@@ -40,6 +40,12 @@ return [
     'reset' => 'Reset',
     'open' => 'Open',
     'close' => 'Close',
+    'download' => 'Download',
+    'upload' => [
+        'use_camera' => 'Use camera',
+        'upload_file' => 'Upload file',
+        'choose_existing_file' => 'Choose existing file'
+    ],
     'activate' => 'Activate',
     'deactivate' => 'Deactivate',
     'lock' => 'Lock',
@@ -209,7 +215,16 @@ return [
     'choose_country' => 'Choose country',
     'phone_code' => 'Phone code',
     'phone' => 'Phone number',
-    'email' => 'E-mail address',
+    'email' => 'E-mail',
+    'address' => [
+        'title' => 'Address',
+        'type' => 'Address type',
+        'line1' => 'Line 1',
+        'line2' => 'Line 2 (Optional)',
+        'neighborhood' => 'Neighborhood',
+        'area' => 'Area',
+        'city' => 'City',
+    ],
     'username' => 'User name',
     'password' => [
         'label' => 'Password',
@@ -256,6 +271,50 @@ return [
     ],
 
     // ===== EVERY ROLES PAGES
+    // Account settings
+    'account' => [
+        'personal_infos' => [
+            'title' => 'Personal Infos',
+            'change_avatar' => 'Change the avatar',
+            'link' => 'Register update',
+        ],
+        'membership_card' => [
+            'title' => 'Membership card',
+            'error' => 'Complete your personal information first',
+        ],
+        'update_password' => [
+            'title' => 'Change password',
+            'former_password' => 'Former password',
+            'new_password' => 'New password',
+            'new_password' => 'Confirm new password',
+        ],
+        'identity_document' => [
+            'title' => 'Identity document',
+            'choose_type' => [
+                'title' => 'Choose the type of identity document',
+                'identity_card' => 'Identity card',
+                'voter_card' => 'Voter card',
+                'passport' => 'Passport',
+                'driving_license' => 'Driving license',
+                'other' => 'Other',
+            ],
+            'recto' => 'Recto',
+            'verso' => 'Verso',
+            'click_to_change' => 'Click on photo to edit',
+        ],
+        'my_contributions' => [
+            'title' => 'My contributions',
+            'link' => 'Contribute',
+            'send_money' => [
+                'title' => 'Send money',
+                'description' => 'Choose payment method',
+                'mobile_money' => 'Mobile money',
+                'bank_card' => 'Bank card'
+            ],
+        ],
+    ],
+
+    // Messenger
     'message' => [
         'inbox' => 'Inbox',
         'outbox' => 'Sent messages',
