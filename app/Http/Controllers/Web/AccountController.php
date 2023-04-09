@@ -216,61 +216,10 @@ class AccountController extends Controller
     {
         // Register offer API URL
         $url_offer = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/offer/store';
-        // Status name to find
-        $unread_status = 'Non lue';
-        // Search status by name API URL
-        $url_status = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/status/search/' . $unread_status;
         // Register notification API URL
         $url_notification = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/notification/store';
-        // Select user API URL
-        $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/' . request()->user_id;
-        // Select all countries API URL
-        $url_country = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/country';
-        // Select all received messages API URL
-        $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
-        // Select types by group name API URL
-        $offer_type_group = 'Type d\'offre';
-        $transaction_type_group = 'Type de transaction';
-        $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
-        $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
 
         try {
-            // Search status by name API response
-            $response_status = $this::$client->request('GET', $url_status, [
-                'headers' => $this::$headers,
-                'verify'  => false
-            ]);
-            $status = json_decode($response_status->getBody(), false);
-            // Select user API response
-            $response_user = $this::$client->request('GET', $url_user, [
-                'headers' => $this::$headers,
-                'verify'  => false
-            ]);
-            $user = json_decode($response_user->getBody(), false);
-            // Select countries API response
-            $response_country = $this::$client->request('GET', $url_country, [
-                'headers' => $this::$headers,
-                'verify'  => false
-            ]);
-            $country = json_decode($response_country->getBody(), false);
-            // Select all received messages API response
-            $response_message = $this::$client->request('GET', $url_message, [
-                'headers' => $this::$headers,
-                'verify'  => false
-            ]);
-            $messages = json_decode($response_message->getBody(), false);
-            // Select types by group name API response
-            $response_offer_type = $this::$client->request('GET', $url_offer_type, [
-                'headers' => $this::$headers,
-                'verify'  => false
-            ]);
-            $offer_type = json_decode($response_offer_type->getBody(), false);
-            $response_transaction_type = $this::$client->request('GET', $url_transaction_type, [
-                'headers' => $this::$headers,
-                'verify'  => false
-            ]);
-            $transaction_type = json_decode($response_transaction_type->getBody(), false);
-
             if ($code == '0') {
                 try {
                     // Register offer API response
@@ -290,43 +239,22 @@ class AccountController extends Controller
                         'form_params' => [
                             'notification_url' => 'account/offers',
                             'notification_content' => __('notifications.processing_succeed'),
-                            'status_id' => $status->data->id,
+                            'status_id' => 7,
                             'user_id' => request()->user_id
                         ],
                         'verify'  => false
                     ]);
 
-                    if ($user->data->role_user->role->role_name != 'Administrateur' AND $user->data->role_user->role->role_name != 'Développeur' AND $user->data->role_user->role->role_name != 'Manager') {
-                        return view('account', [
-                            'current_user' => $user->data,
-                            'countries' => $country->data,
-                            'messages' => $messages,
-                            'offer_types' => $offer_type->data,
-                            'transaction_types' => $transaction_type->data
-                        ]);
-
-                    } else {
-                        return view('dashboard.account', [
-                            'current_user' => $user->data,
-                            'countries' => $country->data,
-                            'messages' => $messages,
-                            'offer_types' => $offer_type->data,
-                            'transaction_types' => $transaction_type->data
-                        ]);
-                    }
+                    return view('transaction_message', [
+                        'status_code' => $code,
+                        'message_content' => __('notifications.processing_succeed'),
+                    ]);
 
                 } catch (ClientException $e) {
                     // If the API returns some error, return to the page and display its message
-                    if ($user->data->role_user->role->role_name != 'Administrateur' AND $user->data->role_user->role->role_name != 'Développeur' AND $user->data->role_user->role->role_name != 'Manager') {
-                        return view('account', [
-                            'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
-                        ]);
-
-                    } else {
-                        return view('dashboard.account', [
-                            'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
-                        ]);
-                    }
+                    return view('transaction_message', [
+                        'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                    ]);
                 }
             }
 
@@ -338,43 +266,22 @@ class AccountController extends Controller
                         'form_params' => [
                             'notification_url' => 'account/offers',
                             'notification_content' => __('notifications.process_canceled'),
-                            'status_id' => $status->data->id,
+                            'status_id' => 7,
                             'user_id' => request()->user_id
                         ],
                         'verify'  => false
                     ]);
 
-                    if ($user->data->role_user->role->role_name != 'Administrateur' AND $user->data->role_user->role->role_name != 'Développeur' AND $user->data->role_user->role->role_name != 'Manager') {
-                        return view('account', [
-                            'current_user' => $user->data,
-                            'countries' => $country->data,
-                            'messages' => $messages,
-                            'offer_types' => $offer_type->data,
-                            'transaction_types' => $transaction_type->data
-                        ]);
-
-                    } else {
-                        return view('dashboard.account', [
-                            'current_user' => $user->data,
-                            'countries' => $country->data,
-                            'messages' => $messages,
-                            'offer_types' => $offer_type->data,
-                            'transaction_types' => $transaction_type->data
-                        ]);
-                    }
+                    return view('transaction_message', [
+                        'status_code' => $code,
+                        'message_content' => __('notifications.process_canceled'),
+                    ]);
 
                 } catch (ClientException $e) {
                     // If the API returns some error, return to the page and display its message
-                    if ($user->data->role_user->role->role_name != 'Administrateur' AND $user->data->role_user->role->role_name != 'Développeur' AND $user->data->role_user->role->role_name != 'Manager') {
-                        return view('account', [
-                            'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
-                        ]);
-
-                    } else {
-                        return view('dashboard.account', [
-                            'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
-                        ]);
-                    }
+                    return view('transaction_message', [
+                        'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                    ]);
                 }
             }
 
@@ -397,58 +304,30 @@ class AccountController extends Controller
                         'form_params' => [
                             'notification_url' => 'account/offers',
                             'notification_content' => __('notifications.process_failed'),
-                            'status_id' => $status->data->id,
+                            'status_id' => 7,
                             'user_id' => request()->user_id
                         ],
                         'verify'  => false
                     ]);
 
-                    if ($user->data->role_user->role->role_name != 'Administrateur' AND $user->data->role_user->role->role_name != 'Développeur' AND $user->data->role_user->role->role_name != 'Manager') {
-                        return view('account', [
-                            'current_user' => $user->data,
-                            'countries' => $country->data,
-                            'messages' => $messages,
-                            'offer_types' => $offer_type->data,
-                            'transaction_types' => $transaction_type->data
-                        ]);
-
-                    } else {
-                        return view('dashboard.account', [
-                            'current_user' => $user->data,
-                            'countries' => $country->data,
-                            'messages' => $messages,
-                            'offer_types' => $offer_type->data,
-                            'transaction_types' => $transaction_type->data
-                        ]);
-                    }
+                    return view('transaction_message', [
+                        'status_code' => $code,
+                        'message_content' => __('notifications.process_failed'),
+                    ]);
 
                 } catch (ClientException $e) {
                     // If the API returns some error, return to the page and display its message
-                    if ($user->data->role_user->role->role_name != 'Administrateur' AND $user->data->role_user->role->role_name != 'Développeur' AND $user->data->role_user->role->role_name != 'Manager') {
-                        return view('account', [
-                            'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
-                        ]);
-
-                    } else {
-                        return view('dashboard.account', [
-                            'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
-                        ]);
-                    }
+                    return view('transaction_message', [
+                        'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                    ]);
                 }
             }
 
         } catch (ClientException $e) {
             // If the API returns some error, return to the page and display its message
-            if ($user->data->role_user->role->role_name != 'Administrateur' AND $user->data->role_user->role->role_name != 'Développeur' AND $user->data->role_user->role->role_name != 'Manager') {
-                return view('account', [
-                    'current_user' => $user->data
-                ]);
-
-            } else {
-                return view('dashboard.account', [
-                    'current_user' => $user->data
-                ]);
-            }
+            return view('transaction_message', [
+                'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+            ]);
         }
     }
 
