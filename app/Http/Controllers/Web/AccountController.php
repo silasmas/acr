@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Models\Offer;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use GuzzleHttp\Exception\ClientException;
 use App\Http\Controllers\API\BaseController;
+use App\Models\Notification;
 
 /**
  * @author Xanders
@@ -212,124 +214,64 @@ class AccountController extends Controller
      * @param $code
      * @return \Illuminate\View\View
      */
-    public function offerSent($amount, $currency, $code)
+    public function offerSent($amount, $currency, $code, $user_id)
     {
-        // Register offer API URL
-        $url_offer = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/offer/store';
-        // Register notification API URL
-        $url_notification = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/notification/store';
+        if ($code == '0') {
+            // Register offer
+            Offer::create([
+                'amount' => $amount,
+                'currency' => $currency,
+                'type_id' => 8,
+                'user_id' => $user_id
+            ]);
+            // Register notification
+            Notification::create([
+                'notification_url' => 'account/offers',
+                'notification_content' => __('notifications.processing_succeed'),
+                'status_id' => 7,
+                'user_id' => $user_id
+            ]);
 
-        try {
-            if ($code == '0') {
-                dd($code);
-                try {
-                    // Register offer API response
-                    $this::$client->request('POST', $url_offer, [
-                        'headers' => $this::$headers,
-                        'form_params' => [
-                            'amount' => $amount,
-                            'currency' => $currency,
-                            'type_id' => 8,
-                            'user_id' => request()->user_id
-                        ],
-                        'verify'  => false
-                    ]);
-                    // Register notification API response
-                    $this::$client->request('POST', $url_notification, [
-                        'headers' => $this::$headers,
-                        'form_params' => [
-                            'notification_url' => 'account/offers',
-                            'notification_content' => __('notifications.processing_succeed'),
-                            'status_id' => 7,
-                            'user_id' => request()->user_id
-                        ],
-                        'verify'  => false
-                    ]);
-
-                    return view('transaction_message', [
-                        'status_code' => $code,
-                        'message_content' => __('notifications.processing_succeed'),
-                    ]);
-
-                } catch (ClientException $e) {
-                    // If the API returns some error, return to the page and display its message
-                    return view('transaction_message', [
-                        'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
-                    ]);
-                }
-            }
-
-            if ($code == '1') {
-                dd($code);
-                try {
-                    // Register notification API response
-                    $this::$client->request('POST', $url_notification, [
-                        'headers' => $this::$headers,
-                        'form_params' => [
-                            'notification_url' => 'account/offers',
-                            'notification_content' => __('notifications.process_canceled'),
-                            'status_id' => 7,
-                            'user_id' => request()->user_id
-                        ],
-                        'verify'  => false
-                    ]);
-
-                    return view('transaction_message', [
-                        'status_code' => $code,
-                        'message_content' => __('notifications.process_canceled'),
-                    ]);
-
-                } catch (ClientException $e) {
-                    // If the API returns some error, return to the page and display its message
-                    return view('transaction_message', [
-                        'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
-                    ]);
-                }
-            }
-
-            if ($code == '2') {
-                dd($code);
-                try {
-                    // Register offer API response
-                    $this::$client->request('POST', $url_offer, [
-                        'headers' => $this::$headers,
-                        'form_params' => [
-                            'amount' => $amount,
-                            'currency' => $currency,
-                            'type_id' => 8,
-                            'user_id' => request()->user_id
-                        ],
-                        'verify'  => false
-                    ]);
-                    // Register notification API response
-                    $this::$client->request('POST', $url_notification, [
-                        'headers' => $this::$headers,
-                        'form_params' => [
-                            'notification_url' => 'account/offers',
-                            'notification_content' => __('notifications.process_failed'),
-                            'status_id' => 7,
-                            'user_id' => request()->user_id
-                        ],
-                        'verify'  => false
-                    ]);
-
-                    return view('transaction_message', [
-                        'status_code' => $code,
-                        'message_content' => __('notifications.process_failed'),
-                    ]);
-
-                } catch (ClientException $e) {
-                    // If the API returns some error, return to the page and display its message
-                    return view('transaction_message', [
-                        'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
-                    ]);
-                }
-            }
-
-        } catch (ClientException $e) {
-            // If the API returns some error, return to the page and display its message
             return view('transaction_message', [
-                'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                'status_code' => $code,
+                'message_content' => __('notifications.processing_succeed'),
+            ]);
+        }
+
+        if ($code == '1') {
+            // Register notification
+            Notification::create([
+                'notification_url' => 'account/offers',
+                'notification_content' => __('notifications.process_canceled'),
+                'status_id' => 7,
+                'user_id' => $user_id
+            ]);
+
+            return view('transaction_message', [
+                'status_code' => $code,
+                'message_content' => __('notifications.process_canceled'),
+            ]);
+        }
+
+        if ($code == '2') {
+            // Register offer
+            Offer::create([
+                'amount' => $amount,
+                'currency' => $currency,
+                'type_id' => 8,
+                'user_id' => $user_id
+            ]);
+            // Register notification
+            Notification::create([
+                'notification_url' => 'account/offers',
+                'notification_content' => __('notifications.process_failed'),
+                'status_id' => 7,
+                'user_id' => $user_id
+            ]);
+
+            return view('transaction_message', [
+                'status_code' => $code,
+                'message_content' => __('notifications.process_failed'),
             ]);
         }
     }
@@ -363,9 +305,9 @@ class AccountController extends Controller
                     'currency' => $currency,
                     'description' => __('miscellaneous.bank_transaction_description'),
                     'callback_url' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/payment/store',
-                    'approve_url' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/account/offer_sent/' . $amount . '/' . $currency . '/0/?user_id=' . $user_id,
-                    'cancel_url' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/account/offer_sent/' . $amount . '/' . $currency . '/1/?user_id=' . $user_id,
-                    'decline_url' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/account/offer_sent/' . $amount . '/' . $currency . '/2/?user_id=' . $user_id,
+                    'approve_url' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/account/offer_sent/' . $amount . '/' . $currency . '/0/' . $user_id,
+                    'cancel_url' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/account/offer_sent/' . $amount . '/' . $currency . '/1/' . $user_id,
+                    'decline_url' => (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/account/offer_sent/' . $amount . '/' . $currency . '/2/' . $user_id,
                 ),
                 'verify'  => false
             ]);
