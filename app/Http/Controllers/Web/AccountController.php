@@ -221,6 +221,7 @@ class AccountController extends Controller
 
         try {
             if ($code == '0') {
+                dd($code);
                 try {
                     // Register offer API response
                     $this::$client->request('POST', $url_offer, [
