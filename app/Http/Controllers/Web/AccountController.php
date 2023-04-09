@@ -260,6 +260,7 @@ class AccountController extends Controller
             }
 
             if ($code == '1') {
+                dd($code);
                 try {
                     // Register notification API response
                     $this::$client->request('POST', $url_notification, [
@@ -287,6 +288,7 @@ class AccountController extends Controller
             }
 
             if ($code == '2') {
+                dd($code);
                 try {
                     // Register offer API response
                     $this::$client->request('POST', $url_offer, [
