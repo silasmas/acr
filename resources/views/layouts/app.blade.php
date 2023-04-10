@@ -473,19 +473,19 @@
                                 </li>
 
                                 <li class="{{ Route::is('party.infos.entity') AND $entity == 'news' OR Route::is('party.infos.entity.datas') AND $entity == 'news' ? ' actived' : '' }}">
-                                    <a href="{{ route('miscellaneous.entity.home', ['entity' => 'news']) }}">
+                                    <a href="{{ route('party.infos.entity', ['entity' => 'news']) }}">
                                         <span>@lang('miscellaneous.manager.info.news.title')</span>
                                     </a>
                                 </li>
 
                                 <li class="{{ Route::is('party.infos.entity') AND $entity == 'communique' OR Route::is('party.infos.entity.datas') AND $entity == 'communique' ? ' actived' : '' }}">
-                                    <a href="{{ route('miscellaneous.entity.home', ['entity' => 'communique']) }}">
+                                    <a href="{{ route('party.infos.entity', ['entity' => 'communique']) }}">
                                         <span>@lang('miscellaneous.manager.info.communique.title')</span>
                                     </a>
                                 </li>
 
                                 <li class="{{ Route::is('party.infos.entity') AND $entity == 'event' OR Route::is('party.infos.entity.datas') AND $entity == 'event' ? ' actived' : '' }}">
-                                    <a href="{{ route('miscellaneous.entity.home', ['entity' => 'event']) }}">
+                                    <a href="{{ route('party.infos.entity', ['entity' => 'event']) }}">
                                         <span>@lang('miscellaneous.manager.info.event.title')</span>
                                     </a>
                                 </li>
