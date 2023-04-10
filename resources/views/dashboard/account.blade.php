@@ -7,11 +7,14 @@
                             <div class="col-lg-4 col-md-5">
                                 <div class="bd bgc-white">
                                     <div class="layers">
-                                        <div class="layer d-flex w-100 pX-20 pT-20 justify-content-between">
+                                        <div class="layer d-flex w-100 pX-20 pY-10 pT-20 justify-content-between">
                                             <h6 class="lh-1 m-0">@lang('miscellaneous.account.membership_card.title')</h6>
                                         </div>
 
                                         <div class="layer w-100 pX-20 pT-10 pB-20">
+                                            <div class="acr-bg-navy-blue border border-2 border-info rounded-3" style="min-height: 230px;">
+                                                {{ QrCode::format('png')->merge('assets/img/logo.png', 0.5, true)->size(160)->generate($current_user->firstname . ' ' . $current_user->lastname) }}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

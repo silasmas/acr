@@ -12,6 +12,7 @@
         "laravel/sanctum": "^3.2",
         "laravel/scout": "^9.8",
         "laravel/tinker": "^2.8",
+        "simplesoftwareio/simple-qrcode": "^4.2",
         "verotel/flexpay-php-client": "^4.4",
         "vonage/client": "^4.0"
     },
