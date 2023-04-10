@@ -59,27 +59,8 @@ return [
     'entries' => 'entrées',
     'error_label' => 'Erreur :',
     'message_label' => 'Message :',
-    'address' => [
-        'number' => 'Numéro',
-		'street' => 'Avenue',
-		'neighborhood' => 'Quartier',
-		'area' => 'Commune',
-		'reference' => 'Référence',
-		'city' => 'Sélectionner la ville',
-	],
-    'picture' => [
-        'title' => 'Mes images',
-        'see' => 'Voir des images',
-        'add' => 'Ajouter des images',
-        'description' => 'Cliquez sur une image pour voir les détails',
-        'album' => [
-            'title' => 'Albums',
-            'add' => 'Créer nouvel album',
-            'details' => 'Détails de l\'album',
-            'description' => 'Cliquez sur un album pour voir ses images',
-        ],
-        'profile_photos' => 'Photos de profil'
-    ],
+    'recto' => 'Recto',
+    'verso' => 'Verso',
     'day' => [
         'complete' => [
             'sunday' => 'Dimanche',
@@ -298,8 +279,6 @@ return [
                 'driving_license' => 'Permis de conduire',
                 'other' => 'Autre',
             ],
-            'recto' => 'Recto',
-            'verso' => 'Verso',
             'click_to_change' => 'Cliquer sur la photo pour modifier',
         ],
         'my_contributions' => [

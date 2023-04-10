@@ -146,6 +146,10 @@ a.acr-bg-red-transparent:hover {
     background-color: rgba(229, 6, 1, 0.7) !important;
 }
 
+.acr-bg-navy-blue {
+    background-color: #67e8f9 !important;
+}
+
 .acr-bg-blue-gray {
     background-color: #2f465e !important;
 }
