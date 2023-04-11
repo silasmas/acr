@@ -211,7 +211,7 @@ return [
         // Service Provider DomPDF
 	    // Barryvdh\DomPDF\ServiceProvider::class,
         // Service Provider QRCode
-        // SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
 
     ],
 
@@ -231,7 +231,7 @@ return [
         // Façade Laravel-dompdf
 	    // 'PDF' => Barryvdh\DomPDF\Facade::class,
         // Façade Simple-qrcode
-        // 'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
     ])->toArray(),
 
 ];
