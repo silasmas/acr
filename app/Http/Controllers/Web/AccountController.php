@@ -4,14 +4,16 @@ namespace App\Http\Controllers\Web;
 
 use App\Models\Offer;
 use GuzzleHttp\Client;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Response;
 use GuzzleHttp\Exception\ClientException;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Http\Controllers\API\BaseController;
-use App\Models\Notification;
 
 /**
  * @author Xanders
@@ -87,14 +89,17 @@ class AccountController extends Controller
                 'verify'  => false
             ]);
             $transaction_type = json_decode($response_transaction_type->getBody(), false);
-
+            // $qr_code = QrCode::format('png')->merge('', 0.5, true)->size(150)->generate($user->data->firstname . ' ' . $user->data->lastname);
+            $qr_code = QrCode::merge('assets/img/logo.png', 0.5, true)->size(150)->generate($user->data->firstname . ' ' . $user->data->lastname);
+            
             if ($user->data->role_user->role->role_name != 'Administrateur' AND $user->data->role_user->role->role_name != 'Développeur' AND $user->data->role_user->role->role_name != 'Manager') {
                 return view('account', [
                     'current_user' => $user->data,
                     'countries' => $country->data,
                     'messages' => $messages,
                     'offer_types' => $offer_type->data,
-                    'transaction_types' => $transaction_type->data
+                    'transaction_types' => $transaction_type->data,
+                    'qr_code' => $qr_code
                 ]);
 
             } else {
@@ -103,7 +108,8 @@ class AccountController extends Controller
                     'countries' => $country->data,
                     'messages' => $messages,
                     'offer_types' => $offer_type->data,
-                    'transaction_types' => $transaction_type->data
+                    'transaction_types' => $transaction_type->data,
+                    'qr_code' => $qr_code
                 ]);
             }
 
@@ -172,6 +178,8 @@ class AccountController extends Controller
                 'verify'  => false
             ]);
             $transaction_type = json_decode($response_transaction_type->getBody(), false);
+            // $qr_code = QrCode::format('png')->merge('', 0.5, true)->size(150)->generate($user->data->firstname . ' ' . $user->data->lastname);
+            $qr_code = QrCode::merge('assets/img/logo.png', 0.5, true)->size(150)->generate($user->data->firstname . ' ' . $user->data->lastname);
 
             if ($user->data->role_user->role->role_name != 'Administrateur' AND $user->data->role_user->role->role_name != 'Développeur' AND $user->data->role_user->role->role_name != 'Manager') {
                 return view('account', [
@@ -179,7 +187,8 @@ class AccountController extends Controller
                     'countries' => $country->data,
                     'messages' => $messages,
                     'offer_types' => $offer_type->data,
-                    'transaction_types' => $transaction_type->data
+                    'transaction_types' => $transaction_type->data,
+                    'qr_code' => $qr_code
                 ]);
 
             } else {
@@ -188,7 +197,8 @@ class AccountController extends Controller
                     'countries' => $country->data,
                     'messages' => $messages,
                     'offer_types' => $offer_type->data,
-                    'transaction_types' => $transaction_type->data
+                    'transaction_types' => $transaction_type->data,
+                    'qr_code' => $qr_code
                 ]);
             }
 

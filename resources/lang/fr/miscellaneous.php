@@ -12,6 +12,7 @@ return [
     |--------------------------------------------------------------------------
     |
     */
+    'drc' => 'République Démocratique du Congo',
     'slogan' => 'ACR | La politique de l\'amour',
     'keywords' => 'Action Commune pour la République,acr,l\'amour de la politique,politique de l\'amour',
     'all_right_reserved' => 'Tous droits réservés',

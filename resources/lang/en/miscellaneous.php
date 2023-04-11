@@ -12,6 +12,7 @@ return [
     |--------------------------------------------------------------------------
     |
     */
+    'drc' => 'Democratic Republic of the Congo',
     'slogan' => 'ACR | Politics of love',
     'keywords' => 'Common Action for the Republic,acr,love of politics,politics of love',
     'all_right_reserved' => 'All right reserved',

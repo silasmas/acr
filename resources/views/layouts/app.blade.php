@@ -620,5 +620,29 @@
                 </footer>
             </div>
         </div>
+
+        <script type="text/javascript">
+            $(function () {
+                $('#rectoVersoText').click(function (e) { 
+                    e.preventDefault();
+
+                    var rectoText = '<?= __("miscellaneous.recto") ?>';
+                    var versoText = '<?= __("miscellaneous.verso") ?>';
+
+                    if ($('#cardVerso').hasClass('d-none')) {
+                        $('#cardVerso').removeClass('d-none');
+                        $('#cardRecto').addClass('d-none');
+
+                        $('#rectoVersoText span').text(rectoText);
+
+                    } else {
+                        $('#cardVerso').addClass('d-none');
+                        $('#cardRecto').removeClass('d-none');
+
+                        $('#rectoVersoText span').text(versoText);
+                    }
+                });
+            });
+        </script>
     </body>
 </html>
