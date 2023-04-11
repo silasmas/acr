@@ -178,8 +178,8 @@ class AccountController extends Controller
                 'verify'  => false
             ]);
             $transaction_type = json_decode($response_transaction_type->getBody(), false);
-            // $qr_code = QrCode::format('png')->merge('', 0.5, true)->size(150)->generate($user->data->firstname . ' ' . $user->data->lastname);
-            $qr_code = QrCode::merge('assets/img/logo.png', 0.5, true)->size(150)->generate($user->data->firstname . ' ' . $user->data->lastname);
+            $qr_code = QrCode::format('png')->merge((!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/assets/img/logo.png', 0.5, true)->size(150)->generate($user->data->firstname . ' ' . $user->data->lastname);
+            // $qr_code = QrCode::merge('assets/img/logo.png', 0.5, true)->size(150)->generate($user->data->firstname . ' ' . $user->data->lastname);
 
             if ($user->data->role_user->role->role_name != 'Administrateur' AND $user->data->role_user->role->role_name != 'Développeur' AND $user->data->role_user->role->role_name != 'Manager') {
                 return view('account', [
