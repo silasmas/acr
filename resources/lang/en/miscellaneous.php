@@ -184,6 +184,7 @@ return [
     'firstname' => 'First name',
     'lastname' => 'Last name',
     'surname' => 'Surname',
+    'lastname_surname' => 'Last name / Surname',
     'gender_title' => 'Gender',
     'gender1' => 'Male',
     'gender2' => 'Female',
@@ -194,6 +195,7 @@ return [
         'month' => 'Month',
         'year' => 'Year',
     ],
+    'birth_city_date' => 'Birthplace and date',
     'choose_country' => 'Choose country',
     'phone_code' => 'Phone code',
     'phone' => 'Phone number',
@@ -207,6 +209,7 @@ return [
         'area' => 'Area',
         'city' => 'City',
     ],
+    'addresses' => 'Addresses',
     'username' => 'User name',
     'password' => [
         'label' => 'Password',
@@ -263,6 +266,7 @@ return [
         'membership_card' => [
             'title' => 'Membership card',
             'error' => 'Complete your personal information first',
+            'print_card' => 'Print card',
         ],
         'update_password' => [
             'title' => 'Change password',

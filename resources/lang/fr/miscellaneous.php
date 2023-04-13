@@ -182,8 +182,9 @@ return [
     'serial_number' => 'N&deg; de série',
     'names' => 'Noms',
     'firstname' => 'Prénom',
-    'lastname' => 'Post-nom',
-    'surname' => 'Nom',
+    'lastname' => 'Nom',
+    'surname' => 'Post-nom',
+    'lastname_surname' => 'Nom / Post-nom',
     'gender_title' => 'Sexe',
     'gender1' => 'Homme',
     'gender2' => 'Femme',
@@ -194,6 +195,7 @@ return [
         'month' => 'Mois',
         'year' => 'Année',
     ],
+    'birth_city_date' => 'Lieu et date de naissance',
     'choose_country' => 'Choisir pays',
     'phone_code' => 'Code tél.',
     'phone' => 'N° de téléphone',
@@ -207,6 +209,7 @@ return [
         'area' => 'Commune/Zone',
         'city' => 'Ville',
     ],
+    'addresses' => 'Adresses',
     'username' => 'Nom d\'utilisateur',
     'password' => [
         'label' => 'Mot de passe',
@@ -263,6 +266,7 @@ return [
         'membership_card' => [
             'title' => 'Carte de membre',
             'error' => 'Complétez d\'abord vos infos personnelles',
+            'print_card' => 'Imprimer la carte',
         ],
         'update_password' => [
             'title' => 'Modifier mot de passe',
