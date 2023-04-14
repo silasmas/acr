@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Models\Address;
 use Illuminate\Http\Request;
 use App\Http\Resources\Address as ResourcesAddress;
+use App\Models\Type;
 
 /**
  * @author Xanders
@@ -183,5 +184,30 @@ class AddressController extends BaseController
         $addresses = Address::all();
 
         return $this->handleResponse(ResourcesAddress::collection($addresses), __('notifications.delete_address_success'));
+    }
+
+    // ==================================== CUSTOM METHODS ====================================
+    /**
+     * Find address by type name and user ID.
+     *
+     * @param  string $type_name
+     * @param  int $user_id
+     * @return \Illuminate\Http\Response
+     */
+    public function search($type_name, $user_id)
+    {
+        $type = Type::where('type_name', $type_name)->first();
+
+        if (is_null($type)) {
+            return $this->handleError(__('notifications.find_type_404'));
+        }
+
+        $address = Address::where([['type_id', $type->id], ['user_id', $user_id]])->first();
+
+        if (is_null($address)) {
+            return $this->handleResponse(null, __('notifications.find_address_404'));
+        }
+
+        return $this->handleResponse(new ResourcesAddress($address), __('notifications.find_address_success'));
     }
 }

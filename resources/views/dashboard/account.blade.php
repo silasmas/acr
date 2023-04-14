@@ -20,7 +20,7 @@
                                             <div class="p-10 acr-bg-navy-blue border border-2 border-info rounded-3" style="min-height: 230px;">
                                                 <!-- RECTO -->
                                                 <div id="cardRecto">
-                                                    <div class="row g-1 pb-2 border-bottom border-3 border-warning">
+                                                    <div class="row g-1 mb-2 pb-2 border-bottom border-3 border-warning">
                                                         <div class="col-2">
                                                             <div class="bg-image">
                                                                 <img src="{{ asset('assets/img/drc-flag.png') }}" alt="" class="img-fluid">
@@ -39,7 +39,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="row g-3 mt-0">
+                                                    <div class="row g-3">
                                                         <div class="col-4">
                                                             <div class="card border-0 rounded-4 shadow-0">
                                                                 <div class="card-body pb-0">
@@ -49,11 +49,11 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="card-body pt-2 pb-2 px-1">
-                                                                    <h3 class="m-0 text-center text-black text-uppercase" style="font-family: 'Segoe UI Semibold'; font-size: 10px;">{{ $current_user->role_user->role->role_name }}</h3>
+                                                                    <h3 class="m-0 text-center text-black text-uppercase" style="font-family: 'Segoe UI Semibold'; font-size: 9px;">{{ $current_user->role_user->role->role_name }}</h3>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-8 pt-1">
+                                                        <div class="col-8">
                                                             <p class="mb-1 acr-line-height-1_5" style="font-size: 0.8rem; font-family: 'Segoe UI'; color: #555;">
                                                                 @lang('miscellaneous.firstname')@lang('miscellaneous.colon_after_word') 
                                                                 <span class="d-inline-block me-4 text-black fw-bold text-uppercase">{{ $current_user->firstname }}</span> 
@@ -69,12 +69,12 @@
                                                             </p>
                                                             <p class="m-0 acr-line-height-1_5" style="font-size: 0.8rem; font-family: 'Segoe UI'; color: #555;">
                                                                 @lang('miscellaneous.address.title')@lang('miscellaneous.colon_after_word') 
-                                                                <span class="text-black fw-bold">{{ !empty($current_user->addresses[0]) ? $current_user->addresses[0]->address->address_content : '- - - - -' }}</span><br>
+                                                                <span class="text-black fw-bold">{{ $residence != null ? $residence->address_content : '- - - - -' }}</span><br>
                                                             </p>
                                                         </div>
                                                     </div>
 
-                                                    <div class="mt-1 py-2">
+                                                    <div class="py-2">
                                                         <h6 class="m-0 py-1 bg-warning text-center text-black fw-bold text-uppercase" style="font-size: 0.8rem;">
                                                             @lang('miscellaneous.account.membership_card.title')
                                                         </h6>
@@ -123,11 +123,46 @@
                             <div class="col-lg-8 col-md-6">
                                 <div class="bd bgc-white">
                                     <div class="layers">
-                                        <div class="layer d-flex w-100 pX-20 pT-20 justify-content-between">
+                                        <div class="layer d-flex w-100 p-20 justify-content-between">
                                             <h6 class="lh-1 m-0">@lang('miscellaneous.account.personal_infos.title')</h6>
                                         </div>
 
                                         <div class="layer w-100 pX-20 pT-10 pB-20">
+                                            <form action="{{ route('account') }}" method="POST">
+                                                <div class="row">
+                                                    <div class="mb-3 col-lg-4 col-md-6">
+                                                        <label class="form-label mb-0" for="register_firstname">@lang('miscellaneous.firstname')</label>
+                                                        <input type="text" class="form-control" id="register_firstname" placeholder="@lang('miscellaneous.firstname')" value="{{ $current_user->firstname }}">
+                                                    </div>
+
+                                                    <div class="mb-3 col-lg-4 col-md-6">
+                                                        <label class="form-label mb-0" for="register_lastname">@lang('miscellaneous.lastname')</label>
+                                                        <input type="text" class="form-control" id="register_lastname" placeholder="@lang('miscellaneous.lastname')" value="{{ $current_user->lastname }}">
+                                                    </div>
+
+                                                    <div class="mb-3 col-lg-4 col-md-6">
+                                                        <label class="form-label mb-0" for="register_surname">@lang('miscellaneous.surname')</label>
+                                                        <input type="text" class="form-control" id="register_surname" placeholder="@lang('miscellaneous.surname')" value="{{ $current_user->surname }}">
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="mb-3 col-lg-4 col-md-6">
+                                                        <label class="form-label mb-0" for="register_phone">@lang('miscellaneous.phone')</label>
+                                                        <input type="text" class="form-control" id="register_phone" placeholder="@lang('miscellaneous.phone')" value="{{ $current_user->phone }}">
+                                                    </div>
+
+                                                    <div class="mb-3 col-lg-4 col-md-6">
+                                                        <label class="form-label mb-0" for="register_email">@lang('miscellaneous.email')</label>
+                                                        <input type="text" class="form-control" id="register_email" placeholder="@lang('miscellaneous.email')" value="{{ $current_user->email }}">
+                                                    </div>
+
+                                                    <div class="mb-3 col-lg-4 col-md-6">
+                                                        <label class="form-label mb-0" for="register_birthdate">@lang('miscellaneous.birth_date.label')</label>
+                                                        <input type="text" class="form-control" id="register_birthdate" placeholder="@lang('miscellaneous.birth_date.label')" value="{{ $current_user->birth_date }}">
+                                                    </div>
+                                                </div>                            
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

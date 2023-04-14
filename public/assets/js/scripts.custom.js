@@ -39,7 +39,7 @@ $(document).ready(function () {
 
     /* jQuery Date picker */
     $('#register_birthdate').datepicker({
-        dateFormat: navigator.language.startsWith('fr') ? 'dd/mm/yyyy' : 'yyyy-mm-dd',
+        // dateFormat: navigator.language.startsWith('fr') ? 'dd/mm/yyyy' : 'yyyy-mm-dd',
         onSelect: function () {
             $(this).focus();
         }

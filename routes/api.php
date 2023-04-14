@@ -95,6 +95,8 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     Route::put('country/{id}', 'App\Http\Controllers\API\CountryController@update')->name('country.api.update');
     Route::delete('country/{id}', 'App\Http\Controllers\API\CountryController@destroy')->name('country.api.destroy');
     Route::get('country/search/{data}', 'App\Http\Controllers\API\CountryController@search')->name('country.api.search');
+    // Address
+    Route::get('address/search/{type_name}/{user_id}', 'App\Http\Controllers\API\AddressController@search')->name('address.api.search');
     // Role
     Route::get('role/search/{data}', 'App\Http\Controllers\API\RoleController@search')->name('role.api.search');
     // User
