@@ -131,7 +131,9 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="mx-auto mt-3" style="width: 148px;">{{ $qr_code }}</div>
+                                                    <div class="mx-auto mt-3" style="width: 148px;">
+                                                        <img src="data:image/png;base64,' . {{ $qr_code }} . '" alt="QR Code">
+                                                    </div>
 
                                                     <div class="mx-auto mt-2">
                                                         <h6 class="m-0 text-center text-black fw-bold acr-line-height-1_4">{{ $current_user->serial_number }}</h6>
