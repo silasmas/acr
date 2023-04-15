@@ -217,12 +217,12 @@
 
     <body class="app">
         <!-- #Modals ==================== -->
-        <!-- ### Crop user image ### -->
-        <div class="modal fade" id="cropModalUser" tabindex="-1" aria-labelledby="cropModalUserLabel" aria-hidden="true">
+        <!-- ### Crop entity (User, News and Legal info content) image ### -->
+        <div class="modal fade" id="cropModal1" tabindex="-1" aria-labelledby="cropModal1Label" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="cropModalUserLabel">{{ __('miscellaneous.crop_before_save') }}</h5>
+                        <h5 class="modal-title" id="cropModal1Label">{{ __('miscellaneous.crop_before_save') }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -237,7 +237,6 @@
                         </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-between">
-                        <input type="hidden" name="userId" id="userId" value="{{ Auth::user()->id }}">
                         <button type="button" class="btn btn-light border border-default shadow-0" data-bs-dismiss="modal">{{ __('miscellaneous.cancel') }}</button>
                         <button type="button" id="crop" class="btn btn-primary shadow-0">{{ __('miscellaneous.register') }}</button>
                     </div>

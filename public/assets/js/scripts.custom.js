@@ -27,12 +27,12 @@ $(document).ready(function () {
     $('.counter').animateCounter(4000);
 
     /* Upload news/user cropped photo */
-    $('.news-image img').uploadNewsImage('#cropModal1', '#news_image', currentHost + '/api/news/add_image/' + parseInt($('#newsId').val()), 'news_id');
-    $('.user-image img').uploadUserImage('#cropModal1', '#avatar', currentHost + '/api/user/update_avatar_picture/' + parseInt($('#userId').val()), 'user_id');
+    $('.news-image').uploadNewsImage('#cropModal1', '#news_image', currentHost + '/api/news/add_image/' + parseInt($('#newsId').val()), 'news_id');
+    $('.user-image').uploadUserImage('#cropModal1', '#avatar', currentHost + '/api/user/update_avatar_picture/' + parseInt($('#userId').val()), 'user_id');
 
     /* Load other user image */
-    $('.other-user-image-recto img').loadOtherUserImage('#cropModal2', '.register_image_recto', '#loaded_image_recto', '.image_64_recto');
-    $('.other-user-image-verso img').loadOtherUserImage('#cropModal2', '.register_image_verso', '#loaded_image_verso', '.image_64_verso');
+    $('.other-user-image-recto').loadOtherUserImage('#cropModal2', '.register_image_recto', '#loaded_image_recto', '.image_64_recto');
+    $('.other-user-image-verso').loadOtherUserImage('#cropModal2', '.register_image_verso', '#loaded_image_verso', '.image_64_verso');
 
     /* Auto-resize textarea */
     autosize($('textarea'));

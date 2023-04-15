@@ -282,7 +282,7 @@ const CUST_LIGHT = currentHost + '/assets/css/style.custom.css';
                 }
             });
 
-            $(modal).on('shown.bs.modal', function () {
+            $(_modal).on('shown.bs.modal', function () {
                 cropper = new Cropper(retrievedImage, {
                     aspectRatio: 1,
                     viewMode: 3,
