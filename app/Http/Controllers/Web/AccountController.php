@@ -49,6 +49,11 @@ class AccountController extends Controller
         // Select user API URL
         $current_user_id = isset(request()->user_id) ? request()->user_id : Auth::user()->id;
         $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/' . $current_user_id;
+        // Select address by type and user API URL
+        $legal_address_type = 'Adresse légale';
+        $residence_type = 'Résidence actuelle';
+        $url_legal_address = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/address/search/' . $legal_address_type . '/ ' . $current_user_id;
+        $url_residence = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/address/search/' . $residence_type . '/ ' . $current_user_id;
         // Select all countries API URL
         $url_country = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/country';
         // Select all received messages API URL
@@ -66,6 +71,17 @@ class AccountController extends Controller
                 'verify'  => false
             ]);
             $user = json_decode($response_user->getBody(), false);
+            // Select address by type and user API response
+            $response_legal_address = $this::$client->request('GET', $url_legal_address, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $legal_address = json_decode($response_legal_address->getBody(), false);
+            $response_residence = $this::$client->request('GET', $url_residence, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $residence = json_decode($response_residence->getBody(), false);
             // Select countries API response
             $response_country = $this::$client->request('GET', $url_country, [
                 'headers' => $this::$headers,
@@ -90,11 +106,13 @@ class AccountController extends Controller
             ]);
             $transaction_type = json_decode($response_transaction_type->getBody(), false);
             $qr_code = QrCode::format('png')->merge((!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/assets/img/logo.png', 0.5, true)->size(150)->generate($user->data->phone);
-            // $qr_code = QrCode::merge('assets/img/logo.png', 0.5, true)->size(150)->generate($user->data->phone);
+            // $qr_code = QrCode::merge('assets/img/logo.png', 0.5, true)->size(135)->generate($user->data->phone);
 
             if ($user->data->role_user->role->role_name != 'Administrateur' AND $user->data->role_user->role->role_name != 'Développeur' AND $user->data->role_user->role->role_name != 'Manager') {
                 return view('account', [
                     'current_user' => $user->data,
+                    'legal_address' => $legal_address->data,
+                    'residence' => $residence->data,
                     'countries' => $country->data,
                     'messages' => $messages,
                     'offer_types' => $offer_type->data,
@@ -105,6 +123,8 @@ class AccountController extends Controller
             } else {
                 return view('dashboard.account', [
                     'current_user' => $user->data,
+                    'legal_address' => $legal_address->data,
+                    'residence' => $residence->data,
                     'countries' => $country->data,
                     'messages' => $messages,
                     'offer_types' => $offer_type->data,
@@ -122,94 +142,6 @@ class AccountController extends Controller
 
             } else {
                 return view('account', [
-                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
-                ]);
-            }
-        }
-    }
-
-    /**
-     * GET: Current user account
-     *
-     * @return \Illuminate\View\View
-     */
-    public function offers()
-    {
-        // Select user API URL
-        $current_user_id = isset(request()->user_id) ? request()->user_id : Auth::user()->id;
-        $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/' . $current_user_id;
-        // Select all countries API URL
-        $url_country = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/country';
-        // Select all received messages API URL
-        $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
-        // Select types by group name API URL
-        $offer_type_group = 'Type d\'offre';
-        $transaction_type_group = 'Type de transaction';
-        $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
-        $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
-
-        try {
-            // Select user API response
-            $response_user = $this::$client->request('GET', $url_user, [
-                'headers' => $this::$headers,
-                'verify'  => false
-            ]);
-            $user = json_decode($response_user->getBody(), false);
-            // Select countries API response
-            $response_country = $this::$client->request('GET', $url_country, [
-                'headers' => $this::$headers,
-                'verify'  => false
-            ]);
-            $country = json_decode($response_country->getBody(), false);
-            // Select all received messages API response
-            $response_message = $this::$client->request('GET', $url_message, [
-                'headers' => $this::$headers,
-                'verify'  => false
-            ]);
-            $messages = json_decode($response_message->getBody(), false);
-            // Select types by group name API response
-            $response_offer_type = $this::$client->request('GET', $url_offer_type, [
-                'headers' => $this::$headers,
-                'verify'  => false
-            ]);
-            $offer_type = json_decode($response_offer_type->getBody(), false);
-            $response_transaction_type = $this::$client->request('GET', $url_transaction_type, [
-                'headers' => $this::$headers,
-                'verify'  => false
-            ]);
-            $transaction_type = json_decode($response_transaction_type->getBody(), false);
-            $qr_code = QrCode::format('png')->merge((!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/assets/img/logo.png', 0.5, true)->size(150)->generate($user->data->phone);
-            // $qr_code = QrCode::merge('assets/img/logo.png', 0.5, true)->size(150)->generate($user->data->phone);
-
-            if ($user->data->role_user->role->role_name != 'Administrateur' AND $user->data->role_user->role->role_name != 'Développeur' AND $user->data->role_user->role->role_name != 'Manager') {
-                return view('account', [
-                    'current_user' => $user->data,
-                    'countries' => $country->data,
-                    'messages' => $messages,
-                    'offer_types' => $offer_type->data,
-                    'transaction_types' => $transaction_type->data,
-                    'qr_code' => $qr_code
-                ]);
-
-            } else {
-                return view('dashboard.account', [
-                    'current_user' => $user->data,
-                    'countries' => $country->data,
-                    'messages' => $messages,
-                    'offer_types' => $offer_type->data,
-                    'transaction_types' => $transaction_type->data,
-                    'qr_code' => $qr_code
-                ]);
-            }
-
-        } catch (ClientException $e) {
-            if ($user->data->role_user->role->role_name != 'Administrateur' AND $user->data->role_user->role->role_name != 'Développeur' AND $user->data->role_user->role->role_name != 'Manager') {
-                return view('account', [
-                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
-                ]);
-
-            } else {
-                return view('dashboard.account', [
                     'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
                 ]);
             }

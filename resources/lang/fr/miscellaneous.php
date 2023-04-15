@@ -188,6 +188,7 @@ return [
     'gender_title' => 'Sexe',
     'gender1' => 'Homme',
     'gender2' => 'Femme',
+    'nationality' => 'Nationalité',
     'birth_city' => 'Ville de naissance',
     'birth_date' => [
         'label' => 'Date de naissance',
@@ -202,9 +203,12 @@ return [
     'email' => 'E-mail',
     'address' => [
         'title' => 'Adresse',
+        'placeholder' => 'Ecrire adresse ...',
+        'residence' => 'Résidence actuelle',
+        'legal' => 'Adresse légale',
         'type' => 'Type d\'adresse',
-        'line1' => 'Ligne 1',
-        'line2' => 'Ligne 2 (Facultative)',
+        'line1' => 'Adresse ligne 1',
+        'line2' => 'Adresse ligne 2 (Facultative)',
         'neighborhood' => 'Quartier',
         'area' => 'Commune/Zone',
         'city' => 'Ville',

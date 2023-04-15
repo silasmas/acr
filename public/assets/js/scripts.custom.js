@@ -38,8 +38,10 @@ $(document).ready(function () {
     autosize($('textarea'));
 
     /* jQuery Date picker */
+    var currentLanguage = $('html').attr('lang');
+
     $('#register_birthdate').datepicker({
-        // dateFormat: navigator.language.startsWith('fr') ? 'dd/mm/yyyy' : 'yyyy-mm-dd',
+        dateFormat: currentLanguage.startsWith('fr') ? 'dd/mm/yy' : 'mm/dd/yy',
         onSelect: function () {
             $(this).focus();
         }
