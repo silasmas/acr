@@ -132,7 +132,7 @@
                                                     </div>
 
                                                     <div class="mx-auto mt-3" style="width: 148px;">
-                                                        <img src="data:image/png;base64,' . {{ base64_encode($qr_code) }} . '" alt="QR Code">
+                                                        <img src="data:image/png;base64,{{ base64_encode($qr_code) }}" alt="QR Code">
                                                     </div>
 
                                                     <div class="mx-auto mt-2">
