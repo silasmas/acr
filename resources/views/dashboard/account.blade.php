@@ -3,8 +3,38 @@
 @section('app-content')
 
                         <div class="row gap-20">
-                            <!-- #Membership card ==================== -->
+                            <!-- #Avatar & Membership card ==================== -->
                             <div class="col-lg-4 col-md-6">
+                                <!-- Membership card -->
+                                <div class="mb-3 bd bgc-white">
+                                    <div class="layers">
+                                        <div class="layer d-flex w-100 pX-20 pY-10 pT-20 justify-content-between">
+                                            <h6 class="lh-1 m-0">@lang('miscellaneous.account.personal_infos.change_avatar')</h6>
+                                        </div>
+
+                                        <div class="layer w-100 px-md-3 px-1 pT-10 pB-20">
+                                            <div class="row">
+                                                <div class="col-8 mx-auto">
+                                                    <div class="bg-image">
+                                                        <img src="{{ $current_user->avatar_url != null ? $current_user->avatar_url : asset('assets/img/user.png') }}" alt="{{ $current_user->firstname . ' ' . $current_user->lastname }}" class="user-image img-fluid img-thumbnail rounded-circle">
+                                                        <div class="mask"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="ta-c bdT w-100 p-10">
+                                        <form method="post">
+                                            <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
+                                            <label for="avatar" class="btn btn-white py-0 text-primary shadow-0" style="text-transform: inherit!important;">
+                                                <span class="bi bi-image me-2"></span> @lang('miscellaneous.select_image')
+                                                <input type="file" name="avatar" id="avatar" class="d-none">
+                                            </label>
+                                        </form>
+                                    </div>
+                                </div>
+
                                 <div class="bd bgc-white">
                                     <div class="layers">
                                         <div class="layer d-flex w-100 pX-20 pY-10 pT-20 justify-content-between">
@@ -16,7 +46,6 @@
                                         </div>
 
                                         <div class="layer w-100 px-md-3 px-1 pT-10 pB-20">
-                                            <!-- Membership card -->
                                             <div class="p-10 acr-bg-navy-blue border border-2 border-info rounded-3" style="min-height: 230px;">
                                                 <!-- RECTO -->
                                                 <div id="cardRecto">
@@ -44,7 +73,7 @@
                                                             <div class="card border-0 rounded-4 shadow-0">
                                                                 <div class="card-body pb-0">
                                                                     <div class="bg-image bg-white rounded-circle" style="margin-top: -3px;">
-                                                                        <img src="{{ $current_user->avatar_url != null ? $current_user->avatar_url : asset('assets/img/user.png') }}" alt="{{ $current_user->firstname . ' ' . $current_user->lastname }}" class="img-fluid rounded-circle">
+                                                                        <img src="{{ $current_user->avatar_url != null ? $current_user->avatar_url : asset('assets/img/user.png') }}" alt="{{ $current_user->firstname . ' ' . $current_user->lastname }}" class="user-image img-fluid rounded-circle">
                                                                         <div class="mask"></div>
                                                                     </div>
                                                                 </div>
@@ -113,7 +142,7 @@
                                     </div>
                                     <div class="ta-c bdT w-100 p-10">
                                         <a href="{{ route('party.member.print_card', ['id' => $current_user->id]) }}" target="_blank">
-                                            <span class="bi bi-printer-fill"></span> @lang('miscellaneous.account.membership_card.print_card')
+                                            <span class="bi bi-printer-fill me-2"></span> @lang('miscellaneous.account.membership_card.print_card')
                                         </a>
                                     </div>
                                 </div>
@@ -159,6 +188,9 @@
                                                     <div class="mb-3 col-lg-4">
                                                         <label class="form-label mb-1" for="register_firstname">@lang('miscellaneous.firstname')</label>
                                                         <input type="text" class="form-control" id="register_firstname" placeholder="@lang('miscellaneous.firstname')" value="{{ $current_user->firstname }}">
+    @if (!empty($response_error) AND $response_error->message == $inputs['firstname'])
+                                                        <small id="firstnameHelp" class="text-danger">{{ $response_error->data }}</small>
+    @endif
                                                     </div>
 
                                                     <div class="mb-3 col-lg-4">
@@ -216,11 +248,17 @@
                                                     <div class="mb-3 col-lg-4">
                                                         <label class="form-label mb-1" for="register_email">@lang('miscellaneous.email')</label>
                                                         <input type="text" class="form-control" id="register_email" placeholder="@lang('miscellaneous.email')" value="{{ $current_user->email }}">
+    @if (!empty($response_error) AND $response_error->message == $inputs['email'])
+                                                        <small id="emailHelp" class="text-danger">{{ $response_error->data }}</small>
+    @endif
                                                     </div>
 
                                                     <div class="mb-3 col-lg-4">
                                                         <label class="form-label mb-1" for="register_phone">@lang('miscellaneous.phone')</label>
                                                         <input type="text" class="form-control" id="register_phone" placeholder="@lang('miscellaneous.phone')" value="{{ $current_user->phone }}">
+    @if (!empty($response_error) AND $response_error->message == $inputs['phone'])
+                                                        <small id="phoneHelp" class="text-danger">{{ $response_error->data }}</small>
+    @endif
                                                     </div>
                                                 </div>                            
 

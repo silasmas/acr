@@ -216,6 +216,35 @@
     </head>
 
     <body class="app">
+        <!-- #Modals ==================== -->
+        <!-- ### Crop user image ### -->
+        <div class="modal fade" id="cropModalUser" tabindex="-1" aria-labelledby="cropModalUserLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="cropModalUserLabel">{{ __('miscellaneous.crop_before_save') }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 mb-sm-0 mb-4">
+                                    <div class="bg-image">
+                                        <img src="" id="retrieved_image" class="img-fluid">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-between">
+                        <input type="hidden" name="userId" id="userId" value="{{ Auth::user()->id }}">
+                        <button type="button" class="btn btn-light border border-default shadow-0" data-bs-dismiss="modal">{{ __('miscellaneous.cancel') }}</button>
+                        <button type="button" id="crop" class="btn btn-primary shadow-0">{{ __('miscellaneous.register') }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div id="loader">
             <div class="spinner"></div>
         </div>
@@ -568,7 +597,7 @@
                             <li class="dropdown">
                                 <a href="" class="dropdown-toggle no-after peers fxw-nw ai-c lh-1" data-bs-toggle="dropdown">
                                     <div class="peer mR-10">
-                                        <img class="w-2r bdrs-50p" src="{{ $current_user->avatar_url != null ? $current_user->avatar_url : asset('assets/img/user.png') }}" alt="{{ $current_user->firstname . ' ' . $current_user->lastname }}">
+                                        <img src="{{ $current_user->avatar_url != null ? $current_user->avatar_url : asset('assets/img/user.png') }}" alt="{{ $current_user->firstname . ' ' . $current_user->lastname }}" class="user-image w-2r bdrs-50p">
                                     </div>
                                     <div class="peer">
                                         <span class="fsz-sm c-grey-900">{{ $current_user->firstname . ' ' . $current_user->lastname }}</span>
@@ -610,6 +639,30 @@
 
                 <!-- ### $App Screen Content ### -->
                 <main class="main-content bgc-grey-100">
+@if (!empty($alert_success))
+                    <div class="position-fixed w-100" style="top: 41px; z-index: 9999;">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 col-10 mx-auto">
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <span class="bi bi-info-circle me-2 mb-0 fs-4" style="vertical-align: -3px;"></span> {{ $alert_success }}
+                                    <button type="button" class="btn-close mt-1" data-bs-dismiss="alert" aria-label="@lang('miscellaneous.close')"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+@endif
+@if (!empty($response_error))
+                    <div class="position-fixed w-100" style="top: 41px; z-index: 9999;">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 col-10 mx-auto">
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <span class="bi bi-exclamation-triangle me-2 mb-0 fs-4" style="vertical-align: -3px;"></span> {{ $response_error->data }}
+                                    <button type="button" class="btn-close mt-1" data-bs-dismiss="alert" aria-label="@lang('miscellaneous.close')"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+@endif
                     <div id="mainContent">
 @yield('app-content')
                     </div>
