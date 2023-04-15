@@ -230,7 +230,7 @@
                             <div class="row">
                                 <div class="col-12 mb-sm-0 mb-4">
                                     <div class="bg-image">
-                                        <img src="" id="retrieved_image" class="img-fluid">
+                                        <img src="" id="retrieved_image1" class="img-fluid">
                                     </div>
                                 </div>
                             </div>
