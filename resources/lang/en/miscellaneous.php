@@ -177,9 +177,6 @@ return [
     // ===== REGISTER PAGE
     'register_title1' => 'Sign up',
     'register_title2' => 'Register to start',
-    'register_superadmin_description' => 'Register datas allowing Tulipap and its services to operate.',
-    'register_company_description' => 'Register as an administrator then register your electricity provider company that you will manage.',
-    'register_customer_description' => 'After registration, if you want to receive your electricity invoices regularly, you will need to give your code and the full name by which your provider recognize. Otherwise, you can already start buying your virtual prepaid cards.',
     'serial_number' => 'Serial number',
     'names' => 'Names',
     'firstname' => 'First name',

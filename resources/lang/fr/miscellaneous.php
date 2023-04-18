@@ -177,10 +177,7 @@ return [
     // ===== REGISTER PAGE
     'register_title1' => 'S\'inscrire',
     'register_title2' => 'Inscrivez-vous pour commencer',
-    'register_superadmin_description' => 'Enregistrez les données permettant à Tulipap et à ses services de fonctionner.',
-    'register_company_description' => 'Inscrivez-vous en tant qu\'administrateur puis enregistrez votre société fournisseur d\'électricité que vous allez gérer.',
-    'register_customer_description' => 'Après inscription, si vous voulez recevoir régulièrement vos factures d\'électricité, vous devrez donner votre code et le nom complet par lequel votre fournisseur vous reconnait. Sinon, vous pouvez déjà commencer à acheter vos cartes prépayées virtuelles.',
-    'serial_number' => 'N&deg; de série',
+    'serial_number' => 'N° de série',
     'names' => 'Noms',
     'firstname' => 'Prénom',
     'lastname' => 'Nom',
