@@ -494,7 +494,37 @@ class UserController extends BaseController
     }
 
     /**
-     * Search a user by his email / phone / national number.
+     * Search all users having a specific role
+     *
+     * @param  string $role_name
+     * @return \Illuminate\Http\Response
+     */
+    public function findByRole($role_name)
+    {
+        $users = User::whereHas('roles', function ($query) use ($role_name) {
+                                    $query->where('role_name', $role_name);
+                                })->orderByDesc('created_at')->get();
+
+        return $this->handleResponse(ResourcesUser::collection($users), __('notifications.find_all_users_success'));    
+    }
+
+    /**
+     * Search all users having a role different than the given
+     *
+     * @param  string $role_name
+     * @return \Illuminate\Http\Response
+     */
+    public function findByNotRole($role_name)
+    {
+        $users = User::whereDoesntHave('roles', function ($query) use ($role_name) {
+                                    $query->where('role_name', $role_name);
+                                })->orderByDesc('created_at')->get();
+
+        return $this->handleResponse(ResourcesUser::collection($users), __('notifications.find_all_users_success'));    
+    }
+
+    /**
+     * Search all users having specific status.
      *
      * @param  int $status_id
      * @return \Illuminate\Http\Response

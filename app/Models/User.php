@@ -55,6 +55,15 @@ class User extends Authenticatable
     ];
 
     /**
+     * MANY-TO-MANY
+     * One status for several users
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'role_users');
+    }
+
+    /**
      * ONE-TO-MANY
      * One status for several users
      */

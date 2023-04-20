@@ -8,11 +8,7 @@
                                 <!-- Membership card -->
                                 <div class="mb-3 bd bgc-white">
                                     <div class="layers">
-                                        <div class="layer d-flex w-100 pX-20 pY-10 pT-20 justify-content-between">
-                                            <h6 class="lh-1 m-0">@lang('miscellaneous.account.personal_infos.change_avatar')</h6>
-                                        </div>
-
-                                        <div class="layer w-100 px-md-3 px-1 pT-10 pB-20">
+                                        <div class="layer w-100 px-md-3 px-1 p-20">
                                             <div class="row">
                                                 <div class="col-8 mx-auto">
                                                     <div class="bg-image">
@@ -28,7 +24,7 @@
                                         <form method="post">
                                             <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
                                             <label for="avatar" class="btn btn-white py-0 text-primary shadow-0" style="text-transform: inherit!important;">
-                                                <span class="bi bi-image me-2"></span> @lang('miscellaneous.select_image')
+                                                <span class="bi bi-image me-2"></span> @lang('miscellaneous.change_image')
                                                 <input type="file" name="avatar" id="avatar" class="d-none">
                                             </label>
                                         </form>

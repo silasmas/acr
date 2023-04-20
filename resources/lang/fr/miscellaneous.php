@@ -34,7 +34,7 @@ return [
     'change' => 'Modifier',
     'logout' => 'Déconnexion',
     'register_update' => 'Enregistrer les modifications',
-    'select_image' => 'Sélectionner une image',
+    'change_image' => 'Modifier la photo',
     'crop_before_save' => 'Recadrer l\'image avant de l\'enregistrer',
     'cancel' => 'Annuler',
     'details' => 'Détails',

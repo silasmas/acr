@@ -66,8 +66,14 @@ class HomeController extends Controller
             $transaction_type_group = 'Type de transaction';
             $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
             $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
-            // Select all users API URL
-            $url_users = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user';
+            // Select all users by role API URL
+            $manager_role = 'Manager';
+            $supporting_member_role = 'Membre Sympathisant';
+            $url_manager = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/find_by_role/' . $manager_role;
+            $url_supporting_member = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/find_by_role/' . $supporting_member_role;
+            // Select all users by not role API URL
+            $developer_role = 'Développeur';
+            $url_not_developer = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/find_by_not_role/' . $developer_role;
             // Select users by stauts "Désactivé" API URL
             $url_deactivated_users = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/find_by_status/5';
             // Select news by type ID API URL
@@ -105,12 +111,23 @@ class HomeController extends Controller
                     'verify'  => false
                 ]);
                 $transaction_type = json_decode($response_transaction_type->getBody(), false);
-                // Select all users API response
-                $response_users = $this::$client->request('GET', $url_users, [
+                // Select all users by role API response
+                $response_supporting_member = $this::$client->request('GET', $url_supporting_member, [
                     'headers' => $this::$headers,
                     'verify'  => false
                 ]);
-                $users = json_decode($response_users->getBody(), false);
+                $supporting_members = json_decode($response_supporting_member->getBody(), false);
+                $response_manager = $this::$client->request('GET', $url_manager, [
+                    'headers' => $this::$headers,
+                    'verify'  => false
+                ]);
+                $managers = json_decode($response_manager->getBody(), false);
+                // Select all users by not role API response
+                $response_not_developer = $this::$client->request('GET', $url_not_developer, [
+                    'headers' => $this::$headers,
+                    'verify'  => false
+                ]);
+                $not_developer = json_decode($response_not_developer->getBody(), false);
                 // Select users by stauts "Désactivé" API response
                 $response_deactivated_users = $this::$client->request('GET', $url_deactivated_users, [
                     'headers' => $this::$headers,
@@ -142,7 +159,6 @@ class HomeController extends Controller
                             'messages' => $messages->data,
                             'offer_types' => $offer_type->data,
                             'transaction_types' => $transaction_type->data,
-                            'users' => $users->data,
                             'deactivated_users' => $deactivated_users->data,
                             'news' => $news->data,
                             'communiques' => $communiques->data,
@@ -165,7 +181,9 @@ class HomeController extends Controller
                             'messages' => $messages->data,
                             'offer_types' => $offer_type->data,
                             'transaction_types' => $transaction_type->data,
-                            'users' => $users->data,
+                            'users_not_developer' => $not_developer->data,
+                            'managers' => $managers->data,
+                            'supporting_members' => $supporting_members->data,
                             'deactivated_users' => $deactivated_users->data,
                             'news' => $news->data,
                             'communiques' => $communiques->data,
@@ -253,8 +271,14 @@ class HomeController extends Controller
         $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/' . Auth::user()->id;
         // Select all received messages API URL
         $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
-        // Select all users API URL
-        $url_users = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user';
+        // Select all users by role API URL
+        $manager_role = 'Manager';
+        $supporting_member_role = 'Membre Sympathisant';
+        $url_manager = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/find_by_role/' . $manager_role;
+        $url_supporting_member = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/find_by_role/' . $supporting_member_role;
+        // Select all users by not role API URL
+        $developer_role = 'Développeur';
+        $url_not_developer = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/find_by_not_role/' . $developer_role;
         // Select users by stauts "Désactivé" API URL
         $url_deactivated_users = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/find_by_status/5';
         // Select news by type ID API URL
@@ -275,12 +299,23 @@ class HomeController extends Controller
                 'verify'  => false
             ]);
             $messages = json_decode($response_message->getBody(), false);
-            // Select all users API response
-            $response_users = $this::$client->request('GET', $url_users, [
+            // Select all users by role API response
+            $response_supporting_member = $this::$client->request('GET', $url_supporting_member, [
                 'headers' => $this::$headers,
                 'verify'  => false
             ]);
-            $users = json_decode($response_users->getBody(), false);
+            $supporting_members = json_decode($response_supporting_member->getBody(), false);
+            $response_manager = $this::$client->request('GET', $url_manager, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $managers = json_decode($response_manager->getBody(), false);
+            // Select all users by not role API response
+            $response_not_developer = $this::$client->request('GET', $url_not_developer, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $not_developer = json_decode($response_not_developer->getBody(), false);
             // Select users by stauts "Désactivé" API response
             $response_deactivated_users = $this::$client->request('GET', $url_deactivated_users, [
                 'headers' => $this::$headers,
@@ -307,7 +342,9 @@ class HomeController extends Controller
             return view('dashboard', [
                 'current_user' => $user->data,
                 'messages' => $messages->data,
-                'users' => $users->data,
+                'users_not_developer' => $not_developer->data,
+                'managers' => $managers->data,
+                'supporting_members' => $supporting_members->data,
                 'deactivated_users' => $deactivated_users->data,
                 'news' => $news->data,
                 'communiques' => $communiques->data,

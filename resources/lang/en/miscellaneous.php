@@ -34,7 +34,7 @@ return [
     'change' => 'Change',
     'logout' => 'Sign out',
     'register_update' => 'Register update',
-    'select_image' => 'Select a picture',
+    'change_image' => 'Edit the picture',
     'crop_before_save' => 'Crop the image before saving',
     'cancel' => 'Cancel',
     'details' => 'Details',
