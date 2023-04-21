@@ -794,7 +794,7 @@ class UserController extends BaseController
         $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/users/' . $inputs['user_id'] . '/avatar');
         // $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/storage/images/users/' . $inputs['user_id'] . '/avatar');
         // Create image URL
-		$image_url = 'images/users/' . $inputs['user_id'] . '/avatar/' . Str::random(50) . '.png';
+		$image_url = 'images/users/' . $id . '/avatar/' . Str::random(50) . '.png';
 
 		// Upload image
 		Storage::url(Storage::disk('public')->put($image_url, base64_decode($image)));

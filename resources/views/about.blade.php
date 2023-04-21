@@ -104,12 +104,14 @@
                                 </div>
                             </div>
                             <div class="col-md-6 pe-2 wow fadeInUp" data-wow-delay="0.5s">
+                                <h4 class="h4 mt-3 fw-bold">{{ $info_content->subtitle }}</h4>
                                 <p class="mb-4"><pre class="fw-light">{{ $info_content->content }}</pre></p>
                             </div>
                         </div>
                     @else
                         <div class="row">
                             <div class="col-12 pe-2 wow fadeInUp" data-wow-delay="0.3s">
+                                <h4 class="h4 mt-3 fw-bold">{{ $info_content->subtitle }}</h4>
                                 <p class="mb-4"><pre class="fw-light">{{ $info_content->content }}</pre></p>
                             </div>
                         </div>
@@ -172,12 +174,14 @@
                         </div>
                     </div>
                     <div class="col-md-6 pe-2 wow fadeInUp" data-wow-delay="0.5s">
+                        <h4 class="h4 mt-3 fw-bold">{{ $info_content->subtitle }}</h4>
                         <p class="mb-4"><pre class="fw-light">{{ $info_content->content }}</pre></p>
                     </div>
                 </div>
                     @else
                 <div class="row">
                     <div class="col-12 pe-2 wow fadeInUp" data-wow-delay="0.3s">
+                        <h4 class="h4 mt-3 fw-bold">{{ $info_content->subtitle }}</h4>
                         <p class="mb-4"><pre class="fw-light">{{ $info_content->content }}</pre></p>
                     </div>
                 </div>
@@ -232,12 +236,14 @@
                                 </div>
                             </div>
                             <div class="col-md-6 pe-2 wow fadeInUp" data-wow-delay="0.5s">
+                                <h4 class="h4 mt-3 fw-bold">{{ $info_content->subtitle }}</h4>
                                 <p class="mb-4"><pre class="fw-light">{{ $info_content->content }}</pre></p>
                             </div>
                         </div>
                 @else
                         <div class="row">
                             <div class="col-12 pe-2 wow fadeInUp" data-wow-delay="0.3s">
+                                <h4 class="h4 mt-3 fw-bold">{{ $info_content->subtitle }}</h4>
                                 <p class="mb-4"><pre class="fw-light">{{ $info_content->content }}</pre></p>
                             </div>
                         </div>
@@ -265,7 +271,7 @@
     @endif
 
     @if (Route::is('about.privacy_policy'))
-        <!-- Terms Of Use Start -->
+        <!-- Privacy policy Start -->
         <div class="container-xxl py-4 border-bottom border-default">
             <div class="container">
                 <div class="mx-auto text-center wow fadeInUp" data-wow-delay="0.1s">
@@ -291,12 +297,14 @@
                                 </div>
                             </div>
                             <div class="col-md-6 pe-2 wow fadeInUp" data-wow-delay="0.5s">
+                                <h4 class="h4 mt-3 fw-bold">{{ $info_content->subtitle }}</h4>
                                 <p class="mb-4"><pre class="fw-light">{{ $info_content->content }}</pre></p>
                             </div>
                         </div>
                 @else
                         <div class="row">
                             <div class="col-12 pe-2 wow fadeInUp" data-wow-delay="0.3s">
+                                <h4 class="h4 mt-3 fw-bold">{{ $info_content->subtitle }}</h4>
                                 <p class="mb-4"><pre class="fw-light">{{ $info_content->content }}</pre></p>
                             </div>
                         </div>
@@ -320,7 +328,7 @@
                 </div>
             </div>
         </div>
-        <!-- Terms Of Use End -->
+        <!-- Privacy policy End -->
     @endif
 
     @if (Route::is('about.help'))
@@ -350,12 +358,14 @@
                                 </div>
                             </div>
                             <div class="col-md-6 pe-2 wow fadeInUp" data-wow-delay="0.5s">
+                                <h4 class="h4 mt-3 fw-bold">{{ $info_content->subtitle }}</h4>
                                 <p class="mb-4"><pre class="fw-light">{{ $info_content->content }}</pre></p>
                             </div>
                         </div>
                 @else
                         <div class="row">
                             <div class="col-12 pe-2 wow fadeInUp" data-wow-delay="0.3s">
+                                <h4 class="h4 mt-3 fw-bold">{{ $info_content->subtitle }}</h4>
                                 <p class="mb-4"><pre class="fw-light">{{ $info_content->content }}</pre></p>
                             </div>
                         </div>
@@ -409,12 +419,14 @@
                                 </div>
                             </div>
                             <div class="col-md-6 pe-2 wow fadeInUp" data-wow-delay="0.5s">
+                                <h4 class="h4 mt-3 fw-bold">{{ $info_content->subtitle }}</h4>
                                 <p class="mb-4"><pre class="fw-light">{{ $info_content->content }}</pre></p>
                             </div>
                         </div>
                 @else
                         <div class="row">
                             <div class="col-12 pe-2 wow fadeInUp" data-wow-delay="0.3s">
+                                <h4 class="h4 mt-3 fw-bold">{{ $info_content->subtitle }}</h4>
                                 <p class="mb-4"><pre class="fw-light">{{ $info_content->content }}</pre></p>
                             </div>
                         </div>

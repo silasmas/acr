@@ -36,9 +36,9 @@
 
         <!-- Addons CSS Files -->
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/jquery/jquery-ui/jquery-ui.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/cropper/css/cropper.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/bootstrap/css/bootstrap.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/mdb/css/mdb.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/cropper/css/cropper.min.css') }}">
         <!-- Adminator CSS File -->
         <style>
             #loader {transition: all 0.3s ease-in-out; opacity: 1; visibility: visible; position: fixed; height: 100vh; width: 100%; background: #fff; z-index: 90000;}
@@ -52,20 +52,6 @@
 
         <!-- Custom CSS File -->
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.custom.css') }}">
-
-        <!-- JavaScript Libraries -->
-        <script src="{{ asset('assets/addons/custom/jquery/js/jquery.min.js') }}"></script>
-        <script src="{{ asset('assets/addons/custom/jquery/jquery-ui/jquery-ui.min.js') }}"></script>
-        <script src="{{ asset('assets/addons/custom/bootstrap/js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('assets/addons/custom/mdb/js/mdb.min.js') }}"></script>
-        <script src="{{ asset('assets/addons/custom/cropper/js/cropper.min.js') }}"></script>
-        <script src="{{ asset('assets/addons/custom/autosize/js/autosize.min.js') }}"></script>
-        <script src="{{ asset('assets/addons/custom/biliap/js/biliap.cores.js') }}"></script>
-
-        <!-- Adminator Javascript -->
-        <script defer="defer" src="{{ asset('assets/js/scripts.adminator.js') }}"></script>
-        <!-- Custom Javascript -->
-        <script src="{{ asset('assets/js/scripts.custom.js') }}"></script>
 
         <title>
 {{-- Titles of all roles --}}
@@ -238,6 +224,8 @@
                         </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-between">
+                        <input type="hidden" name="user_id" id="userId" value="{{ Auth::user()->id }}">
+                        <input type="hidden" name="news_id" id="newsId" value="{{ !empty($news) ? $news->id : null }}">
                         <button type="button" class="btn btn-light border border-default shadow-0" data-bs-dismiss="modal">{{ __('miscellaneous.cancel') }}</button>
                         <button type="button" id="crop" class="btn btn-primary shadow-0">{{ __('miscellaneous.register') }}</button>
                     </div>
@@ -607,7 +595,7 @@
                                 <ul class="dropdown-menu dropdown-menu-end fsz-sm py-0" style="min-width: 210px">
                                     <li class="d-flex justify-content-center py-3" style="background-color: #e0e0e0;">
                                         <div class="bg-image">
-                                            <img src="{{ $current_user->avatar_url != null ? $current_user->avatar_url : asset('assets/img/user.png') }}" alt="{{ $current_user->firstname . ' ' . $current_user->lastname }}" width="70" class="img-thumbnail rounded-circle me-2">
+                                            <img src="{{ $current_user->avatar_url != null ? $current_user->avatar_url : asset('assets/img/user.png') }}" alt="{{ $current_user->firstname . ' ' . $current_user->lastname }}" width="70" class="user-image img-thumbnail rounded-circle me-2">
                                             <div class="mask"></div>
                                         </div>
                                     </li>
@@ -675,6 +663,20 @@
             </div>
         </div>
 
+        <!-- JavaScript Libraries -->
+        <script src="{{ asset('assets/addons/custom/jquery/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('assets/addons/custom/jquery/jquery-ui/jquery-ui.min.js') }}"></script>
+        <script src="{{ asset('assets/addons/custom/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('assets/addons/custom/bootstrap/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('assets/addons/custom/mdb/js/mdb.min.js') }}"></script>
+        <script src="{{ asset('assets/addons/custom/cropper/js/cropper.min.js') }}"></script>
+        <script src="{{ asset('assets/addons/custom/autosize/js/autosize.min.js') }}"></script>
+        <script src="{{ asset('assets/addons/custom/biliap/js/biliap.cores.js') }}"></script>
+
+        <!-- Adminator Javascript -->
+        <script defer="defer" src="{{ asset('assets/js/scripts.adminator.js') }}"></script>
+        <!-- Custom Javascript -->
+        <script src="{{ asset('assets/js/scripts.custom.js') }}"></script>
         <script type="text/javascript">
             $(function () {
                 $('#rectoVersoText').click(function (e) { 

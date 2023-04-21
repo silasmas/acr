@@ -250,22 +250,25 @@ const CUST_LIGHT = currentHost + '/assets/css/style.custom.css';
     /**
      * UPLOAD USER CROPPED IMAGE
      * 
+     * @param _retrievedImage
+     * @param _modalId
      * @param _modal
      * @param _inputFile
      * @param _api_token
      * @param _apiUrl
      * @param _entity_id
      */
-    $.fn.uploadUserImage = function (_modal, _inputFile, _apiUrl, _entity_id) {
+    $.fn.uploadUserImage = function (_retrievedImage, _modalId, _modal, _inputFile, _apiUrl, _entity_id) {
         this.each(function () {
-            var retrievedImage = document.getElementById('retrieved_image1');
+            var retrievedImage = document.getElementById(_retrievedImage);
+            var _this = this;
             var cropper;
 
             $(_inputFile).on('change', function (e) {
                 var files = e.target.files;
                 var done = function (url) {
                     retrievedImage.src = url;
-                    var modal = new bootstrap.Modal(document.querySelector(_modal), {
+                    var modal = new bootstrap.Modal(document.getElementById(_modalId), {
                         keyboard: false
                     });
 
@@ -297,7 +300,7 @@ const CUST_LIGHT = currentHost + '/assets/css/style.custom.css';
 
             $(_modal + ' #crop').click(function () {
                 // Ajax loading image to tell user to wait
-                $(this).attr('src', '/assets/img/ajax-loading.gif');
+                $(_this).attr('src', currentHost + '/assets/img/ajax-loading.gif');
 
                 var canvas = cropper.getCroppedCanvas({
                     width: 700,

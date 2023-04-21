@@ -27,8 +27,87 @@ $(document).ready(function () {
     $('.counter').animateCounter(4000);
 
     /* Upload news/user cropped photo */
-    $('.news-image').uploadNewsImage('#cropModal1', '#news_image', currentHost + '/api/news/add_image/' + parseInt($('#newsId').val()), 'news_id');
-    $('.user-image').uploadUserImage('#cropModal1', '#avatar', currentHost + '/api/user/update_avatar_picture/' + parseInt($('#userId').val()), 'user_id');
+    $('.news-image').uploadNewsImage('retrieved_image1', 'cropModal1', '#cropModal1', '#news_image', currentHost + '/api/news/add_image/' + parseInt($('#newsId').val()), 'news_id');
+    // $('.user-image').uploadUserImage('retrieved_image1', 'cropModal1', '#cropModal1', '#avatar', currentHost + '/api/user/update_avatar_picture/' + parseInt($('#userId').val()), 'user_id');
+    var modal1 = $('#cropModal1');
+    var retrievedAvatar = document.getElementById('retrieved_image1');
+    var cropper;
+
+    $('#avatar').on('change', function (e) {
+        var files = e.target.files;
+        var done = function (url) {
+            retrievedAvatar.src = url;
+            var modal = new bootstrap.Modal(document.getElementById('cropModal1'), {
+                keyboard: false
+            });
+
+            modal.show();
+        };
+
+        if (files && files.length > 0) {
+            var reader = new FileReader();
+
+            reader.onload = function () {
+                done(reader.result);
+            };
+            reader.readAsDataURL(files[0]);
+        }
+    });
+
+    $(modal1).on('shown.bs.modal', function () {
+        cropper = new Cropper(retrievedAvatar, {
+            aspectRatio: 1,
+            viewMode: 3,
+            preview: '#cropModal1 .preview'
+        });
+
+    }).on('hidden.bs.modal', function () {
+        cropper.destroy();
+
+        cropper = null;
+    });
+
+    $('#cropModal1 #crop').click(function () {
+        // Ajax loading image to tell user to wait
+        $('.user-image').attr('src', currentHost + '/assets/img/ajax-loading.gif');
+
+        var canvas = cropper.getCroppedCanvas({
+            width: 700,
+            height: 700
+        });
+
+        canvas.toBlob(function (blob) {
+            URL.createObjectURL(blob);
+            var reader = new FileReader();
+
+            reader.readAsDataURL(blob);
+            reader.onloadend = function () {
+                var base64_data = reader.result;
+                var entity_id = document.getElementById('user_id').value;
+                var apiUrl = currentHost + '/api/user/update_avatar_picture/' + parseInt($('#userId').val());
+                var datas = JSON.stringify({ 'id': parseInt($('#userId').val()), 'user_id': entity_id, 'image_64': base64_data });
+
+                modal1.hide();
+
+                $.ajax({
+                    headers: headers,
+                    type: 'PUT',
+                    url: apiUrl,
+                    data: datas,
+                    success: function (res) {
+                        $(this).attr('src', res);
+                        window.location.reload();
+                    },
+                    error: function (xhr, error, status_description) {
+                        console.log(xhr.responseJSON);
+                        console.log(xhr.status);
+                        console.log(error);
+                        console.log(status_description);
+                    }
+                });
+            };
+        });
+    });
 
     /* Load other user image */
     $('.other-user-image-recto').loadOtherUserImage('#cropModal2', '.register_image_recto', '#loaded_image_recto', '.image_64_recto');
@@ -112,7 +191,7 @@ $(document).ready(function () {
             url: currentHost + '/api/notification/mark_all_read/' + parseInt($(this).attr('data-user-id')),
             success: function () {
                 window.location.reload();
-            },    
+            },
             error: function (xhr, error, status_description) {
                 console.log(xhr.responseJSON);
                 console.log(xhr.status);
