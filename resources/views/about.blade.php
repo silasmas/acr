@@ -9,7 +9,7 @@
                 <h1 class="display-3 text-white mb-4 animated slideInDown">@lang('miscellaneous.public.about.title')</h1>
                 <nav aria-label="breadcrumb animated slideInDown">
                     <ol class="breadcrumb justify-content-center mb-0">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}" class="acr-text-yellow">@lang('miscellaneous.menu.home')</a></li>
+                        <li class="breadcrumb-item text-white"><a href="{{ route('home') }}" class="acr-text-yellow">@lang('miscellaneous.menu.home')</a></li>
                         <li class="breadcrumb-item text-white active" aria-current="page">@lang('miscellaneous.menu.public.about')</li>
                     </ol>
                 </nav>
@@ -19,8 +19,8 @@
                 <h1 class="display-3 text-white mb-4 animated slideInDown">@lang('miscellaneous.public.about.other_links.link1')</h1>
                 <nav aria-label="breadcrumb animated slideInDown">
                     <ol class="breadcrumb justify-content-center mb-0">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}" class="acr-text-yellow">@lang('miscellaneous.menu.home')</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('about.home') }}" class="acr-text-yellow">@lang('miscellaneous.menu.public.about')</a></li>
+                        <li class="breadcrumb-item text-white"><a href="{{ route('home') }}" class="acr-text-yellow">@lang('miscellaneous.menu.home')</a></li>
+                        <li class="breadcrumb-item text-white"><a href="{{ route('about.home') }}" class="acr-text-yellow">@lang('miscellaneous.menu.public.about')</a></li>
                         <li class="breadcrumb-item text-white active" aria-current="page">@lang('miscellaneous.public.about.other_links.link1')</li>
                     </ol>
                 </nav>
@@ -30,8 +30,8 @@
                 <h1 class="display-3 text-white mb-4 animated slideInDown">@lang('miscellaneous.public.about.other_links.link2')</h1>
                 <nav aria-label="breadcrumb animated slideInDown">
                     <ol class="breadcrumb justify-content-center mb-0">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}" class="acr-text-yellow">@lang('miscellaneous.menu.home')</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('about.home') }}" class="acr-text-yellow">@lang('miscellaneous.menu.public.about')</a></li>
+                        <li class="breadcrumb-item text-white"><a href="{{ route('home') }}" class="acr-text-yellow">@lang('miscellaneous.menu.home')</a></li>
+                        <li class="breadcrumb-item text-white"><a href="{{ route('about.home') }}" class="acr-text-yellow">@lang('miscellaneous.menu.public.about')</a></li>
                         <li class="breadcrumb-item text-white active" aria-current="page">@lang('miscellaneous.public.about.other_links.link2')</li>
                     </ol>
                 </nav>
@@ -41,8 +41,8 @@
                 <h1 class="display-3 text-white mb-4 animated slideInDown">@lang('miscellaneous.public.about.other_links.link3')</h1>
                 <nav aria-label="breadcrumb animated slideInDown">
                     <ol class="breadcrumb justify-content-center mb-0">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}" class="acr-text-yellow">@lang('miscellaneous.menu.home')</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('about.home') }}" class="acr-text-yellow">@lang('miscellaneous.menu.public.about')</a></li>
+                        <li class="breadcrumb-item text-white"><a href="{{ route('home') }}" class="acr-text-yellow">@lang('miscellaneous.menu.home')</a></li>
+                        <li class="breadcrumb-item text-white"><a href="{{ route('about.home') }}" class="acr-text-yellow">@lang('miscellaneous.menu.public.about')</a></li>
                         <li class="breadcrumb-item text-white active" aria-current="page">@lang('miscellaneous.public.about.other_links.link3')</li>
                     </ol>
                 </nav>
@@ -52,8 +52,8 @@
                 <h1 class="display-3 text-white mb-4 animated slideInDown">@lang('miscellaneous.public.about.other_links.link4')</h1>
                 <nav aria-label="breadcrumb animated slideInDown">
                     <ol class="breadcrumb justify-content-center mb-0">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}" class="acr-text-yellow">@lang('miscellaneous.menu.home')</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('about.home') }}" class="acr-text-yellow">@lang('miscellaneous.menu.public.about')</a></li>
+                        <li class="breadcrumb-item text-white"><a href="{{ route('home') }}" class="acr-text-yellow">@lang('miscellaneous.menu.home')</a></li>
+                        <li class="breadcrumb-item text-white"><a href="{{ route('about.home') }}" class="acr-text-yellow">@lang('miscellaneous.menu.public.about')</a></li>
                         <li class="breadcrumb-item text-white active" aria-current="page">@lang('miscellaneous.public.about.other_links.link4')</li>
                     </ol>
                 </nav>
@@ -193,7 +193,7 @@
                     <div class="col-lg-4 col-sm-6">
                         <div class="bg-image mb-4">
                             <img src="{{ asset('assets/img/button-playstore-white.png') }}" alt="" class="img-fluid">
-                            <div class="mask"><a href="#" class="stretched-link"></a></div>
+                            <div class="mask"><a href="{{ asset('mobile_app/acr-rdc-v1_0_0.apk') }}" class="stretched-link"></a></div>
                         </div>
                     </div>
 

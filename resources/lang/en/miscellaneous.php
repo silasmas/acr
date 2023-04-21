@@ -585,6 +585,26 @@ return [
             ],
         ],
 
+        // Help
+        'help' => [
+            'title' => 'Help center',
+        ],
+
+        // FAQ
+        'faq' => [
+            'title' => 'Frequently Asked Questions',
+        ],
+
+        // Terms of use
+        'terms_of_use' => [
+            'title' => 'Terms of use',
+        ],
+
+        // Privacy policy
+        'privacy_policy' => [
+            'title' => 'Privacy policy',
+        ],
+
         // News
         'news' => [
             'title' => 'News',
@@ -594,11 +614,6 @@ return [
         // Works
         'works' => [
             'title' => 'Our works',
-        ],
-
-        // Help
-        'help' => [
-            'title' => 'Help center',
         ],
     ],
 ];

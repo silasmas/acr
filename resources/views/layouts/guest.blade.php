@@ -100,6 +100,25 @@
             @lang('miscellaneous.menu.public.donate')
 @endif
 
+@if (Route::is('about.home'))
+            @lang('miscellaneous.menu.public.about')
+@endif
+
+@if (Route::is('about.help'))
+            @lang('miscellaneous.public.help.title')
+@endif
+
+@if (Route::is('about.faq'))
+            @lang('miscellaneous.public.faq.title')
+@endif
+
+@if (Route::is('about.terms_of_use'))
+            @lang('miscellaneous.public.terms_of_use.title')
+@endif
+
+@if (Route::is('about.privacy_policy'))
+            @lang('miscellaneous.public.privacy_policy.title')
+@endif
         </title>
     </head>
 

@@ -585,6 +585,26 @@ return [
             ],
         ],
 
+        // Help
+        'help' => [
+            'title' => 'Centre d\'aide',
+        ],
+
+        // FAQ
+        'faq' => [
+            'title' => 'Foire Aux Questions',
+        ],
+
+        // Terms of use
+        'terms_of_use' => [
+            'title' => 'Conditions d\'utilisation',
+        ],
+
+        // Privacy policy
+        'privacy_policy' => [
+            'title' => 'Politique de confidentialité',
+        ],
+
         // News
         'news' => [
             'title' => 'Actualité',
@@ -594,11 +614,6 @@ return [
         // Works
         'works' => [
             'title' => 'Nos œuvres',
-        ],
-
-        // Help
-        'help' => [
-            'title' => 'Centre d\'aide',
         ],
     ],
 ];
