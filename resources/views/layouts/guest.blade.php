@@ -84,10 +84,6 @@
             @lang('miscellaneous.menu.notifications')
 @endif
 
-@if (Route::is('about.home'))
-            @lang('miscellaneous.menu.public.about')
-@endif
-
 @if (Route::is('news.home'))
             @lang('miscellaneous.menu.public.news')
 @endif
@@ -101,7 +97,7 @@
 @endif
 
 @if (Route::is('about.home'))
-            @lang('miscellaneous.menu.public.about')
+            @lang('miscellaneous.public.about.title')
 @endif
 
 @if (Route::is('about.help'))
