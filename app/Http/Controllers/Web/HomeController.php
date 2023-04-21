@@ -68,7 +68,7 @@ class HomeController extends Controller
             $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
             // Select all users by role API URL
             $manager_role = 'Manager';
-            $supporting_member_role = 'Membre Sympathisant';
+            $supporting_member_role = 'Membre Effectif';
             $url_manager = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/find_by_role/' . $manager_role;
             $url_supporting_member = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/find_by_role/' . $supporting_member_role;
             // Select all users by not role API URL
@@ -273,7 +273,7 @@ class HomeController extends Controller
         $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
         // Select all users by role API URL
         $manager_role = 'Manager';
-        $supporting_member_role = 'Membre Sympathisant';
+        $supporting_member_role = 'Membre Effectif';
         $url_manager = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/find_by_role/' . $manager_role;
         $url_supporting_member = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/find_by_role/' . $supporting_member_role;
         // Select all users by not role API URL

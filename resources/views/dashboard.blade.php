@@ -82,8 +82,8 @@
                                                             <td><span class="badge bgc-{{ $supporting_member->status->color }}-50 c-{{ $supporting_member->status->color }}-700 p-10 lh-0 tt-c rounded-pill">{{ $supporting_member->status->status_name }}</span></td>
                                                             <td>
                                                                 <div class="form-check form-switch">
-                                                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" {{ $supporting_member->status->status_name == 'Activé' ? 'checked' : '' }} />
-                                                                    <label class="ms-2 form-check-label" for="flexSwitchCheckDefault">{{ $supporting_member->status->status_name != 'Activé' ? __('miscellaneous.activate') : __('miscellaneous.lock') }}</label>
+                                                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheck-{{ $supporting_member->id }}" {{ $supporting_member->status->status_name == 'Activé' ? 'checked' : '' }} />
+                                                                    <label class="ms-2 form-check-label" for="flexSwitchCheck-{{ $supporting_member->id }}">{{ $supporting_member->status->status_name != 'Activé' ? __('miscellaneous.activate') : __('miscellaneous.lock') }}</label>
                                                                 </div>
                                                             </td>
                                                         </tr>
