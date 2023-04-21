@@ -134,7 +134,7 @@
                     <div class="col-lg-5 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
                         <div class="bg-image mb-4">
                             <img src="{{ asset('assets/img/button-playstore-white.png') }}" alt="" class="img-fluid">
-                            <div class="mask"><a href="#" class="stretched-link"></a></div>
+                            <div class="mask"><a href="{{ asset('mobile_app/acr-rdc-v1_0_0.apk') }}" class="stretched-link"></a></div>
                         </div>
 
                         <div class="bg-image">
