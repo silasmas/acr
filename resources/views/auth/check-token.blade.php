@@ -14,26 +14,30 @@
                                 <input type="hidden" name="user_token" value="{{ $user_token }}">
 
                                 <div class="row">
-                                    <div class="col-1">
-                                        <input type="text" name="check_digit_1" id="check_digit_1" class="form-control" autofocus>
-                                    </div>
-                                    <div class="col-1">
-                                        <input type="text" name="check_digit_1" id="check_digit_2" class="form-control" autofocus>
-                                    </div>
-                                    <div class="col-1">
-                                        <input type="text" name="check_digit_1" id="check_digit_3" class="form-control" autofocus>
-                                    </div>
-                                    <div class="col-1">
-                                        <input type="text" name="check_digit_1" id="check_digit_4" class="form-control" autofocus>
-                                    </div>
-                                    <div class="col-1">
-                                        <input type="text" name="check_digit_1" id="check_digit_5" class="form-control" autofocus>
-                                    </div>
-                                    <div class="col-1">
-                                        <input type="text" name="check_digit_1" id="check_digit_6" class="form-control" autofocus>
-                                    </div>
-                                    <div class="col-1">
-                                        <input type="text" name="check_digit_1" id="check_digit_7" class="form-control" autofocus>
+                                    <div class="col-sm-8 mx-auto">
+                                        <div class="d-flex">
+                                            <div class="flex-fill me-1">
+                                                <input type="text" name="check_digit_1" id="check_digit_1" class="form-control text-center" autofocus>
+                                            </div>
+                                            <div class="flex-fill me-1">
+                                                <input type="text" name="check_digit_1" id="check_digit_2" class="form-control text-center">
+                                            </div>
+                                            <div class="flex-fill me-1">
+                                                <input type="text" name="check_digit_1" id="check_digit_3" class="form-control text-center">
+                                            </div>
+                                            <div class="flex-fill me-1">
+                                                <input type="text" name="check_digit_1" id="check_digit_4" class="form-control text-center">
+                                            </div>
+                                            <div class="flex-fill me-1">
+                                                <input type="text" name="check_digit_1" id="check_digit_5" class="form-control text-center">
+                                            </div>
+                                            <div class="flex-fill me-1">
+                                                <input type="text" name="check_digit_1" id="check_digit_6" class="form-control text-center">
+                                            </div>
+                                            <div class="flex-fill">
+                                                <input type="text" name="check_digit_1" id="check_digit_7" class="form-control text-center">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
