@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use GuzzleHttp\Exception\ClientException;
+use Illuminate\Support\Facades\Redirect;
 
 class RegisteredUserController extends Controller
 {
@@ -54,7 +55,36 @@ class RegisteredUserController extends Controller
             ]);
 
         } catch (ClientException $e) {
-            // If Select country API returns some error, get it,
+            // If API returns some error, get it,
+            // return to the page and display its message
+            return view('auth.register', [
+                'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+            ]);
+        }
+    }
+
+    /**
+     * Display the registration view.
+     */
+    public function edit(): View
+    {
+        // Select country API URL
+        $url_country = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/country';
+
+        try {
+            // Select country API response
+            $response_country = $this::$client->request('GET', $url_country, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $country = json_decode($response_country->getBody(), false);
+
+            return view('auth.register', [
+                'countries' => $country->data
+            ]);
+
+        } catch (ClientException $e) {
+            // If API returns some error, get it,
             // return to the page and display its message
             return view('auth.register', [
                 'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
@@ -64,17 +94,85 @@ class RegisteredUserController extends Controller
 
     /**
      * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
+        // Register new user API URL
+        $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user';
         $inputs = [
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => $request->password,
+            'firstname' => $request->register_firstname,
+            'surname' => $request->register_surname,
+            'phone' => $request->phone_code . $request->phone_number,
+            'status_id' => 4
         ];
 
-        return redirect(RouteServiceProvider::HOME);
+        try {
+            // Register new user API response
+            $response_user = $this::$client->request('POST', $url_user, [
+                'headers' => $this::$headers,
+                'form_params' => $inputs,
+                'verify'  => false
+            ]);
+            $user = json_decode($response_user->getBody(), false);
+
+            return view('auth.check-token', [
+                'phone' => $user->data->password_reset->phone,
+                'password' => $user->data->password_reset->password,
+                'token' => $user->data->password_reset->tokenn
+            ]);
+
+        } catch (ClientException $e) {
+            // If API returns some error, get it,
+            // return to the page and display its message
+            return view('auth.register', [
+                'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+            ]);
+        }
+    }
+
+    /**
+     * Check matching token.
+     */
+    public function sendToken(Request $request)
+    {
+        // Log in API URL
+        $url_login = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/login';
+        $given_token = $request->check_digit_1 . $request->check_digit_2 . $request->check_digit_3 . $request->check_digit_4 . $request->check_digit_5 . $request->check_digit_6 . $request->check_digit_7;
+        $phone = $request->phone;
+        $password = $request->password;
+
+        if ($given_token == $request->user_token) {
+            try {
+                // Log in API response
+                $response_login = $this::$client->request('POST', $url_login, [
+                    'headers' => $this::$headers,
+                    'form_params' => [
+                        'username' => $phone,
+                        'password' => $password
+                    ],
+                    'verify'  => false
+                ]);
+                $user = json_decode($response_login->getBody(), false);
+
+                Auth::attempt(['email' => $user->data->email, 'password' => $password], $request->remember);
+
+                return Redirect::route('update');
+
+            } catch (ClientException $e) {
+                // If API returns some error, get it,
+                // return to the page and display its message
+                return view('auth.register', [
+                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                ]);
+            }
+
+        } else {
+            return view('auth.check-token', [
+                'phone' => $phone,
+                'password' => $password,
+                'token' => $request->user_token
+            ]);
+        }
+        
     }
 }
