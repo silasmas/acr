@@ -261,6 +261,9 @@ return [
     // ===== EVERY ROLES PAGES
     // Account settings
     'account' => [
+        'on_going' => 'Compte en attente d\'activation',
+        'deactivated' => 'Vous avez désactivé votre compte',
+        'locked' => 'Votre compte est bloqué par l\'administrateur',
         'personal_infos' => [
             'title' => 'Infos personnelles',
             'change_avatar' => 'Modifier l\'avatar',
