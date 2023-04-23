@@ -260,8 +260,8 @@ class UserController extends BaseController
             // all managers and a welcome notification to the new user
             if ($current_role->id == $supporting_member_role->id OR $current_role->id == $effecive_member_role->id OR $current_role->id == $honorary_member_role->id) {
                 $user->update([
-                    // 'status_id' => $status_ongoing->id,
-                    'status_id' => $status_activated->id,
+                    'status_id' => $status_ongoing->id,
+                    // 'status_id' => $status_activated->id,
                 ]);
 
                 $manager_role = Role::where('role_name', 'Manager')->first();
