@@ -60,7 +60,7 @@
 @endif
 
 @if (!empty($response_error))
-            {{ $response_error->data }}
+            {{ $response_error->message }}
 @endif
         </title>
     </head>

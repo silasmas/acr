@@ -131,19 +131,19 @@ $(document).ready(function () {
         var countryPhoneCode = $(this).val();
 
         $('#phone_code_text1 .text-value').text(countryPhoneCode);
-        $('phone_code1').val(countryPhoneCode);
+        $('#phone_code1').val(countryPhoneCode);
     });
     $('#select_country2').on('change', function () {
         var countryPhoneCode = $(this).val();
 
         $('#phone_code_text2 .text-value').text(countryPhoneCode);
-        $('phone_code2').val(countryPhoneCode);
+        $('#phone_code2').val(countryPhoneCode);
     });
     $('#select_country3').on('change', function () {
         var countryPhoneCode = $(this).val();
 
         $('#phone_code_text3 .text-value').text(countryPhoneCode);
-        $('phone_code3').val(countryPhoneCode);
+        $('#phone_code3').val(countryPhoneCode);
     });
 
     /* On check, show/hide some blocs */

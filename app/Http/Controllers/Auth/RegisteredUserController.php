@@ -102,7 +102,7 @@ class RegisteredUserController extends Controller
         $inputs = [
             'firstname' => $request->register_firstname,
             'surname' => $request->register_surname,
-            'phone' => $request->phone_code . $request->phone_number,
+            'phone' => $request->phone_code_new_member . $request->phone_number_new_member,
             'status_id' => 4
         ];
 
@@ -117,14 +117,15 @@ class RegisteredUserController extends Controller
 
             return view('auth.check-token', [
                 'phone' => $user->data->password_reset->phone,
-                'password' => $user->data->password_reset->password,
-                'token' => $user->data->password_reset->tokenn
+                'password' => $user->data->password_reset->former_password,
+                'token' => $user->data->password_reset->token
             ]);
 
         } catch (ClientException $e) {
             // If API returns some error, get it,
             // return to the page and display its message
             return view('auth.register', [
+                'inputs' => $inputs,
                 'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
             ]);
         }

@@ -177,6 +177,7 @@ return [
     // ===== REGISTER PAGE
     'register_title1' => 'Sign up',
     'register_title2' => 'Register to start',
+    'register_title3' => 'Write the code you received',
     'serial_number' => 'Serial number',
     'names' => 'Names',
     'firstname' => 'First name',
