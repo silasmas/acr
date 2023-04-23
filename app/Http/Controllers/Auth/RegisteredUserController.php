@@ -163,6 +163,8 @@ class RegisteredUserController extends Controller
 
                 Auth::attempt(['email' => $user->data->email, 'password' => $password], $request->remember);
 
+                $request->session()->regenerate();
+
                 return Redirect::route('account');
 
             } catch (ClientException $e) {
