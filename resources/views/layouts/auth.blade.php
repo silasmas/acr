@@ -43,7 +43,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.custom.css') }}">
 
         <title>
-@if (Route::is('register') || Route::is('update'))
+@if (Route::is('register') || Route::is('update') || Route::is('register.check_token'))
             @lang('auth.register')
 @endif
 

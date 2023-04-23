@@ -6,6 +6,11 @@
             <div class="row justify-content-center">
                 <div class="col-lg-5 col-sm-8">
                     <div class="card border border-default shadow-0">
+    @if (!empty($response_error))
+                        <div class="card-body py-5">
+                            <h1>{{ $response_error->message }}</h1>
+                        </div>
+    @else
                         <div class="card-body py-5">
                             <form method="POST" action="{{ route('register.check_token') }}">
         @csrf
@@ -44,8 +49,13 @@
                                 </div>
 
                                 <button class="btn acr-btn-yellow btn-sm-inline-block btn-block rounded-pill mb-4 py-3 px-5 shadow-0" type="submit">@lang('miscellaneous.public.home.register_member.register')</button>
+
+        @if (!empty($error_message))
+                                <p class="text-center m-0 text-danger small">{{ $error_message }}</p>
+        @endif
                             </form>
                         </div>
+    @endif
                     </div>
                 </div>
             </div>

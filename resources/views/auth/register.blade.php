@@ -57,11 +57,11 @@
                                                 </div>
                                             </div>
 
-    @if (!empty($response_error) AND $response_error->message == $inputs['phone'])
+        @if (!empty($response_error) AND $response_error->message == $inputs['phone'])
                                             <div class="col-12">
                                                 <p id="phone_error_message" class="text-center mb-4 text-danger small">{{ $response_error->data }}</p>
                                             </div>
-    @endif
+        @endif
                                         </div>
                                     </div>
     

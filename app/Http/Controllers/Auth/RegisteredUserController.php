@@ -94,16 +94,21 @@ class RegisteredUserController extends Controller
 
     /**
      * Handle an incoming registration request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View
      */
     public function store(Request $request)
     {
         // Register new user API URL
         $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user';
+        $phone = $request->phone_code_new_member . $request->phone_number_new_member;
         $inputs = [
             'firstname' => $request->register_firstname,
             'surname' => $request->register_surname,
-            'phone' => $request->phone_code_new_member . $request->phone_number_new_member,
-            'status_id' => 4
+            'phone' => $phone,
+            'status_id' => 4,
+            'role_id' => 5
         ];
 
         try {
@@ -141,8 +146,9 @@ class RegisteredUserController extends Controller
         $given_token = $request->check_digit_1 . $request->check_digit_2 . $request->check_digit_3 . $request->check_digit_4 . $request->check_digit_5 . $request->check_digit_6 . $request->check_digit_7;
         $phone = $request->phone;
         $password = $request->password;
+        $token = $request->token;
 
-        if ($given_token == $request->user_token) {
+        if ($given_token == $request->token) {
             try {
                 // Log in API response
                 $response_login = $this::$client->request('POST', $url_login, [
@@ -169,9 +175,10 @@ class RegisteredUserController extends Controller
 
         } else {
             return view('auth.check-token', [
+                'error_message' => __('auth.token_error'),
                 'phone' => $phone,
                 'password' => $password,
-                'token' => $request->user_token
+                'token' => $token
             ]);
         }
         
