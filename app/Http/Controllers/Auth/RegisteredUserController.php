@@ -163,12 +163,12 @@ class RegisteredUserController extends Controller
 
                 Auth::attempt(['email' => $user->data->email, 'password' => $password], $request->remember);
 
-                return Redirect::route('update');
+                return Redirect::route('account');
 
             } catch (ClientException $e) {
                 // If API returns some error, get it,
                 // return to the page and display its message
-                return view('auth.register', [
+                return view('auth.check-token', [
                     'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
                 ]);
             }
@@ -181,6 +181,5 @@ class RegisteredUserController extends Controller
                 'token' => $token
             ]);
         }
-        
     }
 }

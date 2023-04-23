@@ -67,7 +67,7 @@ class UserController extends BaseController
             'status_id' => $request->status_id
         ];
         $users = User::all();
-        $password_reset = null;
+        $password_resets = PasswordReset::all();
         // $basic  = new \Vonage\Client\Credentials\Basic('89e3b822', 'cab98aefeaab1434ACR');
         $basic  = new \Vonage\Client\Credentials\Basic('5a4c014d', 'dhOq17USeZadLgIw');
         $client = new \Vonage\Client($basic);
@@ -96,6 +96,15 @@ class UserController extends BaseController
                     return $this->handleError($inputs['email'], __('validation.custom.email.exists'), 400);
                 }
             endforeach;
+
+            // If email exists in "password_reset" table, delete it
+            if ($password_resets != null) {
+                foreach ($password_resets as $password_reset):
+                    if ($password_reset->email == $inputs['email']) {
+                        $password_reset->delete();
+                    }
+                endforeach;
+            }
         }
 
         if ($inputs['phone'] != null) {
@@ -105,11 +114,16 @@ class UserController extends BaseController
                     return $this->handleError($inputs['phone'], __('validation.custom.phone.exists'), 400);
                 }
             endforeach;
-        }
 
-        $password_reset_by_email = PasswordReset::where('email', $inputs['email'])->first();
-        $password_reset_by_phone = PasswordReset::where('phone', $inputs['phone'])->first();
-        $random_string = (string) random_int(1000000, 9999999);
+            // If phone exists in "password_reset" table, delete it
+            if ($password_resets != null) {
+                foreach ($password_resets as $password_reset):
+                    if ($password_reset->phone == $inputs['phone']) {
+                        $password_reset->delete();
+                    }
+                endforeach;
+            }
+        }
 
         if ($inputs['password'] != null) {
             if ($inputs['confirm_password'] != $inputs['password'] OR $inputs['confirm_password'] == null) {
@@ -120,81 +134,82 @@ class UserController extends BaseController
                 return $this->handleError($inputs['password'], __('miscellaneous.password.error'), 400);
             }
 
-            // If password_reset doesn't exist, create it.
-            if ($password_reset_by_email == null AND $password_reset_by_phone == null) {
-                if ($inputs['email'] != null AND $inputs['phone'] != null) {
-                    $password_reset = PasswordReset::create([
+            $random_string = (string) random_int(1000000, 9999999);
+
+            if ($inputs['email'] != null AND $inputs['phone'] != null) {
+                $password_reset = PasswordReset::create([
+                    'email' => $inputs['email'],
+                    'phone' => $inputs['phone'],
+                    'token' => $random_string,
+                    'former_password' => $inputs['password']
+                ]);
+
+                // try {
+                //     $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
+
+                // } catch (\Throwable $th) {
+                //     return $this->handleError($th->getMessage(), __('notifications.create_user_SMS_failed'), 500);
+                // }
+
+            } else {
+                if ($inputs['email'] != null) {
+                    PasswordReset::create([
                         'email' => $inputs['email'],
+                        'token' => $random_string,
+                        'former_password' => $inputs['password']
+                    ]);
+                }
+
+                if ($inputs['phone'] != null) {
+                    $password_reset = PasswordReset::create([
                         'phone' => $inputs['phone'],
                         'token' => $random_string,
                         'former_password' => $inputs['password']
                     ]);
 
-                    try {
-                        $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
+                    // try {
+                    //     $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
 
-                    } catch (\Throwable $th) {
-                        return $this->handleError($th->getMessage(), __('notifications.create_user_SMS_failed'), 500);
-                    }
-
-                } else {
-                    if ($inputs['email'] != null) {
-                        PasswordReset::create([
-                            'email' => $inputs['email'],
-                            'token' => $random_string,
-                            'former_password' => $inputs['password']
-                        ]);
-                    }
-
-                    if ($inputs['phone'] != null) {
-                        $password_reset = PasswordReset::create([
-                            'phone' => $inputs['phone'],
-                            'token' => $random_string,
-                            'former_password' => $inputs['password']
-                        ]);
-
-                        try {
-                            $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
-
-                        } catch (\Throwable $th) {
-                            return $this->handleError($th->getMessage(), __('notifications.create_user_SMS_failed'), 500);
-                        }
-                    }
-                }
-
-            // Otherwise, update it.
-            } else {
-                if ($password_reset_by_email != null) {
-                    $password_reset_by_email->update([
-                        'token' => $random_string,
-                        'former_password' => $inputs['password'],
-                        'updated_at' => now(),
-                    ]);
-                }
-
-                if ($password_reset_by_phone != null) {
-                    $password_reset_by_phone->update([
-                        'token' => $random_string,
-                        'former_password' => $inputs['password'],
-                        'updated_at' => now(),
-                    ]);
-
-                    try {
-                        $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset_by_phone->phone, 'ACR', (string) $password_reset_by_phone->token));
-
-                    } catch (\Throwable $th) {
-                        return $this->handleError($th->getMessage(), __('notifications.create_user_SMS_failed'), 500);
-                    }
+                    // } catch (\Throwable $th) {
+                    //     return $this->handleError($th->getMessage(), __('notifications.create_user_SMS_failed'), 500);
+                    // }
                 }
             }
         }
 
         if ($inputs['password'] == null) {
-            // If password_reset doesn't exist, create it.
-            if ($password_reset_by_email == null AND $password_reset_by_phone == null) {
-                if ($inputs['email'] != null AND $inputs['phone'] != null) {
+            $random_string = (string) random_int(1000000, 9999999);
+
+            if ($inputs['email'] != null AND $inputs['phone'] != null) {
+                $password_reset = PasswordReset::create([
+                    'email' => $inputs['email'],
+                    'phone' => $inputs['phone'],
+                    'token' => $random_string,
+                    'former_password' => Random::generate(10, 'a-zA-Z'),
+                ]);
+
+                $inputs['password'] = Hash::make($password_reset->former_password);
+
+                // try {
+                //     $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
+
+                // } catch (\Throwable $th) {
+                //     return $this->handleError($th->getMessage(), __('notifications.create_user_SMS_failed'), 500);
+                // }
+
+            } else {
+                if ($inputs['email'] != null) {
                     $password_reset = PasswordReset::create([
                         'email' => $inputs['email'],
+                        'token' => $random_string,
+                        'former_password' => Random::generate(10, 'a-zA-Z'),
+                    ]);
+
+                    $inputs['password'] = Hash::make($password_reset->former_password);
+                }
+
+                if ($inputs['phone'] != null) {
+                    $password_reset = PasswordReset::create([
                         'phone' => $inputs['phone'],
                         'token' => $random_string,
                         'former_password' => Random::generate(10, 'a-zA-Z'),
@@ -202,69 +217,12 @@ class UserController extends BaseController
 
                     $inputs['password'] = Hash::make($password_reset->former_password);
 
-                    try {
-                        $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
+                    // try {
+                    //     $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
 
-                    } catch (\Throwable $th) {
-                        return $this->handleError($th->getMessage(), __('notifications.create_user_SMS_failed'), 500);
-                    }
-
-                } else {
-                    if ($inputs['email'] != null) {
-                        $password_reset = PasswordReset::create([
-                            'email' => $inputs['email'],
-                            'token' => $random_string,
-                            'former_password' => Random::generate(10, 'a-zA-Z'),
-                        ]);
-
-                        $inputs['password'] = Hash::make($password_reset->former_password);
-                    }
-
-                    if ($inputs['phone'] != null) {
-                        $password_reset = PasswordReset::create([
-                            'phone' => $inputs['phone'],
-                            'token' => $random_string,
-                            'former_password' => Random::generate(10, 'a-zA-Z'),
-                        ]);
-
-                        $inputs['password'] = Hash::make($password_reset->former_password);
-
-                        try {
-                            $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
-
-                        } catch (\Throwable $th) {
-                            return $this->handleError($th->getMessage(), __('notifications.create_user_SMS_failed'), 500);
-                        }
-                    }
-                }
-
-            // Otherwise, update it.
-            } else {
-                if ($password_reset_by_email != null) {
-                    $password_reset_by_email->update([
-                        'token' => $random_string,
-                        'former_password' => Random::generate(10, 'a-zA-Z'),
-                        'updated_at' => now(),
-                    ]);
-
-                    $inputs['password'] = Hash::make($password_reset_by_email->former_password);
-                }
-
-                if ($password_reset_by_phone != null) {
-                    $password_reset_by_phone->update([
-                        'token' => $random_string,
-                        'former_password' => Random::generate(10, 'a-zA-Z'),
-                        'updated_at' => now(),
-                    ]);
-
-                    $inputs['password'] = Hash::make($password_reset_by_phone->former_password);
-
-                    try {
-                        $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset_by_phone->phone, 'ACR', (string) $password_reset_by_phone->token));
-
-                    } catch (\Throwable $th) {
-                        return $this->handleError($th->getMessage(), __('notifications.create_user_SMS_failed'), 500);
-                    }
+                    // } catch (\Throwable $th) {
+                    //     return $this->handleError($th->getMessage(), __('notifications.create_user_SMS_failed'), 500);
+                    // }
                 }
             }
         }
