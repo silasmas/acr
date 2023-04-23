@@ -24,16 +24,16 @@
                     <div class="col-lg-3 col-sm-4 col-7 mx-sm-0 mx-auto">
                         <div class="bg-image">
                             <img src="{{ $current_user->avatar_url != null ? $current_user->avatar_url : asset('assets/img/user.png') }}" alt="{{ $current_user->firstname . ' ' . $current_user->lastname }}" class="user-image img-fluid img-thumbnail rounded-circle">
-                            <div class="mask"></div>
+                            <div class="mask">
+                                <form class="position-absolute" method="post" style="bottom: 0.5rem; right: 0.5rem;">
+                                    <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
+                                    <label for="avatar" class="btn btn-dark rounded-circle shadow-0" style="width: 2.6rem; height: 2.6rem; padding: 0.4rem 0.5rem; text-transform: inherit!important;" title="@lang('miscellaneous.change_image')">
+                                        <span class="bi bi-pencil fs-5"></span>
+                                        <input type="file" name="avatar" id="avatar" class="d-none">
+                                    </label>
+                                </form>
+                            </div>
                         </div>
-
-                        <form class="position-absolute" method="post" style="bottom: 10rem; left: 10rem;">
-                            <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
-                            <label for="avatar" class="btn btn-dark rounded-circle shadow-0" style="width: 2.6rem; height: 2.6rem; padding: 0.4rem 0.5rem; text-transform: inherit!important;" title="@lang('miscellaneous.change_image')">
-                                <span class="bi bi-pencil fs-5"></span>
-                                <input type="file" name="avatar" id="avatar" class="d-none">
-                            </label>
-                        </form>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-12 d-sm-flex align-items-center text-sm-start text-center pt-sm-0 pt-2">
                         <div>
