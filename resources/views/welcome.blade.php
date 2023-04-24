@@ -232,7 +232,7 @@
                                     <div class="row g-3">
                                         <div class="col-lg-5">
                                             <div class="form-floating pt-0">
-                                                <select id="select_country1" class="form-select pt-2 shadow-0">
+                                                <select name="select_country" id="select_country1" class="form-select pt-2 shadow-0">
                                                     <option class="small" selected disabled>@lang('miscellaneous.choose_country')</option>
         @forelse ($countries as $country)
                                                     <option value="+{{ $country->country_phone_code }}">{{ $country->country_name }}</option>

@@ -57,5 +57,4 @@ class PartyController extends Controller
 
         return view('dashboard.member');
     }
-
 }

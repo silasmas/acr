@@ -102,7 +102,7 @@ class RegisteredUserController extends Controller
     {
         // Register new user API URL
         $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user';
-        $phone = $request->phone_code_new_member . $request->phone_number_new_member;
+        $phone = $request->select_country . $request->phone_number_new_member;
         $inputs = [
             'firstname' => $request->register_lastname,
             'surname' => $request->register_firstname,

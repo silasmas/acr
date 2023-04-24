@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="keywords" content="@lang('miscellaneous.keywords')">
         <meta name="description" content="">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+        {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
         <meta name="acr-devref" content="uWNJB6EwpVQwSuL5oJ7S7JkSkLzdpt8M1Xrs1MZITE1bCEbjMhscv8ZX2sTiDBarCHcu1EeJSsSLZIlYjr6YCl7pLycfn2AAQmYm">
 
         <!-- Favicon -->
