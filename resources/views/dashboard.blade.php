@@ -73,7 +73,7 @@
                                                         </tr>
                                                     </thead>
 
-                                                    <tbody>
+                                                    <tbody id="updateMemberStatus">
         @forelse ($supporting_members as $supporting_member)
             @if ($loop->index < 6)
                                                         <tr>
@@ -81,9 +81,9 @@
                                                             <td>{{ $supporting_member->phone }}</td>
                                                             <td><span class="badge bgc-{{ $supporting_member->status->color }}-50 c-{{ $supporting_member->status->color }}-700 p-10 lh-0 tt-c rounded-pill">{{ $supporting_member->status->status_name }}</span></td>
                                                             <td>
-                                                                <div class="form-check form-switch">
-                                                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheck-{{ $supporting_member->id }}" {{ $supporting_member->status->status_name == 'Activé' ? 'checked' : '' }} />
-                                                                    <label class="ms-2 form-check-label" for="flexSwitchCheck-{{ $supporting_member->id }}">{{ $supporting_member->status->status_name != 'Activé' ? __('miscellaneous.activate') : __('miscellaneous.lock') }}</label>
+                                                                <div id="user-{{ $supporting_member->id }}" class="form-check form-switch" aria-current="{{ $supporting_member->status->status_name }}" onchange="changeStatus('user-{{ $supporting_member->id }}')">
+                                                                    <input class="form-check-input" type="checkbox" role="switch" id="{{ $supporting_member->id }}" {{ $supporting_member->status->status_name == 'Activé' ? 'checked' : '' }} />
+                                                                    <label class="ms-2 form-check-label" for="{{ $supporting_member->id }}">{{ $supporting_member->status->status_name != 'Activé' ? __('miscellaneous.activate') : __('miscellaneous.lock') }}</label>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -287,6 +287,24 @@
                                 </div>
                             </div>
                         </div>
+
+                        <script type="text/javascript">
+                            function changeStatus(id) {
+                                var element = document.getElementById(id);
+                                var curHost = $(location).attr('port') ? $(location).attr('protocol') + '//' + $(location).attr('hostname') + ':' + $(location).attr('port') : $(location).attr('protocol') + '//' + $(location).attr('hostname')
+                                var xhr = new XMLHttpRequest();
+
+                                xhr.open('PUT', curHost + '/api/user/switch_status/' + parseInt(id.split('-')[1]) + '/' + (element.getAttribute('aria-current') === 'Activé' ? 6 : 3));
+                                xhr.setRequestHeader('Content-Type', 'application/json');
+                                xhr.setRequestHeader('Authorization', 'Bearer uWNJB6EwpVQwSuL5oJ7S7JkSkLzdpt8M1Xrs1MZITE1bCEbjMhscv8ZX2sTiDBarCHcu1EeJSsSLZIlYjr6YCl7pLycfn2AAQmYm');
+                                xhr.send(JSON.stringify({'id' : parseInt(id.split('-')[1]), 'status_id' : (element.getAttribute('aria-current') === 'Activé' ? 6 : 3)}));
+                                xhr.onload = function () {
+                                    if(xhr.status === 200) {
+                                        window.location.reload();
+                                    }
+                                }
+                            }
+                        </script>
     @endif
 
 @endsection

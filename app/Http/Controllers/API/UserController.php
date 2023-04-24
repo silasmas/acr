@@ -673,25 +673,28 @@ class UserController extends BaseController
         /*
             HISTORY AND/OR NOTIFICATION MANAGEMENT
         */
-        $status_ongoing = Status::where('status_name', 'En attente')->first();
+        $status_activated = Status::where('status_name', 'Activé')->first();
+        $status_blocked = Status::where('status_name', 'Bloqué')->first();
         $status_unread = Status::where('status_name', 'Non lue')->first();
-        $supporting_member_role = Role::where('role_name', 'Membre Sympathisant')->first();
-        $effecive_member_role = Role::where('role_name', 'Membre Effectif')->first();
-        $honorary_member_role = Role::where('role_name', 'Membre d\'Honneur')->first();
-        $user_roles = RoleUser::where('user_id', $user->id)->get();
 
         // If it's a member whose accessing is accepted, send notification
-        if ($user->status_id == $status_ongoing->id) {
-            foreach ($user_roles as $user_role):
-                if ($user_role->id == $supporting_member_role->id OR $user_role->id == $effecive_member_role->id OR $user_role->id == $honorary_member_role->id) {
-                    Notification::create([
-                        'notification_url' => 'about/terms_of_use',
-                        'notification_content' => __('notifications.member_joined'),
-                        'status_id' => $status_unread->id,
-                        'user_id' => $user->id,
-                    ]);
-                }
-            endforeach;
+        if ($status_id == $status_activated->id) {
+            Notification::create([
+                'notification_url' => 'about/terms_of_use',
+                'notification_content' => __('notifications.member_joined'),
+                'status_id' => $status_unread->id,
+                'user_id' => $user->id,
+            ]);
+        }
+
+        // If it's a member whose accessing is accepted, send notification
+        if ($status_id == $status_blocked->id) {
+            Notification::create([
+                'notification_url' => 'about/terms_of_use',
+                'notification_content' => __('notifications.member_locked'),
+                'status_id' => $status_unread->id,
+                'user_id' => $user->id,
+            ]);
         }
 
         // update "status_id" column

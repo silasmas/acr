@@ -98,64 +98,6 @@ const CUST_LIGHT = currentHost + '/assets/css/style.custom.css';
     };
 
     /**
-     * ON SWITCH CHANGE, UPDATE DATA
-     * 
-     * @param _ajaxLoading
-     * @param _switchURL
-     * @param _switchData
-     * @param _resultURL
-     * @param _resultData
-     * @param _wrapper
-     * @param _reloadWrapperURL
-     */ 
-     $.fn.onSwitchChange = function (_ajaxLoading, _switchURL, _switchData, _resultURL, _resultData, _wrapper, _reloadWrapperURL) {
-        this.each(function () {
-            $(this).on('change', function () {
-                $(_ajaxLoading).removeClass('opacity-0');
-
-                $.ajax({
-                    headers: headers,
-                    type: 'PUT',
-                    contentType: 'application/json',
-                    url: _switchURL,
-                    dataType: 'json',
-                    data: JSON.stringify(_switchData),
-                    success: function () {
-                        $.ajax({
-                            headers: headers,
-                            type: 'GET',
-                            contentType: 'application/json',
-                            url: _resultURL,
-                            dataType: 'json',
-                            data: JSON.stringify(_resultData),
-                            success: function () {
-                                $(_wrapper).load(_reloadWrapperURL, function () {
-                                    loadJS();
-                                });    
-                                $(_ajaxLoading).addClass('opacity-0');
-                            },    
-                            error: function (xhr, error, status_description) {
-                                console.log(xhr.responseJSON);
-                                console.log(xhr.status);
-                                console.log(error);
-                                console.log(status_description);
-                            }    
-                        });    
-                    },    
-                    error: function (xhr, error, status_description) {
-                        console.log(xhr.responseJSON);
-                        console.log(xhr.status);
-                        console.log(error);
-                        console.log(status_description);
-                    }    
-                });    
-            });    
-        });    
-
-        return this;
-    };    
-
-    /**
      * UPLOAD NEWS CROPPED IMAGE
      * 
      * @param _modal

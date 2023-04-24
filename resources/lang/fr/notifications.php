@@ -182,7 +182,8 @@ return [
     'welcome_user' => 'Bienvenue sur l\'application ACR ! Veuillez lire nos conditions avant de commencer.',
     'welcome_member' => 'Merci de faire confiance au parti ACR. Nous vous notifierons dès que votre adhésion sera approuvé.',
     'subscribed_to_party' => 'a souscrit au parti.',
-    'member_joined' => 'Votre demande d\'adhésion est approuvée. Veuillez nos réglements et nos conditions d\'utilisations.',
+    'member_joined' => 'Votre demande d\'adhésion est approuvée. Veuillez lire nos réglements et nos conditions d\'utilisations.',
+    'member_locked' => 'Votre compte a été bloqué. Si vous avez des questions, contactez-nous via le n° de téléphone affiché sur notre site web.',
     'party_published' => 'Le parti a publié',
     'party_changed' => 'Le parti a modifié',
 ];

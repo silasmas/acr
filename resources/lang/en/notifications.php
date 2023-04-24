@@ -183,6 +183,7 @@ return [
     'welcome_member' => 'Thank you for trusting the ACR party. We will notify you as soon as your membership is approved.',
     'subscribed_to_party' => 'subscribed to the party.',
     'member_joined' => 'Your membership application is approved. Please read our rules and conditions of use.',
+    'member_locked' => 'Your account has been blocked. If you have any questions, contact us via the telephone number displayed on our website.',
     'party_published' => 'The party issued',
     'party_changed' => 'The party has changed',
 ];
