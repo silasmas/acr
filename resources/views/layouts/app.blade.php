@@ -678,9 +678,10 @@
         <!-- Custom Javascript -->
         <script src="{{ asset('assets/js/scripts.custom.js') }}"></script>
         <script type="text/javascript">
+            var curHost = $(location).attr('port') ? $(location).attr('protocol') + '//' + $(location).attr('hostname') + ':' + $(location).attr('port') : $(location).attr('protocol') + '//' + $(location).attr('hostname')
+
             function changeStatus(id) {
                 var element = document.getElementById(id);
-                var curHost = $(location).attr('port') ? $(location).attr('protocol') + '//' + $(location).attr('hostname') + ':' + $(location).attr('port') : $(location).attr('protocol') + '//' + $(location).attr('hostname')
                 var xhr = new XMLHttpRequest();
 
                 xhr.open('PUT', curHost + '/api/user/switch_status/' + parseInt(id.split('-')[1]) + '/' + (element.getAttribute('aria-current') === 'Activé' ? 6 : 3));
@@ -693,6 +694,22 @@
                     }
                 }
             }
+
+            function changeRole(id) {
+                var element = document.getElementById(id);
+                var xhr = new XMLHttpRequest();
+
+                xhr.open('PUT', curHost + '/api/user/update_role/' + parseInt(id.split('-')[1]));
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.setRequestHeader('Authorization', 'Bearer uWNJB6EwpVQwSuL5oJ7S7JkSkLzdpt8M1Xrs1MZITE1bCEbjMhscv8ZX2sTiDBarCHcu1EeJSsSLZIlYjr6YCl7pLycfn2AAQmYm');
+                xhr.send(JSON.stringify({'id' : parseInt(id.split('-')[1]), 'role_id' : (element.value)}));
+                xhr.onload = function () {
+                    if(xhr.status === 200) {
+                        window.location.reload();
+                    }
+                }
+            }
+
 
             $(function () {
                 $('#rectoVersoText').click(function (e) { 

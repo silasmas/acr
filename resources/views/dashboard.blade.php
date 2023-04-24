@@ -81,7 +81,7 @@
                                                             <td>{{ $effective_member->phone }}</td>
                                                             <td><span class="badge bgc-{{ $effective_member->status->color }}-50 c-{{ $effective_member->status->color }}-700 p-10 lh-0 tt-c rounded-pill">{{ $effective_member->status->status_name }}</span></td>
                                                             <td>
-                                                                <div id="user-{{ $effective_member->id }}" class="form-check form-switch" aria-current="{{ $effective_member->status->status_name }}" onchange="changeStatus('user-{{ $effective_member->id }}')">
+                                                                <div id="status_user-{{ $effective_member->id }}" class="form-check form-switch" aria-current="{{ $effective_member->status->status_name }}" onchange="changeStatus('status_user-{{ $effective_member->id }}')">
                                                                     <input class="form-check-input" type="checkbox" role="switch" id="{{ $effective_member->id }}" {{ $effective_member->status->status_name == 'Activé' ? 'checked' : '' }} />
                                                                     <label class="ms-2 form-check-label" for="{{ $effective_member->id }}">{{ $effective_member->status->status_name != 'Activé' ? __('miscellaneous.activate') : __('miscellaneous.lock') }}</label>
                                                                 </div>
