@@ -74,8 +74,8 @@
                                                     </thead>
 
                                                     <tbody>
-        @foreach ($supporting_members as $supporting_member)
-            @if (count($supporting_members) < 6)
+        @forelse ($supporting_members as $supporting_member)
+            @if ($loop->index < 6)
                                                         <tr>
                                                             <td class="fw-600"><p class="m-0 text-truncate"><a href="{{ route('party.member.datas', ['id' => $supporting_member->id]) }}">{{ $supporting_member->firstname }}</a></p></td>
                                                             <td>{{ $supporting_member->phone }}</td>
@@ -87,8 +87,10 @@
                                                                 </div>
                                                             </td>
                                                         </tr>
+                
             @endif
-        @endforeach
+        @empty
+        @endforelse
                                                     </tbody>
                                                 </table>
                                             </div>
