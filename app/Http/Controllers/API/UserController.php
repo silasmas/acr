@@ -49,9 +49,9 @@ class UserController extends BaseController
         // Get inputs
         $inputs = [
             'national_number' => $request->national_number,
-            'firstname' => $request->firstname,
+            'firstname' => $request->surname,
             'lastname' => $request->lastname,
-            'surname' => $request->surname,
+            'surname' => $request->firstname,
             'gender' => $request->gender,
             'birth_city' => $request->birth_city,
             'birth_date' => $request->birth_date,
