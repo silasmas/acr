@@ -222,6 +222,7 @@ return [
         'label' => 'Confirm password',
         'error' => 'Your confirmation doesn\'t match the new password',
     ],
+    'choose_role' => 'Choose a role',
     'go_login' => 'Already have an account',
     'api_token' => 'Your key for using of APIs',
     'amount' => 'Amount',
@@ -477,6 +478,10 @@ return [
                 'title' => 'Other managers',
                 'add_new' => 'Add a manager',
             ],
+        ],
+        'member' => [
+            'title' => 'Members list',
+            'add' => 'Add a member',
         ],
         'info' => [
             'title' => 'Informations',

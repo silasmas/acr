@@ -222,6 +222,7 @@ return [
         'label' => 'Confirmer mot de passe',
         'error' => 'Votre confirmation ne correspond pas au mot de passe',
     ],
+    'choose_role' => 'Choisir un rôle',
     'go_login' => 'J\'ai déjà un compte',
     'api_token' => 'Votre clé pour utiliser les APIs',
     'amount' => 'Montant',
@@ -477,6 +478,10 @@ return [
                 'title' => 'Autres managers',
                 'add_new' => 'Ajouter un manager',
             ],
+        ],
+        'member' => [
+            'title' => 'Liste des membres',
+            'add' => 'Ajouter un membre',
         ],
         'info' => [
             'title' => 'Informations',
