@@ -104,8 +104,8 @@ class RegisteredUserController extends Controller
         $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user';
         $phone = $request->phone_code_new_member . $request->phone_number_new_member;
         $inputs = [
-            'firstname' => $request->register_firstname,
-            'surname' => $request->register_surname,
+            'firstname' => $request->register_lastname,
+            'surname' => $request->register_firstname,
             'phone' => $phone,
             'status_id' => 4,
             'role_id' => 5

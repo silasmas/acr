@@ -74,16 +74,16 @@
                                                     </thead>
 
                                                     <tbody id="updateMemberStatus">
-        @forelse ($supporting_members as $supporting_member)
+        @forelse ($effective_members as $effective_member)
             @if ($loop->index < 6)
                                                         <tr>
-                                                            <td class="fw-600"><p class="m-0 text-truncate"><a href="{{ route('party.member.datas', ['id' => $supporting_member->id]) }}">{{ $supporting_member->firstname }}</a></p></td>
-                                                            <td>{{ $supporting_member->phone }}</td>
-                                                            <td><span class="badge bgc-{{ $supporting_member->status->color }}-50 c-{{ $supporting_member->status->color }}-700 p-10 lh-0 tt-c rounded-pill">{{ $supporting_member->status->status_name }}</span></td>
+                                                            <td class="fw-600"><p class="m-0 text-truncate"><a href="{{ route('party.member.datas', ['id' => $effective_member->id]) }}">{{ $effective_member->firstname }}</a></p></td>
+                                                            <td>{{ $effective_member->phone }}</td>
+                                                            <td><span class="badge bgc-{{ $effective_member->status->color }}-50 c-{{ $effective_member->status->color }}-700 p-10 lh-0 tt-c rounded-pill">{{ $effective_member->status->status_name }}</span></td>
                                                             <td>
-                                                                <div id="user-{{ $supporting_member->id }}" class="form-check form-switch" aria-current="{{ $supporting_member->status->status_name }}" onchange="changeStatus('user-{{ $supporting_member->id }}')">
-                                                                    <input class="form-check-input" type="checkbox" role="switch" id="{{ $supporting_member->id }}" {{ $supporting_member->status->status_name == 'Activé' ? 'checked' : '' }} />
-                                                                    <label class="ms-2 form-check-label" for="{{ $supporting_member->id }}">{{ $supporting_member->status->status_name != 'Activé' ? __('miscellaneous.activate') : __('miscellaneous.lock') }}</label>
+                                                                <div id="user-{{ $effective_member->id }}" class="form-check form-switch" aria-current="{{ $effective_member->status->status_name }}" onchange="changeStatus('user-{{ $effective_member->id }}')">
+                                                                    <input class="form-check-input" type="checkbox" role="switch" id="{{ $effective_member->id }}" {{ $effective_member->status->status_name == 'Activé' ? 'checked' : '' }} />
+                                                                    <label class="ms-2 form-check-label" for="{{ $effective_member->id }}">{{ $effective_member->status->status_name != 'Activé' ? __('miscellaneous.activate') : __('miscellaneous.lock') }}</label>
                                                                 </div>
                                                             </td>
                                                         </tr>

@@ -22,8 +22,8 @@
     
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <input type="text" name="register_surname" id="register_surname" class="form-control" placeholder="@lang('miscellaneous.surname')">
-                                            <label for="register_surname">@lang('miscellaneous.surname')</label>
+                                            <input type="text" name="register_lastname" id="register_lastname" class="form-control" placeholder="@lang('miscellaneous.surname')">
+                                            <label for="register_lastname">@lang('miscellaneous.lastname')</label>
                                         </div>
                                     </div>
     

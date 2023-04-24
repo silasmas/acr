@@ -68,9 +68,9 @@ class HomeController extends Controller
             $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
             // Select all users by role API URL
             $manager_role = 'Manager';
-            $supporting_member_role = 'Membre Effectif';
+            $effective_member_role = 'Membre Effectif';
             $url_manager = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/find_by_role/' . $manager_role;
-            $url_supporting_member = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/find_by_role/' . $supporting_member_role;
+            $url_effective_member = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/find_by_role/' . $effective_member_role;
             // Select all users by not role API URL
             $developer_role = 'Développeur';
             $url_not_developer = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/find_by_not_role/' . $developer_role;
@@ -112,11 +112,11 @@ class HomeController extends Controller
                 ]);
                 $transaction_type = json_decode($response_transaction_type->getBody(), false);
                 // Select all users by role API response
-                $response_supporting_member = $this::$client->request('GET', $url_supporting_member, [
+                $response_effective_member = $this::$client->request('GET', $url_effective_member, [
                     'headers' => $this::$headers,
                     'verify'  => false
                 ]);
-                $supporting_members = json_decode($response_supporting_member->getBody(), false);
+                $effective_members = json_decode($response_effective_member->getBody(), false);
                 $response_manager = $this::$client->request('GET', $url_manager, [
                     'headers' => $this::$headers,
                     'verify'  => false
@@ -183,7 +183,7 @@ class HomeController extends Controller
                             'transaction_types' => $transaction_type->data,
                             'users_not_developer' => $not_developer->data,
                             'managers' => $managers->data,
-                            'supporting_members' => $supporting_members->data,
+                            'effective_members' => $effective_members->data,
                             'deactivated_users' => $deactivated_users->data,
                             'news' => $news->data,
                             'communiques' => $communiques->data,
@@ -273,9 +273,9 @@ class HomeController extends Controller
         $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
         // Select all users by role API URL
         $manager_role = 'Manager';
-        $supporting_member_role = 'Membre Effectif';
+        $effective_member_role = 'Membre Effectif';
         $url_manager = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/find_by_role/' . $manager_role;
-        $url_supporting_member = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/find_by_role/' . $supporting_member_role;
+        $url_effective_member = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/find_by_role/' . $effective_member_role;
         // Select all users by not role API URL
         $developer_role = 'Développeur';
         $url_not_developer = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/find_by_not_role/' . $developer_role;
@@ -300,11 +300,11 @@ class HomeController extends Controller
             ]);
             $messages = json_decode($response_message->getBody(), false);
             // Select all users by role API response
-            $response_supporting_member = $this::$client->request('GET', $url_supporting_member, [
+            $response_effective_member = $this::$client->request('GET', $url_effective_member, [
                 'headers' => $this::$headers,
                 'verify'  => false
             ]);
-            $supporting_members = json_decode($response_supporting_member->getBody(), false);
+            $effective_members = json_decode($response_effective_member->getBody(), false);
             $response_manager = $this::$client->request('GET', $url_manager, [
                 'headers' => $this::$headers,
                 'verify'  => false
@@ -344,7 +344,7 @@ class HomeController extends Controller
                 'messages' => $messages->data,
                 'users_not_developer' => $not_developer->data,
                 'managers' => $managers->data,
-                'supporting_members' => $supporting_members->data,
+                'effective_members' => $effective_members->data,
                 'deactivated_users' => $deactivated_users->data,
                 'news' => $news->data,
                 'communiques' => $communiques->data,
