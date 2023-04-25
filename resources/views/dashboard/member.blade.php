@@ -361,6 +361,18 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                </div>                            
+
+                                                <div class="row">
+                                                    <div class="col-md-6 mb-4">
+                                                        <label class="form-label mb-1" for="register_password">@lang('miscellaneous.password.label')</label>
+                                                        <input type="text" class="form-control" id="register_password" name="register_residence_neighborhood">
+                                                    </div>
+
+                                                    <div class="col-md-6 mb-4">
+                                                        <label class="form-label mb-1" for="confirm_password">@lang('miscellaneous.confirm_password.label')</label>
+                                                        <input type="text" class="form-control" id="confirm_password" name="register_residence_neighborhood">
+                                                    </div>
                                                 </div>
 
                                                 <button type="submit" class="btn btn-block btn-primary btn-color rounded-pill shadow-0">@lang('miscellaneous.register_update')</button>
