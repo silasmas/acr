@@ -13,7 +13,7 @@ class Notification extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['notification_url', 'notification_content', 'status_id', 'user_id'];
+    protected $fillable = ['notification_url', 'notification_content', 'notif_name', 'status_id', 'user_id'];
 
     /**
      * ONE-TO-MANY

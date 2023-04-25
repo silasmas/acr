@@ -22,6 +22,7 @@ class Notification extends JsonResource
             'id' => $this->id,
             'notification_url' => $this->notification_url,
             'notification_content' => $this->notification_content,
+            'notif_name' => $request->notif_name,
             'status' => Status::make($this->status),
             'created_at' => timeAgo($this->created_at->format('Y-m-d H:i:s')),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),

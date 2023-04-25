@@ -38,6 +38,7 @@ class NotificationController extends BaseController
         $inputs = [
             'notification_url' => $request->notification_url,
             'notification_content' => $request->notification_content,
+            'notif_name' => $request->notif_name,
             'status_id' => $request->status_id,
             'user_id' => $request->user_id
         ];
@@ -88,6 +89,7 @@ class NotificationController extends BaseController
             'id' => $request->id,
             'notification_url' => $request->notification_url,
             'notification_content' => $request->notification_content,
+            'notif_name' => $request->notif_name,
             'status_id' => $request->status_id,
             'user_id' => $request->user_id,
             'updated_at' => now()
