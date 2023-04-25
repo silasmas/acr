@@ -168,8 +168,12 @@
             @lang('miscellaneous.manager.home.title')
     @endif
 
-    @if (Route::is('party.member.home') || Route::is('party.member.datas') || Route::is('party.member.new') || Route::is('party.member.on_going'))
-            @lang('miscellaneous.menu.manager.members')
+    @if (Route::is('party.member.home') || Route::is('party.member.new') || Route::is('party.member.on_going'))
+            @lang('miscellaneous.manager.member.title')
+    @endif
+
+    @if (Route::is('party.member.datas'))
+            {{ $selected_member->surname . ' ' . $selected_member->firstname }}
     @endif
 
     @if (Route::is('party.managers') || Route::is('party.manager.new') || Route::is('party.manager.datas'))
@@ -555,8 +559,8 @@
                                     </li>
                                     <li>
                                         <ul class="ovY-a pos-r scrollable lis-n p-0 m-0 fsz-sm">
-@foreach ($current_user->notifications as $notification)
-    @if (count($current_user->notifications) < 4)
+@forelse ($current_user->notifications as $notification)
+    @if ($loop->index < 4)
                                             <li>
                                                 <a href="{{ $notification->notification_url }}" class="peers fxw-nw td-n p-20 bdB c-grey-800 cH-blue bgcH-grey-100">
                                                     <div class="peer peer-greed">
@@ -570,7 +574,8 @@
                                                 </a>
                                             </li>
     @endif
-@endforeach
+@empty
+@endforelse
                                         </ul>
                                     </li>
                                     <li>

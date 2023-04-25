@@ -29,6 +29,9 @@ return [
     'register' => 'Enregistrer',
     'send' => 'Envoyer',
     'add' => 'Ajouter',
+    'validated' => 'Validé',
+    'invalid' => 'Non valide',
+    'issued_on' => 'Délivrée à Kinshasa, le',
     'registered' => 'Enregistré',
     'update' => 'Mettre à jour',
     'change' => 'Modifier',
@@ -482,6 +485,7 @@ return [
         'member' => [
             'title' => 'Liste des membres',
             'add' => 'Ajouter un membre',
+            'contributions' => 'Contributions',
         ],
         'info' => [
             'title' => 'Informations',

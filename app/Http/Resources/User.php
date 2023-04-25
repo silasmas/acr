@@ -23,9 +23,9 @@ class User extends JsonResource
         return [
             'id' => $this->id,
             'serial_number' => $this->national_number,
-            'firstname' => $this->surname,
+            'firstname' => $this->firstname,
             'lastname' => $this->lastname,
-            'surname' => $this->firstname,
+            'surname' => $this->surname,
             'gender' => $this->gender,
             'birth_city' => $this->birth_city,
             'birth_date' => $this->birth_date,

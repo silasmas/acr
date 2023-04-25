@@ -3,9 +3,8 @@
 @section('app-content')
 
                         <div class="row gap-20">
-                            <!-- #Avatar & Membership card ==================== -->
                             <div class="col-lg-4 col-md-6">
-                                <!-- Membership card -->
+                                <!-- #Avatar ==================== -->
                                 <div class="mb-3 bd bgc-white">
                                     <div class="layers">
                                         <div class="layer w-100 px-md-3 px-1 p-20">
@@ -31,7 +30,8 @@
                                     </div>
                                 </div>
 
-                                <div class="bd bgc-white">
+                                <!-- #Membership card ==================== -->
+                                <div class="mb-3 bd bgc-white">
                                     <div class="layers">
                                         <div class="layer d-flex w-100 pX-20 pY-10 pT-20 justify-content-between">
                                             <h6 class="lh-1 m-0">@lang('miscellaneous.account.membership_card.title')</h6>
@@ -66,7 +66,7 @@
 
                                                     <div class="row g-3">
                                                         <div class="col-4">
-                                                            <div class="card border-0 rounded-4 shadow-0">
+                                                            <div class="card mb-2 border-0 rounded-4 shadow-0">
                                                                 <div class="card-body pb-0">
                                                                     <div class="bg-image bg-white rounded-circle" style="margin-top: -3px;">
                                                                         <img src="{{ $current_user->avatar_url != null ? $current_user->avatar_url : asset('assets/img/user.png') }}" alt="{{ $current_user->firstname . ' ' . $current_user->lastname }}" class="user-image img-fluid rounded-circle">
@@ -74,35 +74,47 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="card-body pt-2 pb-2 px-1">
-                                                                    <h3 class="m-0 text-center text-black text-uppercase" style="font-family: 'Segoe UI Semibold'; font-size: 9px;">{{ $current_user->role_user->role->role_name }}</h3>
+                                                                    <h3 class="m-0 text-center text-black text-uppercase" style="font-family: 'Segoe UI Semibold'; font-size: 8px;">{{ $current_user->role_user->role->role_name }}</h3>
                                                                 </div>
                                                             </div>
+                                                            <p class="m-0 fw-bold text-uppercase" style="font-family: Arial; font-size: 11px;">
+                                                                <span class="badge d-block py-2 bgc-{{ $current_user->status->status_name == 'Activé' ? 'green' : 'red' }}-600 rounded-0">
+                                                                    <span class="bi bi-{{ $current_user->status->status_name == 'Activé' ? 'check2' : 'x' }}-circle me-1 fs-6" style="vertical-align: -2px"></span>
+                                                                    {{ $current_user->status->status_name == 'Activé' ? __('miscellaneous.validated') : __('miscellaneous.invalid') }}
+                                                                </span>
+                                                            </p>
                                                         </div>
                                                         <div class="col-8">
-                                                            <p class="mb-1 acr-line-height-1_5" style="font-size: 0.8rem; font-family: 'Segoe UI'; color: #555;">
+                                                            <p class="mb-1 acr-line-height-1_5" style="font-size: 0.68rem; font-family: Arial; color: #555;">
                                                                 @lang('miscellaneous.firstname')@lang('miscellaneous.colon_after_word') 
-                                                                <span class="d-inline-block me-4 text-black fw-bold text-uppercase">{{ $current_user->firstname }}</span> 
-                                                                @lang('miscellaneous.gender_title')@lang('miscellaneous.colon_after_word') <span class="fw-bold text-black">{{ $current_user->gender }}</span>
+                                                                <span class="d-inline-block text-black fw-bold text-uppercase">{{ $current_user->firstname }}</span> 
+                                                                <span class="float-end">@lang('miscellaneous.gender_title')@lang('miscellaneous.colon_after_word') <span class="fw-bold text-black">{{ $current_user->gender }}</span></span>
                                                             </p>
-                                                            <p class="mb-1 acr-line-height-1_5" style="font-size: 0.8rem; font-family: 'Segoe UI'; color: #555;">
-                                                                @lang('miscellaneous.lastname_surname')@lang('miscellaneous.colon_after_word') 
-                                                                <span class="text-black fw-bold text-uppercase">{{ $current_user->lastname . ' ' . $current_user->surname }}</span>
+                                                            <p class="mb-1 acr-line-height-1_5" style="font-size: 0.68rem; font-family: Arial; color: #555;">
+                                                                @lang('miscellaneous.lastname')@lang('miscellaneous.colon_after_word') 
+                                                                <span class="text-black fw-bold text-uppercase">{{ $current_user->lastname }}</span>
                                                             </p>
-                                                            <p class="mb-1 acr-line-height-1_5" style="font-size: 0.8rem; font-family: 'Segoe UI'; color: #555;">
-                                                                @lang('miscellaneous.birth_city_date')@lang('miscellaneous.colon_after_word') 
-                                                                <span class="text-black fw-bold">{{ $current_user->birth_city . ', ' . (str_starts_with(app()->getLocale(), 'fr') ? \Carbon\Carbon::createFromFormat('Y-m-d', $current_user->birth_date)->format('d/m/Y') : \Carbon\Carbon::createFromFormat('Y-m-d', $current_user->birth_date)->format('m/d/Y')) }}</span>
+                                                            <p class="mb-1 acr-line-height-1_5" style="font-size: 0.68rem; font-family: Arial; color: #555;">
+                                                                @lang('miscellaneous.surname')@lang('miscellaneous.colon_after_word') 
+                                                                <span class="text-black fw-bold text-uppercase">{{ $current_user->surname }}</span>
                                                             </p>
-                                                            <p class="m-0 acr-line-height-1_5" style="font-size: 0.8rem; font-family: 'Segoe UI'; color: #555;">
+                                                            <p class="mb-1 acr-line-height-1_5" style="font-size: 0.68rem; font-family: Arial; color: #555;">
+                                                                @lang('miscellaneous.birth_city_date')@lang('miscellaneous.colon_after_word')<br>
+                                                                <span class="text-black fw-bold">{{ $current_user->birth_city . ', ' . (!empty($current_user->birth_date) ? (str_starts_with(app()->getLocale(), 'fr') ? \Carbon\Carbon::createFromFormat('Y-m-d', $current_user->birth_date)->format('d/m/Y') : \Carbon\Carbon::createFromFormat('Y-m-d', $current_user->birth_date)->format('m/d/Y')) : null) }}</span>
+                                                            </p>
+                                                            <p class="mb-2 acr-line-height-1_5" style="font-size: 0.68rem; font-family: Arial; color: #555;">
                                                                 @lang('miscellaneous.address.title')@lang('miscellaneous.colon_after_word') 
                                                                 <span class="text-black fw-bold">{{ $residence != null ? $residence->address_content : '- - - - -' }}</span><br>
                                                             </p>
+                                                            <p class="mb-1 acr-line-height-1_5 text-center" style="font-size: 0.55rem; font-family: Arial; color: #555;">
+                                                                @lang('miscellaneous.issued_on') {{ str_starts_with(app()->getLocale(), 'fr') ? \Carbon\Carbon::createFromFormat('Y-m-d', date('Y-m-d'))->format('d/m/Y') : \Carbon\Carbon::createFromFormat('Y-m-d', date('Y-m-d'))->format('m/d/Y') }}
+                                                            </p>
+                                                            <div class="mb-1 bg-image text-center">
+                                                                <img src="{{ asset('assets/img/signature.png') }}" alt="" width="50">
+                                                                <div class="mask"></div>
+                                                            </div>
+                                                            <p class="m-0 acr-line-height-1_5 text-center" style="font-size: 0.55rem; font-family: Arial; color: #555;">Jean Pierre TSHIENDA</p>
                                                         </div>
-                                                    </div>
-
-                                                    <div class="py-2">
-                                                        <h6 class="m-0 py-1 bg-warning text-center text-black fw-bold text-uppercase" style="font-size: 0.8rem;">
-                                                            @lang('miscellaneous.account.membership_card.title')
-                                                        </h6>
                                                     </div>
                                                 </div>
 
@@ -142,6 +154,18 @@
                                         <a href="{{ route('party.member.print_card', ['id' => $current_user->id]) }}" target="_blank">
                                             <span class="bi bi-printer-fill me-2"></span> @lang('miscellaneous.account.membership_card.print_card')
                                         </a>
+                                    </div>
+                                </div>
+
+                                <!-- #Identity document ==================== -->
+                                <div class="bd bgc-white">
+                                    <div class="layers">
+                                        <div class="layer d-flex w-100 pX-20 pT-20 justify-content-between">
+                                            <h6 class="lh-1 m-0">@lang('miscellaneous.account.identity_document.title')</h6>
+                                        </div>
+
+                                        <div class="layer w-100 pX-20 pT-10 pB-20">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -238,7 +262,7 @@
                                                                 <div class="input-group-text bgc-grey-300 bd bdwR-0">
                                                                     <i class="ti-calendar"></i>
                                                                 </div>
-                                                                <input type="text" class="form-control" id="register_birthdate" placeholder="@lang('miscellaneous.birth_date.label')" value="{{ str_starts_with(app()->getLocale(), 'fr') ? \Carbon\Carbon::createFromFormat('Y-m-d', $current_user->birth_date)->format('d/m/Y') : \Carbon\Carbon::createFromFormat('Y-m-d', $current_user->birth_date)->format('m/d/Y') }}">
+                                                                <input type="text" class="form-control" id="register_birthdate" placeholder="@lang('miscellaneous.birth_date.label')" value="{{ (!empty($current_user->birth_date) ? (str_starts_with(app()->getLocale(), 'fr') ? \Carbon\Carbon::createFromFormat('Y-m-d', $current_user->birth_date)->format('d/m/Y') : \Carbon\Carbon::createFromFormat('Y-m-d', $current_user->birth_date)->format('m/d/Y')) : null) }}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -372,39 +396,11 @@
                             </div>
 
                             <!-- #Change password ==================== -->
-                            <div class="col-lg-8 col-md-7">
-                                <div class="bd bgc-white">
-                                    <div class="layers">
-                                        <div class="layer d-flex w-100 pX-20 pT-20 justify-content-between">
-                                            <h6 class="lh-1 m-0">@lang('miscellaneous.account.update_password.title')</h6>
-                                        </div>
-
-                                        <div class="layer w-100 pX-20 pT-10 pB-20">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- #Identity document ==================== -->
-                            <div class="col-lg-4 col-md-5">
-                                <div class="bd bgc-white">
-                                    <div class="layers">
-                                        <div class="layer d-flex w-100 pX-20 pT-20 justify-content-between">
-                                            <h6 class="lh-1 m-0">@lang('miscellaneous.account.identity_document.title')</h6>
-                                        </div>
-
-                                        <div class="layer w-100 pX-20 pT-10 pB-20">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- #New contribution ==================== -->
                             <div class="col-lg-7 col-md-6">
                                 <div class="bd bgc-white">
                                     <div class="layers">
                                         <div class="layer d-flex w-100 pX-20 pT-20 justify-content-between">
-                                            <h6 class="lh-1 m-0">@lang('miscellaneous.account.my_contributions.send_money.title')</h6>
+                                            <h6 class="lh-1 m-0">@lang('miscellaneous.account.update_password.title')</h6>
                                         </div>
 
                                         <div class="layer w-100 pX-20 pT-10 pB-20">
@@ -419,6 +415,20 @@
                                     <div class="layers">
                                         <div class="layer d-flex w-100 pX-20 pT-20 justify-content-between">
                                             <h6 class="lh-1 m-0">@lang('miscellaneous.account.my_contributions.title')</h6>
+                                        </div>
+
+                                        <div class="layer w-100 pX-20 pT-10 pB-20">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- #New contribution ==================== -->
+                            <div class="col-md-6">
+                                <div class="bd bgc-white">
+                                    <div class="layers">
+                                        <div class="layer d-flex w-100 pX-20 pT-20 justify-content-between">
+                                            <h6 class="lh-1 m-0">@lang('miscellaneous.account.my_contributions.send_money.title')</h6>
                                         </div>
 
                                         <div class="layer w-100 pX-20 pT-10 pB-20">

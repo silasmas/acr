@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Web;
 
 use GuzzleHttp\Client;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use GuzzleHttp\Exception\ClientException;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 /**
  * @author Xanders
@@ -96,11 +97,97 @@ class PartyController extends Controller
 
         } catch (ClientException $e) {
             // If the API returns some error, return to the page and display its message
-            return view('welcome', [
+            return view('dashboard.member', [
                 'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
             ]);
         }
+    }
 
-        return view('dashboard.member');
+    /**
+     * GET: About a member
+     *
+     * @param  $locale
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function memberDatas($id)
+    {
+        // Select current user API URL
+        $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/' . Auth::user()->id;
+        // Select all countries API URL
+        $url_country = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/country';
+        // Select all received messages API URL
+        $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
+        // Select all roles API URL
+        $url_roles = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/role';
+        // Select a member API URL
+        $url_member = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/' . $id;
+        // Select address by type and user API URL
+        $legal_address_type = 'Adresse légale';
+        $residence_type = 'Résidence actuelle';
+        $url_legal_address = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/address/search/' . $legal_address_type . '/ ' . $id;
+        $url_residence = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/address/search/' . $residence_type . '/ ' . $id;
+
+        try {
+            // Select current user API response
+            $response_user = $this::$client->request('GET', $url_user, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $user = json_decode($response_user->getBody(), false);
+            // Select countries API response
+            $response_country = $this::$client->request('GET', $url_country, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $country = json_decode($response_country->getBody(), false);
+            // Select all received messages API response
+            $response_message = $this::$client->request('GET', $url_message, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $messages = json_decode($response_message->getBody(), false);
+            // Select all roles API response
+            $response_roles = $this::$client->request('GET', $url_roles, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $roles = json_decode($response_roles->getBody(), false);
+            // Select a member API response
+            $response_member = $this::$client->request('GET', $url_member, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $member = json_decode($response_member->getBody(), false);
+            // Select address by type and user API response
+            $response_legal_address = $this::$client->request('GET', $url_legal_address, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $legal_address = json_decode($response_legal_address->getBody(), false);
+            $response_residence = $this::$client->request('GET', $url_residence, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $residence = json_decode($response_residence->getBody(), false);
+            // $qr_code = QrCode::format('png')->merge((!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/assets/img/favicon/android-icon-96x96.png', 0.2, true)->size(135)->generate($user->data->phone);
+            $qr_code = QrCode::size(135)->generate($user->data->phone);
+
+            return view('dashboard.member', [
+                'current_user' => $user->data,
+                'countries' => $country->data,
+                'messages' => $messages->data,
+                'roles' => $roles->data,
+                'selected_member' => $member->data,
+                'legal_address' => $legal_address->data,
+                'residence' => $residence->data,
+                'qr_code' => $qr_code
+            ]);
+
+        } catch (ClientException $e) {
+            // If the API returns some error, return to the page and display its message
+            return view('dashboard.member', [
+                'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+            ]);
+        }
     }
 }

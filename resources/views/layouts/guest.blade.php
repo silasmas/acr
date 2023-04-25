@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="keywords" content="@lang('miscellaneous.keywords')">
         <meta name="description" content="">
-        {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="acr-devref" content="uWNJB6EwpVQwSuL5oJ7S7JkSkLzdpt8M1Xrs1MZITE1bCEbjMhscv8ZX2sTiDBarCHcu1EeJSsSLZIlYjr6YCl7pLycfn2AAQmYm">
 
         <!-- Favicon -->
@@ -206,8 +206,8 @@
                                     <i class="far fa-circle me-2"></i>@lang('miscellaneous.mark_all_read')
                                 </a>
                             </li>
-    @foreach ($current_user->notifications as $notification)
-        @if (count($current_user->notifications) < 4)
+    @forelse ($current_user->notifications as $notification)
+        @if ($loop->index < 4)
                             <li class="border-bottom border-secondary w-100">
                                 <a href="{{ $notification->notification_url }}" class="dropdown-item py-3 text-wrap">
                                     <p class="m-0 text-black acr-line-height-1_45">{{ $notification->notification_content }}</p>
@@ -215,7 +215,8 @@
                                 </a>
                             </li>
         @endif
-    @endforeach
+    @empty
+    @endforelse
                             <li class="text-center">
                                 <a href="{{ route('notification.home') }}" class="dropdown-item py-3 acr-bg-blue-transparent text-light">
                                     @lang('miscellaneous.see_all_notifications') <i class="fa fa-angle-right align-middle ms-2 fw-100" style="font-size: 1.2rem;"></i>

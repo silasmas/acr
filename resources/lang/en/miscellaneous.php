@@ -29,6 +29,9 @@ return [
     'register' => 'Register',
     'send' => 'Send',
     'add' => 'Add',
+    'validated' => 'Validated',
+    'invalid' => 'Invalid',
+    'issued_on' => 'Issued in Kinshasa, on',
     'registered' => 'Registered',
     'update' => 'Update',
     'change' => 'Change',
@@ -482,6 +485,7 @@ return [
         'member' => [
             'title' => 'Members list',
             'add' => 'Add a member',
+            'contributions' => 'Contributions',
         ],
         'info' => [
             'title' => 'Informations',
