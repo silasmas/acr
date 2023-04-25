@@ -169,8 +169,8 @@ class PartyController extends Controller
                 'verify'  => false
             ]);
             $residence = json_decode($response_residence->getBody(), false);
-            // $qr_code = QrCode::format('png')->merge((!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/assets/img/favicon/android-icon-96x96.png', 0.2, true)->size(135)->generate($user->data->phone);
-            $qr_code = QrCode::size(135)->generate($user->data->phone);
+            $qr_code = QrCode::format('png')->merge((!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/assets/img/favicon/android-icon-96x96.png', 0.2, true)->size(135)->generate($member->data->phone);
+            // $qr_code = QrCode::size(135)->generate($member->data->phone);
 
             return view('dashboard.member', [
                 'current_user' => $user->data,
@@ -186,6 +186,49 @@ class PartyController extends Controller
         } catch (ClientException $e) {
             // If the API returns some error, return to the page and display its message
             return view('dashboard.member', [
+                'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+            ]);
+        }
+    }
+
+    /**
+     * GET: Print card page
+     *
+     * @param  $locale
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function printCard($id)
+    {
+        // Select a member API URL
+        $url_member = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/' . $id;
+        $residence_type = 'Résidence actuelle';
+        $url_residence = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/address/search/' . $residence_type . '/ ' . $id;
+
+        try {
+            // Select a member API response
+            $response_member = $this::$client->request('GET', $url_member, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $member = json_decode($response_member->getBody(), false);
+            // Select address by type and user API response
+            $response_residence = $this::$client->request('GET', $url_residence, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $residence = json_decode($response_residence->getBody(), false);
+            $qr_code = QrCode::format('png')->merge((!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/assets/img/favicon/android-icon-96x96.png', 0.2, true)->size(135)->generate($member->data->phone);
+            // $qr_code = QrCode::size(135)->generate($member->data->phone);
+
+            return view('dashboard.print_card', [
+                'selected_member' => $member->data,
+                'residence' => $residence->data,
+                'qr_code' => $qr_code
+            ]);
+
+        } catch (ClientException $e) {
+            // If the API returns some error, return to the page and display its message
+            return view('dashboard.print_card', [
                 'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
             ]);
         }
