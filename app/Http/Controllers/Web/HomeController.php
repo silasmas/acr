@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use GuzzleHttp\Exception\ClientException;
+use Illuminate\Support\Facades\Redirect;
 
 /**
  * @author Xanders
@@ -339,17 +340,22 @@ class HomeController extends Controller
             ]);
             $events = json_decode($response_events->getBody(), false);
 
-            return view('dashboard', [
-                'current_user' => $user->data,
-                'messages' => $messages->data,
-                'users_not_developer' => $not_developer->data,
-                'managers' => $managers->data,
-                'effective_members' => $effective_members->data,
-                'deactivated_users' => $deactivated_users->data,
-                'news' => $news->data,
-                'communiques' => $communiques->data,
-                'events' => $events->data
-            ]);
+            if ($user->data->role_user->role->role_name != 'Administrateur' AND $user->data->role_user->role->role_name != 'Développeur' AND $user->data->role_user->role->role_name != 'Manager') {
+                return Redirect::route('home');
+
+            } else {
+                return view('dashboard', [
+                    'current_user' => $user->data,
+                    'messages' => $messages->data,
+                    'users_not_developer' => $not_developer->data,
+                    'managers' => $managers->data,
+                    'effective_members' => $effective_members->data,
+                    'deactivated_users' => $deactivated_users->data,
+                    'news' => $news->data,
+                    'communiques' => $communiques->data,
+                    'events' => $events->data
+                ]);
+            }
 
         } catch (ClientException $e) {
             // If the API returns some error, return to the page and display its message

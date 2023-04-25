@@ -207,7 +207,7 @@
                                 </a>
                             </li>
     @forelse ($current_user->notifications as $notification)
-        @if ($loop->index < 4)
+        @if ($loop->index < 3)
                             <li class="border-bottom border-secondary w-100">
                                 <a href="{{ $notification->notification_url }}" class="dropdown-item py-3 text-wrap">
                                     <p class="m-0 text-black acr-line-height-1_45">{{ $notification->notification_content }}</p>

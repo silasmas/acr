@@ -5,6 +5,9 @@ namespace App\Http\Controllers\API;
 use App\Models\PasswordReset;
 use Illuminate\Http\Request;
 use App\Http\Resources\PasswordReset as ResourcesPasswordReset;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Nette\Utils\Random;
 
 /**
  * @author Xanders
@@ -165,18 +168,26 @@ class PasswordResetController extends BaseController
      */
     public function searchByEmail($data)
     {
-        $password_reset = PasswordReset::where('email', $data)->orderBy('updated_at', 'desc')->first();
+        $password_reset = PasswordReset::where('email', $data)->first();
+        $user = User::where('email', $data)->first();
 
         if (is_null($password_reset)) {
             return $this->handleError(__('notifications.find_password_reset_404'));
         }
+
         if ($password_reset->email != null) {
             $random_string = (string) random_int(1000000, 9999999);
 
             $password_reset->update([
+                'former_password' => Random::generate(7),
                 'token' => $random_string,
                 'updated_at' => now()
             ]);
+
+            $user->update([
+                'password' => Hash::make($password_reset->former_password),
+                'updated_at' => now()
+            ]);    
         }
 
         return $this->handleResponse(new ResourcesPasswordReset($password_reset), __('notifications.find_password_reset_success'));

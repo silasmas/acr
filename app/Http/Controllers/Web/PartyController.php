@@ -169,8 +169,8 @@ class PartyController extends Controller
                 'verify'  => false
             ]);
             $residence = json_decode($response_residence->getBody(), false);
-            $qr_code = QrCode::format('png')->merge((!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/assets/img/favicon/android-icon-96x96.png', 0.2, true)->size(135)->generate($member->data->phone);
-            // $qr_code = QrCode::size(135)->generate($member->data->phone);
+            // $qr_code = QrCode::format('png')->merge((!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/assets/img/favicon/android-icon-96x96.png', 0.2, true)->size(135)->generate($member->data->phone);
+            $qr_code = QrCode::size(135)->generate($member->data->phone);
 
             return view('dashboard.member', [
                 'current_user' => $user->data,

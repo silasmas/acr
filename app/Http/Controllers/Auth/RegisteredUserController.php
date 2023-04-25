@@ -161,11 +161,7 @@ class RegisteredUserController extends Controller
                 ]);
                 $user = json_decode($response_login->getBody(), false);
 
-                Auth::attempt(['email' => $user->data->email, 'password' => $password], $request->remember);
-
-                $request->session()->regenerate();
-
-                return Redirect::route('account');
+                return Redirect::route('account', ['registered_user_id' => $user->data->id]);
 
             } catch (ClientException $e) {
                 // If API returns some error, get it,

@@ -68,27 +68,21 @@ class AuthenticatedSessionController extends Controller
 
             Auth::attempt(['email' => $user->data->email, 'password' => $inputs['password']], $request->remember);
 
-            try {
-                if (isset($user->data->role_user)) {
-                    if ($user->data->role_user->role->role_name == 'Administrateur') {
-                        return Redirect::route('home', ['user_role' => 'admin']);
+            $request->session()->regenerate();
 
-                    } else if ($user->data->role_user->role->role_name == 'Développeur') {
-                        return Redirect::route('home', ['user_role' => 'developer']);
+            if (isset($user->data->role_user)) {
+                if ($user->data->role_user->role->role_name == 'Administrateur') {
+                    return Redirect::route('home', ['user_role' => 'admin']);
 
-                    } else if ($user->data->role_user->role->role_name == 'Manager') {
-                        return Redirect::route('home', ['user_role' => 'manager']);
+                } else if ($user->data->role_user->role->role_name == 'Développeur') {
+                    return Redirect::route('home', ['user_role' => 'developer']);
 
-                    } else {
-                        return Redirect::route('home');
-                    }
+                } else if ($user->data->role_user->role->role_name == 'Manager') {
+                    return Redirect::route('home', ['user_role' => 'manager']);
+
+                } else {
+                    return Redirect::route('home');
                 }
-
-            } catch (ClientException $e) {
-                // If the API returns some error, return to the page and display its message
-                return view('welcome', [
-                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
-                ]);
             }
 
         } catch (ClientException $e) {
