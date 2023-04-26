@@ -447,6 +447,24 @@ class UserController extends BaseController
                 'email' => $request->email,
                 'updated_at' => now(),
             ]);
+
+            $password_reset_by_email = PasswordReset::where('email', $inputs['email'])->first();
+
+            if ($password_reset_by_email == null) {
+                $password_reset_by_phone = PasswordReset::where('phone', $current_user->phone)->first();
+
+                if ($password_reset_by_phone != null) {
+                    $password_reset_by_phone->update([
+                        'email' => $inputs['email'],
+                        'updated_at' => now(),
+                    ]);
+
+                } else {
+                    PasswordReset::create([
+                        'email' => $inputs['email'],
+                    ]);
+                }
+            }
         }
 
         if ($inputs['phone'] != null) {
@@ -454,6 +472,24 @@ class UserController extends BaseController
                 'phone' => $request->phone,
                 'updated_at' => now(),
             ]);
+
+            $password_reset_by_phone = PasswordReset::where('phone', $inputs['phone'])->first();
+
+            if ($password_reset_by_phone == null) {
+                $password_reset_by_email = PasswordReset::where('email', $inputs['email'])->first();
+
+                if ($password_reset_by_email != null) {
+                    $password_reset_by_email->update([
+                        'phone' => $inputs['phone'],
+                        'updated_at' => now(),
+                    ]);
+
+                } else {
+                    PasswordReset::create([
+                        'phone' => $inputs['phone'],
+                    ]);
+                }
+            }
         }
 
         if ($inputs['password'] != null) {

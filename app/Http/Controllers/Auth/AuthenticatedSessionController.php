@@ -65,23 +65,26 @@ class AuthenticatedSessionController extends Controller
                 'verify'  => false
             ]);
             $user = json_decode($response_user->getBody(), false);
+            // Authentication datas (E-mail or Phone number)
+            $auth_phone = Auth::attempt(['phone' => $user->data->phone, 'password' => $inputs['password']], $request->remember);
+            $auth_email = Auth::attempt(['email' => $user->data->email, 'password' => $inputs['password']], $request->remember);
 
-            Auth::attempt(['email' => $user->data->email, 'password' => $inputs['password']], $request->remember);
+            if ($auth_phone || $auth_email) {
+                $request->session()->regenerate();
 
-            $request->session()->regenerate();
-
-            if (isset($user->data->role_user)) {
-                if ($user->data->role_user->role->role_name == 'Administrateur') {
-                    return Redirect::route('home', ['user_role' => 'admin']);
-
-                } else if ($user->data->role_user->role->role_name == 'Développeur') {
-                    return Redirect::route('home', ['user_role' => 'developer']);
-
-                } else if ($user->data->role_user->role->role_name == 'Manager') {
-                    return Redirect::route('home', ['user_role' => 'manager']);
-
-                } else {
-                    return Redirect::route('home');
+                if (isset($user->data->role_user)) {
+                    if ($user->data->role_user->role->role_name == 'Administrateur') {
+                        return Redirect::route('home', ['user_role' => 'admin']);
+    
+                    } else if ($user->data->role_user->role->role_name == 'Développeur') {
+                        return Redirect::route('home', ['user_role' => 'developer']);
+    
+                    } else if ($user->data->role_user->role->role_name == 'Manager') {
+                        return Redirect::route('home', ['user_role' => 'manager']);
+    
+                    } else {
+                        return Redirect::route('home');
+                    }
                 }
             }
 
