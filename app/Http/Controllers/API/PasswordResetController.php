@@ -171,6 +171,10 @@ class PasswordResetController extends BaseController
         $password_reset = PasswordReset::where('email', $data)->first();
         $user = User::where('email', $data)->first();
 
+        if (is_null($user)) {
+            return $this->handleError(__('notifications.find_user_404'));
+        }
+
         if (is_null($password_reset)) {
             return $this->handleError(__('notifications.find_password_reset_404'));
         }
@@ -187,7 +191,7 @@ class PasswordResetController extends BaseController
             $user->update([
                 'password' => Hash::make($password_reset->former_password),
                 'updated_at' => now()
-            ]);    
+            ]);
         }
 
         return $this->handleResponse(new ResourcesPasswordReset($password_reset), __('notifications.find_password_reset_success'));
@@ -201,10 +205,14 @@ class PasswordResetController extends BaseController
      */
     public function searchByPhone($data)
     {
-        // $basic  = new \Vonage\Client\Credentials\Basic('89e3b822', 'cab98aefeaab1434ACR');
         $basic  = new \Vonage\Client\Credentials\Basic('5a4c014d', 'dhOq17USeZadLgIw');
         $client = new \Vonage\Client($basic);
-        $password_reset = PasswordReset::where('phone', $data)->orderBy('updated_at', 'desc')->first();
+        $password_reset = PasswordReset::where('phone', $data)->first();
+        $user = User::where('phone', $data)->first();
+
+        if (is_null($user)) {
+            return $this->handleError(__('notifications.find_user_404'));
+        }
 
         if (is_null($password_reset)) {
             return $this->handleError(__('notifications.find_password_reset_404'));
@@ -215,6 +223,11 @@ class PasswordResetController extends BaseController
 
             $password_reset->update([
                 'token' => $random_string,
+                'updated_at' => now()
+            ]);
+
+            $user->update([
+                'password' => Hash::make($password_reset->former_password),
                 'updated_at' => now()
             ]);
 
