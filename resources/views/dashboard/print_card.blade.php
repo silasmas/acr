@@ -50,6 +50,17 @@
 
         <!-- Custom CSS File -->
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.custom.css') }}">
+        <style>
+            @media print {
+                body {-webkit-print-color-adjust:exact!important; print-color-adjust:exact!important;}
+                #cardRecto {page-break-after: recto;}
+                #cardVerso {page-break-after: verso;}
+                #cardRecto, #cardVerso {background-color: #cffafe!important; height: 340px!important;}
+                #cardRecto .col-8 h5, #cardRecto .col-8 h3, #cardVerso .col-8 h5, #cardVerso .col-8 h3 {font-family: Arial Narrow!important; font-size: 10.5pt!important;}
+                #cardRecto .row .col-4 .card-body h3, #cardRecto .row .col-8 > p > span {font-size: 10pt; font-family: Arial; color: #555;}
+                #cardVerso h6 {font-size: 12.5pt; font-family: Arial; color: #555;}
+            }
+        </style>
 
         <title>@lang('miscellaneous.account.membership_card.print_card')</title>
     </head>
@@ -73,79 +84,81 @@
         <div class="container">
             <div class="row py-5">
                 <!-- RECTO -->
-                <div class="col-lg-4 col-md-6 mb-4 mx-auto">
+                <div class="col-lg-4 col-md-6 col-10 mb-4 mx-auto">
                     <h3 class="mb-0 text-center fw-bold text-uppercase">@lang('miscellaneous.recto')</h3>
-                    <div class="p-10 acr-bg-navy-blue border border-2 border-info rounded-3" style="height: 300px;">
-                        <div id="cardRecto">
-                            <div class="row g-1 mb-2 pb-2 border-bottom border-3 border-warning">
-                                <div class="col-2">
-                                    <div class="bg-image">
-                                        <img src="{{ asset('assets/img/drc-flag.png') }}" alt="" class="img-fluid">
-                                        <div class="mask"></div>
-                                    </div>
-                                </div>
-                                <div class="col-8 pt-1 text-center text-uppercase">
-                                    <h5 class="m-0 fw-bold text-truncate" style="font-family: Arial Narrow; font-size: 11px;">@lang('miscellaneous.drc')</h5>
-                                    <h3 class="m-0 text-black fw-bold text-truncate" style="font-family: Arial Narrow; font-size: 11px;">Action Commune pour la République</h3>
-                                </div>
-                                <div class="col-2">
-                                    <div class="bg-image bg-white rounded-circle" style="margin-top: -3px;">
-                                        <img src="{{ asset('assets/img/logo.png') }}" alt="" class="img-fluid">
-                                        <div class="mask"></div>
-                                    </div>
+                    <div id="cardRecto" class="p-10 acr-bg-navy-blue border border-2 border-info rounded-3" style="height: 300px;">
+                        <div class="row g-1 mb-2 pb-2 border-bottom border-3 border-warning">
+                            <div class="col-2">
+                                <div class="bg-image">
+                                    <img src="{{ asset('assets/img/drc-flag.png') }}" alt="" class="img-fluid">
+                                    <div class="mask"></div>
                                 </div>
                             </div>
+                            <div class="col-8 pt-1 text-center text-uppercase">
+                                <h5 class="m-0 fw-bold text-truncate" style="font-family: Arial Narrow; font-size: 11px;">@lang('miscellaneous.drc')</h5>
+                                <h3 class="m-0 text-black fw-bold text-truncate" style="font-family: Arial Narrow; font-size: 11px;">Action Commune pour la République</h3>
+                            </div>
+                            <div class="col-2">
+                                <div class="bg-image bg-white rounded-circle" style="margin-top: -3px;">
+                                    <img src="{{ asset('assets/img/logo.png') }}" alt="" class="img-fluid">
+                                    <div class="mask"></div>
+                                </div>
+                            </div>
+                        </div>
 
-                            <div class="row g-3">
-                                <div class="col-4">
-                                    <div class="card mb-2 border-0 rounded-4 shadow-0">
-                                        <div class="card-body pb-0">
-                                            <div class="bg-image bg-white rounded-circle" style="margin-top: -3px;">
-                                                <img src="{{ $selected_member->avatar_url != null ? $selected_member->avatar_url : asset('assets/img/user.png') }}" alt="{{ $selected_member->firstname . ' ' . $selected_member->lastname }}" class="user-image img-fluid rounded-circle">
-                                                <div class="mask"></div>
-                                            </div>
-                                        </div>
-                                        <div class="card-body pt-2 pb-2 px-1">
-                                            <h3 class="m-0 text-center text-black text-uppercase" style="font-family: 'Segoe UI Semibold'; font-size: 8px;">{{ $selected_member->role_user->role->role_name }}</h3>
+                        <div class="row g-3">
+                            <div class="col-4">
+                                <div class="card mb-2 border-0 rounded-4 shadow-0">
+                                    <div class="card-body pb-0">
+                                        <div class="bg-image bg-white rounded-circle" style="margin-top: -3px;">
+                                            <img src="{{ $selected_member->avatar_url != null ? $selected_member->avatar_url : asset('assets/img/user.png') }}" alt="{{ $selected_member->firstname . ' ' . $selected_member->lastname }}" class="user-image img-fluid rounded-circle">
+                                            <div class="mask"></div>
                                         </div>
                                     </div>
-                                    <p class="m-0 fw-bold text-uppercase" style="font-family: Arial; font-size: 11px;">
-                                        <span class="badge d-block py-2 bgc-{{ $selected_member->status->status_name == 'Activé' ? 'green' : 'red' }}-600 rounded-0">
-                                            <span class="bi bi-{{ $selected_member->status->status_name == 'Activé' ? 'check2' : 'x' }}-circle me-1 fs-6" style="vertical-align: -2px"></span>
-                                            {{ $selected_member->status->status_name == 'Activé' ? __('miscellaneous.validated') : __('miscellaneous.invalid') }}
-                                        </span>
-                                    </p>
+                                    <div class="card-body pt-2 pb-2 px-1">
+                                        <h3 class="m-0 text-center text-black text-uppercase" style="font-family: 'Segoe UI Semibold'; font-size: 8px;">{{ $selected_member->role_user->role->role_name }}</h3>
+                                    </div>
                                 </div>
-                                <div class="col-8">
-                                    <p class="mb-1 acr-line-height-1_5" style="font-size: 0.68rem; font-family: Arial; color: #555;">
-                                        @lang('miscellaneous.firstname')@lang('miscellaneous.colon_after_word') 
-                                        <span class="d-inline-block text-black fw-bold text-uppercase">{{ $selected_member->firstname }}</span> 
-                                        <span class="float-end">@lang('miscellaneous.gender_title')@lang('miscellaneous.colon_after_word') <span class="fw-bold text-black">{{ $selected_member->gender }}</span></span>
-                                    </p>
-                                    <p class="mb-1 acr-line-height-1_5" style="font-size: 0.68rem; font-family: Arial; color: #555;">
-                                        @lang('miscellaneous.lastname')@lang('miscellaneous.colon_after_word') 
-                                        <span class="text-black fw-bold text-uppercase">{{ $selected_member->lastname }}</span>
-                                    </p>
-                                    <p class="mb-1 acr-line-height-1_5" style="font-size: 0.68rem; font-family: Arial; color: #555;">
-                                        @lang('miscellaneous.surname')@lang('miscellaneous.colon_after_word') 
-                                        <span class="text-black fw-bold text-uppercase">{{ $selected_member->surname }}</span>
-                                    </p>
-                                    <p class="mb-1 acr-line-height-1_5" style="font-size: 0.68rem; font-family: Arial; color: #555;">
-                                        @lang('miscellaneous.birth_city_date')@lang('miscellaneous.colon_after_word')<br>
-                                        <span class="text-black fw-bold">{{ $selected_member->birth_city . ', ' . (!empty($selected_member->birth_date) ? (str_starts_with(app()->getLocale(), 'fr') ? \Carbon\Carbon::createFromFormat('Y-m-d', $selected_member->birth_date)->format('d/m/Y') : \Carbon\Carbon::createFromFormat('Y-m-d', $selected_member->birth_date)->format('m/d/Y')) : null) }}</span>
-                                    </p>
-                                    <p class="mb-2 acr-line-height-1_5" style="font-size: 0.68rem; font-family: Arial; color: #555;">
-                                        @lang('miscellaneous.address.title')@lang('miscellaneous.colon_after_word') 
-                                        <span class="text-black fw-bold">{{ $residence != null ? $residence->address_content : '- - - - -' }}</span><br>
-                                    </p>
+                                <p class="m-0 fw-bold text-uppercase" style="font-family: Arial; font-size: 11px;">
+                                    <span class="badge d-block py-2 bgc-{{ $selected_member->status->status_name == 'Activé' ? 'green' : 'red' }}-600 rounded-0">
+                                        <span class="bi bi-{{ $selected_member->status->status_name == 'Activé' ? 'check2' : 'x' }}-circle me-1 fs-6" style="vertical-align: -2px"></span>
+                                        {{ $selected_member->status->status_name == 'Activé' ? __('miscellaneous.validated') : __('miscellaneous.invalid') }}
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="col-8">
+                                <p class="mb-1 acr-line-height-1_5" style="font-size: 0.68rem; font-family: Arial; color: #555;">
+                                    <span>@lang('miscellaneous.firstname')@lang('miscellaneous.colon_after_word')</span> 
+                                    <span class="d-inline-block text-black fw-bold text-uppercase">{{ $selected_member->firstname }}</span> 
+                                    <span class="float-end">@lang('miscellaneous.gender_title')@lang('miscellaneous.colon_after_word') <span class="fw-bold text-black">{{ $selected_member->gender }}</span></span>
+                                </p>
+                                <p class="mb-1 acr-line-height-1_5" style="font-size: 0.68rem; font-family: Arial; color: #555;">
+                                    <span>@lang('miscellaneous.lastname')@lang('miscellaneous.colon_after_word')</span> 
+                                    <span class="text-black fw-bold text-uppercase">{{ $selected_member->lastname }}</span>
+                                </p>
+                                <p class="mb-1 acr-line-height-1_5" style="font-size: 0.68rem; font-family: Arial; color: #555;">
+                                    <span>@lang('miscellaneous.surname')@lang('miscellaneous.colon_after_word')</span> 
+                                    <span class="text-black fw-bold text-uppercase">{{ $selected_member->surname }}</span>
+                                </p>
+                                <p class="mb-1 acr-line-height-1_5" style="font-size: 0.68rem; font-family: Arial; color: #555;">
+                                    <span>@lang('miscellaneous.birth_city_date')@lang('miscellaneous.colon_after_word')</span><br>
+                                    <span class="text-black fw-bold">{{ $selected_member->birth_city . ', ' . (!empty($selected_member->birth_date) ? (str_starts_with(app()->getLocale(), 'fr') ? \Carbon\Carbon::createFromFormat('Y-m-d', $selected_member->birth_date)->format('d/m/Y') : \Carbon\Carbon::createFromFormat('Y-m-d', $selected_member->birth_date)->format('m/d/Y')) : null) }}</span>
+                                </p>
+                                <p class="mb-2 acr-line-height-1_5" style="font-size: 0.68rem; font-family: Arial; color: #555;">
+                                    <span>@lang('miscellaneous.address.title')@lang('miscellaneous.colon_after_word')</span> 
+                                    <span class="text-black fw-bold">{{ $residence != null ? $residence->address_content : '- - - - -' }}</span><br>
+                                </p>
+                                <div id="issuedOn">
                                     <p class="mb-1 acr-line-height-1_5 text-center" style="font-size: 0.55rem; font-family: Arial; color: #555;">
-                                        @lang('miscellaneous.issued_on') {{ str_starts_with(app()->getLocale(), 'fr') ? \Carbon\Carbon::createFromFormat('Y-m-d', date('Y-m-d'))->format('d/m/Y') : \Carbon\Carbon::createFromFormat('Y-m-d', date('Y-m-d'))->format('m/d/Y') }}
+                                        <span>@lang('miscellaneous.issued_on') {{ str_starts_with(app()->getLocale(), 'fr') ? \Carbon\Carbon::createFromFormat('Y-m-d', date('Y-m-d'))->format('d/m/Y') : \Carbon\Carbon::createFromFormat('Y-m-d', date('Y-m-d'))->format('m/d/Y') }}</span>
                                     </p>
                                     <div class="mb-1 bg-image text-center">
                                         <img src="{{ asset('assets/img/signature.png') }}" alt="" width="50">
                                         <div class="mask"></div>
                                     </div>
-                                    <p class="m-0 acr-line-height-1_5 text-center" style="font-size: 0.55rem; font-family: Arial; color: #555;">Jean Pierre TSHIENDA</p>
+                                    <p class="m-0 acr-line-height-1_5 text-center" style="font-size: 0.55rem; font-family: Arial; color: #555;">
+                                        <span>Jean Pierre TSHIENDA</span>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -153,37 +166,40 @@
                 </div>
 
                 <!-- VERSO -->
-                <div class="col-lg-4 col-md-6 mb-4 mx-auto">
+                <div class="col-lg-4 col-md-6 col-10 mb-4 mx-auto">
                     <h3 class="mb-0 text-center fw-bold text-uppercase">@lang('miscellaneous.verso')</h3>
-                    <div class="p-10 acr-bg-navy-blue border border-2 border-info rounded-3" style="height: 300px;">
-                        <div id="cardVerso">
-                            <div class="row g-1 pb-2 border-bottom border-3 border-warning">
-                                <div class="col-2">
-                                    <div class="bg-image">
-                                        <img src="{{ asset('assets/img/drc-flag.png') }}" alt="" class="img-fluid">
-                                        <div class="mask"></div>
-                                    </div>
-                                </div>
-                                <div class="col-8 pt-1 text-center text-uppercase">
-                                    <h5 class="m-0 fw-bold text-truncate" style="font-family: Arial Narrow; font-size: 11px;">@lang('miscellaneous.drc')</h5>
-                                    <h3 class="m-0 text-black fw-bold text-truncate" style="font-family: Arial Narrow; font-size: 11px;">Action Commune pour la République</h3>
-                                </div>
-                                <div class="col-2">
-                                    <div class="bg-image bg-white rounded-circle" style="margin-top: -3px;">
-                                        <img src="{{ asset('assets/img/logo.png') }}" alt="" class="img-fluid">
-                                        <div class="mask"></div>
-                                    </div>
+                    <div id="cardVerso" class="p-10 acr-bg-navy-blue border border-2 border-info rounded-3" style="height: 300px;">
+                        <div class="row g-1 pb-2 border-bottom border-3 border-warning">
+                            <div class="col-2">
+                                <div class="bg-image">
+                                    <img src="{{ asset('assets/img/drc-flag.png') }}" alt="" class="img-fluid">
+                                    <div class="mask"></div>
                                 </div>
                             </div>
-
-                            <div class="mx-auto mt-3" style="width: 148px;">
-                                <img src="data:image/png;base64,{{ base64_encode($qr_code) }}" alt="QR Code">
+                            <div class="col-8 pt-1 text-center text-uppercase">
+                                <h5 class="m-0 fw-bold text-truncate" style="font-family: Arial Narrow; font-size: 11px;">@lang('miscellaneous.drc')</h5>
+                                <h3 class="m-0 text-black fw-bold text-truncate" style="font-family: Arial Narrow; font-size: 11px;">Action Commune pour la République</h3>
                             </div>
-
-                            <div class="mx-auto mt-2">
-                                <h6 class="m-0 text-center text-black fw-bold acr-line-height-1_4">{{ $selected_member->serial_number }}</h6>
+                            <div class="col-2">
+                                <div class="bg-image bg-white rounded-circle" style="margin-top: -3px;">
+                                    <img src="{{ asset('assets/img/logo.png') }}" alt="" class="img-fluid">
+                                    <div class="mask"></div>
+                                </div>
                             </div>
                         </div>
+
+                        <h1 class="mt-2 mb-0 text-center fs-4 fw-700 text-black text-uppercase" style="font-family: 'Segoe UI';">
+                            @lang('miscellaneous.account.membership_card.title')
+                        </h1>
+
+                        <div class="mx-auto mt-2" style="width: 148px;">
+                            <img src="data:image/png;base64,{{ base64_encode($qr_code) }}" alt="QR Code">
+                        </div>
+
+                        <h6 class="mt-2 mb-0 text-center text-black fw-bold acr-line-height-1_4">
+                            <span class="text-muted">@lang('miscellaneous.serial_number')@lang('miscellaneous.colon_after_word')</span> 
+                            {{ $selected_member->serial_number }}
+                        </h6>
                     </div>
                 </div>
             </div>

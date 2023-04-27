@@ -2,7 +2,7 @@
 
 @section('app-content')
 
-    @if (Route::is('party.member.datas'))
+    @if (Route::is('party.member.datas') || Route::is('party.manager.datas'))
                         <div class="row gap-20">
                             <div class="col-lg-4 col-md-6">
                                 <!-- #Avatar ==================== -->
