@@ -326,14 +326,14 @@
                             </a>
                         </li>
 
-                        <li class="nav-item{{ Route::is('message.inbox') OR Route::is('message.outbox') OR Route::is('message.draft') OR Route::is('message.spams') OR Route::is('message.new') OR Route::is('message.search') ? ' actived' : '' }}">
+                        {{-- <li class="nav-item{{ Route::is('message.inbox') OR Route::is('message.outbox') OR Route::is('message.draft') OR Route::is('message.spams') OR Route::is('message.new') OR Route::is('message.search') ? ' actived' : '' }}">
                             <a class="sidebar-link" href="{{ route('message.inbox') }}">
                                 <span class="icon-holder">
                                     <i class="ti-email align-middle c-brown-500"></i>
                                 </span>
                                 <span class="title">@lang('miscellaneous.menu.messages')</span>
                             </a>
-                        </li>
+                        </li> --}}
 
                         <li class="nav-item{{ Route::is('legal_info.home') OR Route::is('legal_info.datas') OR Route::is('legal_info.entity.home') OR Route::is('legal_info.entity.datas') ? ' actived' : '' }}">
                             <a class="sidebar-link" href="{{ route('legal_info.home') }}">
@@ -420,14 +420,14 @@
                             </a>
                         </li>
 
-                        <li class="nav-item{{ Route::is('message.inbox') OR Route::is('message.outbox') OR Route::is('message.draft') OR Route::is('message.spams') OR Route::is('message.new') OR Route::is('message.search') ? ' actived' : '' }}">
+                        {{-- <li class="nav-item{{ Route::is('message.inbox') OR Route::is('message.outbox') OR Route::is('message.draft') OR Route::is('message.spams') OR Route::is('message.new') OR Route::is('message.search') ? ' actived' : '' }}">
                             <a class="sidebar-link" href="{{ route('message.inbox') }}">
                                 <span class="icon-holder">
                                     <i class="c-brown-500 ti-email"></i>
                                 </span>
                                 <span class="title">@lang('miscellaneous.menu.messages')</span>
                             </a>
-                        </li>
+                        </li> --}}
 
                         <li class="nav-item{{ Route::is('apis.home') OR Route::is('apis.entity') ? ' actived' : '' }}">
                             <a class="sidebar-link" href="{{ route('apis.home') }}">
@@ -449,14 +449,14 @@
                             </a>
                         </li>
 
-                        <li class="nav-item{{ Route::is('message.inbox') OR Route::is('message.outbox') OR Route::is('message.draft') OR Route::is('message.spams') OR Route::is('message.new') OR Route::is('message.search') ? ' actived' : '' }}">
+                        {{-- <li class="nav-item{{ Route::is('message.inbox') OR Route::is('message.outbox') OR Route::is('message.draft') OR Route::is('message.spams') OR Route::is('message.new') OR Route::is('message.search') ? ' actived' : '' }}">
                             <a class="sidebar-link" href="{{ route('message.inbox') }}">
                                 <span class="icon-holder">
                                     <i class="c-brown-500 align-middle ti-email"></i>
                                 </span>
                                 <span class="title">@lang('miscellaneous.menu.messages')</span>
                             </a>
-                        </li>
+                        </li> --}}
 
                         <li class="nav-item{{ Route::is('party.member.home') OR Route::is('party.member.datas') OR Route::is('party.member.new') OR Route::is('party.member.on_going') ? ' actived' : '' }}">
                             <a class="sidebar-link" href="{{ route('party.member.home') }}">

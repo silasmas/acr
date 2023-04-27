@@ -400,19 +400,61 @@
                                 </div>
                             </div>
 
-                            <!-- #Member contributions ==================== -->
-                            <div class="col-lg-5 col-md-6">
+                            <!-- #Send message to member ==================== -->
+                            <div class="col-lg-7 col-md-6">
                                 <div class="bd bgc-white">
                                     <div class="layers">
-                                        <div class="layer d-flex w-100 pX-20 pT-20 justify-content-between">
-                                            <h6 class="lh-1 m-0">@lang('miscellaneous.manager.member.contributions')</h6>
+                                        <div class="layer d-flex w-100 p-20 justify-content-between">
+                                            <h6 class="lh-1 m-0">@lang('miscellaneous.manager.member.write_to.title') {{ $selected_member->firstname . ' ' . $selected_member->lastname }}</h6>
                                         </div>
 
                                         <div class="layer w-100 pX-20 pT-10 pB-20">
+                                            <form method="POST" action="{{ route('members.send_notif_message') }}">
+                                                <input type="hidden" name="member_id" value="{{ $selected_member->id }}">
+
+                                                <label class="form-label mb-1 visually-hidden" for="register_notif_message">@lang('miscellaneous.manager.member.write_to.label')</label>
+                                                <textarea id="register_notif_message" class="form-control mb-4" name="register_notif_message" placeholder="@lang('miscellaneous.manager.member.write_to.label')">{{ $residence != null ? $residence->address_content_2 : '' }}</textarea>
+
+                                                <button type="submit" class="btn btn-block btn-dark btn-color rounded-pill shadow-0">@lang('miscellaneous.send')</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- #Member contributions ==================== -->
+                            <div class="col-lg-5 col-md-6">
+                                <div class="bd bgc-white">
+                                    <div class="layers">
+                                        <div class="layer d-flex w-100 p-20 justify-content-between">
+                                            <h6 class="lh-1 m-0">@lang('miscellaneous.manager.member.contributions')</h6>
+                                        </div>
+
+                                        <div class="layer w-100 pX-20 pB-20">
+        @forelse ($selected_member->payments as $payment)
+                                            <div class="d-flex justify-content-between align-items-center mt-2 bg-light small">
+                                                <div class="px-2 py-1 border-start border-3 bdc-{{ $payment->status->color }}-600">
+                                                    <p class="m-0 text-black">{{ $payment->reference }}</p>
+                                                    <h4 class="h4 mt-0 mb-1 fw-bold c-{{ $payment->status->color }}-600 text-truncate" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">{{ $payment->amount . ' ' . $payment->currency }}</h4>
+                                                    <p class="m-0 small">{{ $payment->created_at }}</p>
+                                                </div>
+
+                                                <div class="px-3 py-1 text-center">
+                                                    <p class="m-0 text-black text-uppercase text-truncate">{{ $payment->channel }}</p>
+                                                    <span class="badge bgc-{{ $payment->status->color }}-50 c-{{ $payment->status->color }}-700 p-10 lh-0 tt-c rounded-pill fw-light">{{ $payment->status->status_name }}</span>
+                                                </div>
+                                            </div>
+            
+        @empty
+                                            <div class="mt-2 bg-light px-3 py-2">
+                                                <span class="list-group-item">@lang('miscellaneous.empty_list')</span>
+                                            </div>
+        @endforelse
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
     @else
                         <div class="row gap-20">
                             <div class="masonry-sizer col-lg-12"></div>

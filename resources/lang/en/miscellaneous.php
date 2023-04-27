@@ -485,6 +485,10 @@ return [
         'member' => [
             'title' => 'Members list',
             'add' => 'Add a member',
+            'write_to' => [
+                'title' => 'Send a message to',
+                'label' => 'Write here...',
+            ],
             'contributions' => 'Contributions',
         ],
         'info' => [
