@@ -120,9 +120,9 @@
                                     </div>
                                 </div>
                                 <p class="m-0 fw-bold text-uppercase" style="font-family: Arial; font-size: 11px;">
-                                    <span class="badge d-block py-2 bgc-{{ $selected_member->status->status_name == 'Activé' ? 'green' : 'red' }}-600 rounded-0">
-                                        <span class="bi bi-{{ $selected_member->status->status_name == 'Activé' ? 'check2' : 'x' }}-circle me-1 fs-6" style="vertical-align: -2px"></span>
-                                        {{ $selected_member->status->status_name == 'Activé' ? __('miscellaneous.validated') : __('miscellaneous.invalid') }}
+                                    <span class="badge d-block py-2 bgc-{{ $selected_member->status->status_name == 'Activé' && $selected_member->birth_date != null && $residence != null ? 'green' : 'red' }}-600 rounded-0">
+                                        <span class="bi bi-{{ $selected_member->status->status_name == 'Activé' && $selected_member->birth_date != null && $residence != null ? 'check2' : 'x' }}-circle me-1 fs-6" style="vertical-align: -2px"></span>
+                                        {{ $selected_member->status->status_name == 'Activé' && $selected_member->birth_date != null && $residence != null ? __('miscellaneous.validated') : __('miscellaneous.invalid') }}
                                     </span>
                                 </p>
                             </div>

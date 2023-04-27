@@ -78,9 +78,9 @@
                                                                 </div>
                                                             </div>
                                                             <p class="m-0 fw-bold text-uppercase" style="font-family: Arial; font-size: 11px;">
-                                                                <span class="badge d-block py-2 bgc-{{ $current_user->status->status_name == 'Activé' ? 'green' : 'red' }}-600 rounded-0">
-                                                                    <span class="bi bi-{{ $current_user->status->status_name == 'Activé' ? 'check2' : 'x' }}-circle me-1 fs-6" style="vertical-align: -2px"></span>
-                                                                    {{ $current_user->status->status_name == 'Activé' ? __('miscellaneous.validated') : __('miscellaneous.invalid') }}
+                                                                <span class="badge d-block py-2 bgc-{{ $current_user->status->status_name == 'Activé' && $current_user->birth_date != null && $residence != null ? 'green' : 'red' }}-600 rounded-0">
+                                                                    <span class="bi bi-{{ $current_user->status->status_name == 'Activé' && $current_user->birth_date != null && $residence != null ? 'check2' : 'x' }}-circle me-1 fs-6" style="vertical-align: -2px"></span>
+                                                                    {{ $current_user->status->status_name == 'Activé' && $current_user->birth_date != null && $residence != null ? __('miscellaneous.validated') : __('miscellaneous.invalid') }}
                                                                 </span>
                                                             </p>
                                                         </div>
@@ -150,11 +150,13 @@
                                             </div>
                                         </div>
                                     </div>
+        @if ($current_user->status->status_name == 'Activé' && $current_user->birth_date != null && $residence != null)
                                     <div class="ta-c bdT w-100 p-10">
                                         <a href="{{ route('party.member.print_card', ['id' => $current_user->id]) }}" target="_blank">
                                             <span class="bi bi-printer-fill me-2"></span> @lang('miscellaneous.account.membership_card.print_card')
                                         </a>
                                     </div>
+        @endif
                                 </div>
 
                                 <!-- #Identity document ==================== -->

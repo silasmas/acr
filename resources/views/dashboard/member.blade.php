@@ -5,6 +5,22 @@
     @if (Route::is('party.member.datas') || Route::is('party.manager.datas'))
                         <div class="row gap-20">
                             <div class="col-lg-4 col-md-6">
+                                <div class="mb-3 bd bgc-blue-500">
+                                    <div class="layers">
+                                        <div class="layer w-100 px-md-3 px-1 p-20 ta-c">
+        @if (Route::is('party.manager.datas'))
+                                            <a href="{{ route('manager') }}" class="text-white">
+                                                <span class="bi bi-arrow-left me-2"></span> @lang('miscellaneous.back_home')
+                                            </a>
+        @else
+                                            <a href="{{ route('party.member.home') }}" class="text-white">
+                                                <span class="bi bi-arrow-left me-2"></span> @lang('miscellaneous.back_list')
+                                            </a>
+        @endif
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <!-- #Avatar ==================== -->
                                 <div class="mb-3 bd bgc-white">
                                     <div class="layers">
@@ -79,9 +95,9 @@
                                                                 </div>
                                                             </div>
                                                             <p class="m-0 fw-bold text-uppercase" style="font-family: Arial; font-size: 11px;">
-                                                                <span class="badge d-block py-2 bgc-{{ $selected_member->status->status_name == 'Activé' ? 'green' : 'red' }}-600 rounded-0">
-                                                                    <span class="bi bi-{{ $selected_member->status->status_name == 'Activé' ? 'check2' : 'x' }}-circle me-1 fs-6" style="vertical-align: -2px"></span>
-                                                                    {{ $selected_member->status->status_name == 'Activé' ? __('miscellaneous.validated') : __('miscellaneous.invalid') }}
+                                                                <span class="badge d-block py-2 bgc-{{ $selected_member->status->status_name == 'Activé' && $selected_member->birth_date != null && $residence != null ? 'green' : 'red' }}-600 rounded-0">
+                                                                    <span class="bi bi-{{ $selected_member->status->status_name == 'Activé' && $selected_member->birth_date != null && $residence != null ? 'check2' : 'x' }}-circle me-1 fs-6" style="vertical-align: -2px"></span>
+                                                                    {{ $selected_member->status->status_name == 'Activé' && $selected_member->birth_date != null && $residence != null ? __('miscellaneous.validated') : __('miscellaneous.invalid') }}
                                                                 </span>
                                                             </p>
                                                         </div>
@@ -151,11 +167,13 @@
                                             </div>
                                         </div>
                                     </div>
+        @if ($selected_member->status->status_name == 'Activé' && $selected_member->birth_date != null && $residence != null)
                                     <div class="ta-c bdT w-100 p-10">
                                         <a href="{{ route('party.member.print_card', ['id' => $selected_member->id]) }}" target="_blank">
                                             <span class="bi bi-printer-fill me-2"></span> @lang('miscellaneous.account.membership_card.print_card')
                                         </a>
                                     </div>
+        @endif
                                 </div>
 
                                 <!-- #Identity document ==================== -->
