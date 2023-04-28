@@ -65,6 +65,7 @@ return [
     'error_label' => 'Error:',
     'message_label' => 'Message:',
     'message_sent' => 'Message sent',
+    'data_updated' => 'Data updated',
     'recto' => 'Recto',
     'verso' => 'Verso',
     'day' => [
@@ -189,6 +190,7 @@ return [
     'surname' => 'Surname',
     'lastname_surname' => 'Last name / Surname',
     'nationality' => 'Nationality',
+    'p_o_box' => 'P.O. box',
     'gender_title' => 'Gender',
     'gender1' => 'Male',
     'gender2' => 'Female',

@@ -375,6 +375,10 @@
                                                                         <label class="form-label mb-1" for="register_residence_address_content_2">@lang('miscellaneous.address.line2')</label>
                                                                         <textarea id="register_residence_address_content_2" class="form-control" name="register_residence_address_content_2" placeholder="@lang('miscellaneous.address.placeholder')">{{ $residence != null ? $residence->address_content_2 : '' }}</textarea>
                                                                     </div>
+                                                                    <div class="mb-3 col-lg-6">
+                                                                        <label class="form-label mb-1" for="register_p_o_box">@lang('miscellaneous.p_o_box')</label>
+                                                                        <input type="text" class="form-control" id="register_p_o_box" name="register_p_o_box" placeholder="@lang('miscellaneous.p_o_box')" value="{{ $selected_member->p_o_box }}">
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -384,12 +388,12 @@
                                                 <div class="row">
                                                     <div class="col-md-6 mb-4">
                                                         <label class="form-label mb-1" for="register_password">@lang('miscellaneous.password.label')</label>
-                                                        <input type="text" class="form-control" id="register_password" name="register_residence_neighborhood">
+                                                        <input type="text" class="form-control" id="register_password" name="register_password">
                                                     </div>
 
                                                     <div class="col-md-6 mb-4">
                                                         <label class="form-label mb-1" for="confirm_password">@lang('miscellaneous.confirm_password.label')</label>
-                                                        <input type="text" class="form-control" id="confirm_password" name="register_residence_neighborhood">
+                                                        <input type="text" class="form-control" id="confirm_password" name="confirm_password">
                                                     </div>
                                                 </div>
 
@@ -416,7 +420,7 @@
                                                 <label class="form-label mb-1 visually-hidden" for="register_notif_message">@lang('miscellaneous.manager.member.write_to.label')</label>
                                                 <textarea id="register_notif_message" class="form-control mb-4" name="register_notif_message" placeholder="@lang('miscellaneous.manager.member.write_to.label')">{{ $residence != null ? $residence->address_content_2 : '' }}</textarea>
 
-                                                <button type="submit" class="btn btn-block btn-dark btn-color rounded-pill shadow-0">@lang('miscellaneous.send')</button>
+                                                <button type="submit" class="btn btn-block btn-light rounded-pill shadow-0">@lang('miscellaneous.send')</button>
                                             </form>
                                         </div>
                                     </div>

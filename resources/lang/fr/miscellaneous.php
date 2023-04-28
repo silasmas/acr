@@ -65,6 +65,7 @@ return [
     'error_label' => 'Erreur :',
     'message_label' => 'Message :',
     'message_sent' => 'Message envoyé',
+    'data_updated' => 'Données mises à jour',
     'recto' => 'Recto',
     'verso' => 'Verso',
     'day' => [
@@ -188,10 +189,11 @@ return [
     'lastname' => 'Nom',
     'surname' => 'Post-nom',
     'lastname_surname' => 'Nom / Post-nom',
+    'nationality' => 'Nationalité',
+    'p_o_box' => 'Boîte postale',
     'gender_title' => 'Sexe',
     'gender1' => 'Homme',
     'gender2' => 'Femme',
-    'nationality' => 'Nationalité',
     'birth_city' => 'Ville de naissance',
     'birth_date' => [
         'label' => 'Date de naissance',
