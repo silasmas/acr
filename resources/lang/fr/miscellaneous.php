@@ -64,6 +64,7 @@ return [
     'entries' => 'entrées',
     'error_label' => 'Erreur :',
     'message_label' => 'Message :',
+    'message_sent' => 'Message envoyé',
     'recto' => 'Recto',
     'verso' => 'Verso',
     'day' => [

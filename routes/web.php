@@ -120,7 +120,7 @@ Route::get('/members/new', 'App\Http\Controllers\Web\PartyController@memberAdd')
 Route::get('/members/{id}', 'App\Http\Controllers\Web\PartyController@memberDatas')->whereNumber('id')->name('party.member.datas');
 Route::get('/members/{id}/print_card', 'App\Http\Controllers\Web\PartyController@printCard')->whereNumber('id')->name('party.member.print_card');
 Route::get('/members/search/{data}', 'App\Http\Controllers\Web\PartyController@searchMember')->name('members.search');
-Route::get('/members/send_notif_message', 'App\Http\Controllers\Web\PartyController@sendNotifMessage')->name('members.send_notif_message');
+Route::post('/members/send_notif_message', 'App\Http\Controllers\Web\PartyController@sendNotifMessage')->name('members.send_notif_message');
 Route::get('/managers', 'App\Http\Controllers\Web\PartyController@managers')->name('party.managers');
 Route::get('/managers/new', 'App\Http\Controllers\Web\PartyController@managerAdd')->name('party.manager.new');
 Route::get('/managers/{id}', 'App\Http\Controllers\Web\PartyController@memberDatas')->whereNumber('id')->name('party.manager.datas');

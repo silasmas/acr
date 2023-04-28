@@ -410,6 +410,7 @@
 
                                         <div class="layer w-100 pX-20 pT-10 pB-20">
                                             <form method="POST" action="{{ route('members.send_notif_message') }}">
+        @csrf
                                                 <input type="hidden" name="member_id" value="{{ $selected_member->id }}">
 
                                                 <label class="form-label mb-1 visually-hidden" for="register_notif_message">@lang('miscellaneous.manager.member.write_to.label')</label>

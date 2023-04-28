@@ -137,6 +137,7 @@ class RegisteredUserController extends Controller
     }
 
     /**
+     * @param  \Illuminate\Http\Request  $request
      * Check matching token.
      */
     public function sendToken(Request $request)
