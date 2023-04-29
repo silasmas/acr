@@ -237,6 +237,160 @@ class PartyController extends Controller
 
     // ==================================== HTTP POST METHODS ====================================
     /**
+     * POST: Update member
+     *
+     * @param \Illuminate\Http\Request  $request
+     * @param int  $id
+     * @return \Illuminate\View\View
+     */
+    public function updateMember(Request $request, $id)
+    {
+        // Select current user API URL
+        $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/' . Auth::user()->id;
+        // Update member API URL
+        $url_member = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/' . $id;
+        // Select address by type and user API URL
+        $legal_address_type = 'Adresse légale';
+        $residence_type = 'Résidence actuelle';
+        $url_legal_address = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/address/search/' . $legal_address_type . '/ ' . $id;
+        $url_residence = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/address/search/' . $residence_type . '/ ' . $id;
+        // Update address API URL
+        $url_update_address = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/address';
+        // Select all countries API URL
+        $url_country = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/country';
+        // Select all received messages API URL
+        $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . $id;
+        // Select types by group name API URL
+        $offer_type_group = 'Type d\'offre';
+        $transaction_type_group = 'Type de transaction';
+        $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
+        $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
+
+        try {
+            // Select current user API response
+            $response_user = $this::$client->request('GET', $url_user, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $user = json_decode($response_user->getBody(), false);
+            // Select address by type and user API response
+            $response_legal_address = $this::$client->request('GET', $url_legal_address, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $legal_address = json_decode($response_legal_address->getBody(), false);
+            $response_residence = $this::$client->request('GET', $url_residence, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $residence = json_decode($response_residence->getBody(), false);
+            // Select countries API response
+            $response_country = $this::$client->request('GET', $url_country, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $country = json_decode($response_country->getBody(), false);
+            // Select all received messages API response
+            $response_message = $this::$client->request('GET', $url_message, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $messages = json_decode($response_message->getBody(), false);
+            // Select types by group name API response
+            $response_offer_type = $this::$client->request('GET', $url_offer_type, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $offer_type = json_decode($response_offer_type->getBody(), false);
+            $response_transaction_type = $this::$client->request('GET', $url_transaction_type, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $transaction_type = json_decode($response_transaction_type->getBody(), false);
+            // Update member API response
+            $response_update_member = $this::$client->request('PUT', $url_member, [
+                'headers' => $this::$headers,
+                'form_params' => [
+                    'id' => $id,
+                    'firstname' => $request->register_firstname,
+                    'lastname' => $request->register_lastname,
+                    'surname' => $request->register_surname,
+                    'gender' => $request->register_gender,
+                    'birth_city' => $request->register_birth_city,
+                    'birth_date' => str_starts_with(app()->getLocale(), 'fr') ? explode('/', $request->register_birthdate)[2] . '-' . explode('/', $request->register_birthdate)[1] . '-' . explode('/', $request->register_birthdate)[0] : explode('/', $request->register_birthdate)[2] . '-' . explode('/', $request->register_birthdate)[0] . '-' . explode('/', $request->register_birthdate)[1],
+                    'nationality' => $request->register_nationality,
+                    'p_o_box' => $request->register_p_o_box,
+                    'email' => $request->register_email,
+                    'phone' => $request->register_phone,
+                    'password' => $request->register_password,
+                    'confirm_password' => $request->confirm_password
+                ],
+                'verify'  => false
+            ]);
+            $member = json_decode($response_update_member->getBody(), false);
+            $qr_code = QrCode::format('png')->merge((!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/assets/img/favicon/android-icon-96x96.png', 0.2, true)->size(135)->generate($member->data->phone);
+            // $qr_code = QrCode::size(135)->generate($member->data->phone);
+
+            // Update legal address API response
+            if ($request->register_legal_address_address_content_1) {
+                $response_legal_address = $this::$client->request('POST', $url_update_address, [
+                    'headers' => $this::$headers,
+                    'form_params' => [
+                        'address_content' => $request->register_legal_address_address_content_1,
+                        'address_content_2' => $request->register_legal_address_address_content_2,
+                        'neighborhood' => $request->register_legal_address_neighborhood,
+                        'area' => $request->register_legal_address_area,
+                        'city' => $request->register_legal_address_city,
+                        'type_id' => 3,
+                        'country_id' => $request->register_legal_address_country,
+                        'user_id' => $member->data->id
+                    ],
+                    'verify'  => false
+                ]);
+                $legal_address = json_decode($response_legal_address->getBody(), false);
+            }
+
+            // Update residence API response
+            if ($request->register_residence_address_content_1) {
+                $response_residence = $this::$client->request('POST', $url_update_address, [
+                    'headers' => $this::$headers,
+                    'form_params' => [
+                        'address_content' => $request->register_residence_address_content_1,
+                        'address_content_2' => $request->register_residence_address_content_2,
+                        'neighborhood' => $request->register_residence_neighborhood,
+                        'area' => $request->register_residence_area,
+                        'city' => $request->register_residence_city,
+                        'type_id' => 4,
+                        'country_id' => $request->register_residence_country,
+                        'user_id' => $member->data->id
+                    ],
+                    'verify'  => false
+                ]);
+                $residence = json_decode($response_residence->getBody(), false);
+            }
+
+            return view('dashboard.member', [
+                'current_user' => $user->data,
+                'selected_member' => $member->data,
+                'legal_address' => $legal_address->data,
+                'residence' => $residence->data,
+                'countries' => $country->data,
+                'messages' => $messages,
+                'offer_types' => $offer_type->data,
+                'transaction_types' => $transaction_type->data,
+                'qr_code' => $qr_code,
+                'alert_success' => __('miscellaneous.data_updated')
+            ]);
+
+        } catch (ClientException $e) {
+            // If the API returns some error, return to the page and display its message
+            return view('dashboard.member', [
+                'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+            ]);
+        }
+    }
+
+    /**
      * POST: Send a notification as a message
      *
      * @param  \Illuminate\Http\Request  $request

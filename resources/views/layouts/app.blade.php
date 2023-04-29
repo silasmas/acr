@@ -172,12 +172,12 @@
             @lang('miscellaneous.manager.member.title')
     @endif
 
-    @if (Route::is('party.member.datas'))
-            {{ $selected_member->surname . ' ' . $selected_member->firstname }}
+    @if (Route::is('party.member.datas') || Route::is('party.member.update'))
+            {{ $selected_member->firstname . ' ' . $selected_member->lastname }}
     @endif
 
     @if (Route::is('party.managers') || Route::is('party.manager.new') || Route::is('party.manager.datas'))
-            @lang('miscellaneous.menu.manager.members')
+            @lang('miscellaneous.menu.manager.other_managers')
     @endif
 
     @if (Route::is('party.infos'))

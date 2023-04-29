@@ -267,7 +267,7 @@ class AccountController extends Controller
 
     // ==================================== HTTP POST METHODS ====================================
     /**
-     * POST: Authentication and authorization
+     * POST: Update account
      *
      * @param \Illuminate\Http\Request  $request
      * @return \Illuminate\View\View

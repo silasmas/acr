@@ -2,7 +2,7 @@
 
 @section('app-content')
 
-    @if (Route::is('party.member.datas') || Route::is('party.manager.datas'))
+    @if (Route::is('party.member.datas') || Route::is('party.member.update') || Route::is('party.manager.datas'))
                         <div class="row gap-20">
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3 bd bgc-blue-500">
@@ -198,24 +198,25 @@
                                         </div>
 
                                         <div class="layer w-100 pX-20 pT-10 pB-20">
-                                            <form action="{{ route('account') }}" method="POST">
+                                            <form method="POST" action="{{ route('party.member.update', ['id' => $selected_member->id]) }}">
+        @csrf
                                                 <div class="row">
                                                     <div class="mb-3 col-lg-4">
-                                                        <label class="form-label mb-1" for="register_firstname">@lang('miscellaneous.firstname')</label>
-                                                        <input type="text" class="form-control" id="register_firstname" placeholder="@lang('miscellaneous.firstname')" value="{{ $selected_member->firstname }}">
+                                                        <label for="register_firstname" class="form-label mb-1">@lang('miscellaneous.firstname')</label>
+                                                        <input type="text" name="register_firstname" id="register_firstname" class="form-control" placeholder="@lang('miscellaneous.firstname')" value="{{ $selected_member->firstname }}">
         @if (!empty($response_error) AND $response_error->message == $inputs['firstname'])
                                                         <small id="firstnameHelp" class="text-danger">{{ $response_error->data }}</small>
         @endif
                                                     </div>
 
                                                     <div class="mb-3 col-lg-4">
-                                                        <label class="form-label mb-1" for="register_lastname">@lang('miscellaneous.lastname')</label>
-                                                        <input type="text" class="form-control" id="register_lastname" placeholder="@lang('miscellaneous.lastname')" value="{{ $selected_member->lastname }}">
+                                                        <label for="register_lastname" class="form-label mb-1">@lang('miscellaneous.lastname')</label>
+                                                        <input type="text" name="register_lastname" id="register_lastname" class="form-control" placeholder="@lang('miscellaneous.lastname')" value="{{ $selected_member->lastname }}">
                                                     </div>
 
                                                     <div class="mb-3 col-lg-4">
-                                                        <label class="form-label mb-1" for="register_surname">@lang('miscellaneous.surname')</label>
-                                                        <input type="text" class="form-control" id="register_surname" placeholder="@lang('miscellaneous.surname')" value="{{ $selected_member->surname }}">
+                                                        <label for="register_surname" class="form-label mb-1">@lang('miscellaneous.surname')</label>
+                                                        <input type="text" name="register_surname" id="register_surname" class="form-control" placeholder="@lang('miscellaneous.surname')" value="{{ $selected_member->surname }}">
                                                     </div>
                                                 </div>
 
@@ -224,53 +225,53 @@
                                                         <div class="mb-1" for="select_gender">@lang('miscellaneous.gender_title')</div>
                                                         <div class="form-check form-check-inline">
                                                             <label class="form-label form-check-label align-middle">
-                                                                <input class="form-check-input" type="radio" name="register_gender" id="gender1" value="M" {{ $selected_member->gender == 'M' ? 'checked' : '' }}>
+                                                                <input type="radio" name="register_gender" id="gender1" class="form-check-input" value="M" {{ $selected_member->gender == 'M' ? 'checked' : '' }}>
                                                                 @lang('miscellaneous.gender1')
                                                             </label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
                                                             <label class="form-label form-check-label align-middle">
-                                                                <input class="form-check-input" type="radio" name="register_gender" id="gender2" value="F" {{ $selected_member->gender == 'F' ? 'checked' : '' }}>
+                                                                <input type="radio" name="register_gender" id="gender2" class="form-check-input" value="F" {{ $selected_member->gender == 'F' ? 'checked' : '' }}>
                                                                 @lang('miscellaneous.gender2')
                                                             </label>
                                                         </div>
                                                     </div>
 
                                                     <div class="mb-3 col-lg-4">
-                                                        <label class="form-label mb-1" for="register_nationality">@lang('miscellaneous.nationality')</label>
-                                                        <input type="text" class="form-control" id="register_nationality" placeholder="@lang('miscellaneous.nationality')" value="{{ $selected_member->nationality }}">
+                                                        <label for="register_nationality" class="form-label mb-1">@lang('miscellaneous.nationality')</label>
+                                                        <input type="text" name="register_nationality" id="register_nationality" class="form-control" placeholder="@lang('miscellaneous.nationality')" value="{{ $selected_member->nationality }}">
                                                     </div>
 
                                                     <div class="mb-3 col-lg-4">
-                                                        <label class="form-label mb-1" for="register_birth_city">@lang('miscellaneous.birth_city')</label>
-                                                        <input type="text" class="form-control" id="register_birth_city" placeholder="@lang('miscellaneous.birth_city')" value="{{ $selected_member->birth_city }}">
+                                                        <label for="register_birth_city" class="form-label mb-1">@lang('miscellaneous.birth_city')</label>
+                                                        <input type="text" name="register_birth_city" id="register_birth_city" class="form-control" placeholder="@lang('miscellaneous.birth_city')" value="{{ $selected_member->birth_city }}">
                                                     </div>
                                                 </div>
 
                                                 <div class="row">
                                                     <div class="mb-3 col-lg-4">
-                                                        <label class="form-label mb-1" for="register_birthdate">@lang('miscellaneous.birth_date.label')</label>
+                                                        <label for="register_birthdate" class="form-label mb-1">@lang('miscellaneous.birth_date.label')</label>
                                                         <div class="timepicker-input input-icon">
                                                             <div class="input-group">
                                                                 <div class="input-group-text bgc-grey-300 bd bdwR-0">
                                                                     <i class="ti-calendar"></i>
                                                                 </div>
-                                                                <input type="text" class="form-control" id="register_birthdate" placeholder="@lang('miscellaneous.birth_date.label')" value="{{ (!empty($selected_member->birth_date) ? (str_starts_with(app()->getLocale(), 'fr') ? \Carbon\Carbon::createFromFormat('Y-m-d', $selected_member->birth_date)->format('d/m/Y') : \Carbon\Carbon::createFromFormat('Y-m-d', $selected_member->birth_date)->format('m/d/Y')) : null) }}">
+                                                                <input type="text" name="register_birthdate" id="register_birthdate" class="form-control" placeholder="@lang('miscellaneous.birth_date.label')" value="{{ (!empty($selected_member->birth_date) ? (str_starts_with(app()->getLocale(), 'fr') ? \Carbon\Carbon::createFromFormat('Y-m-d', $selected_member->birth_date)->format('d/m/Y') : \Carbon\Carbon::createFromFormat('Y-m-d', $selected_member->birth_date)->format('m/d/Y')) : null) }}">
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="mb-3 col-lg-4">
-                                                        <label class="form-label mb-1" for="register_email">@lang('miscellaneous.email')</label>
-                                                        <input type="text" class="form-control" id="register_email" placeholder="@lang('miscellaneous.email')" value="{{ $selected_member->email }}">
+                                                        <label for="register_email" class="form-label mb-1">@lang('miscellaneous.email')</label>
+                                                        <input type="text" name="register_email" id="register_email" class="form-control" placeholder="@lang('miscellaneous.email')" value="{{ $selected_member->email }}">
         @if (!empty($response_error) AND $response_error->message == $inputs['email'])
                                                         <small id="emailHelp" class="text-danger">{{ $response_error->data }}</small>
         @endif
                                                     </div>
 
                                                     <div class="mb-3 col-lg-4">
-                                                        <label class="form-label mb-1" for="register_phone">@lang('miscellaneous.phone')</label>
-                                                        <input type="text" class="form-control" id="register_phone" placeholder="@lang('miscellaneous.phone')" value="{{ $selected_member->phone }}">
+                                                        <label for="register_phone" class="form-label mb-1">@lang('miscellaneous.phone')</label>
+                                                        <input type="text" name="register_phone" id="register_phone" class="form-control" placeholder="@lang('miscellaneous.phone')" value="{{ $selected_member->phone }}">
         @if (!empty($response_error) AND $response_error->message == $inputs['phone'])
                                                         <small id="phoneHelp" class="text-danger">{{ $response_error->data }}</small>
         @endif
@@ -282,13 +283,12 @@
                                                         <div class="card mb-4 border border-default rounded-0 shadow-0">
                                                             <div class="card-body pb-0">
                                                                 <h6 class="h6 text-black fw-bold text-uppercase">@lang('miscellaneous.address.legal')</h6>
-                                                                <input type="hidden" name="legal_address_type_id" value="{{ $legal_address != null ? $legal_address->type->id : '' }}">
                                                             </div>
                                                             <div class="card-body pt-0">
                                                                 <div class="row">
                                                                     <div class="mb-3 col-lg-6">
-                                                                        <label class="form-label mb-1" for="register_legal_address_country">@lang('miscellaneous.admin.country.title')</label>
-                                                                        <select id="register_legal_address_country" name="register_legal_address_country" class="form-control">
+                                                                        <label for="register_legal_address_country" class="form-label mb-1">@lang('miscellaneous.admin.country.title')</label>
+                                                                        <select name="register_legal_address_country" id="register_legal_address_country" class="form-control">
                                                                             <option class="small" {{ $legal_address != null ? '' : 'selected ' }}disabled>@lang('miscellaneous.choose_country')</option>
         @foreach ($countries as $country)
                                                                             <option value="{{ $country->id }}"{{ $legal_address != null ? ($legal_address->country->id == $country->id ? ' selected' : '') : '' }}>{{ $country->country_name }}</option>
@@ -297,32 +297,32 @@
                                                                     </div>
 
                                                                     <div class="mb-3 col-lg-6">
-                                                                        <label class="form-label mb-1" for="register_legal_address_city">@lang('miscellaneous.address.city')</label>
-                                                                        <input type="text" class="form-control" id="register_legal_address_city" name="register_legal_address_city" placeholder="@lang('miscellaneous.address.city')" value="{{ $legal_address != null ? $legal_address->city : '' }}">
+                                                                        <label for="register_legal_address_city" class="form-label mb-1">@lang('miscellaneous.address.city')</label>
+                                                                        <input type="text" name="register_legal_address_city" id="register_legal_address_city" class="form-control" placeholder="@lang('miscellaneous.address.city')" value="{{ $legal_address != null ? $legal_address->city : '' }}">
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="row">
                                                                     <div class="mb-3 col-lg-6">
-                                                                        <label class="form-label mb-1" for="register_legal_address_area">@lang('miscellaneous.address.area')</label>
-                                                                        <input type="text" class="form-control" id="register_legal_address_area" name="register_legal_address_area" placeholder="@lang('miscellaneous.address.area')" value="{{ $legal_address != null ? $legal_address->area : '' }}">
+                                                                        <label for="register_legal_address_area" class="form-label mb-1">@lang('miscellaneous.address.area')</label>
+                                                                        <input type="text" name="register_legal_address_area" id="register_legal_address_area" class="form-control" placeholder="@lang('miscellaneous.address.area')" value="{{ $legal_address != null ? $legal_address->area : '' }}">
                                                                     </div>
 
                                                                     <div class="mb-3 col-lg-6">
-                                                                        <label class="form-label mb-1" for="register_legal_address_neighborhood">@lang('miscellaneous.address.neighborhood')</label>
-                                                                        <input type="text" class="form-control" id="register_legal_address_neighborhood" name="register_legal_address_neighborhood" placeholder="@lang('miscellaneous.address.neighborhood')" value="{{ $legal_address != null ? $legal_address->neighborhood : '' }}">
+                                                                        <label for="register_legal_address_neighborhood" class="form-label mb-1">@lang('miscellaneous.address.neighborhood')</label>
+                                                                        <input type="text" name="register_legal_address_neighborhood" id="register_legal_address_neighborhood" class="form-control" placeholder="@lang('miscellaneous.address.neighborhood')" value="{{ $legal_address != null ? $legal_address->neighborhood : '' }}">
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="row">
                                                                     <div class="mb-3 col-lg-6">
-                                                                        <label class="form-label mb-1" for="register_legal_address_address_content_1">@lang('miscellaneous.address.line1')</label>
-                                                                        <textarea id="register_legal_address_address_content_1" class="form-control" name="register_legal_address_address_content_1" placeholder="@lang('miscellaneous.address.placeholder')">{{ $legal_address != null ? $legal_address->address_content : '' }}</textarea>
+                                                                        <label for="register_legal_address_address_content_1" class="form-label mb-1">@lang('miscellaneous.address.line1')</label>
+                                                                        <textarea name="register_legal_address_address_content_1" id="register_legal_address_address_content_1" class="form-control" placeholder="@lang('miscellaneous.address.placeholder')">{{ $legal_address != null ? $legal_address->address_content : '' }}</textarea>
                                                                     </div>
 
                                                                     <div class="mb-3 col-lg-6">
-                                                                        <label class="form-label mb-1" for="register_legal_address_address_content_2">@lang('miscellaneous.address.line2')</label>
-                                                                        <textarea id="register_legal_address_address_content_2" class="form-control" name="register_legal_address_address_content_2" placeholder="@lang('miscellaneous.address.placeholder')">{{ $legal_address != null ? $legal_address->address_content_2 : '' }}</textarea>
+                                                                        <label for="register_legal_address_address_content_2" class="form-label mb-1">@lang('miscellaneous.address.line2')</label>
+                                                                        <textarea name="register_legal_address_address_content_2" id="register_legal_address_address_content_2" class="form-control" placeholder="@lang('miscellaneous.address.placeholder')">{{ $legal_address != null ? $legal_address->address_content_2 : '' }}</textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -333,13 +333,12 @@
                                                         <div class="card mb-4 border border-default rounded-0 shadow-0">
                                                             <div class="card-body pb-0">
                                                                 <h6 class="h6 text-black fw-bold text-uppercase">@lang('miscellaneous.address.residence')</h6>
-                                                                <input type="hidden" name="residence_type_id" value="{{ $residence != null ? $residence->type->id : '' }}">
                                                             </div>
                                                             <div class="card-body pt-0">
                                                                 <div class="row">
                                                                     <div class="mb-3 col-lg-6">
-                                                                        <label class="form-label mb-1" for="register_residence_country">@lang('miscellaneous.admin.country.title')</label>
-                                                                        <select id="register_residence_country" name="register_residence_country" class="form-control">
+                                                                        <label for="register_residence_country" class="form-label mb-1">@lang('miscellaneous.admin.country.title')</label>
+                                                                        <select name="register_residence_country" id="register_residence_country" class="form-control">
                                                                             <option class="small" {{ $residence != null ? '' : 'selected ' }}disabled>@lang('miscellaneous.choose_country')</option>
         @foreach ($countries as $country)
                                                                             <option value="{{ $country->id }}"{{ $residence != null ? ($residence->country->id == $country->id ? ' selected' : '') : '' }}>{{ $country->country_name }}</option>
@@ -348,52 +347,52 @@
                                                                     </div>
 
                                                                     <div class="mb-3 col-lg-6">
-                                                                        <label class="form-label mb-1" for="register_residence_city">@lang('miscellaneous.address.city')</label>
-                                                                        <input type="text" class="form-control" id="register_residence_city" name="register_residence_city" placeholder="@lang('miscellaneous.address.city')" value="{{ $residence != null ? $residence->city : '' }}">
+                                                                        <label for="register_residence_city" class="form-label mb-1">@lang('miscellaneous.address.city')</label>
+                                                                        <input type="text" name="register_residence_city" id="register_residence_city" class="form-control" placeholder="@lang('miscellaneous.address.city')" value="{{ $residence != null ? $residence->city : '' }}">
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="row">
                                                                     <div class="mb-3 col-lg-6">
-                                                                        <label class="form-label mb-1" for="register_residence_area">@lang('miscellaneous.address.area')</label>
-                                                                        <input type="text" class="form-control" id="register_residence_area" name="register_residence_area" placeholder="@lang('miscellaneous.address.area')" value="{{ $residence != null ? $residence->area : '' }}">
+                                                                        <label for="register_residence_area" class="form-label mb-1">@lang('miscellaneous.address.area')</label>
+                                                                        <input type="text" name="register_residence_area" id="register_residence_area" class="form-control" placeholder="@lang('miscellaneous.address.area')" value="{{ $residence != null ? $residence->area : '' }}">
                                                                     </div>
 
                                                                     <div class="mb-3 col-lg-6">
-                                                                        <label class="form-label mb-1" for="register_residence_neighborhood">@lang('miscellaneous.address.neighborhood')</label>
-                                                                        <input type="text" class="form-control" id="register_residence_neighborhood" name="register_residence_neighborhood" placeholder="@lang('miscellaneous.address.neighborhood')" value="{{ $residence != null ? $residence->neighborhood : '' }}">
+                                                                        <label for="register_residence_neighborhood" class="form-label mb-1">@lang('miscellaneous.address.neighborhood')</label>
+                                                                        <input type="text" name="register_residence_neighborhood" id="register_residence_neighborhood" class="form-control" placeholder="@lang('miscellaneous.address.neighborhood')" value="{{ $residence != null ? $residence->neighborhood : '' }}">
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="row">
                                                                     <div class="mb-3 col-lg-6">
-                                                                        <label class="form-label mb-1" for="register_residence_address_content_1">@lang('miscellaneous.address.line1')</label>
-                                                                        <textarea id="register_residence_address_content_1" class="form-control" name="register_residence_address_content_1" placeholder="@lang('miscellaneous.address.placeholder')">{{ $residence != null ? $residence->address_content : '' }}</textarea>
+                                                                        <label for="register_residence_address_content_1" class="form-label mb-1">@lang('miscellaneous.address.line1')</label>
+                                                                        <textarea name="register_residence_address_content_1" id="register_residence_address_content_1" class="form-control" placeholder="@lang('miscellaneous.address.placeholder')">{{ $residence != null ? $residence->address_content : '' }}</textarea>
                                                                     </div>
 
                                                                     <div class="mb-3 col-lg-6">
-                                                                        <label class="form-label mb-1" for="register_residence_address_content_2">@lang('miscellaneous.address.line2')</label>
-                                                                        <textarea id="register_residence_address_content_2" class="form-control" name="register_residence_address_content_2" placeholder="@lang('miscellaneous.address.placeholder')">{{ $residence != null ? $residence->address_content_2 : '' }}</textarea>
+                                                                        <label for="register_residence_address_content_2" class="form-label mb-1">@lang('miscellaneous.address.line2')</label>
+                                                                        <textarea name="register_residence_address_content_2" id="register_residence_address_content_2" class="form-control" placeholder="@lang('miscellaneous.address.placeholder')">{{ $residence != null ? $residence->address_content_2 : '' }}</textarea>
                                                                     </div>
                                                                     <div class="mb-3 col-lg-6">
-                                                                        <label class="form-label mb-1" for="register_p_o_box">@lang('miscellaneous.p_o_box')</label>
-                                                                        <input type="text" class="form-control" id="register_p_o_box" name="register_p_o_box" placeholder="@lang('miscellaneous.p_o_box')" value="{{ $selected_member->p_o_box }}">
+                                                                        <label for="register_p_o_box" class="form-label mb-1">@lang('miscellaneous.p_o_box')</label>
+                                                                        <input type="text" name="register_p_o_box" id="register_p_o_box" class="form-control" placeholder="@lang('miscellaneous.p_o_box')" value="{{ $selected_member->p_o_box }}">
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>                            
+                                                </div>
 
                                                 <div class="row">
                                                     <div class="col-md-6 mb-4">
-                                                        <label class="form-label mb-1" for="register_password">@lang('miscellaneous.password.label')</label>
-                                                        <input type="text" class="form-control" id="register_password" name="register_password">
+                                                        <label for="register_password" class="form-label mb-1">@lang('miscellaneous.password.label')</label>
+                                                        <input type="password" name="register_password" id="register_password" class="form-control">
                                                     </div>
 
                                                     <div class="col-md-6 mb-4">
-                                                        <label class="form-label mb-1" for="confirm_password">@lang('miscellaneous.confirm_password.label')</label>
-                                                        <input type="text" class="form-control" id="confirm_password" name="confirm_password">
+                                                        <label for="confirm_password" class="form-label mb-1">@lang('miscellaneous.confirm_password.label')</label>
+                                                        <input type="password" name="confirm_password" id="confirm_password" class="form-control">
                                                     </div>
                                                 </div>
 
@@ -417,7 +416,7 @@
         @csrf
                                                 <input type="hidden" name="member_id" value="{{ $selected_member->id }}">
 
-                                                <label class="form-label mb-1 visually-hidden" for="register_notif_message">@lang('miscellaneous.manager.member.write_to.label')</label>
+                                                <label for="register_notif_message" class="form-label mb-1 visually-hidden">@lang('miscellaneous.manager.member.write_to.label')</label>
                                                 <textarea id="register_notif_message" class="form-control mb-4" name="register_notif_message" placeholder="@lang('miscellaneous.manager.member.write_to.label')">{{ $residence != null ? $residence->address_content_2 : '' }}</textarea>
 
                                                 <button type="submit" class="btn btn-block btn-light rounded-pill shadow-0">@lang('miscellaneous.send')</button>
@@ -460,7 +459,9 @@
                                 </div>
                             </div>
                         </div>
-    @else
+    @endif
+
+    @if (Route::is('party.member.home'))
                         <div class="row gap-20">
                             <div class="masonry-sizer col-lg-12"></div>
                             <!-- #Add a member ==================== -->
@@ -503,7 +504,7 @@
                                                         <td class="fw-600"><p class="m-0 text-truncate"><a href="{{ route('party.member.datas', ['id' => $user->id]) }}">{{ $user->firstname }}</a></p></td>
                                                         <td>{{ $user->phone }}</td>
                                                         <td>
-                                                            <select name="select_role" id="role_user-{{ $user->id }}" class="form-select shadow-0" onchange="changeRole('role_user-{{ $user->id }}')">
+                                                            <select name="select_role" id="role_user-{{ $user->id }}" class="form-control shadow-0" onchange="changeRole('role_user-{{ $user->id }}')">
                                                                 <option class="small" selected disabled>@lang('miscellaneous.choose_role')</option>
                     @forelse ($roles as $role)
                         @if ($role->role_name != 'Administrateur' && $role->role_name != 'Développeur')
@@ -517,8 +518,8 @@
                                                         <td><span class="badge bgc-{{ $user->status->color }}-50 c-{{ $user->status->color }}-700 p-10 lh-0 tt-c rounded-pill">{{ $user->status->status_name }}</span></td>
                                                         <td>
                                                             <div id="status_user-{{ $user->id }}" class="form-check form-switch" aria-current="{{ $user->status->status_name }}" onchange="changeStatus('status_user-{{ $user->id }}')">
-                                                                <input class="form-check-input" type="checkbox" role="switch" id="{{ $user->id }}" {{ $user->status->status_name == 'Activé' ? 'checked' : '' }} />
-                                                                <label class="ms-2 form-check-label" for="{{ $user->id }}">{{ $user->status->status_name != 'Activé' ? __('miscellaneous.activate') : __('miscellaneous.lock') }}</label>
+                                                                <input type="checkbox" role="switch" id="{{ $user->id }}" class="form-check-input" {{ $user->status->status_name == 'Activé' ? 'checked' : '' }} />
+                                                                <label for="{{ $user->id }}" class="ms-2 form-check-label">{{ $user->status->status_name != 'Activé' ? __('miscellaneous.activate') : __('miscellaneous.lock') }}</label>
                                                             </div>
                                                         </td>
                                                     </tr>
