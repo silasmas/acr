@@ -36,6 +36,7 @@
 
         <!-- Addons CSS Files -->
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/jquery/jquery-ui/jquery-ui.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/dataTables/datatables.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/cropper/css/cropper.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/dairy/animate/animate.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/dairy/owlcarousel/assets/owl.carousel.min.css') }}">
@@ -540,8 +541,10 @@
         <!-- JavaScript Libraries -->
         <script src="{{ asset('assets/addons/custom/jquery/js/jquery.min.js') }}"></script>
         <script src="{{ asset('assets/addons/custom/jquery/jquery-ui/jquery-ui.min.js') }}"></script>
+        <script src="{{ asset('assets/addons/custom/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('assets/addons/custom/bootstrap/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('assets/addons/custom/mdb/js/mdb.min.js') }}"></script>
+        <script src="{{ asset('assets/addons/custom/dataTables/datatables.min.js') }}"></script>
         <script src="{{ asset('assets/addons/custom/cropper/js/cropper.min.js') }}"></script>
         <script src="{{ asset('assets/addons/custom/autosize/js/autosize.min.js') }}"></script>
         <script src="{{ asset('assets/addons/dairy/wow/wow.min.js') }}"></script>

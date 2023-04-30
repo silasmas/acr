@@ -92,7 +92,9 @@ $(document).ready(function () {
                 $.ajax({
                     headers: headers,
                     type: 'PUT',
+                    contentType: 'application/json',
                     url: apiUrl,
+                    dataType: 'json',
                     data: datas,
                     success: function (res) {
                         $(this).attr('src', res);

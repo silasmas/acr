@@ -35,7 +35,8 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css">
 
         <!-- Addons CSS Files -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/jquery/jquery-ui/jquery-ui.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/jquery/jquery-ui/jquery-ui.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/dataTables/datatables.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/bootstrap/css/bootstrap.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/mdb/css/mdb.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/cropper/css/cropper.min.css') }}">
@@ -228,7 +229,7 @@
                         </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-between">
-                        <input type="hidden" name="user_id" id="userId" value="{{ Auth::user()->id }}">
+                        <input type="hidden" name="user_id" id="userId" value="{{ Route::is('party.member.datas') ? $selected_member->id : Auth::user()->id }}">
                         <input type="hidden" name="news_id" id="newsId" value="{{ Route::is('news.datas') ? $news->id : null }}">
                         <button type="button" class="btn btn-light border border-default shadow-0" data-bs-dismiss="modal">{{ __('miscellaneous.cancel') }}</button>
                         <button type="button" id="crop" class="btn btn-primary shadow-0">{{ __('miscellaneous.register') }}</button>
@@ -698,6 +699,7 @@
         <script src="{{ asset('assets/addons/custom/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('assets/addons/custom/bootstrap/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('assets/addons/custom/mdb/js/mdb.min.js') }}"></script>
+        <script src="{{ asset('assets/addons/custom/dataTables/datatables.min.js') }}"></script>
         <script src="{{ asset('assets/addons/custom/cropper/js/cropper.min.js') }}"></script>
         <script src="{{ asset('assets/addons/custom/autosize/js/autosize.min.js') }}"></script>
         <script src="{{ asset('assets/addons/custom/biliap/js/biliap.cores.js') }}"></script>
@@ -739,8 +741,8 @@
                 }
             }
 
-
             $(function () {
+                $('#dataList').DataTable();
                 $('#rectoVersoText').click(function (e) { 
                     e.preventDefault();
 
