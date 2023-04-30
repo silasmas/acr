@@ -162,11 +162,47 @@
                                 <!-- #Identity document ==================== -->
                                 <div class="bd bgc-white">
                                     <div class="layers">
-                                        <div class="layer d-flex w-100 pX-20 pT-20 justify-content-between">
+                                        <div class="layer d-flex w-100 p-20 justify-content-between">
                                             <h6 class="lh-1 m-0">@lang('miscellaneous.account.identity_document.title')</h6>
                                         </div>
 
                                         <div class="layer w-100 pX-20 pT-10 pB-20">
+                                            <form method="post">
+                                                <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
+
+                                                <label for="register_image_name" class="form-label mb-1">@lang('miscellaneous.account.identity_document.choose_type.title')</label>
+                                                <select name="register_image_name" id="register_image_name" class="form-control mb-3">
+                                                    <option class="small" {{ $current_user->identity_data != null ? '' : 'selected ' }}disabled>@lang('miscellaneous.account.identity_document.choose_type.title')</option>
+                                                    <option>@lang('miscellaneous.account.identity_document.choose_type.identity_card')</option>
+                                                    <option>@lang('miscellaneous.account.identity_document.choose_type.voter_card')</option>
+                                                    <option>@lang('miscellaneous.account.identity_document.choose_type.passport')</option>
+                                                    <option>@lang('miscellaneous.account.identity_document.choose_type.driving_license')</option>
+                                                    <option>@lang('miscellaneous.account.identity_document.choose_type.other')</option>
+                                                </select>
+
+                                                <p class="m-0 small"><strong class="text-uppercase">@lang('miscellaneous.recto')</strong> (@lang('miscellaneous.account.identity_document.click_to_change'))</p>
+                                                <div class="bg-image rounded overflow-hidden overlay mb-2">
+                                                    <img src="{{ $current_user->identity_data != null && $current_user->identity_data->url_recto != null ? $current_user->identity_data->url_recto : asset('assets/img/blank-id-doc.png') }}" alt="@lang('miscellaneous.recto')" alt="" class="identity-recto img-fluid">
+                                                    <div class="mask h-100">
+                                                        <label role="button" for="image_recto" class="d-flex justify-content-center align-items-center h-100 fs-3 text-black text-uppercase">
+                                                            @lang('miscellaneous.recto')
+                                                            <input type="file" name="image_recto" id="image_recto" class="d-none">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <p class="m-0 small"><strong class="text-uppercase">@lang('miscellaneous.verso')</strong> (@lang('miscellaneous.account.identity_document.click_to_change'))</p>
+                                                <div class="bg-image rounded overflow-hidden overlay mb-2">
+                                                    <img src="{{ $current_user->identity_data != null && $current_user->identity_data->url_verso != null ? $current_user->identity_data->url_verso : asset('assets/img/blank-id-doc.png') }}" alt="@lang('miscellaneous.verso')" alt="" class="identity-verso img-fluid">
+                                                    <div class="mask h-100">
+                                                        <label role="button" for="image_verso" class="d-flex justify-content-center align-items-center h-100 fs-3 text-black text-uppercase">
+                                                            @lang('miscellaneous.verso')
+                                                            <input type="file" name="image_verso" id="image_verso" class="d-none">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

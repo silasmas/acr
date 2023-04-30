@@ -464,18 +464,6 @@
     @if (Route::is('party.member.home'))
                         <div class="row gap-20">
                             <div class="masonry-sizer col-lg-12"></div>
-                            <!-- #Add a member ==================== -->
-                            <div class="masonry-item col-lg-4">
-                                <div class="layers bd bgc-white p-10">
-                                    <div class="layer w-100 p-20">
-                                        <h6 class="lh-1 m-0">@lang('miscellaneous.manager.member.add')</h6>
-                                    </div>
-
-                                    <div class="layer w-100">
-
-                                    </div>
-                                </div>
-                            </div>
 
                             <!-- #Members list ==================== -->
                             <div class="masonry-item col-lg-8">
@@ -529,6 +517,74 @@
                                                 </tbody>
                                             </table>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- #Add a member ==================== -->
+                            <div class="masonry-item col-lg-4">
+                                <div class="layers bd bgc-white p-10">
+                                    <div class="layer w-100 p-20">
+                                        <h6 class="lh-1 m-0">@lang('miscellaneous.manager.member.add')</h6>
+                                    </div>
+
+                                    <div class="layer w-100 pX-20 pT-10 pB-20">
+                                        <form method="POST" action="">
+        @csrf
+                                            <div class="row g-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating">
+                                                        <input type="text" name="register_firstname" id="register_firstname" class="form-control" placeholder="@lang('miscellaneous.firstname')" required autofocus>
+                                                        <label for="register_firstname">@lang('miscellaneous.firstname')</label>
+                                                    </div>
+                                                </div>
+                
+                                                <div class="col-md-6">
+                                                    <div class="form-floating">
+                                                        <input type="text" name="register_lastname" id="register_lastname" class="form-control" placeholder="@lang('miscellaneous.surname')">
+                                                        <label for="register_lastname">@lang('miscellaneous.lastname')</label>
+                                                    </div>
+                                                </div>
+                
+                                                <div class="col-12">
+                                                    <div class="form-floating pt-0">
+                                                        <select name="select_country" id="select_country1" class="form-select pt-2 shadow-0">
+                                                            <option class="small" selected disabled>@lang('miscellaneous.choose_country')</option>
+        @forelse ($countries as $country)
+                                                            <option value="+{{ $country->country_phone_code }}">{{ $country->country_name }}</option>
+        @empty
+                                                            <option>@lang('miscellaneous.empty_list')</option>
+        @endforelse
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-12">
+                                                    <div class="input-group">
+                                                        <span id="phone_code_text1" class="input-group-text d-inline-block h-100 bg-light" style="padding-top: 0.3rem; padding-bottom: 0.65rem; line-height: 1.35;">
+                                                            <small class="d-inline-block text-secondary mt-0 mb-1 p-0" style="font-size: 0.75rem; color: #010101;">@lang('miscellaneous.phone_code')</small><br>
+                                                            <span class="text-value">xxxx</span> 
+                                                        </span>
+
+                                                        <div class="form-floating">
+                                                            <input type="hidden" id="phone_code1" name="phone_code_new_member" value="">
+                                                            <input type="tel" name="phone_number_new_member" id="phone_number_new_member" class="form-control" placeholder="@lang('miscellaneous.phone')" aria-describedby="phone_error_message" required>
+                                                            <label for="phone_number_new_member">@lang('miscellaneous.phone')</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+        @if (!empty($response_error) AND $response_error->message == $inputs['phone'])
+                                                <div class="col-12">
+                                                    <p id="phone_error_message" class="text-center mb-4 text-danger small">{{ $response_error->data }}</p>
+                                                </div>
+        @endif
+    
+                                                <div class="col-12 text-center">
+                                                    <button class="btn btn-primary btn-color btn-sm-inline-block btn-block rounded-pill mb-4 shadow-0" type="submit">@lang('miscellaneous.public.home.register_member.register')</button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

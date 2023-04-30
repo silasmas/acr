@@ -742,7 +742,11 @@
             }
 
             $(function () {
-                $('#dataList').DataTable();
+                $('#dataList').DataTable({
+                    language: {
+                        url: curHost + '/assets/addons/custom/dataTables/Plugins/i18n/' + $('html').attr('lang') + '.json'
+                    },
+                });
                 $('#rectoVersoText').click(function (e) { 
                     e.preventDefault();
 
