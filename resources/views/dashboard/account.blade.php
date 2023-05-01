@@ -506,7 +506,7 @@
                                                                 <input type="number" name="register_amount" id="register_amount" class="form-control" placeholder="@lang('miscellaneous.amount')" required>
                                                                 <label for="register_amount">@lang('miscellaneous.amount')</label>
                                                             </div>
-                    
+
                                                             <div class="input-group-prepend">
                                                                 <select name="select_currency" id="select_currency" class="form-select input-group-text ps-3 pe-4 py-3 shadow-0" style="height: 3.63rem; background-color: #f3f3f3; border-end-start-radius: 0; border-start-start-radius: 0;">
                                                                     <option class="small" selected disabled>@lang('miscellaneous.currency')</option>
