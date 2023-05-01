@@ -391,6 +391,191 @@ class PartyController extends Controller
     }
 
     /**
+     * POST: Add a new member
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function memberAdd(Request $request)
+    {
+        // Register new user API URL
+        $url_new_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user';
+        // Select current user API URL
+        $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/' . Auth::user()->id;
+        // Select all received messages API URL
+        $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
+        $phone = $request->select_country . $request->phone_number_new_member;
+        $inputs = [
+            'firstname' => $request->register_firstname,
+            'lastname' => $request->register_lastname,
+            'phone' => $phone,
+            'status_id' => 4,
+            'role_id' => 5
+        ];
+
+        try {
+            // Register new user API response
+            $response_new_user = $this::$client->request('POST', $url_new_user, [
+                'headers' => $this::$headers,
+                'form_params' => $inputs,
+                'verify'  => false
+            ]);
+            $new_user = json_decode($response_new_user->getBody(), false);
+            // Select current user API response
+            $response_user = $this::$client->request('GET', $url_user, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $user = json_decode($response_user->getBody(), false);
+            // Select all received messages API response
+            $response_message = $this::$client->request('GET', $url_message, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $messages = json_decode($response_message->getBody(), false);
+
+            return view('dashboard.check_token', [
+                'phone' => $new_user->data->password_reset->phone,
+                'password' => $new_user->data->password_reset->former_password,
+                'token' => $new_user->data->password_reset->token,
+                'current_user' => $user->data,
+                'messages' => $messages->data
+            ]);
+
+        } catch (ClientException $e) {
+            // If API returns some error, get it,
+            // return to the page and display its message
+            return view('dashboard.member', [
+                'inputs' => $inputs,
+                'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+            ]);
+        }
+    }
+
+    /**
+     * POST: Check the given token
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function checkToken(Request $request)
+    {
+        // Log in API URL
+        $url_login = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/login';
+        $given_token = $request->check_digit_1 . $request->check_digit_2 . $request->check_digit_3 . $request->check_digit_4 . $request->check_digit_5 . $request->check_digit_6 . $request->check_digit_7;
+        $phone = $request->phone;
+        $password = $request->password;
+        $token = $request->token;
+        // Select current user API URL
+        $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/' . Auth::user()->id;
+        // Select all countries API URL
+        $url_country = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/country';
+        // Select all received messages API URL
+        $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
+        // Select all roles API URL
+        $url_roles = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/role';
+
+        if ($given_token == $request->token) {
+            try {
+                // Select current user API response
+                $response_user = $this::$client->request('GET', $url_user, [
+                    'headers' => $this::$headers,
+                    'verify'  => false
+                ]);
+                $user = json_decode($response_user->getBody(), false);
+                // Select countries API response
+                $response_country = $this::$client->request('GET', $url_country, [
+                    'headers' => $this::$headers,
+                    'verify'  => false
+                ]);
+                $country = json_decode($response_country->getBody(), false);
+                // Select all received messages API response
+                $response_message = $this::$client->request('GET', $url_message, [
+                    'headers' => $this::$headers,
+                    'verify'  => false
+                ]);
+                $messages = json_decode($response_message->getBody(), false);
+                // Select all roles API response
+                $response_roles = $this::$client->request('GET', $url_roles, [
+                    'headers' => $this::$headers,
+                    'verify'  => false
+                ]);
+                $roles = json_decode($response_roles->getBody(), false);
+                // Log in API response
+                $response_login = $this::$client->request('POST', $url_login, [
+                    'headers' => $this::$headers,
+                    'form_params' => [
+                        'username' => $phone,
+                        'password' => $password
+                    ],
+                    'verify'  => false
+                ]);
+                $member = json_decode($response_login->getBody(), false);
+                // Select address by type and user API URL
+                $legal_address_type = 'Adresse légale';
+                $residence_type = 'Résidence actuelle';
+                $url_legal_address = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/address/search/' . $legal_address_type . '/ ' . $member->data->id;
+                $url_residence = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/address/search/' . $residence_type . '/ ' . $member->data->id;
+
+                try {
+                    // Select address by type and user API response
+                    $response_legal_address = $this::$client->request('GET', $url_legal_address, [
+                        'headers' => $this::$headers,
+                        'verify'  => false
+                    ]);
+                    $legal_address = json_decode($response_legal_address->getBody(), false);
+                    $response_residence = $this::$client->request('GET', $url_residence, [
+                        'headers' => $this::$headers,
+                        'verify'  => false
+                    ]);
+                    $residence = json_decode($response_residence->getBody(), false);
+                    $qr_code = QrCode::format('png')->merge((!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/assets/img/favicon/android-icon-96x96.png', 0.2, true)->size(135)->generate($member->data->phone);
+                    // $qr_code = QrCode::size(135)->generate($member->data->phone);
+
+                    return view('dashboard.member', [
+                        'selected_member' => $member->data,
+                        'current_user' => $user->data,
+                        'messages' => $messages->data,
+                        'countries' => $country->data,
+                        'roles' => $roles->data,
+                        'legal_address' => $legal_address->data,
+                        'residence' => $residence->data,
+                        'qr_code' => $qr_code
+                    ]);
+
+                } catch (ClientException $e) {
+                    // If API returns some error, get it,
+                    // return to the page and display its message
+                    return view('dashboard.check_token', [
+                        'error_message' => json_decode($e->getResponse()->getBody()->getContents(), false),
+                        'phone' => $phone,
+                        'password' => $password,
+                        'token' => $token
+                    ]);
+                }
+
+            } catch (ClientException $e) {
+                // If API returns some error, get it,
+                // return to the page and display its message
+                return view('dashboard.check_token', [
+                    'error_message' => json_decode($e->getResponse()->getBody()->getContents(), false),
+                    'phone' => $phone,
+                    'password' => $password,
+                    'token' => $token
+                ]);
+            }
+
+        } else {
+            return view('dashboard.check_token', [
+                'error_message' => __('auth.token_error'),
+                'phone' => $phone,
+                'password' => $password,
+                'token' => $token
+            ]);
+        }
+    }
+
+    /**
      * POST: Send a notification as a message
      *
      * @param  \Illuminate\Http\Request  $request
