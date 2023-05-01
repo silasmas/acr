@@ -626,7 +626,7 @@
                                     </div>
                                 </a>
 
-                                <ul class="dropdown-menu dropdown-menu-end fsz-sm py-0" style="min-width: 210px">
+                                <ul class="dropdown-menu dropdown-menu-end fsz-sm py-0" style="min-width: 230px">
                                     <li class="d-flex justify-content-center py-3" style="background-color: #e0e0e0;">
                                         <div class="bg-image">
                                             <img src="{{ $current_user->avatar_url != null ? $current_user->avatar_url : asset('assets/img/user.png') }}" alt="{{ $current_user->firstname . ' ' . $current_user->lastname }}" width="70" class="user-image img-thumbnail rounded-circle me-2">
