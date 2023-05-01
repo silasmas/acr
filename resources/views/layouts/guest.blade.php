@@ -141,7 +141,7 @@
                         </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-between">
-                        <input type="hidden" name="user_id" id="userId" value="{{ Route::is('party.member.datas') ? $selected_member->id : Auth::user()->id }}">
+                        <input type="hidden" name="user_id" id="userId" value="{{ !empty(Auth::user()) ? (Route::is('party.member.datas') ? $selected_member->id : Auth::user()->id) : null }}">
                         <input type="hidden" name="news_id" id="newsId" value="{{ Route::is('news.datas') ? $news->id : null }}">
                         <button type="button" class="btn btn-light border border-default shadow-0" data-bs-dismiss="modal">{{ __('miscellaneous.cancel') }}</button>
                         <button type="button" id="crop" class="btn btn-primary btn-color shadow-0">{{ __('miscellaneous.register') }}</button>
