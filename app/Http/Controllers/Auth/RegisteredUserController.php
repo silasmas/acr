@@ -162,13 +162,20 @@ class RegisteredUserController extends Controller
                 ]);
                 $user = json_decode($response_login->getBody(), false);
 
-                return Redirect::route('account', ['registered_user_id' => $user->data->id]);
+                if (Auth::attempt(['phone' => $user->data->phone, 'password' => $password])) {
+                    $request->session()->regenerate();
+
+                    return Redirect::route('account');
+                }
 
             } catch (ClientException $e) {
                 // If API returns some error, get it,
                 // return to the page and display its message
                 return view('auth.check-token', [
-                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                    'error_message' => json_decode($e->getResponse()->getBody()->getContents(), false),
+                    'phone' => $phone,
+                    'password' => $password,
+                    'token' => $token
                 ]);
             }
 

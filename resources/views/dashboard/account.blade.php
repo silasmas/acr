@@ -170,7 +170,6 @@
                                             <form method="post">
                                                 <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
 
-                                                <label for="register_image_name" class="form-label mb-1">@lang('miscellaneous.account.identity_document.choose_type.title')</label>
                                                 <select name="register_image_name" id="register_image_name" class="form-control mb-3">
                                                     <option class="small" {{ $current_user->identity_data != null ? '' : 'selected ' }}disabled>@lang('miscellaneous.account.identity_document.choose_type.title')</option>
                                                     <option>@lang('miscellaneous.account.identity_document.choose_type.identity_card')</option>

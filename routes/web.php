@@ -116,9 +116,10 @@ Route::get('/apis/{entity}', 'App\Http\Controllers\Web\APIController@apisEntity'
 Route::get('/manager', 'App\Http\Controllers\Web\HomeController@dashboard')->name('manager');
 // Party
 Route::get('/members', 'App\Http\Controllers\Web\PartyController@members')->name('party.member.home');
-Route::get('/members/new', 'App\Http\Controllers\Web\PartyController@memberAdd')->name('party.member.new');
+Route::post('/members/new', 'App\Http\Controllers\Web\PartyController@memberAdd')->name('party.member.new');
 Route::get('/members/{id}', 'App\Http\Controllers\Web\PartyController@memberDatas')->whereNumber('id')->name('party.member.datas');
 Route::post('/members/{id}', 'App\Http\Controllers\Web\PartyController@updateMember')->whereNumber('id')->name('party.member.update');
+Route::post('/members/new/check_token', 'App\Http\Controllers\Web\PartyController@checkToken')->name('party.member.new.check_token');
 Route::get('/members/{id}/print_card', 'App\Http\Controllers\Web\PartyController@printCard')->whereNumber('id')->name('party.member.print_card');
 Route::get('/members/{id}/notif_messages', 'App\Http\Controllers\Web\PartyController@memberNotifMessages')->whereNumber('id')->name('party.member.notif_message');
 Route::get('/members/search/{data}', 'App\Http\Controllers\Web\PartyController@searchMember')->name('members.search');
