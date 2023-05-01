@@ -235,6 +235,7 @@ return [
     'currency' => 'Choose currency',
     'usd' => 'American dollar',
     'cdf' => 'Congolese franc',
+    'transaction_type_error' => 'Please select transaction type',
 
     // ===== NAVIGATION MENU
     'menu' => [

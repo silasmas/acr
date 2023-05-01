@@ -673,6 +673,18 @@
                         </div>
                     </div>
 @endif
+@if (\Session::has('error_message'))
+                    <div class="position-fixed w-100" style="top: 41px; z-index: 9999;">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 col-10 mx-auto">
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <span class="bi bi-exclamation-triangle me-2 mb-0 fs-4" style="vertical-align: -3px;"></span> {{ \Session::get('error_message') }}
+                                    <button type="button" class="btn-close mt-1" data-bs-dismiss="alert" aria-label="@lang('miscellaneous.close')"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+@endif
 @if (!empty($alert_success))
                     <div class="position-fixed w-100" style="top: 41px; z-index: 9999;">
                         <div class="row">

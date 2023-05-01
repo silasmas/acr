@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Web;
 
 use GuzzleHttp\Client;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use GuzzleHttp\Exception\ClientException;
 use Illuminate\Support\Facades\Redirect;
+use GuzzleHttp\Exception\ClientException;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 /**
  * @author Xanders
@@ -1278,6 +1280,150 @@ class HomeController extends Controller
                 return view('news', [
                     'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
                 ]);
+            }
+        }
+    }
+
+    // ==================================== HTTP POST METHODS ====================================
+    /**
+     * POST: Register offer
+     *
+     * @param \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function registerOffer(Request $request)
+    {
+        // Select current user API URL
+        $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/' . Auth::user()->id;
+        // Select address by type and user API URL
+        $legal_address_type = 'Adresse légale';
+        $residence_type = 'Résidence actuelle';
+        $url_legal_address = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/address/search/' . $legal_address_type . '/ ' . Auth::user()->id;
+        $url_residence = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/address/search/' . $residence_type . '/ ' . Auth::user()->id;
+        // Select all countries API URL
+        $url_country = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/country';
+        // Select all received messages API URL
+        $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
+        // Select types by group name API URL
+        $offer_type_group = 'Type d\'offre';
+        $transaction_type_group = 'Type de transaction';
+        $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
+        $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
+        $url_offer = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/offer/store';
+        $inputs = [
+            'offer_name' => $request->offer_name,
+            'amount' => $request->register_amount,
+            'offer_type_id' => $request->offer_type_id,
+            'user_id' => Auth::user()->id,
+            'other_phone' => $request->select_country . $request->other_phone_number,
+            'transaction_type_id' => $request->transaction_type_id,
+            'currency' => $request->select_currency,
+        ];
+
+        if ($inputs['transaction_type_id'] == null) {
+            return Redirect::back()->with('error_message', __('miscellaneous.transaction_type_error'));
+
+        }
+
+        if ($inputs['transaction_type_id'] != null) {
+            if ($inputs['transaction_type_id'] == 1) {
+                try {
+                    // Select user API response
+                    $response_user = $this::$client->request('GET', $url_user, [
+                        'headers' => $this::$headers,
+                        'verify'  => false
+                    ]);
+                    $user = json_decode($response_user->getBody(), false);
+                    // Select address by type and user API response
+                    $response_legal_address = $this::$client->request('GET', $url_legal_address, [
+                        'headers' => $this::$headers,
+                        'verify'  => false
+                    ]);
+                    $legal_address = json_decode($response_legal_address->getBody(), false);
+                    $response_residence = $this::$client->request('GET', $url_residence, [
+                        'headers' => $this::$headers,
+                        'verify'  => false
+                    ]);
+                    $residence = json_decode($response_residence->getBody(), false);
+                    // Select countries API response
+                    $response_country = $this::$client->request('GET', $url_country, [
+                        'headers' => $this::$headers,
+                        'verify'  => false
+                    ]);
+                    $country = json_decode($response_country->getBody(), false);
+                    // Select all received messages API response
+                    $response_message = $this::$client->request('GET', $url_message, [
+                        'headers' => $this::$headers,
+                        'verify'  => false
+                    ]);
+                    $messages = json_decode($response_message->getBody(), false);
+                    // Select types by group name API response
+                    $response_offer_type = $this::$client->request('GET', $url_offer_type, [
+                        'headers' => $this::$headers,
+                        'verify'  => false
+                    ]);
+                    $offer_type = json_decode($response_offer_type->getBody(), false);
+                    $response_transaction_type = $this::$client->request('GET', $url_transaction_type, [
+                        'headers' => $this::$headers,
+                        'verify'  => false
+                    ]);
+                    $transaction_type = json_decode($response_transaction_type->getBody(), false);
+                    // $qr_code = QrCode::format('png')->merge((!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/assets/img/favicon/android-icon-96x96.png', 0.2, true)->size(135)->generate($user->data->phone);
+                    $qr_code = QrCode::size(135)->generate($user->data->phone);
+                    $response_transaction_type = $this::$client->request('GET', $url_transaction_type, [
+                        'headers' => $this::$headers,
+                        'verify'  => false
+                    ]);
+
+                    // Register offer
+                    $this::$client->request('POST', $url_offer, [
+                        'headers' => $this::$headers,
+                        'form_params' => $inputs,
+                        'verify'  => false
+                    ]);
+
+                    if ($user->data->role_user->role->role_name != 'Administrateur' AND $user->data->role_user->role->role_name != 'Développeur' AND $user->data->role_user->role->role_name != 'Manager') {
+                        return view('account', [
+                            'current_user' => $user->data,
+                            'legal_address' => $legal_address->data,
+                            'residence' => $residence->data,
+                            'countries' => $country->data,
+                            'messages' => $messages,
+                            'offer_types' => $offer_type->data,
+                            'transaction_types' => $transaction_type->data,
+                            'qr_code' => $qr_code
+                        ]);
+    
+                    } else {
+                        return view('dashboard.account', [
+                            'current_user' => $user->data,
+                            'legal_address' => $legal_address->data,
+                            'residence' => $residence->data,
+                            'countries' => $country->data,
+                            'messages' => $messages,
+                            'offer_types' => $offer_type->data,
+                            'transaction_types' => $transaction_type->data,
+                            'qr_code' => $qr_code
+                        ]);
+                    }
+    
+                } catch (ClientException $e) {
+                    // If the API returns some error, return to the page and display its message
+                    if ($user->data->role_user->role->role_name != 'Administrateur' AND $user->data->role_user->role->role_name != 'Développeur' AND $user->data->role_user->role->role_name != 'Manager') {
+                        return view('dashboard.account', [
+                            'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                        ]);
+    
+                    } else {
+                        return view('account', [
+                            'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                        ]);
+                    }
+                }
+            }
+
+            if ($inputs['transaction_type_id'] == 2) {
+                return Redirect::to('/account/offers/' . $inputs['amount'] . '/' . $inputs['currency'] . '/' . Auth::user()->id);
             }
         }
     }

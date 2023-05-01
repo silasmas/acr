@@ -470,6 +470,8 @@
                                         <div class="layer w-100 p-20">
                                             <form method="POST" action="{{ route('donate') }}">
         @csrf
+                                                <input type="hidden" name="offer_type_id" value="8">
+
                                                 <div id="financialDonation" class="row g-3 mb-4">
                                                     <div class="col-12">
                                                         <h5 class="h5 m-0 text-uppercase fw-bolder">@lang('miscellaneous.public.home.donate.send_money.title')</h5>
@@ -503,7 +505,7 @@
                                                     <div class="col-md-12">
                                                         <div class="input-group">
                                                             <div class="form-floating">
-                                                                <input type="number" name="register_amount" id="register_amount" class="form-control" placeholder="@lang('miscellaneous.amount')" required>
+                                                                <input type="number" name="register_amount" id="register_amount" class="form-control" placeholder="@lang('miscellaneous.amount')" required{{ \Session::has('error_message') ? ' autofocus' : '' }}>
                                                                 <label for="register_amount">@lang('miscellaneous.amount')</label>
                                                             </div>
 
@@ -538,10 +540,10 @@
                                                                 <small class="d-inline-block text-secondary mt-0 mb-1 p-0" style="font-size: 0.75rem; color: #010101;">@lang('miscellaneous.phone_code')</small><br>
                                                                 <span class="text-value">xxxx</span> 
                                                             </span>
-                    
+
                                                             <div class="form-floating">
                                                                 <input type="hidden" id="phone_code3" name="other_phone_code" value="">
-                                                                <input type="tel" name="other_phone_number" id="other_phone_number" class="form-control" placeholder="@lang('miscellaneous.phone')" required>
+                                                                <input type="tel" name="other_phone_number" id="other_phone_number" class="form-control" placeholder="@lang('miscellaneous.phone')">
                                                                 <label for="other_phone_number">@lang('miscellaneous.phone')</label>
                                                             </div>
                                                         </div>
