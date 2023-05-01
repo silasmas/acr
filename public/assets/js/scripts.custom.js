@@ -27,8 +27,6 @@ $(document).ready(function () {
     $('.counter').animateCounter(4000);
 
     /* Upload news/user cropped photo */
-    $('.news-image').uploadNewsImage('retrieved_image1', 'cropModal1', '#cropModal1', '#news_image', currentHost + '/api/news/add_image/' + parseInt($('#newsId').val()), 'news_id');
-    // $('.user-image').uploadUserImage('retrieved_image1', 'cropModal1', '#cropModal1', '#avatar', currentHost + '/api/user/update_avatar_picture/' + parseInt($('#userId').val()), 'user_id');
     var modal1 = $('#cropModal1');
     var retrievedAvatar = document.getElementById('retrieved_image1');
     var cropper;
@@ -112,8 +110,115 @@ $(document).ready(function () {
     });
 
     /* Load other user image */
-    $('.other-user-image-recto').loadOtherUserImage('#cropModal2', '.register_image_recto', '#loaded_image_recto', '.image_64_recto');
-    $('.other-user-image-verso').loadOtherUserImage('#cropModal2', '.register_image_verso', '#loaded_image_verso', '.image_64_verso');
+    var retrievedImage = document.getElementById('retrieved_image2');
+
+    $('#image_recto').on('change', function (e) {
+        var files = e.target.files;
+        var done = function (url) {
+            retrievedImage.src = url;
+            var modal = new bootstrap.Modal(document.getElementById('cropModal2'), {
+                keyboard: false
+            });
+
+            modal.show();
+        };
+
+        if (files && files.length > 0) {
+            var reader = new FileReader();
+
+            reader.onload = function () {
+                done(reader.result);
+            };
+            reader.readAsDataURL(files[0]);
+        }
+    });
+
+    $('#cropModal2').on('shown.bs.modal', function () {
+        cropper = new Cropper(retrievedImage, {
+            aspectRatio: 16 / 10,
+            viewMode: 3,
+            preview: '#cropModal2 .preview'
+        });
+
+    }).on('hidden.bs.modal', function () {
+        cropper.destroy();
+
+        cropper = null;
+    });
+
+    $('#cropModal2 #crop').click(function () {
+        var canvas = cropper.getCroppedCanvas({
+            width: 1280,
+            height: 720
+        });
+
+        canvas.toBlob(function (blob) {
+            URL.createObjectURL(blob);
+            var reader = new FileReader();
+
+            reader.readAsDataURL(blob);
+            reader.onloadend = function () {
+                var base64_data = reader.result;
+
+                $('#identity-recto').attr('src', base64_data);
+                $('#data_recto').attr('value', base64_data);
+            };
+        });
+    });
+
+    $('#image_verso').on('change', function (e) {
+        var files = e.target.files;
+        var done = function (url) {
+            retrievedImage.src = url;
+            var modal = new bootstrap.Modal(document.getElementById('cropModal2'), {
+                keyboard: false
+            });
+
+            modal.show();
+        };
+
+        if (files && files.length > 0) {
+            var reader = new FileReader();
+
+            reader.onload = function () {
+                done(reader.result);
+            };
+            reader.readAsDataURL(files[0]);
+        }
+    });
+
+    $('#cropModal2').on('shown.bs.modal', function () {
+        cropper = new Cropper(retrievedImage, {
+            aspectRatio: 16 / 10,
+            viewMode: 3,
+            preview: '#cropModal2 .preview'
+        });
+
+    }).on('hidden.bs.modal', function () {
+        cropper.destroy();
+
+        cropper = null;
+    });
+
+    $('#cropModal2 #crop').click(function () {
+        var canvas = cropper.getCroppedCanvas({
+            width: 1280,
+            height: 720
+        }); 
+
+        canvas.toBlob(function (blob) {
+            URL.createObjectURL(blob);
+            var reader = new FileReader();
+
+            reader.readAsDataURL(blob);
+            reader.onloadend = function () {
+                var base64_data = reader.result;
+
+                $('#identity-verso').attr('src', base64_data);
+                $('#data_verso').attr('value', base64_data);
+            };
+        });
+    });
 
     /* Auto-resize textarea */
     autosize($('textarea'));

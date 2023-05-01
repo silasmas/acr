@@ -167,7 +167,7 @@
                                         </div>
 
                                         <div class="layer w-100 pX-20 pT-10 pB-20">
-                                            <form method="post">
+                                            <form method="POST">
                                                 <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
 
                                                 <select name="register_image_name" id="register_image_name" class="form-control mb-3">
@@ -184,23 +184,26 @@
                                                     <img src="{{ $current_user->identity_data != null && $current_user->identity_data->url_recto != null ? $current_user->identity_data->url_recto : asset('assets/img/blank-id-doc.png') }}" alt="@lang('miscellaneous.recto')" alt="" class="identity-recto img-fluid">
                                                     <div class="mask h-100">
                                                         <label role="button" for="image_recto" class="d-flex justify-content-center align-items-center h-100 fs-3 text-black text-uppercase">
-                                                            @lang('miscellaneous.recto')
+                                                            <span class="{{ $current_user->identity_data != null && $current_user->identity_data->url_recto != null ? 'opacity-0' : 'opacity-100' }}">@lang('miscellaneous.recto')</span>
                                                             <input type="file" name="image_recto" id="image_recto" class="d-none">
                                                         </label>
+                                                        <input type="hidden" name="data_recto">
                                                     </div>
                                                 </div>
 
                                                 <p class="m-0 small"><strong class="text-uppercase">@lang('miscellaneous.verso')</strong> (@lang('miscellaneous.account.identity_document.click_to_change'))</p>
-                                                <div class="bg-image rounded overflow-hidden overlay mb-2">
+                                                <div class="bg-image rounded overflow-hidden overlay mb-3">
                                                     <img src="{{ $current_user->identity_data != null && $current_user->identity_data->url_verso != null ? $current_user->identity_data->url_verso : asset('assets/img/blank-id-doc.png') }}" alt="@lang('miscellaneous.verso')" alt="" class="identity-verso img-fluid">
                                                     <div class="mask h-100">
                                                         <label role="button" for="image_verso" class="d-flex justify-content-center align-items-center h-100 fs-3 text-black text-uppercase">
-                                                            @lang('miscellaneous.verso')
+                                                            <span class="{{ $current_user->identity_data != null && $current_user->identity_data->url_recto != null ? 'opacity-0' : 'opacity-100' }}">@lang('miscellaneous.verso')</span>
                                                             <input type="file" name="image_verso" id="image_verso" class="d-none">
                                                         </label>
+                                                        <input type="hidden" name="data_verso">
                                                     </div>
                                                 </div>
 
+                                                <button class="btn btn-block btn-light border border-default rounded-pill shadow-0" type="submit">@lang('miscellaneous.register')</button>
                                             </form>
                                         </div>
                                     </div>
@@ -545,7 +548,7 @@
                                                     </div>
                                                 </div>
 
-                                                <button type="submit" class="btn btn-block btn-light mt-lg-0 mt-3 rounded-pill shadow-0">@lang('miscellaneous.send')</button>
+                                                <button type="submit" class="btn btn-block btn-light border border-default mt-lg-0 mt-3 rounded-pill shadow-0">@lang('miscellaneous.send')</button>
                                             </form>
                                         </div>
                                     </div>

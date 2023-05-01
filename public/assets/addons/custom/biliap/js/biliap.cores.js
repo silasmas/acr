@@ -264,7 +264,9 @@ const CUST_LIGHT = currentHost + '/assets/css/style.custom.css';
 
                         $.ajax({
                             type: 'PUT',
+                            contentType: 'application/json',
                             url: apiUrl,
+                            dataType: 'json',
                             data: datas,
                             success: function (res) {
                                 $(this).attr('src', res);
