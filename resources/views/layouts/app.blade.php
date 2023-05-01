@@ -755,10 +755,10 @@
                 var element = document.getElementById(id);
                 var xhr = new XMLHttpRequest();
 
-                xhr.open('PUT', curHost + '/api/user/switch_status/' + parseInt(id.split('-')[1]) + '/' + (element.getAttribute('aria-current') === 'Activé' ? 6 : 3));
+                xhr.open('PUT', curHost + '/api/user/switch_status/' + parseInt(id.split('-')[1]) + '/' + (element.getAttribute('aria-current') === 'Activé' ? 4 : 3));
                 xhr.setRequestHeader('Content-Type', 'application/json');
                 xhr.setRequestHeader('Authorization', 'Bearer uWNJB6EwpVQwSuL5oJ7S7JkSkLzdpt8M1Xrs1MZITE1bCEbjMhscv8ZX2sTiDBarCHcu1EeJSsSLZIlYjr6YCl7pLycfn2AAQmYm');
-                xhr.send(JSON.stringify({'id' : parseInt(id.split('-')[1]), 'status_id' : (element.getAttribute('aria-current') === 'Activé' ? 6 : 3)}));
+                xhr.send(JSON.stringify({'id' : parseInt(id.split('-')[1]), 'status_id' : (element.getAttribute('aria-current') === 'Activé' ? 4 : 3)}));
                 xhr.onload = function () {
                     if(xhr.status === 200) {
                         window.location.reload();

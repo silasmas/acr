@@ -486,34 +486,34 @@
                                                 </thead>
 
                                                 <tbody id="updateMemberStatus">
-            @forelse ($users_not_developer as $user)
-                @if ($user->id != $current_user->id)
+        @forelse ($users_not_developer as $user)
+            @if ($user->id != $current_user->id)
                                                     <tr>
                                                         <td class="fw-600"><p class="m-0 text-truncate"><a href="{{ route('party.member.datas', ['id' => $user->id]) }}">{{ $user->firstname }}</a></p></td>
                                                         <td>{{ $user->phone }}</td>
                                                         <td>
                                                             <select name="select_role" id="role_user-{{ $user->id }}" class="form-control shadow-0" onchange="changeRole('role_user-{{ $user->id }}')">
                                                                 <option class="small" selected disabled>@lang('miscellaneous.choose_role')</option>
-                    @forelse ($roles as $role)
-                        @if ($role->role_name != 'Administrateur' && $role->role_name != 'Développeur')
+                @forelse ($roles as $role)
+                    @if ($role->role_name != 'Administrateur' && $role->role_name != 'Développeur')
                                                                 <option value="{{ $role->id }}"{{ $role->id == $user->role_user->role->id ? ' selected' : '' }}>{{ $role->role_name }}</option>
-                        @endif
-                    @empty
+                    @endif
+                @empty
                                                                 <option>@lang('miscellaneous.empty_list')</option>
-                    @endforelse
+                @endforelse
                                                             </select>
                                                         </td>
                                                         <td><span class="badge bgc-{{ $user->status->color }}-50 c-{{ $user->status->color }}-700 p-10 lh-0 tt-c rounded-pill">{{ $user->status->status_name }}</span></td>
                                                         <td>
                                                             <div id="status_user-{{ $user->id }}" class="form-check form-switch" aria-current="{{ $user->status->status_name }}" onchange="changeStatus('status_user-{{ $user->id }}')">
                                                                 <input type="checkbox" role="switch" id="{{ $user->id }}" class="form-check-input" {{ $user->status->status_name == 'Activé' ? 'checked' : '' }} />
-                                                                <label for="{{ $user->id }}" class="ms-2 form-check-label">{{ $user->status->status_name != 'Activé' ? __('miscellaneous.activate') : __('miscellaneous.lock') }}</label>
+                                                                <label for="{{ $user->id }}" class="ms-2 form-check-label">{{ $user->status->status_name != 'Activé' ? __('miscellaneous.activate') : __('miscellaneous.cancel') }}</label>
                                                             </div>
                                                         </td>
                                                     </tr>
-                @endif
-            @empty
-            @endforelse
+            @endif
+        @empty
+        @endforelse
                                                 </tbody>
                                             </table>
                                         </div>
