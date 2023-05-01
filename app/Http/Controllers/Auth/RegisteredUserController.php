@@ -36,6 +36,8 @@ class RegisteredUserController extends Controller
 
     /**
      * Display the registration view.
+     * 
+     * @return \Illuminate\View\View
      */
     public function create(): View
     {
@@ -65,6 +67,8 @@ class RegisteredUserController extends Controller
 
     /**
      * Display the registration view.
+     * 
+     * @return \Illuminate\View\View
      */
     public function edit(): View
     {
@@ -137,8 +141,10 @@ class RegisteredUserController extends Controller
     }
 
     /**
-     * @param  \Illuminate\Http\Request  $request
      * Check matching token.
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View
      */
     public function sendToken(Request $request)
     {
