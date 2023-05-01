@@ -272,45 +272,67 @@
 
     @if (Route::is('about.privacy_policy'))
         <!-- Privacy policy Start -->
-        <div class="container-xxl py-4 border-bottom border-default">
+        <div class="container-xxl py-3 border-bottom border-default">
             <div class="container">
-                <div class="mx-auto text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <p class="section-title bg-white text-warning px-3">{{ $privacy_policy->subject_name }}</p>
-                </div>
-
                 <div class="row">
                     <div class="col-lg-9">
-                        <p><pre class="fs-5">{{ $privacy_policy->subject_description }}</pre></p>
+                        <!-- Subtitle -->
+                        <div class="mb-5 wow fadeInUp" data-wow-delay="0.1s">
+                            <h4 class="h4 text-black fw-bold">@lang('miscellaneous.public.privacy_policy.subtitle')</h4>
+                            <p class="m-0 small">@lang('miscellaneous.public.privacy_policy.last_updated')</p>
+                        </div>
 
-                        <hr class="my-4">
+                        <!-- Description -->
+                        <div class="mb-5">
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.description.paragraph1')</p>
+                            <ul>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.description.item1')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.description.item2')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.description.item3')</li>
+                            </ul>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.description.paragraph2')</p>
+                        </div>
 
-        @foreach ($privacy_policy->legal_info_titles as $info_title)
-                        <h2 class="h2 mt-3 fw-bold">{{ $info_title->title }}</h2>
+                        <!-- Summary of key points -->
+                        <div class="mb-5">
+                            <h4 class="h4 fw-bold wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.key_point_summary.title')</h4>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.key_point_summary.paragraph01')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.key_point_summary.paragraph02')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.key_point_summary.paragraph03')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.key_point_summary.paragraph04')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.key_point_summary.paragraph05')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.key_point_summary.paragraph06')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.key_point_summary.paragraph07')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.key_point_summary.paragraph08')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.key_point_summary.paragraph09')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.key_point_summary.paragraph10')</p>
+                        </div>
 
-            @foreach ($info_title->legal_info_contents as $info_content)
-                @if ($info_content->photo_url != null)
-                        <div class="row">
-                            <div class="col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                                <div class="bg-image">
-                                    <img src="{{ $info_content->photo_url }}" alt="{{ $info_title->title }}" class="img-fluid rounded">
-                                    <div class="mask"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 pe-2 wow fadeInUp" data-wow-delay="0.5s">
-                                <h4 class="h4 mt-3 fw-bold">{{ $info_content->subtitle }}</h4>
-                                <p class="mb-4"><pre class="fw-light">{{ $info_content->content }}</pre></p>
+                        <!-- Table of content -->
+                        <div class="card mb-4 border border-default shadow-0 wow fadeInUp" data-wow-delay="0.3s">
+                            <div class="card-body">
+                                <h4 class="h4 mb-4 fw-bold">@lang('miscellaneous.public.privacy_policy.table_of_content.title')</h4>
+
+                                <ul>
+                                    <li style="list-style-type: decimal;"><a href="#toc_item01" class="text-dark">@lang('miscellaneous.public.privacy_policy.table_of_content.item01')</a></li>
+                                    <li style="list-style-type: decimal;"><a href="#toc_item02" class="text-dark">@lang('miscellaneous.public.privacy_policy.table_of_content.item02')</a></li>
+                                    <li style="list-style-type: decimal;"><a href="#toc_item03" class="text-dark">@lang('miscellaneous.public.privacy_policy.table_of_content.item03')</a></li>
+                                    <li style="list-style-type: decimal;"><a href="#toc_item04" class="text-dark">@lang('miscellaneous.public.privacy_policy.table_of_content.item04')</a></li>
+                                    <li style="list-style-type: decimal;"><a href="#toc_item05" class="text-dark">@lang('miscellaneous.public.privacy_policy.table_of_content.item05')</a></li>
+                                    <li style="list-style-type: decimal;"><a href="#toc_item06" class="text-dark">@lang('miscellaneous.public.privacy_policy.table_of_content.item06')</a></li>
+                                    <li style="list-style-type: decimal;"><a href="#toc_item07" class="text-dark">@lang('miscellaneous.public.privacy_policy.table_of_content.item07')</a></li>
+                                    <li style="list-style-type: decimal;"><a href="#toc_item08" class="text-dark">@lang('miscellaneous.public.privacy_policy.table_of_content.item08')</a></li>
+                                    <li style="list-style-type: decimal;"><a href="#toc_item09" class="text-dark">@lang('miscellaneous.public.privacy_policy.table_of_content.item09')</a></li>
+                                    <li style="list-style-type: decimal;"><a href="#toc_item10" class="text-dark">@lang('miscellaneous.public.privacy_policy.table_of_content.item10')</a></li>
+                                    <li style="list-style-type: decimal;"><a href="#toc_item11" class="text-dark">@lang('miscellaneous.public.privacy_policy.table_of_content.item11')</a></li>
+                                    <li style="list-style-type: decimal;"><a href="#toc_item12" class="text-dark">@lang('miscellaneous.public.privacy_policy.table_of_content.item12')</a></li>
+                                    <li style="list-style-type: decimal;"><a href="#toc_item13" class="text-dark">@lang('miscellaneous.public.privacy_policy.table_of_content.item13')</a></li>
+                                    <li style="list-style-type: decimal;"><a href="#toc_item14" class="text-dark">@lang('miscellaneous.public.privacy_policy.table_of_content.item14')</a></li>
+                                    <li style="list-style-type: decimal;"><a href="#toc_item15" class="text-dark">@lang('miscellaneous.public.privacy_policy.table_of_content.item15')</a></li>
+                                    <li style="list-style-type: decimal;"><a href="#toc_item16" class="text-dark">@lang('miscellaneous.public.privacy_policy.table_of_content.item16')</a></li>
+                                </ul>
                             </div>
                         </div>
-                @else
-                        <div class="row">
-                            <div class="col-12 pe-2 wow fadeInUp" data-wow-delay="0.3s">
-                                <h4 class="h4 mt-3 fw-bold">{{ $info_content->subtitle }}</h4>
-                                <p class="mb-4"><pre class="fw-light">{{ $info_content->content }}</pre></p>
-                            </div>
-                        </div>
-                @endif
-            @endforeach                
-        @endforeach
                     </div>
 
                     <div class="col-lg-3">

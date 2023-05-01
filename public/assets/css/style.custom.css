@@ -40,7 +40,7 @@ h6 a, .h6 a {
 	font-family: 'Roboto', sans-serif;
 }
 
-p {
+p, li {
 	font-family: 'Montserrat', sans-serif;
 	line-height: 1.9;
 }

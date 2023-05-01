@@ -623,6 +623,47 @@ return [
         // Privacy policy
         'privacy_policy' => [
             'title' => 'Politique de confidentialité',
+            'subtitle' => 'POLITIQUE DE CONFIDENTIALITÉ ET PROTECTION DE VOS DONNÉES PERSONNELLES CHEZ ACTION COMMUNE POUR LA RÉPUBLIQUE',
+            'last_updated' => 'Dernière mise à jour le 21 avril 2023',
+            'description' => [
+                'paragraph1' => 'Cette notice de confidentialité pour Action Commune pour la République (ACR) ("Société", "nous", "nos" ou "notre"), décrit comment et pourquoi nous pouvons collecter, stocker, utiliser et/ou partager ("traiter") vos informations lorsque vous utilisez nos services ("Services"), tels que :',
+                'item1' => 'Visiter notre site web à <a href="https://www.acr-rdc.com">https://www.acr-rdc.com</a>, ou tout autre site web de notre société qui renvoie à cette notice de confidentialité',
+                'item2' => 'Télécharger et utiliser notre application mobile (ACR RDC), ou toute autre application de notre société qui renvoie à cette notice de confidentialité',
+                'item3' => 'Interagir avec nous de d\'autres manières, y compris les ventes, le marketing ou les événements',
+                'paragraph2' => 'Des questions ou des inquiétudes ? La lecture de cette notice de confidentialité vous aidera à comprendre vos droits et choix en matière de confidentialité. Si vous n\'êtes pas d\'accord avec nos politiques et pratiques, veuillez ne pas utiliser nos Services. Si vous avez encore des questions ou des inquiétudes, veuillez nous contacter à <a href="mailto:contact@acr-rdc.com">contact@acr-rdc.com</a>.'
+            ],
+            'key_point_summary' => [
+                'title' => 'RÉSUMÉ DES POINTS CLÉS',
+                'paragraph01' => 'Ce résumé fournit des points clés de notre notice de confidentialité, mais vous pouvez trouver plus de détails sur chacun de ces sujets en cliquant sur le lien suivant chaque point clé ou en utilisant notre table des matières ci-dessous pour trouver la section que vous recherchez.',
+                'paragraph02' => 'Quelles informations personnelles traitons-nous ? Lorsque vous visitez, utilisez ou naviguez sur nos Services, nous pouvons traiter des informations personnelles en fonction de votre interaction avec Action Commune pour la République (ACR) et les Services, des choix que vous faites et des produits et fonctionnalités que vous utilisez. En savoir plus sur les informations personnelles que vous nous communiquez.',
+                'paragraph03' => 'Traitons-nous des informations personnelles sensibles ? Nous pouvons traiter des informations personnelles sensibles lorsque cela est nécessaire avec votre consentement ou tel que permis par la loi applicable. En savoir plus sur les informations sensibles que nous traitons.',
+                'paragraph04' => 'Recevons-nous des informations de tiers ? Nous pouvons recevoir des informations de bases de données publiques, de partenaires marketing, de plateformes de médias sociaux et d\'autres sources externes. En savoir plus sur les informations collectées à partir d\'autres sources.',
+                'paragraph05' => 'Comment traitons-nous vos informations ? Nous traitons vos informations pour fournir, améliorer et administrer nos Services, communiquer avec vous, pour la sécurité et la prévention de la fraude, et pour se conformer à la loi. Nous pouvons également traiter vos informations à d\'autres fins avec votre consentement. Nous traitons vos informations uniquement lorsque nous avons une raison légale valable pour le faire. En savoir plus sur la façon dont nous traitons vos informations.',
+                'paragraph06' => 'Dans quelles situations et avec quels tiers partageons-nous des informations personnelles ? Nous pouvons partager des informations dans des situations spécifiques et avec des tiers spécifiques. En savoir plus.',
+                'paragraph07' => 'Comment protégeons-nous vos informations ? Nous avons mis en place des processus et des procédures organisationnels et techniques pour protéger vos informations personnelles. Cependant, aucune transmission électronique sur Internet ou technologie de stockage d\'informations ne peut être garantie à 100% sécurisée, nous ne pouvons donc pas promettre ou garantir que des pirates, des cybercriminels ou d\'autres tiers non autorisés ne pourront pas vaincre notre sécurité et collecter, accéder, voler ou modifier incorrectement vos informations. En savoir plus sur la façon dont nous protégeons vos informations.',
+                'paragraph08' => 'Quels sont vos droits ? En fonction de votre situation géographique, la loi applicable en matière de confidentialité peut vous accorder certains droits concernant vos informations personnelles. En savoir plus sur vos droits en matière de confidentialité.',
+                'paragraph09' => 'Comment exercer vos droits ? La manière la plus simple d\'exercer vos droits est de soumettre une demande d\'accès aux données personnelles ou de nous contacter. Nous considérerons et agirons conformément aux lois applicables sur la protection des données pour toute demande.',
+                'paragraph10' => 'Vous souhaitez en savoir plus sur ce que Action Commune pour la République (ACR) fait avec les informations que nous collectons ? Consultez la notice de confidentialité dans son intégralité.'
+            ],
+            'table_of_content' => [
+                'title' => 'TABLE DES MATIÈRES',
+                'item01' => 'QUELLES INFORMATIONS COLLECTONS-NOUS ?',
+                'item02' => 'COMMENT TRAITONS-NOUS VOS INFORMATIONS ?',
+                'item03' => 'SUR QUELLES BASES JURIDIQUES NOUS APPUYONS-NOUS POUR TRAITER VOS INFORMATIONS PERSONNELLES ?',
+                'item04' => 'QUAND ET AVEC QUI PARTAGEONS-NOUS VOS INFORMATIONS PERSONNELLES ?',
+                'item05' => 'UTILISONS-NOUS DES COOKIES ET D\'AUTRES TECHNOLOGIES DE SUIVI ?',
+                'item06' => 'VOS INFORMATIONS SONT-ELLES TRANSFÉRÉES À L\'INTERNATIONAL ?',
+                'item07' => 'COMBIEN DE TEMPS CONSERVONS-NOUS VOS INFORMATIONS ?',
+                'item08' => 'COMMENT PROTÉGEONS-NOUS VOS INFORMATIONS ?',
+                'item09' => 'COLLECTONS-NOUS DES INFORMATIONS SUR LES MINEURS ?',
+                'item10' => 'QUELS SONT VOS DROITS EN MATIÈRE DE CONFIDENTIALITÉ ?',
+                'item11' => 'CONTRÔLES POUR LES FONCTIONNALITÉS DO-NOT-TRACK',
+                'item12' => 'LES RÉSIDENTS DE LA CALIFORNIE ONT-ILS DES DROITS DE CONFIDENTIALITÉ SPÉCIFIQUES ?',
+                'item13' => 'LES RÉSIDENTS DE LA VIRGINIE ONT-ILS DES DROITS DE CONFIDENTIALITÉ SPÉCIFIQUES ?',
+                'item14' => 'EFFECTUONS-NOUS DES MISES À JOUR DE CETTE NOTICE ?',
+                'item15' => 'COMMENT POUVEZ-VOUS NOUS CONTACTER CONCERNANT CETTE NOTICE ?',
+                'item16' => 'COMMENT POUVEZ-VOUS CONSULTER, METTRE À JOUR OU SUPPRIMER LES DONNÉES QUE NOUS COLLECTONS DE VOUS?'
+            ],
         ],
 
         // News
