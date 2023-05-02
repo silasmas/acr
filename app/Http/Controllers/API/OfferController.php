@@ -103,7 +103,7 @@ class OfferController extends BaseController
                                     'user_id' => $current_user->id,
                                 ]);        
 
-                                return $this->handleError($jsonRes->orderNumber, __('notifications.process_failed'));
+                                return $this->handleError(__('notifications.process_failed'));
 
                             } else {
                                 $object = new stdClass();
