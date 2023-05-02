@@ -235,7 +235,7 @@ return [
     'currency' => 'Choose currency',
     'usd' => 'American dollar',
     'cdf' => 'Congolese franc',
-    'transaction_done' => 'Ended. The status of your transaction will be displayed in a moment.',
+    'transaction_done' => 'The status of your transaction will be displayed in a moment.',
     'transaction_type_error' => 'Please select transaction type',
 
     // ===== NAVIGATION MENU
