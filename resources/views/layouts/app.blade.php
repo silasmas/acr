@@ -56,7 +56,7 @@
 
         <title>
 {{-- Titles of all roles --}}
-@if (Route::is('account') || Route::is('account.update.password'))
+@if (Route::is('account') || Route::is('account.update.password') || Route::is('donate'))
             @lang('miscellaneous.menu.account_settings')
 @endif
 
@@ -673,12 +673,12 @@
                         </div>
                     </div>
 @endif
-@if (\Session::has('error_message'))
+@if (\Session::has('success_message'))
                     <div class="position-fixed w-100" style="top: 41px; z-index: 9999;">
                         <div class="row">
                             <div class="col-lg-4 col-md-6 col-10 mx-auto">
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    <span class="bi bi-exclamation-triangle me-2 mb-0 fs-4" style="vertical-align: -3px;"></span> {{ \Session::get('error_message') }}
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <span class="bi bi-info-circle me-2 mb-0 fs-4" style="vertical-align: -3px;"></span> {{ \Session::get('success_message') }}
                                     <button type="button" class="btn-close mt-1" data-bs-dismiss="alert" aria-label="@lang('miscellaneous.close')"></button>
                                 </div>
                             </div>
@@ -697,12 +697,12 @@
                         </div>
                     </div>
 @endif
-@if (!empty(request()->response_error))
+@if (\Session::has('error_message'))
                     <div class="position-fixed w-100" style="top: 41px; z-index: 9999;">
                         <div class="row">
                             <div class="col-lg-4 col-md-6 col-10 mx-auto">
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    <span class="bi bi-exclamation-triangle me-2 mb-0 fs-4" style="vertical-align: -3px;"></span> {{ request()->response_error->message }}
+                                    <span class="bi bi-exclamation-triangle me-2 mb-0 fs-4" style="vertical-align: -3px;"></span> {{ \Session::get('error_message') }}
                                     <button type="button" class="btn-close mt-1" data-bs-dismiss="alert" aria-label="@lang('miscellaneous.close')"></button>
                                 </div>
                             </div>

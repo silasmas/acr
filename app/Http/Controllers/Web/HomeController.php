@@ -1310,6 +1310,7 @@ class HomeController extends Controller
         $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
         $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
         $url_offer = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/offer/store';
+        // User inputs
         $inputs = [
             'offer_name' => $request->offer_name,
             'amount' => $request->register_amount,
@@ -1322,11 +1323,14 @@ class HomeController extends Controller
 
         if ($inputs['transaction_type_id'] == null) {
             return Redirect::back()->with('error_message', __('miscellaneous.transaction_type_error'));
-
         }
 
         if ($inputs['transaction_type_id'] != null) {
             if ($inputs['transaction_type_id'] == 1) {
+                if ($request->select_country == null OR $request->other_phone_number == null) {
+                    return Redirect::back()->with('error_message', __('validation.custom.phone.incorrect'));
+                }
+
                 try {
                     // Select user API response
                     $response_user = $this::$client->request('GET', $url_user, [
@@ -1391,7 +1395,8 @@ class HomeController extends Controller
                             'messages' => $messages,
                             'offer_types' => $offer_type->data,
                             'transaction_types' => $transaction_type->data,
-                            'qr_code' => $qr_code
+                            'qr_code' => $qr_code,
+                            'alert_success' => __('miscellaneous.transaction_done')
                         ]);
     
                     } else {
@@ -1403,7 +1408,8 @@ class HomeController extends Controller
                             'messages' => $messages,
                             'offer_types' => $offer_type->data,
                             'transaction_types' => $transaction_type->data,
-                            'qr_code' => $qr_code
+                            'qr_code' => $qr_code,
+                            'alert_success' => __('miscellaneous.transaction_done')
                         ]);
                     }
     
@@ -1411,12 +1417,28 @@ class HomeController extends Controller
                     // If the API returns some error, return to the page and display its message
                     if ($user->data->role_user->role->role_name != 'Administrateur' AND $user->data->role_user->role->role_name != 'Développeur' AND $user->data->role_user->role->role_name != 'Manager') {
                         return view('dashboard.account', [
-                            'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                            'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
+                            'current_user' => $user->data,
+                            'legal_address' => $legal_address->data,
+                            'residence' => $residence->data,
+                            'countries' => $country->data,
+                            'messages' => $messages,
+                            'offer_types' => $offer_type->data,
+                            'transaction_types' => $transaction_type->data,
+                            'qr_code' => $qr_code
                         ]);
     
                     } else {
                         return view('account', [
-                            'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                            'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
+                            'current_user' => $user->data,
+                            'legal_address' => $legal_address->data,
+                            'residence' => $residence->data,
+                            'countries' => $country->data,
+                            'messages' => $messages,
+                            'offer_types' => $offer_type->data,
+                            'transaction_types' => $transaction_type->data,
+                            'qr_code' => $qr_code
                         ]);
                     }
                 }
