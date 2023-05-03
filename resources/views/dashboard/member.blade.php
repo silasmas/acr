@@ -567,8 +567,8 @@ Route::is('party.manager.datas'))
                                 @forelse ($message_membre as $m)
                                 <tr>
                                     <td class="fw-600">
-                                        <p class="m-0 text-truncate"><a
-                                                href="{{ route('party.member.datas', ['id' => $m->id]) }}">{{$m->notification_content }}</a></p>
+                                        <p class="m-0">
+                                           {{$m->notification_content }}</p>
                                     </td>
                                     <td>
                                         <a href="http://">@lang('miscellaneous.delete')</a>
