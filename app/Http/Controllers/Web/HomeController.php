@@ -1483,7 +1483,7 @@ class HomeController extends Controller
                             $users = json_decode($response_user->getBody(), false);
 
                             foreach ($users->data as $user):
-                                if ($user->phone == $inputs_user['phone']) {
+                                if ($user->phone == $inputs_user['phone'] OR $user->email == $inputs_user['email']) {
                                     // Register offer API Response
                                     $response_offer = $this::$client->request('POST', $url_offer, [
                                         'headers' => $this::$headers,
