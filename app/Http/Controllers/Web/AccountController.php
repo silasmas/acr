@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Models\Offer;
 use GuzzleHttp\Client;
+use App\Models\Payment;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -197,12 +198,16 @@ class AccountController extends Controller
 
         if ($code == '2') {
             // Register offer
+            $payment = Payment::where('order_number', $request->orderNumber)->first();
             Offer::create([
                 'amount' => $amount,
                 'currency' => $currency,
                 'type_id' => 8,
                 'user_id' => $user_id
             ]);
+
+
+
             // Register notification
             Notification::create([
                 'notification_url' => 'account/offers',
@@ -254,7 +259,7 @@ class AccountController extends Controller
                 'verify'  => false
             ]);
             $payment = json_decode($response->getBody(), false);
-
+            dd($payment);
             return redirect($payment->url);
 
         } catch (ClientException $e) {
