@@ -11,7 +11,7 @@ return [
     | Miscellaneous Language Lines
     |--------------------------------------------------------------------------
     |
-    */
+     */
     'drc' => 'Democratic Republic of the Congo',
     'slogan' => 'ACR | Politics of love',
     'keywords' => 'Common Action for the Republic,acr,love of politics,politics of love',
@@ -49,7 +49,7 @@ return [
     'upload' => [
         'use_camera' => 'Use camera',
         'upload_file' => 'Upload file',
-        'choose_existing_file' => 'Choose existing file'
+        'choose_existing_file' => 'Choose existing file',
     ],
     'activate' => 'Activate',
     'deactivate' => 'Deactivate',
@@ -85,7 +85,7 @@ return [
             'wednesday' => 'Wed',
             'thursday' => 'Thu',
             'friday' => 'Fri',
-            'saturday' => 'Sat'
+            'saturday' => 'Sat',
         ],
     ],
     'month' => [
@@ -101,7 +101,7 @@ return [
             'september' => 'September',
             'october' => 'October',
             'november' => 'November',
-            'december' => 'December'
+            'december' => 'December',
         ],
         'abbreviation' => [
             'january' => 'Jan',
@@ -115,7 +115,7 @@ return [
             'september' => 'Sep',
             'october' => 'Oct',
             'november' => 'Nov',
-            'december' => 'Dec'
+            'december' => 'Dec',
         ],
     ],
 
@@ -254,23 +254,23 @@ return [
         'messages' => 'Messages',
         'notifications' => 'Notifications',
         'admin' => [
-            'legal_info' =>  'Legal info',
-            'country' =>  'Country',
-            'miscellaneous' =>  'Miscellaneous'
+            'legal_info' => 'Legal info',
+            'country' => 'Country',
+            'miscellaneous' => 'Miscellaneous',
         ],
         'developer' => [
-            'apis' => 'APIs'
+            'apis' => 'APIs',
         ],
         'manager' => [
             'members' => 'Members',
             'other_managers' => 'Other managers',
-            'infos' => 'Informations'
+            'infos' => 'Informations',
         ],
         'public' => [
             'about' => 'About',
             'news' => 'News',
             'works' => 'Our works',
-            'donate' => 'Donate'
+            'donate' => 'Donate',
         ],
     ],
 
@@ -315,7 +315,7 @@ return [
                 'title' => 'Send money',
                 'description' => 'Choose payment method',
                 'mobile_money' => 'Mobile money',
-                'bank_card' => 'Bank card'
+                'bank_card' => 'Bank card',
             ],
         ],
     ],
@@ -346,7 +346,7 @@ return [
             'list' => 'Legal info subjects',
             'datas' => [
                 'subject' => 'Subject',
-                'description' => 'Description'
+                'description' => 'Description',
             ],
             'other_datas' => 'Other datas',
             // Title
@@ -357,7 +357,7 @@ return [
                 'add' => 'Add a legal info title',
                 'edit' => 'Edit the legal info title',
                 'search' => 'Search a legal info title',
-                'list' => 'Legal info titles'
+                'list' => 'Legal info titles',
             ],
             // Content
             'legal_info_content' => [
@@ -367,8 +367,8 @@ return [
                 'add' => 'Add a legal info content',
                 'edit' => 'Edit the legal info content',
                 'search' => 'Search a legal info content',
-                'list' => 'Legal info contents'
-            ]
+                'list' => 'Legal info contents',
+            ],
         ],
 
         // Country
@@ -383,7 +383,7 @@ return [
             'data' => [
                 'country_name' => 'Country name',
                 'country_phone_code' => 'Phone code',
-                'country_lang_code' => 'Language code'
+                'country_lang_code' => 'Language code',
             ],
         ],
 
@@ -444,7 +444,7 @@ return [
             'managers' => [
                 'title' => 'Manage managers',
             ],
-        ]
+        ],
     ],
 
     // ===== DEVELOPER PAGES
@@ -526,13 +526,13 @@ return [
                 'title' => 'Our head office',
                 'address' => '102, Kabinda street, Kinshasa 012 area, Kinshasa-DRC',
                 'phone' => '+243 810 503 074',
-                'email' => 'acr@gmail.com'
+                'email' => 'acr@gmail.com',
             ],
             'newsletter' => [
                 'title' => 'Newsletter',
                 'text' => 'Subscribe to receive our most relevant information.',
                 'email' => 'Your email',
-                'submit' => 'Send'
+                'submit' => 'Send',
             ],
         ],
 
@@ -540,15 +540,15 @@ return [
         'home' => [
             'slide1' => [
                 'title' => 'Let\'s write history and do politics differently',
-                'content' => 'All engaged in the politics of love'
+                'content' => 'All engaged in the politics of love',
             ],
             'slide2' => [
                 'title' => 'Support for the FARDC against aggression in the east of the country',
-                'content' => 'For a strong and disciplined army'
+                'content' => 'For a strong and disciplined army',
             ],
             'slide3' => [
                 'title' => 'Securing food for our people',
-                'content' => 'Through a good agricultural policy'
+                'content' => 'Through a good agricultural policy',
             ],
             'download_mobile_app' => [
                 'title' => 'Download the ACR mobile app',
@@ -559,7 +559,7 @@ return [
                 'content1' => 'You can join us, because ACR is not just a matter of a few individuals. Together, let us unite in a real commitment to transform our country.',
                 'content2' => 'If you are already registered in the site or in the mobile app, click on the button below to log in. Otherwise, give your names and your phone number to start.',
                 'login' => 'I already have an account',
-                'register' => 'Start registration'
+                'register' => 'Start registration',
             ],
             'donate' => [
                 'title' => 'Make an anonymous donation or become a partner',
@@ -573,11 +573,11 @@ return [
                     'title' => 'Send money',
                     'description' => 'Choose payment method',
                     'mobile_money' => 'Mobile money',
-                    'bank_card' => 'Bank card'
+                    'bank_card' => 'Bank card',
                 ],
                 'other_donation' => [
                     'title' => 'Other donation',
-                    'description' => 'Description of your donation'
+                    'description' => 'Description of your donation',
                 ],
             ],
         ],
@@ -592,7 +592,7 @@ return [
                 'title1' => 'One credo',
                 'content1' => 'Given our vision, our only credo is “Doing politics differently”.',
                 'title2' => 'Help the people',
-                'content2' => 'To effectively raise one\'s forehead, by grip, work, discipline and honesty.'
+                'content2' => 'To effectively raise one\'s forehead, by grip, work, discipline and honesty.',
             ],
             'why_us' => [
                 'title' => 'Why us?',
@@ -610,7 +610,7 @@ return [
                 'link1' => 'Terms of use',
                 'link2' => 'Privacy policy',
                 'link3' => 'Help center',
-                'link4' => 'FAQ'
+                'link4' => 'FAQ',
             ],
         ],
 
@@ -639,7 +639,7 @@ return [
                 'item1' => 'Visit our website at <a href="https://www.acr-rdc.com">https://www.acr-rdc.com</a>, or any website of ours that links to this privacy notice',
                 'item2' => 'Download and use our mobile application (ACR RDC), or any other application of ours that links to this privacy notice',
                 'item3' => 'Engage with us in other related ways, including any sales, marketing, or events',
-                'paragraph2' => 'Questions or concerns? Reading this privacy notice will help you understand your privacy rights and choices. If you do not agree with our policies and practices, please do not use our Services. If you still have any questions or concerns, please contact us at <a href="mailto:contact@acr-rdc.com">contact@acr-rdc.com</a>.'
+                'paragraph2' => 'Questions or concerns? Reading this privacy notice will help you understand your privacy rights and choices. If you do not agree with our policies and practices, please do not use our Services. If you still have any questions or concerns, please contact us at <a href="mailto:contact@acr-rdc.com">contact@acr-rdc.com</a>.',
             ],
             'key_point_summary' => [
                 'title' => 'SUMMARY OF KEY POINTS',
@@ -652,7 +652,7 @@ return [
                 'paragraph07' => 'How do we keep your information safe? We have organisational and technical processes and procedures in place to protect your personal information. However, no electronic transmission over the internet or information storage technology can be guaranteed to be 100% secure, so we cannot promise or guarantee that hackers, cybercriminals, or other unauthorised third parties will not be able to defeat our security and improperly collect, access, steal, or modify your information. Learn more about how we keep your information safe.',
                 'paragraph08' => 'What are your rights? Depending on where you are located geographically, the applicable privacy law may mean you have certain rights regarding your personal information. Learn more about your privacy rights.',
                 'paragraph09' => 'How do you exercise your rights? The easiest way to exercise your rights is by submitting a data subject access request, or by contacting us. We will consider and act upon any request in accordance with applicable data protection laws.',
-                'paragraph10' => 'Want to learn more about what Action Commune pour la République (ACR) does with any information we collect? Review the privacy notice in full.'
+                'paragraph10' => 'Want to learn more about what Action Commune pour la République (ACR) does with any information we collect? Review the privacy notice in full.',
             ],
             'table_of_content' => [
                 'title' => 'TABLE OF CONTENT',
@@ -671,7 +671,7 @@ return [
                 'item13' => 'DO VIRGINIA RESIDENTS HAVE SPECIFIC PRIVACY RIGHTS?',
                 'item14' => 'DO WE MAKE UPDATES TO THIS NOTICE?',
                 'item15' => 'HOW CAN YOU CONTACT US ABOUT THIS NOTICE?',
-                'item16' => 'HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?'
+                'item16' => 'HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?',
             ],
         ],
 

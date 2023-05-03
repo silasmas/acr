@@ -564,7 +564,7 @@ Route::is('party.manager.datas'))
                         <table class="table" id="dataList">
                             <thead>
                                 <tr>
-                                    <th class="bdwT-0 fw-bold">@lang('miscellaneous.tnameMes')</th>
+                                    <th class="bdwT-0 fw-bold">@lang('miscellaneous.tnameMess')</th>
                                     <th class="bdwT-0 fw-bold">@lang('miscellaneous.option')</th>
                                 </tr>
                             </thead>
@@ -577,7 +577,7 @@ Route::is('party.manager.datas'))
                                            {{$m->notification_content }}</p>
                                     </td>
                                     <td>
-                                        <a href="http://">@lang('miscellaneous.delete')</a>
+                                        <a onclick="delete($m->id,'user')">@lang('miscellaneous.delete')</a>
                                     </td>
                                 </tr>
                                 @empty
