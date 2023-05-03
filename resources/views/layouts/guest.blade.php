@@ -519,7 +519,7 @@
                                 </div>
                             </div>
 
-                            <div id="otherDonation" class="row mt-1 g-3">
+                            <div id="otherDonation" class="row mt-1 mb-4 g-3">
                                 <div class="col-12">
                                     <h5 class="h5 m-0 text-uppercase fw-bolder">@lang('miscellaneous.public.home.donate.other_donation.title')</h5>
                                 </div>

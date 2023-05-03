@@ -1416,7 +1416,7 @@ class HomeController extends Controller
                         ]);
                         $offer = json_decode($response_offer->getBody(), false);
 
-                        return Redirect::route('transaction.waiting')->with('response_success', $offer->data->order_number . '-' . Auth::user()->id . '-no');
+                        return Redirect::route('transaction.waiting')->with('response_success', $offer->data->result_response->order_number . '-' . Auth::user()->id . '-no');
 
                     } catch (ClientException $e) {
                         return view('transaction_message', [
