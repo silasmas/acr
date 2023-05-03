@@ -159,7 +159,7 @@ class AccountController extends Controller
      */
     public function offerSent($amount, $currency, $code, $user_id)
     {
-        dd(Session::get('order_number'));
+      
         if ($code == '0') {
             // Register offer
             Offer::create([
@@ -199,16 +199,13 @@ class AccountController extends Controller
 
         if ($code == '2') {
             // Register offer
-           // $payment = Payment::where('order_number', $request->orderNumber)->first();
-            Offer::create([
-                'amount' => $amount,
-                'currency' => $currency,
-                'type_id' => 8,
-                'user_id' => $user_id
-            ]);
-
-
-
+           $payment = Payment::where('order_number', Session::get('order_number'))->first();
+                if ($payment != null) {
+                    $payment->update([
+                        'status_id' => 2,
+                        'updated_at' => now()
+                    ]);
+                }
             // Register notification
             Notification::create([
                 'notification_url' => 'account/offers',
