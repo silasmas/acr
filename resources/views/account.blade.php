@@ -1,5 +1,8 @@
 @extends('layouts.guest')
 
+@section('autres_style')
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.adminator.css') }}">
+@endsection
 @section('guest-content')
 
         <!-- Page Header Start -->
@@ -76,4 +79,34 @@
             </div>
         </div>
         <!-- Account End -->
+@endsection
+@section('autres_js')
+<script>
+    $(function () {
+            $('#dataList').DataTable({
+                language: {
+                    url: currentHost + '/assets/addons/custom/dataTables/Plugins/i18n/' + $('html').attr('lang') + '.json'
+                },
+            });
+            $('#rectoVersoText').click(function (e) {
+                e.preventDefault();
+
+                var rectoText = '<?= __("miscellaneous.recto") ?>';
+                var versoText = '<?= __("miscellaneous.verso") ?>';
+
+                if ($('#cardVerso').hasClass('d-none')) {
+                    $('#cardVerso').removeClass('d-none');
+                    $('#cardRecto').addClass('d-none');
+
+                    $('#rectoVersoText span').text(rectoText);
+
+                } else {
+                    $('#cardVerso').addClass('d-none');
+                    $('#cardRecto').removeClass('d-none');
+
+                    $('#rectoVersoText span').text(versoText);
+                }
+            });
+        });
+</script>
 @endsection
