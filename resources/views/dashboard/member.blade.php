@@ -574,10 +574,10 @@ Route::is('party.manager.datas'))
                                 <tr>
                                     <td class="fw-600">
                                         <p class="m-0">
-                                           {{$m->notification_content }}</p>
+                                            {{$m->notification_content }}</p>
                                     </td>
                                     <td>
-                                        <a onclick="delete($m->id,'user')">@lang('miscellaneous.delete')</a>
+                                        <a role="button" onclick="delete($m->id,'user')">@lang('miscellaneous.delete')</a>
                                     </td>
                                 </tr>
                                 @empty
