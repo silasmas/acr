@@ -577,7 +577,7 @@ Route::is('party.manager.datas'))
                                             {{$m->notification_content }}</p>
                                     </td>
                                     <td>
-                                        <a  role="button" onclick='event.preventDefault();deletemsg({{$m->id}},"../api/notification")'>                                           
+                                        <a class="btn btn-outline btn-danger" role="button" onclick='event.preventDefault();deletemsg({{$m->id}},"../api/notification")'>                                           
                                             <i class="fa fa-trash-o"></i>
                                         </a>
                                     </td>
