@@ -183,6 +183,14 @@ class AccountController extends Controller
         }
 
         if ($code == '1') {
+            $payment = Payment::where('order_number', Session::get('order_number'))->first();
+           dd($payment);
+                if ($payment != null) {
+                    $payment->update([
+                        'status_id' => 2,
+                        'updated_at' => now()
+                    ]);
+                }
             // Register notification
             Notification::create([
                 'notification_url' => 'account/offers',
