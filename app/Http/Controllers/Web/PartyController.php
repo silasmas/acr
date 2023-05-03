@@ -6,6 +6,7 @@ use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
@@ -172,6 +173,8 @@ class PartyController extends Controller
             $residence = json_decode($response_residence->getBody(), false);
             $qr_code = QrCode::format('png')->merge((!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/assets/img/favicon/android-icon-96x96.png', 0.2, true)->size(135)->generate($member->data->phone);
             // $qr_code = QrCode::size(135)->generate($member->data->phone);
+            $message_membre = Notification::where([["user_id",$member->data->id],["notif_name","message"]]);
+
 
             return view('dashboard.member', [
                 'current_user' => $user->data,
@@ -181,7 +184,8 @@ class PartyController extends Controller
                 'selected_member' => $member->data,
                 'legal_address' => $legal_address->data,
                 'residence' => $residence->data,
-                'qr_code' => $qr_code
+                'qr_code' => $qr_code,
+                'message_membre' => $message_membre
             ]);
 
         } catch (ClientException $e) {
