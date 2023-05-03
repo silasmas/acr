@@ -935,6 +935,7 @@
             if (willDelete) {
 
                 $.ajax({
+                    headers:headers,
                     url: url + "/" + id,
                     method: "DELETE",
                     data: {'idv':id},
