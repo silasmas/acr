@@ -43,6 +43,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/dairy/lightbox/css/lightbox.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/bootstrap/css/bootstrap.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/mdb/css/mdb.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.adminator.css') }}">
         <!-- Dairy CSS File -->
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.dairy.css') }}">
         <!-- Custom CSS File -->
@@ -680,5 +681,34 @@
         <script src="{{ asset('assets/js/scripts.dairy.js') }}"></script>
         <!-- Custom Javascript -->
         <script src="{{ asset('assets/js/scripts.custom.js') }}"></script>
+
+        <script>
+            $(function () {
+                $('#dataList').DataTable({
+                    language: {
+                        url: curHost + '/assets/addons/custom/dataTables/Plugins/i18n/' + $('html').attr('lang') + '.json'
+                    },
+                });
+                $('#rectoVersoText').click(function (e) {
+                    e.preventDefault();
+
+                    var rectoText = '<?= __("miscellaneous.recto") ?>';
+                    var versoText = '<?= __("miscellaneous.verso") ?>';
+
+                    if ($('#cardVerso').hasClass('d-none')) {
+                        $('#cardVerso').removeClass('d-none');
+                        $('#cardRecto').addClass('d-none');
+
+                        $('#rectoVersoText span').text(rectoText);
+
+                    } else {
+                        $('#cardVerso').addClass('d-none');
+                        $('#cardRecto').removeClass('d-none');
+
+                        $('#rectoVersoText span').text(versoText);
+                    }
+                });
+            });
+        </script>
     </body>
 </html>
