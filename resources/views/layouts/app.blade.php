@@ -941,15 +941,15 @@
                     data: {'idv':id},
                     success: function (data) {
                         //  load('#tab-session');
-                        if (!data.reponse) {
+                        if (!data.success) {
                             swal({
-                                title: data.msg,
+                                title: data.message,
                                 icon: 'error'
                             })
 
                         } else {
                             swal({
-                                title: data.msg,
+                                title: data.message,
                                 icon: 'success'
                             })
                             actualiser();
