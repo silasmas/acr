@@ -1413,79 +1413,40 @@ class HomeController extends Controller
                         return Redirect::back()->with('error_message', __('validation.custom.phone.incorrect'));
                     }
 
-                    if ($inputs_offer['offer_type_id'] != '10') {
-                        try {
-                            // Register offer API Response
-                            $response_offer = $this::$client->request('POST', $url_offer, [
-                                'headers' => $this::$headers,
-                                'form_params' => $inputs_offer,
-                                'verify'  => false
-                            ]);
-                            $offer = json_decode($response_offer->getBody(), false);
-                            $reference_code = 'REF-' . ((string) random_int(10000000, 99999999)) . '-' . Auth::user()->id;
-    
-                            // Register payment API Response
-                            $this::$client->request('POST', $url_payment, [
-                                'headers' => $this::$headers,
-                                'form_params' => [
-                                    'reference' =>  $reference_code,
-                                    'orderNumber' => $offer->data->result_response->order_number,
-                                    'amount' => $inputs_offer['amount'],
-                                    'phone' =>  $inputs_offer['other_phone'],
-                                    'currency' =>  $inputs_offer['currency'],
-                                    'type' => $inputs_offer['transaction_type_id'],
-                                    'code' => 1,
-                                    'user_id' => Auth::user()->id
-                                ],
-                                'verify'  => false
-                            ]);
-    
-                            return Redirect::route('transaction.waiting', [
-                                'success_message' => $offer->data->result_response->order_number . '-' . Auth::user()->id . '-no'
-                            ]);
-    
-                        } catch (ClientException $e) {
-                            return view('transaction_message', [
-                                'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
-                            ]);
-                        }
-                    }
+                    try {
+                        // Register offer API Response
+                        $response_offer = $this::$client->request('POST', $url_offer, [
+                            'headers' => $this::$headers,
+                            'form_params' => $inputs_offer,
+                            'verify'  => false
+                        ]);
+                        $offer = json_decode($response_offer->getBody(), false);
+                        $reference_code = 'REF-' . ((string) random_int(10000000, 99999999)) . '-' . Auth::user()->id;
 
-                    if ($inputs_offer['offer_type_id'] != '9') {
-                        try {
-                            // Register offer API Response
-                            $response_offer = $this::$client->request('POST', $url_offer, [
-                                'headers' => $this::$headers,
-                                'form_params' => $inputs_offer,
-                                'verify'  => false
-                            ]);
-                            $offer = json_decode($response_offer->getBody(), false);
-                            $reference_code = 'REF-' . ((string) random_int(10000000, 99999999)) . '-ANONYMOUS';
-    
-                            // Register payment API Response
-                            $this::$client->request('POST', $url_payment, [
-                                'headers' => $this::$headers,
-                                'form_params' => [
-                                    'reference' =>  $reference_code,
-                                    'orderNumber' => $offer->data->result_response->order_number,
-                                    'amount' => $inputs_offer['amount'],
-                                    'phone' =>  $inputs_offer['other_phone'],
-                                    'currency' =>  $inputs_offer['currency'],
-                                    'type' => $inputs_offer['transaction_type_id'],
-                                    'code' => 1
-                                ],
-                                'verify'  => false
-                            ]);
-    
-                            return Redirect::route('transaction.waiting', [
-                                'success_message' => $offer->data->result_response->order_number . '-0-no'
-                            ]);
+                        // Register payment API Response
+                        $this::$client->request('POST', $url_payment, [
+                            'headers' => $this::$headers,
+                            'form_params' => [
+                                'reference' =>  $reference_code,
+                                'orderNumber' => $offer->data->result_response->order_number,
+                                'amount' => $inputs_offer['amount'],
+                                'phone' =>  $inputs_offer['other_phone'],
+                                'currency' =>  $inputs_offer['currency'],
+                                'type' => $inputs_offer['transaction_type_id'],
+                                'code' => 1,
+                                'user_id' => Auth::user()->id
+                            ],
+                            'verify'  => false
+                        ]);
 
-                        } catch (ClientException $e) {
-                            return view('transaction_message', [
-                                'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
-                            ]);
-                        }
+                        return Redirect::route('transaction.waiting', [
+                            'success_message' => $offer->data->result_response->order_number . '-' . Auth::user()->id . '-no'
+                        ]);
+
+                    } catch (ClientException $e) {
+                        return view('transaction_message', [
+                            'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                        ]);
                     }
                 }
 
@@ -1538,7 +1499,7 @@ class HomeController extends Controller
                                         'verify'  => false
                                     ]);
                                     $offer = json_decode($response_offer->getBody(), false);
-                                    $reference_code = 'REF-' . ((string) random_int(10000000, 99999999)) . '-' . $user->data->user->id;
+                                    $reference_code = 'REF-' . ((string) random_int(10000000, 99999999)) . '-' . $user->id;
 
                                     // Register payment API Response
                                     $this::$client->request('POST', $url_payment, [
@@ -1557,7 +1518,7 @@ class HomeController extends Controller
                                     ]);
 
                                     return Redirect::route('transaction.waiting', [
-                                        'success_message' => $offer->data->result_response->order_number . '-' . $user->data->user->id . '-' . $user->data->password_reset->former_password
+                                        'success_message' => $offer->data->result_response->order_number . '-' . $user->id . '-no'
                                     ]);
                                 }
                             endforeach;

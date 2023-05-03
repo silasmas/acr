@@ -428,7 +428,9 @@
                     <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
                         <form method="POST" action="{{ route('donate') }}">
 @csrf
-                            <div id="donationType" class="mb-4">
+                            <input type="hidden" name="offer_type_id" value="9">
+
+                            {{-- <div id="donationType" class="mb-4">
 @foreach ($offer_types as $type)
     @if ($type->type_name != 'Contribution')
         @if ($type->type_name == 'Sponsoring')
@@ -444,9 +446,8 @@
         @endif
     @endif
 @endforeach
-                            </div>
+                            </div> --}}
 
-@if (empty(Auth::user()))
                             <div id="donorIdentity" class="row g-3 mb-4">
                                 <div class="col-12">
                                     <h5 class="h5 m-0 text-uppercase fw-bolder">@lang('miscellaneous.public.home.donate.your_identity')</h5>
@@ -500,7 +501,6 @@
                                     </div>
                                 </div>
                             </div>
-@endif
 
                             <div id="financialDonation" class="row g-3 mb-4">
                                 <div class="col-12">
