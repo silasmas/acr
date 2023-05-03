@@ -236,6 +236,7 @@ return [
     'usd' => 'American dollar',
     'cdf' => 'Congolese franc',
     // Alert message
+    'required_fields' => 'Please check the required fields',
     'transaction_waiting' => 'Please confirm the message from your operator on your phone. Then press the button below.',
     'transaction_done' => 'Your transaction is complete!',
     'transaction_failed' => 'Failed to send your payment.',

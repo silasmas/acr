@@ -343,6 +343,67 @@
         </nav>
         <!-- Navbar End -->
 
+@if (!empty(request()->alert_success))
+        <div class="position-fixed w-100" style="top: 41px; z-index: 9999;">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-10 mx-auto">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <span class="bi bi-info-circle me-2 mb-0 fs-4" style="vertical-align: -3px;"></span> {{ request()->alert_success }}
+                        <button type="button" class="btn-close mt-1" data-bs-dismiss="alert" aria-label="@lang('miscellaneous.close')"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+@endif
+@if (\Session::has('success_message'))
+        <div class="position-fixed w-100" style="top: 41px; z-index: 9999;">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-10 mx-auto">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <span class="bi bi-info-circle me-2 mb-0 fs-4" style="vertical-align: -3px;"></span> {{ \Session::get('success_message') }}
+                        <button type="button" class="btn-close mt-1" data-bs-dismiss="alert" aria-label="@lang('miscellaneous.close')"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+@endif
+@if (!empty($alert_success))
+        <div class="position-fixed w-100" style="top: 41px; z-index: 9999;">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-10 mx-auto">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <span class="bi bi-info-circle me-2 mb-0 fs-4" style="vertical-align: -3px;"></span> {{ $alert_success }}
+                        <button type="button" class="btn-close mt-1" data-bs-dismiss="alert" aria-label="@lang('miscellaneous.close')"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+@endif
+@if (\Session::has('error_message'))
+        <div class="position-fixed w-100" style="top: 41px; z-index: 9999;">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-10 mx-auto">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <span class="bi bi-exclamation-triangle me-2 mb-0 fs-4" style="vertical-align: -3px;"></span> {{ \Session::get('error_message') }}
+                        <button type="button" class="btn-close mt-1" data-bs-dismiss="alert" aria-label="@lang('miscellaneous.close')"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+@endif
+@if (!empty($response_error))
+        <div class="position-fixed w-100" style="top: 41px; z-index: 9999;">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-10 mx-auto">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <span class="bi bi-exclamation-triangle me-2 mb-0 fs-4" style="vertical-align: -3px;"></span> {{ $response_error->message }}
+                        <button type="button" class="btn-close mt-1" data-bs-dismiss="alert" aria-label="@lang('miscellaneous.close')"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+@endif
+
 @yield('guest-content')
 
         <!-- Donate Start -->
@@ -474,7 +535,7 @@
                                 <div class="col-md-12">
                                     <div class="input-group">
                                         <div class="form-floating">
-                                            <input type="number" name="register_amount" id="register_amount" class="form-control" placeholder="@lang('miscellaneous.amount')" required>
+                                            <input type="number" name="register_amount" id="register_amount" class="form-control" placeholder="@lang('miscellaneous.amount')" required{{ \Session::has('error_message') ? ' autofocus' : '' }}>
                                             <label for="register_amount">@lang('miscellaneous.amount')</label>
                                         </div>
 

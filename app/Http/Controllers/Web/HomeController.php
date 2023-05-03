@@ -1379,16 +1379,6 @@ class HomeController extends Controller
         $url_payment = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/payment/store';
         // Select all users or Register user API URL
         $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user';
-        // inputs
-        $inputs_offer = [
-            'offer_name' => $request->register_offer_name,
-            'amount' => $request->register_amount,
-            'offer_type_id' => $request->offer_type_id,
-            'user_id' => Auth::user()->id,
-            'other_phone' => $request->select_country . $request->other_phone_number,
-            'transaction_type_id' => $request->transaction_type_id,
-            'currency' => $request->select_currency,
-        ];
         $inputs_user = [
             'firstname' => $request->register_firstname,
             'lastname' => $request->register_lastname,
@@ -1399,8 +1389,22 @@ class HomeController extends Controller
         ];
 
         if (!empty(Auth::user())) {
+            $inputs_offer = [
+                'offer_name' => $request->register_offer_name,
+                'amount' => $request->register_amount,
+                'offer_type_id' => $request->offer_type_id,
+                'user_id' => Auth::user()->id,
+                'other_phone' => $request->select_country . $request->other_phone_number,
+                'transaction_type_id' => $request->transaction_type_id,
+                'currency' => $request->select_currency,
+            ];
+
             if ($inputs_offer['transaction_type_id'] == null) {
                 return Redirect::back()->with('error_message', __('miscellaneous.transaction_type_error'));
+            }
+
+            if ($request->select_country == null || $request->other_phone_number == null || $request->select_currency == null) {
+                return Redirect::back()->with('error_message', __('miscellaneous.required_fields'));
             }
 
             if ($inputs_offer['transaction_type_id'] != null) {
@@ -1495,21 +1499,18 @@ class HomeController extends Controller
             }
 
         } else {
-            if ($inputs_offer['transaction_type_id'] == null) {
+            if ($request->transaction_type_id == null) {
                 return Redirect::back()->with('error_message', __('miscellaneous.transaction_type_error'));
             }
 
-            if ($inputs_offer['transaction_type_id'] != null) {
-                if ($inputs_offer['transaction_type_id'] == 1) {
+            if ($request->select_country == null || $request->other_phone_number == null || $request->select_currency == null) {
+                return Redirect::back()->with('error_message', __('miscellaneous.required_fields'));
+            }
+
+            if ($request->transaction_type_id != null) {
+                if ($request->transaction_type_id == 1) {
                     if ($inputs_user['firstname'] != null OR $inputs_user['lastname'] != null OR $inputs_user['phone'] != null) {
                         try {
-                            // Register offer API Response
-                            $response_offer = $this::$client->request('POST', $url_offer, [
-                                'headers' => $this::$headers,
-                                'form_params' => $inputs_offer,
-                                'verify'  => false
-                            ]);
-                            $offer = json_decode($response_offer->getBody(), false);
                             // Register user API Response
                             $response_user = $this::$client->request('POST', $url_user, [
                                 'headers' => $this::$headers,
@@ -1517,18 +1518,33 @@ class HomeController extends Controller
                                 'verify'  => false
                             ]);
                             $user = json_decode($response_user->getBody(), false);
+                            // Register offer API Response
+                            $response_offer = $this::$client->request('POST', $url_offer, [
+                                'headers' => $this::$headers,
+                                'form_params' => [
+                                    'offer_name' => $request->register_offer_name,
+                                    'amount' => $request->register_amount,
+                                    'offer_type_id' => $request->offer_type_id,
+                                    'user_id' => $user->data->user->id,
+                                    'other_phone' => $request->select_country . $request->other_phone_number,
+                                    'transaction_type_id' => $request->transaction_type_id,
+                                    'currency' => $request->select_currency,
+                                ],
+                                'verify'  => false
+                            ]);
+                            $offer = json_decode($response_offer->getBody(), false);
                             $reference_code = 'REF-' . ((string) random_int(10000000, 99999999)) . '-' . $user->data->user->id;
 
                             // Register payment API Response
                             $this::$client->request('POST', $url_payment, [
                                 'headers' => $this::$headers,
                                 'form_params' => [
-                                    'reference' =>  $reference_code,
+                                    'reference' => $reference_code,
                                     'orderNumber' => $offer->data->result_response->order_number,
-                                    'amount' => $inputs_offer['amount'],
-                                    'phone' =>  $inputs_offer['other_phone'],
-                                    'currency' =>  $inputs_offer['currency'],
-                                    'type' => $inputs_offer['transaction_type_id'],
+                                    'amount' => $request->register_amount,
+                                    'phone' => $request->select_country . $request->other_phone_number,
+                                    'currency' => $request->select_currency,
+                                    'type' => $request->transaction_type_id,
                                     'code' => 1,
                                     'user_id' => $user->data->user->id
                                 ],
@@ -1551,7 +1567,14 @@ class HomeController extends Controller
                             // Register offer API Response
                             $response_offer = $this::$client->request('POST', $url_offer, [
                                 'headers' => $this::$headers,
-                                'form_params' => $inputs_offer,
+                                'form_params' => [
+                                    'offer_name' => $request->register_offer_name,
+                                    'amount' => $request->register_amount,
+                                    'offer_type_id' => $request->offer_type_id,
+                                    'other_phone' => $request->select_country . $request->other_phone_number,
+                                    'transaction_type_id' => $request->transaction_type_id,
+                                    'currency' => $request->select_currency,
+                                ],
                                 'verify'  => false
                             ]);
                             $offer = json_decode($response_offer->getBody(), false);
@@ -1563,10 +1586,10 @@ class HomeController extends Controller
                                 'form_params' => [
                                     'reference' =>  $reference_code,
                                     'orderNumber' => $offer->data->result_response->order_number,
-                                    'amount' => $inputs_offer['amount'],
-                                    'phone' =>  $inputs_offer['other_phone'],
-                                    'currency' =>  $inputs_offer['currency'],
-                                    'type' => $inputs_offer['transaction_type_id'],
+                                    'amount' => $request->register_amount,
+                                    'phone' => $request->select_country . $request->other_phone_number,
+                                    'currency' => $request->select_currency,
+                                    'type' => $request->transaction_type_id,
                                     'code' => 1
                                 ],
                                 'verify'  => false
@@ -1585,7 +1608,7 @@ class HomeController extends Controller
                     }
                 }
 
-                if ($inputs_offer['transaction_type_id'] == 2) {
+                if ($request->transaction_type_id == 2) {
                     if ($inputs_user['firstname'] != null OR $inputs_user['lastname'] != null OR $inputs_user['phone'] != null) {
                         // Register user API Response
                         $response_user = $this::$client->request('POST', $url_user, [
@@ -1595,10 +1618,10 @@ class HomeController extends Controller
                         ]);
                         $user = json_decode($response_user->getBody(), false);
 
-                        return Redirect::to('/account/offers/' . $inputs_offer['amount'] . '/' . $inputs_offer['currency'] . '/' . $user->data->user->id);
+                        return Redirect::to('/account/offers/' . $request->register_amount . '/' . $request->select_currency . '/' . $user->data->user->id);
 
                     } else {
-                        return Redirect::to('/account/offers/' . $inputs_offer['amount'] . '/' . $inputs_offer['currency'] . '/0');
+                        return Redirect::to('/account/offers/' . $request->register_amount . '/' . $request->select_currency . '/0');
                     }
                 }
             }

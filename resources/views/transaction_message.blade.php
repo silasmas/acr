@@ -29,12 +29,12 @@
         @if ($status_code == '2' || !empty($response_error))
                         <h1 class="text-danger" style="font-size: 5rem;"><span class="bi bi-x-circle"></span></h1>
         @endif
-                        <h3 class="h3 mb-4">{{ $message_content }}</h3>
+                        <h3 class="h3 mb-4">{{ !empty($response_error) ? (!empty($response_error->data) ? $response_error->data : $response_error->message) : $message_content }}</h3>
         @if (!empty($message_new_partner))
                         <p class="mb-4">{{ $message_new_partner }}</p>
         @endif
         @if (!empty($response_error))
-                        <p class="small mb-4">{{ $response_error->message }}</p>
+                        <p class="small mb-4">{{ !empty($response_error->message) ? $response_error->message : $response_error->data }}</p>
         @endif
         @if (!empty($payment))
                         <div class="card mb-4 shadow-0">
