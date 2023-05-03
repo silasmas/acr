@@ -964,6 +964,9 @@
             }
         });
     }
+    function actualiser() {
+        location.reload();
+    }
     </script>
 </body>
 
