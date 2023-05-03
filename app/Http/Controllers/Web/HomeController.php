@@ -1375,6 +1375,8 @@ class HomeController extends Controller
     {
         // Register offer API URL
         $url_offer = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/offer/store';
+        // Register payment API URL
+        $url_payment = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/payment/store';
         // Register user API URL
         $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user';
         // inputs
@@ -1415,6 +1417,23 @@ class HomeController extends Controller
                             'verify'  => false
                         ]);
                         $offer = json_decode($response_offer->getBody(), false);
+                        $reference_code = 'REF-' . ((string) random_int(10000000, 99999999)) . '-' . Auth::user()->id;
+
+                        // Register payment API Response
+                        $this::$client->request('POST', $url_payment, [
+                            'headers' => $this::$headers,
+                            'form_params' => [
+                                'reference' =>  $reference_code,
+                                'orderNumber' => $offer->data->result_response->order_number,
+                                'amount' => $inputs_offer['amount'],
+                                'phone' =>  $inputs_offer['other_phone'],
+                                'currency' =>  $inputs_offer['currency'],
+                                'type' => $inputs_offer['transaction_type_id'],
+                                'code' => 1,
+                                'user_id' => Auth::user()->id
+                            ],
+                            'verify'  => false
+                        ]);
 
                         return Redirect::route('transaction.waiting', [
                             'success_message' => $offer->data->result_response->order_number . '-' . Auth::user()->id . '-no'

@@ -31,25 +31,47 @@ class PaymentController extends BaseController
     public function store(Request $request)
     {
         $user_id = is_numeric(explode('-', $request->reference)[2]) ? (int) explode('-', $request->reference)[2] : null;
-        // Get inputs
-        $inputs = [
-            'reference' => $request->reference,
-            'provider_reference' => $request->provider_reference,
-            'order_number' => $request->orderNumber,
-            'amount' => $request->amount,
-            'amount_customer' => $request->amountCustomer,
-            'phone' => $request->phone,
-            'currency' => $request->currency,
-            'channel' => $request->channel,
-            'created_at' => $request->createdAt,
-            'type_id' => $request->type,
-            'status_id' => $request->code,
-            'user_id' => $user_id,
-        ];
+        // Check if payment already exists
+        $payment = Payment::where('order_number', $request->orderNumber)->first();
 
-        $payment = Payment::create($inputs);
+        // If payment exists
+        if ($payment != null) {
+            $payment->update([
+                'reference' => $request->reference,
+                'provider_reference' => $request->provider_reference,
+                'order_number' => $request->orderNumber,
+                'amount' => $request->amount,
+                'amount_customer' => $request->amountCustomer,
+                'phone' => $request->phone,
+                'currency' => $request->currency,
+                'channel' => $request->channel,
+                'type_id' => $request->type,
+                'status_id' => $request->code,
+                'user_id' => $user_id,
+                'updated_at' => now()
+            ]);
 
-        return $this->handleResponse(new ResourcesPayment($payment), __('notifications.create_payment_success'));
+            return $this->handleResponse(new ResourcesPayment($payment), __('notifications.update_payment_success'));
+
+        // Otherwise, create new payment
+        } else {
+            $payment = Payment::create([
+                'reference' => $request->reference,
+                'provider_reference' => $request->provider_reference,
+                'order_number' => $request->orderNumber,
+                'amount' => $request->amount,
+                'amount_customer' => $request->amountCustomer,
+                'phone' => $request->phone,
+                'currency' => $request->currency,
+                'channel' => $request->channel,
+                'created_at' => $request->createdAt,
+                'type_id' => $request->type,
+                'status_id' => $request->code,
+                'user_id' => $user_id
+            ]);
+
+            return $this->handleResponse(new ResourcesPayment($payment), __('notifications.create_payment_success'));
+        }
     }
 
     /**
