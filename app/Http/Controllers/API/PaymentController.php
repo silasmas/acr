@@ -35,21 +35,21 @@ class PaymentController extends BaseController
         $payment = Payment::where('order_number', $request->orderNumber)->first();
 
         // If payment exists
-        if ($payment != null) {
-            $payment->update([
-                'reference' => $request->reference,
-                'provider_reference' => $request->provider_reference,
-                'order_number' => $request->orderNumber,
-                'amount' => $request->amount,
-                'amount_customer' => $request->amountCustomer,
-                'phone' => $request->phone,
-                'currency' => $request->currency,
-                'channel' => $request->channel,
-                'type_id' => $request->type,
-                'status_id' => $request->code,
-                'user_id' => $user_id,
-                'updated_at' => now()
-            ]);
+            if ($payment != null) {
+                $payment->update([
+                    'reference' => $request->reference,
+                    'provider_reference' => $request->provider_reference,
+                    'order_number' => $request->orderNumber,
+                    'amount' => $request->amount,
+                    'amount_customer' => $request->amountCustomer,
+                    'phone' => $request->phone,
+                    'currency' => $request->currency,
+                    'channel' => $request->channel,
+                    'type_id' => $request->type,
+                    'status_id' => $request->code,
+                    'user_id' => $user_id,
+                    'updated_at' => now()
+                ]);
 
             return $this->handleResponse(new ResourcesPayment($payment), __('notifications.update_payment_success'));
 
