@@ -920,49 +920,49 @@
             });
 
 
-    function delete(id, url) {
+    function deletemsg(id, url) {
 
-swal({
-    title: "Attention suppression",
-    text: "Etes -vous prêt de supprimer cette information?",
-    icon: 'warning',
-    dangerMode: true,
-    buttons: {
-        cancel: 'Non',
-        delete: 'OUI'
-    }
-}).then(function (willDelete) {
-    if (willDelete) {
-
-        $.ajax({
-            url: url + "/" + id,
-            method: "GET",
-            data: {'idv':idv},
-            success: function (data) {
-                //  load('#tab-session');
-                if (!data.reponse) {
-                    swal({
-                        title: data.msg,
-                        icon: 'error'
-                    })
-
-                } else {
-                    swal({
-                        title: data.msg,
-                        icon: 'success'
-                    })
-                    actualiser();
-                }
-            },
-        });
-    } else {
         swal({
-            title: "Suppression annuler",
-            icon: 'error'
-        })
+            title: "Attention suppression",
+            text: "Etes -vous prêt de supprimer cette information?",
+            icon: 'warning',
+            dangerMode: true,
+            buttons: {
+                cancel: 'Non',
+                delete: 'OUI'
+            }
+        }).then(function (willDelete) {
+            if (willDelete) {
+
+                $.ajax({
+                    url: url + "/" + id,
+                    method: "GET",
+                    data: {'idv':idv},
+                    success: function (data) {
+                        //  load('#tab-session');
+                        if (!data.reponse) {
+                            swal({
+                                title: data.msg,
+                                icon: 'error'
+                            })
+
+                        } else {
+                            swal({
+                                title: data.msg,
+                                icon: 'success'
+                            })
+                            actualiser();
+                        }
+                    },
+                });
+            } else {
+                swal({
+                    title: "Suppression annuler",
+                    icon: 'error'
+                })
+            }
+        });
     }
-});
-}
     </script>
 </body>
 
