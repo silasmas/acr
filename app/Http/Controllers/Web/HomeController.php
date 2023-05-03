@@ -32,7 +32,7 @@ class HomeController extends Controller
         // Client used for accessing API
         $this::$client = new Client();
 
-        $this->middleware('auth')->except(['changeLanguage', 'index', 'notification', 'news', 'newsDatas', 'communique', 'works', 'donate', 'about', 'help', 'faq', 'termsOfUse', 'privacyPolicy', 'registerOffer']);
+        $this->middleware('auth')->except(['changeLanguage', 'index', 'notification', 'news', 'newsDatas', 'communique', 'works', 'donate', 'about', 'help', 'faq', 'termsOfUse', 'privacyPolicy', 'transactionWaiting', 'transactionMessage', 'registerOffer']);
     }
 
     // ==================================== HTTP GET METHODS ====================================
@@ -1416,7 +1416,9 @@ class HomeController extends Controller
                         ]);
                         $offer = json_decode($response_offer->getBody(), false);
 
-                        return Redirect::route('transaction.waiting')->with('response_success', $offer->data->result_response->order_number . '-' . Auth::user()->id . '-no');
+                        return Redirect::route('transaction.waiting', [
+                            'success_message' => $offer->data->result_response->order_number . '-' . Auth::user()->id . '-no'
+                        ]);
 
                     } catch (ClientException $e) {
                         return view('transaction_message', [
@@ -1454,8 +1456,10 @@ class HomeController extends Controller
                             ]);
                             $user = json_decode($response_user->getBody(), false);
 
-                            return Redirect::route('transaction.waiting')->with('response_success', $offer->data->order_number . '-' . $user->data->user->id . '-' . $user->data->password_reset->former_password);
-
+                            return Redirect::route('transaction.waiting', [
+                                'success_message' => $offer->data->result_response->order_number . '-' . $user->data->user->id . '-' . $user->data->password_reset->former_password
+                            ]);
+    
                         } catch (ClientException $e) {
                             return view('transaction_message', [
                                 'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
@@ -1473,7 +1477,9 @@ class HomeController extends Controller
                             ]);
                             $offer = json_decode($response_offer->getBody(), false);
 
-                            return Redirect::route('transaction.waiting')->with('response_success', $offer->data->order_number . '-0-no');
+                            return Redirect::route('transaction.waiting', [
+                                'success_message' => $offer->data->result_response->order_number . '-0-no'
+                            ]);
 
                         } catch (ClientException $e) {
                             return view('transaction_message', [

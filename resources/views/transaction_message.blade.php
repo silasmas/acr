@@ -2,20 +2,15 @@
 
 @section('errors-content')
 
-        <div class="container-xxl py-4 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container-xxl d-flex justify-content-center align-items-center py-5 wow fadeInUp" data-wow-delay="0.1s">
             <div class="container text-center">
     @if (Route::is('transaction.waiting'))
-<?php
-$orderNumber = explode('-', \Session::has('response_success'))[0];
-$user_id = explode('-', \Session::has('response_success'))[1];
-$password = explode('-', \Session::has('response_success'))[2];
-?>
 
                 <div class="row justify-content-center mt-5">
                     <div class="col-lg-6">
                         <p>@lang('miscellaneous.transaction_waiting')</p>
                         <p>
-                            <a href="{{ route('transaction.message', ['orderNumber' => $orderNumber , 'user_id' => $user_id , 'password' => $password]) }}" class="btn acr-btn-blue rounded-pill py-3 px-5">OK</a>
+                            <a href="{{ route('transaction.message', ['orderNumber' => explode('-', request()->success_message)[0], 'userId' => explode('-', request()->success_message)[1], 'password' => explode('-', request()->success_message)[2]]) }}" class="btn acr-btn-blue rounded-pill py-3 px-5">OK</a>
                         </p>
                     </div>
                 </div>
@@ -42,7 +37,7 @@ $password = explode('-', \Session::has('response_success'))[2];
                         <p class="small mb-4">{{ $response_error->message }}</p>
         @endif
         @if (!empty($payment))
-                        <div class="card mb-4">
+                        <div class="card mb-4 shadow-0">
                             <div class="card-body d-flex justify-content-between align-items-center">
                                 <div class="px-2 py-1 border-start border-3 bdc-{{ $payment->status->color }}-600">
                                     <p class="m-0 text-black">{{ $payment->reference }}</p>
@@ -58,9 +53,9 @@ $password = explode('-', \Session::has('response_success'))[2];
                         </div>
         @endif
         @if (!empty($payment))
-                        <a href="{{ route('account') }}" class="btn d-lg-inline-block d-none acr-btn-yellow rounded-pill py-3 px-5">{{ __('miscellaneous.back_home') }}</a>
+                        <a href="{{ route('account') }}" class="btn d-lg-inline-block d-none acr-btn-yellow btn-color rounded-pill py-3 px-5 shadow-0">{{ __('miscellaneous.back_home') }}</a>
         @else
-                        <a href="{{ route('home') }}" class="btn d-lg-inline-block d-none acr-btn-yellow rounded-pill py-3 px-5">{{ __('miscellaneous.back_home') }}</a>
+                        <a href="{{ route('home') }}" class="btn d-lg-inline-block d-none acr-btn-yellow btn-color rounded-pill py-3 px-5 shadow-0">{{ __('miscellaneous.back_home') }}</a>
         @endif
                     </div>
                 </div>

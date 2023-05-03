@@ -27,8 +27,13 @@
         <link rel="stylesheet" href="{{ asset('assets/icons/bootstrap-icons/bootstrap-icons.css') }}">
 
         <!-- Addons CSS Files -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/jquery/jquery-ui/jquery-ui.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/dataTables/datatables.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/bootstrap/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/mdb/css/mdb.min.css') }}">
 
+        <!-- Adminator CSS File -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.adminator.css') }}">
         <!-- Custom CSS File -->
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.custom.css') }}">
 
@@ -41,7 +46,12 @@
 
         <!-- JavaScript Libraries -->
         <script src="{{ asset('assets/addons/custom/jquery/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('assets/addons/custom/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('assets/addons/custom/bootstrap/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('assets/addons/custom/mdb/js/mdb.min.js') }}"></script>
+        <script src="{{ asset('assets/addons/custom/autosize/js/autosize.min.js') }}"></script>
+
+        <!-- Adminator Javascript -->
+        <script defer="defer" src="{{ asset('assets/js/scripts.adminator.js') }}"></script>
     </body>
 </html>
