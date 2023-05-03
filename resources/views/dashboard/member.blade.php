@@ -564,8 +564,8 @@ Route::is('party.manager.datas'))
                         <table class="table" id="dataList">
                             <thead>
                                 <tr>
-                                    <th class="bdwT-0 fw-bold">@lang('miscellaneous.names')</th>
-                                    <th class="bdwT-0 fw-bold">#</th>
+                                    <th class="bdwT-0 fw-bold">@lang('miscellaneous.tnameMes')</th>
+                                    <th class="bdwT-0 fw-bold">@lang('miscellaneous.option')</th>
                                 </tr>
                             </thead>
 

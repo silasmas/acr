@@ -185,6 +185,8 @@ return [
     'register_title3' => 'Ecrivez le code que vous avez reçu',
     'serial_number' => 'N° de série',
     'names' => 'Noms',
+    'tnameMess' => 'Message',
+    'option' => 'Option',
     'firstname' => 'Prénom',
     'lastname' => 'Nom',
     'surname' => 'Post-nom',
