@@ -5,14 +5,17 @@
         <div class="container-xxl py-4 wow fadeInUp" data-wow-delay="0.1s">
             <div class="container text-center">
     @if (Route::is('transaction.waiting'))
+<?php
+$orderNumber = explode('-', \Session::has('response_success'))[0];
+$user_id = explode('-', \Session::has('response_success'))[1];
+$password = explode('-', \Session::has('response_success'))[2];
+?>
 
                 <div class="row justify-content-center mt-5">
                     <div class="col-lg-6">
                         <p>@lang('miscellaneous.transaction_waiting')</p>
                         <p>
-                            <a href="{{ route('transaction.message', ['orderNumber' => explode('-', \Session::has('response_success'))[0], 'user_id' => explode('-', \Session::has('response_success'))[1]], 'password' => explode('-', \Session::has('response_success'))[2]]) }}" class="btn acr-btn-blue rounded-pill py-3 px-5">
-                                OK
-                            </a>
+                            <a href="{{ route('transaction.message', ['orderNumber' => $orderNumber , 'user_id' => $user_id , 'password' => $password]) }}" class="btn acr-btn-blue rounded-pill py-3 px-5">OK</a>
                         </p>
                     </div>
                 </div>
