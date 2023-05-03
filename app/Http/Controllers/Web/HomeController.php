@@ -1403,9 +1403,7 @@ class HomeController extends Controller
                 return Redirect::back()->with('error_message', __('miscellaneous.transaction_type_error'));
             }
 
-            if ($request->select_country == null || $request->other_phone_number == null || $request->select_currency == null) {
-                return Redirect::back()->with('error_message', __('miscellaneous.required_fields'));
-            }
+           
 
             if ($inputs_offer['transaction_type_id'] != null) {
                 if ($inputs_offer['transaction_type_id'] == 1) {
@@ -1473,6 +1471,9 @@ class HomeController extends Controller
 
             if ($request->transaction_type_id != null) {
                 if ($request->transaction_type_id == 1) {
+                    if ($request->select_country == null || $request->other_phone_number == null || $request->select_currency == null) {
+                        return Redirect::back()->with('error_message', __('miscellaneous.required_fields'));
+                    }
                     if ($inputs_user['firstname'] != null OR $inputs_user['lastname'] != null OR $inputs_user['phone'] != null) {
                         try {
                             // Select all users API Response
@@ -1621,6 +1622,9 @@ class HomeController extends Controller
                 }
 
                 if ($request->transaction_type_id == 2) {
+                    if ( $request->select_currency == null) {
+                        return Redirect::back()->with('error_message', __('miscellaneous.required_fields'));
+                    }
                     if ($inputs_user['firstname'] != null OR $inputs_user['lastname'] != null OR $inputs_user['phone'] != null) {
                         // Register user API Response
                         $response_user = $this::$client->request('POST', $url_user, [
