@@ -564,11 +564,11 @@ Route::is('party.manager.datas'))
                         <table class="table" id="dataList">
 
                             <tbody id="updateMemberStatus">
-                                @forelse ($message_membre as $user)
+                                @forelse ($message_membre as $m)
                                 <tr>
                                     <td class="fw-600">
                                         <p class="m-0 text-truncate"><a
-                                                href="{{ route('party.member.datas', ['id' => $user->id]) }}">{{$user->notification_content }}</a></p>
+                                                href="{{ route('party.member.datas', ['id' => $m->id]) }}">{{$m->notification_content }}</a></p>
                                     </td>
                                     <td>
                                         <a href="http://">@lang('miscellaneous.delete')</a>
