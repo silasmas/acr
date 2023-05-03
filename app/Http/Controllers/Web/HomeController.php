@@ -1449,8 +1449,9 @@ class HomeController extends Controller
                                 'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
                             ]);
                         }
+                    }
 
-                    } else {
+                    if ($inputs_offer['offer_type_id'] != '9') {
                         try {
                             // Register offer API Response
                             $response_offer = $this::$client->request('POST', $url_offer, [
@@ -1492,7 +1493,9 @@ class HomeController extends Controller
                     if ($inputs_offer['offer_type_id'] != '10') {
                         return Redirect::to('/account/offers/' . $inputs_offer['amount'] . '/' . $inputs_offer['currency'] . '/' . Auth::user()->id);
 
-                    } else {
+                    }
+
+                    if ($inputs_offer['offer_type_id'] != '9') {
                         return Redirect::to('/account/offers/' . $inputs_offer['amount'] . '/' . $inputs_offer['currency'] . '/0');
                     }
                 }
@@ -1511,6 +1514,54 @@ class HomeController extends Controller
                 if ($request->transaction_type_id == 1) {
                     if ($inputs_user['firstname'] != null OR $inputs_user['lastname'] != null OR $inputs_user['phone'] != null) {
                         try {
+                            // Select all users API Response
+                            $response_user = $this::$client->request('GET', $url_user, [
+                                'headers' => $this::$headers,
+                                'verify'  => false
+                            ]);
+                            $users = json_decode($response_user->getBody(), false);
+
+                            foreach ($users->data as $user):
+                                if ($user->phone == $inputs_user['phone']) {
+                                    // Register offer API Response
+                                    $response_offer = $this::$client->request('POST', $url_offer, [
+                                        'headers' => $this::$headers,
+                                        'form_params' => [
+                                            'offer_name' => $request->register_offer_name,
+                                            'amount' => $request->register_amount,
+                                            'offer_type_id' => $request->offer_type_id,
+                                            'user_id' => $user->id,
+                                            'other_phone' => $request->select_country . $request->other_phone_number,
+                                            'transaction_type_id' => $request->transaction_type_id,
+                                            'currency' => $request->select_currency,
+                                        ],
+                                        'verify'  => false
+                                    ]);
+                                    $offer = json_decode($response_offer->getBody(), false);
+                                    $reference_code = 'REF-' . ((string) random_int(10000000, 99999999)) . '-' . $user->data->user->id;
+
+                                    // Register payment API Response
+                                    $this::$client->request('POST', $url_payment, [
+                                        'headers' => $this::$headers,
+                                        'form_params' => [
+                                            'reference' => $reference_code,
+                                            'orderNumber' => $offer->data->result_response->order_number,
+                                            'amount' => $request->register_amount,
+                                            'phone' => $request->select_country . $request->other_phone_number,
+                                            'currency' => $request->select_currency,
+                                            'type' => $request->transaction_type_id,
+                                            'code' => 1,
+                                            'user_id' => $user->id
+                                        ],
+                                        'verify'  => false
+                                    ]);
+
+                                    return Redirect::route('transaction.waiting', [
+                                        'success_message' => $offer->data->result_response->order_number . '-' . $user->data->user->id . '-' . $user->data->password_reset->former_password
+                                    ]);
+                                }
+                            endforeach;
+
                             // Register user API Response
                             $response_user = $this::$client->request('POST', $url_user, [
                                 'headers' => $this::$headers,
