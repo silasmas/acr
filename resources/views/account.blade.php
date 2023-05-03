@@ -42,12 +42,12 @@
                         </div>
                     </div>
 
-                    @include("parties.profilmembre")
+                   
                 </div>
 
                 <div class="row wow fadeInUp" data-wow-delay="0.1s">
                     <div class="col-12">
-
+                        @include("parties.profilmembre")
                     </div>
                 </div>
     @endif
