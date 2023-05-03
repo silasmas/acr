@@ -41,6 +41,8 @@
                             <p class="m-0 text-muted">{{ $current_user->role_user->role->role_name }}</p>
                         </div>
                     </div>
+
+                    @include("parties.profilmembre")
                 </div>
 
                 <div class="row wow fadeInUp" data-wow-delay="0.1s">
