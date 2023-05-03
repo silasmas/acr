@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
-use GuzzleHttp\Exception\ClientException;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Illuminate\Support\Facades\Session;
 
 /**
  * @author Xanders
@@ -27,7 +26,7 @@ class HomeController extends Controller
         $this::$headers = [
             'Authorization' => 'Bearer uWNJB6EwpVQwSuL5oJ7S7JkSkLzdpt8M1Xrs1MZITE1bCEbjMhscv8ZX2sTiDBarCHcu1EeJSsSLZIlYjr6YCl7pLycfn2AAQmYm',
             'Accept' => 'application/json',
-            'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale()
+            'X-localization' => !empty(Session::get('locale')) ? Session::get('locale') : App::getLocale(),
         ];
         // Client used for accessing API
         $this::$client = new Client();
@@ -88,69 +87,69 @@ class HomeController extends Controller
                 // Select current user API response
                 $response_user = $this::$client->request('GET', $url_user, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $user = json_decode($response_user->getBody(), false);
                 // Select countries API response
                 $response_country = $this::$client->request('GET', $url_country, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $country = json_decode($response_country->getBody(), false);
                 // Select all received messages API response
                 $response_message = $this::$client->request('GET', $url_message, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $messages = json_decode($response_message->getBody(), false);
                 // Select types by group name API response
                 $response_offer_type = $this::$client->request('GET', $url_offer_type, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $offer_type = json_decode($response_offer_type->getBody(), false);
                 $response_transaction_type = $this::$client->request('GET', $url_transaction_type, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $transaction_type = json_decode($response_transaction_type->getBody(), false);
                 // Select all users by role API response
                 $response_effective_member = $this::$client->request('GET', $url_effective_member, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $effective_members = json_decode($response_effective_member->getBody(), false);
                 $response_manager = $this::$client->request('GET', $url_manager, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $managers = json_decode($response_manager->getBody(), false);
                 // Select all users by not role API response
                 $response_not_developer = $this::$client->request('GET', $url_not_developer, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $not_developer = json_decode($response_not_developer->getBody(), false);
                 // Select users by stauts "Désactivé" API response
                 $response_deactivated_users = $this::$client->request('GET', $url_deactivated_users, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $deactivated_users = json_decode($response_deactivated_users->getBody(), false);
                 // // Select news by type ID API response
                 $response_news = $this::$client->request('GET', $url_news, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $news = json_decode($response_news->getBody(), false);
                 $response_communiques = $this::$client->request('GET', $url_communiques, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $communiques = json_decode($response_communiques->getBody(), false);
                 $response_events = $this::$client->request('GET', $url_events, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $events = json_decode($response_events->getBody(), false);
 
@@ -165,7 +164,7 @@ class HomeController extends Controller
                             'deactivated_users' => $deactivated_users->data,
                             'news' => $news->data,
                             'communiques' => $communiques->data,
-                            'events' => $events->data
+                            'events' => $events->data,
                         ]);
 
                     } else if (request()->user_role == 'developer') {
@@ -174,7 +173,7 @@ class HomeController extends Controller
                             'countries' => $country->data,
                             'messages' => $messages->data,
                             'offer_types' => $offer_type->data,
-                            'transaction_types' => $transaction_type->data
+                            'transaction_types' => $transaction_type->data,
                         ]);
 
                     } else if (request()->user_role == 'manager') {
@@ -190,7 +189,7 @@ class HomeController extends Controller
                             'deactivated_users' => $deactivated_users->data,
                             'news' => $news->data,
                             'communiques' => $communiques->data,
-                            'events' => $events->data
+                            'events' => $events->data,
                         ]);
 
                     } else {
@@ -199,7 +198,7 @@ class HomeController extends Controller
                             'countries' => $country->data,
                             'messages' => $messages->data,
                             'offer_types' => $offer_type->data,
-                            'transaction_types' => $transaction_type->data
+                            'transaction_types' => $transaction_type->data,
                         ]);
                     }
 
@@ -209,14 +208,14 @@ class HomeController extends Controller
                         'countries' => $country->data,
                         'messages' => $messages->data,
                         'offer_types' => $offer_type->data,
-                        'transaction_types' => $transaction_type->data
+                        'transaction_types' => $transaction_type->data,
                     ]);
                 }
 
             } catch (ClientException $e) {
                 // If the API returns some error, return to the page and display its message
                 return view('welcome', [
-                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
                 ]);
             }
 
@@ -233,31 +232,31 @@ class HomeController extends Controller
                 // Select all countries API response
                 $response_country = $this::$client->request('GET', $url_country, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $country = json_decode($response_country->getBody(), false);
                 // Select types by group name API response
                 $response_offer_type = $this::$client->request('GET', $url_offer_type, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $offer_type = json_decode($response_offer_type->getBody(), false);
                 $response_transaction_type = $this::$client->request('GET', $url_transaction_type, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $transaction_type = json_decode($response_transaction_type->getBody(), false);
 
                 return view('welcome', [
                     'countries' => $country->data,
                     'offer_types' => $offer_type->data,
-                    'transaction_types' => $transaction_type->data
+                    'transaction_types' => $transaction_type->data,
                 ]);
 
             } catch (ClientException $e) {
                 // If the API returns some error, return to the page and display its message
                 return view('welcome', [
-                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
                 ]);
             }
         }
@@ -293,56 +292,56 @@ class HomeController extends Controller
             // Select current user API response
             $response_user = $this::$client->request('GET', $url_user, [
                 'headers' => $this::$headers,
-                'verify'  => false
+                'verify' => false,
             ]);
             $user = json_decode($response_user->getBody(), false);
             // Select all received messages API response
             $response_message = $this::$client->request('GET', $url_message, [
                 'headers' => $this::$headers,
-                'verify'  => false
+                'verify' => false,
             ]);
             $messages = json_decode($response_message->getBody(), false);
             // Select all users by role API response
             $response_effective_member = $this::$client->request('GET', $url_effective_member, [
                 'headers' => $this::$headers,
-                'verify'  => false
+                'verify' => false,
             ]);
             $effective_members = json_decode($response_effective_member->getBody(), false);
             $response_manager = $this::$client->request('GET', $url_manager, [
                 'headers' => $this::$headers,
-                'verify'  => false
+                'verify' => false,
             ]);
             $managers = json_decode($response_manager->getBody(), false);
             // Select all users by not role API response
             $response_not_developer = $this::$client->request('GET', $url_not_developer, [
                 'headers' => $this::$headers,
-                'verify'  => false
+                'verify' => false,
             ]);
             $not_developer = json_decode($response_not_developer->getBody(), false);
             // Select users by stauts "Désactivé" API response
             $response_deactivated_users = $this::$client->request('GET', $url_deactivated_users, [
                 'headers' => $this::$headers,
-                'verify'  => false
+                'verify' => false,
             ]);
             $deactivated_users = json_decode($response_deactivated_users->getBody(), false);
             // // Select news by type ID API response
             $response_news = $this::$client->request('GET', $url_news, [
                 'headers' => $this::$headers,
-                'verify'  => false
+                'verify' => false,
             ]);
             $news = json_decode($response_news->getBody(), false);
             $response_communiques = $this::$client->request('GET', $url_communiques, [
                 'headers' => $this::$headers,
-                'verify'  => false
+                'verify' => false,
             ]);
             $communiques = json_decode($response_communiques->getBody(), false);
             $response_events = $this::$client->request('GET', $url_events, [
                 'headers' => $this::$headers,
-                'verify'  => false
+                'verify' => false,
             ]);
             $events = json_decode($response_events->getBody(), false);
 
-            if ($user->data->role_user->role->role_name != 'Administrateur' AND $user->data->role_user->role->role_name != 'Développeur' AND $user->data->role_user->role->role_name != 'Manager') {
+            if ($user->data->role_user->role->role_name != 'Administrateur' and $user->data->role_user->role->role_name != 'Développeur' and $user->data->role_user->role->role_name != 'Manager') {
                 return Redirect::route('home');
 
             } else {
@@ -355,14 +354,14 @@ class HomeController extends Controller
                     'deactivated_users' => $deactivated_users->data,
                     'news' => $news->data,
                     'communiques' => $communiques->data,
-                    'events' => $events->data
+                    'events' => $events->data,
                 ]);
             }
 
         } catch (ClientException $e) {
             // If the API returns some error, return to the page and display its message
             return view('welcome', [
-                'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
             ]);
         }
     }
@@ -396,41 +395,41 @@ class HomeController extends Controller
                 // Select current user API response
                 $response_user = $this::$client->request('GET', $url_user, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $user = json_decode($response_user->getBody(), false);
                 // Select countries API response
                 $response_country = $this::$client->request('GET', $url_country, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $country = json_decode($response_country->getBody(), false);
                 // Select all received messages API response
                 $response_message = $this::$client->request('GET', $url_message, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $messages = json_decode($response_message->getBody(), false);
                 // Select types by group name API response
                 $response_offer_type = $this::$client->request('GET', $url_offer_type, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $offer_type = json_decode($response_offer_type->getBody(), false);
                 $response_transaction_type = $this::$client->request('GET', $url_transaction_type, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $transaction_type = json_decode($response_transaction_type->getBody(), false);
                 // About API response
                 $response_about_party = $this::$client->request('GET', $url_about_party, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $about_party = json_decode($response_about_party->getBody(), false);
                 $response_about_app = $this::$client->request('GET', $url_about_app, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $about_app = json_decode($response_about_app->getBody(), false);
 
@@ -441,13 +440,13 @@ class HomeController extends Controller
                     'offer_types' => $offer_type->data,
                     'transaction_types' => $transaction_type->data,
                     'about_party' => $about_party->data,
-                    'about_app' => $about_app->data
+                    'about_app' => $about_app->data,
                 ]);
 
             } catch (ClientException $e) {
                 // If the API returns some error, return to the page and display its message
                 return view('about', [
-                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
                 ]);
             }
 
@@ -467,29 +466,29 @@ class HomeController extends Controller
                 // Select all countries API response
                 $response_country = $this::$client->request('GET', $url_country, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $country = json_decode($response_country->getBody(), false);
                 // Select types by group name API response
                 $response_offer_type = $this::$client->request('GET', $url_offer_type, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $offer_type = json_decode($response_offer_type->getBody(), false);
                 $response_transaction_type = $this::$client->request('GET', $url_transaction_type, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $transaction_type = json_decode($response_transaction_type->getBody(), false);
                 // About API response
                 $response_about_party = $this::$client->request('GET', $url_about_party, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $about_party = json_decode($response_about_party->getBody(), false);
                 $response_about_app = $this::$client->request('GET', $url_about_app, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $about_app = json_decode($response_about_app->getBody(), false);
 
@@ -498,13 +497,13 @@ class HomeController extends Controller
                     'offer_types' => $offer_type->data,
                     'transaction_types' => $transaction_type->data,
                     'about_party' => $about_party->data,
-                    'about_app' => $about_app->data
+                    'about_app' => $about_app->data,
                 ]);
 
             } catch (ClientException $e) {
                 // If the API returns some error, return to the page and display its message
                 return view('about', [
-                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
                 ]);
             }
         }
@@ -538,36 +537,36 @@ class HomeController extends Controller
                 // Select current user API response
                 $response_user = $this::$client->request('GET', $url_user, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $user = json_decode($response_user->getBody(), false);
                 // Select countries API response
                 $response_country = $this::$client->request('GET', $url_country, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $country = json_decode($response_country->getBody(), false);
                 // Select all received messages API response
                 $response_message = $this::$client->request('GET', $url_message, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $messages = json_decode($response_message->getBody(), false);
                 // Select types by group name API response
                 $response_offer_type = $this::$client->request('GET', $url_offer_type, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $offer_type = json_decode($response_offer_type->getBody(), false);
                 $response_transaction_type = $this::$client->request('GET', $url_transaction_type, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $transaction_type = json_decode($response_transaction_type->getBody(), false);
                 // Help API response
                 $response_help = $this::$client->request('GET', $url_help, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $help = json_decode($response_help->getBody(), false);
 
@@ -577,13 +576,13 @@ class HomeController extends Controller
                     'messages' => $messages->data,
                     'offer_types' => $offer_type->data,
                     'transaction_types' => $transaction_type->data,
-                    'help' => $help->data
+                    'help' => $help->data,
                 ]);
 
             } catch (ClientException $e) {
                 // If the API returns some error, return to the page and display its message
                 return view('about', [
-                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
                 ]);
             }
 
@@ -602,24 +601,24 @@ class HomeController extends Controller
                 // Select all countries API response
                 $response_country = $this::$client->request('GET', $url_country, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $country = json_decode($response_country->getBody(), false);
                 // Select types by group name API response
                 $response_offer_type = $this::$client->request('GET', $url_offer_type, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $offer_type = json_decode($response_offer_type->getBody(), false);
                 $response_transaction_type = $this::$client->request('GET', $url_transaction_type, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $transaction_type = json_decode($response_transaction_type->getBody(), false);
                 // Help API response
                 $response_help = $this::$client->request('GET', $url_help, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $help = json_decode($response_help->getBody(), false);
 
@@ -627,13 +626,13 @@ class HomeController extends Controller
                     'countries' => $country->data,
                     'offer_types' => $offer_type->data,
                     'transaction_types' => $transaction_type->data,
-                    'help' => $help->data
+                    'help' => $help->data,
                 ]);
 
             } catch (ClientException $e) {
                 // If the API returns some error, return to the page and display its message
                 return view('about', [
-                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
                 ]);
             }
         }
@@ -667,36 +666,36 @@ class HomeController extends Controller
                 // Select current user API response
                 $response_user = $this::$client->request('GET', $url_user, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $user = json_decode($response_user->getBody(), false);
                 // Select countries API response
                 $response_country = $this::$client->request('GET', $url_country, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $country = json_decode($response_country->getBody(), false);
                 // Select all received messages API response
                 $response_message = $this::$client->request('GET', $url_message, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $messages = json_decode($response_message->getBody(), false);
                 // Select types by group name API response
                 $response_offer_type = $this::$client->request('GET', $url_offer_type, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $offer_type = json_decode($response_offer_type->getBody(), false);
                 $response_transaction_type = $this::$client->request('GET', $url_transaction_type, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $transaction_type = json_decode($response_transaction_type->getBody(), false);
                 // FAQ API response
                 $response_faq = $this::$client->request('GET', $url_faq, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $faq = json_decode($response_faq->getBody(), false);
 
@@ -706,13 +705,13 @@ class HomeController extends Controller
                     'messages' => $messages->data,
                     'offer_types' => $offer_type->data,
                     'transaction_types' => $transaction_type->data,
-                    'faq' => $faq->data
+                    'faq' => $faq->data,
                 ]);
 
             } catch (ClientException $e) {
                 // If the API returns some error, return to the page and display its message
                 return view('about', [
-                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
                 ]);
             }
 
@@ -731,24 +730,24 @@ class HomeController extends Controller
                 // Select all countries API response
                 $response_country = $this::$client->request('GET', $url_country, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $country = json_decode($response_country->getBody(), false);
                 // Select types by group name API response
                 $response_offer_type = $this::$client->request('GET', $url_offer_type, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $offer_type = json_decode($response_offer_type->getBody(), false);
                 $response_transaction_type = $this::$client->request('GET', $url_transaction_type, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $transaction_type = json_decode($response_transaction_type->getBody(), false);
                 // FAQ API response
                 $response_faq = $this::$client->request('GET', $url_faq, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $faq = json_decode($response_faq->getBody(), false);
 
@@ -756,13 +755,13 @@ class HomeController extends Controller
                     'countries' => $country->data,
                     'offer_types' => $offer_type->data,
                     'transaction_types' => $transaction_type->data,
-                    'faq' => $faq->data
+                    'faq' => $faq->data,
                 ]);
 
             } catch (ClientException $e) {
                 // If the API returns some error, return to the page and display its message
                 return view('about', [
-                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
                 ]);
             }
         }
@@ -796,36 +795,36 @@ class HomeController extends Controller
                 // Select current user API response
                 $response_user = $this::$client->request('GET', $url_user, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $user = json_decode($response_user->getBody(), false);
                 // Select countries API response
                 $response_country = $this::$client->request('GET', $url_country, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $country = json_decode($response_country->getBody(), false);
                 // Select all received messages API response
                 $response_message = $this::$client->request('GET', $url_message, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $messages = json_decode($response_message->getBody(), false);
                 // Select types by group name API response
                 $response_offer_type = $this::$client->request('GET', $url_offer_type, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $offer_type = json_decode($response_offer_type->getBody(), false);
                 $response_transaction_type = $this::$client->request('GET', $url_transaction_type, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $transaction_type = json_decode($response_transaction_type->getBody(), false);
                 // Terms of use API response
                 $response_terms = $this::$client->request('GET', $url_terms, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $terms = json_decode($response_terms->getBody(), false);
 
@@ -835,13 +834,13 @@ class HomeController extends Controller
                     'messages' => $messages->data,
                     'offer_types' => $offer_type->data,
                     'transaction_types' => $transaction_type->data,
-                    'terms' => $terms->data
+                    'terms' => $terms->data,
                 ]);
 
             } catch (ClientException $e) {
                 // If the API returns some error, return to the page and display its message
                 return view('about', [
-                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
                 ]);
             }
 
@@ -860,24 +859,24 @@ class HomeController extends Controller
                 // Select all countries API response
                 $response_country = $this::$client->request('GET', $url_country, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $country = json_decode($response_country->getBody(), false);
                 // Select types by group name API response
                 $response_offer_type = $this::$client->request('GET', $url_offer_type, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $offer_type = json_decode($response_offer_type->getBody(), false);
                 $response_transaction_type = $this::$client->request('GET', $url_transaction_type, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $transaction_type = json_decode($response_transaction_type->getBody(), false);
                 // Terms of use API response
                 $response_terms = $this::$client->request('GET', $url_terms, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $terms = json_decode($response_terms->getBody(), false);
 
@@ -885,13 +884,13 @@ class HomeController extends Controller
                     'countries' => $country->data,
                     'offer_types' => $offer_type->data,
                     'transaction_types' => $transaction_type->data,
-                    'terms' => $terms->data
+                    'terms' => $terms->data,
                 ]);
 
             } catch (ClientException $e) {
                 // If the API returns some error, return to the page and display its message
                 return view('about', [
-                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
                 ]);
             }
         }
@@ -925,36 +924,36 @@ class HomeController extends Controller
                 // Select current user API response
                 $response_user = $this::$client->request('GET', $url_user, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $user = json_decode($response_user->getBody(), false);
                 // Select countries API response
                 $response_country = $this::$client->request('GET', $url_country, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $country = json_decode($response_country->getBody(), false);
                 // Select all received messages API response
                 $response_message = $this::$client->request('GET', $url_message, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $messages = json_decode($response_message->getBody(), false);
                 // Select types by group name API response
                 $response_offer_type = $this::$client->request('GET', $url_offer_type, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $offer_type = json_decode($response_offer_type->getBody(), false);
                 $response_transaction_type = $this::$client->request('GET', $url_transaction_type, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $transaction_type = json_decode($response_transaction_type->getBody(), false);
                 // Privacy policy API response
                 $response_privacy_policy = $this::$client->request('GET', $url_privacy_policy, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $privacy_policy = json_decode($response_privacy_policy->getBody(), false);
 
@@ -964,13 +963,13 @@ class HomeController extends Controller
                     'messages' => $messages->data,
                     'offer_types' => $offer_type->data,
                     'transaction_types' => $transaction_type->data,
-                    'privacy_policy' => $privacy_policy->data
+                    'privacy_policy' => $privacy_policy->data,
                 ]);
 
             } catch (ClientException $e) {
                 // If the API returns some error, return to the page and display its message
                 return view('about', [
-                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
                 ]);
             }
 
@@ -989,24 +988,24 @@ class HomeController extends Controller
                 // Select all countries API response
                 $response_country = $this::$client->request('GET', $url_country, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $country = json_decode($response_country->getBody(), false);
                 // Select types by group name API response
                 $response_offer_type = $this::$client->request('GET', $url_offer_type, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $offer_type = json_decode($response_offer_type->getBody(), false);
                 $response_transaction_type = $this::$client->request('GET', $url_transaction_type, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $transaction_type = json_decode($response_transaction_type->getBody(), false);
                 // Privacy policy API response
                 $response_privacy_policy = $this::$client->request('GET', $url_privacy_policy, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $privacy_policy = json_decode($response_privacy_policy->getBody(), false);
 
@@ -1014,13 +1013,13 @@ class HomeController extends Controller
                     'countries' => $country->data,
                     'offer_types' => $offer_type->data,
                     'transaction_types' => $transaction_type->data,
-                    'privacy_policy' => $privacy_policy->data
+                    'privacy_policy' => $privacy_policy->data,
                 ]);
 
             } catch (ClientException $e) {
                 // If the API returns some error, return to the page and display its message
                 return view('about', [
-                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
                 ]);
             }
         }
@@ -1054,36 +1053,36 @@ class HomeController extends Controller
                 // Select current user API response
                 $response_user = $this::$client->request('GET', $url_user, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $user = json_decode($response_user->getBody(), false);
                 // Select countries API response
                 $response_country = $this::$client->request('GET', $url_country, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $country = json_decode($response_country->getBody(), false);
                 // Select all received messages API response
                 $response_message = $this::$client->request('GET', $url_message, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $messages = json_decode($response_message->getBody(), false);
                 // Select types by group name API response
                 $response_offer_type = $this::$client->request('GET', $url_offer_type, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $offer_type = json_decode($response_offer_type->getBody(), false);
                 $response_transaction_type = $this::$client->request('GET', $url_transaction_type, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $transaction_type = json_decode($response_transaction_type->getBody(), false);
                 // Select news by type API response
                 $response_news = $this::$client->request('GET', $url_news, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $news = json_decode($response_news->getBody(), false);
 
@@ -1093,13 +1092,13 @@ class HomeController extends Controller
                     'messages' => $messages->data,
                     'offer_types' => $offer_type->data,
                     'transaction_types' => $transaction_type->data,
-                    'news' => $news->data
+                    'news' => $news->data,
                 ]);
 
             } catch (ClientException $e) {
                 // If the API returns some error, return to the page and display its message
                 return view('news', [
-                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
                 ]);
             }
 
@@ -1118,24 +1117,24 @@ class HomeController extends Controller
                 // Select all countries API response
                 $response_country = $this::$client->request('GET', $url_country, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $country = json_decode($response_country->getBody(), false);
                 // Select types by group name API response
                 $response_offer_type = $this::$client->request('GET', $url_offer_type, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $offer_type = json_decode($response_offer_type->getBody(), false);
                 $response_transaction_type = $this::$client->request('GET', $url_transaction_type, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $transaction_type = json_decode($response_transaction_type->getBody(), false);
                 // Select news by type API response
                 $response_news = $this::$client->request('GET', $url_news, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $news = json_decode($response_news->getBody(), false);
 
@@ -1143,13 +1142,13 @@ class HomeController extends Controller
                     'countries' => $country->data,
                     'offer_types' => $offer_type->data,
                     'transaction_types' => $transaction_type->data,
-                    'news' => $news->data
+                    'news' => $news->data,
                 ]);
 
             } catch (ClientException $e) {
                 // If the API returns some error, return to the page and display its message
                 return view('news', [
-                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
                 ]);
             }
         }
@@ -1183,36 +1182,36 @@ class HomeController extends Controller
                 // Select current user API response
                 $response_user = $this::$client->request('GET', $url_user, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $user = json_decode($response_user->getBody(), false);
                 // Select countries API response
                 $response_country = $this::$client->request('GET', $url_country, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $country = json_decode($response_country->getBody(), false);
                 // Select all received messages API response
                 $response_message = $this::$client->request('GET', $url_message, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $messages = json_decode($response_message->getBody(), false);
                 // Select types by group name API response
                 $response_offer_type = $this::$client->request('GET', $url_offer_type, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $offer_type = json_decode($response_offer_type->getBody(), false);
                 $response_transaction_type = $this::$client->request('GET', $url_transaction_type, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $transaction_type = json_decode($response_transaction_type->getBody(), false);
                 // Select news by type API response
                 $response_news = $this::$client->request('GET', $url_news, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $news = json_decode($response_news->getBody(), false);
 
@@ -1222,13 +1221,13 @@ class HomeController extends Controller
                     'messages' => $messages->data,
                     'offer_types' => $offer_type->data,
                     'transaction_types' => $transaction_type->data,
-                    'news' => $news->data
+                    'news' => $news->data,
                 ]);
 
             } catch (ClientException $e) {
                 // If the API returns some error, return to the page and display its message
                 return view('works', [
-                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
                 ]);
             }
 
@@ -1247,24 +1246,24 @@ class HomeController extends Controller
                 // Select all countries API response
                 $response_country = $this::$client->request('GET', $url_country, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $country = json_decode($response_country->getBody(), false);
                 // Select types by group name API response
                 $response_offer_type = $this::$client->request('GET', $url_offer_type, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $offer_type = json_decode($response_offer_type->getBody(), false);
                 $response_transaction_type = $this::$client->request('GET', $url_transaction_type, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $transaction_type = json_decode($response_transaction_type->getBody(), false);
                 // Select news by type API response
                 $response_news = $this::$client->request('GET', $url_news, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $news = json_decode($response_news->getBody(), false);
 
@@ -1272,13 +1271,13 @@ class HomeController extends Controller
                     'countries' => $country->data,
                     'offer_types' => $offer_type->data,
                     'transaction_types' => $transaction_type->data,
-                    'news' => $news->data
+                    'news' => $news->data,
                 ]);
 
             } catch (ClientException $e) {
                 // If the API returns some error, return to the page and display its message
                 return view('news', [
-                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
                 ]);
             }
         }
@@ -1310,7 +1309,7 @@ class HomeController extends Controller
                 // Find payment API Response
                 $response_payment1 = $this::$client->request('GET', $url_payment1, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $payment1 = json_decode($response_payment1->getBody(), false);
 
@@ -1334,7 +1333,7 @@ class HomeController extends Controller
                 // Find payment API Response
                 $response_payment2 = $this::$client->request('GET', $url_payment2, [
                     'headers' => $this::$headers,
-                    'verify'  => false
+                    'verify' => false,
                 ]);
                 $payment2 = json_decode($response_payment2->getBody(), false);
 
@@ -1359,7 +1358,7 @@ class HomeController extends Controller
             return view('transaction_message', [
                 'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
                 'message_content' => __('miscellaneous.transaction_failed'),
-                'status_code' => '2'
+                'status_code' => '2',
             ]);
         }
     }
@@ -1403,11 +1402,9 @@ class HomeController extends Controller
                 return Redirect::back()->with('error_message', __('miscellaneous.transaction_type_error'));
             }
 
-           
-
             if ($inputs_offer['transaction_type_id'] != null) {
                 if ($inputs_offer['transaction_type_id'] == 1) {
-                    if ($request->select_country == null OR $request->other_phone_number == null) {
+                    if ($request->select_country == null or $request->other_phone_number == null) {
                         return Redirect::back()->with('error_message', __('validation.custom.phone.incorrect'));
                     }
 
@@ -1416,7 +1413,7 @@ class HomeController extends Controller
                         $response_offer = $this::$client->request('POST', $url_offer, [
                             'headers' => $this::$headers,
                             'form_params' => $inputs_offer,
-                            'verify'  => false
+                            'verify' => false,
                         ]);
                         $offer = json_decode($response_offer->getBody(), false);
                         $reference_code = 'REF-' . ((string) random_int(10000000, 99999999)) . '-' . Auth::user()->id;
@@ -1425,25 +1422,25 @@ class HomeController extends Controller
                         $this::$client->request('POST', $url_payment, [
                             'headers' => $this::$headers,
                             'form_params' => [
-                                'reference' =>  $reference_code,
+                                'reference' => $reference_code,
                                 'orderNumber' => $offer->data->result_response->order_number,
                                 'amount' => $inputs_offer['amount'],
-                                'phone' =>  $inputs_offer['other_phone'],
-                                'currency' =>  $inputs_offer['currency'],
+                                'phone' => $inputs_offer['other_phone'],
+                                'currency' => $inputs_offer['currency'],
                                 'type' => $inputs_offer['transaction_type_id'],
                                 'code' => 1,
-                                'user_id' => Auth::user()->id
+                                'user_id' => Auth::user()->id,
                             ],
-                            'verify'  => false
+                            'verify' => false,
                         ]);
 
                         return Redirect::route('transaction.waiting', [
-                            'success_message' => $offer->data->result_response->order_number . '-' . Auth::user()->id . '-no'
+                            'success_message' => $offer->data->result_response->order_number . '-' . Auth::user()->id . '-no',
                         ]);
 
                     } catch (ClientException $e) {
                         return view('transaction_message', [
-                            'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                            'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
                         ]);
                     }
                 }
@@ -1474,17 +1471,17 @@ class HomeController extends Controller
                     if ($request->select_country == null || $request->other_phone_number == null || $request->select_currency == null) {
                         return Redirect::back()->with('error_message', __('miscellaneous.required_fields'));
                     }
-                    if ($inputs_user['firstname'] != null OR $inputs_user['lastname'] != null OR $inputs_user['phone'] != null) {
+                    if ($inputs_user['firstname'] != null or $inputs_user['lastname'] != null or $inputs_user['phone'] != null) {
                         try {
                             // Select all users API Response
                             $response_user = $this::$client->request('GET', $url_user, [
                                 'headers' => $this::$headers,
-                                'verify'  => false
+                                'verify' => false,
                             ]);
                             $users = json_decode($response_user->getBody(), false);
 
                             foreach ($users->data as $user):
-                                if ($user->phone == $inputs_user['phone'] OR $user->email == $inputs_user['email']) {
+                                if ($user->phone == $inputs_user['phone'] or $user->email == $inputs_user['email']) {
                                     // Register offer API Response
                                     $response_offer = $this::$client->request('POST', $url_offer, [
                                         'headers' => $this::$headers,
@@ -1497,7 +1494,7 @@ class HomeController extends Controller
                                             'transaction_type_id' => $request->transaction_type_id,
                                             'currency' => $request->select_currency,
                                         ],
-                                        'verify'  => false
+                                        'verify' => false,
                                     ]);
                                     $offer = json_decode($response_offer->getBody(), false);
                                     $reference_code = 'REF-' . ((string) random_int(10000000, 99999999)) . '-' . $user->id;
@@ -1513,13 +1510,13 @@ class HomeController extends Controller
                                             'currency' => $request->select_currency,
                                             'type' => $request->transaction_type_id,
                                             'code' => 1,
-                                            'user_id' => $user->id
+                                            'user_id' => $user->id,
                                         ],
-                                        'verify'  => false
+                                        'verify' => false,
                                     ]);
 
                                     return Redirect::route('transaction.waiting', [
-                                        'success_message' => $offer->data->result_response->order_number . '-' . $user->id . '-no'
+                                        'success_message' => $offer->data->result_response->order_number . '-' . $user->id . '-no',
                                     ]);
                                 }
                             endforeach;
@@ -1528,7 +1525,7 @@ class HomeController extends Controller
                             $response_user = $this::$client->request('POST', $url_user, [
                                 'headers' => $this::$headers,
                                 'form_params' => $inputs_user,
-                                'verify'  => false
+                                'verify' => false,
                             ]);
                             $user = json_decode($response_user->getBody(), false);
                             // Register offer API Response
@@ -1543,7 +1540,7 @@ class HomeController extends Controller
                                     'transaction_type_id' => $request->transaction_type_id,
                                     'currency' => $request->select_currency,
                                 ],
-                                'verify'  => false
+                                'verify' => false,
                             ]);
                             $offer = json_decode($response_offer->getBody(), false);
                             $reference_code = 'REF-' . ((string) random_int(10000000, 99999999)) . '-' . $user->data->user->id;
@@ -1559,19 +1556,19 @@ class HomeController extends Controller
                                     'currency' => $request->select_currency,
                                     'type' => $request->transaction_type_id,
                                     'code' => 1,
-                                    'user_id' => $user->data->user->id
+                                    'user_id' => $user->data->user->id,
                                 ],
-                                'verify'  => false
+                                'verify' => false,
                             ]);
 
                             return Redirect::route('transaction.waiting', [
-                                'success_message' => $offer->data->result_response->order_number . '-' . $user->data->user->id . '-' . $user->data->password_reset->former_password
+                                'success_message' => $offer->data->result_response->order_number . '-' . $user->data->user->id . '-' . $user->data->password_reset->former_password,
                             ]);
-    
+
                         } catch (ClientException $e) {
                             return view('transaction_message', [
                                 'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
-                                'status_code' => '2'
+                                'status_code' => '2',
                             ]);
                         }
 
@@ -1588,7 +1585,7 @@ class HomeController extends Controller
                                     'transaction_type_id' => $request->transaction_type_id,
                                     'currency' => $request->select_currency,
                                 ],
-                                'verify'  => false
+                                'verify' => false,
                             ]);
                             $offer = json_decode($response_offer->getBody(), false);
                             $reference_code = 'REF-' . ((string) random_int(10000000, 99999999)) . '-ANONYMOUS';
@@ -1597,40 +1594,40 @@ class HomeController extends Controller
                             $this::$client->request('POST', $url_payment, [
                                 'headers' => $this::$headers,
                                 'form_params' => [
-                                    'reference' =>  $reference_code,
+                                    'reference' => $reference_code,
                                     'orderNumber' => $offer->data->result_response->order_number,
                                     'amount' => $request->register_amount,
                                     'phone' => $request->select_country . $request->other_phone_number,
                                     'currency' => $request->select_currency,
                                     'type' => $request->transaction_type_id,
-                                    'code' => 1
+                                    'code' => 1,
                                 ],
-                                'verify'  => false
+                                'verify' => false,
                             ]);
 
                             return Redirect::route('transaction.waiting', [
-                                'success_message' => $offer->data->result_response->order_number . '-0-no'
+                                'success_message' => $offer->data->result_response->order_number . '-0-no',
                             ]);
 
                         } catch (ClientException $e) {
                             return view('transaction_message', [
                                 'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
-                                'status_code' => '2'
+                                'status_code' => '2',
                             ]);
                         }
                     }
                 }
 
                 if ($request->transaction_type_id == 2) {
-                    if ( $request->select_currency == null) {
+                    if ($request->select_currency == null) {
                         return Redirect::back()->with('error_message', __('miscellaneous.required_fields'));
                     }
-                    if ($inputs_user['firstname'] != null OR $inputs_user['lastname'] != null OR $inputs_user['phone'] != null) {
+                    if ($inputs_user['firstname'] != null or $inputs_user['lastname'] != null or $inputs_user['phone'] != null) {
                         // Register user API Response
                         $response_user = $this::$client->request('POST', $url_user, [
                             'headers' => $this::$headers,
                             'form_params' => $inputs_user,
-                            'verify'  => false
+                            'verify' => false,
                         ]);
                         $user = json_decode($response_user->getBody(), false);
 

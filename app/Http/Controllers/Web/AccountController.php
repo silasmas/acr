@@ -159,6 +159,7 @@ class AccountController extends Controller
      */
     public function offerSent($amount, $currency, $code, $user_id)
     {
+        dd(Session::get('order_number'));
         if ($code == '0') {
             // Register offer
             Offer::create([
@@ -198,7 +199,7 @@ class AccountController extends Controller
 
         if ($code == '2') {
             // Register offer
-            $payment = Payment::where('order_number', $request->orderNumber)->first();
+           // $payment = Payment::where('order_number', $request->orderNumber)->first();
             Offer::create([
                 'amount' => $amount,
                 'currency' => $currency,
@@ -259,8 +260,8 @@ class AccountController extends Controller
                 'verify'  => false
             ]);
             $payment = json_decode($response->getBody(), false);
-            dd($payment);
-            return redirect($payment->url);
+            
+            return redirect($payment->url)->with("order_number",$payment->orderNumber);
 
         } catch (ClientException $e) {
             $baseController = new BaseController();
