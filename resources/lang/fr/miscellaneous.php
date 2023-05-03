@@ -235,8 +235,12 @@ return [
     'currency' => 'Choisir devise',
     'usd' => 'Dollar américain',
     'cdf' => 'Franc congolais',
-    'transaction_done' => 'L\'état de votre transaction s\'affichera dans un instant.',
+    // Alert message
+    'transaction_waiting' => 'Veuillez valider le message de votre opérateur sur votre téléphone. Ensuite appuyez sur le bouton ci-dessous.',
+    'transaction_done' => 'Votre opération est terminée !',
+    'transaction_failed' => 'L\'envoi de votre paiement a échoué',
     'transaction_type_error' => 'Veuillez choisir le type de transaction',
+    'new_partner_message' => 'Vous pouvez maintenant vous connecter en tant que partenaire avec votre n° de téléphone. Mot de passe temportaire :',
 
     // ===== NAVIGATION MENU
     'menu' => [

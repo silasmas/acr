@@ -235,8 +235,12 @@ return [
     'currency' => 'Choose currency',
     'usd' => 'American dollar',
     'cdf' => 'Congolese franc',
-    'transaction_done' => 'The status of your transaction will be displayed in a moment.',
+    // Alert message
+    'transaction_waiting' => 'Please confirm the message from your operator on your phone. Then press the button below.',
+    'transaction_done' => 'Your transaction is complete!',
+    'transaction_failed' => 'Failed to send your payment.',
     'transaction_type_error' => 'Please select transaction type',
+    'new_partner_message' => 'You can now log in as a partner with your phone number. Temporary password:',
 
     // ===== NAVIGATION MENU
     'menu' => [

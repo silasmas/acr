@@ -42,6 +42,9 @@ Route::post('/message', 'App\Http\Controllers\Web\MessageController@storeMessage
 Route::post('/message/{id}', 'App\Http\Controllers\Web\MessageController@updateMessage')->whereNumber('id');
 // Notification
 Route::get('/notification', 'App\Http\Controllers\Web\HomeController@notification')->name('notification.home');
+// Transaction
+Route::get('/transaction_waiting', 'App\Http\Controllers\Web\HomeController@transactionWaiting')->name('transaction.waiting');
+Route::get('/transaction_message/{orderNumber}/{userId}/{password}', 'App\Http\Controllers\Web\HomeController@transactionMessage')->whereNumber(['orderNumber', 'userId'])->name('transaction.message');
 
 /*
 |--------------------------------------------------------------------------

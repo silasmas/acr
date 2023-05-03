@@ -32,7 +32,7 @@ class HomeController extends Controller
         // Client used for accessing API
         $this::$client = new Client();
 
-        $this->middleware('auth')->except(['changeLanguage', 'index', 'notification', 'news', 'newsDatas', 'communique', 'works', 'donate', 'about', 'help', 'faq', 'termsOfUse', 'privacyPolicy']);
+        $this->middleware('auth')->except(['changeLanguage', 'index', 'notification', 'news', 'newsDatas', 'communique', 'works', 'donate', 'about', 'help', 'faq', 'termsOfUse', 'privacyPolicy', 'registerOffer']);
     }
 
     // ==================================== HTTP GET METHODS ====================================
@@ -1284,6 +1284,86 @@ class HomeController extends Controller
         }
     }
 
+    /**
+     * Display the message about transaction in waiting.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function transactionWaiting()
+    {
+        return view('transaction_message');
+    }
+
+    /**
+     * Display the message about transaction done.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function transactionMessage($order_number, $user_id, $password)
+    {
+        // Find payment API URL
+        $url_payment1 = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/payment/find_by_order_number/' . $order_number;
+        $url_payment2 = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/payment/find_by_order_number_user/' . $order_number . '/' . $user_id;
+
+        try {
+            if ($user_id == 0) {
+                // Find payment API Response
+                $response_payment1 = $this::$client->request('GET', $url_payment1, [
+                    'headers' => $this::$headers,
+                    'verify'  => false
+                ]);
+                $payment1 = json_decode($response_payment1->getBody(), false);
+
+                if ($password != 'no') {
+                    return view('transaction_message', [
+                        'message_content' => __('miscellaneous.transaction_done'),
+                        'message_new_partner' => __('miscellaneous.new_partner_message') . ' ' . $password,
+                        'status_code' => (string) $payment1->data->status->id,
+                        'payment' => $payment1->data,
+                    ]);
+
+                } else {
+                    return view('transaction_message', [
+                        'message_content' => __('miscellaneous.transaction_done'),
+                        'status_code' => (string) $payment1->data->status->id,
+                        'payment' => $payment1->data,
+                    ]);
+                }
+
+            } else {
+                // Find payment API Response
+                $response_payment2 = $this::$client->request('GET', $url_payment2, [
+                    'headers' => $this::$headers,
+                    'verify'  => false
+                ]);
+                $payment2 = json_decode($response_payment2->getBody(), false);
+
+                if ($password != 'no') {
+                    return view('transaction_message', [
+                        'message_content' => __('miscellaneous.transaction_done'),
+                        'message_new_partner' => __('miscellaneous.new_partner_message') . ' ' . $password,
+                        'status_code' => (string) $payment2->data->status->id,
+                        'payment' => $payment2->data,
+                    ]);
+
+                } else {
+                    return view('transaction_message', [
+                        'message_content' => __('miscellaneous.transaction_done'),
+                        'status_code' => (string) $payment2->data->status->id,
+                        'payment' => $payment2->data,
+                    ]);
+                }
+            }
+
+        } catch (ClientException $e) {
+            return view('transaction_message', [
+                'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
+                'message_content' => __('miscellaneous.transaction_failed'),
+                'status_code' => '2'
+            ]);
+        }
+    }
+
     // ==================================== HTTP POST METHODS ====================================
     /**
      * POST: Register offer
@@ -1293,26 +1373,13 @@ class HomeController extends Controller
      */
     public function registerOffer(Request $request)
     {
-        // Select current user API URL
-        $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/' . Auth::user()->id;
-        // Select address by type and user API URL
-        $legal_address_type = 'Adresse légale';
-        $residence_type = 'Résidence actuelle';
-        $url_legal_address = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/address/search/' . $legal_address_type . '/ ' . Auth::user()->id;
-        $url_residence = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/address/search/' . $residence_type . '/ ' . Auth::user()->id;
-        // Select all countries API URL
-        $url_country = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/country';
-        // Select all received messages API URL
-        $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
-        // Select types by group name API URL
-        $offer_type_group = 'Type d\'offre';
-        $transaction_type_group = 'Type de transaction';
-        $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
-        $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
+        // Register offer API URL
         $url_offer = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/offer/store';
-        // User inputs
-        $inputs = [
-            'offer_name' => $request->offer_name,
+        // Register user API URL
+        $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user';
+        // inputs
+        $inputs_offer = [
+            'offer_name' => $request->register_offer_name,
             'amount' => $request->register_amount,
             'offer_type_id' => $request->offer_type_id,
             'user_id' => Auth::user()->id,
@@ -1320,132 +1387,119 @@ class HomeController extends Controller
             'transaction_type_id' => $request->transaction_type_id,
             'currency' => $request->select_currency,
         ];
+        $inputs_user = [
+            'firstname' => $request->register_firstname,
+            'lastname' => $request->register_lastname,
+            'phone' => $request->select_country_user . $request->phone_number_user,
+            'email' => $request->register_email,
+            'role_id' => 9,
+            'status_id' => 3,
+        ];
 
-        if ($inputs['transaction_type_id'] == null) {
-            return Redirect::back()->with('error_message', __('miscellaneous.transaction_type_error'));
-        }
+        if (!empty(Auth::user())) {
+            if ($inputs_offer['transaction_type_id'] == null) {
+                return Redirect::back()->with('error_message', __('miscellaneous.transaction_type_error'));
+            }
 
-        if ($inputs['transaction_type_id'] != null) {
-            if ($inputs['transaction_type_id'] == 1) {
-                if ($request->select_country == null OR $request->other_phone_number == null) {
-                    return Redirect::back()->with('error_message', __('validation.custom.phone.incorrect'));
+            if ($inputs_offer['transaction_type_id'] != null) {
+                if ($inputs_offer['transaction_type_id'] == 1) {
+                    if ($request->select_country == null OR $request->other_phone_number == null) {
+                        return Redirect::back()->with('error_message', __('validation.custom.phone.incorrect'));
+                    }
+
+                    try {
+                        // Register offer API Response
+                        $response_offer = $this::$client->request('POST', $url_offer, [
+                            'headers' => $this::$headers,
+                            'form_params' => $inputs_offer,
+                            'verify'  => false
+                        ]);
+                        $offer = json_decode($response_offer->getBody(), false);
+
+                        return Redirect::route('transaction.waiting')->with('response_success', $offer->data->order_number . '-' . Auth::user()->id . '-no');
+
+                    } catch (ClientException $e) {
+                        return view('transaction_message', [
+                            'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                        ]);
+                    }
                 }
 
-                try {
-                    // Select user API response
-                    $response_user = $this::$client->request('GET', $url_user, [
-                        'headers' => $this::$headers,
-                        'verify'  => false
-                    ]);
-                    $user = json_decode($response_user->getBody(), false);
-                    // Select address by type and user API response
-                    $response_legal_address = $this::$client->request('GET', $url_legal_address, [
-                        'headers' => $this::$headers,
-                        'verify'  => false
-                    ]);
-                    $legal_address = json_decode($response_legal_address->getBody(), false);
-                    $response_residence = $this::$client->request('GET', $url_residence, [
-                        'headers' => $this::$headers,
-                        'verify'  => false
-                    ]);
-                    $residence = json_decode($response_residence->getBody(), false);
-                    // Select countries API response
-                    $response_country = $this::$client->request('GET', $url_country, [
-                        'headers' => $this::$headers,
-                        'verify'  => false
-                    ]);
-                    $country = json_decode($response_country->getBody(), false);
-                    // Select all received messages API response
-                    $response_message = $this::$client->request('GET', $url_message, [
-                        'headers' => $this::$headers,
-                        'verify'  => false
-                    ]);
-                    $messages = json_decode($response_message->getBody(), false);
-                    // Select types by group name API response
-                    $response_offer_type = $this::$client->request('GET', $url_offer_type, [
-                        'headers' => $this::$headers,
-                        'verify'  => false
-                    ]);
-                    $offer_type = json_decode($response_offer_type->getBody(), false);
-                    $response_transaction_type = $this::$client->request('GET', $url_transaction_type, [
-                        'headers' => $this::$headers,
-                        'verify'  => false
-                    ]);
-                    $transaction_type = json_decode($response_transaction_type->getBody(), false);
-                    $qr_code = QrCode::format('png')->merge((!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/assets/img/favicon/android-icon-96x96.png', 0.2, true)->size(135)->generate($user->data->phone);
-                    // $qr_code = QrCode::size(135)->generate($user->data->phone);
-                    $response_transaction_type = $this::$client->request('GET', $url_transaction_type, [
-                        'headers' => $this::$headers,
-                        'verify'  => false
-                    ]);
-
-                    // Register offer
-                    $this::$client->request('POST', $url_offer, [
-                        'headers' => $this::$headers,
-                        'form_params' => $inputs,
-                        'verify'  => false
-                    ]);
-
-                    if ($user->data->role_user->role->role_name != 'Administrateur' AND $user->data->role_user->role->role_name != 'Développeur' AND $user->data->role_user->role->role_name != 'Manager') {
-                        return view('account', [
-                            'current_user' => $user->data,
-                            'legal_address' => $legal_address->data,
-                            'residence' => $residence->data,
-                            'countries' => $country->data,
-                            'messages' => $messages,
-                            'offer_types' => $offer_type->data,
-                            'transaction_types' => $transaction_type->data,
-                            'qr_code' => $qr_code,
-                            'alert_success' => __('miscellaneous.transaction_done')
-                        ]);
-    
-                    } else {
-                        return view('dashboard.account', [
-                            'current_user' => $user->data,
-                            'legal_address' => $legal_address->data,
-                            'residence' => $residence->data,
-                            'countries' => $country->data,
-                            'messages' => $messages,
-                            'offer_types' => $offer_type->data,
-                            'transaction_types' => $transaction_type->data,
-                            'qr_code' => $qr_code,
-                            'alert_success' => __('miscellaneous.transaction_done')
-                        ]);
-                    }
-    
-                } catch (ClientException $e) {
-                    // If the API returns some error, return to the page and display its message
-                    if ($user->data->role_user->role->role_name != 'Administrateur' AND $user->data->role_user->role->role_name != 'Développeur' AND $user->data->role_user->role->role_name != 'Manager') {
-                        return view('dashboard.account', [
-                            'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
-                            'current_user' => $user->data,
-                            'legal_address' => $legal_address->data,
-                            'residence' => $residence->data,
-                            'countries' => $country->data,
-                            'messages' => $messages,
-                            'offer_types' => $offer_type->data,
-                            'transaction_types' => $transaction_type->data,
-                            'qr_code' => $qr_code
-                        ]);
-    
-                    } else {
-                        return view('account', [
-                            'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
-                            'current_user' => $user->data,
-                            'legal_address' => $legal_address->data,
-                            'residence' => $residence->data,
-                            'countries' => $country->data,
-                            'messages' => $messages,
-                            'offer_types' => $offer_type->data,
-                            'transaction_types' => $transaction_type->data,
-                            'qr_code' => $qr_code
-                        ]);
-                    }
+                if ($inputs_offer['transaction_type_id'] == 2) {
+                    return Redirect::to('/account/offers/' . $inputs_offer['amount'] . '/' . $inputs_offer['currency'] . '/' . Auth::user()->id);
                 }
             }
 
-            if ($inputs['transaction_type_id'] == 2) {
-                return Redirect::to('/account/offers/' . $inputs['amount'] . '/' . $inputs['currency'] . '/' . Auth::user()->id);
+        } else {
+            if ($inputs_offer['transaction_type_id'] == null) {
+                return Redirect::back()->with('error_message', __('miscellaneous.transaction_type_error'));
+            }
+
+            if ($inputs_offer['transaction_type_id'] != null) {
+                if ($inputs_offer['transaction_type_id'] == 1) {
+                    if ($inputs_user['firstname'] != null OR $inputs_user['lastname'] != null OR $inputs_user['phone'] != null) {
+                        try {
+                            // Register offer API Response
+                            $response_offer = $this::$client->request('POST', $url_offer, [
+                                'headers' => $this::$headers,
+                                'form_params' => $inputs_offer,
+                                'verify'  => false
+                            ]);
+                            $offer = json_decode($response_offer->getBody(), false);
+                            // Register user API Response
+                            $response_user = $this::$client->request('POST', $url_user, [
+                                'headers' => $this::$headers,
+                                'form_params' => $inputs_user,
+                                'verify'  => false
+                            ]);
+                            $user = json_decode($response_user->getBody(), false);
+
+                            return Redirect::route('transaction.waiting')->with('response_success', $offer->data->order_number . '-' . $user->data->user->id . '-' . $user->data->password_reset->former_password);
+
+                        } catch (ClientException $e) {
+                            return view('transaction_message', [
+                                'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
+                                'status_code' => '2'
+                            ]);
+                        }
+
+                    } else {
+                        try {
+                            // Register offer API Response
+                            $response_offer = $this::$client->request('POST', $url_offer, [
+                                'headers' => $this::$headers,
+                                'form_params' => $inputs_offer,
+                                'verify'  => false
+                            ]);
+                            $offer = json_decode($response_offer->getBody(), false);
+
+                            return Redirect::route('transaction.waiting')->with('response_success', $offer->data->order_number . '-0-no');
+
+                        } catch (ClientException $e) {
+                            return view('transaction_message', [
+                                'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
+                                'status_code' => '2'
+                            ]);
+                        }
+                    }
+                }
+
+                if ($inputs_offer['transaction_type_id'] == 2) {
+                    if ($inputs_user['firstname'] != null OR $inputs_user['lastname'] != null OR $inputs_user['phone'] != null) {
+                        // Register user API Response
+                        $response_user = $this::$client->request('POST', $url_user, [
+                            'headers' => $this::$headers,
+                            'form_params' => $inputs_user,
+                            'verify'  => false
+                        ]);
+                        $user = json_decode($response_user->getBody(), false);
+
+                        return Redirect::to('/account/offers/' . $inputs_offer['amount'] . '/' . $inputs_offer['currency'] . '/' . $user->data->user->id);
+
+                    } else {
+                        return Redirect::to('/account/offers/' . $inputs_offer['amount'] . '/' . $inputs_offer['currency'] . '/0');
+                    }
+                }
             }
         }
     }

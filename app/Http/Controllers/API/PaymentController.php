@@ -130,6 +130,42 @@ class PaymentController extends BaseController
     }
 
     /**
+     * find payment by order number.
+     *
+     * @param  string $order_number
+     * @param  string $user_id
+     * @return \Illuminate\Http\Response
+     */
+    public function findByOrderNumber($order_number)
+    {
+        $payment = Payment::where('order_number', $order_number)->first();
+
+        if (is_null($payment)) {
+            return $this->handleResponse(null, __('notifications.find_payment_404'));
+        }
+
+        return $this->handleResponse(new ResourcesPayment($payment), __('notifications.find_payment_success'));
+    }
+
+    /**
+     * find payment by order number and user.
+     *
+     * @param  string $order_number
+     * @param  string $user_id
+     * @return \Illuminate\Http\Response
+     */
+    public function findByOrderNumberUser($order_number, $user_id)
+    {
+        $payment = Payment::where([['order_number', $order_number], ['user_id', $user_id]])->first();
+
+        if (is_null($payment)) {
+            return $this->handleResponse(null, __('notifications.find_payment_404'));
+        }
+
+        return $this->handleResponse(new ResourcesPayment($payment), __('notifications.find_payment_success'));
+    }
+
+    /**
      * Change payment status.
      *
      * @param  $id

@@ -258,10 +258,10 @@ $(document).ready(function () {
     $('#donationType .form-check-input').each(function () {
         $(this).on('click', function () {
             if ($('#anonyme').is(':checked')) {
-                $('#donorIdentity').addClass('d-none');
+                $('#donorIdentity, #otherDonation').addClass('d-none');
 
             } else {
-                $('#donorIdentity').removeClass('d-none');
+                $('#donorIdentity, #otherDonation').removeClass('d-none');
             }
         });
     });

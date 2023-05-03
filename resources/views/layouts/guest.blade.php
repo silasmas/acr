@@ -366,6 +366,7 @@
 
                     <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
                         <form method="POST" action="{{ route('donate') }}">
+@csrf
                             <div id="donationType" class="mb-4">
 @foreach ($offer_types as $type)
     @if ($type->type_name != 'Contribution')
@@ -384,6 +385,7 @@
 @endforeach
                             </div>
 
+@if (empty(Auth::user()))
                             <div id="donorIdentity" class="row g-3 mb-4">
                                 <div class="col-12">
                                     <h5 class="h5 m-0 text-uppercase fw-bolder">@lang('miscellaneous.public.home.donate.your_identity')</h5>
@@ -391,7 +393,7 @@
 
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" id="register_firstname" placeholder="@lang('miscellaneous.firstname')" required>
+                                        <input type="text" class="form-control" id="register_firstname" placeholder="@lang('miscellaneous.firstname')">
                                         <label for="register_firstname">@lang('miscellaneous.firstname')</label>
                                     </div>
                                 </div>
@@ -405,13 +407,13 @@
 
                                 <div class="col-lg-5">
                                     <div class="form-floating pt-0">
-                                        <select id="select_country2" class="form-select pt-2 shadow-0">
+                                        <select name="select_country_user" id="select_country2" class="form-select pt-2 shadow-0">
                                             <option class="small" selected disabled>@lang('miscellaneous.choose_country')</option>
-@forelse ($countries as $country)
+    @forelse ($countries as $country)
                                             <option value="+{{ $country->country_phone_code }}">{{ $country->country_name }}</option>
-@empty
+    @empty
                                             <option>@lang('miscellaneous.empty_list')</option>
-@endforelse
+    @endforelse
                                         </select>
                                     </div>
                                 </div>
@@ -424,20 +426,20 @@
                                         </span>
 
                                         <div class="form-floating">
-                                            <input type="hidden" id="phone_code2" name="phone_code_donation" value="">
-                                            <input type="tel" name="phone_number_donation" id="phone_number_donation" class="form-control" placeholder="@lang('miscellaneous.phone')" required>
-                                            <label for="phone_number_donation">@lang('miscellaneous.phone')</label>
+                                            <input type="tel" name="phone_number_user" id="phone_number_user" class="form-control" placeholder="@lang('miscellaneous.phone')">
+                                            <label for="phone_number_user">@lang('miscellaneous.phone')</label>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="col-md-12">
                                     <div class="form-floating">
-                                        <input type="email" name="register_email" id="register_email" class="form-control" placeholder="Your Email">
+                                        <input type="email" name="register_email" id="register_email" class="form-control" placeholder="@lang('miscellaneous.email')">
                                         <label for="register_email">@lang('miscellaneous.email')</label>
                                     </div>
                                 </div>
                             </div>
+@endif
 
                             <div id="financialDonation" class="row g-3 mb-4">
                                 <div class="col-12">
@@ -490,10 +492,10 @@
                             <div id="phoneNumberForMoney" class="row">
                                 <div class="col-lg-5 mb-3">
                                     <div class="form-floating pt-0">
-                                        <select id="select_country3" class="form-select pt-2 shadow-0">
+                                        <select name="select_country" id="select_country3" class="form-select pt-2 shadow-0">
                                             <option class="small" selected disabled>@lang('miscellaneous.choose_country')</option>
 @forelse ($countries as $country)
-                                            <option value="+{{ $country->country_phone_code }}">{{ $country->country_name }}</option>
+                                            <option value="{{ $country->country_phone_code }}">{{ $country->country_name }}</option>
 @empty
                                             <option>@lang('miscellaneous.empty_list')</option>
 @endforelse
@@ -510,7 +512,7 @@
 
                                         <div class="form-floating">
                                             <input type="hidden" id="phone_code3" name="other_phone_code" value="">
-                                            <input type="tel" name="other_phone_number" id="other_phone_number" class="form-control" placeholder="@lang('miscellaneous.phone')" required>
+                                            <input type="tel" name="other_phone_number" id="other_phone_number" class="form-control" placeholder="@lang('miscellaneous.phone')">
                                             <label for="other_phone_number">@lang('miscellaneous.phone')</label>
                                         </div>
                                     </div>
@@ -524,14 +526,13 @@
 
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <textarea class="form-control" placeholder="Décrivez votre don" id="message" style="height: 100px"></textarea>
-                                        <label for="message">@lang('miscellaneous.public.home.donate.other_donation.description')</label>
+                                        <textarea name="register_offer_name" id="register_offer_name" class="form-control" placeholder="Décrivez votre don" style="height: 100px"></textarea>
+                                        <label for="register_offer_name">@lang('miscellaneous.public.home.donate.other_donation.description')</label>
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <button class="btn btn-block btn-secondary rounded-pill py-3 px-5" type="submit">@lang('miscellaneous.send')</button>
-                                </div>
                             </div>
+
+                            <button class="btn btn-block btn-secondary rounded-pill py-3 px-5" type="submit">@lang('miscellaneous.send')</button>
                         </form>
                     </div>
                 </div>
