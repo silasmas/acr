@@ -936,7 +936,7 @@
 
                 $.ajax({
                     url: url + "/" + id,
-                    method: "GET",
+                    method: "DELETE",
                     data: {'idv':idv},
                     success: function (data) {
                         //  load('#tab-session');

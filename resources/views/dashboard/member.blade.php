@@ -577,7 +577,7 @@ Route::is('party.manager.datas'))
                                             {{$m->notification_content }}</p>
                                     </td>
                                     <td>
-                                        <a  role="button" onclick='event.preventDefault();deletemsg({{$m->id}},"../delmsg")'>@lang('miscellaneous.delete')</a>
+                                        <a  role="button" onclick='event.preventDefault();deletemsg({{$m->id}},"../api/notification")'>@lang('miscellaneous.delete')</a>
                                     </td>
                                 </tr>
                                 @empty
