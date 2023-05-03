@@ -562,6 +562,12 @@ Route::is('party.manager.datas'))
                 <div>
                     <div class="table-responsive p-20">
                         <table class="table" id="dataList">
+                            <thead>
+                                <tr>
+                                    <th class="bdwT-0 fw-bold">@lang('miscellaneous.names')</th>
+                                    <th class="bdwT-0 fw-bold">#</th>
+                                </tr>
+                            </thead>
 
                             <tbody id="updateMemberStatus">
                                 @forelse ($message_membre as $m)
