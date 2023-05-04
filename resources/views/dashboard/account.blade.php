@@ -20,7 +20,7 @@
                                     </div>
 
                                     <div class="ta-c bdT w-100 p-10">
-                                        <form method="post">
+                                        <form method="POST">
                                             <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
                                             <label for="avatar" class="btn btn-white py-0 text-primary shadow-0" style="text-transform: inherit!important;">
                                                 <span class="bi bi-image me-2"></span> @lang('miscellaneous.change_image')
