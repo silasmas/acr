@@ -22,7 +22,7 @@
         <!-- Account Start -->
         <div class="container-xxl py-5 bg-light">
             <div class="container">
-    @if ($current_user->status->status_name == 'Activé')
+    @if ($current_user->status->status_name != 'Bloqué')
                 <div class="row mb-4" style="margin-top: -8rem;">
                     <div class="col-lg-3 col-sm-4 col-7 mx-sm-0 mx-auto">
                         <div class="bg-image">
@@ -51,25 +51,7 @@
                        
                     </div>
                 </div>
-    @endif
-
-    @if ($current_user->status->status_name == 'En attente')
-                <div class="row wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="col-12 text-center">
-                        <h1 class="h1 m-0 acr-text-blue"><span class="bi bi-info-circle-fill me-2 align-middle"></span> @lang('miscellaneous.account.on_going')</h1>
-                    </div>
-                </div>
-    @endif
-
-    @if ($current_user->status->status_name == 'Désactivé')
-                <div class="row wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="col-12 text-center">
-                        <h1 class="h1 m-0 acr-text-red-2"><span class="bi bi-exclamation-triangle-fill me-2 align-middle"></span> @lang('miscellaneous.account.deactivated')</h1>
-                    </div>
-                </div>
-    @endif
-
-    @if ($current_user->status->status_name == 'Bloqué')
+    @else
                 <div class="row wow fadeInUp" data-wow-delay="0.1s">
                     <div class="col-12 text-center">
                         <h1 class="h1 m-0 acr-text-red-2"><span class="bi bi-exclamation-triangle-fill me-2 align-middle"></span> @lang('miscellaneous.account.locked')</h1>

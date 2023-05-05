@@ -26,6 +26,7 @@ Route::get('/', 'App\Http\Controllers\Web\HomeController@index')->name('home');
 Route::get('/language/{locale}', 'App\Http\Controllers\Web\HomeController@changeLanguage')->name('change_language');
 // Account
 Route::get('/account', 'App\Http\Controllers\Web\AccountController@account')->name('account');
+Route::get('/account/offers', 'App\Http\Controllers\Web\AccountController@account')->name('account.offers');
 Route::get('/update_password', 'App\Http\Controllers\Web\AccountController@editPassword')->name('account.update.password');
 Route::post('/account', 'App\Http\Controllers\Web\AccountController@updateAccount');
 Route::post('/update_password', 'App\Http\Controllers\Web\AccountController@updatePassword');

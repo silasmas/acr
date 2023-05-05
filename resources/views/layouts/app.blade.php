@@ -280,7 +280,7 @@
                 </div>
                 <div class="modal-footer d-flex justify-content-between">
                     <input type="hidden" name="user_id" id="userId"
-                        value="{{ Route::is('party.member.datas') ? $selected_member->id : Auth::user()->id }}">
+                        value="{{ Route::is('party.member.datas') || Route::is('party.member.update') || Route::is('party.member.new.check_token') || Route::is('party.manager.datas') ? $selected_member->id : Auth::user()->id }}">
                     <input type="hidden" name="news_id" id="newsId"
                         value="{{ Route::is('news.datas') ? $news->id : null }}">
                     <button type="button" class="btn btn-light border border-default shadow-0"
@@ -680,8 +680,8 @@
                                 <li>
                                     <ul class="ovY-a pos-r scrollable lis-n p-0 m-0 fsz-sm">
                                         @forelse ($current_user->notifications as $notification)
-                                        @if ($loop->index < 4) <li>
-                                            <a href="{{ $notification->notification_url }}"
+                                        @if ($loop->index < 3) <li>
+                                            <a href="/{{ $notification->notification_url }}"
                                                 class="peers fxw-nw td-n p-20 bdB c-grey-800 cH-blue bgcH-grey-100">
                                                 <div class="peer peer-greed">
                                                     <span>
@@ -774,6 +774,20 @@
                     </div>
                 </div>
                 @endif
+                @if (\Session::has('alert_success'))
+                <div class="position-fixed w-100" style="top: 41px; z-index: 9999;">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-10 mx-auto">
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <span class="bi bi-info-circle me-2 mb-0 fs-4" style="vertical-align: -3px;"></span> {{
+                                \Session::get('alert_success') }}
+                                <button type="button" class="btn-close mt-1" data-bs-dismiss="alert"
+                                    aria-label="@lang('miscellaneous.close')"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
                 @if (\Session::has('success_message'))
                 <div class="position-fixed w-100" style="top: 41px; z-index: 9999;">
                     <div class="row">
@@ -809,6 +823,20 @@
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 <span class="bi bi-exclamation-triangle me-2 mb-0 fs-4"
                                     style="vertical-align: -3px;"></span> {{ \Session::get('error_message') }}
+                                <button type="button" class="btn-close mt-1" data-bs-dismiss="alert"
+                                    aria-label="@lang('miscellaneous.close')"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+                @if (\Session::has('response_error'))
+                <div class="position-fixed w-100" style="top: 41px; z-index: 9999;">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-10 mx-auto">
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <span class="bi bi-exclamation-triangle me-2 mb-0 fs-4"
+                                    style="vertical-align: -3px;"></span> {{ \Session::get('response_error') }}
                                 <button type="button" class="btn-close mt-1" data-bs-dismiss="alert"
                                     aria-label="@lang('miscellaneous.close')"></button>
                             </div>

@@ -392,7 +392,7 @@ class PartyController extends Controller
                     'surname' => $request->register_surname,
                     'gender' => $request->register_gender,
                     'birth_city' => $request->register_birth_city,
-                    'birth_date' => str_starts_with(app()->getLocale(), 'fr') ? explode('/', $request->register_birthdate)[2] . '-' . explode('/', $request->register_birthdate)[1] . '-' . explode('/', $request->register_birthdate)[0] : explode('/', $request->register_birthdate)[2] . '-' . explode('/', $request->register_birthdate)[0] . '-' . explode('/', $request->register_birthdate)[1],
+                    'birth_date' => $request->register_birthdate ? (str_starts_with(app()->getLocale(), 'fr') ? explode('/', $request->register_birthdate)[2] . '-' . explode('/', $request->register_birthdate)[1] . '-' . explode('/', $request->register_birthdate)[0] : explode('/', $request->register_birthdate)[2] . '-' . explode('/', $request->register_birthdate)[0] . '-' . explode('/', $request->register_birthdate)[1]) : null,
                     'nationality' => $request->register_nationality,
                     'p_o_box' => $request->register_p_o_box,
                     'email' => $request->register_email,
@@ -405,6 +405,7 @@ class PartyController extends Controller
             $member = json_decode($response_update_member->getBody(), false);
             $qr_code = QrCode::format('png')->merge((!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/assets/img/favicon/android-icon-96x96.png', 0.2, true)->size(135)->generate($member->data->phone);
             // $qr_code = QrCode::size(135)->generate($member->data->phone);
+            $message_membre = Notification::where([["user_id",$member->data->id],["notif_name","message"]])->get();
 
             // Update legal address API response
             if ($request->register_legal_address_address_content_1) {
@@ -454,6 +455,7 @@ class PartyController extends Controller
                 'offer_types' => $offer_type->data,
                 'transaction_types' => $transaction_type->data,
                 'qr_code' => $qr_code,
+                'message_membre' => $message_membre,
                 'alert_success' => __('miscellaneous.data_updated')
             ]);
 
@@ -606,6 +608,7 @@ class PartyController extends Controller
                     $residence = json_decode($response_residence->getBody(), false);
                     $qr_code = QrCode::format('png')->merge((!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/assets/img/favicon/android-icon-96x96.png', 0.2, true)->size(135)->generate($member->data->phone);
                     // $qr_code = QrCode::size(135)->generate($member->data->phone);
+                    $message_membre = Notification::where([["user_id",$member->data->id],["notif_name","message"]])->get();
 
                     return view('dashboard.member', [
                         'selected_member' => $member->data,
@@ -615,7 +618,8 @@ class PartyController extends Controller
                         'roles' => $roles->data,
                         'legal_address' => $legal_address->data,
                         'residence' => $residence->data,
-                        'qr_code' => $qr_code
+                        'qr_code' => $qr_code,
+                        'message_membre' => $message_membre
                     ]);
 
                 } catch (ClientException $e) {
@@ -716,56 +720,10 @@ class PartyController extends Controller
                 'verify'  => false
             ]);
 
-            return view('dashboard.member', [
-                'current_user' => $user->data,
-                'countries' => $country->data,
-                'messages' => $messages->data,
-                'roles' => $roles->data,
-                'users_not_developer' => $not_developer->data,
-                'alert_success' => __('miscellaneous.message_sent')
-            ]);
+            return Redirect::back()->with('alert_success', __('miscellaneous.message_sent'));
 
         } catch (ClientException $e) {
-            // Select current user API response
-            $response_user = $this::$client->request('GET', $url_user, [
-                'headers' => $this::$headers,
-                'verify'  => false
-            ]);
-            $user = json_decode($response_user->getBody(), false);
-            // Select countries API response
-            $response_country = $this::$client->request('GET', $url_country, [
-                'headers' => $this::$headers,
-                'verify'  => false
-            ]);
-            $country = json_decode($response_country->getBody(), false);
-            // Select all received messages API response
-            $response_message = $this::$client->request('GET', $url_message, [
-                'headers' => $this::$headers,
-                'verify'  => false
-            ]);
-            $messages = json_decode($response_message->getBody(), false);
-            // Select all roles API response
-            $response_roles = $this::$client->request('GET', $url_roles, [
-                'headers' => $this::$headers,
-                'verify'  => false
-            ]);
-            $roles = json_decode($response_roles->getBody(), false);
-            // Select all users by not role API response
-            $response_not_developer = $this::$client->request('GET', $url_not_developer, [
-                'headers' => $this::$headers,
-                'verify'  => false
-            ]);
-            $not_developer = json_decode($response_not_developer->getBody(), false);
-
-            // If the API returns some error, return to the page and display its message
-            return view('dashboard.member', [
-                'current_user' => $user->data,
-                'countries' => $country->data,
-                'messages' => $messages->data,
-                'roles' => $roles->data,
-                'users_not_developer' => $not_developer->data,
-                'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
-            ]);
+            return Redirect::back()->with('response_error', (json_decode($e->getResponse()->getBody()->getContents(), false))->message);
         }
     }
 }

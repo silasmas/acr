@@ -2,16 +2,15 @@
 
 @section('app-content')
 
-@if (Route::is('party.member.datas') || Route::is('party.member.update') || Route::is('party.member.new.check_token') ||
-Route::is('party.manager.datas'))
+@if (Route::is('party.member.datas') || Route::is('party.member.update') || Route::is('party.member.new.check_token') || Route::is('party.manager.datas'))
 <div class="row gap-20">
     <div class="col-lg-4 col-md-6">
         <div class="mb-3 bd bgc-blue-500">
             <div class="layers">
                 <div class="layer w-100 px-md-3 px-1 p-20 ta-c">
                     @if (Route::is('party.manager.datas'))
-                    <a href="{{ route('manager') }}" class="text-white">
-                        <span class="bi bi-arrow-left me-2"></span> @lang('miscellaneous.back_home')
+                    <a href="{{ route('party.managers') }}" class="text-white">
+                        <span class="bi bi-arrow-left me-2"></span> @lang('miscellaneous.back_list')
                     </a>
                     @else
                     <a href="{{ route('party.member.home') }}" class="text-white">
@@ -577,7 +576,7 @@ Route::is('party.manager.datas'))
                                             {{$m->notification_content }}</p>
                                     </td>
                                     <td>
-                                        <a class="btn btn-outline btn-danger" role="button" onclick='event.preventDefault();deletemsg({{$m->id}},"../api/notification")'>                                           
+                                        <a class="btn btn-outline btn-danger" role="button" onclick="event.preventDefault();deletemsg({{$m->id}},'../api/notification');">
                                             <i class="fa fa-trash-o"></i>
                                         </a>
                                     </td>
@@ -658,7 +657,7 @@ Route::is('party.manager.datas'))
 
                         <tbody id="updateMemberStatus">
                             @forelse ($users_not_developer as $user)
-                            @if ($user->id != $current_user->id)
+                            @if ($user->id != $current_user->id AND $user->role_user->role->role_name != 'Manager')
                             <tr>
                                 <td class="fw-600">
                                     <p class="m-0 text-truncate"><a

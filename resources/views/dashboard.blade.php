@@ -108,10 +108,6 @@
                                     <div class="layers">
                                         <div class="layer d-flex w-100 pX-20 pT-20 justify-content-between">
                                             <h6 class="lh-1 m-0">@lang('miscellaneous.manager.home.other_managers.title')</h6>
-
-                                            <a href="{{ route('party.manager.new') }}" class="position-relative" style="top: -8px" title="@lang('miscellaneous.manager.home.other_managers.add_new')" data-bs-toggle="tooltip">
-                                                <span class="bi bi-plus-circle-fill fs-3 me-1 align-middle"></span>@lang('miscellaneous.add')
-                                            </a>
                                         </div>
                                         <div class="layer w-100 pX-20 pT-10 pB-20">
                                             <div class="list-group">
@@ -139,6 +135,9 @@
         @endif
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="ta-c bdT w-100 p-20">
+                                        <a href="{{ route('party.managers') }}">@lang('miscellaneous.see_more')</a>
                                     </div>
                                 </div>
                             </div>
