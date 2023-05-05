@@ -566,9 +566,9 @@
                                         </div>
 
                                         <div class="layer w-100 pX-20 pB-20">
-                                            <ul class="list-group list-group-flush item-list">
+                                            <ul class="element" data-config='{ "type": "list", "limit": 3, "element": "li", "more": "↓ show more", "less": "↑ less", "number": true }' style="padding-left: 0;">
         @forelse ($current_user->payments as $payment)
-                                                <li class="list-group-item d-flex justify-content-between align-items-center mt-2 bg-light small">
+                                                <li class="d-flex justify-content-between align-items-center mt-2 bg-light small" style="list-style: none;">
                                                     <div class="px-2 py-1 border-start border-3 bdc-{{ $payment->status->color }}-600">
                                                         <p class="m-0 text-black">{{ $payment->reference }}</p>
                                                         <h4 class="h4 mt-0 mb-1 fw-bold c-{{ $payment->status->color }}-600 text-truncate" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">{{ $payment->amount . ' ' . $payment->currency }}</h4>
@@ -581,12 +581,10 @@
                                                     </div>
                                                 </li>
         @empty
-                                            <div class="mt-2 bg-light px-3 py-2">
-                                                <span class="list-group-item">@lang('miscellaneous.empty_list')</span>
-                                            </div>
+                                                <li class="mt-2 border border-default rounded px-3 py-2" style="list-style: none;">@lang('miscellaneous.empty_list')</li>
         @endforelse
                                             </ul>
-                                            <a href="#" class="btn btn-block btn-secondary btn-color my-3 rounded-0 shadow-0 more-trigger">@lang('miscellaneous.see_more')</a>
+                                            {{-- <a href="#" class="btn btn-block btn-secondary btn-color my-3 rounded-0 shadow-0 more-trigger">@lang('miscellaneous.see_more')</a> --}}
                                         </div>
                                     </div>
                                 </div>

@@ -44,6 +44,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/mdb/css/mdb.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/cropper/css/cropper.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/sweetalert/sweetalert.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/show-more/dist/css/show-more.min.css') }}">
     <!-- Adminator CSS File -->
     <style>
         #loader {
@@ -882,7 +883,7 @@
     <script src="{{ asset('assets/addons/custom/autosize/js/autosize.min.js') }}"></script>
     <script src="{{ asset('assets/addons/custom/biliap/js/biliap.cores.js') }}"></script>
     <script src="{{ asset('assets/addons/custom/sweetalertjs/sweetalert.min.js') }}"></script>
-    <script src="{{ asset('assets/addons/custom/long-list-truncation/js/show-more-items.js') }}"></script>
+    <script src="{{ asset('assets/addons/custom/show-more/dist/js/showMore.min.js') }}"></script>
 
     <!-- Adminator Javascript -->
     <script defer="defer" src="{{ asset('assets/js/scripts.adminator.js') }}"></script>

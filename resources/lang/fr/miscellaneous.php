@@ -66,6 +66,7 @@ return [
     'mark_all_read' => 'Tout marquer comme lue',
     'empty_list' => 'La liste est vide',
     'see_more' => 'Voir plus',
+    'see_less' => 'Voir moins',
     'show' => 'Afficher',
     'entry' => 'entrée',
     'entries' => 'entrées',

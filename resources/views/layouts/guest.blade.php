@@ -41,8 +41,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/dataTables/datatables.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/cropper/css/cropper.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/dairy/animate/animate.min.css') }}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('assets/addons/dairy/owlcarousel/assets/owl.carousel.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/dairy/owlcarousel/assets/owl.carousel.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/show-more/dist/css/show-more.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/dairy/lightbox/css/lightbox.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/mdb/css/mdb.min.css') }}">
@@ -787,7 +787,7 @@
     <script src="{{ asset('assets/addons/dairy/counterup/counterup.min.js') }}"></script>
     <script src="{{ asset('assets/addons/dairy/parallax/parallax.min.js') }}"></script>
     <script src="{{ asset('assets/addons/dairy/lightbox/js/lightbox.min.js') }}"></script>
-    <script src="{{ asset('assets/addons/custom/long-list-truncation/js/show-more-items.js') }}"></script>
+    <script src="{{ asset('assets/addons/custom/show-more/dist/js/showMore.min.js') }}"></script>
     <script src="{{ asset('assets/addons/custom/biliap/js/biliap.cores.js') }}"></script>
 
     <!-- Dairy Javascript -->
