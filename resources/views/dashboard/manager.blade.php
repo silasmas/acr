@@ -39,7 +39,7 @@
         @if ($user->id != $current_user->id)
                                                     <tr>
                                                         <td class="fw-600">
-                                                            <p class="m-0 text-truncate"><a href="{{ route('party.member.datas', ['id' => $user->id]) }}">{{ $user->firstname }}</a></p>
+                                                            <p class="m-0 text-truncate"><a href="{{ route('party.manager.datas', ['id' => $user->id]) }}">{{ $user->firstname }}</a></p>
                                                         </td>
                                                         <td>{{ $user->phone }}</td>
                                                         <td>

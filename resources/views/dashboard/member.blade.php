@@ -2,16 +2,15 @@
 
 @section('app-content')
 
-@if (Route::is('party.member.datas') || Route::is('party.member.update') || Route::is('party.member.new.check_token') ||
-Route::is('party.manager.datas'))
+@if (Route::is('party.member.datas') || Route::is('party.member.update') || Route::is('party.member.new.check_token') || Route::is('party.manager.datas'))
 <div class="row gap-20">
     <div class="col-lg-4 col-md-6">
         <div class="mb-3 bd bgc-blue-500">
             <div class="layers">
                 <div class="layer w-100 px-md-3 px-1 p-20 ta-c">
                     @if (Route::is('party.manager.datas'))
-                    <a href="{{ route('manager') }}" class="text-white">
-                        <span class="bi bi-arrow-left me-2"></span> @lang('miscellaneous.back_home')
+                    <a href="{{ route('party.managers') }}" class="text-white">
+                        <span class="bi bi-arrow-left me-2"></span> @lang('miscellaneous.back_list')
                     </a>
                     @else
                     <a href="{{ route('party.member.home') }}" class="text-white">
@@ -556,10 +555,9 @@ Route::is('party.manager.datas'))
         <div class="bd bgc-white">
             <div class="layers">
                 <div class="layer d-flex w-100 p-20 justify-content-between">
-                    <h6 class="lh-1 m-0">@lang('miscellaneous.manager.member.write_to.title') {{
-                        $selected_member->firstname . ' ' . $selected_member->lastname }}</h6>
+                    <h6 class="lh-1 m-0">@lang('miscellaneous.message.outbox')</h6>
                 </div>
-                <div>
+                <div class="layer w-100 pX-20 pB-20">
                     <div class="table-responsive p-20">
                         <table class="table" id="dataList">
                             <thead>
@@ -572,12 +570,12 @@ Route::is('party.manager.datas'))
                             <tbody id="updateMemberStatus">
                                 @forelse ($message_membre as $m)
                                 <tr>
-                                    <td class="fw-600">
+                                    <td>
                                         <p class="m-0">
                                             {{$m->notification_content }}</p>
                                     </td>
-                                    <td>
-                                        <a class="btn btn-outline btn-danger" role="button" onclick='event.preventDefault();deletemsg({{$m->id}},"../api/notification")'>                                           
+                                    <td class="text-center">
+                                        <a role="button" class="btn btn-transparent p-0 fs-4 text-danger shadow-0" title="@lang('miscellaneous.delete')" onclick="event.preventDefault();deletemsg({{$m->id}},'../api/notification');">
                                             <i class="fa fa-trash-o"></i>
                                         </a>
                                     </td>
@@ -602,29 +600,23 @@ Route::is('party.manager.datas'))
                 </div>
 
                 <div class="layer w-100 pX-20 pB-20">
-                    @forelse ($selected_member->payments as $payment)
-                    <div class="d-flex justify-content-between align-items-center mt-2 bg-light small">
-                        <div class="px-2 py-1 border-start border-3 bdc-{{ $payment->status->color }}-600">
-                            <p class="m-0 text-black">{{ $payment->reference }}</p>
-                            <h4 class="h4 mt-0 mb-1 fw-bold c-{{ $payment->status->color }}-600 text-truncate"
-                                style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">{{ $payment->amount
-                                . ' ' . $payment->currency }}</h4>
-                            <p class="m-0 small">{{ $payment->created_at }}</p>
-                        </div>
-
-                        <div class="px-3 py-1 text-center">
-                            <p class="m-0 text-black text-uppercase text-truncate">{{ $payment->channel }}</p>
-                            <span
-                                class="badge bgc-{{ $payment->status->color }}-50 c-{{ $payment->status->color }}-700 p-10 lh-0 tt-c rounded-pill fw-light">{{
-                                $payment->status->status_name }}</span>
-                        </div>
-                    </div>
-
-                    @empty
-                    <div class="mt-2 bg-light px-3 py-2">
-                        <span class="list-group-item">@lang('miscellaneous.empty_list')</span>
-                    </div>
-                    @endforelse
+                    <ul class="element" style="padding-left: 0;" data-config='{ "type": "list", "limit": 3, "element": "li", "more": "↓ show more", "less": "↑ less", "number": true }'>
+        @forelse ($selected_member->payments as $payment)
+                        <li class="d-flex justify-content-between align-items-center mt-2 bg-light small" style="list-style: none;">
+                            <div class="px-2 py-1 border-start border-3 bdc-{{ $payment->status->color }}-600">
+                                <p class="m-0 text-black">{{ $payment->reference }}</p>
+                                <h4 class="h4 mt-0 mb-1 fw-bold c-{{ $payment->status->color }}-600 text-truncate" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">{{ $payment->amount . ' ' . $payment->currency }}</h4>
+                                <p class="m-0 small">{{ $payment->created_at }}</p>
+                            </div>
+                            <div class="px-3 py-1 text-center">
+                                <p class="m-0 text-black text-uppercase text-truncate">{{ $payment->channel }}</p>
+                                <span class="badge bgc-{{ $payment->status->color }}-50 c-{{ $payment->status->color }}-700 p-10 lh-0 tt-c rounded-pill fw-light">{{ $payment->status->status_name }}</span>
+                            </div>
+                        </li>
+        @empty
+                        <li class="mt-2 border border-default rounded px-3 py-2" style="list-style: none;">@lang('miscellaneous.empty_list')</li>
+        @endforelse
+                    </ul>
                 </div>
             </div>
         </div>
@@ -658,7 +650,7 @@ Route::is('party.manager.datas'))
 
                         <tbody id="updateMemberStatus">
                             @forelse ($users_not_developer as $user)
-                            @if ($user->id != $current_user->id)
+                            @if ($user->id != $current_user->id AND $user->role_user->role->role_name != 'Manager')
                             <tr>
                                 <td class="fw-600">
                                     <p class="m-0 text-truncate"><a
