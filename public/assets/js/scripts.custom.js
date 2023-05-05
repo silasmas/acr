@@ -8,6 +8,11 @@
 // var headers = {'Authorization': 'Bearer ' + $('#custom-style').attr('blp-api-token'), 'Accept': 'application/json', 'X-localization': navigator.language};
 
 $(document).ready(function () {
+    /* Long items list truncation */
+    $('body').showMoreItems({
+        count: 3
+    });
+
     /* Return false when click on "#" link */
     $('[href="#"]').on('click', function (e) {
         return false;

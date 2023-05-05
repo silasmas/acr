@@ -555,10 +555,9 @@
         <div class="bd bgc-white">
             <div class="layers">
                 <div class="layer d-flex w-100 p-20 justify-content-between">
-                    <h6 class="lh-1 m-0">@lang('miscellaneous.manager.member.write_to.title') {{
-                        $selected_member->firstname . ' ' . $selected_member->lastname }}</h6>
+                    <h6 class="lh-1 m-0">@lang('miscellaneous.message.outbox')</h6>
                 </div>
-                <div>
+                <div class="layer w-100 pX-20 pB-20">
                     <div class="table-responsive p-20">
                         <table class="table" id="dataList">
                             <thead>
@@ -571,12 +570,12 @@
                             <tbody id="updateMemberStatus">
                                 @forelse ($message_membre as $m)
                                 <tr>
-                                    <td class="fw-600">
+                                    <td>
                                         <p class="m-0">
                                             {{$m->notification_content }}</p>
                                     </td>
-                                    <td>
-                                        <a class="btn btn-outline btn-danger" role="button" onclick="event.preventDefault();deletemsg({{$m->id}},'../api/notification');">
+                                    <td class="text-center">
+                                        <a role="button" class="btn btn-transparent p-0 fs-4 text-danger shadow-0" title="@lang('miscellaneous.delete')" onclick="event.preventDefault();deletemsg({{$m->id}},'../api/notification');">
                                             <i class="fa fa-trash-o"></i>
                                         </a>
                                     </td>

@@ -882,6 +882,7 @@
     <script src="{{ asset('assets/addons/custom/autosize/js/autosize.min.js') }}"></script>
     <script src="{{ asset('assets/addons/custom/biliap/js/biliap.cores.js') }}"></script>
     <script src="{{ asset('assets/addons/custom/sweetalertjs/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('assets/addons/custom/long-list-truncation/js/show-more-items.js') }}"></script>
 
     <!-- Adminator Javascript -->
     <script defer="defer" src="{{ asset('assets/js/scripts.adminator.js') }}"></script>
@@ -920,6 +921,49 @@
                 }
             }
 
+            function deletemsg(id, url) {
+                swal({
+                    title: '<?= __("miscellaneous.attention_delete") ?>',
+                    text: '<?= __("miscellaneous.confirm_delete") ?>',
+                    icon: 'warning',
+                    dangerMode: true,
+                    buttons: {
+                        cancel: '<?= __("miscellaneous.no") ?>',
+                        delete: '<?= __("miscellaneous.yes") ?>'
+                    }
+
+                }).then(function (willDelete) {
+                    if (willDelete) {
+                        $.ajax({
+                            headers: headers,
+                            url: url + "/" + id,
+                            method: "DELETE",
+                            data: {'idv':id},
+                            success: function (data) {
+                                //  load('#tab-session');
+                                if (!data.success) {
+                                    swal({
+                                        title: data.message,
+                                        icon: 'error'
+                                    })
+                                } else {
+                                    swal({
+                                        title: data.message,
+                                        icon: 'success'
+                                    })
+                                    location.reload();
+                                }
+                            },
+                        });
+                    } else {
+                        swal({
+                            title: '<?= __("miscellaneous.delete_canceled") ?>',
+                            icon: 'error'
+                        })
+                    }
+                });
+            }
+
             $(function () {
                 $('#dataList').DataTable({
                     language: {
@@ -946,55 +990,6 @@
                     }
                 });
             });
-
-
-    function deletemsg(id, url) {
-
-        swal({
-            title: "Attention suppression",
-            text: "Etes -vous prêt de supprimer cette information?",
-            icon: 'warning',
-            dangerMode: true,
-            buttons: {
-                cancel: 'Non',
-                delete: 'OUI'
-            }
-        }).then(function (willDelete) {
-            if (willDelete) {
-
-                $.ajax({
-                    headers:headers,
-                    url: url + "/" + id,
-                    method: "DELETE",
-                    data: {'idv':id},
-                    success: function (data) {
-                        //  load('#tab-session');
-                        if (!data.success) {
-                            swal({
-                                title: data.message,
-                                icon: 'error'
-                            })
-
-                        } else {
-                            swal({
-                                title: data.message,
-                                icon: 'success'
-                            })
-                            actualiser();
-                        }
-                    },
-                });
-            } else {
-                swal({
-                    title: "Suppression annuler",
-                    icon: 'error'
-                })
-            }
-        });
-    }
-    function actualiser() {
-        location.reload();
-    }
     </script>
 </body>
 
