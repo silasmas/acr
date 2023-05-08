@@ -566,7 +566,7 @@
                                         </div>
 
                                         <div class="layer w-100 pX-20 pB-20">
-                                            <ul class="element" data-config='{ "type": "list", "limit": 3, "element": "li", "more": "↓ show more", "less": "↑ less", "number": true }' style="padding-left: 0;">
+                                            <ul class="element" style="padding-left: 0;">
         @forelse ($current_user->payments as $payment)
                                                 <li class="d-flex justify-content-between align-items-center mt-2 bg-light small" style="list-style: none;">
                                                     <div class="px-2 py-1 border-start border-3 bdc-{{ $payment->status->color }}-600">

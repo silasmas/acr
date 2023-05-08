@@ -890,6 +890,16 @@
     <!-- Custom Javascript -->
     <script src="{{ asset('assets/js/scripts.custom.js') }}"></script>
     <script type="text/javascript">
+        new ShowMore('.element', {
+            config: {
+                type: "list",
+                limit: 4,
+                element: "li",
+                more: "↓ <?= __('miscellaneous.see_more') ?>",
+                less: "↑ <?= __('miscellaneous.see_less') ?>",
+                number: true
+            }
+        });
         var curHost = $(location).attr('port') ? $(location).attr('protocol') + '//' + $(location).attr('hostname') + ':' + $(location).attr('port') : $(location).attr('protocol') + '//' + $(location).attr('hostname')
 
             function changeStatus(id) {
