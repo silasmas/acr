@@ -136,6 +136,7 @@ Route::get('/infos', 'App\Http\Controllers\Web\PartyController@infos')->name('pa
 Route::get('/infos/{entity}', 'App\Http\Controllers\Web\PartyController@infoEntity')->name('party.infos.entity');
 Route::post('/infos/new', 'App\Http\Controllers\Web\PartyController@newInfo')->name('party.infos.new');
 Route::get('/infos/{entity}/{id}', 'App\Http\Controllers\Web\PartyController@infoEntityDatas')->whereNumber('id')->name('party.infos.entity.datas');
+Route::post('/infos/{entity}/{id}', 'App\Http\Controllers\Web\PartyController@updateInfo')->whereNumber('id');
 
 /*
 |--------------------------------------------------------------------------

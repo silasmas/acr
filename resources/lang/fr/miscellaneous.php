@@ -519,6 +519,7 @@ return [
                 'data' => [
                     'title' => 'Titre',
                     'content' => 'Contenu',
+                    'add_photo' => 'Ajouter une photo',
                     'video_url' => 'URL de la vidéo Youtube/autre'
                 ],
             ],
@@ -528,6 +529,7 @@ return [
                 'data' => [
                     'title' => 'Titre',
                     'content' => 'Contenu',
+                    'add_photo' => 'Ajouter une photo',
                     'video_url' => 'URL de la vidéo Youtube/autre'
                 ],
             ],
@@ -537,6 +539,7 @@ return [
                 'data' => [
                     'title' => 'Titre',
                     'content' => 'Contenu',
+                    'add_photo' => 'Ajouter une photo',
                     'video_url' => 'URL de la vidéo Youtube/autre'
                 ],
             ],

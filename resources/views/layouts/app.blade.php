@@ -875,11 +875,13 @@
     <!-- JavaScript Libraries -->
     <script src="{{ asset('assets/addons/custom/jquery/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/addons/custom/jquery/jquery-ui/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('assets/addons/custom/jquery/ellipsis/jquery.ellipsis.min.js') }}"></script>
     <script src="{{ asset('assets/addons/custom/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/addons/custom/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/addons/custom/mdb/js/mdb.min.js') }}"></script>
     <script src="{{ asset('assets/addons/custom/dataTables/datatables.min.js') }}"></script>
     <script src="{{ asset('assets/addons/custom/cropper/js/cropper.min.js') }}"></script>
+    <script src="{{ asset('assets/addons/custom/image-cropping-library-jcrop/js/jquery.Jcrop.min.js') }}"></script>
     <script src="{{ asset('assets/addons/custom/autosize/js/autosize.min.js') }}"></script>
     <script src="{{ asset('assets/addons/custom/biliap/js/biliap.cores.js') }}"></script>
     <script src="{{ asset('assets/addons/custom/sweetalertjs/sweetalert.min.js') }}"></script>
@@ -980,7 +982,11 @@
                     language: {
                         url: curHost + '/assets/addons/custom/dataTables/Plugins/i18n/' + $('html').attr('lang') + '.json'
                     },
+                    paging: 'matchMedia' in window ? (window.matchMedia('(min-width: 500px)').matches ? true : false) : false,
+                    ordering: false,
+                    info: 'matchMedia' in window ? (window.matchMedia('(min-width: 500px)').matches ? true : false) : false,
                 });
+
                 $('#rectoVersoText').click(function (e) {
                     e.preventDefault();
 
