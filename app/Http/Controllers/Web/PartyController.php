@@ -310,6 +310,181 @@ class PartyController extends Controller
         }
     }
 
+    /**
+     * GET: News/Communique/Event page
+     *
+     * @param  $locale
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function infos()
+    {
+        // Select current user API URL
+        $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/' . Auth::user()->id;
+        // Select all countries API URL
+        $url_country = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/country';
+        // Select all received messages API URL
+        $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
+        // Select all received messages API URL
+        $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
+        // Select news by type ID API URL
+        $url_news = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/news/select_by_type/5';
+        $url_communiques = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/news/select_by_type/6';
+        $url_events = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/news/select_by_type/7';
+
+        try {
+            // Select current user API response
+            $response_user = $this::$client->request('GET', $url_user, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $user = json_decode($response_user->getBody(), false);
+            // Select countries API response
+            $response_country = $this::$client->request('GET', $url_country, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $country = json_decode($response_country->getBody(), false);
+            // Select all received messages API response
+            $response_message = $this::$client->request('GET', $url_message, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $messages = json_decode($response_message->getBody(), false);
+            // // Select news by type ID API response
+            $response_news = $this::$client->request('GET', $url_news, [
+                'headers' => $this::$headers,
+                'verify' => false,
+            ]);
+            $news = json_decode($response_news->getBody(), false);
+            $response_communiques = $this::$client->request('GET', $url_communiques, [
+                'headers' => $this::$headers,
+                'verify' => false,
+            ]);
+            $communiques = json_decode($response_communiques->getBody(), false);
+            $response_events = $this::$client->request('GET', $url_events, [
+                'headers' => $this::$headers,
+                'verify' => false,
+            ]);
+            $events = json_decode($response_events->getBody(), false);
+
+            return view('dashboard.news', [
+                'current_user' => $user->data,
+                'countries' => $country->data,
+                'messages' => $messages->data,
+                'news' => $news->data,
+                'communiques' => $communiques->data,
+                'events' => $events->data
+            ]);
+
+        } catch (ClientException $e) {
+            // If the API returns some error, return to the page and display its message
+            return view('dashboard.print_card', [
+                'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+            ]);
+        }
+    }
+
+    /**
+     * GET: News/Communique/Event page
+     *
+     * @param  $locale
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function infoEntity($entity)
+    {
+        // Select current user API URL
+        $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/' . Auth::user()->id;
+        // Select all countries API URL
+        $url_country = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/country';
+        // Select all received messages API URL
+        $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
+        // Select all received messages API URL
+        $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
+        // Select news by type ID API URL
+        $url_news = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/news/select_by_type/5';
+        $url_communiques = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/news/select_by_type/6';
+        $url_events = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/news/select_by_type/7';
+
+        try {
+            // Select current user API response
+            $response_user = $this::$client->request('GET', $url_user, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $user = json_decode($response_user->getBody(), false);
+            // Select countries API response
+            $response_country = $this::$client->request('GET', $url_country, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $country = json_decode($response_country->getBody(), false);
+            // Select all received messages API response
+            $response_message = $this::$client->request('GET', $url_message, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $messages = json_decode($response_message->getBody(), false);
+
+            if ($entity == 'news') {
+                // // Select news by type ID API response
+                $response_news = $this::$client->request('GET', $url_news, [
+                    'headers' => $this::$headers,
+                    'verify' => false,
+                ]);
+                $news = json_decode($response_news->getBody(), false);
+
+                return view('dashboard.news', [
+                    'current_user' => $user->data,
+                    'countries' => $country->data,
+                    'messages' => $messages->data,
+                    'entity' => $entity,
+                    'entity_id' => 5,
+                    'news' => $news->data
+                ]);
+            }
+
+            if ($entity == 'communique') {
+                $response_communiques = $this::$client->request('GET', $url_communiques, [
+                    'headers' => $this::$headers,
+                    'verify' => false,
+                ]);
+                $communiques = json_decode($response_communiques->getBody(), false);
+
+                return view('dashboard.news', [
+                    'current_user' => $user->data,
+                    'countries' => $country->data,
+                    'messages' => $messages->data,
+                    'entity' => $entity,
+                    'entity_id' => 6,
+                    'communiques' => $communiques->data
+                ]);
+            }
+
+            if ($entity == 'event') {
+                $response_events = $this::$client->request('GET', $url_events, [
+                    'headers' => $this::$headers,
+                    'verify' => false,
+                ]);
+                $events = json_decode($response_events->getBody(), false);
+
+                return view('dashboard.news', [
+                    'current_user' => $user->data,
+                    'countries' => $country->data,
+                    'messages' => $messages->data,
+                    'entity' => $entity,
+                    'entity_id' => 7,
+                    'events' => $events->data
+                ]);
+            }
+
+        } catch (ClientException $e) {
+            // If the API returns some error, return to the page and display its message
+            return view('dashboard.print_card', [
+                'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+            ]);
+        }
+    }
+
     // ==================================== HTTP POST METHODS ====================================
     /**
      * POST: Update member

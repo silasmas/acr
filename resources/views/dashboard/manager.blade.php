@@ -3,7 +3,6 @@
 @section('app-content')
 
                         <div class="row gap-10">
-                            <div class="masonry-sizer col-lg-12"></div>
                             <!-- #Managers list ==================== -->
                             <div class="masonry-item col-lg-8 col-md-10 mx-auto">
                                 <div class="layers bgc-white p-0">
@@ -23,7 +22,7 @@
 
                                     <div class="layer w-100">
                                         <div class="table-responsive p-20">
-                                            <table class="table" id="dataList">
+                                            <table id="dataList" class="table">
                                                 <thead>
                                                     <tr>
                                                         <th class="bdwT-0 fw-bold">@lang('miscellaneous.names')</th>

@@ -515,12 +515,30 @@ return [
             'title' => 'Informations',
             'news' => [
                 'title' => 'News',
+                'add' => 'Add a news',
+                'data' => [
+                    'title' => 'Title',
+                    'content' => 'Content',
+                    'video_url' => 'Video URL of Youtube/other'
+                ],
             ],
             'communique' => [
                 'title' => 'Communiques',
+                'add' => 'Add a communique',
+                'data' => [
+                    'title' => 'Title',
+                    'content' => 'Content',
+                    'video_url' => 'Video URL of Youtube/other'
+                ],
             ],
             'event' => [
                 'title' => 'Events',
+                'add' => 'Add an event',
+                'data' => [
+                    'title' => 'Title',
+                    'content' => 'Content',
+                    'video_url' => 'Video URL of Youtube/other'
+                ],
             ],
         ],
     ],

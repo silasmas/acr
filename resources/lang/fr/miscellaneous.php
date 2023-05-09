@@ -514,13 +514,31 @@ return [
         'info' => [
             'title' => 'Informations',
             'news' => [
-                'title' => 'Actualité',
+                'title' => 'Liste des actualités',
+                'add' => 'Ajouter une actualité',
+                'data' => [
+                    'title' => 'Titre',
+                    'content' => 'Contenu',
+                    'video_url' => 'URL de la vidéo Youtube/autre'
+                ],
             ],
             'communique' => [
-                'title' => 'Communiqués',
+                'title' => 'Liste des communiqués',
+                'add' => 'Ajouter un communiqué',
+                'data' => [
+                    'title' => 'Titre',
+                    'content' => 'Contenu',
+                    'video_url' => 'URL de la vidéo Youtube/autre'
+                ],
             ],
             'event' => [
-                'title' => 'Evénements',
+                'title' => 'Liste des evénements',
+                'add' => 'Ajouter un événement',
+                'data' => [
+                    'title' => 'Titre',
+                    'content' => 'Contenu',
+                    'video_url' => 'URL de la vidéo Youtube/autre'
+                ],
             ],
         ],
     ],

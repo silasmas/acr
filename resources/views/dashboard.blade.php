@@ -146,30 +146,27 @@
                             <div class="masonry-item col-lg-6">
                                 <div class="bd bgc-white">
                                     <div class="layers">
-                                        <div class="layer d-flex w-100 pX-20 pT-20 justify-content-between">
+                                        <div class="layer w-100 pX-20 pT-20">
                                             <h6 class="lh-1 m-0">@lang('miscellaneous.manager.home.recent_news.title')</h6>
-
-                                            <a href="{{ route('party.infos.entity.new', ['entity' => 'news']) }}" class="position-relative" style="top: -8px" title="@lang('miscellaneous.manager.home.recent_news.add_new')" data-bs-toggle="tooltip">
-                                                <span class="bi bi-plus-circle-fill fs-3 me-1 align-middle"></span>@lang('miscellaneous.add')
-                                            </a>
                                         </div>
 
                                         <div class="layer w-100 pX-20 pT-10 pB-20">
                                             <div class="list-group">
         @forelse ($news as $news_item)
+            @if ($loop->index < 4)
                                                 <a href="{{ route('party.infos.entity.datas', ['entity' => 'news', 'id' => $news_item->id]) }}" class="list-group-item list-group-item-action">
                                                     <div class="row">
                                                         <div class="col-lg-2 col-md-1 col-3">
-            @if (!empty($news_item->photo_url))
+                @if (!empty($news_item->photo_url))
                                                             <div class="bg-image">
                                                                 <img src="{{ $news_item->photo_url }}" alt="{{ $news_item->news_title }}" class="img-fluid rounded-3">
                                                                 <div class="mask"></div>
                                                             </div>
-            @else
+                @else
                                                             <div class="d-flex justify-content-center h-100 align-items-center acr-bg-gray">
                                                                 <span class="bi bi-image"></span>
                                                             </div>
-            @endif
+                @endif
                                                         </div>
                                                         <div class="col-lg-10 col-md-11 col-9">
                                                             <h5 class="h5 m-0 fw-bold text-truncate">{{ $news_item->news_title }}</h5>
@@ -177,7 +174,7 @@
                                                         </div>
                                                     </div>
                                                 </a>
-            
+            @endif
         @empty
                                                 <span class="list-group-item">@lang('miscellaneous.empty_list')</span>
         @endforelse
@@ -194,30 +191,27 @@
                             <div class="masonry-item col-lg-6">
                                 <div class="bd bgc-white">
                                     <div class="layers">
-                                        <div class="layer d-flex w-100 pX-20 pT-20 justify-content-between">
+                                        <div class="layer w-100 pX-20 pT-20">
                                             <h6 class="lh-1 m-0">@lang('miscellaneous.manager.home.recent_communiques.title')</h6>
-
-                                            <a href="{{ route('party.infos.entity.new', ['entity' => 'communique']) }}" class="position-relative" style="top: -8px" title="@lang('miscellaneous.manager.home.recent_communiques.add_new')" data-bs-toggle="tooltip">
-                                                <span class="bi bi-plus-circle-fill fs-3 me-1 align-middle"></span>@lang('miscellaneous.add')
-                                            </a>
                                         </div>
 
                                         <div class="layer w-100 pX-20 pT-10 pB-20">
                                             <div class="list-group">
         @forelse ($communiques as $communique)
+            @if ($loop->index < 4)
                                                 <a href="{{ route('party.infos.entity.datas', ['entity' => 'communique', 'id' => $communique->id]) }}" class="list-group-item list-group-item-action">
                                                     <div class="row">
                                                         <div class="col-lg-2 col-md-1 col-3">
-            @if (!empty($communique->photo_url))
+                @if (!empty($communique->photo_url))
                                                             <div class="bg-image">
                                                                 <img src="{{ $communique->photo_url }}" alt="{{ $communique->news_title }}" class="img-fluid rounded-3">
                                                                 <div class="mask"></div>
                                                             </div>
-            @else
+                @else
                                                             <div class="d-flex justify-content-center h-100 align-items-center acr-bg-gray">
                                                                 <span class="bi bi-image"></span>
                                                             </div>
-            @endif
+                @endif
                                                         </div>
                                                         <div class="col-lg-10 col-md-11 col-9">
                                                             <h5 class="h5 m-0 fw-bold text-truncate">{{ $communique->news_title }}</h5>
@@ -225,7 +219,7 @@
                                                         </div>
                                                     </div>
                                                 </a>
-            
+            @endif
         @empty
                                                 <span class="list-group-item">@lang('miscellaneous.empty_list')</span>
         @endforelse
@@ -242,30 +236,27 @@
                             <div class="masonry-item col-lg-6">
                                 <div class="bd bgc-white">
                                     <div class="layers">
-                                        <div class="layer d-flex w-100 pX-20 pT-20 justify-content-between">
+                                        <div class="layer w-100 pX-20 pT-20">
                                             <h6 class="lh-1 m-0">@lang('miscellaneous.manager.home.recent_events.title')</h6>
-
-                                            <a href="{{ route('party.infos.entity.new', ['entity' => 'event']) }}" class="position-relative" style="top: -8px" title="@lang('miscellaneous.manager.home.recent_events.add_new')" data-bs-toggle="tooltip">
-                                                <span class="bi bi-plus-circle-fill fs-3 me-1 align-middle"></span>@lang('miscellaneous.add')
-                                            </a>
                                         </div>
 
                                         <div class="layer w-100 pX-20 pT-10 pB-20">
                                             <div class="list-group">
         @forelse ($events as $event)
+            @if ($loop->index < 4)
                                                 <a href="{{ route('party.infos.entity.datas', ['entity' => 'event', 'id' => $event->id]) }}" class="list-group-item list-group-item-action">
                                                     <div class="row">
                                                         <div class="col-lg-2 col-md-1 col-3">
-            @if (!empty($event->photo_url))
+                @if (!empty($event->photo_url))
                                                             <div class="bg-image">
                                                                 <img src="{{ $event->photo_url }}" alt="{{ $event->news_title }}" class="img-fluid rounded-3">
                                                                 <div class="mask"></div>
                                                             </div>
-            @else
+                @else
                                                             <div class="d-flex justify-content-center h-100 align-items-center acr-bg-gray">
                                                                 <span class="bi bi-image"></span>
                                                             </div>
-            @endif
+                @endif
                                                         </div>
                                                         <div class="col-lg-10 col-md-11 col-9">
                                                             <h5 class="h5 m-0 fw-bold text-truncate">{{ $event->news_title }}</h5>
@@ -273,7 +264,7 @@
                                                         </div>
                                                     </div>
                                                 </a>
-            
+            @endif
         @empty
                                                 <span class="list-group-item">@lang('miscellaneous.empty_list')</span>
         @endforelse

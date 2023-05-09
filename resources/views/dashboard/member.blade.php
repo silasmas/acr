@@ -559,7 +559,7 @@
                 </div>
                 <div class="layer w-100 pX-20 pB-20">
                     <div class="table-responsive p-20">
-                        <table class="table" id="dataList">
+                        <table id="dataList" class="table">
                             <thead>
                                 <tr>
                                     <th class="bdwT-0 fw-bold">@lang('miscellaneous.tnameMess')</th>
