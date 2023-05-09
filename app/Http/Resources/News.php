@@ -22,10 +22,11 @@ class News extends JsonResource
             'id' => $this->id,
             'news_title' => $this->news_title,
             'news_content' => $this->news_content,
-            'photo_url' => $this->photo_url,
+            'photo_url' => $this->photo_url != null ? (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/public/storage/' . $this->photo_url : null,
+            // 'photo_url' => $this->photo_url != null ? '/storage/' . $this->photo_url : null,
             'video_url' => $this->video_url,
             'type' => Type::make($this->type),
-            'created_at' => $this->created_at->format('Y-m-d H:i:s'),
+            'created_at' => timeAgo($this->created_at->format('Y-m-d H:i:s')),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s')
         ];
     }
