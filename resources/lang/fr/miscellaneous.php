@@ -246,6 +246,7 @@ return [
     'usd' => 'Dollar américain',
     'cdf' => 'Franc congolais',
     // Alert message
+    'registered_data' => 'Données enregistrées',
     'required_fields' => 'Veuillez vérifier les champs obligatoires',
     'transaction_waiting' => 'Veuillez valider le message de votre opérateur sur votre téléphone. Ensuite appuyez sur le bouton ci-dessous.',
     'transaction_done' => 'Votre opération est terminée !',

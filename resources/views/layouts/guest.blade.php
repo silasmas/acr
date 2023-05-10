@@ -824,7 +824,76 @@
     <!-- Custom Javascript -->
     <script src="{{ asset('assets/js/scripts.custom.js') }}"></script>
     @yield('autres_js')
-    
+    <script type="text/javascript">
+        $(function () {
+            // Get cropped image
+            // --- ID card recto
+            elemChange('retrieved_image_recto', 300, 169, 350, 197, '#image_recto', 'cropModal_recto', '#cropModal_recto #crop', 1244, 700, '.identity-recto', '#data_recto', '[for="image_recto"]');
+            // --- ID card verso
+            elemChange('retrieved_image_verso', 300, 169, 350, 197, '#image_verso', 'cropModal_verso', '#cropModal_verso #crop', 1244, 700, '.identity-verso', '#data_verso', '[for="image_verso"]');
+
+            function elemChange(image_id, wiewport_W, wiewport_H, boundary_W, boundary_H, input_id, modal_id, 
+                                crop_btn, response_W, response_H, result_img, result_inputHidden, label) {
+                var retrievedImage = document.getElementById(image_id);
+                var modal = new bootstrap.Modal(document.getElementById(modal_id), {
+                    keyboard: false
+                });
+
+                var cropped_image = $(retrievedImage).croppie({
+                    enableExif: true,
+                    viewport: {
+                        width: wiewport_W,
+                        height: wiewport_H,
+                        type:'square' //circle
+                    },
+                    boundary: {
+                        width: boundary_W,
+                        height: boundary_H
+                    }
+                });
+
+                $(input_id).on('change', function () {
+                    var reader = new FileReader();
+
+                    reader.onload = function (event) {
+                        cropped_image.croppie('bind', {
+                            url: event.target.result
+
+                        }).then(function () {
+                            console.log('jQuery bind complete');
+                        });
+                    }
+
+                    reader.readAsDataURL(this.files[0]);
+                    modal.show();
+                });
+
+                $(modal).on('hidden.bs.modal', function () {
+                    $(cropped_image).croppie('destroy');
+
+                    retrievedImage.src = null;
+                });
+
+                $(crop_btn).click(function (event) {
+                    event.preventDefault();
+                    cropped_image.croppie('result', {
+                        type: 'canvas',
+                        size: {
+                            width: response_W,
+                            height: response_H
+                        }
+
+                    }).then(function (response) {
+                        $(result_img).attr('src', response);
+                        $(result_inputHidden).attr('value', response);
+                        $(label).addClass('opacity-0');
+                    });
+
+                    modal.hide();
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
