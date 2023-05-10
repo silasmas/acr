@@ -157,16 +157,16 @@
                                                 <a href="{{ route('party.infos.entity.datas', ['entity' => 'news', 'id' => $news_item->id]) }}" class="list-group-item list-group-item-action">
                                                     <div class="row">
                                                         <div class="col-lg-2 col-md-1 col-3">
-                @if (!empty($news_item->photo_url))
-                                                            <div class="bg-image">
-                                                                <img src="{{ $news_item->photo_url }}" alt="{{ $news_item->news_title }}" class="img-fluid rounded-3">
-                                                                <div class="mask"></div>
-                                                            </div>
-                @else
-                                                            <div class="d-flex justify-content-center h-100 align-items-center acr-bg-gray">
-                                                                <span class="bi bi-image"></span>
-                                                            </div>
+                                                            <div class="bg-image mt-1">
+                                                                <img src="{{ !empty($news_item->photo_url) ? $news_item->photo_url : asset('assets/img/blank-news.png') }}" alt="{{ $news_item->news_title }}" class="img-fluid rounded-3">
+                                                                <div class="mask h-100">
+                @if (empty($news_item->photo_url))
+                                                                    <div class="d-flex justify-content-center align-items-center h-100 fs-5 text-black text-uppercase">
+                                                                        <span class="bi bi-image text-secondary"></span>
+                                                                    </div>
                 @endif
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                         <div class="col-lg-10 col-md-11 col-9">
                                                             <h5 class="h5 m-0 fw-bold text-truncate">{{ $news_item->news_title }}</h5>
@@ -202,16 +202,16 @@
                                                 <a href="{{ route('party.infos.entity.datas', ['entity' => 'communique', 'id' => $communique->id]) }}" class="list-group-item list-group-item-action">
                                                     <div class="row">
                                                         <div class="col-lg-2 col-md-1 col-3">
-                @if (!empty($communique->photo_url))
-                                                            <div class="bg-image">
-                                                                <img src="{{ $communique->photo_url }}" alt="{{ $communique->news_title }}" class="img-fluid rounded-3">
-                                                                <div class="mask"></div>
-                                                            </div>
-                @else
-                                                            <div class="d-flex justify-content-center h-100 align-items-center acr-bg-gray">
-                                                                <span class="bi bi-image"></span>
-                                                            </div>
+                                                            <div class="bg-image mt-1">
+                                                                <img src="{{ !empty($communique->photo_url) ? $communique->photo_url : asset('assets/img/blank-news.png') }}" alt="{{ $communique->news_title }}" class="img-fluid rounded-3">
+                                                                <div class="mask h-100">
+                @if (empty($communique->photo_url))
+                                                                    <div class="d-flex justify-content-center align-items-center h-100 fs-5 text-black text-uppercase">
+                                                                        <span class="bi bi-image text-secondary"></span>
+                                                                    </div>
                 @endif
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                         <div class="col-lg-10 col-md-11 col-9">
                                                             <h5 class="h5 m-0 fw-bold text-truncate">{{ $communique->news_title }}</h5>
@@ -247,16 +247,16 @@
                                                 <a href="{{ route('party.infos.entity.datas', ['entity' => 'event', 'id' => $event->id]) }}" class="list-group-item list-group-item-action">
                                                     <div class="row">
                                                         <div class="col-lg-2 col-md-1 col-3">
-                @if (!empty($event->photo_url))
-                                                            <div class="bg-image">
-                                                                <img src="{{ $event->photo_url }}" alt="{{ $event->news_title }}" class="img-fluid rounded-3">
-                                                                <div class="mask"></div>
-                                                            </div>
-                @else
-                                                            <div class="d-flex justify-content-center h-100 align-items-center acr-bg-gray">
-                                                                <span class="bi bi-image"></span>
-                                                            </div>
+                                                            <div class="bg-image mt-1">
+                                                                <img src="{{ !empty($event->photo_url) ? $event->photo_url : asset('assets/img/blank-news.png') }}" alt="{{ $event->news_title }}" class="img-fluid rounded-3">
+                                                                <div class="mask h-100">
+                @if (empty($event->photo_url))
+                                                                    <div class="d-flex justify-content-center align-items-center h-100 fs-5 text-black text-uppercase">
+                                                                        <span class="bi bi-image text-secondary"></span>
+                                                                    </div>
                 @endif
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                         <div class="col-lg-10 col-md-11 col-9">
                                                             <h5 class="h5 m-0 fw-bold text-truncate">{{ $event->news_title }}</h5>
