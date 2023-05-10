@@ -161,7 +161,7 @@
                                                 <textarea name="register_content" id="register_content" class="form-control mb-3" placeholder="@lang('miscellaneous.manager.info.news.data.content')" required></textarea>
 
                                                 <!-- Add photo -->
-                                                <div class="row">
+                                                <div id="addPicture" class="row">
                                                     <div class="col-md-7 col-8 mx-auto">
                                                         <div class="bg-image rounded overflow-hidden overlay mb-3">
                                                             <img src="{{ asset('assets/img/blank-news.png') }}" alt="@lang('miscellaneous.manager.info.news.data.add_photo')" class="news-image img-fluid">

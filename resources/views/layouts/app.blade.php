@@ -43,6 +43,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/mdb/css/mdb.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/cropper/css/cropper.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/image-cropping-library-jcrop/css/jquery.Jcrop.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/sweetalert/sweetalert.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/show-more/dist/css/show-more.min.css') }}">
     <!-- Adminator CSS File -->
