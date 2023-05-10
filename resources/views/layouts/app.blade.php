@@ -322,6 +322,64 @@
             </div>
         </div>
     </div>
+
+    <!-- ### Crop recto image ### -->
+    <div class="modal fade" id="cropModal_recto" tabindex="-1" aria-labelledby="cropModalRectoLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cropModalRectoLabel">{{ __('miscellaneous.crop_before_save') }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 mb-sm-0 mb-4">
+                                <div class="bg-image">
+                                    <img src="" id="retrieved_image_recto" class="img-fluid">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                    <button type="button" class="btn btn-light border border-default shadow-0"
+                        data-bs-dismiss="modal">{{ __('miscellaneous.cancel') }}</button>
+                    <button type="button" id="crop" class="btn btn-primary btn-color shadow-0">{{
+                        __('miscellaneous.register') }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ### Crop verso image ### -->
+    <div class="modal fade" id="cropModal_verso" tabindex="-1" aria-labelledby="cropModalVersoLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cropModalVersoLabel">{{ __('miscellaneous.crop_before_save') }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 mb-sm-0 mb-4">
+                                <div class="bg-image">
+                                    <img src="" id="retrieved_image_verso" class="img-fluid">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                    <button type="button" class="btn btn-light border border-default shadow-0"
+                        data-bs-dismiss="modal">{{ __('miscellaneous.cancel') }}</button>
+                    <button type="button" id="crop" class="btn btn-primary btn-color shadow-0">{{
+                        __('miscellaneous.register') }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- #Modals End ==================== -->
 
     <div id="loader">
@@ -1010,62 +1068,74 @@
                     }
                 });
 
-                // Show/Hide ID card recto/verso
-                var retrievedImage2 = document.getElementById('retrieved_image2');
-                var modal2 = new bootstrap.Modal(document.getElementById('cropModal2'), {
-                    keyboard: false
-                });
-                var image_crop = $(retrievedImage2).croppie({
-                    enableExif: true,
-                    viewport: {
-                        width:300,
-                        height:300,
-                        type:'square' //circle
-                    },
-                    boundary: {
-                        width:350,
-                        height:350
-                    }
-                });
+                // Get cropped image
+                // --- News
+                elemChange('retrieved_image2', 300, 300, 350, 350, '#picture', 'cropModal2', '#cropModal2 #crop', 700, 700, '.news-image', '#data_picture', '[for="picture"]');
+                // --- ID card recto
+                elemChange('retrieved_image_recto', 300, 169, 350, 197, '#image_recto', 'cropModal_recto', '#cropModal_recto #crop', 1244, 700, '.identity-recto', '#data_recto', '[for="image_recto"]');
+                // --- ID card verso
+                elemChange('retrieved_image_verso', 300, 169, 350, 197, '#image_verso', 'cropModal_verso', '#cropModal_verso #crop', 1244, 700, '.identity-verso', '#data_verso', '[for="image_verso"]');
 
-                $('#picture').on('change', function () {
-                    var reader = new FileReader();
-
-                    reader.onload = function (event) {
-                        image_crop.croppie('bind', {
-                            url: event.target.result
-
-                        }).then(function () {
-                            console.log('jQuery bind complete');
-                        });
-                    }
-
-                    reader.readAsDataURL(this.files[0]);
-                    modal2.show();
-                });
-
-                $(modal2).on('hidden.bs.modal', function () {
-                    $(image_crop).croppie('destroy');
-
-                    retrievedImage2.src = null;
-                });
-
-                $('#cropModal2 #crop').click(function (event) {
-                    image_crop.croppie('result', {
-                        type: 'canvas',
-                        size: {
-                            width:700,
-                            height:700
-                        }
-
-                    }).then(function (response) {
-                        $('.news-image').attr('src', response);
-                        $('#data_picture').attr('value', response);
-                        $('[for="picture"]').addClass('opacity-0');
+                function elemChange(image_id, wiewport_W, wiewport_H, boundary_W, boundary_H, input_id, modal_id, 
+                                    crop_btn, response_W, response_H, result_img, result_inputHidden, label) {
+                    var retrievedImage = document.getElementById(image_id);
+                    var modal = new bootstrap.Modal(document.getElementById(modal_id), {
+                        keyboard: false
                     });
 
-                    modal2.hide();
-                });
+                    var cropped_image = $(retrievedImage).croppie({
+                        enableExif: true,
+                        viewport: {
+                            width: wiewport_W,
+                            height: wiewport_H,
+                            type:'square' //circle
+                        },
+                        boundary: {
+                            width: boundary_W,
+                            height: boundary_H
+                        }
+                    });
+
+                    $(input_id).on('change', function () {
+                        var reader = new FileReader();
+
+                        reader.onload = function (event) {
+                            cropped_image.croppie('bind', {
+                                url: event.target.result
+
+                            }).then(function () {
+                                console.log('jQuery bind complete');
+                            });
+                        }
+
+                        reader.readAsDataURL(this.files[0]);
+                        modal.show();
+                    });
+
+                    $(modal).on('hidden.bs.modal', function () {
+                        $(cropped_image).croppie('destroy');
+
+                        retrievedImage.src = null;
+                    });
+
+                    $(crop_btn).click(function (event) {
+                        event.preventDefault();
+                        cropped_image.croppie('result', {
+                            type: 'canvas',
+                            size: {
+                                width: response_W,
+                                height: response_H
+                            }
+
+                        }).then(function (response) {
+                            $(result_img).attr('src', response);
+                            $(result_inputHidden).attr('value', response);
+                            $(label).addClass('opacity-0');
+                        });
+
+                        modal.hide();
+                    });
+                }
             });
     </script>
 </body>

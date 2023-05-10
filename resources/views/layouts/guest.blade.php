@@ -158,12 +158,12 @@
         </div>
     </div>
 
-    <!-- ### Crop identity card image ### -->
-    <div class="modal fade" id="cropModal2" tabindex="-1" aria-labelledby="cropModal2Label" aria-hidden="true">
+    <!-- ### Crop recto image ### -->
+    <div class="modal fade" id="cropModal_recto" tabindex="-1" aria-labelledby="cropModalRectoLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="cropModal2Label">{{ __('miscellaneous.crop_before_save') }}</h5>
+                    <h5 class="modal-title" id="cropModalRectoLabel">{{ __('miscellaneous.crop_before_save') }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -171,7 +171,36 @@
                         <div class="row">
                             <div class="col-12 mb-sm-0 mb-4">
                                 <div class="bg-image">
-                                    <img src="" id="retrieved_image2" class="img-fluid">
+                                    <img src="" id="retrieved_image_recto" class="img-fluid">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                    <button type="button" class="btn btn-light border border-default shadow-0"
+                        data-bs-dismiss="modal">{{ __('miscellaneous.cancel') }}</button>
+                    <button type="button" id="crop" class="btn btn-primary btn-color shadow-0">{{
+                        __('miscellaneous.register') }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ### Crop verso image ### -->
+    <div class="modal fade" id="cropModal_verso" tabindex="-1" aria-labelledby="cropModalVersoLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cropModalVersoLabel">{{ __('miscellaneous.crop_before_save') }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 mb-sm-0 mb-4">
+                                <div class="bg-image">
+                                    <img src="" id="retrieved_image_verso" class="img-fluid">
                                 </div>
                             </div>
                         </div>
