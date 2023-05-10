@@ -170,7 +170,7 @@
                                                                     <span>@lang('miscellaneous.manager.info.news.data.add_photo')</span>
                                                                     <input type="file" name="picture" id="picture" class="d-none">
                                                                 </label>
-                                                                <input type="hidden" name="data_picture" value="">
+                                                                <input type="hidden" name="data_picture" id="data_picture" value="">
                                                             </div>
                                                         </div>
                                                     </div>

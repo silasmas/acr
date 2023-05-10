@@ -43,7 +43,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/mdb/css/mdb.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/cropper/css/cropper.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/image-cropping-library-jcrop/css/jquery.Jcrop.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/croppie/croppie.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/sweetalert/sweetalert.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/show-more/dist/css/show-more.min.css') }}">
     <!-- Adminator CSS File -->
@@ -882,7 +882,7 @@
     <script src="{{ asset('assets/addons/custom/mdb/js/mdb.min.js') }}"></script>
     <script src="{{ asset('assets/addons/custom/dataTables/datatables.min.js') }}"></script>
     <script src="{{ asset('assets/addons/custom/cropper/js/cropper.min.js') }}"></script>
-    <script src="{{ asset('assets/addons/custom/image-cropping-library-jcrop/js/jquery.Jcrop.min.js') }}"></script>
+    <script src="{{ asset('assets/addons/custom/croppie/croppie.min.js') }}"></script>
     <script src="{{ asset('assets/addons/custom/autosize/js/autosize.min.js') }}"></script>
     <script src="{{ asset('assets/addons/custom/biliap/js/biliap.cores.js') }}"></script>
     <script src="{{ asset('assets/addons/custom/sweetalertjs/sweetalert.min.js') }}"></script>
@@ -979,6 +979,7 @@
             }
 
             $(function () {
+                // jQuery DataTable
                 $('#dataList').DataTable({
                     language: {
                         url: curHost + '/assets/addons/custom/dataTables/Plugins/i18n/' + $('html').attr('lang') + '.json'
@@ -988,6 +989,7 @@
                     info: 'matchMedia' in window ? (window.matchMedia('(min-width: 500px)').matches ? true : false) : false,
                 });
 
+                // Show/Hide ID card recto/verso
                 $('#rectoVersoText').click(function (e) {
                     e.preventDefault();
 
@@ -1006,6 +1008,63 @@
 
                         $('#rectoVersoText span').text(versoText);
                     }
+                });
+
+                // Show/Hide ID card recto/verso
+                var retrievedImage2 = document.getElementById('retrieved_image2');
+                var modal2 = new bootstrap.Modal(document.getElementById('cropModal2'), {
+                    keyboard: false
+                });
+                var image_crop = $(retrievedImage2).croppie({
+                    enableExif: true,
+                    viewport: {
+                        width:300,
+                        height:300,
+                        type:'square' //circle
+                    },
+                    boundary: {
+                        width:350,
+                        height:350
+                    }
+                });
+
+                $('#picture').on('change', function () {
+                    var reader = new FileReader();
+
+                    reader.onload = function (event) {
+                        image_crop.croppie('bind', {
+                            url: event.target.result
+
+                        }).then(function () {
+                            console.log('jQuery bind complete');
+                        });
+                    }
+
+                    reader.readAsDataURL(this.files[0]);
+                    modal2.show();
+                });
+
+                $(modal2).on('hidden.bs.modal', function () {
+                    $(image_crop).croppie('destroy');
+
+                    retrievedImage2.src = null;
+                });
+
+                $('#cropModal2 #crop').click(function (event) {
+                    image_crop.croppie('result', {
+                        type: 'canvas',
+                        size: {
+                            width:700,
+                            height:700
+                        }
+
+                    }).then(function (response) {
+                        $('.news-image').attr('src', response);
+                        $('#data_picture').attr('value', response);
+                        $('[for="picture"]').addClass('opacity-0');
+                    });
+
+                    modal2.hide();
                 });
             });
     </script>
