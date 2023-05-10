@@ -142,6 +142,17 @@ $(document).ready(function () {
         $('#phone_code3').val(countryPhoneCode);
     });
 
+    /* On select, show/hide some blocs */
+    // IDENTITY DOC DESCRIPTION
+    $('#register_image_name').on('change', function () {
+        if ($('#register_image_name option').filter(':selected').text() == 'Autre' || $('#register_image_name option').filter(':selected').text() == 'Other') {
+            $('#docDescription').removeClass('d-none');
+
+        } else {
+            $('#docDescription').addClass('d-none');
+        }
+    });
+
     /* On check, show/hide some blocs */
     // OFFER TYPE
     $('#donationType .form-check-input').each(function () {

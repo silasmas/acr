@@ -127,7 +127,7 @@ Route::post('/members/{id}', 'App\Http\Controllers\Web\PartyController@updateMem
 Route::post('/members/new/check_token', 'App\Http\Controllers\Web\PartyController@checkToken')->name('party.member.new.check_token');
 Route::get('/members/{id}/print_card', 'App\Http\Controllers\Web\PartyController@printCard')->whereNumber('id')->name('party.member.print_card');
 Route::get('/members/{id}/notif_messages', 'App\Http\Controllers\Web\PartyController@memberNotifMessages')->whereNumber('id')->name('party.member.notif_message');
-Route::post('/members/{id}/update_identity_doc', 'App\Http\Controllers\Web\PartyController@updateIdentityDoc')->name('party.member.identity_doc');
+Route::post('/members/{id}/update_identity_doc', 'App\Http\Controllers\Web\PartyController@updateIdentityDoc')->whereNumber('id')->name('party.member.identity_doc');
 Route::get('/members/search/{data}', 'App\Http\Controllers\Web\PartyController@searchMember')->name('members.search');
 Route::post('/members/send_notif_message', 'App\Http\Controllers\Web\PartyController@sendNotifMessage')->name('members.send_notif_message');
 Route::delete('/members/{id}/notif_messages/{notif_id}', 'App\Http\Controllers\Web\PartyController@deleteNotifMessage')->whereNumber(['id', 'notif_id'])->name('party.member.delete_notif_message');

@@ -230,6 +230,50 @@
                 </div>
 
                 <div class="layer w-100 pX-20 pT-10 pB-20">
+                    <form method="POST" action="{{ route('party.member.identity_doc', ['id' => $selected_member->id]) }}">
+        @csrf
+                        <input type="hidden" name="member_id" id="member_id" value="{{ $selected_member->id }}">
+
+                        <select name="register_image_name" id="register_image_name" class="form-control mb-3">
+                            <option class="small" {{ $selected_member->identity_data != null ? '' : 'selected ' }}disabled>@lang('miscellaneous.account.identity_document.choose_type.title')</option>
+                            <option value="Carte d'identité"{{ $selected_member->identity_data != null AND $selected_member->identity_data == 'Carte d\'identité' ? ' selected' : '' }}>@lang('miscellaneous.account.identity_document.choose_type.identity_card')</option>
+                            <option value="Carte d'électeur"{{ $selected_member->identity_data != null AND $selected_member->identity_data == 'Carte d\'électeur' ? ' selected' : '' }}>@lang('miscellaneous.account.identity_document.choose_type.voter_card')</option>
+                            <option value="Passeport"{{ $selected_member->identity_data != null AND $selected_member->identity_data == 'Passeport' ? ' selected' : '' }}>@lang('miscellaneous.account.identity_document.choose_type.passport')</option>
+                            <option value="Permis de conduire"{{ $selected_member->identity_data != null AND $selected_member->identity_data == 'Permis de conduire' ? ' selected' : '' }}>@lang('miscellaneous.account.identity_document.choose_type.driving_license')</option>
+                            <option value="Autre"{{ $selected_member->identity_data != null AND $selected_member->identity_data == 'Autre' ? ' selected' : '' }}>@lang('miscellaneous.account.identity_document.choose_type.other')</option>
+                        </select>
+
+                        <div id="docDescription" class="mb-3 d-none">
+                            <label for="register_description" class="form-label mb-1 visually-hidden">@lang('miscellaneous.account.identity_document.other_descriprion')</label>
+                            <textarea name="register_description" id="register_description" class="form-control" placeholder="@lang('miscellaneous.account.identity_document.other_descriprion')"></textarea>
+                        </div>
+
+                        <p class="m-0 small"><strong class="text-uppercase">@lang('miscellaneous.recto')</strong> (@lang('miscellaneous.account.identity_document.click_to_change'))</p>
+                        <div class="bg-image rounded overflow-hidden overlay mb-2">
+                            <img src="{{ $selected_member->identity_data != null && $selected_member->identity_data->url_recto != null ? $selected_member->identity_data->url_recto : asset('assets/img/blank-id-doc.png') }}" alt="@lang('miscellaneous.recto')" class="identity-recto img-fluid">
+                            <div class="mask h-100">
+                                <label role="button" for="image_recto" class="d-flex justify-content-center align-items-center h-100 fs-3 text-black text-uppercase">
+                                    <span class="{{ $selected_member->identity_data != null && $selected_member->identity_data->url_recto != null ? 'opacity-0' : 'opacity-100' }}">@lang('miscellaneous.recto')</span>
+                                    <input type="file" name="image_recto" id="image_recto" class="d-none">
+                                </label>
+                                <input type="hidden" name="data_recto" id="data_recto">
+                            </div>
+                        </div>
+
+                        <p class="m-0 small"><strong class="text-uppercase">@lang('miscellaneous.verso')</strong> (@lang('miscellaneous.account.identity_document.click_to_change'))</p>
+                        <div class="bg-image rounded overflow-hidden overlay mb-3">
+                            <img src="{{ $selected_member->identity_data != null && $selected_member->identity_data->url_verso != null ? $selected_member->identity_data->url_verso : asset('assets/img/blank-id-doc.png') }}" alt="@lang('miscellaneous.verso')" class="identity-verso img-fluid">
+                            <div class="mask h-100">
+                                <label role="button" for="image_verso" class="d-flex justify-content-center align-items-center h-100 fs-3 text-black text-uppercase">
+                                    <span class="{{ $selected_member->identity_data != null && $selected_member->identity_data->url_recto != null ? 'opacity-0' : 'opacity-100' }}">@lang('miscellaneous.verso')</span>
+                                        <input type="file" name="image_verso" id="image_verso" class="d-none">
+                                </label>
+                                <input type="hidden" name="data_verso" id="data_verso">
+                            </div>
+                        </div>
+
+                        <button class="btn btn-block btn-light border border-default rounded-pill shadow-0" type="submit">@lang('miscellaneous.register')</button>
+                    </form>
                 </div>
             </div>
         </div>

@@ -315,6 +315,7 @@ return [
                 'driving_license' => 'Driving license',
                 'other' => 'Other',
             ],
+            'other_descriprion' => 'Describe your identity document',
             'click_to_change' => 'Click on photo to edit',
         ],
         'my_contributions' => [

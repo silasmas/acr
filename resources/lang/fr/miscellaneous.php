@@ -315,6 +315,7 @@ return [
                 'driving_license' => 'Permis de conduire',
                 'other' => 'Autre',
             ],
+            'other_descriprion' => 'Décrivez votre pièce d\'identité',
             'click_to_change' => 'Cliquer sur la photo pour modifier',
         ],
         'my_contributions' => [
