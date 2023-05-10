@@ -1088,7 +1088,8 @@
                         viewport: {
                             width: wiewport_W,
                             height: wiewport_H,
-                            type:'square' //circle
+                            type:'square', //circle
+                            enforceBoundary: true
                         },
                         boundary: {
                             width: boundary_W,

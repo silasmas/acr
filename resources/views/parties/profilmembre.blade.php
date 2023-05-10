@@ -183,11 +183,11 @@
         @csrf
                     <select name="register_image_name" id="register_image_name" class="form-control mb-3">
                         <option class="small" {{ $current_user->identity_data != null ? '' : 'selected ' }}disabled>@lang('miscellaneous.account.identity_document.choose_type.title')</option>
-                        <option value="Carte d'identité"{{ $current_user->identity_data != null AND $current_user->identity_data == 'Carte d\'identité' ? ' selected' : '' }}>@lang('miscellaneous.account.identity_document.choose_type.identity_card')</option>
-                        <option value="Carte d'électeur"{{ $current_user->identity_data != null AND $current_user->identity_data == 'Carte d\'électeur' ? ' selected' : '' }}>@lang('miscellaneous.account.identity_document.choose_type.voter_card')</option>
-                        <option value="Passeport"{{ $current_user->identity_data != null AND $current_user->identity_data == 'Passeport' ? ' selected' : '' }}>@lang('miscellaneous.account.identity_document.choose_type.passport')</option>
-                        <option value="Permis de conduire"{{ $current_user->identity_data != null AND $current_user->identity_data == 'Permis de conduire' ? ' selected' : '' }}>@lang('miscellaneous.account.identity_document.choose_type.driving_license')</option>
-                        <option value="Autre"{{ $current_user->identity_data != null AND $current_user->identity_data == 'Autre' ? ' selected' : '' }}>@lang('miscellaneous.account.identity_document.choose_type.other')</option>
+                        <option value="Carte d'identité"{{ $current_user->identity_data != null ? ($current_user->identity_data->image_name == 'Carte d\'identité' ? ' selected' : '') : '' }}>@lang('miscellaneous.account.identity_document.choose_type.identity_card')</option>
+                        <option value="Carte d'électeur"{{ $current_user->identity_data != null ? ($current_user->identity_data->image_name == 'Carte d\'électeur' ? ' selected' : '') : '' }}>@lang('miscellaneous.account.identity_document.choose_type.voter_card')</option>
+                        <option value="Passeport"{{ $current_user->identity_data != null ? ($current_user->identity_data->image_name == 'Passeport' ? ' selected' : '') : '' }}>@lang('miscellaneous.account.identity_document.choose_type.passport')</option>
+                        <option value="Permis de conduire"{{ $current_user->identity_data != null ? ($current_user->identity_data->image_name == 'Permis de conduire' ? ' selected' : '') : '' }}>@lang('miscellaneous.account.identity_document.choose_type.driving_license')</option>
+                        <option value="Autre"{{ $current_user->identity_data != null ? ($current_user->identity_data->image_name == 'Autre' ? ' selected' : '') : '' }}>@lang('miscellaneous.account.identity_document.choose_type.other')</option>
                     </select>
 
                     <div id="docDescription" class="mb-3 d-none">
