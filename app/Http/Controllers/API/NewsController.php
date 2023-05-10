@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Group;
-use App\Models\Image;
 use App\Models\News;
 use App\Models\Notification;
 use App\Models\Role;
 use App\Models\RoleUser;
+use App\Models\Status;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -64,20 +63,24 @@ class NewsController extends BaseController
         /*
             HISTORY AND/OR NOTIFICATION MANAGEMENT
         */
+        $status_unread = Status::where('status_name', 'Non lue')->first();
         $news_type = Type::find($inputs['type_id']);
 
-        if ($news_type->type_name == 'Communiqué') {
-            $member_role = Role::where('role_name', 'Membre')->first();
-            $role_users = RoleUser::where('role_id', $member_role->id)->get();
+        $supporting_member_role = Role::where('role_name', 'Membre Sympathisant')->first();
+        $effecive_member_role = Role::where('role_name', 'Membre Effectif')->first();
+        $honorary_member_role = Role::where('role_name', 'Membre d\'Honneur')->first();
+        $founder_signatory_role = Role::where('role_name', 'Fondateur Signataire de Statuts')->first();
+        $founder_initiator_role = Role::where('role_name', 'Fondateur Initiateur')->first();
+        $role_users = RoleUser::where('role_id', $supporting_member_role->id)->orWhere('role_id', $effecive_member_role->id)->orWhere('role_id', $honorary_member_role->id)->orWhere('role_id', $founder_signatory_role->id)->orWhere('role_id', $founder_initiator_role->id)->get();
 
-            foreach ($role_users as $member):
-                Notification::create([
-                    'notification_url' => 'communique/' . $news->id,
-                    'notification_content' => __('notifications.party_published') . ' ' . __('miscellaneous.a_masculine') . ' ' . strtolower($news_type->type_name),
-                    'user_id' => $member->user_id,
-                ]);
-            endforeach;
-        }
+        foreach ($role_users as $member):
+            Notification::create([
+                'notification_url' => 'works/' . $news->id,
+                'notification_content' => __('notifications.party_published') . ' ' . ($news_type->type_name == 'Actualité' ? __('miscellaneous.a_feminine') : __('miscellaneous.a_masculine')) . ' ' . strtolower($news_type->type_name),
+                'status_id' => $status_unread->id,
+                'user_id' => $member->user_id,
+            ]);
+        endforeach;
 
         return $this->handleResponse(new ResourcesNews($news), __('notifications.create_news_success'));
     }
@@ -158,20 +161,24 @@ class NewsController extends BaseController
         /*
             HISTORY AND/OR NOTIFICATION MANAGEMENT
         */
+        $status_unread = Status::where('status_name', 'Non lue')->first();
         $news_type = Type::find($inputs['type_id']);
 
-        if ($news_type->type_name == 'Communiqué') {
-            $member_role = Role::where('role_name', 'Membre')->first();
-            $role_users = RoleUser::where('role_id', $member_role->id)->get();
+        $supporting_member_role = Role::where('role_name', 'Membre Sympathisant')->first();
+        $effecive_member_role = Role::where('role_name', 'Membre Effectif')->first();
+        $honorary_member_role = Role::where('role_name', 'Membre d\'Honneur')->first();
+        $founder_signatory_role = Role::where('role_name', 'Fondateur Signataire de Statuts')->first();
+        $founder_initiator_role = Role::where('role_name', 'Fondateur Initiateur')->first();
+        $role_users = RoleUser::where('role_id', $supporting_member_role->id)->orWhere('role_id', $effecive_member_role->id)->orWhere('role_id', $honorary_member_role->id)->orWhere('role_id', $founder_signatory_role->id)->orWhere('role_id', $founder_initiator_role->id)->get();
 
-            foreach ($role_users as $member):
-                Notification::create([
-                    'notification_url' => 'communique/' . $news->id,
-                    'notification_content' => __('notifications.party_changed') . ' ' . __('miscellaneous.a_masculine') . ' ' . strtolower($news_type->type_name),
-                    'user_id' => $member->user_id,
-                ]);
-            endforeach;
-        }
+        foreach ($role_users as $member):
+            Notification::create([
+                'notification_url' => 'works/' . $news->id,
+                'notification_content' => __('notifications.party_changed') . ' ' . ($news_type->type_name == 'Actualité' ? __('miscellaneous.a_feminine') : __('miscellaneous.a_masculine')) . ' ' . strtolower($news_type->type_name),
+                'status_id' => $status_unread->id,
+                'user_id' => $member->user_id,
+            ]);
+        endforeach;
 
         return $this->handleResponse(new ResourcesNews($news), __('notifications.update_news_success'));
     }
@@ -200,7 +207,7 @@ class NewsController extends BaseController
      */
     public function selectByType($type_id)
     {
-        $news = News::where('type_id', $type_id)->get();
+        $news = News::where('type_id', $type_id)->orderByDesc('created_at')->get();
 
         return $this->handleResponse(ResourcesNews::collection($news), __('notifications.find_all_news_success'));
     }
@@ -227,6 +234,7 @@ class NewsController extends BaseController
         // Clean "[news_id]" directory
         $file = new Filesystem;
         $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/public/storage/images/news/' . $inputs['news_id']);
+        // $file->cleanDirectory($_SERVER['DOCUMENT_ROOT'] . '/storage/images/news/' . $inputs['news_id']);
         // Create image URL
         $image_url = 'images/news/' . $inputs['news_id'] . '/' . Str::random(50) . '.png';
 

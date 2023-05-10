@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use GuzzleHttp\Exception\ClientException;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -357,6 +358,7 @@ class AccountController extends Controller
             $transaction_type = json_decode($response_transaction_type->getBody(), false);
             $qr_code = QrCode::format('png')->merge((!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/assets/img/favicon/android-icon-96x96.png', 0.2, true)->size(135)->generate($user->data->phone);
             // $qr_code = QrCode::size(135)->generate($user->data->phone);
+
             // Update user API response
             $response_update_user = $this::$client->request('PUT', $url_user, [
                 'headers' => $this::$headers,
@@ -456,6 +458,38 @@ class AccountController extends Controller
                     'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
                 ]);
             }
+        }
+    }
+
+    /**
+     * POST: Update Identity document of a member
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateIdentityDoc(Request $request)
+    {
+        // Register image API URL
+        $url_image = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/add_image/' . Auth::user()->id;
+
+        try {
+            // Register image API response
+            $this::$client->request('PUT', $url_image, [
+                'headers' => $this::$headers,
+                'form_params' => [
+                    'user_id' => Auth::user()->id,
+                    'image_name' => $request->register_image_name,
+                    'image_64_recto' => $request->data_recto,
+                    'image_64_verso' => $request->data_verso,
+                    'description' => $request->register_description
+                ],
+                'verify'  => false
+            ]);
+
+            return Redirect::back()->with('alert_success', __('miscellaneous.registered_data'));
+
+        } catch (ClientException $e) {
+            return Redirect::back()->with('response_error', (json_decode($e->getResponse()->getBody()->getContents(), false))->message);
         }
     }
 }

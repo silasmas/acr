@@ -705,6 +705,38 @@ class PartyController extends Controller
     }
 
     /**
+     * POST: Update Identity document of a member
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateIdentityDoc(Request $request, $id)
+    {
+        // Register image API URL
+        $url_image = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/add_image/' . $id;
+
+        try {
+            // Register image API response
+            $this::$client->request('PUT', $url_image, [
+                'headers' => $this::$headers,
+                'form_params' => [
+                    'user_id' => $request->member_id,
+                    'image_name' => $request->register_image_name,
+                    'image_64_recto' => $request->data_recto,
+                    'image_64_verso' => $request->data_verso,
+                    'description' => $request->register_description
+                ],
+                'verify'  => false
+            ]);
+
+            return Redirect::back()->with('alert_success', __('miscellaneous.registered_data'));
+
+        } catch (ClientException $e) {
+            return Redirect::back()->with('response_error', (json_decode($e->getResponse()->getBody()->getContents(), false))->message);
+        }
+    }
+
+    /**
      * POST: Check the given token
      *
      * @param  \Illuminate\Http\Request  $request
@@ -837,52 +869,11 @@ class PartyController extends Controller
      */
     public function sendNotifMessage(Request $request)
     {
-        // Select current user API URL
-        $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/' . Auth::user()->id;
-        // Select all countries API URL
-        $url_country = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/country';
-        // Select all received messages API URL
-        $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
-        // Select all roles API URL
-        $url_roles = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/role';
-        // Select all users by not role API URL
-        $developer_role = 'Développeur';
-        $url_not_developer = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/find_by_not_role/' . $developer_role;
-        // Select a member API URL
+        // Register notification API URL
         $url_notification = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/notification/store';
 
         try {
-            // Select current user API response
-            $response_user = $this::$client->request('GET', $url_user, [
-                'headers' => $this::$headers,
-                'verify'  => false
-            ]);
-            $user = json_decode($response_user->getBody(), false);
-            // Select countries API response
-            $response_country = $this::$client->request('GET', $url_country, [
-                'headers' => $this::$headers,
-                'verify'  => false
-            ]);
-            $country = json_decode($response_country->getBody(), false);
-            // Select all received messages API response
-            $response_message = $this::$client->request('GET', $url_message, [
-                'headers' => $this::$headers,
-                'verify'  => false
-            ]);
-            $messages = json_decode($response_message->getBody(), false);
-            // Select all roles API response
-            $response_roles = $this::$client->request('GET', $url_roles, [
-                'headers' => $this::$headers,
-                'verify'  => false
-            ]);
-            $roles = json_decode($response_roles->getBody(), false);
-            // Select all users by not role API response
-            $response_not_developer = $this::$client->request('GET', $url_not_developer, [
-                'headers' => $this::$headers,
-                'verify'  => false
-            ]);
-            $not_developer = json_decode($response_not_developer->getBody(), false);
-            // Select a member API response
+            // Register notification API response
             $this::$client->request('POST', $url_notification, [
                 'headers' => $this::$headers,
                 'form_params' => [
@@ -896,6 +887,52 @@ class PartyController extends Controller
             ]);
 
             return Redirect::back()->with('alert_success', __('miscellaneous.message_sent'));
+
+        } catch (ClientException $e) {
+            return Redirect::back()->with('response_error', (json_decode($e->getResponse()->getBody()->getContents(), false))->message);
+        }
+    }
+
+    /**
+     * POST: Register news/communique/event
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function newInfo(Request $request)
+    {
+        // Register a news API URL
+        $url_news = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/news';
+
+        try {
+            // Select a member API response
+            $response_news = $this::$client->request('POST', $url_news, [
+                'headers' => $this::$headers,
+                'form_params' => [
+                    'news_title' => $request->register_title,
+                    'news_content' => $request->register_content,
+                    'video_url' => $request->register_video_url,
+                    'type_id' => $request->type_id
+                ],
+                'verify'  => false
+            ]);
+            $news = json_decode($response_news->getBody(), false);
+
+            if ($request->data_picture != null AND $request->data_picture != '') {
+                // Register news image API URL
+                $url_image = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/news/add_image/' . $news->data->id;
+
+                $this::$client->request('PUT', $url_image, [
+                    'headers' => $this::$headers,
+                    'form_params' => [
+                        'news_id' => $news->data->id,
+                        'image_64' => $request->data_picture
+                    ],
+                    'verify'  => false
+                ]);
+            }
+
+            return Redirect::back()->with('alert_success', __('miscellaneous.registered_data'));
 
         } catch (ClientException $e) {
             return Redirect::back()->with('response_error', (json_decode($e->getResponse()->getBody()->getContents(), false))->message);
