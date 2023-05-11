@@ -31,7 +31,7 @@ class HomeController extends Controller
         // Client used for accessing API
         $this::$client = new Client();
 
-        $this->middleware('auth')->except(['changeLanguage', 'index', 'notification', 'news', 'newsDatas', 'communique', 'works', 'donate', 'about', 'help', 'faq', 'termsOfUse', 'privacyPolicy', 'transactionWaiting', 'transactionMessage', 'registerOffer']);
+        $this->middleware('auth')->except(['changeLanguage', 'index', 'news', 'newsDatas', 'communique', 'works', 'donate', 'about', 'help', 'faq', 'termsOfUse', 'privacyPolicy', 'transactionWaiting', 'transactionMessage', 'registerOffer']);
     }
 
     // ==================================== HTTP GET METHODS ====================================
