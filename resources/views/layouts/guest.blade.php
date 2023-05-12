@@ -40,6 +40,7 @@
         href="{{ asset('assets/addons/custom/jquery/jquery-ui/jquery-ui.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/dataTables/datatables.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/cropper/css/cropper.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/croppie/croppie.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/dairy/animate/animate.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/dairy/owlcarousel/assets/owl.carousel.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/addons/custom/show-more/dist/css/show-more.min.css') }}">
@@ -147,8 +148,6 @@
                 <div class="modal-footer d-flex justify-content-between">
                     <input type="hidden" name="user_id" id="userId"
                         value="{{ !empty(Auth::user()) ? (Route::is('party.member.datas') ? $selected_member->id : Auth::user()->id) : null }}">
-                    <input type="hidden" name="news_id" id="newsId"
-                        value="{{ Route::is('news.datas') ? $news->id : null }}">
                     <button type="button" class="btn btn-light border border-default shadow-0"
                         data-bs-dismiss="modal">{{ __('miscellaneous.cancel') }}</button>
                     <button type="button" id="crop" class="btn btn-primary btn-color shadow-0">{{
@@ -364,9 +363,9 @@
                                 <div class="mask"></div>
                             </div>
                         </li>
-                        <li class="d-lg-block d-none px-3 pt-3 pb-2 text-center acr-bg-gray">
-                            <h5 class="h5 mb-1 fw-bold text-truncate" style="width: 10rem;">{{ $current_user->firstname
-                                . ' ' . $current_user->lastname }}</h5>
+                        <li class="d-lg-block d-none px-3 py-2 text-center acr-bg-gray">
+                            <?php $names = $current_user->firstname . ' ' . $current_user->lastname ?>
+                            <h5 class="h5 mb-1 fw-bold">{{ strlen($names) > 14 ? substr($names, 0, 14) . '...' : $names }}</h5>
                         </li>
                         @if ($current_user->role_user->role->role_name == 'Administrateur')
                         <li class="border-bottom border-default">
@@ -449,6 +448,20 @@
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <span class="bi bi-info-circle me-2 mb-0 fs-4" style="vertical-align: -3px;"></span> {{
                     $alert_success }}
+                    <button type="button" class="btn-close mt-1" data-bs-dismiss="alert"
+                        aria-label="@lang('miscellaneous.close')"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
+    @if (\Session::has('exception'))
+    <div class="position-fixed w-100" style="top: 41px; z-index: 9999;">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-10 mx-auto">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <span class="bi bi-exclamation-triangle me-2 mb-0 fs-4" style="vertical-align: -3px;"></span> {{
+                    \Session::get('exception') }}
                     <button type="button" class="btn-close mt-1" data-bs-dismiss="alert"
                         aria-label="@lang('miscellaneous.close')"></button>
                 </div>
@@ -808,6 +821,7 @@
     <script src="{{ asset('assets/addons/custom/mdb/js/mdb.min.js') }}"></script>
     <script src="{{ asset('assets/addons/custom/dataTables/datatables.min.js') }}"></script>
     <script src="{{ asset('assets/addons/custom/cropper/js/cropper.min.js') }}"></script>
+    <script src="{{ asset('assets/addons/custom/croppie/croppie.min.js') }}"></script>
     <script src="{{ asset('assets/addons/custom/autosize/js/autosize.min.js') }}"></script>
     <script src="{{ asset('assets/addons/dairy/wow/wow.min.js') }}"></script>
     <script src="{{ asset('assets/addons/dairy/easing/easing.min.js') }}"></script>
@@ -823,7 +837,6 @@
     <script src="{{ asset('assets/js/scripts.dairy.js') }}"></script>
     <!-- Custom Javascript -->
     <script src="{{ asset('assets/js/scripts.custom.js') }}"></script>
-    @yield('autres_js')
     <script type="text/javascript">
         $(function () {
             // Get cropped image
@@ -892,8 +905,19 @@
                     modal.hide();
                 });
             }
+            // jQuery DataTable
+            $('#dataList').DataTable({
+                language: {
+                    url: currentHost + '/assets/addons/custom/dataTables/Plugins/i18n/' + $('html').attr('lang') + '.json'
+                },
+                paging: 'matchMedia' in window ? (window.matchMedia('(min-width: 500px)').matches ? true : false) : false,
+                ordering: false,
+                info: 'matchMedia' in window ? (window.matchMedia('(min-width: 500px)').matches ? true : false) : false,
+            });
+
         });
     </script>
+    @yield('autres_js')
 </body>
 
 </html>

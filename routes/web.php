@@ -151,6 +151,7 @@ Route::get('/news/{id}', 'App\Http\Controllers\Web\HomeController@newsDatas')->w
 Route::get('/communique', 'App\Http\Controllers\Web\HomeController@communique')->name('communique.home');
 Route::get('/communique/{id}', 'App\Http\Controllers\Web\HomeController@communiqueDatas')->whereNumber('id')->name('communique.datas');
 Route::get('/works', 'App\Http\Controllers\Web\HomeController@works')->name('works');
+Route::get('/works/{id}', 'App\Http\Controllers\Web\HomeController@workDatas')->whereNumber('id')->name('work.datas');
 Route::get('/donate', 'App\Http\Controllers\Web\HomeController@donate')->name('donate');
 Route::post('/donate', 'App\Http\Controllers\Web\HomeController@registerOffer');
 // Account

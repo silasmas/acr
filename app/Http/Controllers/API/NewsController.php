@@ -213,6 +213,19 @@ class NewsController extends BaseController
     }
 
     /**
+     * Select all news that hasn't type.
+     *
+     * @param  $type_id
+     * @return \Illuminate\Http\Response
+     */
+    public function selectByNotType($type_id)
+    {
+        $news = News::whereNot('type_id', $type_id)->orderByDesc('created_at')->get();
+
+        return $this->handleResponse(ResourcesNews::collection($news), __('notifications.find_all_news_success'));
+    }
+
+    /**
      * Add news image in storage.
      *
      * @param  \Illuminate\Http\Request  $request

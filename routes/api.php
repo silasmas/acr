@@ -132,6 +132,7 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     Route::put('notification/mark_all_read/{user_id}', 'App\Http\Controllers\API\NotificationController@markAllRead')->name('notification.api.mark_all_read');
     // News
     Route::get('news/select_by_type/{type_id}', 'App\Http\Controllers\API\NewsController@selectByType')->name('news.api.select_by_type');
+    Route::get('news/select_by_not_type/{type_id}', 'App\Http\Controllers\API\NewsController@selectByNotType')->name('news.api.select_by_not_type');
     Route::put('news/add_image/{id}', 'App\Http\Controllers\API\NewsController@addImage')->name('news.api.add_image');
     // Offer
     Route::get('offer', 'App\Http\Controllers\API\OfferController@index')->name('offer.api.index');

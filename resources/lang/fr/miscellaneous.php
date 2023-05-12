@@ -247,6 +247,7 @@ return [
     'cdf' => 'Franc congolais',
     // Alert message
     'registered_data' => 'Données enregistrées',
+    'no_data' => 'Ces données n\'existent pas',
     'required_fields' => 'Veuillez vérifier les champs obligatoires',
     'transaction_waiting' => 'Veuillez valider le message de votre opérateur sur votre téléphone. Ensuite appuyez sur le bouton ci-dessous.',
     'transaction_done' => 'Votre opération est terminée !',
@@ -665,6 +666,7 @@ return [
             'title' => 'Politique de confidentialité',
             'subtitle' => 'POLITIQUE DE CONFIDENTIALITÉ ET PROTECTION DE VOS DONNÉES PERSONNELLES CHEZ ACTION COMMUNE POUR LA RÉPUBLIQUE',
             'last_updated' => 'Dernière mise à jour le 21 avril 2023',
+            'in_short' => 'En bref :',
             'description' => [
                 'paragraph1' => 'Cette notice de confidentialité pour Action Commune pour la République (ACR) ("Société", "nous", "nos" ou "notre"), décrit comment et pourquoi nous pouvons collecter, stocker, utiliser et/ou partager ("traiter") vos informations lorsque vous utilisez nos services ("Services"), tels que :',
                 'item1' => 'Visiter notre site web à <a href="https://www.acr-rdc.com">https://www.acr-rdc.com</a>, ou tout autre site web de notre société qui renvoie à cette notice de confidentialité',
@@ -704,12 +706,62 @@ return [
                 'item15' => 'COMMENT POUVEZ-VOUS NOUS CONTACTER CONCERNANT CETTE NOTICE ?',
                 'item16' => 'COMMENT POUVEZ-VOUS CONSULTER, METTRE À JOUR OU SUPPRIMER LES DONNÉES QUE NOUS COLLECTONS DE VOUS?'
             ],
+            'item01' => [
+                // Content 1
+                'content01' => 'Informations personnelles que vous nous communiquez',
+                'in_short_content01' => 'Nous collectons des informations personnelles que vous nous fournissez.',
+                'paragraph01' => 'Nous collectons des informations personnelles que vous nous fournissez volontairement lorsque vous vous inscrivez aux Services, que vous exprimez un intérêt à obtenir des informations sur nous ou nos produits et services, lorsque vous participez à des activités sur les Services, ou lorsque vous nous contactez.',
+                'paragraph02' => [
+                    'content' => '<strong>Informations personnelles fournies par vous</strong>. Les informations personnelles que nous collectons dépendent du contexte de vos interactions avec nous et les Services, des choix que vous faites, et des produits et fonctionnalités que vous utilisez. Les informations personnelles que nous collectons peuvent inclure :',
+                    'item01' => 'Noms',
+                    'item02' => 'Numéros de téléphone',
+                    'item03' => 'Adresses e-mail',
+                    'item04' => 'Adresses postales',
+                    'item05' => 'Noms d\'utilisateur',
+                    'item06' => 'Mots de passe',
+                    'item07' => 'Préférences de contact',
+                    'item08' => 'Données de contact ou d\'authentification',
+                    'item09' => 'Numéros de carte de débit/crédit',
+                    'item10' => 'Adresses de facturation'
+                ],
+                'paragraph03' => [
+                    'content' => '<strong>Informations sensibles</strong>. Si nécessaire, avec votre consentement ou tel que permis par la loi applicable, nous traitons les catégories suivantes d\'informations sensibles :',
+                    'item01' => 'Informations révélant des opinions politiques',
+                    'item02' => 'Informations révélant l\'appartenance syndicale',
+                    'item03' => 'Numéros de sécurité sociale ou autres identifiants gouvernementaux'
+                ],
+                'paragraph04' => '<strong>Données de paiement</strong>. Nous pouvons collecter les données nécessaires pour traiter votre paiement si vous effectuez des achats, telles que le numéro de votre instrument de paiement et le code de sécurité associé à cet instrument de paiement. Toutes les données de paiement sont stockées par FLEXPAY. Vous pouvez trouver leur lien de politique de confidentialité ici : <a href="https://www.flexpay.cd/accueil/pdc/">https://www.flexpay.cd/accueil/pdc/</a>.',
+                'paragraph05' => [
+                    'content' => '<strong>Données d\'application</strong>. Si vous utilisez notre (nos) application(s), nous pouvons également collecter les informations suivantes si vous choisissez de nous donner accès ou permission :',
+                    'item01' => '<i>Informations de géolocalisation</i>. Nous pouvons demander l\'accès ou la permission pour suivre les informations basées sur la localisation de votre appareil mobile, soit en continu, soit pendant que vous utilisez notre (nos) application(s) mobile(s), pour fournir certains services basés sur la localisation. Si vous souhaitez modifier notre accès ou nos permissions, vous pouvez le faire dans les paramètres de votre appareil.',
+                    'item02' => '<i>Accès à l\'appareil mobile</i>. Nous pouvons demander l\'accès ou la permission pour certaines fonctionnalités de votre appareil mobile, notamment l\'appareil photo, les messages SMS, Bluetooth, le calendrier et d\'autres fonctionnalités. Si vous souhaitez modifier notre accès ou nos permissions, vous pouvez le faire dans les paramètres de votre appareil.',
+                    'item03' => '<i>Données de l\'appareil mobile</i>. Nous collectons automatiquement les informations de l\'appareil (telles que l\'ID de votre appareil mobile, le modèle et le fabricant), les informations sur le système d\'exploitation, la version et la configuration du système, les numéros d\'identification de l\'appareil et de l\'application, le type et la version du navigateur, le modèle de matériel, le fournisseur de services Internet et/ou de téléphonie mobile, et l\'adresse de protocole Internet (IP) (ou le serveur proxy). Si vous utilisez notre (nos) application(s), nous pouvons également collecter des informations sur le réseau téléphonique associé à votre appareil mobile, le système d\'exploitation ou la plateforme de votre appareil mobile, le type de dispositif mobile que vous utilisez, l\'ID unique de votre dispositif mobile, et des informations sur les fonctionnalités de notre (nos) application(s) que vous avez utilisées.',
+                    'item04' => '<i>Notifications Push</i>. Nous pouvons demander l\'autorisation de vous envoyer des notifications push concernant votre compte ou certaines fonctionnalités de notre (nos) application(s). Si vous souhaitez ne plus recevoir ces types de communications, vous pouvez les désactiver dans les paramètres de votre appareil.'
+                ],
+                'paragraph06' => 'Ces informations sont principalement nécessaires pour maintenir la sécurité et le fonctionnement de notre (nos) application(s), pour le dépannage et pour nos rapports et analyses internes.',
+                'paragraph07' => 'Toutes les informations personnelles que vous nous fournissez doivent être vraies, complètes et exactes, et vous devez nous informer de tout changement de ces informations personnelles.',
+                // Content 2
+                'content02' => 'Information automatiquement collectées',
+                'in_short_content02' => 'Certaines informations, telles que votre adresse de protocole Internet (IP) et/ou les caractéristiques de votre navigateur et de votre appareil, sont collectées automatiquement lorsque vous visitez nos services.',
+                'paragraph08' => 'We automatically collect certain information when you visit, use, or navigate the Services. This information does not reveal your specific identity (like your name or contact information) but may include device and usage information, such as your IP address, browser and device characteristics, operating system, language preferences, referring URLs, device name, country, location, information about how and when you use our Services, and other technical information. This information is primarily needed to maintain the security and operation of our Services, and for our internal analytics and reporting purposes.',
+                'paragraph09' => [
+                    'content' => 'Like many businesses, we also collect information through cookies and similar technologies. The information we collect includes:',
+                    'item01' => '<i>Log and Usage Data</i>. Log and usage data is service-related, diagnostic, usage, and performance information our servers automatically collect when you access or use our Services and which we record in log files. Depending on how you interact with us, this log data may include your IP address, device information, browser type, and settings and information about your activity in the Services (such as the date/time stamps associated with your usage, pages and files viewed, searches, and other actions you take such as which features you use), device event information (such as system activity, error reports (sometimes called \'crash dumps\'), and hardware settings).',
+                    'item02' => '<i>Device Data</i>. We collect device data such as information about your computer, phone, tablet, or other device you use to access the Services. Depending on the device used, this device data may include information such as your IP address (or proxy server), device and application identification numbers, location, browser type, hardware model, Internet service provider and/or mobile carrier, operating system, and system configuration information.',
+                    'item03' => '<i>Location Data</i>. We collect location data such as information about your device\'s location, which can be either precise or imprecise. How much information we collect depends on the type and settings of the device you use to access the Services. For example, we may use GPS and other technologies to collect geolocation data that tells us your current location (based on your IP address). You can opt out of allowing us to collect this information either by refusing access to the information or by disabling your Location setting on your device. However, if you choose to opt out, you may not be able to use certain aspects of the Services.',
+                ],
+                // Content 3
+                'content03' => 'Information collected from other sources',
+                'in_short_content02' => 'We may collect limited data from public databases, marketing partners, and other outside sources.',
+                'paragraph08' => 'In order to enhance our ability to provide relevant marketing, offers, and services to you and update our records, we may obtain information about you from other sources, such as public databases, joint marketing partners, affiliate programs, data providers, and from other third parties. This information includes mailing addresses, job titles, email addresses, phone numbers, intent data (or user behaviour data), Internet Protocol (IP) addresses, social media profiles, social media URLs, and custom profiles, for purposes of targeted advertising and event promotion.',
+            ],
         ],
 
         // News
         'news' => [
             'title' => 'Actualité',
             'details' => 'Détails sur l\'info',
+            'other' => 'Autres informations',
         ],
 
         // Works

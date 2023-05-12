@@ -247,6 +247,7 @@ return [
     'cdf' => 'Congolese franc',
     // Alert message
     'registered_data' => 'Data registered',
+    'no_data' => 'This datas don\'t exist',
     'required_fields' => 'Please check the required fields',
     'transaction_waiting' => 'Please confirm the message from your operator on your phone. Then press the button below.',
     'transaction_done' => 'Your transaction is complete!',
@@ -665,6 +666,7 @@ return [
             'title' => 'Privacy policy',
             'subtitle' => 'PRIVACY POLICY AND PROTECTION OF YOUR PERSONAL DATA AT COMMON ACTION FOR THE REPUBLIC',
             'last_updated' => 'Last updated April 21, 2023',
+            'in_short' => 'In short:',
             'description' => [
                 'paragraph1' => 'This privacy notice for Action Commune pour la République (ACR) (\'Company\', \'we\', \'us\', or \'our\'), describes how and why we might collect, store, use, and/or share (\'process\') your information when you use our services (\'Services\'), such as when you:',
                 'item1' => 'Visit our website at <a href="https://www.acr-rdc.com">https://www.acr-rdc.com</a>, or any website of ours that links to this privacy notice',
@@ -702,7 +704,56 @@ return [
                 'item13' => 'DO VIRGINIA RESIDENTS HAVE SPECIFIC PRIVACY RIGHTS?',
                 'item14' => 'DO WE MAKE UPDATES TO THIS NOTICE?',
                 'item15' => 'HOW CAN YOU CONTACT US ABOUT THIS NOTICE?',
-                'item16' => 'HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?',
+                'item16' => 'HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?'
+            ],
+            'item01' => [
+                // Content 1
+                'content01' => 'Personal information you disclose to us',
+                'in_short_content01' => 'We collect personal information that you provide to us.',
+                'paragraph01' => 'We collect personal information that you voluntarily provide to us when you register on the Services, express an interest in obtaining information about us or our products and Services, when you participate in activities on the Services, or otherwise when you contact us.',
+                'paragraph02' => [
+                    'content' => '<strong>Personal Information Provided by You</strong>. The personal information that we collect depends on the context of your interactions with us and the Services, the choices you make, and the products and features you use. The personal information we collect may include the following:',
+                    'item01' => 'Names',
+                    'item02' => 'Phone numbers',
+                    'item03' => 'Email addresses',
+                    'item04' => 'Mailing addresses',
+                    'item05' => 'Usernames',
+                    'item06' => 'Passwords',
+                    'item07' => 'Contact preferences',
+                    'item08' => 'Contact or authentication data',
+                    'item09' => 'Debit/credit card numbers',
+                    'item10' => 'Billing addresses'
+                ],
+                'paragraph03' => [
+                    'content' => '<strong>Sensitive Information</strong>. When necessary, with your consent or as otherwise permitted by applicable law, we process the following categories of sensitive information:',
+                    'item01' => 'Information revealing political opinions',
+                    'item02' => 'Information revealing trade union membership',
+                    'item03' => 'Social security numbers or other government identifiers'
+                ],
+                'paragraph04' => '<strong>Payment Data</strong>. We may collect data necessary to process your payment if you make purchases, such as your payment instrument number, and the security code associated with your payment instrument. All payment data is stored by FLEXPAY. You may find their privacy notice link(s) here: <a href="https://www.flexpay.cd/accueil/pdc/">https://www.flexpay.cd/accueil/pdc/</a>.',
+                'paragraph05' => [
+                    'content' => '<strong>Application Data</strong>. If you use our application(s), we also may collect the following information if you choose to provide us with access or permission:',
+                    'item01' => '<i>Geolocation Information</i>. We may request access or permission to track location-based information from your mobile device, either continuously or while you are using our mobile application(s), to provide certain location-based services. If you wish to change our access or permissions, you may do so in your device\'s settings.',
+                    'item02' => '<i>Mobile Device Access</i>. We may request access or permission to certain features from your mobile device, including your mobile device\'s camera, sms messages, bluetooth, calendar, and other features. If you wish to change our access or permissions, you may do so in your device\'s settings.',
+                    'item03' => '<i>Mobile Device Data</i>. We automatically collect device information (such as your mobile device ID, model, and manufacturer), operating system, version information and system configuration information, device and application identification numbers, browser type and version, hardware model Internet service provider and/or mobile carrier, and Internet Protocol (IP) address (or proxy server). If you are using our application(s), we may also collect information about the phone network associated with your mobile device, your mobile device’s operating system or platform, the type of mobile device you use, your mobile device’s unique device ID, and information about the features of our application(s) you accessed.',
+                    'item04' => '<i>Push Notifications</i>. We may request to send you push notifications regarding your account or certain features of the application(s). If you wish to opt out from receiving these types of communications, you may turn them off in your device\'s settings.'
+                ],
+                'paragraph06' => 'This information is primarily needed to maintain the security and operation of our application(s), for troubleshooting, and for our internal analytics and reporting purposes.',
+                'paragraph07' => 'All personal information that you provide to us must be true, complete, and accurate, and you must notify us of any changes to such personal information.',
+                // Content 2
+                'content02' => 'Information automatically collected',
+                'in_short_content02' => 'Some information — such as your Internet Protocol (IP) address and/or browser and device characteristics — is collected automatically when you visit our Services.',
+                'paragraph08' => 'We automatically collect certain information when you visit, use, or navigate the Services. This information does not reveal your specific identity (like your name or contact information) but may include device and usage information, such as your IP address, browser and device characteristics, operating system, language preferences, referring URLs, device name, country, location, information about how and when you use our Services, and other technical information. This information is primarily needed to maintain the security and operation of our Services, and for our internal analytics and reporting purposes.',
+                'paragraph09' => [
+                    'content' => 'Like many businesses, we also collect information through cookies and similar technologies. The information we collect includes:',
+                    'item01' => '<i>Log and Usage Data</i>. Log and usage data is service-related, diagnostic, usage, and performance information our servers automatically collect when you access or use our Services and which we record in log files. Depending on how you interact with us, this log data may include your IP address, device information, browser type, and settings and information about your activity in the Services (such as the date/time stamps associated with your usage, pages and files viewed, searches, and other actions you take such as which features you use), device event information (such as system activity, error reports (sometimes called \'crash dumps\'), and hardware settings).',
+                    'item02' => '<i>Device Data</i>. We collect device data such as information about your computer, phone, tablet, or other device you use to access the Services. Depending on the device used, this device data may include information such as your IP address (or proxy server), device and application identification numbers, location, browser type, hardware model, Internet service provider and/or mobile carrier, operating system, and system configuration information.',
+                    'item03' => '<i>Location Data</i>. We collect location data such as information about your device\'s location, which can be either precise or imprecise. How much information we collect depends on the type and settings of the device you use to access the Services. For example, we may use GPS and other technologies to collect geolocation data that tells us your current location (based on your IP address). You can opt out of allowing us to collect this information either by refusing access to the information or by disabling your Location setting on your device. However, if you choose to opt out, you may not be able to use certain aspects of the Services.',
+                ],
+                // Content 3
+                'content03' => 'Information collected from other sources',
+                'in_short_content02' => 'We may collect limited data from public databases, marketing partners, and other outside sources.',
+                'paragraph08' => 'In order to enhance our ability to provide relevant marketing, offers, and services to you and update our records, we may obtain information about you from other sources, such as public databases, joint marketing partners, affiliate programs, data providers, and from other third parties. This information includes mailing addresses, job titles, email addresses, phone numbers, intent data (or user behaviour data), Internet Protocol (IP) addresses, social media profiles, social media URLs, and custom profiles, for purposes of targeted advertising and event promotion.',
             ],
         ],
 
@@ -710,6 +761,7 @@ return [
         'news' => [
             'title' => 'News',
             'details' => 'Info details',
+            'other' => 'Other informations',
         ],
 
         // Works
