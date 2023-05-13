@@ -23,6 +23,7 @@ return [
     'back_home' => 'Return to the home',
     'back_list' => 'Return to the list',
     'back_form' => 'Return to the form',
+    'back_toc' => 'Return to the table of content',
     'see_all_notifications' => 'View all notifications',
     'loading' => 'Loading...',
     'yes' => 'Yes',
@@ -666,7 +667,7 @@ return [
             'title' => 'Privacy policy',
             'subtitle' => 'PRIVACY POLICY AND PROTECTION OF YOUR PERSONAL DATA AT COMMON ACTION FOR THE REPUBLIC',
             'last_updated' => 'Last updated April 21, 2023',
-            'in_short' => 'In short:',
+            'in_short' => 'In short',
             'description' => [
                 'paragraph1' => 'This privacy notice for Action Commune pour la République (ACR) (\'Company\', \'we\', \'us\', or \'our\'), describes how and why we might collect, store, use, and/or share (\'process\') your information when you use our services (\'Services\'), such as when you:',
                 'item1' => 'Visit our website at <a href="https://www.acr-rdc.com">https://www.acr-rdc.com</a>, or any website of ours that links to this privacy notice',
@@ -730,7 +731,7 @@ return [
                     'item02' => 'Information revealing trade union membership',
                     'item03' => 'Social security numbers or other government identifiers'
                 ],
-                'paragraph04' => '<strong>Payment Data</strong>. We may collect data necessary to process your payment if you make purchases, such as your payment instrument number, and the security code associated with your payment instrument. All payment data is stored by FLEXPAY. You may find their privacy notice link(s) here: <a href="https://www.flexpay.cd/accueil/pdc/">https://www.flexpay.cd/accueil/pdc/</a>.',
+                'paragraph04' => '<strong>Payment Data</strong>. We may collect data necessary to process your payment if you make purchases, such as your payment instrument number, and the security code associated with your payment instrument. All payment data is stored by FLEXPAY. You may find their privacy notice link(s) here: <a href="https://www.flexpay.cd/accueil/pdc" target="_blank"><i class="bi bi-box-arrow-up-right me-1"></i>https://www.flexpay.cd/accueil/pdc</a>.',
                 'paragraph05' => [
                     'content' => '<strong>Application Data</strong>. If you use our application(s), we also may collect the following information if you choose to provide us with access or permission:',
                     'item01' => '<i>Geolocation Information</i>. We may request access or permission to track location-based information from your mobile device, either continuously or while you are using our mobile application(s), to provide certain location-based services. If you wish to change our access or permissions, you may do so in your device\'s settings.',
@@ -752,8 +753,67 @@ return [
                 ],
                 // Content 3
                 'content03' => 'Information collected from other sources',
-                'in_short_content02' => 'We may collect limited data from public databases, marketing partners, and other outside sources.',
-                'paragraph08' => 'In order to enhance our ability to provide relevant marketing, offers, and services to you and update our records, we may obtain information about you from other sources, such as public databases, joint marketing partners, affiliate programs, data providers, and from other third parties. This information includes mailing addresses, job titles, email addresses, phone numbers, intent data (or user behaviour data), Internet Protocol (IP) addresses, social media profiles, social media URLs, and custom profiles, for purposes of targeted advertising and event promotion.',
+                'in_short_content03' => 'We may collect limited data from public databases, marketing partners, and other outside sources.',
+                'paragraph10' => 'In order to enhance our ability to provide relevant marketing, offers, and services to you and update our records, we may obtain information about you from other sources, such as public databases, joint marketing partners, affiliate programs, data providers, and from other third parties. This information includes mailing addresses, job titles, email addresses, phone numbers, intent data (or user behaviour data), Internet Protocol (IP) addresses, social media profiles, social media URLs, and custom profiles, for purposes of targeted advertising and event promotion.',
+            ],
+            'item02' => [
+                // Content 1
+                'in_short_content01' => 'We process your information to provide, improve, and administer our Services, communicate with you, for security and fraud prevention, and to comply with law. We may also process your information for other purposes with your consent.',
+                'paragraph01' => [
+                    'content' => 'We process your personal information for a variety of reasons, depending on how you interact with our Services, including:',
+                    'item01' => '<strong>To facilitate account creation and authentication and otherwise manage user accounts</strong>. We may process your information so you can create and log in to your account, as well as keep your account in working order.',
+                    'item02' => '<strong>To deliver and facilitate delivery of services to the user</strong>. We may process your information to provide you with the requested service.',
+                    'item03' => '<strong>To respond to user inquiries/offer support to users</strong>. We may process your information to respond to your inquiries and solve any potential issues you might have with the requested service.',
+                    'item04' => '<strong>To send administrative information to you</strong>. We may process your information to send you details about our products and services, changes to our terms and policies, and other similar information.',
+                    'item05' => '<strong>To fulfil and manage your orders</strong>. We may process your information to fulfil and manage your orders, payments, returns, and exchanges made through the Services.',
+                    'item06' => '<strong>To enable user-to-user communications</strong>. We may process your information if you choose to use any of our offerings that allow for communication with another user.',
+                    'item07' => '<strong>To request feedback</strong>. We may process your information when necessary to request feedback and to contact you about your use of our Services.',
+                    'item08' => '<strong>To send you marketing and promotional communications</strong>. We may process the personal information you send to us for our marketing purposes, if this is in accordance with your marketing preferences. You can opt out of our marketing emails at any time. For more information, see <a href="'. route('about.privacy_policy') .'#toc_item10">WHAT ARE YOUR PRIVACY RIGHTS?</a> below',
+                    'item09' => '<strong>To deliver targeted advertising to you</strong>. We may process your information to develop and display personalized content and advertising tailored to your interests, location, and more.',
+                    'item10' => '<strong>To protect our Services</strong>. We may process your information as part of our efforts to keep our Services safe and secure, including fraud monitoring and prevention.',
+                    'item11' => '<strong>To identify usage trends</strong>. We may process information about how you use our Services to better understand how they are being used so we can improve them.',
+                    'item12' => '<strong>To save or protect an individual\'s vital interest</strong>. We may process your information when necessary to save or protect an individual’s vital interest, such as to prevent harm.',
+                    'item13' => '<strong>Determine majority age and Nationality</strong>. Are 18 or Over and Congolese (DRC) citizen.',
+                ],
+            ],
+            'item03' => [
+                'in_short_content01' => 'We only process your personal information when we believe it is necessary and we have a valid legal reason (i.e., legal basis) to do so under applicable law, like with your consent, to comply with laws, to provide you with services to enter into or fulfil our contractual obligations, to protect your rights, or to fulfil our legitimate business interests.',
+                // Content 1
+                'content01' => 'If you are located in the EU or UK, this section applies to you',
+                'paragraph01' => [
+                    'content' => 'The General Data Protection Regulation (GDPR) and UK GDPR require us to explain the valid legal bases we rely on in order to process your personal information. As such, we may rely on the following legal bases to process your personal information:',
+                    'item01' => '<strong>Consent</strong>. We may process your information if you have given us permission (i.e., consent) to use your personal information for a specific purpose. You can withdraw your consent at any time. Learn more about <a href="'. route('about.privacy_policy') .'#toc_item16">WITHDRAWING YOUR CONSENT</a>.',
+                    'item02' => '<strong>Performance of a Contract</strong>. We may process your personal information when we believe it is necessary to fulfil our contractual obligations to you, including providing our Services or at your request prior to entering into a contract with you.',
+                    'item03' => [
+                        'subcontent01' => '<strong>Legitimate Interests</strong>. We may process your information when we believe it is reasonably necessary to achieve our legitimate business interests and those interests do not outweigh your interests and fundamental rights and freedoms. For example, we may process your personal information for some of the purposes described in order to:',
+                        'subitem01' => 'Send users information about special offers and discounts on our products and services',
+                        'subitem02' => 'Develop and display personalized and relevant advertising content for our users',
+                        'subitem03' => 'Analyze how our Services are used so we can improve them to engage and retain users',
+                        'subitem04' => 'Diagnose problems and/or prevent fraudulent activities',
+                        'subitem05' => 'Understand how our users use our products and services so we can improve user experience',
+                        'subitem06' => 'Only 18+ and Congolese National can be members of ACR. However, sympathizers of different nationality or those of Congolese origin can have a special status of "Sympathizer"'
+                    ],
+                    'item04' => '<strong>Legal Obligations</strong>. We may process your information where we believe it is necessary for compliance with our legal obligations, such as to cooperate with a law enforcement body or regulatory agency, exercise or defend our legal rights, or disclose your information as evidence in litigation in which we are involved.',
+                    'item05' => '<strong>Vital Interests</strong>. We may process your information where we believe it is necessary to protect your vital interests or the vital interests of a third party, such as situations involving potential threats to the safety of any person.',
+                ],
+                'paragraph02' => '<strong>In legal terms, we are generally the \'data controller\' under European data protection laws of the personal information described in this privacy notice, since we determine the means and/or purposes of the data processing we perform. This privacy notice does not apply to the personal information we process as a \'data processor\' on behalf of our customers. In those situations, the customer that we provide services to and with whom we have entered into a data processing agreement is the \'data controller\' responsible for your personal information, and we merely process your information on their behalf in accordance with your instructions. If you want to know more about our customers\' privacy practices, you should read their privacy policies and direct any questions you have to them.</strong>.',
+                // Content 2
+                'content02' => 'If you are located in Canada, this section applies to you',
+                'paragraph03' => '<strong>We may process your information if you have given us specific permission (i.e. express consent) to use your personal information for a specific purpose, or in situations where your permission can be inferred (i.e. implied consent). You can <a href="'. route('about.privacy_policy') .'#toc_item16">withdraw your consent</a> at any time.</strong>',
+                'paragraph04' => [
+                    'content' => '<strong>In some exceptional cases, we may be legally permitted under applicable law to process your information without your consent, including, for example:</strong>',
+                    'item01' => 'If collection is clearly in the interests of an individual and consent cannot be obtained in a timely way',
+                    'item02' => 'For investigations and fraud detection and prevention',
+                    'item03' => 'For business transactions provided certain conditions are met',
+                    'item04' => 'If it is contained in a witness statement and the collection is necessary to assess, process, or settle an insurance claim',
+                    'item05' => 'For identifying injured, ill, or deceased persons and communicating with next of kin',
+                    'item06' => 'If we have reasonable grounds to believe an individual has been, is, or may be victim of financial abuse',
+                    'item07' => 'If it is reasonable to expect collection and use with consent would compromise the availability or the accuracy of the information and the collection is reasonable for purposes related to investigating a breach of an agreement or a contravention of the laws of Canada or a province',
+                    'item08' => 'If disclosure is required to comply with a subpoena, warrant, court order, or rules of the court relating to the production of records',
+                    'item09' => 'If it was produced by an individual in the course of their employment, business, or profession and the collection is consistent with the purposes for which the information was produced',
+                    'item10' => 'If the collection is solely for journalistic, artistic, or literary purposes',
+                    'item11' => 'If the information is publicly available and is specified by the regulations'
+                ],
             ],
         ],
 

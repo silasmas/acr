@@ -52,6 +52,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.dairy.css') }}">
     <!-- Custom CSS File -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.custom.css') }}">
+    <style>
+        #privacyPolicy p, #privacyPolicy li {font-size: 14px; text-align: justify;}
+    </style>
 
     <title>
         @if (Route::is('home'))
@@ -400,12 +403,12 @@
                         </li>
                     </ul>
                 </div>
-                <a href="#donate"
+                <a href="{{ !Route::is('account') && !Route::is('about.privacy_policy') ? '#donate' : route('home') . '#donate' }}"
                     class="btn d-sm-inline-block d-block acr-btn-blue mb-sm-0 mb-4 align-middle rounded-pill shadow-0">@lang('miscellaneous.menu.public.donate')</a>
                 @else
                 <a href="{{ route('login') }}"
                     class="btn d-sm-inline-block d-block acr-btn-outline-blue me-sm-2 me-0 mb-sm-0 mb-2 rounded-pill shadow-0">@lang('miscellaneous.menu.login')</a>
-                <a href="#donate"
+                <a href="{{ !Route::is('account') && !Route::is('about.privacy_policy') ? '#donate' : route('home') . '#donate' }}"
                     class="btn d-sm-inline-block d-block acr-btn-blue mb-sm-0 mb-4 rounded-pill shadow-0">@lang('miscellaneous.menu.public.donate')</a>
                 @endif
             </div>
@@ -501,7 +504,7 @@
     @yield('guest-content')
 
     <!-- Donate Start -->
-   @if (!Route::is("account"))
+   @if (!Route::is('account') && !Route::is('about.privacy_policy'))
    <div id="donate" class="container-xxl py-5">
     <div class="container">
         <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
