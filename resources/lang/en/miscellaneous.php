@@ -815,6 +815,17 @@ return [
                     'item11' => 'If the information is publicly available and is specified by the regulations'
                 ],
             ],
+            'item04' => [
+                'in_short_content01' => 'We may share information in specific situations described in this section and/or with the following third parties.',
+                'paragraph01' => [
+                    'content' => 'We may need to share your personal information in the following situations:',
+                    'item01' => '<strong>Business Transfers</strong>. We may share or transfer your information in connection with, or during negotiations of, any merger, sale of company assets, financing, or acquisition of all or a portion of our business to another company.',
+                ],
+            ],
+            'item05' => [
+                'in_short_content01' => 'We may use cookies and other tracking technologies to collect and store your information.',
+                'paragraph01' => 'We may use cookies and similar tracking technologies (like web beacons and pixels) to access or store information. Specific information about how we use such technologies and how you can refuse certain cookies is set out in our Cookie Notice.',
+            ],
         ],
 
         // News

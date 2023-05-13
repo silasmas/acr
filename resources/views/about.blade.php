@@ -479,6 +479,37 @@
                                 <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item03.paragraph04.item11')</li>
                             </ul>
                         </div>
+
+                        <div class="my-5">
+                            <h4 id="toc_item04" class="h4 mb-4 fw-bold wow fadeInUp" data-wow-delay="0.3s">
+                                4. @lang('miscellaneous.public.privacy_policy.table_of_content.item04') 
+                                <a href="#toc" title="@lang('miscellaneous.back_toc')"><i class="bi bi-arrow-up-short align-middle acr-text-blue"></i></a>
+                            </h4>
+
+                            <p class="fst-italic acr-line-height-1_4 wow fadeInUp" data-wow-delay="0.3s">
+                                <i class="bi bi-chevron-double-right me-2 align-middle fs-4 text-danger"></i>
+                                <u class="fw-bold">@lang('miscellaneous.public.privacy_policy.in_short')</u>@lang('miscellaneous.colon_after_word') @lang('miscellaneous.public.privacy_policy.item04.in_short_content01')
+                            </p>
+
+                            <p class="mb-1 wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item04.paragraph01.content')</p>
+                            <ul>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item04.paragraph01.item01')</li>
+                            </ul>
+                        </div>
+
+                        <div class="my-5">
+                            <h4 id="toc_item05" class="h4 mb-4 fw-bold wow fadeInUp" data-wow-delay="0.3s">
+                                5. @lang('miscellaneous.public.privacy_policy.table_of_content.item05') 
+                                <a href="#toc" title="@lang('miscellaneous.back_toc')"><i class="bi bi-arrow-up-short align-middle acr-text-blue"></i></a>
+                            </h4>
+
+                            <p class="fst-italic acr-line-height-1_4 wow fadeInUp" data-wow-delay="0.3s">
+                                <i class="bi bi-chevron-double-right me-2 align-middle fs-4 text-danger"></i>
+                                <u class="fw-bold">@lang('miscellaneous.public.privacy_policy.in_short')</u>@lang('miscellaneous.colon_after_word') @lang('miscellaneous.public.privacy_policy.item05.in_short_content01')
+                            </p>
+
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item05.paragraph01')</p>
+                        </div>
                     </div>
 
                     <div class="col-lg-3">

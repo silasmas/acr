@@ -815,6 +815,17 @@ return [
                     'item11' => 'Si l\'information est accessible au public et est spécifiée par la réglementation.'
                 ],
             ],
+            'item04' => [
+                'in_short_content01' => 'Nous pouvons partager des informations dans des situations spécifiques décrites dans cette section et/ou avec les tiers suivants.',
+                'paragraph01' => [
+                    'content' => 'Nous pouvons avoir besoin de partager vos informations personnelles dans les situations suivantes :',
+                    'item01' => '<strong>Transferts d\'entreprise</strong>. Nous pouvons partager ou transférer vos informations en relation avec, ou pendant les négociations, toute fusion, vente d\'actifs de l\'entreprise, financement ou acquisition de la totalité ou d\'une partie de notre entreprise à une autre entreprise.',
+                ],
+            ],
+            'item05' => [
+                'in_short_content01' => 'Nous pouvons utiliser des cookies et d\'autres technologies de suivi pour collecter et stocker vos informations.',
+                'paragraph01' => 'Nous pouvons utiliser des cookies et des technologies de suivi similaires (comme des balises Web et des pixels) pour accéder ou stocker des informations. Des informations spécifiques sur la façon dont nous utilisons ces technologies et sur la façon de refuser certains cookies sont décrites dans notre avis relatif aux cookies.',
+            ],
         ],
 
         // News
