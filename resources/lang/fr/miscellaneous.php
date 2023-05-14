@@ -670,7 +670,7 @@ return [
             'in_short' => 'En bref',
             'description' => [
                 'paragraph1' => 'Cette notice de confidentialité pour Action Commune pour la République (ACR) ("Société", "nous", "nos" ou "notre"), décrit comment et pourquoi nous pouvons collecter, stocker, utiliser et/ou partager ("traiter") vos informations lorsque vous utilisez nos services ("Services"), tels que :',
-                'item1' => 'Visiter notre site web à <a href="https://www.acr-rdc.com">https://www.acr-rdc.com</a>, ou tout autre site web de notre société qui renvoie à cette notice de confidentialité',
+                'item1' => 'Visiter notre site web à <a href="' . route('home') . '">https://www.acr-rdc.com</a>, ou tout autre site web de notre société qui renvoie à cette notice de confidentialité',
                 'item2' => 'Télécharger et utiliser notre application mobile (ACR RDC), ou toute autre application de notre société qui renvoie à cette notice de confidentialité',
                 'item3' => 'Interagir avec nous de d\'autres manières, y compris les ventes, le marketing ou les événements',
                 'paragraph2' => 'Des questions ou des inquiétudes ? La lecture de cette notice de confidentialité vous aidera à comprendre vos droits et choix en matière de confidentialité. Si vous n\'êtes pas d\'accord avec nos politiques et pratiques, veuillez ne pas utiliser nos Services. Si vous avez encore des questions ou des inquiétudes, veuillez nous contacter à <a href="mailto:contact@acr-rdc.com">contact@acr-rdc.com</a>.'
@@ -825,6 +825,215 @@ return [
             'item05' => [
                 'in_short_content01' => 'Nous pouvons utiliser des cookies et d\'autres technologies de suivi pour collecter et stocker vos informations.',
                 'paragraph01' => 'Nous pouvons utiliser des cookies et des technologies de suivi similaires (comme des balises Web et des pixels) pour accéder ou stocker des informations. Des informations spécifiques sur la façon dont nous utilisons ces technologies et sur la façon de refuser certains cookies sont décrites dans notre avis relatif aux cookies.',
+            ],
+            'item06' => [
+                'in_short_content01' => 'Nous pouvons transférer, stocker et traiter vos informations dans des pays autres que le vôtre.',
+                'paragraph01' => 'Nos serveurs sont situés en France. Si vous accédez à nos Services depuis l\'extérieur de la France, veuillez noter que vos informations peuvent être transférées, stockées et traitées par nous dans nos installations et par les tiers avec qui nous pouvons partager vos informations personnelles (voir la section "<a href="'. route('about.privacy_policy') .'#toc_item04">QUAND ET AVEC QUI PARTAGEONS-NOUS VOS INFORMATIONS PERSONNELLES ?</a>" ci-dessus), en République démocratique du Congo et dans d\'autres pays.',
+                'paragraph02' => 'Si vous êtes résident de l\'Espace économique européen (EEE) ou du Royaume-Uni, ces pays peuvent ne pas avoir de lois sur la protection des données ou d\'autres lois similaires aussi complètes que celles de votre pays. Cependant, nous prendrons toutes les mesures nécessaires pour protéger vos informations personnelles conformément à la présente politique de confidentialité et à la loi applicable.',
+                'paragraph03' => '<strong>Clauses contractuelles types de la Commission européenne :</strong>',
+                'paragraph04' => 'Nous avons mis en place des mesures pour protéger vos informations personnelles, notamment en utilisant les clauses contractuelles types de la Commission européenne pour les transferts d\'informations personnelles entre nos sociétés du groupe et entre nous et nos fournisseurs tiers. Ces clauses exigent que tous les destinataires protègent toutes les informations personnelles qu\'ils traitent en provenance de l\'EEE ou du Royaume-Uni conformément aux lois et réglementations européennes sur la protection des données. Nos accords de traitement de données incluant des clauses contractuelles types sont disponibles ici : <a href="' . route('about.privacy_policy') . '">https://www.acr-rdc.com/about/privacy_policy</a>. Nous avons mis en place des garanties appropriées similaires avec nos prestataires de services tiers et nos partenaires et de plus amples détails peuvent être fournis sur demande.',
+            ],
+            'item07' => [
+                'in_short_content01' => 'Nous conservons vos informations pendant le temps nécessaire pour remplir les objectifs décrits dans cette politique de confidentialité, sauf si la loi l\'exige autrement.',
+                'paragraph01' => 'Nous ne conserverons vos informations personnelles que pendant la durée nécessaire aux fins décrites dans cette politique de confidentialité, à moins qu\'une période de conservation plus longue ne soit requise ou autorisée par la loi (comme les exigences fiscales, comptables ou autres exigences légales). Aucune fin mentionnée dans cette politique ne nécessitera de conserver vos informations personnelles plus longtemps que la période pendant laquelle les utilisateurs ont un compte chez nous.',
+                'paragraph02' => 'Lorsque nous n\'avons plus besoin de traiter vos informations personnelles dans le cadre de notre activité légitime, nous supprimerons ou anonymiserons ces informations. Si cela n\'est pas. possible (par exemple, parce que vos informations personnelles ont été stockées dans des archives de sauvegarde), nous stockerons vos informations personnelles en toute sécurité et les isolerons de tout traitement ultérieur jusqu\'à ce que la suppression soit possible',
+            ],
+            'item08' => [
+                'in_short_content01' => 'Nous visons à protéger vos informations personnelles par un système de mesures de sécurité organisationnelles et techniques.',
+                'paragraph01' => 'Nous avons mis en place des mesures de sécurité techniques et organisationnelles appropriées et raisonnables conçues pour protéger la sécurité de toutes les informations personnelles que nous traitons. Cependant, malgré nos mesures de sécurité et nos efforts pour sécuriser vos informations, aucune transmission électronique sur Internet ou technologie de stockage d\'informations ne peut être garantie à 100% sécurisée.',
+                'paragraph02' => 'Nous ne conserverons vos informations personnelles que pendant la durée nécessaire aux fins définies dans cet avis de confidentialité, sauf si une période de conservation plus longue est requise ou autorisée par la loi (telle que les exigences fiscales, comptables ou autres exigences légales). Aucune fin mentionnée dans cet avis ne nécessitera que nous conservions vos informations personnelles pendant plus longtemps que la durée pendant laquelle les utilisateurs ont un compte chez nous.',
+                'paragraph03' => 'Lorsque nous n\'avons plus besoin de traiter vos informations personnelles pour des besoins légitimes, nous supprimerons ou anonymiserons ces informations. Si cela n\'est pas possible (par exemple, parce que vos informations personnelles ont été stockées dans des archives de sauvegarde), nous conserverons vos informations personnelles en sécurité et les isolerons de tout traitement ultérieur jusqu\'à ce que la suppression soit possible.',
+            ],
+            'item09' => [
+                'in_short_content01' => 'Nous ne collectons ni ne commercialisons délibérément des données auprès des mineurs.',
+                'paragraph01' => 'ACR travaille en conformité avec les lois des organisations politiques en République Démocratique du Congo et donc vous devez avoir 18 ans pour interagir avec notre site ou notre application mobile.',
+            ],
+            'item10' => [
+                'in_short_content01' => 'Dans certaines régions, comme l\'Espace économique européen (EEE), le Royaume-Uni et le Canada, vous disposez de droits qui vous permettent un meilleur accès à vos informations personnelles et un plus grand contrôle sur celles-ci. Vous pouvez consulter, modifier ou résilier votre compte à tout moment',
+                'paragraph01' => 'Dans certaines régions (comme l\'EEE, le Royaume-Uni et le Canada), vous avez certains droits en vertu des lois applicables sur la protection des données. Ces droits peuvent inclure le droit (i) de demander l\'accès et de recevoir une copie de vos informations personnelles, (ii) de demander la rectification ou la suppression; (iii) de restreindre le traitement de vos informations personnelles; et (iv) le cas échéant, à la portabilité des données. Dans certaines circonstances, vous pouvez également avoir le droit de vous opposer au traitement de vos informations personnelles. Vous pouvez faire une telle demande en nous contactant en utilisant les coordonnées fournies dans la section "<a href="' . route('about.privacy_policy') .'#toc_item15">COMMENT POUVEZ-VOUS NOUS CONTACTER À PROPOS DE CET AVIS ?</a>" ci-dessous.',
+                'paragraph02' => 'Nous prendrons en compte et traiterons toute demande conformément aux lois applicables sur la protection des données.',
+                'paragraph03' => 'Si vous vous trouvez dans l\'EEE ou au Royaume-Uni et que vous pensez que nous traitons illégalement vos informations personnelles, vous avez également le droit de déposer une plainte auprès de <a href="https://ec.europa.eu/justice/data-protection/bodies/authorities/index_en.htm" target="_blank">votre autorité de protection des données de l\'État membre</a> ou de <a href="https://ico.org.uk/make-a-complaint/data-protection-complaints/data-protection-complaints/" target="_blank">l\'autorité de protection des données du Royaume-Uni</a>.',
+                'paragraph04' => 'Si vous vous trouvez en Suisse, vous pouvez contacter le <a href="https://www.edoeb.admin.ch/edoeb/en/home.html" target="_blank">commissaire fédéral à la protection des données et à l\'information</a>.',
+                'paragraph04' => '<strong><u>Retrait de votre consentement</u> :</strong> Si nous nous basons sur votre consentement pour traiter vos informations personnelles, qui peut être un consentement explicite et/ou implicite selon la loi applicable, vous avez le droit de retirer votre consentement à tout moment. Vous pouvez retirer votre consentement en nous contactant en utilisant les coordonnées fournies dans la section "<a href="' . route('about.privacy_policy') .'#toc_item15">COMMENT POUVEZ-VOUS NOUS CONTACTER À PROPOS DE CET AVIS ?</a>" ci-dessous ou en mettant à jour vos préférences.',
+                'paragraph05' => 'Cependant, veuillez noter que cela n\'affectera pas la licéité du traitement avant son retrait, ni, lorsque la loi applicable le permet, n\'affectera le traitement de vos informations personnelles effectué en se fondant sur des bases de traitement licites autres que le consentement.',
+                'paragraph06' => '<strong><u>Désinscription des communications marketing et promotionnelles</u> :</strong> Vous pouvez vous désinscrire de nos communications marketing et promotionnelles à tout moment en cliquant sur le lien de désinscription dans les e-mails que nous envoyons, en répondant \'STOP\' ou \'UNSUBSCRIBE\' aux messages SMS que nous envoyons, ou en nous contactant en utilisant les détails fournis dans la section "<a href="' . route('about.privacy_policy') .'#toc_item15">COMMENT POUVEZ-VOUS NOUS CONTACTER À PROPOS DE CET AVIS ?</a>" ci-dessous. Vous serez alors retiré des listes de marketing. Cependant, nous pouvons encore communiquer avec vous - par exemple, pour vous envoyer des messages liés au service qui sont nécessaires à l\'administration et à l\'utilisation de votre compte, pour répondre à des demandes de service, ou pour d\'autres fins non liées au marketing.',
+                // Content 1
+                'content01' => 'Information de compte',
+                'paragraph07' => [
+                    'content' => '<strong>Si vous souhaitez à tout moment examiner ou modifier les informations de votre compte ou résilier votre compte, vous pouvez :</strong>',
+                    'item01' => 'Vous connecter aux paramètres de votre compte et mettre à jour votre compte utilisateur.',
+                    'item02' => 'Nous contacter en utilisant les informations de contact fournies.',
+                ],
+                'paragraph08' => 'Sur votre demande de résiliation de votre compte, nous désactiverons ou supprimerons votre compte et vos informations de nos bases de données actives. Cependant, nous pouvons conserver certaines informations dans nos fichiers pour prévenir la fraude, résoudre les problèmes, aider à toute enquête, faire respecter nos termes légaux et/ou nous conformer aux exigences légales applicables.',
+                'paragraph09' => '<strong><u>Cookies et technologies similaires</u> :</strong> La plupart des navigateurs Web sont configurés pour accepter les cookies par défaut. Si vous le préférez, vous pouvez généralement choisir de configurer votre navigateur pour supprimer les cookies et les rejeter. Si vous choisissez de supprimer les cookies ou de les rejeter, cela pourrait affecter certaines fonctionnalités ou services de nos Services. Vous pouvez également <a href="http://www.aboutads.info/choices/">opt out of interest-based advertising by advertisers</a> sur nos Services.',
+                'paragraph10' => 'Si vous avez des questions ou des commentaires sur vos droits en matière de confidentialité, vous pouvez nous envoyer un e-mail à <a href="mailto:privacy@acr-rdc.com">privacy@acr-rdc.com</a>.',
+            ],
+            'item11' => [
+                'paragraph01' => 'La plupart des navigateurs Web et certains systèmes d\'exploitation mobiles et applications mobiles incluent une fonctionnalité ou un paramètre Ne pas suivre (\'DNT\') que vous pouvez activer pour signaler votre préférence de confidentialité de ne pas avoir vos activités de navigation en ligne surveillées et collectées. À ce stade, aucune norme technologique uniforme pour reconnaître et mettre en oeuvre les signaux DNT n\'a été finalisée. En tant que tel, nous ne répondons actuellement pas aux signaux du navigateur DNT ou à tout autre mécanisme qui communique automatiquement votre choix de ne pas être suivi en ligne. Si une norme de suivi en ligne est adoptée que nous devons suivre à l\'avenir, nous vous informerons de cette pratique dans une version révisée de cet avis de confidentialité.',
+            ],
+            'item12' => [
+                'in_short_content01' => 'Oui, si vous êtes un résident de Californie, vous disposez de droits spécifiques concernant l\'accès à vos informations personnelles.',
+                'paragraph01' => 'L\'article 1798.83 du code civil de la Californie, également connu sous le nom de loi \'Shine The Light\', permet à nos utilisateurs résidant en Californie de demander et d\'obtenir gratuitement, une fois par an, des informations sur les catégories d\'informations personnelles (le cas échéant) que nous avons divulguées à des tiers à des fins de marketing direct et les noms et adresses de tous les tiers avec lesquels nous avons partagé des informations personnelles au cours de l\'année civile immédiatement précédente. Si vous êtes un résident de Californie et que vous souhaitez faire une telle demande, veuillez nous soumettre votre demande par écrit en utilisant les informations de contact fournies ci-dessous:',
+                'paragraph02' => '<i>Si vous avez moins de 18 ans, résidez en Californie et avez un compte enregistré auprès des Services, vous avez le droit de demander la suppression des données indésirables que vous avez publiées publiquement sur les Services. Pour demander la suppression de telles données, veuillez nous contacter en utilisant les informations de contact fournies ci-dessous et inclure l\'adresse e-mail associée à votre compte ainsi qu\'une déclaration indiquant que vous résidez en Californie. Nous veillerons à ce que les données ne soient pas affichées publiquement sur les Services, mais veuillez noter que les données peuvent ne pas être complètement ou complètement supprimées de tous nos systèmes (par exemple, sauvegardes, etc.).</i>',
+                // Content 1
+                'content01' => 'Avis de confidentialité CCPA',
+                'paragraph03' => [
+                    'content' => 'Le Code des réglementations de Californie définit un « résident » comme :',
+                    'item01' => 'toute personne qui se trouve en Californie pour autre chose qu\'un but temporaire ou transitoire et',
+                    'item02' => 'toute personne domiciliée en Californie qui se trouve en dehors de la Californie pour un but temporaire ou transitoire.',
+                ],
+                'paragraph04' => 'Toutes les autres personnes sont définies comme des « non-résidents ».',
+                'paragraph05' => 'Si cette définition de « résident » s\'applique à vous, nous devons respecter certains droits et obligations concernant vos informations personnelles.',
+                // Content 2
+                'content02' => 'Quelles catégories d\'informations personnelles collectons-nous ?',
+                'paragraph06' => 'Nous avons collecté les catégories d\'informations personnelles suivantes au cours des douze (12) derniers mois.',
+                'table01' => [
+                    'head' => [
+                        'col01' => 'Catégorie',
+                        'col02' => 'Exemples',
+                        'col03' => 'Collecté'
+                    ],
+                    'row01' => [
+                        'col01' => 'A. Identifiants',
+                        'col02' => 'Coordoonnées, telles que nom réel, alias, adresse postale, numéro de contact téléphonique ou mobile, identifiant personnel unique, identifiant en ligne, adresse IP, adresse e-mail et nom de compte',
+                        'col03' => 'NON'
+                    ],
+                    'row02' => [
+                        'col01' => 'B. Catégories d\'informations personnelles énumérées dans le statut des clients de Californie',
+                        'col02' => 'Nom, coordonnées, éducation, emploi, antécédents d\'emploi et informations financières',
+                        'col03' => 'NON'
+                    ],
+                    'row03' => [
+                        'col01' => 'C. Caractéristiques de classification protégées en vertu du droit de la Californie ou fédéral',
+                        'col02' => 'Sexe et date de naissance',
+                        'col03' => 'NON'
+                    ],
+                    'row04' => [
+                        'col01' => 'D. Informations commerciales',
+                        'col02' => 'Informations de transaction, historique d\'achat, détails financiers et informations de paiement',
+                        'col03' => 'NON'
+                    ],
+                    'row05' => [
+                        'col01' => 'E. Informations biométriques',
+                        'col02' => 'Empreintes digitales et empreintes vocales',
+                        'col03' => 'NON'
+                    ],
+                    'row06' => [
+                        'col01' => 'F. Activité Internet ou autre activité de réseau similaire',
+                        'col02' => 'Historique de navigation, historique de recherche, comportement en ligne, données d\'intérêt et interactions avec nos sites Web et d\'autres sites Web, applications, systèmes et publicités',
+                        'col03' => 'NON'
+                    ],
+                    'row07' => [
+                        'col01' => 'G. Données de géolocalisation',
+                        'col02' => 'Localisation de l\'appareil',
+                        'col03' => 'NON'
+                    ],
+                    'row08' => [
+                        'col01' => 'H. Informations audio, électroniques, visuelles, thermiques, olfactives ou similaires',
+                        'col02' => 'Images et enregistrements audio, vidéo ou d\'appels créés dans le cadre de nos activités professionnelles',
+                        'col03' => 'NON'
+                    ],
+                    'row09' => [
+                        'col01' => 'I. Informations professionnelles ou liées à l\'emploi',
+                        'col02' => 'Coordoonnées professionnelles pour vous fournir nos services à un niveau professionnel ou titre de poste, historique de travail et qualifications professionnelles si vous postulez pour un emploi chez nous',
+                        'col03' => 'NON'
+                    ],
+                    'row10' => [
+                        'col01' => 'J. Informations sur l\'éducation',
+                        'col02' => 'Dossiers d\'étudiants et informations de répertoire',
+                        'col03' => 'NON'
+                    ],
+                    'row11' => [
+                        'col01' => 'K. Inférences tirées d\'autres informations personnelles',
+                        'col02' => 'Inférences tirées de l\'une des informations personnelles collectées énumérées ci-dessus pour créer un profil ou un résumé sur, par exemple, les préférences et les caractéristiques d\'une personne',
+                        'col03' => 'OUI'
+                    ],
+                    'row12' => [
+                        'col01' => 'L. Informations personnelles sensibles',
+                        'col02' => 'Numéros de carte de débit ou de crédit, permis de conduire, numéros de passeport, numéros de carte d\'identité de l\'État, informations de connexion de compte, données biométriques, contenu des e-mails ou des messages texte et géolocalisation précise',
+                        'col03' => 'OUI'
+                    ]
+                ],
+                'paragraph08' => [
+                    'content' => 'Nous utiliserons et conserverons les informations personnelles collectées selon les besoins pour fournir les Services ou pour :',
+                    'item01' => 'Category K - Tant que l\'utilisateur a un compte avec nous',
+                    'item02' => 'Category L - Tant que l\'utilisateur a un compte avec nous',
+                ],
+                'paragraph09' => 'Les informations de la catégorie L peuvent être utilisées ou divulguées à un fournisseur de services ou à un entrepreneur pour des fins spécifiées supplémentaires. Vous avez le droit de limiter l\'utilisation ou la divulgation de vos informations personnelles sensibles.',
+                'paragraph10' => [
+                    'content' => 'Nous pouvons également collecter d\'autres informations personnelles en dehors de ces catégories lorsque vous interagissez avec nous en personne, en ligne, par téléphone ou par courrier dans le cadre de :',
+                    'item01' => 'Obtenir de l\'aide via nos canaux de support client;',
+                    'item02' => 'Participation à des enquêtes ou des concours clients; et',
+                    'item03' => 'Facilitation de la livraison de nos services et de la réponse à vos demandes.',
+                ],
+                // Content 3
+                'content03' => 'Comment utilisons-nous et partageons-nous vos informations personnelles ?',
+                'paragraph11' => 'Plus d\'informations sur nos pratiques de collecte et de partage de données peuvent être trouvées dans cette notice de confidentialité.',
+                'paragraph12' => 'Vous pouvez nous contacter par email à <a href="mailto:contact@acr-rdc.com">contact@acr-rdc.com</a>, ou en vous référant aux coordonnées de contact en bas de ce document.',
+                'paragraph13' => 'Si vous utilisez un agent autorisé pour exercer votre droit de refus, nous pourrions refuser une demande si l\'agent autorisé ne fournit pas la preuve qu\'il a été valablement autorisé à agir en votre nom.',
+                // Content 4
+                'content04' => 'Vos informations seront-elles partagées avec d\'autres personnes ?',
+                'paragraph14' => 'Nous pouvons divulguer vos informations personnelles à nos fournisseurs de services en vertu d\'un contrat écrit entre nous et chaque fournisseur de services. Chaque fournisseur de services est une entité à but lucratif qui traite les informations en notre nom, en suivant les mêmes obligations de protection de la vie privée strictes imposées par le CCPA.',
+                'paragraph15' => 'Nous pouvons utiliser vos informations personnelles à des fins commerciales, telles que la réalisation de recherches internes pour le développement technologique et la démonstration. Cela ne doit pas être considéré comme la "vente" de vos informations personnelles.',
+                'paragraph16' => 'Action Commune pour la République (ACR) n\'a pas divulgué, vendu ou partagé de données personnelles à des tiers à des fins commerciales au cours des douze (12) derniers mois. Action Commune pour la République (ACR) ne vendra pas ou ne partagera pas les informations personnelles appartenant aux visiteurs, utilisateurs du site Web et autres consommateurs à l\'avenir.',
+                // Content 5
+                'content05' => 'Vos droits en ce qui concerne vos données personnelles',
+                'paragraph17' => [
+                    'title' => '<u>Right to request deletion of the data — Request to delete</u>',
+                    'content' => 'You can ask for the deletion of your personal information. If you ask us to delete your personal information, we will respect your request and delete your personal information, subject to certain exceptions provided by law, such as (but not limited to) the exercise by another consumer of his or her right to free speech, our compliance requirements resulting from a legal obligation, or any processing that may be required to protect against illegal activities.',
+                ],
+                'paragraph18' => [
+                    'title' => '<u>Right to be informed — Request to know</u>',
+                    'content' => [
+                        'subcontent01' => 'Depending on the circumstances, you have a right to know:',
+                        'subitem01' => 'whether we collect and use your personal information;',
+                        'subitem02' => 'the categories of personal information that we collect;',
+                        'subitem03' => 'the purposes for which the collected personal information is used;',
+                        'subitem04' => 'whether we sell or share personal information to third parties;',
+                        'subitem05' => 'the categories of personal information that we sold, shared, or disclosed for a business purpose;',
+                        'subitem06' => 'the categories of third parties to whom the personal information was sold, shared, or disclosed for a business purpose;',
+                        'subitem06' => 'the business or commercial purpose for collecting, selling, or sharing personal information; and',
+                        'subitem06' => 'the specific pieces of personal information we collected about you.'
+                    ],
+                ],
+                'paragraph19' => 'In accordance with applicable law, we are not obligated to provide or delete consumer information that is de-identified in response to a consumer request or to re-identify individual data to verify a consumer request.',
+                'paragraph20' => [
+                    'title' => '<u>Right to Non-Discrimination for the Exercise of a Consumer’s Privacy Rights</u>',
+                    'content' => 'We will not discriminate against you if you exercise your privacy rights.',
+                ],
+                'paragraph21' => [
+                    'title' => '<u>Right to Limit Use and Disclosure of Sensitive Personal Information</u>',
+                    'content' => [
+                        'subcontent01' => 'If the business collects any of the following:',
+                        'subitem01' => 'social security information, drivers\' licenses, state ID cards, passport numbers',
+                        'subitem02' => 'account login information',
+                        'subitem03' => 'credit card numbers, financial account information, or credentials allowing access to such accounts',
+                        'subitem04' => 'precise geolocation',
+                        'subitem05' => 'racial or ethnic origin, religious or philosophical beliefs, union membership',
+                        'subitem06' => 'the contents of email and text, unless the business is the intended recipient of the communication',
+                        'subitem06' => 'genetic data, biometric data, and health data',
+                        'subitem06' => 'data concerning sexual orientation and sex life'
+                    ],
+                ],
+                'paragraph22' => 'You have the right to direct that business to limit its use of your sensitive personal information to that use which is necessary to perform the Services.',
+                'paragraph23' => 'Once a business receives your request, they are no longer allowed to use or disclose your sensitive personal information for any other purpose unless you provide consent for the use or disclosure of sensitive personal information for additional purposes.',
+                'paragraph24' => 'Please note that sensitive personal information that is collected or processed without the purpose of inferring characteristics about a consumer is not covered by this right, as well as the publicly available information.',
+                'paragraph25' => 'To exercise your right to limit use and disclosure of sensitive personal information, please email <a href="privacy@acr-rdc.com">privacy@acr-rdc.com</a> or submit a <a href="https://app.termly.io/notify/b6b12030-fa30-4198-ac28-76fb0125796b" target="_blank">data subject access request</a>.',
+                'paragraph26' => [
+                    'title' => '<u>Verification process</u>',
+                    'content01' => 'Upon receiving your request, we will need to verify your identity to determine you are the same person about whom we have the information in our system. These verification efforts require us to ask you to provide information so that we can match it with information you have previously provided us. For instance, depending on the type of request you submit, we may ask you to provide certain information so that we can match the information you provide with the information we already have on file, or we may contact you through a communication method (e.g. phone or email) that you have previously provided to us. We may also use other verification methods as the circumstances dictate.',
+                    'content02' => 'We will only use personal information provided in your request to verify your identity or authority to make the request. To the extent possible, we will avoid requesting additional information from you for the purposes of verification. However, if we cannot verify your identity from the information already maintained by us, we may request that you provide additional information for the purposes of verifying your identity and for security or fraud-prevention purposes. We will delete such additionally provided information as soon as we finish verifying you.'
+                ],
+                'paragraph27' => [
+                    'title' => '<u>Other privacy rights</u>',
+                    'content' => [
+                        'subitem01' => 'You may object to the processing of your personal information.',
+                        'subitem02' => 'You may request correction of your personal data if it is incorrect or no longer relevant, or ask to restrict the processing of the information.',
+                        'subitem03' => 'You can designate an authorized agent to make a request under the CCPA on your behalf. We may deny a request from an authorized agent that does not submit proof that they have been validly authorized to act on your behalf in accordance with the CCPA.',
+                        'subitem04' => 'You may request to opt out from future selling or sharing of your personal information to third parties. Upon receiving an opt-out request, we will act upon the request as soon as feasibly possible, but no later than fifteen (15) days from the date of the request submission.'
+                    ],
+                ],
+                'paragraph28' => 'To exercise these rights, you can contact us by email at <a href="contact@acr-rdc.com">contact@acr-rdc.com</a>, or by referring to the contact details at the bottom of this document. If you have a complaint about how we handle your data, we would like to hear from you.',
             ],
         ],
 
