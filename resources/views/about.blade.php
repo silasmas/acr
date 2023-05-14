@@ -276,7 +276,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-9">
-                        <!-- Subtitle -->
+                        <!--  Subtitle -->
                         <div class="mb-5 wow fadeInUp" data-wow-delay="0.1s">
                             <h4 class="h4 text-black fw-bold">@lang('miscellaneous.public.privacy_policy.subtitle')</h4>
                             <p class="m-0 small">@lang('miscellaneous.public.privacy_policy.last_updated')</p>
