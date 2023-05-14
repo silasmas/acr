@@ -617,7 +617,100 @@
                                 <a href="#toc" title="@lang('miscellaneous.back_toc')"><i class="bi bi-arrow-up-short align-middle acr-text-blue"></i></a>
                             </h4>
 
+                            <p class="fst-italic acr-line-height-1_4 wow fadeInUp" data-wow-delay="0.3s">
+                                <i class="bi bi-chevron-double-right me-2 align-middle fs-4 text-danger"></i>
+                                <u class="fw-bold">@lang('miscellaneous.public.privacy_policy.in_short')</u>@lang('miscellaneous.colon_after_word') @lang('miscellaneous.public.privacy_policy.item12.in_short_content01')
+                            </p>
+
                             <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph01')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph02')</p>
+
+                            <h6 class="h6 mt-4 mb-2 fw-bold wow fadeInUp" data-wow-delay="0.3s"><i class="bi bi-pin-angle align-middle fs-4 acr-text-yellow"></i> @lang('miscellaneous.public.privacy_policy.item12.content01')</h6>
+                            <p class="mb-1 wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph03.content')</p>
+                            <ul>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph03.item01')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph03.item02')</li>
+                            </ul>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph04')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph05')</p>
+
+                            <h6 class="h6 mt-4 mb-2 fw-bold wow fadeInUp" data-wow-delay="0.3s"><i class="bi bi-pin-angle align-middle fs-4 acr-text-yellow"></i> @lang('miscellaneous.public.privacy_policy.item12.content02')</h6>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph06')</p>
+
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th class="fw-bold">@lang('miscellaneous.public.privacy_policy.item12.table01.head.col01')</th>
+                                            <th class="fw-bold">@lang('miscellaneous.public.privacy_policy.item12.table01.head.col02')</th>
+                                            <th class="fw-bold">@lang('miscellaneous.public.privacy_policy.item12.table01.head.col03')</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row01.col01')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row01.col02')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row01.col03')</td>
+                                        </tr>
+                                        <tr>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row02.col01')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row02.col02')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row02.col03')</td>
+                                        </tr>
+                                        <tr>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row03.col01')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row03.col02')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row03.col03')</td>
+                                        </tr>
+                                        <tr>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row04.col01')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row04.col02')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row04.col03')</td>
+                                        </tr>
+                                        <tr>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row05.col01')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row05.col02')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row05.col03')</td>
+                                        </tr>
+                                        <tr>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row06.col01')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row06.col02')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row06.col03')</td>
+                                        </tr>
+                                        <tr>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row07.col01')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row07.col02')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row07.col03')</td>
+                                        </tr>
+                                        <tr>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row08.col01')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row08.col02')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row08.col03')</td>
+                                        </tr>
+                                        <tr>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row09.col01')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row09.col02')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row09.col03')</td>
+                                        </tr>
+                                        <tr>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row10.col01')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row10.col02')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row10.col03')</td>
+                                        </tr>
+                                        <tr>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row11.col01')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row11.col02')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row11.col03')</td>
+                                        </tr>
+                                        <tr>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row12.col01')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row12.col02')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row12.col03')</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
 

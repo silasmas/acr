@@ -979,61 +979,61 @@ return [
                 // Content 5
                 'content05' => 'Vos droits en ce qui concerne vos données personnelles',
                 'paragraph17' => [
-                    'title' => '<u>Right to request deletion of the data — Request to delete</u>',
-                    'content' => 'You can ask for the deletion of your personal information. If you ask us to delete your personal information, we will respect your request and delete your personal information, subject to certain exceptions provided by law, such as (but not limited to) the exercise by another consumer of his or her right to free speech, our compliance requirements resulting from a legal obligation, or any processing that may be required to protect against illegal activities.',
+                    'title' => '<u>Droit de demander la suppression des données - Demande de suppression</u>',
+                    'content' => 'Vous pouvez demander la suppression de vos informations personnelles. Si vous nous demandez de supprimer vos informations personnelles, nous respecterons votre demande et supprimerons vos informations personnelles, sous réserve de certaines exceptions prévues par la loi, telles que (mais sans s\'y limiter) l\'exercice par un autre consommateur de son droit à la liberté d\'expression, nos exigences de conformité découlant d\'une obligation légale ou tout traitement qui peut être nécessaire pour protéger contre des activités illégales.',
                 ],
                 'paragraph18' => [
-                    'title' => '<u>Right to be informed — Request to know</u>',
+                    'title' => '<u>Droit à l\'information - Demande de connaissance</u>',
                     'content' => [
-                        'subcontent01' => 'Depending on the circumstances, you have a right to know:',
-                        'subitem01' => 'whether we collect and use your personal information;',
-                        'subitem02' => 'the categories of personal information that we collect;',
-                        'subitem03' => 'the purposes for which the collected personal information is used;',
-                        'subitem04' => 'whether we sell or share personal information to third parties;',
-                        'subitem05' => 'the categories of personal information that we sold, shared, or disclosed for a business purpose;',
-                        'subitem06' => 'the categories of third parties to whom the personal information was sold, shared, or disclosed for a business purpose;',
-                        'subitem06' => 'the business or commercial purpose for collecting, selling, or sharing personal information; and',
-                        'subitem06' => 'the specific pieces of personal information we collected about you.'
+                        'subcontent01' => 'Selon les circonstances, vous avez le droit de savoir :',
+                        'subitem01' => 'si nous collectons et utilisons vos informations personnelles ;',
+                        'subitem02' => 'les catégories d\'informations personnelles que nous collectons ;',
+                        'subitem03' => 'les fins pour lesquelles les informations personnelles collectées sont utilisées ;',
+                        'subitem04' => 'si nous vendons ou partageons des informations personnelles avec des tiers ;',
+                        'subitem05' => 'les catégories d\'informations personnelles que nous avons vendues, partagées ou divulguées à des fins commerciales ;',
+                        'subitem06' => 'les catégories de tiers à qui les informations personnelles ont été vendues, partagées ou divulguées à des fins commerciales ;',
+                        'subitem06' => 'la finalité commerciale de la collecte, de la vente ou du partage des informations personnelles ; et',
+                        'subitem06' => 'les informations personnelles spécifiques que nous avons collectées à votre sujet.'
                     ],
                 ],
-                'paragraph19' => 'In accordance with applicable law, we are not obligated to provide or delete consumer information that is de-identified in response to a consumer request or to re-identify individual data to verify a consumer request.',
+                'paragraph19' => 'Conformément à la loi applicable, nous ne sommes pas tenus de fournir ou de supprimer des informations de consommateur qui sont dépersonnalisées en réponse à une demande de re-identifier les données personnelles en vie d’exécuter une demande du consommateur.',
                 'paragraph20' => [
-                    'title' => '<u>Right to Non-Discrimination for the Exercise of a Consumer’s Privacy Rights</u>',
-                    'content' => 'We will not discriminate against you if you exercise your privacy rights.',
+                    'title' => '<u>Droit de non-discrimination pour l\'exercice des droits de confidentialité du consommateur</u>',
+                    'content' => 'Nous ne vous discriminerons pas si vous exercez vos droits de confidentialité.',
                 ],
                 'paragraph21' => [
-                    'title' => '<u>Right to Limit Use and Disclosure of Sensitive Personal Information</u>',
+                    'title' => '<u>Droit de limiter l\'utilisation et la divulgation d\'informations personnelles sensibles</u>',
                     'content' => [
-                        'subcontent01' => 'If the business collects any of the following:',
-                        'subitem01' => 'social security information, drivers\' licenses, state ID cards, passport numbers',
-                        'subitem02' => 'account login information',
-                        'subitem03' => 'credit card numbers, financial account information, or credentials allowing access to such accounts',
-                        'subitem04' => 'precise geolocation',
-                        'subitem05' => 'racial or ethnic origin, religious or philosophical beliefs, union membership',
-                        'subitem06' => 'the contents of email and text, unless the business is the intended recipient of the communication',
-                        'subitem06' => 'genetic data, biometric data, and health data',
-                        'subitem06' => 'data concerning sexual orientation and sex life'
+                        'subcontent01' => 'Si l\'entreprise collecte l\'un des éléments suivants :',
+                        'subitem01' => 'informations de sécurité sociale, permis de conduire, cartes d\'identité d\'État, numéros de passeport',
+                        'subitem02' => 'informations de connexion au compte',
+                        'subitem03' => 'numéros de carte de crédit, informations de compte financier ou informations d\'identification permettant l\'accès à de tels comptes',
+                        'subitem04' => 'géolocalisation précise',
+                        'subitem05' => 'origine raciale ou ethnique, croyances religieuses ou philosophiques, adhésion à un syndicat',
+                        'subitem06' => 'le contenu des courriels et des messages texte, sauf si l\'entreprise est le destinataire prévu de la communication données',
+                        'subitem06' => 'génétiques, données biométriques et données de santé',
+                        'subitem06' => 'données concernant l\'orientation sexuelle et la vie sexuelle'
                     ],
                 ],
-                'paragraph22' => 'You have the right to direct that business to limit its use of your sensitive personal information to that use which is necessary to perform the Services.',
-                'paragraph23' => 'Once a business receives your request, they are no longer allowed to use or disclose your sensitive personal information for any other purpose unless you provide consent for the use or disclosure of sensitive personal information for additional purposes.',
-                'paragraph24' => 'Please note that sensitive personal information that is collected or processed without the purpose of inferring characteristics about a consumer is not covered by this right, as well as the publicly available information.',
-                'paragraph25' => 'To exercise your right to limit use and disclosure of sensitive personal information, please email <a href="privacy@acr-rdc.com">privacy@acr-rdc.com</a> or submit a <a href="https://app.termly.io/notify/b6b12030-fa30-4198-ac28-76fb0125796b" target="_blank">data subject access request</a>.',
+                'paragraph22' => 'Vous avez le droit de demander à cette entreprise de limiter l\'utilisation de vos informations personnelles sensibles à l\'utilisation qui est nécessaire pour fournir les services.',
+                'paragraph23' => 'Une fois que l\'entreprise reçoit votre demande, elle n\'est plus autorisée à utiliser ou divulguer vos informations personnelles sensibles à d\'autres fins, sauf si vous donnez votre consentement pour l\'utilisation ou la divulgation d\'informations personnelles sensibles à des fins supplémentaires.',
+                'paragraph24' => 'Veuillez noter que les informations personnelles sensibles collectées ou traitées sans le but de déduire des caractéristiques sur un consommateur ne sont pas couvertes par ce droit, de même que les informations publiques disponibles.',
+                'paragraph25' => 'Pour exercer votre droit de limiter l\'utilisation et la divulgation d\'informations personnelles sensibles, veuillez envoyer un courriel à <a href="privacy@acr-rdc.com">privacy@acr-rdc.com</a> ou soumettre une demande d\'accès aux données personnelles. Dans un délai de soixante (60) jours suivant la réception d\'une demande d\'appel, nous vous informerons par écrit de toute mesure prise ou non prise en réponse à l\'appel, y compris une explication écrite des raisons de la décision. Si votre appel est refusé, vous pouvez contacter le Procureur général pour soumettre une plainte.',
                 'paragraph26' => [
-                    'title' => '<u>Verification process</u>',
-                    'content01' => 'Upon receiving your request, we will need to verify your identity to determine you are the same person about whom we have the information in our system. These verification efforts require us to ask you to provide information so that we can match it with information you have previously provided us. For instance, depending on the type of request you submit, we may ask you to provide certain information so that we can match the information you provide with the information we already have on file, or we may contact you through a communication method (e.g. phone or email) that you have previously provided to us. We may also use other verification methods as the circumstances dictate.',
-                    'content02' => 'We will only use personal information provided in your request to verify your identity or authority to make the request. To the extent possible, we will avoid requesting additional information from you for the purposes of verification. However, if we cannot verify your identity from the information already maintained by us, we may request that you provide additional information for the purposes of verifying your identity and for security or fraud-prevention purposes. We will delete such additionally provided information as soon as we finish verifying you.'
+                    'title' => '<u>Procédure de vérification</u>',
+                    'content01' => 'Dès réception de votre demande, nous devrons vérifier votre identité pour déterminer que vous êtes la même personne dont nous avons les informations dans notre système. Ces efforts de vérification nous obligent à vous demander de fournir des informations afin que nous puissions les faire correspondre avec les informations que vous nous avez précédemment fournies. Par exemple, selon le type de demande que vous soumettez, nous pouvons vous demander de fournir certaines informations afin que nous puissions faire correspondre les informations que vous fournissez avec les informations que nous avons déjà dans nos dossiers, ou nous pouvons vous contacter par un moyen de communication (par exemple, téléphone ou e-mail) que vous nous avez précédemment fournis. Nous pouvons également utiliser d\'autres méthodes de vérification selon les circonstances.',
+                    'content02' => 'Nous n\'utiliserons les informations personnelles fournies dans votre demande que pour vérifier votre identité ou votre autorité pour faire la demande. Dans la mesure du possible, nous éviterons de vous demander des informations supplémentaires à des fins de vérification. Toutefois, si nous ne pouvons pas vérifier votre identité à partir des informations que nous conservons déjà, nous pouvons vous demander de fournir des informations supplémentaires aux fins de vérification de votre identité et à des fins de sécurité ou de prévention des fraudes. Nous supprimerons ces informations supplémentaires fournies dès que nous aurons fini de vous vérifier.'
                 ],
                 'paragraph27' => [
-                    'title' => '<u>Other privacy rights</u>',
+                    'title' => '<u>Autres droits de confidentialité</u>',
                     'content' => [
-                        'subitem01' => 'You may object to the processing of your personal information.',
-                        'subitem02' => 'You may request correction of your personal data if it is incorrect or no longer relevant, or ask to restrict the processing of the information.',
-                        'subitem03' => 'You can designate an authorized agent to make a request under the CCPA on your behalf. We may deny a request from an authorized agent that does not submit proof that they have been validly authorized to act on your behalf in accordance with the CCPA.',
-                        'subitem04' => 'You may request to opt out from future selling or sharing of your personal information to third parties. Upon receiving an opt-out request, we will act upon the request as soon as feasibly possible, but no later than fifteen (15) days from the date of the request submission.'
+                        'subitem01' => 'Vous pouvez vous opposer au traitement de vos informations personnelles.',
+                        'subitem02' => 'Vous pouvez demander la correction de vos données personnelles si elles sont incorrectes ou ne sont plus pertinentes, ou demander de restreindre le traitement des informations.',
+                        'subitem03' => 'Vous pouvez désigner un agent autorisé pour faire une demande en vertu du CCPA en votre nom. Nous pouvons refuser une demande d\'un agent autorisé qui ne fournit pas la preuve qu\'il a été valablement autorisé à agir en votre nom conformément au CCPA.',
+                        'subitem04' => 'Vous pouvez demander à vous opposer à la vente ou au partage futur de vos informations personnelles à des tiers. Dès réception d\'une demande de retrait, nous donnerons suite à la demande dès que possible, mais au plus tard quinze (15) jours à compter de la date de soumission de la demande.'
                     ],
                 ],
-                'paragraph28' => 'To exercise these rights, you can contact us by email at <a href="contact@acr-rdc.com">contact@acr-rdc.com</a>, or by referring to the contact details at the bottom of this document. If you have a complaint about how we handle your data, we would like to hear from you.',
+                'paragraph28' => 'Pour exercer ces droits, vous pouvez nous contacter par email à <a href="mailto:contact@acr-rdc.com">contact@acr-rdc.com</a>, ou en vous référant aux coordonnées en bas de ce document. Si vous avez une plainte concernant la façon dont nous traitons vos données, nous aimerions avoir de vos nouvelles.',
             ],
         ],
 

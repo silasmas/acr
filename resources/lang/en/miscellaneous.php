@@ -1033,7 +1033,7 @@ return [
                         'subitem04' => 'You may request to opt out from future selling or sharing of your personal information to third parties. Upon receiving an opt-out request, we will act upon the request as soon as feasibly possible, but no later than fifteen (15) days from the date of the request submission.'
                     ],
                 ],
-                'paragraph28' => 'To exercise these rights, you can contact us by email at <a href="contact@acr-rdc.com">contact@acr-rdc.com</a>, or by referring to the contact details at the bottom of this document. If you have a complaint about how we handle your data, we would like to hear from you.',
+                'paragraph28' => 'To exercise these rights, you can contact us by email at <a href="mailto:contact@acr-rdc.com">contact@acr-rdc.com</a>, or by referring to the contact details at the bottom of this document. If you have a complaint about how we handle your data, we would like to hear from you.',
             ],
         ],
 
