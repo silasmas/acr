@@ -992,8 +992,8 @@ return [
                         'subitem04' => 'whether we sell or share personal information to third parties;',
                         'subitem05' => 'the categories of personal information that we sold, shared, or disclosed for a business purpose;',
                         'subitem06' => 'the categories of third parties to whom the personal information was sold, shared, or disclosed for a business purpose;',
-                        'subitem06' => 'the business or commercial purpose for collecting, selling, or sharing personal information; and',
-                        'subitem06' => 'the specific pieces of personal information we collected about you.'
+                        'subitem07' => 'the business or commercial purpose for collecting, selling, or sharing personal information; and',
+                        'subitem08' => 'the specific pieces of personal information we collected about you.'
                     ],
                 ],
                 'paragraph19' => 'In accordance with applicable law, we are not obligated to provide or delete consumer information that is de-identified in response to a consumer request or to re-identify individual data to verify a consumer request.',
@@ -1011,8 +1011,8 @@ return [
                         'subitem04' => 'precise geolocation',
                         'subitem05' => 'racial or ethnic origin, religious or philosophical beliefs, union membership',
                         'subitem06' => 'the contents of email and text, unless the business is the intended recipient of the communication',
-                        'subitem06' => 'genetic data, biometric data, and health data',
-                        'subitem06' => 'data concerning sexual orientation and sex life'
+                        'subitem07' => 'genetic data, biometric data, and health data',
+                        'subitem08' => 'data concerning sexual orientation and sex life'
                     ],
                 ],
                 'paragraph22' => 'You have the right to direct that business to limit its use of your sensitive personal information to that use which is necessary to perform the Services.',

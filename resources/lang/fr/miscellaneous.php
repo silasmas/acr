@@ -956,8 +956,8 @@ return [
                 ],
                 'paragraph08' => [
                     'content' => 'Nous utiliserons et conserverons les informations personnelles collectées selon les besoins pour fournir les Services ou pour :',
-                    'item01' => 'Category K - Tant que l\'utilisateur a un compte avec nous',
-                    'item02' => 'Category L - Tant que l\'utilisateur a un compte avec nous',
+                    'item01' => 'Catégorie K - Tant que l\'utilisateur a un compte avec nous',
+                    'item02' => 'Catégorie L - Tant que l\'utilisateur a un compte avec nous',
                 ],
                 'paragraph09' => 'Les informations de la catégorie L peuvent être utilisées ou divulguées à un fournisseur de services ou à un entrepreneur pour des fins spécifiées supplémentaires. Vous avez le droit de limiter l\'utilisation ou la divulgation de vos informations personnelles sensibles.',
                 'paragraph10' => [
@@ -992,8 +992,8 @@ return [
                         'subitem04' => 'si nous vendons ou partageons des informations personnelles avec des tiers ;',
                         'subitem05' => 'les catégories d\'informations personnelles que nous avons vendues, partagées ou divulguées à des fins commerciales ;',
                         'subitem06' => 'les catégories de tiers à qui les informations personnelles ont été vendues, partagées ou divulguées à des fins commerciales ;',
-                        'subitem06' => 'la finalité commerciale de la collecte, de la vente ou du partage des informations personnelles ; et',
-                        'subitem06' => 'les informations personnelles spécifiques que nous avons collectées à votre sujet.'
+                        'subitem07' => 'la finalité commerciale de la collecte, de la vente ou du partage des informations personnelles ; et',
+                        'subitem08' => 'les informations personnelles spécifiques que nous avons collectées à votre sujet.'
                     ],
                 ],
                 'paragraph19' => 'Conformément à la loi applicable, nous ne sommes pas tenus de fournir ou de supprimer des informations de consommateur qui sont dépersonnalisées en réponse à une demande de re-identifier les données personnelles en vie d’exécuter une demande du consommateur.',
@@ -1011,8 +1011,8 @@ return [
                         'subitem04' => 'géolocalisation précise',
                         'subitem05' => 'origine raciale ou ethnique, croyances religieuses ou philosophiques, adhésion à un syndicat',
                         'subitem06' => 'le contenu des courriels et des messages texte, sauf si l\'entreprise est le destinataire prévu de la communication données',
-                        'subitem06' => 'génétiques, données biométriques et données de santé',
-                        'subitem06' => 'données concernant l\'orientation sexuelle et la vie sexuelle'
+                        'subitem07' => 'génétiques, données biométriques et données de santé',
+                        'subitem08' => 'données concernant l\'orientation sexuelle et la vie sexuelle'
                     ],
                 ],
                 'paragraph22' => 'Vous avez le droit de demander à cette entreprise de limiter l\'utilisation de vos informations personnelles sensibles à l\'utilisation qui est nécessaire pour fournir les services.',
