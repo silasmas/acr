@@ -1035,6 +1035,48 @@ return [
                 ],
                 'paragraph28' => 'Pour exercer ces droits, vous pouvez nous contacter par email à <a href="mailto:contact@acr-rdc.com">contact@acr-rdc.com</a>, ou en vous référant aux coordonnées en bas de ce document. Si vous avez une plainte concernant la façon dont nous traitons vos données, nous aimerions avoir de vos nouvelles.',
             ],
+            'item13' => [
+                'in_short_content01' => 'Oui, si vous résidez en Virginie, vous pouvez bénéficier de droits spécifiques concernant l\'accès et l\'utilisation de vos informations personnelles.',
+                // Content 1
+                'content01' => 'Avis de confidentialité CDPA de Virginie',
+                'paragraph01' => 'En vertu du Virginia Consumer Data Protection Act (CDPA) :',
+                'paragraph02' => '"Consommateur" désigne une personne physique qui est un résident du Commonwealth agissant uniquement dans un contexte individuel ou familial. Il n\'inclut pas une personne physique agissant dans un contexte commercial ou d\'emploi.',
+                'paragraph03' => '"Données personnelles" désigne toute information liée ou raisonnablement liée à une personne physique identifiée ou identifiable. Les "données personnelles" n\'incluent pas les données anonymisées ni les informations accessibles au public.',
+                'paragraph04' => 'La vente de données personnelles" signifie l\'échange de données personnelles contre une contrepartie monétaire.',
+                'paragraph05' => 'Si cette définition de "consommateur" s\'applique à vous, nous devons respecter certains droits et obligations concernant vos données personnelles.',
+                'paragraph06' => [
+                    'content' => 'Les informations que nous collectons, utilisons et divulguons à votre sujet varient en fonction de la manière dont vous interagissez avec Action Commune pour la République (ACR) et nos Services. Pour en savoir plus, veuillez visiter les liens suivants :',
+                    'item01' => '<a href="' . route('about.privacy_policy') . '#toc_item01">Données personnelles que nous collectons</a>',
+                    'item02' => '<a href="' . route('about.privacy_policy') . '#toc_item02">Comment nous utilisons vos données personnelles</a>',
+                    'item03' => '<a href="' . route('about.privacy_policy') . '#toc_item04">Quand et avec qui nous partageons vos données personnelles</a>',
+                ],
+                'paragraph07' => [
+                    'title' => '<u>Vos droits sur vos données personnelles</u>',
+                    'content' => [
+                        'subitem01' => 'Droit d\'être informé si nous traitons ou non vos données personnelles',
+                        'subitem02' => 'Droit d\'accès à vos données personnelles',
+                        'subitem03' => 'Droit de corriger les inexactitudes dans vos données personnelles',
+                        'subitem04' => 'Droit de demander la suppression de vos données personnelles',
+                        'subitem05' => 'Droit d\'obtenir une copie des données personnelles que vous avez précédemment partagées avec nous',
+                        'subitem06' => 'Droit de refuser le traitement de vos données personnelles si elles sont utilisées à des fins de publicité ciblée, de vente de données personnelles ou de profilage en vue de décisions produisant des effets juridiques ou similaires ("profilage")',
+                    ],
+                ],
+                'paragraph08' => 'Action Commune pour la République (ACR) n\'a vendu aucune donnée personnelle à des tiers à des fins professionnelles ou commerciales. À l\'avenir, Action Commune pour la République (ACR) ne vendra pas de données personnelles appartenant aux visiteurs du site Web, aux utilisateurs et aux autres consommateurs.',
+                // Content 2
+                'content02' => 'Exercez vos droits prévus par le Virginia CDPA',
+                'paragraph09' => '<strong>Vous trouverez plus d\'informations sur nos pratiques de collecte et de partage de données dans cet avis de confidentialité.</strong>',
+                'paragraph10' => 'Vous pouvez nous contacter par e-mail à <a href="mailto:privacy@acr-rdc.com">privacy@acr-rdc.com</a>, en soumettant une <a href="https://app.termly.io/notify/b6b12030-fa30-4198-ac28-76fb0125796b" target="_blank">demande d\'accès à la personne concernée</a>, ou en vous référant aux coordonnées au bas de ce document.',
+                'paragraph11' => 'Si vous utilisez un agent autorisé pour exercer vos droits, nous pouvons refuser une demande si l\'agent autorisé ne fournit pas la preuve qu\'il a été valablement autorisé à agir en votre nom.',
+                'paragraph12' => [
+                    'title' => '<u>Processus de vérification</u>',
+                    'content01' => 'Nous pouvons vous demander de fournir des informations supplémentaires raisonnablement nécessaires pour vérifier votre demande et celle de votre consommateur. Si vous soumettez la demande par l\'intermédiaire d\'un agent autorisé, nous devrons peut-être collecter des informations supplémentaires pour vérifier votre identité avant de traiter votre demande.',
+                    'content02' => 'Dès réception de votre demande, nous vous répondrons dans les meilleurs délais, mais dans tous les cas, dans les quarante-cinq (45) jours suivant sa réception. Le délai de réponse peut être prolongé une fois de quarante-cinq (45) jours supplémentaires lorsque cela est raisonnablement nécessaire. Nous vous informerons d\'une telle prolongation dans le délai de réponse initial de 45 jours, ainsi que de la raison de la prolongation.'
+                ],
+                'paragraph13' => [
+                    'title' => '<u>Droit de recours</u>',
+                    'content' => 'Si nous refusons de donner suite à votre demande, nous vous informerons de notre décision et du raisonnement qui la sous-tend. Si vous souhaitez faire appel de notre décision, veuillez nous envoyer un e-mail à <a href="mailto:privacy@acr-rdc.com">privacy@acr-rdc.com</a>. Dans les soixante (60) jours suivant la réception d\'un appel, nous vous informerons par écrit de toute mesure prise ou non prise en réponse à l\'appel, y compris une explication écrite des motifs des décisions. Si votre appel est refusé, vous pouvez contacter le <a href="https://www.oag.state.va.us/consumer-protection/index.php/file-a-complaint" target="_blank">procureur général pour déposer une plainte</a>.',
+                ],
+            ],
         ],
 
         // News

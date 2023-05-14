@@ -1035,6 +1035,48 @@ return [
                 ],
                 'paragraph28' => 'To exercise these rights, you can contact us by email at <a href="mailto:contact@acr-rdc.com">contact@acr-rdc.com</a>, or by referring to the contact details at the bottom of this document. If you have a complaint about how we handle your data, we would like to hear from you.',
             ],
+            'item13' => [
+                'in_short_content01' => 'Yes, if you are a resident of Virginia, you may be granted specific rights regarding access to and use of your personal information.',
+                // Content 1
+                'content01' => 'Virginia CDPA Privacy Notice',
+                'paragraph01' => 'Under the Virginia Consumer Data Protection Act (CDPA):',
+                'paragraph02' => '\'Consumer\' means a natural person who is a resident of the Commonwealth acting only in an individual or household context. It does not include a natural person acting in a commercial or employment context.',
+                'paragraph03' => '\'Personal data\' means any information that is linked or reasonably linkable to an identified or identifiable natural person. \'Personal data\' does not include de-identified data or publicly available information.',
+                'paragraph04' => '\'Sale of personal data\' means the exchange of personal data for monetary consideration.',
+                'paragraph05' => 'If this definition \'consumer\' applies to you, we must adhere to certain rights and obligations regarding your personal data.',
+                'paragraph06' => [
+                    'content' => 'The information we collect, use, and disclose about you will vary depending on how you interact with Action Commune pour la République (ACR) and our Services. To find out more, please visit the following links:',
+                    'item01' => '<a href="' . route('about.privacy_policy') . '#toc_item01">Personal data we collect</a>',
+                    'item02' => '<a href="' . route('about.privacy_policy') . '#toc_item02">How we use your personal data</a>',
+                    'item03' => '<a href="' . route('about.privacy_policy') . '#toc_item04">When and with whom we share your personal data</a>',
+                ],
+                'paragraph07' => [
+                    'title' => '<u>Your rights with respect to your personal data</u>',
+                    'content' => [
+                        'subitem01' => 'Right to be informed whether or not we are processing your personal data',
+                        'subitem02' => 'Right to access your personal data',
+                        'subitem03' => 'Right to correct inaccuracies in your personal data',
+                        'subitem04' => 'Right to request deletion of your personal data',
+                        'subitem05' => 'Right to obtain a copy of the personal data you previously shared with us',
+                        'subitem06' => 'Right to opt out of the processing of your personal data if it is used for targeted advertising, the sale of personal data, or profiling in furtherance of decisions that produce legal or similarly significant effects (\'profiling\')',
+                    ],
+                ],
+                'paragraph08' => 'Action Commune pour la République (ACR) has not sold any personal data to third parties for business or commercial purposes. Action Commune pour la République (ACR) will not sell personal data in the future belonging to website visitors, users, and other consumers.',
+                // Content 2
+                'content02' => 'Exercise your rights provided under the Virginia CDPA',
+                'paragraph09' => '<strong>More information about our data collection and sharing practices can be found in this privacy notice.</strong>',
+                'paragraph10' => 'You may contact us by email at <a href="mailto:privacy@acr-rdc.com">privacy@acr-rdc.com</a>, by submitting a <a href="https://app.termly.io/notify/b6b12030-fa30-4198-ac28-76fb0125796b" target="_blank">data subject access request</a>, or by referring to the contact details at the bottom of this document.',
+                'paragraph11' => 'If you are using an authorized agent to exercise your rights, we may deny a request if the authorized agent does not submit proof that they have been validly authorized to act on your behalf.',
+                'paragraph12' => [
+                    'title' => '<u>Verification process</u>',
+                    'content01' => 'We may request that you provide additional information reasonably necessary to verify you and your consumer\'s request. If you submit the request through an authorized agent, we may need to collect additional information to verify your identity before processing your request.',
+                    'content02' => 'Upon receiving your request, we will respond without undue delay, but in all cases, within forty-five (45) days of receipt. The response period may be extended once by forty-five (45) additional days when reasonably necessary. We will inform you of any such extension within the initial 45-day response period, together with the reason for the extension.'
+                ],
+                'paragraph13' => [
+                    'title' => '<u>Right to appeal</u>',
+                    'content' => 'If we decline to take action regarding your request, we will inform you of our decision and reasoning behind it. If you wish to appeal our decision, please email us at <a href="mailto:privacy@acr-rdc.com">privacy@acr-rdc.com</a>. Within sixty (60) days of receipt of an appeal, we will inform you in writing of any action taken or not taken in response to the appeal, including a written explanation of the reasons for the decisions. If your appeal if denied, you may contact the <a href="https://www.oag.state.va.us/consumer-protection/index.php/file-a-complaint" target="_blank">Attorney General to submit a complaint</a>.',
+                ],
+            ],
         ],
 
         // News
