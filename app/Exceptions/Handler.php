@@ -40,6 +40,16 @@ class Handler extends ExceptionHandler
     ];
 
     /**
+     * Register the exception handling callbacks for the application.
+     */
+    public function register(): void
+    {
+        $this->reportable(function (Throwable $e) {
+            //
+        });
+    }
+
+    /**
      * Render an exception into an HTTP response.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -50,20 +60,10 @@ class Handler extends ExceptionHandler
     {
         if ($exception instanceof \Exception)
         {
-            return Redirect::back()->with('error_message', __('notifications.500_description'));
+            return Redirect::back()->withErrors(['server_error' => __('notifications.500_description')]);
         }
 
         return parent::render($request, $exception);
-    }
-
-    /**
-     * Register the exception handling callbacks for the application.
-     */
-    public function register(): void
-    {
-        $this->reportable(function (Throwable $e) {
-            //
-        });
     }
 
     /**
