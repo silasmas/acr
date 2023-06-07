@@ -49,22 +49,22 @@ class Handler extends ExceptionHandler
         });
     }
 
-    /**
-     * Render an exception into an HTTP response.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
-     */
-    public function render($request, Throwable $exception)
-    {
-        if ($exception instanceof \Exception)
-        {
-            return Redirect::back()->withErrors(['server_error' => __('notifications.500_description')]);
-        }
+    // /**
+    //  * Render an exception into an HTTP response.
+    //  *
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @param  \Exception  $exception
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function render($request, Throwable $exception)
+    // {
+    //     if ($exception instanceof \Exception)
+    //     {
+    //         return Redirect::back()->withErrors(['server_error' => __('notifications.500_description')]);
+    //     }
 
-        return parent::render($request, $exception);
-    }
+    //     return parent::render($request, $exception);
+    // }
 
     /**
      * Display a JSON message if the API user has not authenticated

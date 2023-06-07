@@ -98,14 +98,9 @@ class PartyController extends Controller
             ]);
 
         } catch (ClientException $e) {
-            // If the API returns some error, return to the page and display its message
-            return view('dashboard.manager', [
-                'current_user' => $user->data,
-                'countries' => $country->data,
-                'messages' => $messages->data,
-                'roles' => $roles->data,
-                'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
-            ]);
+            $decoded_exception = json_encode(json_decode($e->getResponse()->getBody()->getContents(), false));
+
+            return Redirect::route('home')->with('response_error', $decoded_exception);
         }
     }
 
@@ -170,10 +165,9 @@ class PartyController extends Controller
             ]);
 
         } catch (ClientException $e) {
-            // If the API returns some error, return to the page and display its message
-            return view('dashboard.member', [
-                'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
-            ]);
+            $decoded_exception = json_encode(json_decode($e->getResponse()->getBody()->getContents(), false));
+
+            return Redirect::route('home')->with('response_error', $decoded_exception);
         }
     }
 
@@ -260,10 +254,9 @@ class PartyController extends Controller
             ]);
 
         } catch (ClientException $e) {
-            // If the API returns some error, return to the page and display its message
-            return view('dashboard.member', [
-                'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
-            ]);
+            $decoded_exception = json_encode(json_decode($e->getResponse()->getBody()->getContents(), false));
+
+            return Redirect::route('party.member.home')->with('response_error', $decoded_exception);
         }
     }
 
@@ -303,10 +296,9 @@ class PartyController extends Controller
             ]);
 
         } catch (ClientException $e) {
-            // If the API returns some error, return to the page and display its message
-            return view('dashboard.print_card', [
-                'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
-            ]);
+            $decoded_exception = json_encode(json_decode($e->getResponse()->getBody()->getContents(), false));
+
+            return Redirect::route('party.member.home')->with('response_error', $decoded_exception);
         }
     }
 
@@ -377,17 +369,16 @@ class PartyController extends Controller
             ]);
 
         } catch (ClientException $e) {
-            // If the API returns some error, return to the page and display its message
-            return view('dashboard.print_card', [
-                'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
-            ]);
+            $decoded_exception = json_encode(json_decode($e->getResponse()->getBody()->getContents(), false));
+
+            return Redirect::route('home')->with('response_error', $decoded_exception);
         }
     }
 
     /**
      * GET: News/Communique/Event page
      *
-     * @param  $locale
+     * @param  $entity
      * @return \Illuminate\Http\RedirectResponse
      */
     public function infoEntity($entity)
@@ -396,8 +387,6 @@ class PartyController extends Controller
         $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/' . Auth::user()->id;
         // Select all countries API URL
         $url_country = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/country';
-        // Select all received messages API URL
-        $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
         // Select all received messages API URL
         $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
         // Select news by type ID API URL
@@ -438,7 +427,7 @@ class PartyController extends Controller
                     'countries' => $country->data,
                     'messages' => $messages->data,
                     'entity' => $entity,
-                    'entity_id' => 5,
+                    'type_id' => 5,
                     'news' => $news->data
                 ]);
             }
@@ -455,7 +444,7 @@ class PartyController extends Controller
                     'countries' => $country->data,
                     'messages' => $messages->data,
                     'entity' => $entity,
-                    'entity_id' => 6,
+                    'type_id' => 6,
                     'communiques' => $communiques->data
                 ]);
             }
@@ -472,16 +461,76 @@ class PartyController extends Controller
                     'countries' => $country->data,
                     'messages' => $messages->data,
                     'entity' => $entity,
-                    'entity_id' => 7,
+                    'type_id' => 7,
                     'events' => $events->data
                 ]);
             }
 
         } catch (ClientException $e) {
-            // If the API returns some error, return to the page and display its message
-            return view('dashboard.print_card', [
-                'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+            $decoded_exception = json_encode(json_decode($e->getResponse()->getBody()->getContents(), false));
+
+            return Redirect::route('party.infos')->with('response_error', $decoded_exception);
+        }
+    }
+
+    /**
+     * GET: News/Communique/Event page
+     *
+     * @param  $entity
+     * @param  $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function infoEntityDatas($entity, $id)
+    {
+        // Select current user API URL
+        $url_user = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/user/' . Auth::user()->id;
+        // Select all countries API URL
+        $url_country = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/country';
+        // Select all received messages API URL
+        $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
+        // Select news by ID API URL
+        $url_news = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/news/' . $id;
+
+        try {
+            // Select current user API response
+            $response_user = $this::$client->request('GET', $url_user, [
+                'headers' => $this::$headers,
+                'verify'  => false
             ]);
+            $user = json_decode($response_user->getBody(), false);
+            // Select countries API response
+            $response_country = $this::$client->request('GET', $url_country, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $country = json_decode($response_country->getBody(), false);
+            // Select all received messages API response
+            $response_message = $this::$client->request('GET', $url_message, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $messages = json_decode($response_message->getBody(), false);
+
+            // // Select news by ID API response
+            $response_news = $this::$client->request('GET', $url_news, [
+                'headers' => $this::$headers,
+                'verify' => false,
+            ]);
+            $news = json_decode($response_news->getBody(), false);
+
+            return view('dashboard.news', [
+                'current_user' => $user->data,
+                'countries' => $country->data,
+                'messages' => $messages->data,
+                'entity' => $entity,
+                'type_id' => $entity == 'news' ? 5 : ($entity == 'communique' ? 6 : 7),
+                'news' => $news->data
+            ]);
+
+        } catch (ClientException $e) {
+            $decoded_exception = json_encode(json_decode($e->getResponse()->getBody()->getContents(), false));
+
+            return Redirect::route('party.infos.entity', ['entity' => $entity])->with('response_error', $decoded_exception);
         }
     }
 
@@ -732,7 +781,9 @@ class PartyController extends Controller
             return Redirect::back()->with('alert_success', __('miscellaneous.registered_data'));
 
         } catch (ClientException $e) {
-            return Redirect::back()->with('response_error', (json_decode($e->getResponse()->getBody()->getContents(), false))->message);
+            $decoded_exception = json_encode(json_decode($e->getResponse()->getBody()->getContents(), false));
+
+            return Redirect::back()->with('response_error', $decoded_exception);
         }
     }
 
@@ -889,7 +940,9 @@ class PartyController extends Controller
             return Redirect::back()->with('alert_success', __('miscellaneous.message_sent'));
 
         } catch (ClientException $e) {
-            return Redirect::back()->with('response_error', (json_decode($e->getResponse()->getBody()->getContents(), false))->message);
+            $decoded_exception = json_encode(json_decode($e->getResponse()->getBody()->getContents(), false));
+
+            return Redirect::back()->with('response_error', $decoded_exception);
         }
     }
 
@@ -935,7 +988,59 @@ class PartyController extends Controller
             return Redirect::back()->with('alert_success', __('miscellaneous.registered_data'));
 
         } catch (ClientException $e) {
-            return Redirect::back()->with('response_error', (json_decode($e->getResponse()->getBody()->getContents(), false))->message);
+            $decoded_exception = json_encode(json_decode($e->getResponse()->getBody()->getContents(), false));
+
+            return Redirect::back()->with('response_error', $decoded_exception);
+        }
+    }
+
+    /**
+     * POST: Update news/communique/event
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  $entity
+     * @param  $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateInfo(Request $request, $entity, $id)
+    {
+        // Register a news API URL
+        $url_news = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/news/' . $id;
+
+        try {
+            // Select a member API response
+            $response_news = $this::$client->request('PUT', $url_news, [
+                'headers' => $this::$headers,
+                'form_params' => [
+                    'news_title' => $request->register_title,
+                    'news_content' => $request->register_content,
+                    'video_url' => $request->register_video_url,
+                    'type_id' => $request->type_id
+                ],
+                'verify'  => false
+            ]);
+            $news = json_decode($response_news->getBody(), false);
+
+            if ($request->data_picture != null AND $request->data_picture != '') {
+                // Register news image API URL
+                $url_image = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/news/add_image/' . $news->data->id;
+
+                $this::$client->request('PUT', $url_image, [
+                    'headers' => $this::$headers,
+                    'form_params' => [
+                        'news_id' => $news->data->id,
+                        'image_64' => $request->data_picture
+                    ],
+                    'verify'  => false
+                ]);
+            }
+
+            return Redirect::route('party.infos.entity', ['entity' => $entity])->with('alert_success', __('miscellaneous.data_updated'));
+
+        } catch (ClientException $e) {
+            $decoded_exception = json_encode(json_decode($e->getResponse()->getBody()->getContents(), false));
+
+            return Redirect::back()->with('response_error', $decoded_exception);
         }
     }
 }

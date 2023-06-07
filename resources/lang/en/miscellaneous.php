@@ -520,6 +520,7 @@ return [
             'news' => [
                 'title' => 'News',
                 'add' => 'Add a news',
+                'edit' => 'Edit the news',
                 'data' => [
                     'title' => 'Title',
                     'content' => 'Content',
@@ -530,6 +531,7 @@ return [
             'communique' => [
                 'title' => 'Communiques',
                 'add' => 'Add a communique',
+                'edit' => 'Edit the communique',
                 'data' => [
                     'title' => 'Title',
                     'content' => 'Content',
@@ -540,6 +542,7 @@ return [
             'event' => [
                 'title' => 'Events',
                 'add' => 'Add an event',
+                'edit' => 'Edit the event',
                 'data' => [
                     'title' => 'Title',
                     'content' => 'Content',

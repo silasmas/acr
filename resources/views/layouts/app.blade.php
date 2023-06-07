@@ -256,6 +256,10 @@
         @endif
         @endif
         @endif
+
+        @if (Route::is('party.infos.entity.datas'))
+        {{ $news->news_title }}
+        @endif
     </title>
 </head>
 

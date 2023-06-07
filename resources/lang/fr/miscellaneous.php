@@ -520,6 +520,7 @@ return [
             'news' => [
                 'title' => 'Liste des actualités',
                 'add' => 'Ajouter une actualité',
+                'edit' => 'Editer l\'actualité',
                 'data' => [
                     'title' => 'Titre',
                     'content' => 'Contenu',
@@ -530,6 +531,7 @@ return [
             'communique' => [
                 'title' => 'Liste des communiqués',
                 'add' => 'Ajouter un communiqué',
+                'edit' => 'Editer le communiqué',
                 'data' => [
                     'title' => 'Titre',
                     'content' => 'Contenu',
@@ -540,6 +542,7 @@ return [
             'event' => [
                 'title' => 'Liste des evénements',
                 'add' => 'Ajouter un événement',
+                'edit' => 'Editer l\'événement',
                 'data' => [
                     'title' => 'Titre',
                     'content' => 'Contenu',
