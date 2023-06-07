@@ -245,7 +245,7 @@ class AccountController extends Controller
         // $gateway = 'https://beta-cardpayment.flexpay.cd/v1.1/pay';
         $gateway = 'https://cardpayment.flexpay.cd/v1.1/pay';
         $baseController = new BaseController();
-        
+
         try {
             // Create response by sending request to FlexPay
             $response = $this::$client->request('POST', $gateway, [
@@ -275,15 +275,18 @@ class AccountController extends Controller
                 'type' => 2,
                 'code' => 1,
             ]);
+
             if($register){
-                return redirect($payment->url)->with("order_number",$payment->orderNumber);
+                return redirect($payment->url)->with('order_number',$payment->orderNumber);
+
             }else{
-                return $baseController->handleError(null, __('notifications.error_while_processing'));
+                return redirect('/account')->with('error_message', __('notifications.error_while_processing'));
             }
 
-        } catch (ClientException $e) {            
+        } catch (ClientException $e) {
             $response_error = json_decode($e->getResponse()->getBody()->getContents(), false);
-            return $baseController->handleError($response_error, __('notifications.error_while_processing'));
+
+            return redirect('/account')->with('error_message', __('notifications.error_while_processing') . '<br>' . $response_error);
         }
     }
 

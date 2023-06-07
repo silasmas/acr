@@ -92,7 +92,7 @@ class OfferController extends BaseController
                             $jsonRes = json_decode($response->getBody(), false);
                             $code = $jsonRes->code;
 
-                            if ($code != "0") {
+                            if ($code != '0') {
                                 /*
                                     HISTORY AND/OR NOTIFICATION MANAGEMENT
                                 */
@@ -177,7 +177,7 @@ class OfferController extends BaseController
                         $jsonRes = json_decode($response->getBody(), false);
                         $code = $jsonRes->code;
 
-                        if ($code != "0") {
+                        if ($code != '0') {
                             return $this->handleError(__('notifications.process_failed'));
 
                         } else {
