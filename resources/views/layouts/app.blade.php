@@ -256,6 +256,10 @@
         @endif
         @endif
         @endif
+
+        @if (Route::is('party.infos.entity.datas'))
+        {{ $news->news_title }}
+        @endif
     </title>
 </head>
 
@@ -869,6 +873,20 @@
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 <span class="bi bi-info-circle me-2 mb-0 fs-4" style="vertical-align: -3px;"></span> {{
                                 $alert_success }}
+                                <button type="button" class="btn-close mt-1" data-bs-dismiss="alert"
+                                    aria-label="@lang('miscellaneous.close')"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+                @if (!empty($errors) && !empty($errors->first('server_error')))
+                <div class="position-fixed w-100" style="top: 41px; z-index: 9999;">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-10 mx-auto">
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <span class="bi bi-exclamation-triangle me-2 mb-0 fs-4"
+                                    style="vertical-align: -3px;"></span> {{ $errors->first('server_error') }}
                                 <button type="button" class="btn-close mt-1" data-bs-dismiss="alert"
                                     aria-label="@lang('miscellaneous.close')"></button>
                             </div>

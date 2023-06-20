@@ -23,6 +23,8 @@ class Image extends JsonResource
             'image_name' => $this->image_name,
             'url_recto' => $this->url_recto != null ? (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/public/storage/' . $this->url_recto : null,
             'url_verso' => $this->url_verso != null ? (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/public/storage/' . $this->url_verso : null,
+            // 'url_recto' => $this->url_recto != null ? '/storage/' . $this->url_recto : null,
+            // 'url_verso' => $this->url_verso != null ? '/storage/' . $this->url_verso : null,
             'description' => $this->description,
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),

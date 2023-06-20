@@ -272,11 +272,11 @@
 
     @if (Route::is('about.privacy_policy'))
         <!-- Privacy policy Start -->
-        <div class="container-xxl py-3 border-bottom border-default">
+        <div id="privacyPolicy" class="container-xxl py-3 border-bottom border-default">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-9">
-                        <!-- Subtitle -->
+                        <!--  Subtitle -->
                         <div class="mb-5 wow fadeInUp" data-wow-delay="0.1s">
                             <h4 class="h4 text-black fw-bold">@lang('miscellaneous.public.privacy_policy.subtitle')</h4>
                             <p class="m-0 small">@lang('miscellaneous.public.privacy_policy.last_updated')</p>
@@ -313,7 +313,7 @@
                             <div class="card-body">
                                 <h4 class="h4 mb-4 fw-bold">@lang('miscellaneous.public.privacy_policy.table_of_content.title')</h4>
 
-                                <ul>
+                                <ul id="toc">
                                     <li style="list-style-type: decimal;"><a href="#toc_item01" class="text-dark">@lang('miscellaneous.public.privacy_policy.table_of_content.item01')</a></li>
                                     <li style="list-style-type: decimal;"><a href="#toc_item02" class="text-dark">@lang('miscellaneous.public.privacy_policy.table_of_content.item02')</a></li>
                                     <li style="list-style-type: decimal;"><a href="#toc_item03" class="text-dark">@lang('miscellaneous.public.privacy_policy.table_of_content.item03')</a></li>
@@ -332,6 +332,536 @@
                                     <li style="list-style-type: decimal;"><a href="#toc_item16" class="text-dark">@lang('miscellaneous.public.privacy_policy.table_of_content.item16')</a></li>
                                 </ul>
                             </div>
+                        </div>
+
+                        <div class="my-5">
+                            <h4 id="toc_item01" class="h4 mb-4 fw-bold wow fadeInUp" data-wow-delay="0.3s">
+                                1. @lang('miscellaneous.public.privacy_policy.table_of_content.item01') 
+                                <a href="#toc" title="@lang('miscellaneous.back_toc')"><i class="bi bi-arrow-up-short align-middle acr-text-blue"></i></a>
+                            </h4>
+
+                            <h6 class="h6 mb-4 fw-bold wow fadeInUp" data-wow-delay="0.3s">1.1. @lang('miscellaneous.public.privacy_policy.item01.content01')</h6>
+                            <p class="fst-italic acr-line-height-1_4 wow fadeInUp" data-wow-delay="0.3s">
+                                <i class="bi bi-chevron-double-right me-2 align-middle fs-4 text-danger"></i>
+                                <u class="fw-bold">@lang('miscellaneous.public.privacy_policy.in_short')</u>@lang('miscellaneous.colon_after_word') @lang('miscellaneous.public.privacy_policy.item01.in_short_content01')
+                            </p>
+
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item01.paragraph01')</p>
+                            <p class="mb-1 wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item01.paragraph02.content')</p>
+                            <ul>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item01.paragraph02.item01')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item01.paragraph02.item02')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item01.paragraph02.item03')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item01.paragraph02.item04')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item01.paragraph02.item05')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item01.paragraph02.item06')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item01.paragraph02.item07')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item01.paragraph02.item08')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item01.paragraph02.item09')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item01.paragraph02.item10')</li>
+                            </ul>
+                            <p class="mb-1 wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item01.paragraph03.content')</p>
+                            <ul>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item01.paragraph03.item01')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item01.paragraph03.item02')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item01.paragraph03.item03')</li>
+                            </ul>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item01.paragraph04')</p>
+                            <p class="mb-1 wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item01.paragraph05.content')</p>
+                            <ul>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item01.paragraph05.item01')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item01.paragraph05.item02')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item01.paragraph05.item03')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item01.paragraph05.item04')</li>
+                            </ul>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item01.paragraph06')</p>
+                            <p class="mb-5 wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item01.paragraph07')</p>
+
+                            <h6 class="h6 mb-4 fw-bold wow fadeInUp" data-wow-delay="0.3s">1.2. @lang('miscellaneous.public.privacy_policy.item01.content02')</h6>
+                            <p class="fst-italic acr-line-height-1_4 wow fadeInUp" data-wow-delay="0.3s">
+                                <i class="bi bi-chevron-double-right me-2 align-middle fs-4 text-danger"></i>
+                                <u class="fw-bold">@lang('miscellaneous.public.privacy_policy.in_short')</u>@lang('miscellaneous.colon_after_word') @lang('miscellaneous.public.privacy_policy.item01.in_short_content02')
+                            </p>
+
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item01.paragraph08')</p>
+                            <p class="mb-1 wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item01.paragraph09.content')</p>
+                            <ul class="mb-5">
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item01.paragraph09.item01')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item01.paragraph09.item02')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item01.paragraph09.item03')</li>
+                            </ul>
+
+                            <h6 class="h6 mb-4 fw-bold wow fadeInUp" data-wow-delay="0.3s">1.3. @lang('miscellaneous.public.privacy_policy.item01.content03')</h6>
+                            <p class="fst-italic acr-line-height-1_4 wow fadeInUp" data-wow-delay="0.3s">
+                                <i class="bi bi-chevron-double-right me-2 align-middle fs-4 text-danger"></i>
+                                <u class="fw-bold">@lang('miscellaneous.public.privacy_policy.in_short')</u>@lang('miscellaneous.colon_after_word') @lang('miscellaneous.public.privacy_policy.item01.in_short_content03')
+                            </p>
+
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item01.paragraph10')</p>
+                        </div>
+
+                        <div class="my-5">
+                            <h4 id="toc_item02" class="h4 mb-4 fw-bold wow fadeInUp" data-wow-delay="0.3s">
+                                2. @lang('miscellaneous.public.privacy_policy.table_of_content.item02') 
+                                <a href="#toc" title="@lang('miscellaneous.back_toc')"><i class="bi bi-arrow-up-short align-middle acr-text-blue"></i></a>
+                            </h4>
+
+                            <p class="fst-italic acr-line-height-1_4 wow fadeInUp" data-wow-delay="0.3s">
+                                <i class="bi bi-chevron-double-right me-2 align-middle fs-4 text-danger"></i>
+                                <u class="fw-bold">@lang('miscellaneous.public.privacy_policy.in_short')</u>@lang('miscellaneous.colon_after_word') @lang('miscellaneous.public.privacy_policy.item02.in_short_content01')
+                            </p>
+
+                            <p class="mb-1 wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item02.paragraph01.content')</p>
+                            <ul>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item02.paragraph01.item01')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item02.paragraph01.item02')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item02.paragraph01.item03')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item02.paragraph01.item04')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item02.paragraph01.item05')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item02.paragraph01.item06')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item02.paragraph01.item07')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item02.paragraph01.item08')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item02.paragraph01.item09')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item02.paragraph01.item10')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item02.paragraph01.item11')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item02.paragraph01.item12')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item02.paragraph01.item13')</li>
+                            </ul>
+                        </div>
+
+                        <div class="my-5">
+                            <h4 id="toc_item03" class="h4 mb-4 fw-bold wow fadeInUp" data-wow-delay="0.3s">
+                                3. @lang('miscellaneous.public.privacy_policy.table_of_content.item03') 
+                                <a href="#toc" title="@lang('miscellaneous.back_toc')"><i class="bi bi-arrow-up-short align-middle acr-text-blue"></i></a>
+                            </h4>
+
+                            <p class="fst-italic acr-line-height-1_4 wow fadeInUp" data-wow-delay="0.3s">
+                                <i class="bi bi-chevron-double-right me-2 align-middle fs-4 text-danger"></i>
+                                <u class="fw-bold">@lang('miscellaneous.public.privacy_policy.in_short')</u>@lang('miscellaneous.colon_after_word') @lang('miscellaneous.public.privacy_policy.item03.in_short_content01')
+                            </p>
+
+                            <h6 class="h6 mb-4 fw-bold wow fadeInUp" data-wow-delay="0.3s">3.1. @lang('miscellaneous.public.privacy_policy.item03.content01')</h6>
+                            <p class="mb-1 wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item03.paragraph01.content')</p>
+                            <ul>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item03.paragraph01.item01')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item03.paragraph01.item02')</li>
+                                <li>
+                                    <span class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item03.paragraph01.item03.subcontent01')</span>
+
+                                    <ul>
+                                        <li class="wow fadeInUp" data-wow-delay="0.3s" style="list-style-type: square;">@lang('miscellaneous.public.privacy_policy.item03.paragraph01.item03.subitem01')</li>
+                                        <li class="wow fadeInUp" data-wow-delay="0.3s" style="list-style-type: square;">@lang('miscellaneous.public.privacy_policy.item03.paragraph01.item03.subitem02')</li>
+                                        <li class="wow fadeInUp" data-wow-delay="0.3s" style="list-style-type: square;">@lang('miscellaneous.public.privacy_policy.item03.paragraph01.item03.subitem03')</li>
+                                        <li class="wow fadeInUp" data-wow-delay="0.3s" style="list-style-type: square;">@lang('miscellaneous.public.privacy_policy.item03.paragraph01.item03.subitem04')</li>
+                                        <li class="wow fadeInUp" data-wow-delay="0.3s" style="list-style-type: square;">@lang('miscellaneous.public.privacy_policy.item03.paragraph01.item03.subitem05')</li>
+                                        <li class="wow fadeInUp" data-wow-delay="0.3s" style="list-style-type: square;">@lang('miscellaneous.public.privacy_policy.item03.paragraph01.item03.subitem06')</li>
+                                    </ul>
+                                </li>
+                                <li class="mt-2 wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item03.paragraph01.item04')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item03.paragraph01.item05')</li>
+                            </ul>
+                            <p class="mb-5 wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item03.paragraph02')</p>
+
+                            <h6 class="h6 mb-4 fw-bold wow fadeInUp" data-wow-delay="0.3s">3.2. @lang('miscellaneous.public.privacy_policy.item03.content02')</h6>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item03.paragraph03')</p>
+                            <p class="mb-1 wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item03.paragraph04.content')</p>
+                            <ul>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item03.paragraph04.item01')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item03.paragraph04.item02')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item03.paragraph04.item03')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item03.paragraph04.item04')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item03.paragraph04.item05')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item03.paragraph04.item06')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item03.paragraph04.item07')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item03.paragraph04.item08')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item03.paragraph04.item09')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item03.paragraph04.item10')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item03.paragraph04.item11')</li>
+                            </ul>
+                        </div>
+
+                        <div class="my-5">
+                            <h4 id="toc_item04" class="h4 mb-4 fw-bold wow fadeInUp" data-wow-delay="0.3s">
+                                4. @lang('miscellaneous.public.privacy_policy.table_of_content.item04') 
+                                <a href="#toc" title="@lang('miscellaneous.back_toc')"><i class="bi bi-arrow-up-short align-middle acr-text-blue"></i></a>
+                            </h4>
+
+                            <p class="fst-italic acr-line-height-1_4 wow fadeInUp" data-wow-delay="0.3s">
+                                <i class="bi bi-chevron-double-right me-2 align-middle fs-4 text-danger"></i>
+                                <u class="fw-bold">@lang('miscellaneous.public.privacy_policy.in_short')</u>@lang('miscellaneous.colon_after_word') @lang('miscellaneous.public.privacy_policy.item04.in_short_content01')
+                            </p>
+
+                            <p class="mb-1 wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item04.paragraph01.content')</p>
+                            <ul>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item04.paragraph01.item01')</li>
+                            </ul>
+                        </div>
+
+                        <div class="my-5">
+                            <h4 id="toc_item05" class="h4 mb-4 fw-bold wow fadeInUp" data-wow-delay="0.3s">
+                                5. @lang('miscellaneous.public.privacy_policy.table_of_content.item05') 
+                                <a href="#toc" title="@lang('miscellaneous.back_toc')"><i class="bi bi-arrow-up-short align-middle acr-text-blue"></i></a>
+                            </h4>
+
+                            <p class="fst-italic acr-line-height-1_4 wow fadeInUp" data-wow-delay="0.3s">
+                                <i class="bi bi-chevron-double-right me-2 align-middle fs-4 text-danger"></i>
+                                <u class="fw-bold">@lang('miscellaneous.public.privacy_policy.in_short')</u>@lang('miscellaneous.colon_after_word') @lang('miscellaneous.public.privacy_policy.item05.in_short_content01')
+                            </p>
+
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item05.paragraph01')</p>
+                        </div>
+
+                        <div class="my-5">
+                            <h4 id="toc_item06" class="h4 mb-4 fw-bold wow fadeInUp" data-wow-delay="0.3s">
+                                6. @lang('miscellaneous.public.privacy_policy.table_of_content.item06') 
+                                <a href="#toc" title="@lang('miscellaneous.back_toc')"><i class="bi bi-arrow-up-short align-middle acr-text-blue"></i></a>
+                            </h4>
+
+                            <p class="fst-italic acr-line-height-1_4 wow fadeInUp" data-wow-delay="0.3s">
+                                <i class="bi bi-chevron-double-right me-2 align-middle fs-4 text-danger"></i>
+                                <u class="fw-bold">@lang('miscellaneous.public.privacy_policy.in_short')</u>@lang('miscellaneous.colon_after_word') @lang('miscellaneous.public.privacy_policy.item06.in_short_content01')
+                            </p>
+
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item06.paragraph01')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item06.paragraph02')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s"><i class="bi bi-pin-angle align-middle fs-4 acr-text-yellow"></i> @lang('miscellaneous.public.privacy_policy.item06.paragraph03')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item06.paragraph04')</p>
+                        </div>
+
+                        <div class="my-5">
+                            <h4 id="toc_item07" class="h4 mb-4 fw-bold wow fadeInUp" data-wow-delay="0.3s">
+                                7. @lang('miscellaneous.public.privacy_policy.table_of_content.item07') 
+                                <a href="#toc" title="@lang('miscellaneous.back_toc')"><i class="bi bi-arrow-up-short align-middle acr-text-blue"></i></a>
+                            </h4>
+
+                            <p class="fst-italic acr-line-height-1_4 wow fadeInUp" data-wow-delay="0.3s">
+                                <i class="bi bi-chevron-double-right me-2 align-middle fs-4 text-danger"></i>
+                                <u class="fw-bold">@lang('miscellaneous.public.privacy_policy.in_short')</u>@lang('miscellaneous.colon_after_word') @lang('miscellaneous.public.privacy_policy.item07.in_short_content01')
+                            </p>
+
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item07.paragraph01')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item07.paragraph02')</p>
+                        </div>
+
+                        <div class="my-5">
+                            <h4 id="toc_item08" class="h4 mb-4 fw-bold wow fadeInUp" data-wow-delay="0.3s">
+                                8. @lang('miscellaneous.public.privacy_policy.table_of_content.item08') 
+                                <a href="#toc" title="@lang('miscellaneous.back_toc')"><i class="bi bi-arrow-up-short align-middle acr-text-blue"></i></a>
+                            </h4>
+
+                            <p class="fst-italic acr-line-height-1_4 wow fadeInUp" data-wow-delay="0.3s">
+                                <i class="bi bi-chevron-double-right me-2 align-middle fs-4 text-danger"></i>
+                                <u class="fw-bold">@lang('miscellaneous.public.privacy_policy.in_short')</u>@lang('miscellaneous.colon_after_word') @lang('miscellaneous.public.privacy_policy.item08.in_short_content01')
+                            </p>
+
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item08.paragraph01')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item08.paragraph02')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item08.paragraph03')</p>
+                        </div>
+
+                        <div class="my-5">
+                            <h4 id="toc_item09" class="h4 mb-4 fw-bold wow fadeInUp" data-wow-delay="0.3s">
+                                9. @lang('miscellaneous.public.privacy_policy.table_of_content.item09') 
+                                <a href="#toc" title="@lang('miscellaneous.back_toc')"><i class="bi bi-arrow-up-short align-middle acr-text-blue"></i></a>
+                            </h4>
+
+                            <p class="fst-italic acr-line-height-1_4 wow fadeInUp" data-wow-delay="0.3s">
+                                <i class="bi bi-chevron-double-right me-2 align-middle fs-4 text-danger"></i>
+                                <u class="fw-bold">@lang('miscellaneous.public.privacy_policy.in_short')</u>@lang('miscellaneous.colon_after_word') @lang('miscellaneous.public.privacy_policy.item09.in_short_content01')
+                            </p>
+
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item09.paragraph01')</p>
+                        </div>
+
+                        <div class="my-5">
+                            <h4 id="toc_item10" class="h4 mb-4 fw-bold wow fadeInUp" data-wow-delay="0.3s">
+                                10. @lang('miscellaneous.public.privacy_policy.table_of_content.item10') 
+                                <a href="#toc" title="@lang('miscellaneous.back_toc')"><i class="bi bi-arrow-up-short align-middle acr-text-blue"></i></a>
+                            </h4>
+
+                            <p class="fst-italic acr-line-height-1_4 wow fadeInUp" data-wow-delay="0.3s">
+                                <i class="bi bi-chevron-double-right me-2 align-middle fs-4 text-danger"></i>
+                                <u class="fw-bold">@lang('miscellaneous.public.privacy_policy.in_short')</u>@lang('miscellaneous.colon_after_word') @lang('miscellaneous.public.privacy_policy.item10.in_short_content01')
+                            </p>
+
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item10.paragraph01')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item10.paragraph02')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item10.paragraph03')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item10.paragraph04')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item10.paragraph05')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item10.paragraph06')</p>
+
+                            <h6 class="h6 mt-4 mb-2 fw-bold wow fadeInUp" data-wow-delay="0.3s"><i class="bi bi-pin-angle align-middle fs-4 acr-text-yellow"></i> @lang('miscellaneous.public.privacy_policy.item10.content01')</h6>
+                            <p class="mb-1 wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item10.paragraph07.content')</p>
+                            <ul>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item10.paragraph07.item01')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item10.paragraph07.item02')</li>
+                            </ul>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item10.paragraph08')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item10.paragraph09')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item10.paragraph10')</p>
+                        </div>
+
+                        <div class="my-5">
+                            <h4 id="toc_item11" class="h4 mb-4 fw-bold wow fadeInUp" data-wow-delay="0.3s">
+                                11. @lang('miscellaneous.public.privacy_policy.table_of_content.item11') 
+                                <a href="#toc" title="@lang('miscellaneous.back_toc')"><i class="bi bi-arrow-up-short align-middle acr-text-blue"></i></a>
+                            </h4>
+
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item11.paragraph01')</p>
+                        </div>
+
+                        <div class="my-5">
+                            <h4 id="toc_item12" class="h4 mb-4 fw-bold wow fadeInUp" data-wow-delay="0.3s">
+                                12. @lang('miscellaneous.public.privacy_policy.table_of_content.item12') 
+                                <a href="#toc" title="@lang('miscellaneous.back_toc')"><i class="bi bi-arrow-up-short align-middle acr-text-blue"></i></a>
+                            </h4>
+
+                            <p class="fst-italic acr-line-height-1_4 wow fadeInUp" data-wow-delay="0.3s">
+                                <i class="bi bi-chevron-double-right me-2 align-middle fs-4 text-danger"></i>
+                                <u class="fw-bold">@lang('miscellaneous.public.privacy_policy.in_short')</u>@lang('miscellaneous.colon_after_word') @lang('miscellaneous.public.privacy_policy.item12.in_short_content01')
+                            </p>
+
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph01')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph02')</p>
+
+                            <h6 class="h6 mt-4 mb-2 fw-bold wow fadeInUp" data-wow-delay="0.3s">12.1. @lang('miscellaneous.public.privacy_policy.item12.content01')</h6>
+                            <p class="mb-1 wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph03.content')</p>
+                            <ul>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph03.item01')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph03.item02')</li>
+                            </ul>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph04')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph05')</p>
+
+                            <h6 class="h6 mt-4 mb-2 fw-bold wow fadeInUp" data-wow-delay="0.3s">12.2. @lang('miscellaneous.public.privacy_policy.item12.content02')</h6>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph06')</p>
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th class="fw-bold">@lang('miscellaneous.public.privacy_policy.item12.table01.head.col01')</th>
+                                            <th class="fw-bold">@lang('miscellaneous.public.privacy_policy.item12.table01.head.col02')</th>
+                                            <th class="fw-bold">@lang('miscellaneous.public.privacy_policy.item12.table01.head.col03')</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row01.col01')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row01.col02')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row01.col03')</td>
+                                        </tr>
+                                        <tr>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row02.col01')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row02.col02')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row02.col03')</td>
+                                        </tr>
+                                        <tr>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row03.col01')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row03.col02')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row03.col03')</td>
+                                        </tr>
+                                        <tr>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row04.col01')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row04.col02')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row04.col03')</td>
+                                        </tr>
+                                        <tr>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row05.col01')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row05.col02')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row05.col03')</td>
+                                        </tr>
+                                        <tr>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row06.col01')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row06.col02')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row06.col03')</td>
+                                        </tr>
+                                        <tr>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row07.col01')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row07.col02')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row07.col03')</td>
+                                        </tr>
+                                        <tr>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row08.col01')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row08.col02')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row08.col03')</td>
+                                        </tr>
+                                        <tr>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row09.col01')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row09.col02')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row09.col03')</td>
+                                        </tr>
+                                        <tr>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row10.col01')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row10.col02')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row10.col03')</td>
+                                        </tr>
+                                        <tr>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row11.col01')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row11.col02')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row11.col03')</td>
+                                        </tr>
+                                        <tr>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row12.col01')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row12.col02')</td>
+                                            <td>@lang('miscellaneous.public.privacy_policy.item12.table01.row12.col03')</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p class="mb-1 wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph08.content')</p>
+                            <ul>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph08.item01')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph08.item02')</li>
+                            </ul>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph09')</p>
+                            <p class="mb-1 wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph10.content')</p>
+                            <ul>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph10.item01')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph10.item02')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph10.item03')</li>
+                            </ul>
+
+                            <h6 class="h6 mt-4 mb-2 fw-bold wow fadeInUp" data-wow-delay="0.3s">12.3. @lang('miscellaneous.public.privacy_policy.item12.content03')</h6>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph11')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph12')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph13')</p>
+
+                            <h6 class="h6 mt-4 mb-2 fw-bold wow fadeInUp" data-wow-delay="0.3s">12.4. @lang('miscellaneous.public.privacy_policy.item12.content04')</h6>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph14')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph15')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph16')</p>
+
+                            <h6 class="h6 mt-4 mb-2 fw-bold wow fadeInUp" data-wow-delay="0.3s">12.5. @lang('miscellaneous.public.privacy_policy.item12.content05')</h6>
+                            <p class="my-3 wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph17.title')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph17.content')</p>
+                            <p class="mb-3 wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph18.title')</p>
+                            <p class="mb-1 wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph18.content.subcontent01')</p>
+                            <ul>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph18.content.subitem01')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph18.content.subitem02')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph18.content.subitem03')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph18.content.subitem04')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph18.content.subitem05')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph18.content.subitem06')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph18.content.subitem07')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph18.content.subitem08')</li>
+                            </ul>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph19')</p>
+                            <p class="my-3 wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph20.title')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph20.content')</p>
+                            <p class="mb-3 wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph21.title')</p>
+                            <p class="mb-1 wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph21.content.subcontent01')</p>
+                            <ul>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph21.content.subitem01')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph21.content.subitem02')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph21.content.subitem03')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph21.content.subitem04')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph21.content.subitem05')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph21.content.subitem06')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph21.content.subitem07')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph21.content.subitem08')</li>
+                            </ul>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph22')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph23')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph24')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph25')</p>
+                            <p class="my-3 wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph26.title')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph26.content01')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph26.content02')</p>
+                            <p class="mb-3 wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph27.title')</p>
+                            <ul>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph27.content.subitem01')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph27.content.subitem02')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph27.content.subitem03')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph27.content.subitem04')</li>
+                            </ul>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item12.paragraph28')</p>
+                        </div>
+
+                        <div class="my-5">
+                            <h4 id="toc_item13" class="h4 mb-4 fw-bold wow fadeInUp" data-wow-delay="0.3s">
+                                13. @lang('miscellaneous.public.privacy_policy.table_of_content.item13') 
+                                <a href="#toc" title="@lang('miscellaneous.back_toc')"><i class="bi bi-arrow-up-short align-middle acr-text-blue"></i></a>
+                            </h4>
+
+                            <p class="fst-italic acr-line-height-1_4 wow fadeInUp" data-wow-delay="0.3s">
+                                <i class="bi bi-chevron-double-right me-2 align-middle fs-4 text-danger"></i>
+                                <u class="fw-bold">@lang('miscellaneous.public.privacy_policy.in_short')</u>@lang('miscellaneous.colon_after_word') @lang('miscellaneous.public.privacy_policy.item13.in_short_content01')
+                            </p>
+
+                            <h6 class="h6 mt-4 mb-2 fw-bold wow fadeInUp" data-wow-delay="0.3s">13.1. @lang('miscellaneous.public.privacy_policy.item13.content01')</h6>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item13.paragraph01')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item13.paragraph02')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item13.paragraph03')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item13.paragraph04')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item13.paragraph05')</p>
+                            <p class="mb-1 wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item13.paragraph06.content')</p>
+                            <ul>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item13.paragraph06.item01')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item13.paragraph06.item02')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item13.paragraph06.item03')</li>
+                            </ul>
+                            <p class="mb-3 wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item13.paragraph07.title')</p>
+                            <ul>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item13.paragraph07.content.subitem01')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item13.paragraph07.content.subitem02')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item13.paragraph07.content.subitem03')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item13.paragraph07.content.subitem04')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item13.paragraph07.content.subitem05')</li>
+                                <li class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item13.paragraph07.content.subitem06')</li>
+                            </ul>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item13.paragraph08')</p>
+
+                            <h6 class="h6 mt-4 mb-2 fw-bold wow fadeInUp" data-wow-delay="0.3s">13.2. @lang('miscellaneous.public.privacy_policy.item13.content02')</h6>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item13.paragraph09')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item13.paragraph10')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item13.paragraph11')</p>
+                            <p class="my-3 wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item13.paragraph12.title')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item13.paragraph12.content01')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item13.paragraph12.content02')</p>
+                            <p class="my-3 wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item13.paragraph13.title')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item13.paragraph13.content')</p>
+                        </div>
+
+                        <div class="my-5">
+                            <h4 id="toc_item14" class="h4 mb-4 fw-bold wow fadeInUp" data-wow-delay="0.3s">
+                                14. @lang('miscellaneous.public.privacy_policy.table_of_content.item14') 
+                                <a href="#toc" title="@lang('miscellaneous.back_toc')"><i class="bi bi-arrow-up-short align-middle acr-text-blue"></i></a>
+                            </h4>
+
+                            <p class="fst-italic acr-line-height-1_4 wow fadeInUp" data-wow-delay="0.3s">
+                                <i class="bi bi-chevron-double-right me-2 align-middle fs-4 text-danger"></i>
+                                <u class="fw-bold">@lang('miscellaneous.public.privacy_policy.in_short')</u>@lang('miscellaneous.colon_after_word') @lang('miscellaneous.public.privacy_policy.item14.in_short_content01')
+                            </p>
+
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item14.paragraph01')</p>
+                        </div>
+
+                        <div class="my-5">
+                            <h4 id="toc_item15" class="h4 mb-4 fw-bold wow fadeInUp" data-wow-delay="0.3s">
+                                15. @lang('miscellaneous.public.privacy_policy.table_of_content.item15') 
+                                <a href="#toc" title="@lang('miscellaneous.back_toc')"><i class="bi bi-arrow-up-short align-middle acr-text-blue"></i></a>
+                            </h4>
+
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item15.paragraph01')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item15.paragraph02')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item15.paragraph03')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item15.paragraph04')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item15.paragraph05')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item15.paragraph06')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item15.paragraph07')</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item15.paragraph08')</p>
+                        </div>
+
+                        <div class="my-5">
+                            <h4 id="toc_item16" class="h4 mb-4 fw-bold wow fadeInUp" data-wow-delay="0.3s">
+                                16. @lang('miscellaneous.public.privacy_policy.table_of_content.item16') 
+                                <a href="#toc" title="@lang('miscellaneous.back_toc')"><i class="bi bi-arrow-up-short align-middle acr-text-blue"></i></a>
+                            </h4>
+
+                            <p class="wow fadeInUp" data-wow-delay="0.3s">@lang('miscellaneous.public.privacy_policy.item16.paragraph01')</p>
                         </div>
                     </div>
 

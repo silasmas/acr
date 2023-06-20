@@ -140,7 +140,9 @@
                                 </div>
                             </div>
 
-    @else
+    @endif
+
+    @if (Route::is('party.infos.entity'))
                             <!-- #Add an info ==================== -->
                             <div class="col-lg-5 col-md-7 col-12 mx-auto">
                                 <div class="bd bgc-white">
@@ -152,7 +154,7 @@
                                         <div class="layer w-100 p-20">
                                             <form method="POST" action="{{ route('party.infos.new') }}">
         @csrf
-                                                <input type="hidden" name="type_id" value="{{ $entity_id }}">
+                                                <input type="hidden" name="type_id" value="{{ $type_id }}">
 
                                                 <!-- Title -->
                                                 <label for="register_title" class="form-label mb-1 visually-hidden">@lang('miscellaneous.manager.info.news.data.title')</label>
@@ -312,6 +314,62 @@
                                                     </tbody>
                                                 </table>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    @endif
+
+    @if (Route::is('party.infos.entity.datas'))
+                            <!-- #Add an info ==================== -->
+                            <div class="col-lg-5 col-md-7 col-12 mx-auto">
+                                <div class="bd bgc-white">
+                                    <div class="layers">
+                                        <div class="layer d-flex w-100 p-20 justify-content-between">
+                                            <h6 class="lh-1 m-0">@lang('miscellaneous.manager.info.' . $entity . '.edit')</h6>
+                                        </div>
+
+                                        <div class="layer w-100 p-20">
+                                            <form method="POST" action="{{ route('party.infos.entity.datas', ['entity' => $entity, 'id' => $news->id]) }}">
+                                                <input type="hidden" name="type_id" value="{{ $type_id }}">
+        @csrf
+                                                <!-- Title -->
+                                                <label for="register_title" class="form-label mb-1 visually-hidden">@lang('miscellaneous.manager.info.news.data.title')</label>
+                                                <input type="text" name="register_title" id="register_title" class="form-control mb-3" placeholder="@lang('miscellaneous.manager.info.news.data.title')" value="{{ $news->news_title }}" autofocus>
+
+                                                <!-- Content -->
+                                                <label for="register_content" class="form-label mb-1 visually-hidden">@lang('miscellaneous.manager.info.news.data.content')</label>
+                                                <textarea name="register_content" id="register_content" class="form-control mb-3" placeholder="@lang('miscellaneous.manager.info.news.data.content')" required>{{ $news->news_content }}</textarea>
+
+                                                <!-- Add photo -->
+                                                <div id="addPicture" class="row">
+                                                    <div class="col-md-7 col-8 mx-auto">
+                                                        <div class="bg-image rounded overflow-hidden overlay mb-3">
+                                                            <img src="{{ $news->photo_url != null ? $news->photo_url : asset('assets/img/blank-news.png') }}" alt="@lang('miscellaneous.manager.info.news.data.add_photo')" class="news-image img-fluid">
+                                                            <div class="mask h-100">
+                                                                <label role="button" for="picture" class="d-flex justify-content-center align-items-center h-100 fs-6 text-black text-uppercase">
+                                                                    <span>@lang('miscellaneous.manager.info.news.data.add_photo')</span>
+                                                                    <input type="file" name="picture" id="picture" class="d-none">
+                                                                </label>
+                                                                <input type="hidden" name="data_picture" id="data_picture" value="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Video URL of Youtube/other -->
+                                                <label for="register_video_url" class="form-label mb-1 visually-hidden">@lang('miscellaneous.manager.info.news.data.video_url')</label>
+                                                <input type="text" name="register_video_url" id="register_video_url" class="form-control mb-3" placeholder="@lang('miscellaneous.manager.info.news.data.video_url')" value="{{ $news->video_url }}">
+
+                                                <div class="row g-sm-2 g-1">
+                                                    <div class="col-sm-6">
+                                                        <button type="submit" class="btn btn-block btn-primary btn-color mb-2 rounded-pill shadow-0">@lang('miscellaneous.update')</button>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <a href="{{ route('party.infos.entity', ['entity'  => $entity]) }}" class="btn btn-block btn-secondary btn-color mb-2 rounded-pill shadow-0">@lang('miscellaneous.cancel')</a>
+                                                    </div>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
