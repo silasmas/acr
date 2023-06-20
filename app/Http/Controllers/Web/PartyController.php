@@ -697,10 +697,7 @@ class PartyController extends Controller
         } catch (ClientException $e) {
             // If API returns some error, get it,
             // return to the page and display its message
-            return view('dashboard.member', [
-                'inputs' => $inputs,
-                'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
-            ]);
+            return back()->with('response_error', json_decode($e->getResponse()->getBody()->getContents(), false));
         }
     }
 
