@@ -698,7 +698,7 @@ class PartyController extends Controller
             // If API returns some error, get it,
             // return to the page and display its message
             $msg = json_decode($e->getResponse()->getBody()->getContents(), false);
-            return back()->with('response_error', $msg->message);
+            return back()->with('response_error', $msg->data);
         }
     }
 
