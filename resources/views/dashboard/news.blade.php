@@ -331,7 +331,7 @@
 
                                         <div class="layer w-100 p-20">
                                             <form method="POST" action="{{ route('party.infos.entity.datas', ['entity' => $entity, 'id' => $news->id]) }}">
-                                                <input type="hidden" name="type_id" value="{{ $type_id }}">
+                                                <input type="hidden" name="type_id" value="{{ $entity_id }}">
         @csrf
                                                 <!-- Title -->
                                                 <label for="register_title" class="form-label mb-1 visually-hidden">@lang('miscellaneous.manager.info.news.data.title')</label>
