@@ -144,7 +144,7 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     Route::get('payment/find_by_phone/{phone_number}', 'App\Http\Controllers\API\PaymentController@findByPhone')->name('payment.api.find_by_phone');
     Route::get('payment/find_by_order_number/{order_number}', 'App\Http\Controllers\API\PaymentController@findByOrderNumber')->name('payment.api.find_by_order_number');
     Route::get('payment/find_by_order_number_user/{order_number}/{user_id}', 'App\Http\Controllers\API\PaymentController@findByOrderNumberUser')->name('payment.api.find_by_order_number_user');
-    Route::put('payment/switch_status/{status_id}/{id}', 'App\Http\Controllers\API\PaymentController@switchStatus')->name('payment.api.switch_status');
+    Route::put('payment/switch_status/{id}/{status_id}', 'App\Http\Controllers\API\PaymentController@switchStatus')->name('payment.api.switch_status');
 
     // Functions created directly here
     Route::get('about_subject/about_party', function () {
