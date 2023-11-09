@@ -19,6 +19,9 @@
                                 <input type="hidden" name="phone" value="{{ $phone }}">
                                 <input type="hidden" name="password" value="{{ $password }}">
                                 <input type="hidden" name="token" value="{{ $token }}">
+        @if (!empty($redirect))
+                                <input type="hidden" name="redirect" value="{{ $redirect }}">
+        @endif
 
                                 <div class="row mb-4">
                                     <div class="col-sm-8 mx-auto">
