@@ -305,7 +305,7 @@ return [
             'title' => 'Modifier mot de passe',
             'former_password' => 'Ancien mot de passe',
             'new_password' => 'Nouveau mot de passe',
-            'new_password' => 'Confirmer nouveau mot de passe',
+            'confirm_password' => 'Confirmer nouveau mot de passe',
         ],
         'identity_document' => [
             'title' => 'Pièce d\'identité',

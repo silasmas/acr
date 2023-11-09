@@ -305,7 +305,7 @@ return [
             'title' => 'Change password',
             'former_password' => 'Former password',
             'new_password' => 'New password',
-            'new_password' => 'Confirm new password',
+            'confirm_password' => 'Confirm new password',
         ],
         'identity_document' => [
             'title' => 'Identity document',
