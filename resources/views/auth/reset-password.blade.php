@@ -35,7 +35,7 @@
                                 <!-- Run or go login -->
                                 <div class="row g-2 mt-3 text-center">
                                     <div class="col-12">
-                                        <button type="submit" class="btn btn-primary btn-block rounded-pill py-3 shadow-0">@lang('miscellaneous.register')</button>
+                                        <button type="submit" class="btn acr-btn-blue btn-block rounded-pill py-3 shadow-0">@lang('miscellaneous.register')</button>
                                     </div>
                                     <div class="col-12">
                                         <a href="{{ route('login') }}">@lang('miscellaneous.cancel')</a>
