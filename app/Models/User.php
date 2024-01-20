@@ -56,7 +56,7 @@ class User extends Authenticatable
 
     /**
      * MANY-TO-MANY
-     * One roles for several users
+     * Several roles for several users
      */
     public function roles()
     {
