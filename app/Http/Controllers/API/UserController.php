@@ -60,7 +60,7 @@ class UserController extends BaseController
             'email' => $request->email,
             'phone' => $request->phone,
             'email_verified_at' => $request->email_verified_at,
-            'password' => $request->password,
+            'password' => empty($request->password) ? null : Hash::make($request->password),
             'confirm_password' => $request->confirm_password,
             'remember_token' => $request->remember_token,
             'api_token' => $request->api_token,
