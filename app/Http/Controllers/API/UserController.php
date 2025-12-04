@@ -144,12 +144,12 @@ class UserController extends BaseController
                     'former_password' => $inputs['password']
                 ]);
 
-                // try {
-                //     $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
+                try {
+                    $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
 
-                // } catch (\Throwable $th) {
-                //     return $this->handleError($th->getMessage(), __('notifications.create_user_SMS_failed'), 500);
-                // }
+                } catch (\Throwable $th) {
+                    return $this->handleError($th->getMessage(), __('notifications.create_user_SMS_failed'), 500);
+                }
 
             } else {
                 if ($inputs['email'] != null) {
@@ -167,12 +167,12 @@ class UserController extends BaseController
                         'former_password' => $inputs['password']
                     ]);
 
-                    // try {
-                    //     $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
+                    try {
+                        $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
 
-                    // } catch (\Throwable $th) {
-                    //     return $this->handleError($th->getMessage(), __('notifications.create_user_SMS_failed'), 500);
-                    // }
+                    } catch (\Throwable $th) {
+                        return $this->handleError($th->getMessage(), __('notifications.create_user_SMS_failed'), 500);
+                    }
                 }
             }
         }
@@ -190,12 +190,12 @@ class UserController extends BaseController
 
                 $inputs['password'] = Hash::make($password_reset->former_password);
 
-                // try {
-                //     $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
+                try {
+                    $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
 
-                // } catch (\Throwable $th) {
-                //     return $this->handleError($th->getMessage(), __('notifications.create_user_SMS_failed'), 500);
-                // }
+                } catch (\Throwable $th) {
+                    return $this->handleError($th->getMessage(), __('notifications.create_user_SMS_failed'), 500);
+                }
 
             } else {
                 if ($inputs['email'] != null) {
@@ -217,12 +217,12 @@ class UserController extends BaseController
 
                     $inputs['password'] = Hash::make($password_reset->former_password);
 
-                    // try {
-                    //     $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
+                    try {
+                        $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
 
-                    // } catch (\Throwable $th) {
-                    //     return $this->handleError($th->getMessage(), __('notifications.create_user_SMS_failed'), 500);
-                    // }
+                    } catch (\Throwable $th) {
+                        return $this->handleError($th->getMessage(), __('notifications.create_user_SMS_failed'), 500);
+                    }
                 }
             }
         }
@@ -253,7 +253,7 @@ class UserController extends BaseController
             $admin_role = Role::where('role_name', 'Administrateur')->first();
             $supporting_member_role = Role::where('role_name', 'Membre Sympathisant')->first();
             $effecive_member_role = Role::where('role_name', 'Membre Effectif')->first();
-            $honorary_member_role = Role::where('role_name', 'Membre d’Honneur')->first();
+            $honorary_member_role = Role::where('role_name', 'Membre d\'Honneur')->first();
             $current_role = Role::find($request->role_id);
 
             // If the new user is a member, send notification to 
