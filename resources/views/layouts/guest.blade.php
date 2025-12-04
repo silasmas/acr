@@ -257,7 +257,7 @@
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top px-4 px-lg-5">
         <a href="./" class="navbar-brand d-flex align-items-center">
-            <img src="{{ asset('assets/img/logo-text.png') }}" alt="ACR" width="210">
+            <img src="{{ asset('assets/img/logo-text.png') }}" alt="USN" width="100">
         </a>
 
         <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">

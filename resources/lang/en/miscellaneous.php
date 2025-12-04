@@ -13,8 +13,8 @@ return [
     |
      */
     'drc' => 'Democratic Republic of the Congo',
-    'slogan' => 'ACR | Politics of love',
-    'keywords' => 'Common Action for the Republic,acr,love of politics,politics of love',
+    'slogan' => 'USN | To make right triumph over arbitrariness, prosperity over misery, peace over war, cohesion over division and solidarity over selfishness.',
+    'keywords' => 'sacred union for the nation, usn, right over arbitrariness, prosperity over misery, peace over war, cohesion over division, solidarity over selfishness',
     'all_right_reserved' => 'All right reserved',
     'follow_us' => 'Follow us:',
     'call_us' => 'Call us:',

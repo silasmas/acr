@@ -57,7 +57,7 @@
                                                 </div>
                                             </div>
 
-        @if (!empty($response_error) AND $response_error->message == $inputs['phone'])
+        @if (!empty($response_error) AND !empty($inputs) AND $response_error->message == $inputs['phone'])
                                             <div class="col-12">
                                                 <p id="phone_error_message" class="text-center mb-4 text-danger small">{{ $response_error->data }}</p>
                                             </div>
@@ -103,7 +103,7 @@
                                     <input type="password" name="register_password" id="register_password" class="form-control" placeholder="@lang('miscellaneous.password.label')" aria-describedby="password_error_message" {{ !empty($response_error) AND $response_error->message == $inputs['register_password'] ? 'autofocus' : '' }} />
                                     <label class="form-label" for="register_password">@lang('miscellaneous.password.label')</label>
                                 </div>
-        @if (!empty($response_error) AND $response_error->message == $inputs['password'])
+        @if (!empty($response_error) AND !empty($inputs) AND $response_error->message == $inputs['password'])
                                 <p id="password_error_message" class="text-center mb-4 text-danger small">{{ $response_error->data }}</p>
 
                                 <!-- Confirm password -->
@@ -115,7 +115,7 @@
                                     <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="@lang('miscellaneous.confirm_password.label')" aria-describedby="confirm_password_error_message" {{ !empty($response_error) AND $response_error->message == $inputs['confirm_password'] ? 'autofocus' : '' }} />
                                     <label class="form-label" for="confirm_password">@lang('miscellaneous.confirm_password.label')</label>
                                 </div>
-        @if (!empty($response_error) AND $response_error->message == $inputs['confirm_password'])
+        @if (!empty($response_error) AND !empty($inputs) AND $response_error->message == $inputs['confirm_password'])
                                 <p id="confirm_password_error_message" class="text-center mb-4 text-danger small">{{ $response_error->data }}</p>
         @endif
 

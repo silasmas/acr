@@ -256,7 +256,7 @@
                                                     <div class="mb-3 col-lg-4">
                                                         <label for="register_firstname" class="form-label mb-1">@lang('miscellaneous.firstname')</label>
                                                         <input type="text" name="register_firstname" id="register_firstname" class="form-control" placeholder="@lang('miscellaneous.firstname')" value="{{ $current_user->firstname }}">
-    @if (!empty($response_error) AND $response_error->message == $inputs['firstname'])
+    @if (!empty($response_error) AND !empty($inputs) AND $response_error->message == $inputs['firstname'])
                                                         <small id="firstnameHelp" class="text-danger">{{ $response_error->data }}</small>
     @endif
                                                     </div>
@@ -323,7 +323,7 @@
                                                     <div class="mb-3 col-lg-4">
                                                         <label for="register_email" class="form-label mb-1">@lang('miscellaneous.email')</label>
                                                         <input type="text" name="register_email" id="register_email" class="form-control" placeholder="@lang('miscellaneous.email')" value="{{ $current_user->email }}">
-    @if (!empty($response_error) AND $response_error->message == $inputs['email'])
+    @if (!empty($response_error) AND !empty($inputs) AND $response_error->message == $inputs['email'])
                                                         <small id="emailHelp" class="text-danger">{{ $response_error->data }}</small>
     @endif
                                                     </div>
@@ -332,7 +332,7 @@
                                                     <div class="mb-3 col-lg-4">
                                                         <label for="register_phone class="form-label mb-1"">@lang('miscellaneous.phone')</label>
                                                         <input type="text" name="register_phone" id="register_phone" class="form-control" placeholder="@lang('miscellaneous.phone')" value="{{ $current_user->phone }}">
-    @if (!empty($response_error) AND $response_error->message == $inputs['phone'])
+    @if (!empty($response_error) AND !empty($inputs) AND $response_error->message == $inputs['phone'])
                                                         <small id="phoneHelp" class="text-danger">{{ $response_error->data }}</small>
     @endif
                                                     </div>

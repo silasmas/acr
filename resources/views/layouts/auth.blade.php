@@ -102,7 +102,7 @@
         <div class="container-xxl pb-5">
             <!-- Logo Start -->
             <div class="row">
-                <div class="col-lg-3 col-sm-4 col-9 mx-auto pt-lg-4 pt-3">
+                <div class="col-lg-2 col-sm-3 col-9 mx-auto pt-lg-4 pt-3">
                     <div class="bg-image mb-4 px-lg-3 d-flex justify-content-center">
                         <img src="{{ asset('assets/img/logo-text.png') }}" alt="ACR" class="img-fluid">
                         <div class="mask"><a href="{{ route('home') }}" class="stretched-link"></a></div>

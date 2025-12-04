@@ -68,7 +68,7 @@ class NewsController extends BaseController
 
         $supporting_member_role = Role::where('role_name', 'Membre Sympathisant')->first();
         $effecive_member_role = Role::where('role_name', 'Membre Effectif')->first();
-        $honorary_member_role = Role::where('role_name', 'Membre d\'Honneur')->first();
+        $honorary_member_role = Role::where('role_name', 'Membre d’Honneur')->first();
         $founder_signatory_role = Role::where('role_name', 'Fondateur Signataire de Statuts')->first();
         $founder_initiator_role = Role::where('role_name', 'Fondateur Initiateur')->first();
         $role_users = RoleUser::where('role_id', $supporting_member_role->id)->orWhere('role_id', $effecive_member_role->id)->orWhere('role_id', $honorary_member_role->id)->orWhere('role_id', $founder_signatory_role->id)->orWhere('role_id', $founder_initiator_role->id)->get();
@@ -166,7 +166,7 @@ class NewsController extends BaseController
 
         $supporting_member_role = Role::where('role_name', 'Membre Sympathisant')->first();
         $effecive_member_role = Role::where('role_name', 'Membre Effectif')->first();
-        $honorary_member_role = Role::where('role_name', 'Membre d\'Honneur')->first();
+        $honorary_member_role = Role::where('role_name', 'Membre d’Honneur')->first();
         $founder_signatory_role = Role::where('role_name', 'Fondateur Signataire de Statuts')->first();
         $founder_initiator_role = Role::where('role_name', 'Fondateur Initiateur')->first();
         $role_users = RoleUser::where('role_id', $supporting_member_role->id)->orWhere('role_id', $effecive_member_role->id)->orWhere('role_id', $honorary_member_role->id)->orWhere('role_id', $founder_signatory_role->id)->orWhere('role_id', $founder_initiator_role->id)->get();

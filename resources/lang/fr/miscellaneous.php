@@ -13,8 +13,8 @@ return [
     |
     */
     'drc' => 'République Démocratique du Congo',
-    'slogan' => 'ACR | La politique de l\'amour',
-    'keywords' => 'Action Commune pour la République,acr,l\'amour de la politique,politique de l\'amour',
+    'slogan' => 'USN | Faire triompher le droit sur l’arbitraire, la prospérité sur la misère, la paix sur la guerre, la cohésion sur la division et la solidarité sur l’égoïsme.',
+    'keywords' => 'union sacré pour la nation,usn,le droit sur l’arbitraire,la prospérité sur la misère,la paix sur la guerre,la cohésion sur la division,la solidarité sur l’égoïsme',
     'all_right_reserved' => 'Tous droits réservés',
     'follow_us' => 'Suivez-nous :',
     'call_us' => 'Appelez-nous :',

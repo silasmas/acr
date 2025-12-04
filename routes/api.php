@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Route;
 | Default API resource
 |--------------------------------------------------------------------------
  */
-Route::middleware(['auth:api', 'localization'])->group(function () {
+// Route::middleware(['auth:api', 'localization'])->group(function () {
+Route::middleware(['localization'])->group(function () {
 
     Route::apiResource('legal_info_subject', 'App\Http\Controllers\API\LegalInfoSubjectController');
     Route::apiResource('legal_info_title', 'App\Http\Controllers\API\LegalInfoTitleController');
@@ -57,7 +58,8 @@ Route::group(['middleware' => ['api', 'localization']], function () {
     // Payment
     Route::post('payment/store', 'App\Http\Controllers\API\PaymentController@store')->name('payment.api.store');
 });
-Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () {
+// Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () {
+Route::group(['middleware' => ['api', 'localization']], function () {
     Route::resource('legal_info_title', 'App\Http\Controllers\API\LegalInfoTitleController');
     Route::resource('legal_info_content', 'App\Http\Controllers\API\LegalInfoContentController');
     Route::resource('group', 'App\Http\Controllers\API\GroupController');
@@ -149,7 +151,7 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     // Functions created directly here
     Route::get('about_subject/about_party', function () {
         $baseController = new BaseController();
-        $legal_info_subject = LegalInfoSubject::where('subject_name', 'A propos du parti ACR')->first();
+        $legal_info_subject = LegalInfoSubject::where('subject_name', 'A propos de la coalition')->first();
 
         if (is_null($legal_info_subject)) {
             return $baseController->handleError(__('notifications.find_legal_info_subject_404'));
@@ -160,7 +162,7 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     });
     Route::get('about_subject/about_app', function () {
         $baseController = new BaseController();
-        $legal_info_subject = LegalInfoSubject::where('subject_name', 'L\'application ACR')->first();
+        $legal_info_subject = LegalInfoSubject::where('subject_name', 'L’application USN')->first();
 
         if (is_null($legal_info_subject)) {
             return $baseController->handleError(__('notifications.find_legal_info_subject_404'));
@@ -171,7 +173,7 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     });
     Route::get('about_subject/help_center', function () {
         $baseController = new BaseController();
-        $legal_info_subject = LegalInfoSubject::where('subject_name', 'Centre d\'aide')->first();
+        $legal_info_subject = LegalInfoSubject::where('subject_name', 'Centre d’aide')->first();
 
         if (is_null($legal_info_subject)) {
             return $baseController->handleError(__('notifications.find_legal_info_subject_404'));
@@ -193,7 +195,7 @@ Route::group(['middleware' => ['api', 'auth:api', 'localization']], function () 
     });
     Route::get('about_subject/terms', function () {
         $baseController = new BaseController();
-        $legal_info_subject = LegalInfoSubject::where('subject_name', 'Conditions d\'utilisation')->first();
+        $legal_info_subject = LegalInfoSubject::where('subject_name', 'Conditions d’utilisation')->first();
 
         if (is_null($legal_info_subject)) {
             return $baseController->handleError(__('notifications.find_legal_info_subject_404'));

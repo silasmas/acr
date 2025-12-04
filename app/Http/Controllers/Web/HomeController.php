@@ -64,7 +64,7 @@ class HomeController extends Controller
             // Select all received messages API URL
             $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
             // Select types by group name API URL
-            $offer_type_group = 'Type d\'offre';
+            $offer_type_group = 'Type d’offre';
             $transaction_type_group = 'Type de transaction';
             $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
             $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
@@ -216,6 +216,10 @@ class HomeController extends Controller
                 // If the API returns some error, return to the page and display its message
                 return view('welcome', [
                     'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
+                    'countries' => [],
+                    'messages' => [],
+                    'offer_types' => [],
+                    'transaction_types' => [],
                 ]);
             }
 
@@ -223,7 +227,7 @@ class HomeController extends Controller
             // Select all countries API URL
             $url_country = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/country';
             // Select types by group name API URL
-            $offer_type_group = 'Type d\'offre';
+            $offer_type_group = 'Type d’offre';
             $transaction_type_group = 'Type de transaction';
             $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
             $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
@@ -257,6 +261,10 @@ class HomeController extends Controller
                 // If the API returns some error, return to the page and display its message
                 return view('welcome', [
                     'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
+                    'countries' => [],
+                    'messages' => [],
+                    'offer_types' => [],
+                    'transaction_types' => [],
                 ]);
             }
         }
@@ -362,6 +370,14 @@ class HomeController extends Controller
             // If the API returns some error, return to the page and display its message
             return view('welcome', [
                 'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
+                'messages' => [],
+                'users_not_developer' => [],
+                'managers' => [],
+                'effective_members' => [],
+                'deactivated_users' => [],
+                'news' => [],
+                'communiques' => [],
+                'events' => [],
             ]);
         }
     }
@@ -382,7 +398,7 @@ class HomeController extends Controller
         // Select all received messages API URL
         $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
         // Select types by group name API URL
-        $offer_type_group = 'Type d\'offre';
+        $offer_type_group = 'Type d’offre';
         $transaction_type_group = 'Type de transaction';
         $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
         $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
@@ -437,9 +453,13 @@ class HomeController extends Controller
             // If the API returns some error, return to the page and display its message
             return view('notification', [
                 'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
+                'countries' => [],
+                'messages' => [],
+                'offer_types' => [],
+                'transaction_types' => [],
             ]);
         }
-}
+    }
 
     /**
      * Display the About page.
@@ -456,7 +476,7 @@ class HomeController extends Controller
             // Select all received messages API URL
             $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
             // Select types by group name API URL
-            $offer_type_group = 'Type d\'offre';
+            $offer_type_group = 'Type d’offre';
             $transaction_type_group = 'Type de transaction';
             $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
             $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
@@ -520,6 +540,12 @@ class HomeController extends Controller
                 // If the API returns some error, return to the page and display its message
                 return view('about', [
                     'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
+                    'countries' => [],
+                    'messages' => [],
+                    'offer_types' => [],
+                    'transaction_types' => [],
+                    'about_party' => null,
+                    'about_app' => null,
                 ]);
             }
 
@@ -527,7 +553,7 @@ class HomeController extends Controller
             // Select all countries API URL
             $url_country = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/country';
             // Select types by group name API URL
-            $offer_type_group = 'Type d\'offre';
+            $offer_type_group = 'Type d’offre';
             $transaction_type_group = 'Type de transaction';
             $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
             $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
@@ -577,6 +603,11 @@ class HomeController extends Controller
                 // If the API returns some error, return to the page and display its message
                 return view('about', [
                     'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
+                    'countries' => [],
+                    'offer_types' => [],
+                    'transaction_types' => [],
+                    'about_party' => null,
+                    'about_app' => null,
                 ]);
             }
         }
@@ -597,7 +628,7 @@ class HomeController extends Controller
             // Select all received messages API URL
             $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
             // Select types by group name API URL
-            $offer_type_group = 'Type d\'offre';
+            $offer_type_group = 'Type d’offre';
             $transaction_type_group = 'Type de transaction';
             $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
             $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
@@ -656,6 +687,11 @@ class HomeController extends Controller
                 // If the API returns some error, return to the page and display its message
                 return view('about', [
                     'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
+                    'countries' => [],
+                    'messages' => [],
+                    'offer_types' => [],
+                    'transaction_types' => [],
+                    'help' => null,
                 ]);
             }
 
@@ -663,7 +699,7 @@ class HomeController extends Controller
             // Select all countries API URL
             $url_country = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/country';
             // Select types by group name API URL
-            $offer_type_group = 'Type d\'offre';
+            $offer_type_group = 'Type d’offre';
             $transaction_type_group = 'Type de transaction';
             $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
             $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
@@ -706,6 +742,10 @@ class HomeController extends Controller
                 // If the API returns some error, return to the page and display its message
                 return view('about', [
                     'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
+                    'countries' => [],
+                    'offer_types' => [],
+                    'transaction_types' => [],
+                    'help' => null,
                 ]);
             }
         }
@@ -726,7 +766,7 @@ class HomeController extends Controller
             // Select all received messages API URL
             $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
             // Select types by group name API URL
-            $offer_type_group = 'Type d\'offre';
+            $offer_type_group = 'Type d’offre';
             $transaction_type_group = 'Type de transaction';
             $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
             $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
@@ -785,6 +825,11 @@ class HomeController extends Controller
                 // If the API returns some error, return to the page and display its message
                 return view('about', [
                     'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
+                    'countries' => [],
+                    'messages' => [],
+                    'offer_types' => [],
+                    'transaction_types' => [],
+                    'faq' => null,
                 ]);
             }
 
@@ -792,7 +837,7 @@ class HomeController extends Controller
             // Select all countries API URL
             $url_country = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/country';
             // Select types by group name API URL
-            $offer_type_group = 'Type d\'offre';
+            $offer_type_group = 'Type d’offre';
             $transaction_type_group = 'Type de transaction';
             $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
             $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
@@ -835,6 +880,10 @@ class HomeController extends Controller
                 // If the API returns some error, return to the page and display its message
                 return view('about', [
                     'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
+                    'countries' => [],
+                    'offer_types' => [],
+                    'transaction_types' => [],
+                    'faq' => null,
                 ]);
             }
         }
@@ -855,7 +904,7 @@ class HomeController extends Controller
             // Select all received messages API URL
             $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
             // Select types by group name API URL
-            $offer_type_group = 'Type d\'offre';
+            $offer_type_group = 'Type d’offre';
             $transaction_type_group = 'Type de transaction';
             $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
             $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
@@ -914,6 +963,11 @@ class HomeController extends Controller
                 // If the API returns some error, return to the page and display its message
                 return view('about', [
                     'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
+                    'countries' => [],
+                    'messages' => [],
+                    'offer_types' => [],
+                    'transaction_types' => [],
+                    'terms' => null,
                 ]);
             }
 
@@ -921,7 +975,7 @@ class HomeController extends Controller
             // Select all countries API URL
             $url_country = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/country';
             // Select types by group name API URL
-            $offer_type_group = 'Type d\'offre';
+            $offer_type_group = 'Type d’offre';
             $transaction_type_group = 'Type de transaction';
             $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
             $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
@@ -964,6 +1018,10 @@ class HomeController extends Controller
                 // If the API returns some error, return to the page and display its message
                 return view('about', [
                     'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
+                    'countries' => [],
+                    'offer_types' => [],
+                    'transaction_types' => [],
+                    'terms' => null,
                 ]);
             }
         }
@@ -984,7 +1042,7 @@ class HomeController extends Controller
             // Select all received messages API URL
             $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
             // Select types by group name API URL
-            $offer_type_group = 'Type d\'offre';
+            $offer_type_group = 'Type d’offre';
             $transaction_type_group = 'Type de transaction';
             $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
             $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
@@ -1043,6 +1101,11 @@ class HomeController extends Controller
                 // If the API returns some error, return to the page and display its message
                 return view('about', [
                     'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
+                    'countries' => [],
+                    'messages' => [],
+                    'offer_types' => [],
+                    'transaction_types' => [],
+                    'privacy_policy' => null,
                 ]);
             }
 
@@ -1050,7 +1113,7 @@ class HomeController extends Controller
             // Select all countries API URL
             $url_country = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/country';
             // Select types by group name API URL
-            $offer_type_group = 'Type d\'offre';
+            $offer_type_group = 'Type d’offre';
             $transaction_type_group = 'Type de transaction';
             $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
             $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
@@ -1093,6 +1156,10 @@ class HomeController extends Controller
                 // If the API returns some error, return to the page and display its message
                 return view('about', [
                     'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
+                    'countries' => [],
+                    'offer_types' => [],
+                    'transaction_types' => [],
+                    'privacy_policy' => null,
                 ]);
             }
         }
@@ -1113,7 +1180,7 @@ class HomeController extends Controller
             // Select all received messages API URL
             $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
             // Select types by group name API URL
-            $offer_type_group = 'Type d\'offre';
+            $offer_type_group = 'Type d’offre';
             $transaction_type_group = 'Type de transaction';
             $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
             $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
@@ -1172,6 +1239,11 @@ class HomeController extends Controller
                 // If the API returns some error, return to the page and display its message
                 return view('news', [
                     'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
+                    'countries' => [],
+                    'messages' => [],
+                    'offer_types' => [],
+                    'transaction_types' => [],
+                    'news' => [],
                 ]);
             }
 
@@ -1179,7 +1251,7 @@ class HomeController extends Controller
             // Select all countries API URL
             $url_country = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/country';
             // Select types by group name API URL
-            $offer_type_group = 'Type d\'offre';
+            $offer_type_group = 'Type d’offre';
             $transaction_type_group = 'Type de transaction';
             $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
             $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
@@ -1222,6 +1294,10 @@ class HomeController extends Controller
                 // If the API returns some error, return to the page and display its message
                 return view('news', [
                     'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
+                    'countries' => [],
+                    'offer_types' => [],
+                    'transaction_types' => [],
+                    'news' => [],
                 ]);
             }
         }
@@ -1242,7 +1318,7 @@ class HomeController extends Controller
             // Select all received messages API URL
             $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
             // Select types by group name API URL
-            $offer_type_group = 'Type d\'offre';
+            $offer_type_group = 'Type d’offre';
             $transaction_type_group = 'Type de transaction';
             $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
             $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
@@ -1317,7 +1393,7 @@ class HomeController extends Controller
             // Select all countries API URL
             $url_country = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/country';
             // Select types by group name API URL
-            $offer_type_group = 'Type d\'offre';
+            $offer_type_group = 'Type d’offre';
             $transaction_type_group = 'Type de transaction';
             $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
             $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
@@ -1389,7 +1465,7 @@ class HomeController extends Controller
             // Select all received messages API URL
             $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
             // Select types by group name API URL
-            $offer_type_group = 'Type d\'offre';
+            $offer_type_group = 'Type d’offre';
             $transaction_type_group = 'Type de transaction';
             $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
             $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
@@ -1448,6 +1524,11 @@ class HomeController extends Controller
                 // If the API returns some error, return to the page and display its message
                 return view('works', [
                     'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
+                    'countries' => [],
+                    'messages' => [],
+                    'offer_types' => [],
+                    'transaction_types' => [],
+                    'news' => [],
                 ]);
             }
 
@@ -1455,7 +1536,7 @@ class HomeController extends Controller
             // Select all countries API URL
             $url_country = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/country';
             // Select types by group name API URL
-            $offer_type_group = 'Type d\'offre';
+            $offer_type_group = 'Type d’offre';
             $transaction_type_group = 'Type de transaction';
             $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
             $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
@@ -1498,6 +1579,10 @@ class HomeController extends Controller
                 // If the API returns some error, return to the page and display its message
                 return view('news', [
                     'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
+                    'countries' => [],
+                    'offer_types' => [],
+                    'transaction_types' => [],
+                    'news' => [],
                 ]);
             }
         }
@@ -1518,7 +1603,7 @@ class HomeController extends Controller
             // Select all received messages API URL
             $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
             // Select types by group name API URL
-            $offer_type_group = 'Type d\'offre';
+            $offer_type_group = 'Type d’offre';
             $transaction_type_group = 'Type de transaction';
             $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
             $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
@@ -1593,7 +1678,7 @@ class HomeController extends Controller
             // Select all countries API URL
             $url_country = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/country';
             // Select types by group name API URL
-            $offer_type_group = 'Type d\'offre';
+            $offer_type_group = 'Type d’offre';
             $transaction_type_group = 'Type de transaction';
             $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
             $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;

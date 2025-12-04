@@ -511,7 +511,7 @@ class PartyController extends Controller
         // Select all received messages API URL
         $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . $id;
         // Select types by group name API URL
-        $offer_type_group = 'Type d\'offre';
+        $offer_type_group = 'Type d’offre';
         $transaction_type_group = 'Type de transaction';
         $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
         $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;

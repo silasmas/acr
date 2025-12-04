@@ -16,7 +16,7 @@
                                     <input type="text" name="username" id="username" class="form-control" placeholder="@lang('miscellaneous.login_username')" aria-describedby="username_error_message" value="{{ !empty($inputs['username']) ? $inputs['username'] : '' }}" {{ !empty($inputs['username']) ? '' : 'autofocus' }} />
                                     <label class="form-label" for="username">@lang('miscellaneous.login_username')</label>
                                 </div>
-    @if (!empty($response_error) AND $response_error->message == $inputs['username'])
+    @if (!empty($response_error) AND !empty($inputs) AND $response_error->message == $inputs['username'])
                                 <p id="username_error_message" class="text-center mb-4 text-danger small">{{ $response_error->data }}</p>
 
                                 <!-- Password -->
@@ -30,7 +30,7 @@
                                     <input type="password" name="password" id="password" class="form-control" placeholder="@lang('miscellaneous.password.label')" aria-describedby="password_error_message" {{ !empty($inputs['username']) ? 'autofocus' : '' }} />
                                     <label class="form-label" for="password">@lang('miscellaneous.password.label')</label>
                                 </div>
-    @if (!empty($response_error) AND $response_error->message == $inputs['password'])
+    @if (!empty($response_error) AND !empty($inputs) AND $response_error->message == $inputs['password'])
                                 <p id="password_error_message" class="text-center mb-4 text-danger small">{{ $response_error->data }}</p>
 
                                 <!-- Remember me -->

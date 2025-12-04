@@ -52,10 +52,19 @@ class RegisteredUserController extends Controller
             ]);
 
         } catch (ClientException $e) {
+            // Default countries object
+            $countries_array = [
+                ['id' => 1, 'country_name' => 'Congo, RDC', 'country_phone_code' => '243', 'country_lang_code' => 'CD'],
+                ['id' => 2, 'country_name' => 'Canada', 'country_phone_code' => '1', 'country_lang_code' => 'CA'],
+                ['id' => 3, 'country_name' => 'États-Unis', 'country_phone_code' => '1', 'country_lang_code' => 'US'],
+                ['id' => 4, 'country_name' => 'France', 'country_phone_code' => '33', 'country_lang_code' => 'FR'],
+                ['id' => 5, 'country_name' => 'Chine', 'country_phone_code' => '86', 'country_lang_code' => '']
+            ];
             // If API returns some error, get it,
             // return to the page and display its message
             return view('auth.register', [
-                'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
+                'countries' => json_decode(json_encode($countries_array))
             ]);
         }
     }
@@ -83,10 +92,19 @@ class RegisteredUserController extends Controller
             ]);
 
         } catch (ClientException $e) {
+            // Default countries object
+            $countries_array = [
+                ['id' => 1, 'country_name' => 'Congo, RDC', 'country_phone_code' => '243', 'country_lang_code' => 'CD'],
+                ['id' => 2, 'country_name' => 'Canada', 'country_phone_code' => '1', 'country_lang_code' => 'CA'],
+                ['id' => 3, 'country_name' => 'États-Unis', 'country_phone_code' => '1', 'country_lang_code' => 'US'],
+                ['id' => 4, 'country_name' => 'France', 'country_phone_code' => '33', 'country_lang_code' => 'FR'],
+                ['id' => 5, 'country_name' => 'Chine', 'country_phone_code' => '86', 'country_lang_code' => '']
+            ];
             // If API returns some error, get it,
             // return to the page and display its message
             return view('auth.register', [
-                'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
+                'countries' => json_decode(json_encode($countries_array))
             ]);
         }
     }

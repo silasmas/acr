@@ -61,7 +61,7 @@ class AccountController extends Controller
         // Select all received messages API URL
         $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
         // Select types by group name API URL
-        $offer_type_group = 'Type d\'offre';
+        $offer_type_group = 'Type d’offre';
         $transaction_type_group = 'Type de transaction';
         $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
         $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
@@ -136,15 +136,55 @@ class AccountController extends Controller
             }
 
         } catch (ClientException $e) {
+            // Select user API response
+            $response_user = $this::$client->request('GET', $url_user, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $user = json_decode($response_user->getBody(), false);
+            // Select address by type and user API response
+            $response_legal_address = $this::$client->request('GET', $url_legal_address, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $legal_address = json_decode($response_legal_address->getBody(), false);
+            $response_residence = $this::$client->request('GET', $url_residence, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $residence = json_decode($response_residence->getBody(), false);
+            // Select all received messages API response
+            $response_message = $this::$client->request('GET', $url_message, [
+                'headers' => $this::$headers,
+                'verify'  => false
+            ]);
+            $messages = json_decode($response_message->getBody(), false);
+
             // If the API returns some error, return to the page and display its message
             if ($user->data->role_user->role->role_name != 'Administrateur' AND $user->data->role_user->role->role_name != 'Développeur' AND $user->data->role_user->role->role_name != 'Manager') {
                 return view('dashboard.account', [
-                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
+                    'current_user' => $user->data,
+                    'legal_address' => $legal_address->data,
+                    'residence' => $residence->data,
+                    'countries' => $country->data,
+                    'messages' => $messages,
+                    'offer_types' => [],
+                    'transaction_types' => [],
+                    'qr_code' => null
                 ]);
 
             } else {
                 return view('account', [
-                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false)
+                    'response_error' => json_decode($e->getResponse()->getBody()->getContents(), false),
+                    'current_user' => $user->data,
+                    'legal_address' => $legal_address->data,
+                    'residence' => $residence->data,
+                    'countries' => $country->data,
+                    'messages' => $messages,
+                    'offer_types' => [],
+                    'transaction_types' => [],
+                    'qr_code' => null
                 ]);
             }
         }
@@ -313,7 +353,7 @@ class AccountController extends Controller
         // Select all received messages API URL
         $url_message = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/message/inbox/' . Auth::user()->id;
         // Select types by group name API URL
-        $offer_type_group = 'Type d\'offre';
+        $offer_type_group = 'Type d’offre';
         $transaction_type_group = 'Type de transaction';
         $url_offer_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $offer_type_group;
         $url_transaction_type = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/api/type/find_by_group/' . $transaction_type_group;
