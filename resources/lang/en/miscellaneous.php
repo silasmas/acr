@@ -18,7 +18,7 @@ return [
     'all_right_reserved' => 'All right reserved',
     'follow_us' => 'Follow us:',
     'call_us' => 'Call us:',
-    'bank_transaction_description' => 'Bank transaction from the ACR application',
+    'bank_transaction_description' => 'Bank transaction from the USN application',
     'your_language' => 'Your language',
     'back_home' => 'Return to the home',
     'back_list' => 'Return to the list',
@@ -180,13 +180,13 @@ return [
     // ===== LOGIN PAGE
     'login_title1' => 'Log in',
     'login_title2' => 'Identify yourself',
-    'login_description' => 'Your data is safe with us. So you need to identify yourself to be sure it\'s you.',
+    'login_description' => 'Your data is safe with us. So you need to identify yourself to be sure it’s you.',
     'login_username' => 'Phone number or E-mail',
     'remember_me' => 'Remember me',
     'forgotten_password' => 'Forgotten password?',
     'not_member' => 'Not a member?',
     'signup_with' => 'or sign up with:',
-    'go_register' => 'I don\'t have an account',
+    'go_register' => 'I don’t have an account',
 
     // ===== REGISTER PAGE
     'register_title1' => 'Sign up',
@@ -237,7 +237,7 @@ return [
     ],
     'confirm_password' => [
         'label' => 'Confirm password',
-        'error' => 'Your confirmation doesn\'t match the new password',
+        'error' => 'Your confirmation doesn’t match the new password',
     ],
     'choose_role' => 'Choose a role',
     'go_login' => 'Already have an account',
@@ -248,7 +248,7 @@ return [
     'cdf' => 'Congolese franc',
     // Alert message
     'registered_data' => 'Data registered',
-    'no_data' => 'This datas don\'t exist',
+    'no_data' => 'This datas don’t exist',
     'required_fields' => 'Please check the required fields',
     'transaction_waiting' => 'Please confirm the message from your operator on your phone. Then press the button below.',
     'transaction_done' => 'Your transaction is complete!',
@@ -560,9 +560,9 @@ return [
             'useful_links' => 'Useful links',
             'head_office' => [
                 'title' => 'Our head office',
-                'address' => '102, Kabinda street, Kinshasa 012 area, Kinshasa-DRC',
-                'phone' => '+243 810 503 074',
-                'email' => 'acr@gmail.com',
+                'address' => '116, Boulevard du 30 juin, Miba Building, 2<sup>nd</sup> floor, Kinshasa/Gombe, DR Congo',
+                'phone' => '+243 823 789 655 / +243 842 958 349',
+                'email' => 'secperm@unionsacree.org',
             ],
             'newsletter' => [
                 'title' => 'Newsletter',
@@ -575,8 +575,8 @@ return [
         // Home
         'home' => [
             'slide1' => [
-                'title' => 'Let\'s write history and do politics differently',
-                'content' => 'All engaged in the politics of love',
+                'title' => 'Let’s put the people at the heart of governance',
+                'content' => 'Let us build a state of law and a powerful and prosperous nation in the heart of Africa',
             ],
             'slide2' => [
                 'title' => 'Support for the FARDC against aggression in the east of the country',
@@ -600,7 +600,7 @@ return [
             'donate' => [
                 'title' => 'Make an anonymous donation or become a partner',
                 'content1' => 'By supporting the ACR party, you not only contribute to the change of your country, but also you contribute to the help that the party brings to the ophelines and the poor.',
-                'content2' => 'If it\'s money you want to send, just select the payment method; then you send it directly online.',
+                'content2' => 'If it’s money you want to send, just select the payment method; then you send it directly online.',
                 'content3' => 'If you want to donate something other than money, just enter a description of your donation.',
                 'anonyme' => 'Make an anonymous donation',
                 'partner' => 'Become a partner',
@@ -628,11 +628,11 @@ return [
                 'title1' => 'One credo',
                 'content1' => 'Given our vision, our only credo is “Doing politics differently”.',
                 'title2' => 'Help the people',
-                'content2' => 'To effectively raise one\'s forehead, by grip, work, discipline and honesty.',
+                'content2' => 'To effectively raise one’s forehead, by grip, work, discipline and honesty.',
             ],
             'why_us' => [
                 'title' => 'Why us?',
-                'subtitle' => 'Let\'s choose change',
+                'subtitle' => 'Let’s choose change',
                 'content' => 'ACR advocates the change of mentality, the true ethical values, with the aim of bringing individual development in particular, and of the whole country in general. Our motto is:',
                 'item1' => 'Unity',
                 'item1_description' => 'Because together we are stronger and more capable.',
@@ -672,7 +672,7 @@ return [
             'last_updated' => 'Last updated April 21, 2023',
             'in_short' => 'In short',
             'description' => [
-                'paragraph1' => 'This privacy notice for Action Commune pour la République (ACR) (\'Company\', \'we\', \'us\', or \'our\'), describes how and why we might collect, store, use, and/or share (\'process\') your information when you use our services (\'Services\'), such as when you:',
+                'paragraph1' => 'This privacy notice for Action Commune pour la République (ACR) (’Company’, ’we’, ’us’, or ’our’), describes how and why we might collect, store, use, and/or share (’process’) your information when you use our services (’Services’), such as when you:',
                 'item1' => 'Visit our website at <a href="' . route('home') . '">https://www.acr-rdc.com</a>, or any website of ours that links to this privacy notice',
                 'item2' => 'Download and use our mobile application (ACR RDC), or any other application of ours that links to this privacy notice',
                 'item3' => 'Engage with us in other related ways, including any sales, marketing, or events',
@@ -737,10 +737,10 @@ return [
                 'paragraph04' => '<strong>Payment Data</strong>. We may collect data necessary to process your payment if you make purchases, such as your payment instrument number, and the security code associated with your payment instrument. All payment data is stored by FLEXPAY. You may find their privacy notice link(s) here: <a href="https://www.flexpay.cd/accueil/pdc" target="_blank"><i class="bi bi-box-arrow-up-right me-1"></i>https://www.flexpay.cd/accueil/pdc</a>.',
                 'paragraph05' => [
                     'content' => '<strong>Application Data</strong>. If you use our application(s), we also may collect the following information if you choose to provide us with access or permission:',
-                    'item01' => '<i>Geolocation Information</i>. We may request access or permission to track location-based information from your mobile device, either continuously or while you are using our mobile application(s), to provide certain location-based services. If you wish to change our access or permissions, you may do so in your device\'s settings.',
-                    'item02' => '<i>Mobile Device Access</i>. We may request access or permission to certain features from your mobile device, including your mobile device\'s camera, sms messages, bluetooth, calendar, and other features. If you wish to change our access or permissions, you may do so in your device\'s settings.',
+                    'item01' => '<i>Geolocation Information</i>. We may request access or permission to track location-based information from your mobile device, either continuously or while you are using our mobile application(s), to provide certain location-based services. If you wish to change our access or permissions, you may do so in your device’s settings.',
+                    'item02' => '<i>Mobile Device Access</i>. We may request access or permission to certain features from your mobile device, including your mobile device’s camera, sms messages, bluetooth, calendar, and other features. If you wish to change our access or permissions, you may do so in your device’s settings.',
                     'item03' => '<i>Mobile Device Data</i>. We automatically collect device information (such as your mobile device ID, model, and manufacturer), operating system, version information and system configuration information, device and application identification numbers, browser type and version, hardware model Internet service provider and/or mobile carrier, and Internet Protocol (IP) address (or proxy server). If you are using our application(s), we may also collect information about the phone network associated with your mobile device, your mobile device’s operating system or platform, the type of mobile device you use, your mobile device’s unique device ID, and information about the features of our application(s) you accessed.',
-                    'item04' => '<i>Push Notifications</i>. We may request to send you push notifications regarding your account or certain features of the application(s). If you wish to opt out from receiving these types of communications, you may turn them off in your device\'s settings.'
+                    'item04' => '<i>Push Notifications</i>. We may request to send you push notifications regarding your account or certain features of the application(s). If you wish to opt out from receiving these types of communications, you may turn them off in your device’s settings.'
                 ],
                 'paragraph06' => 'This information is primarily needed to maintain the security and operation of our application(s), for troubleshooting, and for our internal analytics and reporting purposes.',
                 'paragraph07' => 'All personal information that you provide to us must be true, complete, and accurate, and you must notify us of any changes to such personal information.',
@@ -750,9 +750,9 @@ return [
                 'paragraph08' => 'We automatically collect certain information when you visit, use, or navigate the Services. This information does not reveal your specific identity (like your name or contact information) but may include device and usage information, such as your IP address, browser and device characteristics, operating system, language preferences, referring URLs, device name, country, location, information about how and when you use our Services, and other technical information. This information is primarily needed to maintain the security and operation of our Services, and for our internal analytics and reporting purposes.',
                 'paragraph09' => [
                     'content' => 'Like many businesses, we also collect information through cookies and similar technologies. The information we collect includes:',
-                    'item01' => '<i>Log and Usage Data</i>. Log and usage data is service-related, diagnostic, usage, and performance information our servers automatically collect when you access or use our Services and which we record in log files. Depending on how you interact with us, this log data may include your IP address, device information, browser type, and settings and information about your activity in the Services (such as the date/time stamps associated with your usage, pages and files viewed, searches, and other actions you take such as which features you use), device event information (such as system activity, error reports (sometimes called \'crash dumps\'), and hardware settings).',
+                    'item01' => '<i>Log and Usage Data</i>. Log and usage data is service-related, diagnostic, usage, and performance information our servers automatically collect when you access or use our Services and which we record in log files. Depending on how you interact with us, this log data may include your IP address, device information, browser type, and settings and information about your activity in the Services (such as the date/time stamps associated with your usage, pages and files viewed, searches, and other actions you take such as which features you use), device event information (such as system activity, error reports (sometimes called ’crash dumps’), and hardware settings).',
                     'item02' => '<i>Device Data</i>. We collect device data such as information about your computer, phone, tablet, or other device you use to access the Services. Depending on the device used, this device data may include information such as your IP address (or proxy server), device and application identification numbers, location, browser type, hardware model, Internet service provider and/or mobile carrier, operating system, and system configuration information.',
-                    'item03' => '<i>Location Data</i>. We collect location data such as information about your device\'s location, which can be either precise or imprecise. How much information we collect depends on the type and settings of the device you use to access the Services. For example, we may use GPS and other technologies to collect geolocation data that tells us your current location (based on your IP address). You can opt out of allowing us to collect this information either by refusing access to the information or by disabling your Location setting on your device. However, if you choose to opt out, you may not be able to use certain aspects of the Services.',
+                    'item03' => '<i>Location Data</i>. We collect location data such as information about your device’s location, which can be either precise or imprecise. How much information we collect depends on the type and settings of the device you use to access the Services. For example, we may use GPS and other technologies to collect geolocation data that tells us your current location (based on your IP address). You can opt out of allowing us to collect this information either by refusing access to the information or by disabling your Location setting on your device. However, if you choose to opt out, you may not be able to use certain aspects of the Services.',
                 ],
                 // Content 3
                 'content03' => 'Information collected from other sources',
@@ -775,7 +775,7 @@ return [
                     'item09' => '<strong>To deliver targeted advertising to you</strong>. We may process your information to develop and display personalized content and advertising tailored to your interests, location, and more.',
                     'item10' => '<strong>To protect our Services</strong>. We may process your information as part of our efforts to keep our Services safe and secure, including fraud monitoring and prevention.',
                     'item11' => '<strong>To identify usage trends</strong>. We may process information about how you use our Services to better understand how they are being used so we can improve them.',
-                    'item12' => '<strong>To save or protect an individual\'s vital interest</strong>. We may process your information when necessary to save or protect an individual’s vital interest, such as to prevent harm.',
+                    'item12' => '<strong>To save or protect an individual’s vital interest</strong>. We may process your information when necessary to save or protect an individual’s vital interest, such as to prevent harm.',
                     'item13' => '<strong>Determine majority age and Nationality</strong>. Are 18 or Over and Congolese (DRC) citizen.',
                 ],
             ],
@@ -799,7 +799,7 @@ return [
                     'item04' => '<strong>Legal Obligations</strong>. We may process your information where we believe it is necessary for compliance with our legal obligations, such as to cooperate with a law enforcement body or regulatory agency, exercise or defend our legal rights, or disclose your information as evidence in litigation in which we are involved.',
                     'item05' => '<strong>Vital Interests</strong>. We may process your information where we believe it is necessary to protect your vital interests or the vital interests of a third party, such as situations involving potential threats to the safety of any person.',
                 ],
-                'paragraph02' => '<strong>In legal terms, we are generally the \'data controller\' under European data protection laws of the personal information described in this privacy notice, since we determine the means and/or purposes of the data processing we perform. This privacy notice does not apply to the personal information we process as a \'data processor\' on behalf of our customers. In those situations, the customer that we provide services to and with whom we have entered into a data processing agreement is the \'data controller\' responsible for your personal information, and we merely process your information on their behalf in accordance with your instructions. If you want to know more about our customers\' privacy practices, you should read their privacy policies and direct any questions you have to them.</strong>.',
+                'paragraph02' => '<strong>In legal terms, we are generally the ’data controller’ under European data protection laws of the personal information described in this privacy notice, since we determine the means and/or purposes of the data processing we perform. This privacy notice does not apply to the personal information we process as a ’data processor’ on behalf of our customers. In those situations, the customer that we provide services to and with whom we have entered into a data processing agreement is the ’data controller’ responsible for your personal information, and we merely process your information on their behalf in accordance with your instructions. If you want to know more about our customers’ privacy practices, you should read their privacy policies and direct any questions you have to them.</strong>.',
                 // Content 2
                 'content02' => 'If you are located in Canada, this section applies to you',
                 'paragraph03' => '<strong>We may process your information if you have given us specific permission (i.e. express consent) to use your personal information for a specific purpose, or in situations where your permission can be inferred (i.e. implied consent). You can <a href="'. route('about.privacy_policy') .'#toc_item16">withdraw your consent</a> at any time.</strong>',
@@ -831,10 +831,10 @@ return [
             ],
             'item06' => [
                 'in_short_content01' => 'We may transfer, store, and process your information in countries other than your own.',
-                'paragraph01' => 'Our servers are located in France. If you are accessing our Services from outside France, please be aware that your information may be transferred to, stored, and processed by us in our facilities and by those third parties with whom we may share your personal information (see \'<a href="'. route('about.privacy_policy') .'#toc_item04">WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?</a>\' above), in  the Democratic Republic of the Congo, and other countries.',
+                'paragraph01' => 'Our servers are located in France. If you are accessing our Services from outside France, please be aware that your information may be transferred to, stored, and processed by us in our facilities and by those third parties with whom we may share your personal information (see ’<a href="'. route('about.privacy_policy') .'#toc_item04">WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?</a>’ above), in  the Democratic Republic of the Congo, and other countries.',
                 'paragraph02' => 'If you are a resident in the European Economic Area (EEA) or United Kingdom (UK), then these countries may not necessarily have data protection laws or other similar laws as comprehensive as those in your country. However, we will take all necessary measures to protect your personal information in accordance with this privacy notice and applicable law.',
-                'paragraph03' => '<strong>European Commission\'s Standard Contractual Clauses:</strong>',
-                'paragraph04' => 'We have implemented measures to protect your personal information, including by using the European Commission\'s Standard Contractual Clauses for transfers of personal information between our group companies and between us and our third-party providers. These clauses require all recipients to protect all personal information that they process originating from the EEA or UK in accordance with European data protection laws and regulations. Our Data Processing Agreements that include Standard Contractual Clauses are available here: <a href="' . route('about.privacy_policy') . '">https://www.acr-rdc.com/about/privacy_policy</a>. We have implemented similar appropriate safeguards with our third-party service providers and partners and further details can be provided upon request.',
+                'paragraph03' => '<strong>European Commission’s Standard Contractual Clauses:</strong>',
+                'paragraph04' => 'We have implemented measures to protect your personal information, including by using the European Commission’s Standard Contractual Clauses for transfers of personal information between our group companies and between us and our third-party providers. These clauses require all recipients to protect all personal information that they process originating from the EEA or UK in accordance with European data protection laws and regulations. Our Data Processing Agreements that include Standard Contractual Clauses are available here: <a href="' . route('about.privacy_policy') . '">https://www.acr-rdc.com/about/privacy_policy</a>. We have implemented similar appropriate safeguards with our third-party service providers and partners and further details can be provided upon request.',
             ],
             'item07' => [
                 'in_short_content01' => 'We keep your information for as long as necessary to fulfil the purposes outlined in this privacy notice unless otherwise required by law.',
@@ -849,17 +849,17 @@ return [
             ],
             'item09' => [
                 'in_short_content01' => 'We do not knowingly collect data from or market to minors.',
-                'paragraph01' => 'ACR works in compliance with political parties\'organisations laws in the Democratic Republic of the Congo and therefore you must be 18 to interact with our site or mobile app.',
+                'paragraph01' => 'ACR works in compliance with political parties’organisations laws in the Democratic Republic of the Congo and therefore you must be 18 to interact with our site or mobile app.',
             ],
             'item10' => [
                 'in_short_content01' => 'In some regions, such as the European Economic Area (EEA), United Kingdom (UK), and Canada, you have rights that allow you greater access to and control over your personal information. You may review, change, or terminate your account at any time.',
-                'paragraph01' => 'In some regions (like the EEA, UK, and Canada), you have certain rights under applicable data protection laws. These may include the right (i) to request access and obtain a copy of your personal information, (ii) to request rectification or erasure; (iii) to restrict the processing of your personal information; and (iv) if applicable, to data portability. In certain circumstances, you may also have the right to object to the processing of your personal information. You can make such a request by contacting us by using the contact details provided in the section \'<a href="' . route('about.privacy_policy') .'#toc_item15">HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</a>\' below.',
+                'paragraph01' => 'In some regions (like the EEA, UK, and Canada), you have certain rights under applicable data protection laws. These may include the right (i) to request access and obtain a copy of your personal information, (ii) to request rectification or erasure; (iii) to restrict the processing of your personal information; and (iv) if applicable, to data portability. In certain circumstances, you may also have the right to object to the processing of your personal information. You can make such a request by contacting us by using the contact details provided in the section ’<a href="' . route('about.privacy_policy') .'#toc_item15">HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</a>’ below.',
                 'paragraph02' => 'We will consider and act upon any request in accordance with applicable data protection laws.',
                 'paragraph03' => 'If you are located in the EEA or UK and you believe we are unlawfully processing your personal information, you also have the right to complain to your <a href="https://ec.europa.eu/justice/data-protection/bodies/authorities/index_en.htm" target="_blank">Member State data protection authority</a> or <a href="https://ico.org.uk/make-a-complaint/data-protection-complaints/data-protection-complaints/" target="_blank">UK data protection authority</a>.',
                 'paragraph04' => 'If you are located in Switzerland, you may contact the <a href="https://www.edoeb.admin.ch/edoeb/en/home.html" target="_blank">Federal Data Protection and Information Commissioner</a>.',
-                'paragraph04' => '<strong><u>Withdrawing your consent</u>:</strong> If we are relying on your consent to process your personal information, which may be express and/or implied consent depending on the applicable law, you have the right to withdraw your consent at any time. You can withdraw your consent at any time by contacting us by using the contact details provided in the section \'<a href="' . route('about.privacy_policy') .'#toc_item15">HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</a>\' below or updating your preferences.',
+                'paragraph04' => '<strong><u>Withdrawing your consent</u>:</strong> If we are relying on your consent to process your personal information, which may be express and/or implied consent depending on the applicable law, you have the right to withdraw your consent at any time. You can withdraw your consent at any time by contacting us by using the contact details provided in the section ’<a href="' . route('about.privacy_policy') .'#toc_item15">HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</a>’ below or updating your preferences.',
                 'paragraph05' => 'However, please note that this will not affect the lawfulness of the processing before its withdrawal nor, when applicable law allows, will it affect the processing of your personal information conducted in reliance on lawful processing grounds other than consent.',
-                'paragraph06' => '<strong><u>Opting out of marketing and promotional communications</u>:</strong> You can unsubscribe from our marketing and promotional communications at any time by clicking on the unsubscribe link in the emails that we send, replying \'STOP\' or \'UNSUBSCRIBE\' to the SMS messages that we send, or by contacting us using the details provided in the section \'<a href="' . route('about.privacy_policy') .'#toc_item15">HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</a>\' below. You will then be removed from the marketing lists. However, we may still communicate with you — for example, to send you service-related messages that are necessary for the administration and use of your account, to respond to service requests, or for other non-marketing purposes.',
+                'paragraph06' => '<strong><u>Opting out of marketing and promotional communications</u>:</strong> You can unsubscribe from our marketing and promotional communications at any time by clicking on the unsubscribe link in the emails that we send, replying ’STOP’ or ’UNSUBSCRIBE’ to the SMS messages that we send, or by contacting us using the details provided in the section ’<a href="' . route('about.privacy_policy') .'#toc_item15">HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</a>’ below. You will then be removed from the marketing lists. However, we may still communicate with you — for example, to send you service-related messages that are necessary for the administration and use of your account, to respond to service requests, or for other non-marketing purposes.',
                 // Content 1
                 'content01' => 'Account Information',
                 'paragraph07' => [
@@ -872,21 +872,21 @@ return [
                 'paragraph10' => 'If you have questions or comments about your privacy rights, you may email us at <a href="mailto:privacy@acr-rdc.com">privacy@acr-rdc.com</a>.',
             ],
             'item11' => [
-                'paragraph01' => 'Most web browsers and some mobile operating systems and mobile applications include a Do-Not-Track (\'DNT\') feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected. At this stage no uniform technology standard for recognizing and implementing DNT signals has been finalized. As such, we do not currently respond to DNT browser signals or any other mechanism that automatically communicates your choice not to be tracked online. If a standard for online tracking is adopted that we must follow in the future, we will inform you about that practice in a revised version of this privacy notice.',
+                'paragraph01' => 'Most web browsers and some mobile operating systems and mobile applications include a Do-Not-Track (’DNT’) feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected. At this stage no uniform technology standard for recognizing and implementing DNT signals has been finalized. As such, we do not currently respond to DNT browser signals or any other mechanism that automatically communicates your choice not to be tracked online. If a standard for online tracking is adopted that we must follow in the future, we will inform you about that practice in a revised version of this privacy notice.',
             ],
             'item12' => [
                 'in_short_content01' => 'Yes, if you are a resident of California, you are granted specific rights regarding access to your personal information.',
-                'paragraph01' => 'California Civil Code Section 1798.83, also known as the \'Shine The Light\' law, permits our users who are California residents to request and obtain from us, once a year and free of charge, information about categories of personal information (if any) we disclosed to third parties for direct marketing purposes and the names and addresses of all third parties with which we shared personal information in the immediately preceding calendar year. If you are a California resident and would like to make such a request, please submit your request in writing to us using the contact information provided below:',
+                'paragraph01' => 'California Civil Code Section 1798.83, also known as the ’Shine The Light’ law, permits our users who are California residents to request and obtain from us, once a year and free of charge, information about categories of personal information (if any) we disclosed to third parties for direct marketing purposes and the names and addresses of all third parties with which we shared personal information in the immediately preceding calendar year. If you are a California resident and would like to make such a request, please submit your request in writing to us using the contact information provided below:',
                 'paragraph02' => '<i>If you are under 18 years of age, reside in California, and have a registered account with Services, you have the right to request removal of unwanted data that you publicly post on the Services. To request removal of such data, please contact us using the contact information provided below and include the email address associated with your account and a statement that you reside in California. We will make sure the data is not publicly displayed on the Services, but please be aware that the data may not be completely or comprehensively removed from all our systems (e.g. backups, etc.).</i>',
                 // Content 1
                 'content01' => 'CCPA Privacy Notice',
                 'paragraph03' => [
-                    'content' => 'The California Code of Regulations defines a \'resident\' as:',
+                    'content' => 'The California Code of Regulations defines a ’resident’ as:',
                     'item01' => 'every individual who is in the State of California for other than a temporary or transitory purpose and',
                     'item02' => 'every individual who is domiciled in the State of California who is outside the State of California for a temporary or transitory purpose.',
                 ],
-                'paragraph04' => 'All other individuals are defined as \'non-residents\'.',
-                'paragraph05' => 'If this definition of \'resident\' applies to you, we must adhere to certain rights and obligations regarding your personal information.',
+                'paragraph04' => 'All other individuals are defined as ’non-residents’.',
+                'paragraph05' => 'If this definition of ’resident’ applies to you, we must adhere to certain rights and obligations regarding your personal information.',
                 // Content 2
                 'content02' => 'What categories of personal information do we collect?',
                 'paragraph06' => 'We have collected the following categories of personal information in the past twelve (12) months:',
@@ -953,7 +953,7 @@ return [
                     ],
                     'row12' => [
                         'col01' => 'L. Sensitive Personal Information',
-                        'col02' => 'Debit or credit card numbers, drivers\' licenses, passport numbers, state id card numbers, account login information, biometric data, contents of email or text messages and precise geolocation',
+                        'col02' => 'Debit or credit card numbers, drivers’ licenses, passport numbers, state id card numbers, account login information, biometric data, contents of email or text messages and precise geolocation',
                         'col03' => 'YES'
                     ]
                 ],
@@ -977,7 +977,7 @@ return [
                 // Content 4
                 'content04' => 'Will your information be shared with anyone else?',
                 'paragraph14' => 'We may disclose your personal information with our service providers pursuant to a written contract between us and each service provider. Each service provider is a for-profit entity that processes the information on our behalf, following the same strict privacy protection obligations mandated by the CCPA.',
-                'paragraph15' => 'We may use your personal information for our own business purposes, such as for undertaking internal research for technological development and demonstration. This is not considered to be \'selling\' of your personal information.',
+                'paragraph15' => 'We may use your personal information for our own business purposes, such as for undertaking internal research for technological development and demonstration. This is not considered to be ’selling’ of your personal information.',
                 'paragraph16' => 'Action Commune pour la République (ACR) has not disclosed, sold, or shared any personal information to third parties for a business or commercial purpose in the preceding twelve (12) months. Action Commune pour la République (ACR) will not sell or share personal information in the future belonging to website visitors, users, and other consumers.',
                 // Content 5
                 'content05' => 'Your rights with respect to your personal data',
@@ -1008,7 +1008,7 @@ return [
                     'title' => '<u>Right to Limit Use and Disclosure of Sensitive Personal Information</u>',
                     'content' => [
                         'subcontent01' => 'If the business collects any of the following:',
-                        'subitem01' => 'social security information, drivers\' licenses, state ID cards, passport numbers',
+                        'subitem01' => 'social security information, drivers’ licenses, state ID cards, passport numbers',
                         'subitem02' => 'account login information',
                         'subitem03' => 'credit card numbers, financial account information, or credentials allowing access to such accounts',
                         'subitem04' => 'precise geolocation',
@@ -1043,10 +1043,10 @@ return [
                 // Content 1
                 'content01' => 'Virginia CDPA Privacy Notice',
                 'paragraph01' => 'Under the Virginia Consumer Data Protection Act (CDPA):',
-                'paragraph02' => '\'Consumer\' means a natural person who is a resident of the Commonwealth acting only in an individual or household context. It does not include a natural person acting in a commercial or employment context.',
-                'paragraph03' => '\'Personal data\' means any information that is linked or reasonably linkable to an identified or identifiable natural person. \'Personal data\' does not include de-identified data or publicly available information.',
-                'paragraph04' => '\'Sale of personal data\' means the exchange of personal data for monetary consideration.',
-                'paragraph05' => 'If this definition \'consumer\' applies to you, we must adhere to certain rights and obligations regarding your personal data.',
+                'paragraph02' => '’Consumer’ means a natural person who is a resident of the Commonwealth acting only in an individual or household context. It does not include a natural person acting in a commercial or employment context.',
+                'paragraph03' => '’Personal data’ means any information that is linked or reasonably linkable to an identified or identifiable natural person. ’Personal data’ does not include de-identified data or publicly available information.',
+                'paragraph04' => '’Sale of personal data’ means the exchange of personal data for monetary consideration.',
+                'paragraph05' => 'If this definition ’consumer’ applies to you, we must adhere to certain rights and obligations regarding your personal data.',
                 'paragraph06' => [
                     'content' => 'The information we collect, use, and disclose about you will vary depending on how you interact with Action Commune pour la République (ACR) and our Services. To find out more, please visit the following links:',
                     'item01' => '<a href="' . route('about.privacy_policy') . '#toc_item01">Personal data we collect</a>',
@@ -1061,7 +1061,7 @@ return [
                         'subitem03' => 'Right to correct inaccuracies in your personal data',
                         'subitem04' => 'Right to request deletion of your personal data',
                         'subitem05' => 'Right to obtain a copy of the personal data you previously shared with us',
-                        'subitem06' => 'Right to opt out of the processing of your personal data if it is used for targeted advertising, the sale of personal data, or profiling in furtherance of decisions that produce legal or similarly significant effects (\'profiling\')',
+                        'subitem06' => 'Right to opt out of the processing of your personal data if it is used for targeted advertising, the sale of personal data, or profiling in furtherance of decisions that produce legal or similarly significant effects (’profiling’)',
                     ],
                 ],
                 'paragraph08' => 'Action Commune pour la République (ACR) has not sold any personal data to third parties for business or commercial purposes. Action Commune pour la République (ACR) will not sell personal data in the future belonging to website visitors, users, and other consumers.',
@@ -1072,7 +1072,7 @@ return [
                 'paragraph11' => 'If you are using an authorized agent to exercise your rights, we may deny a request if the authorized agent does not submit proof that they have been validly authorized to act on your behalf.',
                 'paragraph12' => [
                     'title' => '<u>Verification process</u>',
-                    'content01' => 'We may request that you provide additional information reasonably necessary to verify you and your consumer\'s request. If you submit the request through an authorized agent, we may need to collect additional information to verify your identity before processing your request.',
+                    'content01' => 'We may request that you provide additional information reasonably necessary to verify you and your consumer’s request. If you submit the request through an authorized agent, we may need to collect additional information to verify your identity before processing your request.',
                     'content02' => 'Upon receiving your request, we will respond without undue delay, but in all cases, within forty-five (45) days of receipt. The response period may be extended once by forty-five (45) additional days when reasonably necessary. We will inform you of any such extension within the initial 45-day response period, together with the reason for the extension.'
                 ],
                 'paragraph13' => [
@@ -1082,14 +1082,14 @@ return [
             ],
             'item14' => [
                 'in_short_content01' => 'Yes, we will update this notice as necessary to stay compliant with relevant laws.',
-                'paragraph01' => 'We may update this privacy notice from time to time. The updated version will be indicated by an updated \'Revised\' date and the updated version will be effective as soon as it is accessible. If we make material changes to this privacy notice, we may notify you either by prominently posting a notice of such changes or by directly sending you a notification. We encourage you to review this privacy notice frequently to be informed of how we are protecting your information.',
+                'paragraph01' => 'We may update this privacy notice from time to time. The updated version will be indicated by an updated ’Revised’ date and the updated version will be effective as soon as it is accessible. If we make material changes to this privacy notice, we may notify you either by prominently posting a notice of such changes or by directly sending you a notification. We encourage you to review this privacy notice frequently to be informed of how we are protecting your information.',
             ],
             'item15' => [
                 'paragraph01' => 'If you have questions or comments about this notice, you may contact our Data Protection Officer (DPO), Balanganayi Jean Pierre TSHIENDA, by email at <a href="jptshienda@hotmail.com">jptshienda@hotmail.com</a>, by phone at +447927760439, or by post to:',
                 'paragraph02' => '<strong>Action Commune pour la République (ACR)</strong><br>Balanganayi Jean Pierre TSHIENDA<br><i>Boulevard Edmond Machtens 143/002</i><br><i>Molenbeek-Saint-Jean 1080</i><br><strong>Belgium</strong>',
-                'paragraph03' => 'If you are a resident in the European Economic Area, the \'data controller\' of your personal information is Action Commune pour la République (ACR). Action Commune pour la République (ACR) has appointed Balanganayi Jean Pierre Tshienda to be its representative in the EEA. You can contact them directly regarding the processing of your information by Action Commune pour la République (ACR), by email at <a href="jptshienda@hotmail.com">jptshienda@hotmail.com</a>, by visiting <a href="' . route('about.privacy_policy') . '#toc_item06">EU/UK privacy policy representative</a>, by phone at +447927760439, or by post to:',
+                'paragraph03' => 'If you are a resident in the European Economic Area, the ’data controller’ of your personal information is Action Commune pour la République (ACR). Action Commune pour la République (ACR) has appointed Balanganayi Jean Pierre Tshienda to be its representative in the EEA. You can contact them directly regarding the processing of your information by Action Commune pour la République (ACR), by email at <a href="jptshienda@hotmail.com">jptshienda@hotmail.com</a>, by visiting <a href="' . route('about.privacy_policy') . '#toc_item06">EU/UK privacy policy representative</a>, by phone at +447927760439, or by post to:',
                 'paragraph04' => 'Rue E. Solvay 38<br><i>Bruxelles 1050</i><br><strong>Belgium</strong>',
-                'paragraph05' => 'If you are a resident in the United Kingdom, the \'data controller\' of your personal information is Action Commune pour la République (ACR). Action Commune pour la République (ACR) has appointed Balanganayi Jean Pierre Tshienda to be its representative in the UK. You can contact them directly regarding the processing of your information by Action Commune pour la République (ACR), by email at <a href="jptshienda@hotmail.com">jptshienda@hotmail.com</a>, by visiting <a href="' . route('about.privacy_policy') . '#toc_item06">EU/UK privacy policy representative</a>, by phone at +447927760439, or by post to:',
+                'paragraph05' => 'If you are a resident in the United Kingdom, the ’data controller’ of your personal information is Action Commune pour la République (ACR). Action Commune pour la République (ACR) has appointed Balanganayi Jean Pierre Tshienda to be its representative in the UK. You can contact them directly regarding the processing of your information by Action Commune pour la République (ACR), by email at <a href="jptshienda@hotmail.com">jptshienda@hotmail.com</a>, by visiting <a href="' . route('about.privacy_policy') . '#toc_item06">EU/UK privacy policy representative</a>, by phone at +447927760439, or by post to:',
                 'paragraph06' => '92 West Green Road<br><i>Tottenham</i><br>LONDON, London N15 5NS<br><strong>England</strong>',
                 'paragraph07' => 'If you have any further questions or comments, you may also contact us by post at the following corporate address:',
                 'paragraph08' => '<strong>Action Commune pour la République (ACR)</strong><br>Avenue Kabinda 102, Commune de Kinshasa<br><i>Kinshasa, KINSHASA</i><br><i>Democratic Republic of the Congo</i><br><strong><u>Phone</u></strong>: +447927760439'

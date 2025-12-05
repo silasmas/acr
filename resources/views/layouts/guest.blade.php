@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="{{ asset('assets/icons/boxicons/css/boxicons.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/icons/remixicon/remixicon.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/icons/fontawesome/css/all.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css">
 
     <!-- Addons CSS Files -->
@@ -232,13 +233,13 @@
             <div class="col-lg-6 ps-5 text-start">
                 <div class="h-100 d-inline-flex align-items-center text-light">
                     <span>@lang('miscellaneous.follow_us')</span>
-                    <a href="https://web.facebook.com/profile.php?id=100088148853298"
+                    <a href="https://web.facebook.com/profile.php?id=61565938966560"
                         class="btn btn-floating btn-outline-light ms-2 border-1 fs-6 text-light shadow-0"
                         style="border-width: 1px;"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://twitter.com/AcrRdc01"
+                    <a href="https://x.com/unionsacreerdc"
                         class="btn btn-floating btn-outline-light ms-2 border-1 fs-6 text-light shadow-0"
-                        style="border-width: 1px;"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.youtube.com/@NDEKOELIEZERTOKOKOMA"
+                        style="border-width: 1px;"><i class="fa-brands fa-x-twitter" style="margin-top: 10px;"></i></a>
+                    <a href="https://www.youtube.com/channel/UCZlMXno32xv_m7nqaPKAOqw"
                         class="btn btn-floating btn-outline-light ms-2 border-1 fs-6 text-light shadow-0"
                         style="border-width: 1px;"><i class="fab fa-youtube"></i></a>
                 </div>
@@ -247,7 +248,7 @@
                 <div class="h-100 bg-warning d-inline-flex align-items-center text-black py-2 px-4">
                     <span class="me-2 fw-semi-bold"><i
                             class="fa fa-phone-alt me-2"></i>@lang('miscellaneous.call_us')</span>
-                    <span>+243 810 503 074</span>
+                    <span>+243 842 958 349</span>
                 </div>
             </div>
         </div>
@@ -754,13 +755,13 @@
                     <p class="mb-2"><i
                             class="fa fa-envelope me-3"></i>@lang('miscellaneous.public.footer.head_office.email')</p>
                     <div class="d-flex pt-3">
-                        <a href="https://web.facebook.com/profile.php?id=100088148853298"
+                        <a href="https://web.facebook.com/profile.php?id=61565938966560"
                             class="btn btn-floating btn-outline-light border border-light me-3"><i
                                 class="fab fa-facebook-f fs-6"></i></a>
-                        <a href="https://twitter.com/AcrRdc01"
+                        <a href="https://x.com/unionsacreerdc"
                             class="btn btn-floating btn-outline-light border border-light me-3"><i
-                                class="fab fa-twitter fs-6"></i></a>
-                        <a href="https://www.youtube.com/@NDEKOELIEZERTOKOKOMA"
+                                class="fa-brands fa-x-twitter fs-6" style="margin-top: 10px;"></i></a>
+                        <a href="https://www.youtube.com/channel/UCZlMXno32xv_m7nqaPKAOqw"
                             class="btn btn-floating btn-outline-light border border-light me-3"><i
                                 class="fab fa-youtube fs-6"></i></a>
                     </div>
@@ -801,7 +802,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 mb-3 mb-md-0 text-center text-md-start text-secondary">
-                    &copy; <a href="{{ route('about.home') }}" class="text-info">ACR</a>
+                    &copy; <a href="{{ route('about.home') }}" class="text-info">USN</a>
                     @lang('miscellaneous.all_right_reserved')
                 </div>
                 <div class="col-md-6 text-center text-md-end text-secondary">

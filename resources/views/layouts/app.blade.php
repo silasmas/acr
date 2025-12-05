@@ -413,7 +413,7 @@
                                 <div class="peers ai-c fxw-nw">
                                     <div class="peer">
                                         <div class="logo ms-3" style="margin-top: 1.2rem;">
-                                            <img src="{{ asset('assets/img/_logo_.png') }}" alt="" width="37">
+                                            <img src="{{ asset('assets/img/logo-text.png') }}" alt="" width="37">
                                         </div>
                                     </div>
                                     <div class="peer peer-greed p-0">
@@ -431,7 +431,7 @@
                                 <div class="peers ai-c fxw-nw">
                                     <div class="peer">
                                         <div class="logo ms-3" style="margin-top: 1.2rem;">
-                                            <img src="{{ asset('assets/img/_logo_.png') }}" alt="" width="37">
+                                            <img src="{{ asset('assets/img/logo-text.png') }}" alt="" width="37">
                                         </div>
                                     </div>
                                     <div class="peer peer-greed p-0">
@@ -943,7 +943,7 @@
 
             <!-- ### $App Screen Footer ### -->
             <footer class="bdT ta-c p-30 lh-0 c-grey-600">
-                <span>&copy; <a href="{{ route('about.home') }}" class="text-info">ACR</a>
+                <span>&copy; <a href="{{ route('about.home') }}" class="text-info">USN</a>
                     @lang('miscellaneous.all_right_reserved')</span>
             </footer>
         </div>

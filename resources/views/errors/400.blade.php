@@ -8,7 +8,7 @@
                 <div class="row mb-sm-5 mb-4 border-bottom border-secondary">
                     <div class="col-lg-2 col-sm-3 col-8 mx-auto pt-lg-4 pt-3">
                         <div class="bg-image mb-sm-5 mb-4 d-flex justify-content-center">
-                            <img src="{{ asset('assets/img/logo-text.png') }}" alt="ACR" class="img-fluid">
+                            <img src="{{ asset('assets/img/logo-text.png') }}" alt="USN" class="img-fluid">
                             <div class="mask"><a href="{{ route('home') }}"></a></div>
                         </div>
                     </div>
