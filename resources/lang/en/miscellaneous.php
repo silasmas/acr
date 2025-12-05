@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author Xanders
  * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
@@ -576,30 +577,30 @@ return [
         'home' => [
             'slide1' => [
                 'title' => 'Let’s put the people at the heart of governance',
-                'content' => 'Let us build a state of law and a powerful and prosperous nation in the heart of Africa',
+                'content' => 'Build a state of law and a powerful and prosperous nation in the heart of Africa',
             ],
             'slide2' => [
-                'title' => 'Support for the FARDC against aggression in the east of the country',
-                'content' => 'For a strong and disciplined army',
+                'title' => 'Working together for development',
+                'content' => 'To unite political and social forces for the cause of the Fatherland',
             ],
             'slide3' => [
-                'title' => 'Securing food for our people',
-                'content' => 'Through a good agricultural policy',
+                'title' => 'Involve all members of the coalition',
+                'content' => 'Fair distribution of responsibilities among member political forces',
             ],
             'download_mobile_app' => [
-                'title' => 'Download the ACR mobile app',
-                'content' => 'The ACR mobile app allows you to join the <span class="acr-text-yellow">Action Commune pour la République</span> party, stay informed about party news and contribute online.',
+                'title' => 'Download the USN mobile app',
+                'content' => 'The USN mobile app allows you to join the <span class="acr-text-yellow">Sacred Union of the Nation</span> coalition, stay informed about coalition news and contribute online.',
             ],
             'register_member' => [
                 'title' => 'Join us',
-                'content1' => 'You can join us, because ACR is not just a matter of a few individuals. Together, let us unite in a real commitment to transform our country.',
+                'content1' => 'You can join us, because USN is not just a matter of a few individuals. Together, let us unite in a real commitment to transform our country.',
                 'content2' => 'If you are already registered in the site or in the mobile app, click on the button below to log in. Otherwise, give your names and your phone number to start.',
                 'login' => 'I already have an account',
                 'register' => 'Start registration',
             ],
             'donate' => [
                 'title' => 'Make an anonymous donation or become a partner',
-                'content1' => 'By supporting the ACR party, you not only contribute to the change of your country, but also you contribute to the help that the party brings to the ophelines and the poor.',
+                'content1' => 'By supporting the USN coalition, you are not only contributing to change in your country, but you are also contributing to the aid that the coalition provides to orphans and the destitute.',
                 'content2' => 'If it’s money you want to send, just select the payment method; then you send it directly online.',
                 'content3' => 'If you want to donate something other than money, just enter a description of your donation.',
                 'anonyme' => 'Make an anonymous donation',
@@ -621,25 +622,31 @@ return [
         // About
         'about' => [
             'title' => 'About us',
-            'slogan' => 'The Power of Love and not the Love of Power',
-            'subtitle' => 'All about Action Commune pour la République',
-            'description' => 'A political party that brings a new touch to the political world. A framework for training civic values, which places them at the center of the development process, thus advocating the ethical values of society.',
+            'slogan' => 'To make right triumph over arbitrariness, prosperity over misery, peace over war, cohesion over division and solidarity over selfishness',
+            'subtitle' => 'All about Sacred Union of the Nation',
+            'description' => 'The Sacred Union of the Nation (USN) is a parliamentary coalition that leads the parliament of the Democratic Republic of the Congo. It brings together several political parties, including the Union for Democracy and Social Progress, the Union of Mobutist Democrats, the Union for the Congolese Nation, the Movement for the Liberation of Congo, the Unified Lumumbist Party and the Alliance of Democratic Forces of Congo.',
             'comment' => [
                 'title1' => 'One credo',
-                'content1' => 'Given our vision, our only credo is “Doing politics differently”.',
-                'title2' => 'Help the people',
-                'content2' => 'To effectively raise one’s forehead, by grip, work, discipline and honesty.',
+                'content1' => 'According to the vision of its initiator, President Félix Antoine Tshisekedi, our only credo is "<i>For a Congo restored</i>".',
+                'title2' => 'We, the Congolese people',
+                'content2' => 'All united by destiny and history around noble ideals of liberty, fraternity, solidarity, justice, peace and work',
             ],
             'why_us' => [
                 'title' => 'Why us?',
-                'subtitle' => 'Let’s choose change',
-                'content' => 'ACR advocates the change of mentality, the true ethical values, with the aim of bringing individual development in particular, and of the whole country in general. Our motto is:',
-                'item1' => 'Unity',
-                'item1_description' => 'Because together we are stronger and more capable.',
-                'item2' => 'Work',
-                'item2_description' => 'Let us work hard and honestly to develop our nation.',
-                'item3' => 'Patriotism',
-                'item3_description' => 'Love of the fatherland, at the center of our decisions and initiatives.',
+                'subtitle' => 'Working relentlessly for the unity of Congolese people',
+                'content' => 'The Sacred Union for the Nation is the expression of the "<strong>common will to build, in the heart of Africa, a state of law and a powerful and prosperous nation, based on true political, economic, social, and cultural democracy</strong>" (Preamble to the Constitution of February 18, 2006).',
+                'item1' => 'Unite political and social forces',
+                'item1_description' => 'committed to the Party’s cause, in order to safeguard and consolidate peace, territorial integrity, national unity, sovereignty of the DRC, accelerate its development, and ensure its influence across Africa and the world.',
+                'item2' => 'Promote and strengthen emergence',
+                'item2_description' => 'of a state of law, republican, secular, and social, practicing good governance, respectful of democratic values and the principle of separation of powers.',
+                'item3' => 'Support the proper functioning of institutions',
+                'item3_description' => 'at local, provincial, and national levels, as well as all public services of the State.',
+                'item4' => 'Democratically retain power',
+                'item4_description' => 'by ensuring the victory of its candidate in the presidential election and guaranteeing a stable and coherent parliamentary majority following presidential, legislative, provincial, senatorial, urban, municipal, and local elections.',
+                'item5' => 'Ensure an equitable distribution of responsibilities',
+                'item5_description' => 'among the political forces within the USN, in proportion to their political or sociological weight.',
+                'item6' => 'Pool resources',
+                'item6_description' => 'political and strategic resources necessary to maximize the chances of winning elections at all levels.',
             ],
             'other_links' => [
                 'title' => 'Other links',
@@ -771,7 +778,7 @@ return [
                     'item05' => '<strong>To fulfil and manage your orders</strong>. We may process your information to fulfil and manage your orders, payments, returns, and exchanges made through the Services.',
                     'item06' => '<strong>To enable user-to-user communications</strong>. We may process your information if you choose to use any of our offerings that allow for communication with another user.',
                     'item07' => '<strong>To request feedback</strong>. We may process your information when necessary to request feedback and to contact you about your use of our Services.',
-                    'item08' => '<strong>To send you marketing and promotional communications</strong>. We may process the personal information you send to us for our marketing purposes, if this is in accordance with your marketing preferences. You can opt out of our marketing emails at any time. For more information, see <a href="'. route('about.privacy_policy') .'#toc_item10">WHAT ARE YOUR PRIVACY RIGHTS?</a> below',
+                    'item08' => '<strong>To send you marketing and promotional communications</strong>. We may process the personal information you send to us for our marketing purposes, if this is in accordance with your marketing preferences. You can opt out of our marketing emails at any time. For more information, see <a href="' . route('about.privacy_policy') . '#toc_item10">WHAT ARE YOUR PRIVACY RIGHTS?</a> below',
                     'item09' => '<strong>To deliver targeted advertising to you</strong>. We may process your information to develop and display personalized content and advertising tailored to your interests, location, and more.',
                     'item10' => '<strong>To protect our Services</strong>. We may process your information as part of our efforts to keep our Services safe and secure, including fraud monitoring and prevention.',
                     'item11' => '<strong>To identify usage trends</strong>. We may process information about how you use our Services to better understand how they are being used so we can improve them.',
@@ -785,7 +792,7 @@ return [
                 'content01' => 'If you are located in the EU or UK, this section applies to you',
                 'paragraph01' => [
                     'content' => 'The General Data Protection Regulation (GDPR) and UK GDPR require us to explain the valid legal bases we rely on in order to process your personal information. As such, we may rely on the following legal bases to process your personal information:',
-                    'item01' => '<strong>Consent</strong>. We may process your information if you have given us permission (i.e., consent) to use your personal information for a specific purpose. You can withdraw your consent at any time. Learn more about <a href="'. route('about.privacy_policy') .'#toc_item16">WITHDRAWING YOUR CONSENT</a>.',
+                    'item01' => '<strong>Consent</strong>. We may process your information if you have given us permission (i.e., consent) to use your personal information for a specific purpose. You can withdraw your consent at any time. Learn more about <a href="' . route('about.privacy_policy') . '#toc_item16">WITHDRAWING YOUR CONSENT</a>.',
                     'item02' => '<strong>Performance of a Contract</strong>. We may process your personal information when we believe it is necessary to fulfil our contractual obligations to you, including providing our Services or at your request prior to entering into a contract with you.',
                     'item03' => [
                         'subcontent01' => '<strong>Legitimate Interests</strong>. We may process your information when we believe it is reasonably necessary to achieve our legitimate business interests and those interests do not outweigh your interests and fundamental rights and freedoms. For example, we may process your personal information for some of the purposes described in order to:',
@@ -802,7 +809,7 @@ return [
                 'paragraph02' => '<strong>In legal terms, we are generally the ’data controller’ under European data protection laws of the personal information described in this privacy notice, since we determine the means and/or purposes of the data processing we perform. This privacy notice does not apply to the personal information we process as a ’data processor’ on behalf of our customers. In those situations, the customer that we provide services to and with whom we have entered into a data processing agreement is the ’data controller’ responsible for your personal information, and we merely process your information on their behalf in accordance with your instructions. If you want to know more about our customers’ privacy practices, you should read their privacy policies and direct any questions you have to them.</strong>.',
                 // Content 2
                 'content02' => 'If you are located in Canada, this section applies to you',
-                'paragraph03' => '<strong>We may process your information if you have given us specific permission (i.e. express consent) to use your personal information for a specific purpose, or in situations where your permission can be inferred (i.e. implied consent). You can <a href="'. route('about.privacy_policy') .'#toc_item16">withdraw your consent</a> at any time.</strong>',
+                'paragraph03' => '<strong>We may process your information if you have given us specific permission (i.e. express consent) to use your personal information for a specific purpose, or in situations where your permission can be inferred (i.e. implied consent). You can <a href="' . route('about.privacy_policy') . '#toc_item16">withdraw your consent</a> at any time.</strong>',
                 'paragraph04' => [
                     'content' => '<strong>In some exceptional cases, we may be legally permitted under applicable law to process your information without your consent, including, for example:</strong>',
                     'item01' => 'If collection is clearly in the interests of an individual and consent cannot be obtained in a timely way',
@@ -831,7 +838,7 @@ return [
             ],
             'item06' => [
                 'in_short_content01' => 'We may transfer, store, and process your information in countries other than your own.',
-                'paragraph01' => 'Our servers are located in France. If you are accessing our Services from outside France, please be aware that your information may be transferred to, stored, and processed by us in our facilities and by those third parties with whom we may share your personal information (see ’<a href="'. route('about.privacy_policy') .'#toc_item04">WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?</a>’ above), in  the Democratic Republic of the Congo, and other countries.',
+                'paragraph01' => 'Our servers are located in France. If you are accessing our Services from outside France, please be aware that your information may be transferred to, stored, and processed by us in our facilities and by those third parties with whom we may share your personal information (see ’<a href="' . route('about.privacy_policy') . '#toc_item04">WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?</a>’ above), in  the Democratic Republic of the Congo, and other countries.',
                 'paragraph02' => 'If you are a resident in the European Economic Area (EEA) or United Kingdom (UK), then these countries may not necessarily have data protection laws or other similar laws as comprehensive as those in your country. However, we will take all necessary measures to protect your personal information in accordance with this privacy notice and applicable law.',
                 'paragraph03' => '<strong>European Commission’s Standard Contractual Clauses:</strong>',
                 'paragraph04' => 'We have implemented measures to protect your personal information, including by using the European Commission’s Standard Contractual Clauses for transfers of personal information between our group companies and between us and our third-party providers. These clauses require all recipients to protect all personal information that they process originating from the EEA or UK in accordance with European data protection laws and regulations. Our Data Processing Agreements that include Standard Contractual Clauses are available here: <a href="' . route('about.privacy_policy') . '">https://www.acr-rdc.com/about/privacy_policy</a>. We have implemented similar appropriate safeguards with our third-party service providers and partners and further details can be provided upon request.',
@@ -853,13 +860,13 @@ return [
             ],
             'item10' => [
                 'in_short_content01' => 'In some regions, such as the European Economic Area (EEA), United Kingdom (UK), and Canada, you have rights that allow you greater access to and control over your personal information. You may review, change, or terminate your account at any time.',
-                'paragraph01' => 'In some regions (like the EEA, UK, and Canada), you have certain rights under applicable data protection laws. These may include the right (i) to request access and obtain a copy of your personal information, (ii) to request rectification or erasure; (iii) to restrict the processing of your personal information; and (iv) if applicable, to data portability. In certain circumstances, you may also have the right to object to the processing of your personal information. You can make such a request by contacting us by using the contact details provided in the section ’<a href="' . route('about.privacy_policy') .'#toc_item15">HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</a>’ below.',
+                'paragraph01' => 'In some regions (like the EEA, UK, and Canada), you have certain rights under applicable data protection laws. These may include the right (i) to request access and obtain a copy of your personal information, (ii) to request rectification or erasure; (iii) to restrict the processing of your personal information; and (iv) if applicable, to data portability. In certain circumstances, you may also have the right to object to the processing of your personal information. You can make such a request by contacting us by using the contact details provided in the section ’<a href="' . route('about.privacy_policy') . '#toc_item15">HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</a>’ below.',
                 'paragraph02' => 'We will consider and act upon any request in accordance with applicable data protection laws.',
                 'paragraph03' => 'If you are located in the EEA or UK and you believe we are unlawfully processing your personal information, you also have the right to complain to your <a href="https://ec.europa.eu/justice/data-protection/bodies/authorities/index_en.htm" target="_blank">Member State data protection authority</a> or <a href="https://ico.org.uk/make-a-complaint/data-protection-complaints/data-protection-complaints/" target="_blank">UK data protection authority</a>.',
                 'paragraph04' => 'If you are located in Switzerland, you may contact the <a href="https://www.edoeb.admin.ch/edoeb/en/home.html" target="_blank">Federal Data Protection and Information Commissioner</a>.',
-                'paragraph04' => '<strong><u>Withdrawing your consent</u>:</strong> If we are relying on your consent to process your personal information, which may be express and/or implied consent depending on the applicable law, you have the right to withdraw your consent at any time. You can withdraw your consent at any time by contacting us by using the contact details provided in the section ’<a href="' . route('about.privacy_policy') .'#toc_item15">HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</a>’ below or updating your preferences.',
+                'paragraph04' => '<strong><u>Withdrawing your consent</u>:</strong> If we are relying on your consent to process your personal information, which may be express and/or implied consent depending on the applicable law, you have the right to withdraw your consent at any time. You can withdraw your consent at any time by contacting us by using the contact details provided in the section ’<a href="' . route('about.privacy_policy') . '#toc_item15">HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</a>’ below or updating your preferences.',
                 'paragraph05' => 'However, please note that this will not affect the lawfulness of the processing before its withdrawal nor, when applicable law allows, will it affect the processing of your personal information conducted in reliance on lawful processing grounds other than consent.',
-                'paragraph06' => '<strong><u>Opting out of marketing and promotional communications</u>:</strong> You can unsubscribe from our marketing and promotional communications at any time by clicking on the unsubscribe link in the emails that we send, replying ’STOP’ or ’UNSUBSCRIBE’ to the SMS messages that we send, or by contacting us using the details provided in the section ’<a href="' . route('about.privacy_policy') .'#toc_item15">HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</a>’ below. You will then be removed from the marketing lists. However, we may still communicate with you — for example, to send you service-related messages that are necessary for the administration and use of your account, to respond to service requests, or for other non-marketing purposes.',
+                'paragraph06' => '<strong><u>Opting out of marketing and promotional communications</u>:</strong> You can unsubscribe from our marketing and promotional communications at any time by clicking on the unsubscribe link in the emails that we send, replying ’STOP’ or ’UNSUBSCRIBE’ to the SMS messages that we send, or by contacting us using the details provided in the section ’<a href="' . route('about.privacy_policy') . '#toc_item15">HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</a>’ below. You will then be removed from the marketing lists. However, we may still communicate with you — for example, to send you service-related messages that are necessary for the administration and use of your account, to respond to service requests, or for other non-marketing purposes.',
                 // Content 1
                 'content01' => 'Account Information',
                 'paragraph07' => [

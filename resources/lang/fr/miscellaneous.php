@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author Xanders
  * @see https://www.linkedin.com/in/xanders-samoth-b2770737/
@@ -579,27 +580,27 @@ return [
                 'content' => 'État de droit et nation puissante et prospère au cœur de l’Afrique'
             ],
             'slide2' => [
-                'title' => 'Soutien aux FARDC contre l’agression à l’Est du pays',
-                'content' => 'Pour une armée forte et disciplinée'
+                'title' => 'Œuvrer ensemble pour le développement',
+                'content' => 'Rassembler les forces politiques et sociales pour la cause de la Patrie'
             ],
             'slide3' => [
-                'title' => 'Assurer de la nourriture pour notre peuple',
-                'content' => 'À travers une bonne politique agricole'
+                'title' => 'Faire participer tous les membres de la coalition',
+                'content' => 'Répartition équitable des responsabilités entre les forces politiques membres'
             ],
             'download_mobile_app' => [
-                'title' => 'Télécharger l’appli mobile ACR',
-                'content' => 'L’appli mobile ACR vous permet d’adhérer au parti <span class="acr-text-yellow">Action Commune pour la République</span>, de rester informé(e) sur les infos du parti et de contribuer en ligne.'
+                'title' => 'Télécharger l’appli mobile USN',
+                'content' => 'L’appli mobile USN vous permet d’adhérer à la coalition <span class="acr-text-yellow">Union Sacrée de la Nation</span>, de rester informé(e) sur les infos de la coalition et de contribuer en ligne.'
             ],
             'register_member' => [
                 'title' => 'Nous réjoindre',
-                'content1' => 'Vous pouvez nous réjoindre, car ACR n’est pas qu’une affaire de quelques individus. Ensemble, unissons-nous en un réel engagement pour transformer notre pays.',
+                'content1' => 'Vous pouvez nous réjoindre, car USN n’est pas qu’une affaire de quelques individus. Ensemble, unissons-nous en un réel engagement pour transformer notre pays.',
                 'content2' => 'Si vous êtes déjà inscrit(e) dans le site ou dans l’appli mobile, cliquez sur le bouton ci-dessous pour vous connecter. Sinon, donnez vos noms et votre n&deg; de téléphone pour commencer.',
                 'login' => 'J’ai déjà un compte',
                 'register' => 'Commencer l’inscription'
             ],
             'donate' => [
                 'title' => 'Faire un don anonyme ou devenir partenaire',
-                'content1' => 'En soutenant le parti ACR, non seulement vous contribuez au changement de votre pays, mais aussi vous contribuez à l’aide qu’apporte le parti aux ophelins et aux démunis.',
+                'content1' => 'En soutenant la coalition USN, non seulement vous contribuez au changement de votre pays, mais aussi vous contribuez à l’aide qu’apporte la coalition aux ophelins et aux démunis.',
                 'content2' => 'Si c’est l’argent que vous voulez envoyer, vous n’avez qu’à sélectionner le mode de paiement ; ensuite, vous l’envoyez directement en ligne.',
                 'content3' => 'Si vous voulez donner autre chose que de l’argent, vous n’avez qu’à donner la description de votre don.',
                 'anonyme' => 'Faire un don anonyme',
@@ -621,25 +622,31 @@ return [
         // About
         'about' => [
             'title' => 'A propos de nous',
-            'slogan' => 'Le Pouvoir de l’Amour et non l’Amour du Pouvoir',
-            'subtitle' => 'Tout savoir sur Action Commune pour la République',
-            'description' => 'Un parti politique qui apporte une nouvelle touche dans le monde politique. Un cadre de formation des valeurs citoyennes, qui place au centre du processus du développement, prônant ainsi des valeurs éthiques de la société.',
+            'slogan' => 'Faire triompher le droit sur l’arbitraire, la prospérité sur la misère, la paix sur la guerre, la cohésion sur la division et la solidarité sur l’égoïsme',
+            'subtitle' => 'Tout savoir sur Union Sacrée de la Nation',
+            'description' => 'L’Union sacrée de la nation (USN) est une coalition parlementaire dirigeant le parlement de la République démocratique du Congo. Elle regroupe plusieurs partis politiques, notamment l’Union pour la démocratie et le progrès social, l’Union des démocrates mobutistes, l’Union pour la nation congolaise, le Mouvement de libération du Congo, le Parti lumumbiste unifié et l’Alliance des forces démocratiques du Congo.',
             'comment' => [
                 'title1' => 'Un seul credo',
-                'content1' => 'Compte tenu de notre vision, notre seul credo est « Faire la politique autrement ».',
-                'title2' => 'Aider le peuple',
-                'content2' => 'À dresser effectivement son front, par la prise, le travail, la discipline et l’honnêteté',
+                'content1' => 'Selon la vision de son initiateur le président Félix Antoine Tshisekedi, notre seul credo est « <i>Pour un Congo retrouvé</i> ».',
+                'title2' => 'Nous Peuple Congolais',
+                'content2' => 'Tous unis par le destin et par l’histoire autour de nobles idéaux de liberté, de fraternité, de solidarité, de justice, de paix et de travail',
             ],
             'why_us' => [
                 'title' => 'Pourquoi nous ?',
-                'subtitle' => 'Faisons le choix du changement',
-                'content' => 'ACR prône le changement de mentalité, les vraies valeurs éthiques, dans le but d’apporter le développement individuel en particulier, et de tout le pays en général. Notre devise est :',
-                'item1' => 'Unité',
-                'item1_description' => 'Parce qu’ensemble, nous sommes plus forts et plus capables.',
-                'item2' => 'Travail',
-                'item2_description' => 'Travaillons durement et honnêtement pour développer notre nation.',
-                'item3' => 'Patriotisme',
-                'item3_description' => 'L’amour de la patrie, au centre de nos décisions et initiatives.',
+                'subtitle' => 'Œuvrer sans relâche pour l’unité des Congolaises et des Congolais',
+                'content' => 'L’Union Sacrée pour la Nation est l’expression de la « <strong>volonté commune de bâtir, au cœur de l’Afrique, un Etat de droit et une Nation puissante et prospère, fondée sur une véritable démocratie politique, économique, sociale et culturelle</strong> » (Préambule de la Constitution du 18 février 2006).',
+                'item1' => 'Rassembler les forces politiques et sociales',
+                'item1_description' => 'acquises à la cause de la Partie, en vue de sauvegarder et de consolider la pax, l’intégrité territoriale, l’unité nationale, la souveraineté de la RDC, d’accélérer son développement et d’assurer son rayonnement à travers l’Afrique et le monde',
+                'item2' => 'Promouvoir et consolider l’émergence',
+                'item2_description' => 'd’un Etat de droit, républicain, laïc et social, pratiquant la bonne gouvernance, respectueux des valeurs démocratiques et du principe de la séparation des pouvoirs',
+                'item3' => 'Soutenir le bon fonctionnement des institutions',
+                'item3_description' => 'locales, provinciales et nationales ainsi que tous les services publics de l’Etat.',
+                'item4' => 'Conserver démocratiquement le pouvoir',
+                'item4_description' => 'en assurant la victoire de son candidat à l’élection présidentielle et lui garantir une majorité parlementaire stable et cohérente à l’issue des élections présidentielles, législatives, provinciales, sénatoriales, urbaines, municipales et locales.',
+                'item5' => 'Assurer une répartition équitable des responsabilités',
+                'item5_description' => 'entre les forces politiques membres de l’USN, au prorata de leur poids politique ou sociologique.',
+                'item6' => 'Mettre en commun les ressources',
+                'item6_description' => 'politiques et stratégiques nécessaires pour maximiser les chances de remporter les élections à tous les niveaux.',
             ],
             'other_links' => [
                 'title' => 'Autres liens',
@@ -771,7 +778,7 @@ return [
                     'item05' => '<strong>Remplir et gérer vos commandes</strong>. Nous pouvons traiter vos informations pour remplir et gérer vos commandes, paiements, retours et échanges effectués via les services.',
                     'item06' => '<strong>Permettre la communication entre les utilisateurs</strong>. Nous pouvons traiter vos informations si vous choisissez d’utiliser l’une de nos offres qui permettent la communication avec un autre utilisateur.',
                     'item07' => '<strong>Demander des commentaires</strong>. Nous pouvons traiter vos informations lorsque cela est nécessaire pour demander des commentaires et vous contacter au sujet de votre utilisation de nos services.',
-                    'item08' => '<strong>Vous envoyer des communications marketing et promotionnelles</strong>. Nous pouvons traiter les informations personnelles que vous nous envoyez à des fins de marketing, si cela est conforme à vos préférences en matière de marketing. Vous pouvez vous désabonner de nos e-mails marketing à tout moment. Pour plus d’informations, voir <a href="'. route('about.privacy_policy') .'#toc_item10">QUELS SONT VOS DROITS EN MATIÈRE DE CONFIDENTIALITÉ</a>',
+                    'item08' => '<strong>Vous envoyer des communications marketing et promotionnelles</strong>. Nous pouvons traiter les informations personnelles que vous nous envoyez à des fins de marketing, si cela est conforme à vos préférences en matière de marketing. Vous pouvez vous désabonner de nos e-mails marketing à tout moment. Pour plus d’informations, voir <a href="' . route('about.privacy_policy') . '#toc_item10">QUELS SONT VOS DROITS EN MATIÈRE DE CONFIDENTIALITÉ</a>',
                     'item09' => '<strong>Vous livrer la publicité ciblée</strong>. Nous pouvons traiter vos informations pour développer et afficher du contenu personnalisé et la publicité adaptée à vos intérêts, à votre emplacement et plus encore.',
                     'item10' => '<strong>Protéger nos Services</strong>. Nous pouvons traiter vos informations dans le cadre de nos efforts pour que nos Services soient sûrs et sécurisés, y compris la surveillance et la prévention de la fraude.',
                     'item11' => '<strong>Indentifier les tendances d’utilisation</strong>. Nous pouvons traiter des informations sur la manière dont vous utilisez nos Services pour mieux comprendre comment elles sont utilisées afin que nous puissions les améliorer.',
@@ -785,7 +792,7 @@ return [
                 'content01' => 'Si vous êtes situé dans l’Union européenne ou au Royaume-Uni, cette section s’applique à vous',
                 'paragraph01' => [
                     'content' => 'Le Règlement général sur la protection des données (RGPD) et le RGPD britannique nous obligent à expliquer les bases légales valables sur lesquelles nous nous appuyons pour traiter vos informations personnelles. Nous pouvons donc nous appuyer sur les bases légales suivantes pour traiter vos informations personnelles :',
-                    'item01' => '<strong>Consentement</strong>. Nous pouvons traiter vos informations si vous nous avez donné la permission (c’est-à-dire votre consentement) d’utiliser vos informations personnelles à des fins spécifiques. Vous pouvez retirer votre consentement à tout moment. En savoir plus sur <a href="'. route('about.privacy_policy') .'#toc_item16">LE RETRAIT DE VOTRE CONSENTEMENT</a>.',
+                    'item01' => '<strong>Consentement</strong>. Nous pouvons traiter vos informations si vous nous avez donné la permission (c’est-à-dire votre consentement) d’utiliser vos informations personnelles à des fins spécifiques. Vous pouvez retirer votre consentement à tout moment. En savoir plus sur <a href="' . route('about.privacy_policy') . '#toc_item16">LE RETRAIT DE VOTRE CONSENTEMENT</a>.',
                     'item02' => '<strong>Exécution d’un contrat</strong>. Nous pouvons traiter vos informations personnelles lorsque nous croyons que c’est nécessaire pour remplir nos obligations contractuelles envers vous, notamment pour fournir nos services ou à votre demande avant de conclure un contrat avec vous.',
                     'item03' => [
                         'subcontent01' => '<strong>Intérêts légitimes</strong>. Nous pouvons traiter vos informations lorsque nous croyons que c’est raisonnablement nécessaire pour atteindre nos intérêts commerciaux légitimes et que ces intérêts ne l’emportent pas sur vos intérêts et vos droits fondamentaux. Par exemple, nous pouvons traiter vos informations personnelles à certaines fins décrites afin de :',
@@ -802,7 +809,7 @@ return [
                 'paragraph02' => '<strong>En termes juridiques, nous sommes généralement le « responsable du traitement » conformément aux lois européennes sur la protection des données pour les informations personnelles décrites dans cette politique de confidentialité, car nous déterminons les moyens et/ou les finalités du traitement des données que nous effectuons. Cette politique de confidentialité ne s’applique pas aux informations personnelles que nous traitons en tant que « sous-traitant » pour le compte de nos clients. Dans ces situations, le client à qui nous fournissons des services et avec qui nous avons conclu un accord de traitement de données est le « responsable du traitement » responsable de vos informations personnelles, et nous ne traitons vos informations que pour leur compte conformément à leurs instructions. Si vous voulez en savoir plus sur les pratiques de confidentialité de nos clients, vous devriez lire leurs politiques de confidentialité et leur poser toutes les questions que vous avez.</strong>.',
                 // Content 2
                 'content02' => 'Si vous êtes situé au Canada, cette section s’applique à vous',
-                'paragraph03' => '<strong>Nous pouvons traiter vos informations si vous nous avez donné une permission spécifique (c’est-à-dire un consentement explicite) d’utiliser vos informations personnelles à des fins spécifiques, ou dans des situations où votre permission peut être inférée (c’est-à-dire un consentement implicite). Vous pouvez <a href="'. route('about.privacy_policy') .'#toc_item16">retirer votre consentement</a> à tout moment.</strong>',
+                'paragraph03' => '<strong>Nous pouvons traiter vos informations si vous nous avez donné une permission spécifique (c’est-à-dire un consentement explicite) d’utiliser vos informations personnelles à des fins spécifiques, ou dans des situations où votre permission peut être inférée (c’est-à-dire un consentement implicite). Vous pouvez <a href="' . route('about.privacy_policy') . '#toc_item16">retirer votre consentement</a> à tout moment.</strong>',
                 'paragraph04' => [
                     'content' => '<strong>Dans certains cas exceptionnels, la loi applicable peut nous permettre de traiter vos informations sans votre consentement, notamment, par exemple :</strong>',
                     'item01' => 'Si la collecte est clairement dans l’intérêt d’une personne et que le consentement ne peut pas être obtenu en temps opportun',
@@ -831,7 +838,7 @@ return [
             ],
             'item06' => [
                 'in_short_content01' => 'Nous pouvons transférer, stocker et traiter vos informations dans des pays autres que le vôtre.',
-                'paragraph01' => 'Nos serveurs sont situés en France. Si vous accédez à nos Services depuis l’extérieur de la France, veuillez noter que vos informations peuvent être transférées, stockées et traitées par nous dans nos installations et par les tiers avec qui nous pouvons partager vos informations personnelles (voir la section "<a href="'. route('about.privacy_policy') .'#toc_item04">QUAND ET AVEC QUI PARTAGEONS-NOUS VOS INFORMATIONS PERSONNELLES ?</a>" ci-dessus), en République démocratique du Congo et dans d’autres pays.',
+                'paragraph01' => 'Nos serveurs sont situés en France. Si vous accédez à nos Services depuis l’extérieur de la France, veuillez noter que vos informations peuvent être transférées, stockées et traitées par nous dans nos installations et par les tiers avec qui nous pouvons partager vos informations personnelles (voir la section "<a href="' . route('about.privacy_policy') . '#toc_item04">QUAND ET AVEC QUI PARTAGEONS-NOUS VOS INFORMATIONS PERSONNELLES ?</a>" ci-dessus), en République démocratique du Congo et dans d’autres pays.',
                 'paragraph02' => 'Si vous êtes résident de l’Espace économique européen (EEE) ou du Royaume-Uni, ces pays peuvent ne pas avoir de lois sur la protection des données ou d’autres lois similaires aussi complètes que celles de votre pays. Cependant, nous prendrons toutes les mesures nécessaires pour protéger vos informations personnelles conformément à la présente politique de confidentialité et à la loi applicable.',
                 'paragraph03' => '<strong>Clauses contractuelles types de la Commission européenne :</strong>',
                 'paragraph04' => 'Nous avons mis en place des mesures pour protéger vos informations personnelles, notamment en utilisant les clauses contractuelles types de la Commission européenne pour les transferts d’informations personnelles entre nos sociétés du groupe et entre nous et nos fournisseurs tiers. Ces clauses exigent que tous les destinataires protègent toutes les informations personnelles qu’ils traitent en provenance de l’EEE ou du Royaume-Uni conformément aux lois et réglementations européennes sur la protection des données. Nos accords de traitement de données incluant des clauses contractuelles types sont disponibles ici : <a href="' . route('about.privacy_policy') . '">https://www.acr-rdc.com/about/privacy_policy</a>. Nous avons mis en place des garanties appropriées similaires avec nos prestataires de services tiers et nos partenaires et de plus amples détails peuvent être fournis sur demande.',
@@ -853,13 +860,13 @@ return [
             ],
             'item10' => [
                 'in_short_content01' => 'Dans certaines régions, comme l’Espace économique européen (EEE), le Royaume-Uni et le Canada, vous disposez de droits qui vous permettent un meilleur accès à vos informations personnelles et un plus grand contrôle sur celles-ci. Vous pouvez consulter, modifier ou résilier votre compte à tout moment',
-                'paragraph01' => 'Dans certaines régions (comme l’EEE, le Royaume-Uni et le Canada), vous avez certains droits en vertu des lois applicables sur la protection des données. Ces droits peuvent inclure le droit (i) de demander l’accès et de recevoir une copie de vos informations personnelles, (ii) de demander la rectification ou la suppression; (iii) de restreindre le traitement de vos informations personnelles; et (iv) le cas échéant, à la portabilité des données. Dans certaines circonstances, vous pouvez également avoir le droit de vous opposer au traitement de vos informations personnelles. Vous pouvez faire une telle demande en nous contactant en utilisant les coordonnées fournies dans la section "<a href="' . route('about.privacy_policy') .'#toc_item15">COMMENT POUVEZ-VOUS NOUS CONTACTER À PROPOS DE CET AVIS ?</a>" ci-dessous.',
+                'paragraph01' => 'Dans certaines régions (comme l’EEE, le Royaume-Uni et le Canada), vous avez certains droits en vertu des lois applicables sur la protection des données. Ces droits peuvent inclure le droit (i) de demander l’accès et de recevoir une copie de vos informations personnelles, (ii) de demander la rectification ou la suppression; (iii) de restreindre le traitement de vos informations personnelles; et (iv) le cas échéant, à la portabilité des données. Dans certaines circonstances, vous pouvez également avoir le droit de vous opposer au traitement de vos informations personnelles. Vous pouvez faire une telle demande en nous contactant en utilisant les coordonnées fournies dans la section "<a href="' . route('about.privacy_policy') . '#toc_item15">COMMENT POUVEZ-VOUS NOUS CONTACTER À PROPOS DE CET AVIS ?</a>" ci-dessous.',
                 'paragraph02' => 'Nous prendrons en compte et traiterons toute demande conformément aux lois applicables sur la protection des données.',
                 'paragraph03' => 'Si vous vous trouvez dans l’EEE ou au Royaume-Uni et que vous pensez que nous traitons illégalement vos informations personnelles, vous avez également le droit de déposer une plainte auprès de <a href="https://ec.europa.eu/justice/data-protection/bodies/authorities/index_en.htm" target="_blank">votre autorité de protection des données de l’État membre</a> ou de <a href="https://ico.org.uk/make-a-complaint/data-protection-complaints/data-protection-complaints/" target="_blank">l’autorité de protection des données du Royaume-Uni</a>.',
                 'paragraph04' => 'Si vous vous trouvez en Suisse, vous pouvez contacter le <a href="https://www.edoeb.admin.ch/edoeb/en/home.html" target="_blank">commissaire fédéral à la protection des données et à l’information</a>.',
-                'paragraph04' => '<strong><u>Retrait de votre consentement</u> :</strong> Si nous nous basons sur votre consentement pour traiter vos informations personnelles, qui peut être un consentement explicite et/ou implicite selon la loi applicable, vous avez le droit de retirer votre consentement à tout moment. Vous pouvez retirer votre consentement en nous contactant en utilisant les coordonnées fournies dans la section "<a href="' . route('about.privacy_policy') .'#toc_item15">COMMENT POUVEZ-VOUS NOUS CONTACTER À PROPOS DE CET AVIS ?</a>" ci-dessous ou en mettant à jour vos préférences.',
+                'paragraph04' => '<strong><u>Retrait de votre consentement</u> :</strong> Si nous nous basons sur votre consentement pour traiter vos informations personnelles, qui peut être un consentement explicite et/ou implicite selon la loi applicable, vous avez le droit de retirer votre consentement à tout moment. Vous pouvez retirer votre consentement en nous contactant en utilisant les coordonnées fournies dans la section "<a href="' . route('about.privacy_policy') . '#toc_item15">COMMENT POUVEZ-VOUS NOUS CONTACTER À PROPOS DE CET AVIS ?</a>" ci-dessous ou en mettant à jour vos préférences.',
                 'paragraph05' => 'Cependant, veuillez noter que cela n’affectera pas la licéité du traitement avant son retrait, ni, lorsque la loi applicable le permet, n’affectera le traitement de vos informations personnelles effectué en se fondant sur des bases de traitement licites autres que le consentement.',
-                'paragraph06' => '<strong><u>Désinscription des communications marketing et promotionnelles</u> :</strong> Vous pouvez vous désinscrire de nos communications marketing et promotionnelles à tout moment en cliquant sur le lien de désinscription dans les e-mails que nous envoyons, en répondant ’STOP’ ou ’UNSUBSCRIBE’ aux messages SMS que nous envoyons, ou en nous contactant en utilisant les détails fournis dans la section "<a href="' . route('about.privacy_policy') .'#toc_item15">COMMENT POUVEZ-VOUS NOUS CONTACTER À PROPOS DE CET AVIS ?</a>" ci-dessous. Vous serez alors retiré des listes de marketing. Cependant, nous pouvons encore communiquer avec vous - par exemple, pour vous envoyer des messages liés au service qui sont nécessaires à l’administration et à l’utilisation de votre compte, pour répondre à des demandes de service, ou pour d’autres fins non liées au marketing.',
+                'paragraph06' => '<strong><u>Désinscription des communications marketing et promotionnelles</u> :</strong> Vous pouvez vous désinscrire de nos communications marketing et promotionnelles à tout moment en cliquant sur le lien de désinscription dans les e-mails que nous envoyons, en répondant ’STOP’ ou ’UNSUBSCRIBE’ aux messages SMS que nous envoyons, ou en nous contactant en utilisant les détails fournis dans la section "<a href="' . route('about.privacy_policy') . '#toc_item15">COMMENT POUVEZ-VOUS NOUS CONTACTER À PROPOS DE CET AVIS ?</a>" ci-dessous. Vous serez alors retiré des listes de marketing. Cependant, nous pouvons encore communiquer avec vous - par exemple, pour vous envoyer des messages liés au service qui sont nécessaires à l’administration et à l’utilisation de votre compte, pour répondre à des demandes de service, ou pour d’autres fins non liées au marketing.',
                 // Content 1
                 'content01' => 'Information de compte',
                 'paragraph07' => [

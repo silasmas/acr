@@ -75,13 +75,13 @@
         <!-- About Start -->
         <div class="container-xxl py-4">
             <div class="container">
-                <div class="row g-5 align-items-end">
+                <div class="row g-5 align-items-center">
                     <div class="col-lg-6">
                         <div class="row g-2">
                             <div class="col-6 position-relative wow fadeIn" data-wow-delay="0.7s">
                                 <div class="about-experience acr-bg-yellow-transparent p-4 rounded text-center">
                                     <h1 class="display-3 fw-bold mb-1">
-                                        <span class="acr-text-red-2">A</span><span class="acr-text-yellow">C</span><span class="acr-text-blue">R</span>
+                                        <span class="acr-text-blue">U</span><span class="acr-text-yellow">S</span><span class="acr-text-red-2">N</span>
                                     </h1>
                                     <p class="acr-line-height-1_4 m-0">@lang('miscellaneous.public.about.slogan')</p>
                                 </div>
@@ -134,7 +134,7 @@
                     <div class="col-lg-5 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
                         <div class="bg-image mb-4">
                             <img src="{{ asset('assets/img/button-playstore-white.png') }}" alt="" class="img-fluid">
-                            <div class="mask"><a href="{{ asset('mobile_app/acr-rdc-v1_0_0.apk') }}" class="stretched-link"></a></div>
+                            <div class="mask"><a href="#" class="stretched-link"></a></div>
                         </div>
 
                         <div class="bg-image">
@@ -151,17 +151,20 @@
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="row g-5 align-items-center">
-                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="col-lg-12 wow fadeInUp" data-wow-delay="0.1s">
                         <h5 class="section-title bg-white text-start acr-text-blue mb-4 pe-3">@lang('miscellaneous.public.about.why_us.title')</h5>
                         <h1 class="mb-4">@lang('miscellaneous.public.about.why_us.subtitle')</h1>
                         <p class="mb-4">@lang('miscellaneous.public.about.why_us.content')</p>
                         <p><i class="fa fa-check acr-text-blue me-3"></i><strong>@lang('miscellaneous.public.about.why_us.item1')</strong>@lang('miscellaneous.colon_after_word') @lang('miscellaneous.public.about.why_us.item1_description')</p>
                         <p><i class="fa fa-check acr-text-blue me-3"></i><strong>@lang('miscellaneous.public.about.why_us.item2')</strong>@lang('miscellaneous.colon_after_word') @lang('miscellaneous.public.about.why_us.item2_description')</p>
                         <p><i class="fa fa-check acr-text-blue me-3"></i><strong>@lang('miscellaneous.public.about.why_us.item3')</strong>@lang('miscellaneous.colon_after_word') @lang('miscellaneous.public.about.why_us.item3_description')</p>
+                        <p><i class="fa fa-check acr-text-blue me-3"></i><strong>@lang('miscellaneous.public.about.why_us.item4')</strong>@lang('miscellaneous.colon_after_word') @lang('miscellaneous.public.about.why_us.item4_description')</p>
+                        <p><i class="fa fa-check acr-text-blue me-3"></i><strong>@lang('miscellaneous.public.about.why_us.item5')</strong>@lang('miscellaneous.colon_after_word') @lang('miscellaneous.public.about.why_us.item5_description')</p>
+                        <p><i class="fa fa-check acr-text-blue me-3"></i><strong>@lang('miscellaneous.public.about.why_us.item6')</strong>@lang('miscellaneous.colon_after_word') @lang('miscellaneous.public.about.why_us.item6_description')</p>
                         <a class="btn btn-secondary rounded-pill py-3 px-5 mt-3" href="{{ route('about.home') }}">@lang('miscellaneous.see_more')</a>
                     </div>
 
-                    <div class="col-lg-6">
+                    {{-- <div class="col-lg-6">
                         <div class="rounded overflow-hidden">
                             <div class="row g-0">
                                 <div class="col-sm-6 wow fadeIn" data-wow-delay="0.1s">
@@ -187,7 +190,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
