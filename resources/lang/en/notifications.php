@@ -138,6 +138,7 @@ return [
     'create_password_reset_success' => 'Password reset created',
     'update_password_reset_success' => 'Password reset updated',
     'delete_password_reset_success' => 'Password reset deleted',
+    'token_label' => 'Your OTP code:',
     // Message
     'find_all_messages_success' => 'Messages found',
     'find_message_success' => 'Message found',

@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Storage;
 use stdClass;
 use App\Http\Resources\User as ResourcesUser;
 use App\Http\Resources\PasswordReset as ResourcesPasswordReset;
+use App\Services\SmsService;
 
 /**
  * @author Xanders
@@ -26,6 +27,14 @@ use App\Http\Resources\PasswordReset as ResourcesPasswordReset;
  */
 class UserController extends BaseController
 {
+    protected $smsService;
+
+    // Injection du service SmsService
+    public function __construct(SmsService $smsService)
+    {
+        $this->smsService = $smsService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -69,8 +78,8 @@ class UserController extends BaseController
         $users = User::all();
         $password_resets = PasswordReset::all();
         // $basic  = new \Vonage\Client\Credentials\Basic('89e3b822', 'cab98aefeaab1434ACR');
-        $basic  = new \Vonage\Client\Credentials\Basic('5a4c014d', 'dhOq17USeZadLgIw');
-        $client = new \Vonage\Client($basic);
+        // $basic  = new \Vonage\Client\Credentials\Basic('5a4c014d', 'dhOq17USeZadLgIw');
+        // $client = new \Vonage\Client($basic);
 
         // Validate required fields
         if ($inputs['email'] == null AND $inputs['phone'] == null) {
@@ -145,7 +154,11 @@ class UserController extends BaseController
                 ]);
 
                 try {
-                    $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
+                    // $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
+
+                    $message = __('notifications.token_label') . ' ' . $password_reset->token;
+
+                    $this->smsService->sendSMS($password_reset->phone, $password_reset->token, $message);
 
                 } catch (\Throwable $th) {
                     return $this->handleError($th->getMessage(), __('notifications.create_user_SMS_failed'), 500);
@@ -168,7 +181,11 @@ class UserController extends BaseController
                     ]);
 
                     try {
-                        $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
+                        // $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
+
+                        $message = __('notifications.token_label') . ' ' . $password_reset->token;
+
+                        $this->smsService->sendSMS($password_reset->phone, $password_reset->token, $message);
 
                     } catch (\Throwable $th) {
                         return $this->handleError($th->getMessage(), __('notifications.create_user_SMS_failed'), 500);
@@ -191,7 +208,11 @@ class UserController extends BaseController
                 $inputs['password'] = Hash::make($password_reset->former_password);
 
                 try {
-                    $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
+                    // $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
+
+                    $message = __('notifications.token_label') . ' ' . $password_reset->token;
+
+                    $this->smsService->sendSMS($password_reset->phone, $password_reset->token, $message);
 
                 } catch (\Throwable $th) {
                     return $this->handleError($th->getMessage(), __('notifications.create_user_SMS_failed'), 500);
@@ -218,7 +239,11 @@ class UserController extends BaseController
                     $inputs['password'] = Hash::make($password_reset->former_password);
 
                     try {
-                        $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
+                        // $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
+
+                        $message = __('notifications.token_label') . ' ' . $password_reset->token;
+
+                        $this->smsService->sendSMS($password_reset->phone, $password_reset->token, $message);
 
                     } catch (\Throwable $th) {
                         return $this->handleError($th->getMessage(), __('notifications.create_user_SMS_failed'), 500);

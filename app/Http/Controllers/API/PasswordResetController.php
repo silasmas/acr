@@ -6,6 +6,7 @@ use App\Models\PasswordReset;
 use Illuminate\Http\Request;
 use App\Http\Resources\PasswordReset as ResourcesPasswordReset;
 use App\Models\User;
+use App\Services\SmsService;
 use Illuminate\Support\Facades\Hash;
 use Nette\Utils\Random;
 
@@ -15,6 +16,14 @@ use Nette\Utils\Random;
  */
 class PasswordResetController extends BaseController
 {
+    protected $smsService;
+
+    // Injection du service SmsService
+    public function __construct(SmsService $smsService)
+    {
+        $this->smsService = $smsService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -232,7 +241,11 @@ class PasswordResetController extends BaseController
             ]);
 
             try {
-                $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
+                // $client->sms()->send(new \Vonage\SMS\Message\SMS($password_reset->phone, 'ACR', (string) $password_reset->token));
+
+                $message = __('notifications.token_label') . ' ' . $password_reset->token;
+
+                $this->smsService->sendSMS($password_reset->phone, $password_reset->token, $message);
 
             } catch (\Throwable $th) {
                 $response_error = json_decode($th->getMessage(), false);

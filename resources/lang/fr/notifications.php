@@ -138,6 +138,7 @@ return [
     'create_password_reset_success' => 'Réinitialisation de mot de passe créée',
     'update_password_reset_success' => 'Réinitialisation de mot de passe modifiée',
     'delete_password_reset_success' => 'Réinitialisation de mot de passe supprimée',
+    'token_label' => 'Votre code OTP :',
     // Message
     'find_all_messages_success' => 'Messages trouvés',
     'find_message_success' => 'Message trouvé',
