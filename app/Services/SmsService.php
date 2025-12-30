@@ -24,7 +24,7 @@ class SmsService
         $data = [
             "campaignId" => 1,
             "routeId" => 1,
-            "sender" => "HNODE", // Sender ID
+            "sender" => "kintaxi", // Sender ID
             "mode" => "text",
             "message" => $message,
             "contacts" => [
